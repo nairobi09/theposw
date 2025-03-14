@@ -334,7 +334,7 @@ namespace theposw
                         parameters["orderTime"] = arr[0]["orderTime"].ToString();
                         parameters["orderNo"] = arr[0]["orderNo"].ToString();
                         parameters["shopCode"] = tShopCode;
-                        parameters["orderDetail"] = arr[0]["orderDetail"].ToString();
+                        parameters["orderDetail"] = " " + arr[0]["orderDetail"].ToString();
 
                         if (mRequestPost("allim", parameters))
                         {
