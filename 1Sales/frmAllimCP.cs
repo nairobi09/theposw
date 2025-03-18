@@ -212,7 +212,7 @@ namespace theposw
             //
             lvwOrderItem.Items.Clear();
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopOrderNo=" + tShopOrderNo;
+            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopOrderNo=" + tShopOrderNo + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

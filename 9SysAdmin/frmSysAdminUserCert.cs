@@ -95,11 +95,11 @@ namespace thepos._9SysAdmin
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = arr[i]["serialKey"].ToString();
+                        //lvItem.Text = arr[i]["serialKey"].ToString();
                         lvItem.SubItems.Add("정상");
                         lvItem.SubItems.Add(arr[i]["userId"].ToString());
                         lvItem.SubItems.Add(arr[i]["userName"].ToString());
-                        lvItem.SubItems.Add(arr[i]["initDt"].ToString());
+                        lvItem.SubItems.Add(arr[i]["registDt"].ToString());
                         lvItem.Tag = arr[i]["userPw"].ToString();
                         lvwList.Items.Add(lvItem);
                     }
