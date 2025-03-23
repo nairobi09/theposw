@@ -1784,12 +1784,12 @@ namespace thepos
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
                 parameters["cnt"] = order_shop_cnt + "";
-                parameters["isCancel"] = "";
+                parameters["isCancel"] = " ";
                 parameters["shopCode"] = shop_code_list[i] + "";
                 parameters["shopOrderNo"] = shop_order_no;
-                parameters["orderAllimType"] = "";
-                parameters["orderAllimStatus"] = "";
-                parameters["orderAllimMemo"] = "";
+                parameters["orderAllimType"] = " ";
+                parameters["orderAllimStatus"] = "0";
+                parameters["orderAllimMemo"] = " ";
 
                 if (mRequestPost("orderShop", parameters))
                 {
@@ -1807,7 +1807,6 @@ namespace thepos
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return -1;
                 }
-
 
             }
 

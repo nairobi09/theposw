@@ -726,6 +726,8 @@ namespace thepos
         // 앞으로 쿠폰 채널 
         public static String mCouponChPM = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
 
+        public static String mSubMonitorImage = "";   
+
 
         //Local DB
         public static SQLiteConnection mConn;

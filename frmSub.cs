@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,24 @@ namespace thepos
             initialize_font();
             initialize_the();
 
+
+            // 기본 대기화면
+            if (mSubMonitorImage.Length > 0)
+            {
+
+                try
+                {
+                    byte[] imgBytes = Convert.FromBase64String(mSubMonitorImage);
+                    MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                    ms.Write(imgBytes, 0, imgBytes.Length);
+                    picLogo.Image = System.Drawing.Image.FromStream(ms, true);
+                }
+                catch
+                {
+
+                }
+            }
+            
         }
 
 

@@ -94,7 +94,7 @@ namespace thepos
                     }
 
 
-                    // orderItem UPDATE
+                    // orderShop UPDATE
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["bizDt"] = mBizDate;

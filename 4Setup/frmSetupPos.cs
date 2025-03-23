@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
 using System.Data.SQLite;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 
 
@@ -43,7 +45,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[10];
+        Setup[] listSetup = new Setup[11];
 
 
         bool isAdd = false;
@@ -73,6 +75,9 @@ namespace thepos
             setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[8] = setupItem;
 
             setupItem.code = "CouponChPM";            setupItem.name = "플레이스엠 업체코드(CMS)"; setupItem.value = ""; setupItem.memo = ""; listSetup[9] = setupItem;
+
+            // 고객화면 이미지
+            setupItem.code = "SubMonitorImage";       setupItem.name = "고객화면 이미지"; setupItem.value = ""; setupItem.memo = "300*700 jpg"; listSetup[10] = setupItem;
 
             reload_setup_pos();
         }
@@ -284,6 +289,31 @@ namespace thepos
                 tbValue.Visible = true;
 
             }
+            else if (code == listSetup[10].code)
+            {
+                panelImage.Visible = true;
+
+                if (lvwList.SelectedItems[0].SubItems[1].Text.ToString().Trim() != "")
+                {
+                    try
+                    {
+                        byte[] imgBytes = Convert.FromBase64String(lvwList.SelectedItems[0].SubItems[1].Text.ToString());
+
+                        MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                        ms.Write(imgBytes, 0, imgBytes.Length);
+
+                        pbImage.Image = System.Drawing.Image.FromStream(ms, true);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+                else
+                {
+                    pbImage.Image = null;
+                }
+            }
 
         }
 
@@ -414,6 +444,7 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "CouponChPM") mCouponChPM = lvwList.Items[i].SubItems[1].Text;
 
+                else if (lvwList.Items[i].Tag.ToString() == "SubMonitorImage") mSubMonitorImage = lvwList.Items[i].SubItems[1].Text;
             }
 
 
@@ -424,5 +455,36 @@ namespace thepos
             reload_setup_pos();
         }
 
+        private void pbImage_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = openFileDialog.ShowDialog();
+
+            //OK버튼 클릭시
+            if (dr == DialogResult.OK)
+            {
+                string fileFullName = openFileDialog.FileName;
+
+                System.Drawing.Image image = System.Drawing.Image.FromFile(fileFullName);
+                this.pbImage.Image = image;
+
+
+                if (pbImage.Image == null)
+                {
+                    tbValue.Text = "";
+                }
+                else
+                {
+                    var ms = new MemoryStream();
+                    pbImage.Image.Save(ms, pbImage.Image.RawFormat);
+                    tbValue.Text = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            this.pbImage.Image = null;
+            tbValue.Text = "";
+        }
     }
 }
