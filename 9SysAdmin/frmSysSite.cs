@@ -112,11 +112,11 @@ namespace thepos._9SysAdmin
             tmTicketMedia = new String[3] { "", "BC", "RF" };
             tmTicketMediaText = new String[3] { "", "띠지", "팔찌" };
 
-            tmVanCode = new String[4] { "NICE", "KCP", "KOVAN", "TOSS" };
+            tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 
 
-            tmCutoffType = new String[2] { "A", "M" };
-            tmCutoffTypeText = new String[2] { "자동", "수동" };
+            tmCutoffType = new String[3] { "M", "A", "D" };
+            tmCutoffTypeText = new String[3] { "수동", "자동마감", "자동마감개시" };
 
 
             cbTicketType.Items.Clear();

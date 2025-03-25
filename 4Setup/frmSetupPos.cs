@@ -218,7 +218,7 @@ namespace thepos
 
             cbValue.Visible = false;
             tbValue.Visible = false;
-
+            panelImage.Visible = false;
 
 
             cbValue.SelectedIndex = -1;
