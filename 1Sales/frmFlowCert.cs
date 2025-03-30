@@ -103,7 +103,7 @@ namespace thepos
 
         private void view_reload()
         { 
-
+            /*
             if (tbNo.Text.Length == 4 |  tbNo.Text.Length >= 8)
             {
 
@@ -113,7 +113,7 @@ namespace thepos
                 SetDisplayAlarm("W", "검색번호 : 4자리 or 8자리이상.");
                 return;
             }
-
+            */
 
 
             mCertOrders.Clear();

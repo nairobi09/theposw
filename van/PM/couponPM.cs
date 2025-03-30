@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,10 @@ namespace thepos
 {
     internal class couponPM
     {
-        String PLACEM_URL = "https://gateway.sparo.cc/extra/kiosk/v1/";
+        //String PLACEM_URL = "https://gateway.sparo.cc/extra/kiosk/v1/";
 
+        String TM_URL = "https://gateway.ticketmanager.ai/";
+        String TM_KEY = "dae13182479f66cb1aab435aa28deb763bf1123e105bfcb6932d4e4e04a75499";
         String sUrl = "";
         String rcode = "";
         String rmsg = "";
@@ -25,14 +29,44 @@ namespace thepos
 
         public int requestPmCertView(String tNo)
         {
-            sUrl = PLACEM_URL + "req.php?pc=SS&pval=" + tNo + "&ch=" + mCouponChPM + "&fcno=" + mPosNo;
+            sUrl = TM_URL + "/extra/agency/v2/chorder/" + tNo;
 
             try
             {
-                var response = mHttpClient.GetAsync(sUrl).Result;
+                var baseAddress = new Uri(TM_URL);
 
-                var responseContent = response.Content;
-                string responseString = responseContent.ReadAsStringAsync().Result;
+                var httpClient = new HttpClient { BaseAddress = baseAddress };
+
+
+                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", TM_KEY);
+
+
+                var response = httpClient.GetAsync("extra/agency/v2/chorder/" + tNo).Result;
+
+
+                
+
+                String responseString = response.Content.ReadAsStringAsync().Result;
+
+
+                JObject obj = JObject.Parse(responseString);
+
+                if (obj["Code"].ToString() != "1000")
+                {
+                    MessageBox.Show(obj["Msg"].ToString(), "오류");
+                    return -1;
+                }
+
+
+
+                String data = mObj["allims"].ToString();
+                JArray arr = JArray.Parse(data);
+
+
+
+
+
+
 
                 XmlDocument xdoc = new XmlDocument();
                 xdoc.LoadXml(responseString);
@@ -98,7 +132,7 @@ namespace thepos
 
         public int requestPmCertAuth(String tCouponNo)
         {
-            String sUrl = PLACEM_URL + "req.php?pc=US&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
+            String sUrl = TM_URL + "req.php?pc=US&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
 
             try
             {
@@ -141,7 +175,7 @@ namespace thepos
 
         public int requestPmCertCancel(String tCouponNo)
         {
-            String sUrl = PLACEM_URL + "req.php?pc=RC&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
+            String sUrl = TM_URL + "req.php?pc=RC&pval=" + tCouponNo + "&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo;
 
             try
             {
@@ -189,7 +223,7 @@ namespace thepos
             mCertOrders.Clear();
 
 
-            sUrl = PLACEM_URL + "req.php?pc=CL&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo + "&sdate=" + from_dt + "&edate=" + to_dt;
+            sUrl = TM_URL + "req.php?pc=CL&ch=" + mCouponChPM + "&fcno=POS_" + mPosNo + "&sdate=" + from_dt + "&edate=" + to_dt;
 
             try
             {
