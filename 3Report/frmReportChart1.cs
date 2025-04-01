@@ -96,7 +96,7 @@ namespace thepos
 
             if (cbShop.SelectedIndex > 0)
             {
-                shop_code = mShop[cbShop.SelectedIndex - 1].shop_code;
+                shop_code = mShop[cbShop.SelectedIndex].shop_code;
             }
 
             for (int i = 0;i < day_amount.Length;i++)

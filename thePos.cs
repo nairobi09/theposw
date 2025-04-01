@@ -294,6 +294,7 @@ namespace thepos
             public string goods_code;
             public string goods_name;
             public int amt;
+            public String online_coupon;
             public String ticket; // 일반상품 0. 티켓상품 1
             public String taxfree; // 과세품 0, 면세품 1
             public String shop_code;

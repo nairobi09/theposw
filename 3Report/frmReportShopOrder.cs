@@ -61,7 +61,7 @@ namespace thepos
 
             if (cbShop.SelectedIndex > 0)
             {
-                shop_code = mShop[cbShop.SelectedIndex - 1].shop_code;
+                shop_code = mShop[cbShop.SelectedIndex].shop_code;
             }
 
             lvwList.Items.Clear();

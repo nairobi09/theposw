@@ -1470,6 +1470,7 @@ namespace thepos
                             mGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
                             mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
                             mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                            mGoodsItem[i].online_coupon = arr[i]["onlineCoupon"].ToString();
                             mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
                             mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
                             mGoodsItem[i].cutout = arr[i]["cutout"].ToString();

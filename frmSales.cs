@@ -635,6 +635,17 @@ namespace thepos
 
         private void ClickedGoodsItem(int i)
         {
+
+            if (mGoodsItem[i].online_coupon == "Y")
+            {
+
+
+
+
+            }
+
+
+
             // 옵션항목 목록: frmOrderOption에서 채운다.
 
             mOrderOptionItemList.Clear();

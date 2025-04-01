@@ -51,6 +51,7 @@ namespace thepos
             this.btnKey7 = new System.Windows.Forms.Button();
             this.btnKeyClear = new System.Windows.Forms.Button();
             this.panelOrderConsole = new System.Windows.Forms.Panel();
+            this.btnOrderAllim = new System.Windows.Forms.Button();
             this.btnOrderCntUp = new System.Windows.Forms.Button();
             this.btnPayManager = new System.Windows.Forms.Button();
             this.btnOrderCntDn = new System.Windows.Forms.Button();
@@ -122,7 +123,6 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
-            this.btnOrderAllim = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -434,6 +434,21 @@ namespace thepos
             this.panelOrderConsole.Size = new System.Drawing.Size(474, 367);
             this.panelOrderConsole.TabIndex = 25;
             // 
+            // btnOrderAllim
+            // 
+            this.btnOrderAllim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderAllim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderAllim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderAllim.ForeColor = System.Drawing.Color.White;
+            this.btnOrderAllim.Location = new System.Drawing.Point(217, 53);
+            this.btnOrderAllim.Name = "btnOrderAllim";
+            this.btnOrderAllim.Size = new System.Drawing.Size(60, 48);
+            this.btnOrderAllim.TabIndex = 28;
+            this.btnOrderAllim.TabStop = false;
+            this.btnOrderAllim.Text = "알림";
+            this.btnOrderAllim.UseVisualStyleBackColor = false;
+            this.btnOrderAllim.Click += new System.EventHandler(this.btnOrderAllim_Click);
+            // 
             // btnOrderCntUp
             // 
             this.btnOrderCntUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
@@ -455,9 +470,9 @@ namespace thepos
             this.btnPayManager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayManager.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPayManager.ForeColor = System.Drawing.Color.White;
-            this.btnPayManager.Location = new System.Drawing.Point(350, 157);
+            this.btnPayManager.Location = new System.Drawing.Point(350, 313);
             this.btnPayManager.Name = "btnPayManager";
-            this.btnPayManager.Size = new System.Drawing.Size(124, 204);
+            this.btnPayManager.Size = new System.Drawing.Size(124, 48);
             this.btnPayManager.TabIndex = 0;
             this.btnPayManager.TabStop = false;
             this.btnPayManager.Text = "결제내역관리";
@@ -532,7 +547,7 @@ namespace thepos
             this.btnOrderWaiting.ForeColor = System.Drawing.Color.White;
             this.btnOrderWaiting.Location = new System.Drawing.Point(350, 53);
             this.btnOrderWaiting.Name = "btnOrderWaiting";
-            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 100);
+            this.btnOrderWaiting.Size = new System.Drawing.Size(124, 48);
             this.btnOrderWaiting.TabIndex = 0;
             this.btnOrderWaiting.TabStop = false;
             this.btnOrderWaiting.Text = "대기\r\n";
@@ -1372,21 +1387,6 @@ namespace thepos
             this.panelCancel.Size = new System.Drawing.Size(140, 100);
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
-            // 
-            // btnOrderAllim
-            // 
-            this.btnOrderAllim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderAllim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderAllim.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderAllim.ForeColor = System.Drawing.Color.White;
-            this.btnOrderAllim.Location = new System.Drawing.Point(217, 53);
-            this.btnOrderAllim.Name = "btnOrderAllim";
-            this.btnOrderAllim.Size = new System.Drawing.Size(60, 48);
-            this.btnOrderAllim.TabIndex = 28;
-            this.btnOrderAllim.TabStop = false;
-            this.btnOrderAllim.Text = "알림";
-            this.btnOrderAllim.UseVisualStyleBackColor = false;
-            this.btnOrderAllim.Click += new System.EventHandler(this.btnOrderAllim_Click);
             // 
             // frmSales
             // 
