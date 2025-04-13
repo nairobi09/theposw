@@ -22,8 +22,6 @@ namespace thepos._1Sales
         {
             InitializeComponent();
 
-            initialize_font();
-
 
             theNo = the_no;
             tranType = tran_type;
@@ -34,14 +32,6 @@ namespace thepos._1Sales
 
 
             lblLayoutBill.Text = "\r\n" + str_bill;
-
-        }
-
-        private void initialize_font()
-        {
-            btnPrintBill.Font = font10;
-            btnPrintBillex.Font = font10;
-            btnClose.Font = font10;
 
         }
 

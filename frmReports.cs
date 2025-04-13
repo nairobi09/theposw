@@ -22,26 +22,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
-
-        }
-
-        private void initialize_font()
-        {
-            lblReportTitle.Font = font14;
-            btnClose.Font = font12;
-
-            //
-            btnReportDayPos.Font = font10;
-            btnReportDayShop.Font = font10;
-            btnReportDayDetail.Font = font10;
-
-            btnReportCalendar1.Font = font10;
-            btnReportChart1.Font = font10;
-            btnReportList1.Font = font10;
-
-
         }
 
 

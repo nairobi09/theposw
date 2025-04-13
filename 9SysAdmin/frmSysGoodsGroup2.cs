@@ -25,38 +25,12 @@ namespace thepos._9SysAdmin
         public frmSysGoodsGroup2()
         {
             InitializeComponent();
-            initialize_font();
 
             //get_posno();
             get_posno_from_setupPos();
 
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lvwList.Font = font10;
-
-            lblPosNo.Font = font10;
-            comboPosNo.Font = font10;
-            btnViewPosNo.Font = font10;
-
-            lblGroupNameTitle.Font = font10;
-            lblGroupNameTitleEN.Font = font10;
-            lblGroupNameTitleCH.Font = font10;
-            lblGroupNameTitleJP.Font = font10;
-
-            tbGroupName.Font = font10;
-            tbGroupNameEN.Font = font10;
-            tbGroupNameCH.Font = font10;
-            tbGroupNameJP.Font = font10;
-
-            btnInput.Font = font10;
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-
-            btnSave.Font = font10;
-        }
 
         private void get_posno()
         {

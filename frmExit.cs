@@ -17,15 +17,8 @@ namespace thepos
         public frmExit()
         {
             InitializeComponent();
-            initialize_font();
         }
 
-        private void initialize_font()
-        {
-            btnLogout.Font = font12;
-            btnExit.Font = font12;
-            btnCancel.Font = font12;
-        }
 
 
         private void btnLogout_Click(object sender, EventArgs e)

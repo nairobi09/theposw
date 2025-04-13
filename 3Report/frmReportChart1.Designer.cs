@@ -48,7 +48,7 @@
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnView.Location = new System.Drawing.Point(669, 26);
             this.btnView.Name = "btnView";
@@ -62,11 +62,11 @@
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblReportTitle.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblReportTitle.Size = new System.Drawing.Size(93, 19);
             this.lblReportTitle.TabIndex = 76;
             this.lblReportTitle.Text = "월별매출차트";
             this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -95,11 +95,11 @@
             // 
             // cbShop
             // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbShop.FormattingEnabled = true;
             this.cbShop.Location = new System.Drawing.Point(568, 28);
             this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(92, 24);
+            this.cbShop.Size = new System.Drawing.Size(92, 29);
             this.cbShop.TabIndex = 90;
             this.cbShop.TabStop = false;
             this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
@@ -108,22 +108,22 @@
             // 
             this.lblShopTitle.AutoSize = true;
             this.lblShopTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblShopTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblShopTitle.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblShopTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblShopTitle.Location = new System.Drawing.Point(533, 33);
             this.lblShopTitle.Name = "lblShopTitle";
-            this.lblShopTitle.Size = new System.Drawing.Size(35, 14);
+            this.lblShopTitle.Size = new System.Drawing.Size(34, 17);
             this.lblShopTitle.TabIndex = 89;
             this.lblShopTitle.Text = "업장";
             this.lblShopTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbPosNo
             // 
-            this.cbPosNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosNo.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbPosNo.FormattingEnabled = true;
             this.cbPosNo.Location = new System.Drawing.Point(464, 28);
             this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(57, 24);
+            this.cbPosNo.Size = new System.Drawing.Size(57, 29);
             this.cbPosNo.TabIndex = 88;
             this.cbPosNo.TabStop = false;
             this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.cbPosNo_SelectedIndexChanged);
@@ -132,11 +132,11 @@
             // 
             this.lblPosNoTitle.AutoSize = true;
             this.lblPosNoTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblPosNoTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNoTitle.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblPosNoTitle.Location = new System.Drawing.Point(401, 33);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
+            this.lblPosNoTitle.Size = new System.Drawing.Size(65, 19);
             this.lblPosNoTitle.TabIndex = 87;
             this.lblPosNoTitle.Text = "포스번호";
             this.lblPosNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

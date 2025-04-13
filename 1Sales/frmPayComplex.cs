@@ -45,7 +45,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initial_the();
 
             selectIdx = select_index;
@@ -76,33 +75,6 @@ namespace thepos
 
         }
 
-        void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-
-            lblNetAmount.Font = font10;
-            lblRcvAmount.Font = font10;
-            lblNestAmount.Font = font10;
-
-            lblT1.Font = font10;
-            lblT2.Font = font10;
-            lblT3.Font = font10;
-            lblT4.Font = font10;
-
-            tbReqAmount.Font = font12;
-
-            btnRequestCash.Font = font10;
-            btnRequestCard.Font = font10;
-            btnRequestEasy.Font = font10;
-
-            mTbReqAmount = tbReqAmount;
-
-            lvwPay.Font = font10;
-
-
-        }
 
         private void initial_the()
         {

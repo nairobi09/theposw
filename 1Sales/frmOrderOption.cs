@@ -37,7 +37,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             goodsItem = goods_item;
@@ -51,91 +50,6 @@ namespace thepos
         }
 
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblGoodsInfo.Font = font12;
-
-            lblCnt.Font = font12bold;
-            lblCntDn.Font = font12bold;
-            lblCntUp.Font = font12bold;
-
-            lblAmount.Font = font12;
-
-            lblOption0Name.Font = font12;
-            lblOption1Name.Font = font12;
-            lblOption2Name.Font = font12;
-            lblOption3Name.Font = font12;
-            lblOption4Name.Font = font12;
-            lblOption5Name.Font = font12;
-
-            rbOption0Item0Name.Font = font10;
-            rbOption0Item1Name.Font = font10;
-            rbOption0Item2Name.Font = font10;
-            rbOption0Item3Name.Font = font10;
-
-            rbOption1Item0Name.Font = font10;
-            rbOption1Item1Name.Font = font10;
-            rbOption1Item2Name.Font = font10;
-            rbOption1Item3Name.Font = font10;
-
-            rbOption2Item0Name.Font = font10;
-            rbOption2Item1Name.Font = font10;
-            rbOption2Item2Name.Font = font10;
-            rbOption2Item3Name.Font = font10;
-
-            rbOption3Item0Name.Font = font10;
-            rbOption3Item1Name.Font = font10;
-            rbOption3Item2Name.Font = font10;
-            rbOption3Item3Name.Font = font10;
-
-            rbOption4Item0Name.Font = font10;
-            rbOption4Item1Name.Font = font10;
-            rbOption4Item2Name.Font = font10;
-            rbOption4Item3Name.Font = font10;
-
-            rbOption5Item0Name.Font = font10;
-            rbOption5Item1Name.Font = font10;
-            rbOption5Item2Name.Font = font10;
-            rbOption5Item3Name.Font = font10;
-
-
-
-            lblOrder0Item0Amt.Font = font9;
-            lblOrder0Item1Amt.Font = font9;
-            lblOrder0Item2Amt.Font = font9;
-            lblOrder0Item3Amt.Font = font9;
-
-            lblOrder1Item0Amt.Font = font9;
-            lblOrder1Item1Amt.Font = font9;
-            lblOrder1Item2Amt.Font = font9;
-            lblOrder1Item3Amt.Font = font9;
-
-            lblOrder2Item0Amt.Font = font9;
-            lblOrder2Item1Amt.Font = font9;
-            lblOrder2Item2Amt.Font = font9;
-            lblOrder2Item3Amt.Font = font9;
-
-            lblOrder3Item0Amt.Font = font9;
-            lblOrder3Item1Amt.Font = font9;
-            lblOrder3Item2Amt.Font = font9;
-            lblOrder3Item3Amt.Font = font9;
-
-            lblOrder4Item0Amt.Font = font9;
-            lblOrder4Item1Amt.Font = font9;
-            lblOrder4Item2Amt.Font = font9;
-            lblOrder4Item3Amt.Font = font9;
-
-            lblOrder5Item0Amt.Font = font9;
-            lblOrder5Item1Amt.Font = font9;
-            lblOrder5Item2Amt.Font = font9;
-            lblOrder5Item3Amt.Font = font9;
-
-            btnOK.Font = font12;
-            btnCancel.Font = font12;
-
-        }
 
         private void initialize_the()
         {

@@ -72,7 +72,7 @@
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsItem);
             this.panelAdminConsole.Controls.Add(this.btnSysGoods);
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup);
-            this.panelAdminConsole.Font = new System.Drawing.Font("굴림", 10F);
+            this.panelAdminConsole.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.panelAdminConsole.Location = new System.Drawing.Point(0, 70);
             this.panelAdminConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelAdminConsole.Name = "panelAdminConsole";
@@ -84,6 +84,7 @@
             // 
             this.btnSysOption.BackColor = System.Drawing.Color.White;
             this.btnSysOption.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysOption.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysOption.Location = new System.Drawing.Point(7, 141);
             this.btnSysOption.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysOption.Name = "btnSysOption";
@@ -98,6 +99,7 @@
             // 
             this.btnSysSoldout.BackColor = System.Drawing.Color.White;
             this.btnSysSoldout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysSoldout.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysSoldout.Location = new System.Drawing.Point(7, 424);
             this.btnSysSoldout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysSoldout.Name = "btnSysSoldout";
@@ -112,6 +114,7 @@
             // 
             this.btnSysGoodsItem2.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsItem2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysGoodsItem2.Location = new System.Drawing.Point(7, 362);
             this.btnSysGoodsItem2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItem2.Name = "btnSysGoodsItem2";
@@ -126,6 +129,7 @@
             // 
             this.btnSysGoodsGroup2.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsGroup2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsGroup2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysGoodsGroup2.Location = new System.Drawing.Point(7, 247);
             this.btnSysGoodsGroup2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.btnSysGoodsGroup2.Name = "btnSysGoodsGroup2";
@@ -140,6 +144,7 @@
             // 
             this.btnDcrFavorite.BackColor = System.Drawing.Color.White;
             this.btnDcrFavorite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDcrFavorite.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDcrFavorite.Location = new System.Drawing.Point(7, 485);
             this.btnDcrFavorite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDcrFavorite.Name = "btnDcrFavorite";
@@ -154,6 +159,7 @@
             // 
             this.btnSysSite.BackColor = System.Drawing.Color.White;
             this.btnSysSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysSite.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysSite.Location = new System.Drawing.Point(7, 0);
             this.btnSysSite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysSite.Name = "btnSysSite";
@@ -168,6 +174,7 @@
             // 
             this.btnSysShop.BackColor = System.Drawing.Color.White;
             this.btnSysShop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysShop.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysShop.Location = new System.Drawing.Point(7, 38);
             this.btnSysShop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysShop.Name = "btnSysShop";
@@ -182,6 +189,7 @@
             // 
             this.btnSysPayConsole.BackColor = System.Drawing.Color.White;
             this.btnSysPayConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysPayConsole.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysPayConsole.Location = new System.Drawing.Point(7, 523);
             this.btnSysPayConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysPayConsole.Name = "btnSysPayConsole";
@@ -196,6 +204,7 @@
             // 
             this.btnSysGoodsItem.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsItem.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysGoodsItem.Location = new System.Drawing.Point(7, 309);
             this.btnSysGoodsItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItem.Name = "btnSysGoodsItem";
@@ -210,6 +219,7 @@
             // 
             this.btnSysGoods.BackColor = System.Drawing.Color.White;
             this.btnSysGoods.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoods.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysGoods.Location = new System.Drawing.Point(7, 88);
             this.btnSysGoods.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoods.Name = "btnSysGoods";
@@ -224,6 +234,7 @@
             // 
             this.btnSysGoodsGroup.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsGroup.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 194);
             this.btnSysGoodsGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsGroup.Name = "btnSysGoodsGroup";
@@ -238,7 +249,7 @@
             // 
             this.btnPos.BackColor = System.Drawing.Color.White;
             this.btnPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPos.Font = new System.Drawing.Font("굴림", 10F);
+            this.btnPos.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPos.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnPos.Location = new System.Drawing.Point(7, 10);
             this.btnPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -254,7 +265,7 @@
             // 
             this.panelCertConsole.Controls.Add(this.btnPosMac);
             this.panelCertConsole.Controls.Add(this.btnUser);
-            this.panelCertConsole.Font = new System.Drawing.Font("굴림", 10F);
+            this.panelCertConsole.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.panelCertConsole.Location = new System.Drawing.Point(0, 639);
             this.panelCertConsole.Name = "panelCertConsole";
             this.panelCertConsole.Size = new System.Drawing.Size(122, 68);
@@ -265,6 +276,7 @@
             // 
             this.btnPosMac.BackColor = System.Drawing.Color.White;
             this.btnPosMac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPosMac.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPosMac.ForeColor = System.Drawing.Color.Red;
             this.btnPosMac.Location = new System.Drawing.Point(7, 0);
             this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -280,6 +292,7 @@
             // 
             this.btnUser.BackColor = System.Drawing.Color.White;
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUser.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUser.ForeColor = System.Drawing.Color.Red;
             this.btnUser.Location = new System.Drawing.Point(7, 33);
             this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

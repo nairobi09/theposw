@@ -21,21 +21,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
-
         }
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font14;
-            btnClose.Font = font12;
-
-            btnSetupPos.Font = font10;
-            btnSyncLink.Font = font10;
-
-        }
-
 
 
         private void btnSetupPos_Click(object sender, EventArgs e)

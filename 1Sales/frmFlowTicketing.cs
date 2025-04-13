@@ -19,24 +19,9 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            btnClose.Font = font12;
-
-            lblBusinessTitle.Font = font10;
-            dtBusiness.Font = font10;
-
-            btnView.Font = font10;
-            lvwList.Font = font10;
-
-            btnTicketReact.Font = font10;
-
-        }
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
@@ -52,8 +37,8 @@ namespace thepos
             }
             else
             {
-                // 띠지는 디폴트
-                btnTicketReact.Text = "띠지출력";
+                // 영수증, 띠지
+                btnTicketReact.Text = "티켓출력";
             }
 
 
@@ -145,24 +130,20 @@ namespace thepos
             }
 
 
-
-
-            if (mTicketMedia == "RF")  // 띠지BC   팔찌RF
+            if (mTicketMedia == "BC")  // 영수증
             {
-                // 팔찌등록
-
-
-
-
-            }
-            else
-            {
-                // 티켓출력
-
                 String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
                 String goods_code = lvwList.SelectedItems[0].SubItems[5].Text.ToString();
 
                 print_ticket(ticket_no, goods_code);
+            }
+            else if (mTicketMedia == "RF")  // 팔찌RF
+            {
+                // 
+            }
+            else if (mTicketMedia == "TG")  // 띠지
+            {
+                // 
 
             }
         }

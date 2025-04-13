@@ -28,51 +28,12 @@ namespace thepos
         public frmSysGoodsGroup()
         {
             InitializeComponent();
-            initialize_font();
 
             //get_posno();
             get_posno_from_setupPos();
 
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lvwList.Font = font10;
-
-            lblPosNo.Font = font10;
-            comboPosNo.Font = font10;
-            btnViewPosNo.Font = font10;
-
-            lblGroupNameTitle.Font = font10;
-            lblGroupNameTitleEN.Font = font10;
-            lblGroupNameTitleCH.Font = font10;
-            lblGroupNameTitleJP.Font = font10;
-
-            tbGroupName.Font = font10;
-            tbGroupNameEN.Font = font10;
-            tbGroupNameCH.Font = font10;
-            tbGroupNameJP.Font = font10;
-
-
-            lblLocXTitle.Font = font10;
-            lblLocYTitle.Font = font10;
-            lblSzXTitle.Font = font10;
-            lblSzYTitle.Font = font10;
-
-            tbLocateX.Font = font10;
-            tbLocateY.Font = font10;
-            tbSizeX.Font = font10;
-            tbSizeY.Font = font10;
-
-            btnApply.Font = font10;
-
-            btnInput.Font = font10;
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-            
-
-        }
 
         private void get_posno()
         {
@@ -282,9 +243,18 @@ namespace thepos
                 btnGroupBlue.Text = lvwList.SelectedItems[0].Text; ;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (sz_x == 1)                      { btnGroupBlue.Font = font9; }
-                else if (sz_x >= 3 & sz_y == 2)     { btnGroupBlue.Font = font20; }
-                else                                { btnGroupBlue.Font = font14; }
+                if (sz_x == 1) 
+                {
+                    btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 9);
+                }
+                else if (sz_x >= 3 & sz_y == 2)
+                {
+                    btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 20);
+                }
+                else
+                {
+                    btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 14);
+                }
 
 
                 tableLayoutPanelGroupSelected.Controls.Add(btnGroupBlue, loc_x, loc_y);
@@ -316,9 +286,9 @@ namespace thepos
                 btnGroupBlue.Text = name;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1) { btnGroupBlue.Font = font9; }
-                else if (szX >= 3 & szY == 2) { btnGroupBlue.Font = font20; }
-                else { btnGroupBlue.Font = font14; }
+                if (szX == 1) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 9); }
+                else if (szX >= 3 & szY == 2) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 20); }
+                else { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 14); ; }
 
 
                 tableLayoutPanelGroupSelected.Controls.Add(btnGroupBlue, locX, locY);
@@ -358,9 +328,9 @@ namespace thepos
                     int sz_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szX)].Text);
                     int sz_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szY)].Text);
 
-                    if (sz_x == 1)                   { btnGroup.Font = font9; }
-                    else if (sz_x >= 3 & sz_y == 2)   { btnGroup.Font = font20; }
-                    else                            { btnGroup.Font = font14; }
+                    if (sz_x == 1)                   { btnGroup.Font = new Font(btnGroup.Font.FontFamily, 9); }
+                    else if (sz_x >= 3 & sz_y == 2)   { btnGroup.Font = new Font(btnGroup.Font.FontFamily, 20); }
+                    else                            { btnGroup.Font = new Font(btnGroup.Font.FontFamily, 14); }
 
                     tableLayoutPanelGroup.Controls.Add(btnGroup, loc_x, loc_y);
                     tableLayoutPanelGroup.SetColumnSpan(btnGroup, sz_x);

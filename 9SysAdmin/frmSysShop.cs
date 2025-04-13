@@ -23,34 +23,11 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             reload_server();
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lvwList.Font = font10;
-
-            lblGoodsNameTitle.Font = font10;
-            tbShopCode.Font = font10;
-
-            lblGoodsAmtTitle.Font = font10;
-            tbShopName.Font = font10;
-
-            lblPrinterTypeTitle.Font = font10;
-            cbPrinterType.Font = font10;
-            lblNetworkPrinterName.Font = font10;
-            tbNetworkPrinterName.Font = font10;
-
-
-            btnAdd.Font = font10;
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-        }
 
         private void initialize_the()
         {

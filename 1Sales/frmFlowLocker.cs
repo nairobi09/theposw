@@ -17,23 +17,9 @@ namespace thepos._1Sales
         public frmFlowLocker()
         {
             InitializeComponent();
-            initialize_font();
             initialize_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lblBusinessTitle.Font = font9;
-            dtBusiness.Font = font10;
-
-            btnView.Font = font10;
-            lvwList.Font = font10;
-
-
-        }
         private void initialize_the()
         {
             ImageList imgList = new ImageList();

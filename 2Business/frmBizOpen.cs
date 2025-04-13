@@ -18,34 +18,10 @@ namespace thepos
         public frmBizOpen()
         {
             InitializeComponent();
-            initialize_font();
+
             initialize_the();
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblT11.Font = font10;
-            lblLastBizCloseDateTitle.Font = font10;
-            lblLastBizDtInputTitle.Font = font10;
-            lblBizCloseUserTitle.Font = font10;
-
-            lblLastBizCloseDate.Font = font10;
-            lblLastBizDtInput.Font = font10;
-            lblBizCloseUser.Font = font10;
-
-            lblBizDateTitle.Font = font10;
-            lblBizOpenAmountTitle.Font = font10;
-            lblBizOpenUserTitle.Font = font10;
-
-            //dtpBizDate.Font = font12;
-            tbBizOpenAmount.Font = font12;
-            lblBizOpenUser.Font = font10;
-
-            btnBizOpenInput.Font = font10;
-        }
 
         private void initialize_the()
         {

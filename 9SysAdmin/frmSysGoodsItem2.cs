@@ -32,7 +32,6 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             get_goods();
@@ -47,35 +46,6 @@ namespace thepos._9SysAdmin
             */
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            cbPosNo.Font = font10;
-
-            lblGroupTitle.Font = font10;
-            cbGroup.Font = font10;
-
-            btnView.Font = font10;
-
-            lvwGoods.Font = font10;
-            lvwGoodsLink.Font = font10;
-            btnDelete.Font = font10;
-            btnLink.Font = font10;
-
-            btnSave.Font = font10;
-
-            lblCopyPosNoTitle.Font = font10;
-            cbSourcePosNo.Font = font10;
-
-            lblCopyGroupTitle.Font = font10;
-            cbSourceGroup.Font = font10;
-
-            btnView.Font = font10;
-
-        }
 
 
         private void initialize_the()

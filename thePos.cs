@@ -69,20 +69,6 @@ namespace thepos
             public string isu_code;
         }
 
-        public static Font font5;
-        public static Font font8;
-        public static Font font9;
-        public static Font font10;
-        public static Font font10bold;
-        public static Font font12;
-        public static Font font12bold;
-        public static Font font13;
-        public static Font font14;
-        public static Font font16;
-        public static Font font20;
-        public static Font font24;
-
-        public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
 
         // //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -306,6 +292,7 @@ namespace thepos
             public int columnspan;
             public int rowspan;
             public String option_template_id;
+            public String coupon_link_no;
         }
         public static GoodsItem[] mGoodsItem;
 
@@ -626,7 +613,7 @@ namespace thepos
         }
         public static List<PaymentCert> mPaymentCerts = new List<PaymentCert>();
 
-
+        /*
 
         public struct CertOrder
         {
@@ -648,7 +635,7 @@ namespace thepos
         }
         public static List<CertOrder> mCertOrders = new List<CertOrder>();
 
-
+        */
 
 
         // 발권상품(Order), 인증(Cert)시점 -> TicketFlow 레코드 생성(초기값)
@@ -725,7 +712,7 @@ namespace thepos
         public static String mVanTID = "";    // 결제밴 T-ID
 
         // 앞으로 쿠폰 채널 
-        public static String mCouponChPM = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
+        public static String mCouponMID = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
 
         public static String mSubMonitorImage = "";   
 

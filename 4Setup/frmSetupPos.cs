@@ -55,7 +55,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             Setup setupItem = new Setup();
@@ -74,7 +73,7 @@ namespace thepos
 
             setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[8] = setupItem;
 
-            setupItem.code = "CouponChPM";            setupItem.name = "플레이스엠 업체코드(CMS)"; setupItem.value = ""; setupItem.memo = ""; listSetup[9] = setupItem;
+            setupItem.code = "CouponMID";            setupItem.name = "온라인쿠폰 가맹점번호(MID)"; setupItem.value = ""; setupItem.memo = ""; listSetup[9] = setupItem;
 
             // 고객화면 이미지
             setupItem.code = "SubMonitorImage";       setupItem.name = "고객화면 이미지"; setupItem.value = ""; setupItem.memo = "300*700 jpg"; listSetup[10] = setupItem;
@@ -83,34 +82,6 @@ namespace thepos
         }
 
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lvwList.Font = font10;
-
-            lblSiteNameTitle.Font = font10;
-            lblPosNoTitle.Font = font10;
-
-            lblSiteName.Font = font10;
-            lblPosNo.Font = font10;
-
-            lblNameTitle.Font = font10;
-            lblName.Font = font10;
-
-            lblValueTitle.Font = font10;
-            lblValue.Font = font10;
-
-            lblValueTitle2.Font = font10;
-            cbValue.Font = font10;
-            tbValue.Font = font10;
-            lblMemo.Font = font10;
-
-            btnAdd.Font = font10;
-
-            btnLoad.Font = font10;
-            btnSave.Font = font10;
-
-        }
 
         private void initialize_the()
         {
@@ -442,7 +413,7 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterPort") mTicketPrinterPort = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = lvwList.Items[i].SubItems[1].Text;
                 else if (lvwList.Items[i].Tag.ToString() == "VanTID") mVanTID = lvwList.Items[i].SubItems[1].Text;
-                else if (lvwList.Items[i].Tag.ToString() == "CouponChPM") mCouponChPM = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "CouponMID") mCouponMID = lvwList.Items[i].SubItems[1].Text;
 
                 else if (lvwList.Items[i].Tag.ToString() == "SubMonitorImage") mSubMonitorImage = lvwList.Items[i].SubItems[1].Text;
             }

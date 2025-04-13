@@ -74,6 +74,7 @@
             // 
             this.btnTicketReact.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTicketReact.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnTicketReact.ForeColor = System.Drawing.Color.White;
             this.btnTicketReact.Location = new System.Drawing.Point(362, 626);
             this.btnTicketReact.Name = "btnTicketReact";
@@ -122,6 +123,7 @@
             this.btnClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
@@ -135,6 +137,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -152,6 +155,7 @@
             this.goods,
             this.ticket_dt,
             this.ticket_no});
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;

@@ -17,8 +17,6 @@ namespace thepos._1Sales
         {
             InitializeComponent();
 
-            initialize_font();
-
             lblOrderNo.Text = order_no_arr[0];
 
 
@@ -37,13 +35,6 @@ namespace thepos._1Sales
                 lblOrderNo2.Text = order_no_arr[1];
             }
 
-        }
-
-        private void initialize_font()
-        {
-            //lblTitle.Font = font16;
-            btnYes.Font = font12;
-            btnNo.Font = font12;
         }
 
         private void btnYes_Click(object sender, EventArgs e)

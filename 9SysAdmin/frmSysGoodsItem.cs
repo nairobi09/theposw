@@ -33,7 +33,6 @@ namespace thepos
         public frmSysGoodsItem()
         {
             InitializeComponent();
-            initialize_font();
             initialize_the();
 
             get_goods();
@@ -49,47 +48,6 @@ namespace thepos
 
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            cbPosNo.Font = font10;
-
-            lblGroupTitle.Font = font10;
-            cbGroup.Font = font10;
-
-            btnView.Font = font10;
-
-            lvwGoods.Font = font10;
-            lvwGoodsLink.Font = font10;
-
-            lblT3.Font = font10;
-            lblT4.Font = font10;
-            lblT5.Font = font10;
-            lblT6.Font = font10;
-
-            tbLocateX.Font = font10;
-            tbLocateY.Font = font10;
-            tbSizeX.Font = font10;
-            tbSizeY.Font = font10;
-
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-            btnLink.Font = font10;
-            btnApply.Font = font10;
-
-
-            lblCopyPosNoTitle.Font = font10;
-            cbSourcePosNo.Font = font10;
-
-            lblCopyGroupTitle.Font = font10;
-            cbSourceGroup.Font = font10;
-
-            btnView.Font = font10;
-
-
-        }
 
 
         private void initialize_the()
@@ -318,9 +276,9 @@ namespace thepos
                     int sz_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text);
                     int sz_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text);
 
-                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = font8; }
-                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = font16; }
-                    else { btnItem.Font = font10; }
+                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = new Font(btnItem.Font.FontFamily, 8); }
+                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = new Font(btnItem.Font.FontFamily, 16); }
+                    else { btnItem.Font = new Font(btnItem.Font.FontFamily, 10); }
 
                     tableLayoutPanelItem.Controls.Add(btnItem, loc_x, loc_y);
                     tableLayoutPanelItem.SetColumnSpan(btnItem, sz_x);
@@ -379,9 +337,9 @@ namespace thepos
                 btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(amt)].Text;
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1 | szY == 1) { btnGroupBlue.Font = font8; }
-                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font16; }
-                else { btnGroupBlue.Font = font10; }
+                if (szX == 1 | szY == 1) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 8); }
+                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 16); }
+                else { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 10); }
 
                 tableLayoutPanelItemSelected.Controls.Add(btnGroupBlue, locX, locY);
                 tableLayoutPanelItemSelected.SetColumnSpan(btnGroupBlue, szX);

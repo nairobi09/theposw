@@ -37,36 +37,10 @@ namespace thepos
         public frmPayManager()
         {
             InitializeComponent();
-            initialize_font();
+
             initialize_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            btnClose.Font = font12;
-
-            lbl1.Font = font9;
-            lbl2.Font = font9;
-            lbl3.Font = font9;
-
-            dtBizDt.Font = font10;
-            cbPosNo.Font = font10;
-            tbBillNo.Font = font10;
-
-            btnView.Font = font10;
-            lvwPayManager.Font = font10;
-            lvwPayOrder.Font = font10;
-
-            btnPrintBill.Font = font10;
-            btnPrintBillex.Font = font9;
-            btnPrintBilldisp.Font = font10;
-
-            btnPrintOrder.Font = font9;
-
-            btnCancel.Font = font9;
-
-        }
         private void initialize_the()
         {
             //dtBusiness.Value = DateTime.Now;

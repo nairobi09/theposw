@@ -68,7 +68,7 @@
             // 
             // lblOrderAmountNet
             // 
-            this.lblOrderAmountNet.Font = new System.Drawing.Font("굴림", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountNet.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNet.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblOrderAmountNet.Location = new System.Drawing.Point(291, 13);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
@@ -79,7 +79,7 @@
             // 
             // lblOrderAmountDC
             // 
-            this.lblOrderAmountDC.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDC.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDC.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmountDC.Location = new System.Drawing.Point(100, 5);
             this.lblOrderAmountDC.Name = "lblOrderAmountDC";
@@ -90,7 +90,7 @@
             // 
             // lblOrderAmount
             // 
-            this.lblOrderAmount.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmount.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmount.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmount.Location = new System.Drawing.Point(99, 8);
             this.lblOrderAmount.Name = "lblOrderAmount";
@@ -101,33 +101,33 @@
             // 
             // lblOrderAmountNetTitle
             // 
-            this.lblOrderAmountNetTitle.Font = new System.Drawing.Font("굴림", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountNetTitle.Font = new System.Drawing.Font("맑은 고딕", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountNetTitle.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblOrderAmountNetTitle.Location = new System.Drawing.Point(25, 13);
             this.lblOrderAmountNetTitle.Name = "lblOrderAmountNetTitle";
-            this.lblOrderAmountNetTitle.Size = new System.Drawing.Size(124, 50);
+            this.lblOrderAmountNetTitle.Size = new System.Drawing.Size(126, 50);
             this.lblOrderAmountNetTitle.TabIndex = 0;
             this.lblOrderAmountNetTitle.Text = "내실금액";
             this.lblOrderAmountNetTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOrderAmountDCTitle
             // 
-            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountDCTitle.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountDCTitle.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmountDCTitle.Location = new System.Drawing.Point(24, 12);
             this.lblOrderAmountDCTitle.Name = "lblOrderAmountDCTitle";
-            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(47, 27);
+            this.lblOrderAmountDCTitle.Size = new System.Drawing.Size(50, 27);
             this.lblOrderAmountDCTitle.TabIndex = 0;
             this.lblOrderAmountDCTitle.Text = "할인";
             this.lblOrderAmountDCTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOrderAmountSumTitle
             // 
-            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountSumTitle.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountSumTitle.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmountSumTitle.Location = new System.Drawing.Point(23, 13);
             this.lblOrderAmountSumTitle.Name = "lblOrderAmountSumTitle";
-            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(47, 27);
+            this.lblOrderAmountSumTitle.Size = new System.Drawing.Size(50, 27);
             this.lblOrderAmountSumTitle.TabIndex = 0;
             this.lblOrderAmountSumTitle.Text = "합계";
             this.lblOrderAmountSumTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,7 +177,7 @@
             this.lv_net_amount,
             this.lv_memo});
             this.lvwOrderItem.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lvwOrderItem.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwOrderItem.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwOrderItem.FullRowSelect = true;
             this.lvwOrderItem.GridLines = true;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -187,7 +187,7 @@
             this.lvwOrderItem.Name = "lvwOrderItem";
             this.lvwOrderItem.RowHeight = 50;
             this.lvwOrderItem.ShowGroups = false;
-            this.lvwOrderItem.Size = new System.Drawing.Size(637, 505);
+            this.lvwOrderItem.Size = new System.Drawing.Size(637, 499);
             this.lvwOrderItem.TabIndex = 46;
             this.lvwOrderItem.TabStop = false;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
@@ -196,7 +196,6 @@
             // lv_no
             // 
             this.lv_no.AspectName = "lv_order_no";
-            this.lv_no.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
             this.lv_no.Text = "#";
             this.lv_no.Width = 30;
             // 
@@ -205,7 +204,7 @@
             this.lv_name.AspectName = "lv_goods_name";
             this.lv_name.CellPadding = new System.Drawing.Rectangle(0, 10, 0, 0);
             this.lv_name.Text = "상품명";
-            this.lv_name.Width = 211;
+            this.lv_name.Width = 240;
             this.lv_name.WordWrap = true;
             // 
             // lv_amt
@@ -219,7 +218,6 @@
             // lv_cnt
             // 
             this.lv_cnt.AspectName = "lv_cnt";
-            this.lv_cnt.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
             this.lv_cnt.Text = "수량";
             this.lv_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_cnt.Width = 59;
@@ -227,7 +225,7 @@
             // lv_dc_amount
             // 
             this.lv_dc_amount.AspectName = "lv_dc_amount";
-            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
+            this.lv_dc_amount.CellPadding = new System.Drawing.Rectangle(0, 10, 0, 0);
             this.lv_dc_amount.Text = "할인";
             this.lv_dc_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_dc_amount.Width = 86;
@@ -235,7 +233,6 @@
             // lv_net_amount
             // 
             this.lv_net_amount.AspectName = "lv_net_amount";
-            this.lv_net_amount.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
             this.lv_net_amount.Text = "금액";
             this.lv_net_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.lv_net_amount.Width = 99;
@@ -243,7 +240,6 @@
             // lv_memo
             // 
             this.lv_memo.AspectName = "lv_memo";
-            this.lv_memo.CellPadding = new System.Drawing.Rectangle(0, -10, 0, 0);
             this.lv_memo.Text = "비고";
             this.lv_memo.Width = 0;
             // 
@@ -271,18 +267,18 @@
             // 
             // lblOrderAmountRestTitle
             // 
-            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRestTitle.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRestTitle.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblOrderAmountRestTitle.Location = new System.Drawing.Point(20, 12);
             this.lblOrderAmountRestTitle.Name = "lblOrderAmountRestTitle";
-            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(85, 27);
+            this.lblOrderAmountRestTitle.Size = new System.Drawing.Size(88, 27);
             this.lblOrderAmountRestTitle.TabIndex = 2;
             this.lblOrderAmountRestTitle.Text = "반환금액";
             this.lblOrderAmountRestTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOrderAmountRest
             // 
-            this.lblOrderAmountRest.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountRest.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountRest.ForeColor = System.Drawing.Color.DarkOrange;
             this.lblOrderAmountRest.Location = new System.Drawing.Point(125, 6);
             this.lblOrderAmountRest.Name = "lblOrderAmountRest";
@@ -304,18 +300,18 @@
             // 
             // lblOrderAmountReceiveTitle
             // 
-            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceiveTitle.Font = new System.Drawing.Font("맑은 고딕", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceiveTitle.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmountReceiveTitle.Location = new System.Drawing.Point(17, 13);
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
-            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(85, 27);
+            this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(88, 27);
             this.lblOrderAmountReceiveTitle.TabIndex = 43;
             this.lblOrderAmountReceiveTitle.Text = "받은금액";
             this.lblOrderAmountReceiveTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOrderAmountReceive
             // 
-            this.lblOrderAmountReceive.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblOrderAmountReceive.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblOrderAmountReceive.ForeColor = System.Drawing.Color.Black;
             this.lblOrderAmountReceive.Location = new System.Drawing.Point(124, 7);
             this.lblOrderAmountReceive.Name = "lblOrderAmountReceive";

@@ -20,30 +20,8 @@ namespace thepos._9SysAdmin
         public frmSysAdminPos()
         {
             InitializeComponent();
-            initialize_font();
 
             initialize_the();
-
-        }
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lblInfo.Font = font10;
-
-
-            lblSiteIdTitle.Font = font10;
-            tbSiteId.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            tbPosNo.Font = font10;
-
-            lblShopCodeTitle.Font = font10;
-            tbShopCode.Font = font10;
-
-
-
-            btnEnter.Font = font10;
 
         }
 

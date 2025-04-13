@@ -27,37 +27,11 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
             initialize_the();
 
         }
 
 
-
-        private void initialize_font()
-        {
-
-            lblTitle.Font = font14;
-            btnClose.Font = font12;
-
-            btnBizOpen.Font = font12;
-            btnBizClose.Font = font12;
-
-            btnKey1.Font = font14;
-            btnKey2.Font = font14;
-            btnKey3.Font = font14;
-            btnKey4.Font = font14;
-            btnKey5.Font = font14;
-            btnKey6.Font = font14;
-            btnKey7.Font = font14;
-            btnKey8.Font = font14;
-            btnKey9.Font = font14;
-            btnKey0.Font = font14;
-            btnKeyBS.Font = font14;
-            btnKeyClear.Font = font14;
-
-        }
 
         private void initialize_the()
         {

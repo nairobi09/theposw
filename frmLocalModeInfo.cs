@@ -20,20 +20,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
-        }
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10bold;
-            lblInfo.Font = font10;
-
-            lblBizDtTitle.Font = font10;
-
-            btnOK.Font = font10;
-            btnCancel.Font = font10;
-
         }
 
 

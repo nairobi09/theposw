@@ -26,8 +26,6 @@ namespace thepos._1Sales
         {
             InitializeComponent();
 
-            initialize_font();
-
             initialize_the();
         }
 
@@ -51,33 +49,6 @@ namespace thepos._1Sales
 
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblPosNo.Font = font10;
-            comboPosNo.Font = font10;
-            btnView.Font = font10;
-
-            lvwConsole.Font = font10;
-            lvwConsoleLink.Font = font10;
-
-            lblT3.Font = font10;
-            lblT4.Font = font10;
-            lblT5.Font = font10;
-            lblT6.Font = font10;
-
-            tbLocateX.Font = font10;
-            tbLocateY.Font = font10;
-            tbSizeX.Font = font10;
-            tbSizeY.Font = font10;
-
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-            btnLink.Font = font10;
-            btnApply.Font = font10;
-
-        }
 
         private void btnView_Click(object sender, EventArgs e)
         {
@@ -178,9 +149,9 @@ namespace thepos._1Sales
                     int sz_x = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(szX)].Text);
                     int sz_y = convert_number(lvwConsoleLink.Items[i].SubItems[lvwConsoleLink.Columns.IndexOf(szY)].Text);
 
-                    if (sz_x == 1) { btnItem.Font = font9; }
-                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = font20; }
-                    else { btnItem.Font = font14; }
+                    if (sz_x == 1) { btnItem.Font = new Font(btnItem.Font.FontFamily, 9); }
+                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = new Font(btnItem.Font.FontFamily, 20); ; }
+                    else { btnItem.Font = new Font(btnItem.Font.FontFamily, 14); }
 
                     tableLayoutPanelPayControl.Controls.Add(btnItem, loc_x, loc_y);
                     tableLayoutPanelPayControl.SetColumnSpan(btnItem, sz_x);
@@ -251,9 +222,9 @@ namespace thepos._1Sales
 
                 btnGroupBlue.Dock = DockStyle.Fill;
 
-                if (szX == 1) { btnGroupBlue.Font = font9; }
-                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = font20; }
-                else { btnGroupBlue.Font = font14; }
+                if (szX == 1) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 9); }
+                else if (szX >= 3 & szY >= 2) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 20); }
+                else { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 14); }
 
 
                 tableLayoutPanelPayControlSelected.Controls.Add(btnGroupBlue, locX, locY);

@@ -25,8 +25,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
 
             if (mSiteId != "") // 로그인되었다면 panel보이기
             {
@@ -41,33 +39,6 @@ namespace thepos
 
         }
 
-        void initialize_font()
-        {
-            btnPos.Font = font10;
-
-            btnSysSite.Font = font10;
-
-            btnSysShop.Font = font10;
-            btnSysGoods.Font = font10;
-
-            btnSysOption.Font = font10;
-
-            btnSysGoodsGroup.Font = font10;
-            btnSysGoodsGroup2.Font = font10;
-
-            btnSysGoodsItem.Font = font10;
-            btnSysGoodsItem2.Font = font10;
-
-            btnSysSoldout.Font = font10;
-
-            btnDcrFavorite.Font = font10;
-
-            btnSysPayConsole.Font = font10;
-
-            btnPosMac.Font = font10;
-            btnUser.Font = font10;
-
-        }
 
 
         private void btnPos_Click(object sender, EventArgs e)

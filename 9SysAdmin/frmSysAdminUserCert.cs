@@ -20,17 +20,9 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
             initial_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font14;
-            lvwList.Font = font12;
-
-            btnEnter.Font = font12;
-        }
         
         private void initial_the()
         {

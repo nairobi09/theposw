@@ -24,23 +24,9 @@ namespace theposw
         public frmAllimCP()
         {
             InitializeComponent();
-            initialize_font();
             initialize_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            dtpBizDate.Font = font10;
-            cbShop.Font = font10;
-            btnView.Font = font10;
-
-            lvwOrderShop.Font = font10;
-            lvwOrderItem.Font = font10;
- 
-            btnAllimSendCP.Font = font10;
-
-        }
 
         private void initialize_the()
         {

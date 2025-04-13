@@ -23,28 +23,10 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
-
             reload_goods();
 
             reload_group();
         }
-
-        private void initialize_font()
-        {
-            lblGoodsTitle.Font = font10;
-            lvwGoodsList.Font = font10;
-            cbGoodsSoldout.Font = font10;
-            btnGoodsUpdate.Font = font10;
-
-            lblGroupTitle.Font = font10;
-            lvwGroupList.Font = font10;
-            cbGroupSoldout.Font = font10;
-            btnGroupUpdate.Font = font10;
-
-
-        }
-
 
 
         private void reload_goods()

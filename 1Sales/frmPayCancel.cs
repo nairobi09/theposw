@@ -37,7 +37,6 @@ namespace thepos
         public frmPayCancel(String the_no, String pos_no, String selected_biz_date, String pay_keep, int select_idx)
         {
             InitializeComponent();
-            initialize_font();
             initial_the();
 
             this.the_no = the_no;
@@ -49,24 +48,6 @@ namespace thepos
             viewList();
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lblT1.Font = font10;
-            lblT2.Font = font10;
-            lblT3.Font = font10;
-
-            lblNetAmount.Font = font10;
-            lblCancelAmount.Font = font10;
-            lblNestAmount.Font = font10;
-
-            lvwList.Font = font10;
-
-            btnCancel.Font = font10;
-        }
 
         private void initial_the()
         {

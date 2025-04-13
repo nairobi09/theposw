@@ -36,7 +36,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initial_the();
 
             isComplex = is_complex;
@@ -90,50 +89,6 @@ namespace thepos
 
         }
 
-        void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lblNetAmountTitle.Font = font10;
-            lblNetAmount.Font = font12;
-
-            //
-            lblCardNoTitle.Font = font10;
-            tbCardNo.Font = font12;
-            btnKeyInputCardNo.Font = font10;
-
-            lblAuthNoTitle.Font = font10;
-            tbAuthNo.Font = font12;
-            btnKeyInputAuthNo.Font = font10;
-
-            rbCard0.Font = font10;
-            rbCard1.Font = font10;
-            rbCard2.Font = font10;
-            rbCard3.Font = font10;
-            rbCard4.Font = font10;
-            rbCard5.Font = font10;
-            rbCard6.Font = font10;
-            rbCard7.Font = font10;
-            rbCard8.Font = font10;
-
-            btnCardTemp.Font = font10;
-
-            //
-            lblInstallTitle.Font = font10;
-            tbInstall.Font = font10;
-            btnKeyInputInstall.Font = font10;
-
-            btnInstall00.Font = font10;
-            btnInstall03.Font = font10;
-            btnInstall06.Font = font10;
-            btnInstall12.Font = font10;
-
-            chkCUP.Font = font10;
-
-            btnCardRequest.Font = font10;
-
-        }
 
         private void initial_the()
         {

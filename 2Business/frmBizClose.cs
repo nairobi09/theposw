@@ -24,8 +24,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
             initialize_the();
 
 
@@ -34,66 +32,6 @@ namespace thepos
 
         }
 
-
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            //
-            lblAmountPaymentTitle.Font = font10;
-            lblAmountCashTitle.Font = font10;
-            lblAmountCardTitle.Font = font10;
-            lblAmountEasyTitle.Font = font10;
-            lblAmountNetTitle.Font = font10;
-
-            lblAmountTitle.Font = font10;
-            lblAmountCash.Font = font10;
-            lblAmountCard.Font = font10;
-            lblAmountEasy.Font = font10;
-            lblAmountNet.Font = font10;
-
-            //
-            lblPosTitle.Font = font10;
-            lblPosTitle0.Font = font10;
-            lblPosTitle1.Font = font10;
-            lblPosTitle2.Font = font10;
-            lblPosTitle3.Font = font10;
-            lblPosTitle4.Font = font10;
-            lblPosTitle5.Font = font10;
-            lblPosTitle6.Font = font10;
-            lblPosTitle7.Font = font10;
-            lblPosTitle8.Font = font10;
-            lblPosTitle9.Font = font10;
-
-            lblPosAmountTitle.Font = font10;
-            lblPosAmount0.Font = font10;
-            lblPosAmount1.Font = font10;
-            lblPosAmount2.Font = font10;
-            lblPosAmount3.Font = font10;
-            lblPosAmount4.Font = font10;
-            lblPosAmount5.Font = font10;
-            lblPosAmount6.Font = font10;
-            lblPosAmount7.Font = font10;
-            lblPosAmount8.Font = font10;
-            lblPosAmount9.Font = font10;
-
-            //
-            lblBizDateTitle.Font = font10;
-            lblBizDate.Font = font10;
-
-            lblBizStatusTitle.Font = font10;
-            lblBizStatus.Font = font10;
-
-            lblLastBizOpenDtInputTitle.Font = font10;
-            lblLastBizOpenDtInput.Font = font10;
-
-            lblLastBizCloseDtInputTitle.Font = font10;
-            lblLastBizCloseDtInput.Font = font10;
-
-            btnBizCloseInput.Font = font10;
-
-        }
 
 
 

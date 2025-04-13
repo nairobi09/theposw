@@ -31,74 +31,11 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             reload_server();
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lblSiteName.Font = font10;
-            lblSiteAlias.Font = font10;
-            lblRegistNo.Font = font10;
-
-            lblCapName.Font = font10;
-            lblBizAddr.Font = font10;
-            lblBizTelNo.Font = font10;
-
-            lblTicketType.Font = font10;
-            lblTicketMedia.Font = font10;
-            lblVanCode.Font = font10;
-
-            lblCallCenter.Font = font10;
-
-
-            tbSiteName.Font = font10;
-            tbSiteAlias.Font = font10;
-            tbRegistNo.Font = font10;
-
-            tbCapName.Font = font10;
-            tbBizAddr.Font = font10;
-            tbBizTelNo.Font = font10;
-
-
-            cbTicketType.Font = font10;
-            cbTicketMedia.Font = font10;
-            cbVanCode.Font = font10;
-            tbCallCenter.Font = font10;
-
-
-            lblCutoffType.Font = font10;
-            cbCutoffType.Font = font10;
-
-            lblCutoffTime.Font = font10;
-            tbCutoffTime.Font = font10;
-
-            lblCutoffTime1.Font = font10;
-            lblCutoffTime2.Font = font10;
-
-
-
-            lblBillImage.Font = font10;
-            btnX1.Font = font10;
-
-
-            lblAllimTN.Font = font10;
-            cbAllimTN.Font = font10;
-
-            lblSenderProfile.Font = font10;
-            tbSenderProfile.Font = font10;
-
-
-
-            btnUpdate.Font = font10;
-
-
-        }
 
         private void initialize_the()
         {
@@ -109,8 +46,8 @@ namespace thepos._9SysAdmin
             tmTicketType = new String[3] { "", "PA", "PD" };
             tmTicketTypeText = new String[3] { "", "선불", "후불" };
 
-            tmTicketMedia = new String[3] { "", "BC", "RF" };
-            tmTicketMediaText = new String[3] { "", "띠지", "팔찌" };
+            tmTicketMedia = new String[4] { "", "BC", "RF", "TG" };
+            tmTicketMediaText = new String[4] { "", "영수증", "팔찌", "띠지" };
 
             tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 
@@ -176,7 +113,7 @@ namespace thepos._9SysAdmin
 
                         // AP AD
                         String ticketType = arr[0]["ticketType"].ToString();
-                        for (int i = 0; i < ticketType.Length; i++)
+                        for (int i = 0; i < mTicketType.Length; i++)
                         {
                             if (tmTicketType[i] == ticketType)
                             {
@@ -186,7 +123,7 @@ namespace thepos._9SysAdmin
 
                         // 
                         String ticketMedia = arr[0]["ticketMedia"].ToString();
-                        for (int i = 0; i < mTicketType.Length; i++)
+                        for (int i = 0; i < mTicketMedia.Length; i++)
                         {
                             if (tmTicketMedia[i] == ticketMedia)
                             {

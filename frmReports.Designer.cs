@@ -73,7 +73,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(123, 343);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -87,7 +87,7 @@
             // 
             this.btnReportAllim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportAllim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportAllim.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportAllim.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportAllim.ForeColor = System.Drawing.Color.White;
             this.btnReportAllim.Location = new System.Drawing.Point(123, 259);
             this.btnReportAllim.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -103,7 +103,7 @@
             // 
             this.btnReportCoupon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportCoupon.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportCoupon.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportCoupon.ForeColor = System.Drawing.Color.White;
             this.btnReportCoupon.Location = new System.Drawing.Point(0, 343);
             this.btnReportCoupon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -119,7 +119,7 @@
             // 
             this.btnReportShopOreder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportShopOreder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportShopOreder.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportShopOreder.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportShopOreder.ForeColor = System.Drawing.Color.White;
             this.btnReportShopOreder.Location = new System.Drawing.Point(0, 259);
             this.btnReportShopOreder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -135,7 +135,7 @@
             // 
             this.btnReportDayDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayDetail.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportDayDetail.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportDayDetail.ForeColor = System.Drawing.Color.White;
             this.btnReportDayDetail.Location = new System.Drawing.Point(0, 168);
             this.btnReportDayDetail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -151,7 +151,7 @@
             // 
             this.btnReportDayShop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayShop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayShop.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportDayShop.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportDayShop.ForeColor = System.Drawing.Color.White;
             this.btnReportDayShop.Location = new System.Drawing.Point(0, 84);
             this.btnReportDayShop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -215,7 +215,7 @@
             // 
             this.btnReportDayPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnReportDayPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReportDayPos.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportDayPos.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportDayPos.ForeColor = System.Drawing.Color.White;
             this.btnReportDayPos.Location = new System.Drawing.Point(0, 0);
             this.btnReportDayPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -230,11 +230,11 @@
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
-            this.lblReportTitle.Font = new System.Drawing.Font("굴림", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblReportTitle.Font = new System.Drawing.Font("맑은 고딕", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.White;
             this.lblReportTitle.Location = new System.Drawing.Point(456, 11);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(89, 19);
+            this.lblReportTitle.Size = new System.Drawing.Size(88, 25);
             this.lblReportTitle.TabIndex = 26;
             this.lblReportTitle.Text = "매출관리";
             // 

@@ -33,7 +33,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initial_the();
 
 
@@ -44,16 +43,6 @@ namespace thepos
 
         }
 
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lvwList.Font = font10;
-
-            btnCancel.Font = font10;
-        }
 
         private void initial_the()
         {

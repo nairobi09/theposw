@@ -34,29 +34,12 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             displayDCR();
 
         }
 
-
-        void initialize_font()
-        {
-            lblTitle.Font = font10bold;
-            lblTitle1.Font = font10;
-            lblTitle2.Font = font10;
-
-            btnSelAmount.Font = font10;
-            btnSelRate.Font = font10;
-            btnAllAmount.Font = font10;
-            btnAllRate.Font = font10;
-
-            btnDCCancel.Font = font10;
-            btnClose.Font = font10;
-
-        }
 
         void displayDCR()
         {
@@ -83,7 +66,7 @@ namespace thepos
                 btnDCR[i].Text = btn_title;
                 btnDCR[i].Height = 50;
                 btnDCR[i].Width = 230;
-                btnDCR[i].Font = font10;
+                btnDCR[i].Font = new Font(btnSelAmount.Font.FontFamily, 10);
 
                 btnDCR[i].FlatStyle = FlatStyle.Flat;
                 btnDCR[i].ForeColor = Color.White;

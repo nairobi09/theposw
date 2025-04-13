@@ -66,6 +66,7 @@
             // 
             this.btnTicketReact.BackColor = System.Drawing.Color.White;
             this.btnTicketReact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTicketReact.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnTicketReact.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnTicketReact.Location = new System.Drawing.Point(362, 625);
             this.btnTicketReact.Name = "btnTicketReact";
@@ -112,6 +113,7 @@
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnView.Location = new System.Drawing.Point(367, 13);
             this.btnView.Name = "btnView";
@@ -126,6 +128,7 @@
             this.btnClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
@@ -159,6 +162,7 @@
             this.ticket_no,
             this.bangle_no,
             this.goods_code});
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;

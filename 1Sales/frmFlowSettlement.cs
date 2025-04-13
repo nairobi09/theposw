@@ -35,33 +35,9 @@ namespace thepos
         public frmFlowSettlement()
         {
             InitializeComponent();
-            initialize_font();
             initialize_the();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lblBizDtTitle.Font = font9;
-            dtBizDt.Font = font10;
-
-            lblPosNoTitle.Font = font9;
-            cbPosNo.Font = font10;
-
-            lblTicketNoTitle.Font = font9;
-            tbTicketNo.Font = font10;
-
-            btnView.Font = font10;
-            lvwTicketFlow.Font = font10;
-
-            lblTicketSettleTitle.Font = font9;
-            lvwTicketSettle.Font = font10;
-
-            btnCancelReq.Font = font10;
-            btnSettleBill.Font = font10;
-        }
 
         private void initialize_the()
         {

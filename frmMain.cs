@@ -52,84 +52,11 @@ namespace thepos
 
             InitializeComponent();
 
-            initialize_font();
-
             initialize_the();
 
         }
 
 
-        private void initialize_font()
-        {
-            //fontCollection.AddFontFile("Font\\Pretendard-Medium.ttf");
-            //fontCollection.AddFontFile("Font\\TossProductSansTTF-Medium.ttf");
-            fontCollection.AddFontFile("Font\\SpoqaHanSansNeo-Medium.ttf");
-
-
-            font5 = new Font(fontCollection.Families[0], 5f);
-            font8 = new Font(fontCollection.Families[0], 8f);
-            font9 = new Font(fontCollection.Families[0], 9f);
-            font10 = new Font(fontCollection.Families[0], 10f);
-            font10bold = new Font(fontCollection.Families[0], 10f, FontStyle.Bold);
-            font12 = new Font(fontCollection.Families[0], 12f);
-            font12bold = new Font(fontCollection.Families[0], 12f, FontStyle.Bold);
-            font13 = new Font(fontCollection.Families[0], 12f);
-            font14 = new Font(fontCollection.Families[0], 14f);
-            font16 = new Font(fontCollection.Families[0], 16f);
-            font20 = new Font(fontCollection.Families[0], 20f);
-            font24 = new Font(fontCollection.Families[0], 24f);
-
-
-
-            btnClose.Font = font12;
-
-
-            lblSiteAlias.Font = font16;
-            lblSiteName.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            lblPosNo.Font = font10;
-
-            lblUserNameTitle.Font = font10;
-            lblUserName.Font = font9;
-
-            lblLocalModeTitle.Font = font10;
-
-            btnSales.Font = font14;
-            btnBusiness.Font = font14;
-            btnReports.Font = font14;
-            btnSetup.Font = font12;
-            btnSupport.Font = font12;
-            btnExit.Font = font12;
-
-            lblCallCenterNo.Font = font10;
-
-            // 로그인
-
-            lblID.Font = font10;
-            lblPW.Font = font10;
-
-            tbID.Font = font14;
-            tbPW.Font = font14;
-
-            btnKey1.Font = font14;
-            btnKey2.Font = font14;
-            btnKey3.Font = font14;
-            btnKey4.Font = font14;
-            btnKey5.Font = font14;
-            btnKey6.Font = font14;
-            btnKey7.Font = font14;
-            btnKey8.Font = font14;
-            btnKey9.Font = font14;
-            btnKey0.Font = font14;
-            btnKeyBS.Font = font14;
-            btnKeyClear.Font = font14;
-            btnKeyLogin.Font = font12;
-
-            btnReqSupport.Font = font10;
-            btnReqUser.Font = font10;
-
-        }
 
         private void initialize_the()
         {
@@ -229,13 +156,9 @@ namespace thepos
             }
 
 
-
-
             // Session key 로그인관련 
             handler.CookieContainer = cookies;
             mHttpClient = new HttpClient(handler);
-
-
 
             //
             mBadges[0].badges_id = "";
@@ -278,7 +201,6 @@ namespace thepos
                 change_mode_local_to_server();
                 synclink_log("모드기동 : 서버모드");
             }
-
 
 
             // SyncLink 쓰레드
@@ -1035,7 +957,6 @@ namespace thepos
                 fSub.Location = scr[1].Bounds.Location; // 두번째 스크린에 뛰움
                 fSub.Show();
             }
-
         }
 
 
@@ -1059,34 +980,18 @@ namespace thepos
             mVanCode = "";
             mCallCenterNo = "";
 
-
-
             mCornerType = "";  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
 
             mPosNo = "";
             mBizDate = "";
 
-
-            // 이사업자의 포스번호 목록
-            //mPosNoList.Initialize();
-            //mCornerCode.Initialize(); // 코너 코드
-            //mCornerName.Initialize(); // 코너 명
-
-
-
-
-
             mUserID = "";
             mUserName = "";
-
-            tbPW.Text = "";
 
             lblSiteAlias.Text = "";
             lblSiteName.Text = "";
             lblPosNo.Text = "";
             lblUserName.Text = "";
-
-
         }
 
 
@@ -1481,6 +1386,7 @@ namespace thepos
                             mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
                             mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
                             mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            mGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
 
                             // 면세상픔은 상품명앞에 *을 붙인다.
                             if (mGoodsItem[i].taxfree == "1")
@@ -1718,7 +1624,7 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
 
-                            else if (arr[i]["setupCode"].ToString() == "CouponChPM") mCouponChPM = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
 
                         }
                     }
@@ -2752,7 +2658,7 @@ namespace thepos
 
                     else if (dr["setupCode"].ToString() == "PosType") mPosType = dr["setupValue"].ToString();
                     else if (dr["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = dr["setupValue"].ToString();
-                    else if (dr["setupCode"].ToString() == "CouponChPM") mCouponChPM = dr["setupValue"].ToString();
+                    else if (dr["setupCode"].ToString() == "CouponMID") mCouponMID = dr["setupValue"].ToString();
                     i++;
                 }
                 dr.Close();
@@ -3058,14 +2964,14 @@ namespace thepos
         private void btnSupport_Click(object sender, EventArgs e)
         {
             //원격지원
-            System.Diagnostics.Process.Start("https://367.co.kr/112/");
+            System.Diagnostics.Process.Start("http://786.co.kr");
         }
 
 
         private void btnReqSupport_Click(object sender, EventArgs e)
         {
             //원격지원
-            System.Diagnostics.Process.Start("https://367.co.kr/112/");
+            System.Diagnostics.Process.Start("http://786.co.kr");
         }
 
         private void btnReqUser_Click(object sender, EventArgs e)

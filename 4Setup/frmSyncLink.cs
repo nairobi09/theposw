@@ -20,55 +20,11 @@ namespace thepos
         public frmSyncLink()
         {
             InitializeComponent();
-            initialize_font();
 
             dtViewDate.Value = DateTime.Now;
         }
 
 
-        private void initialize_font()
-        {
-
-            lblTitle.Font = font10;
-
-
-            //
-            lblDetail.Font = font10;
-            btnSyncLink.Font = font9;
-            btnDeleteLog.Font = font9;
-            lvwSyncLink.Font = font9;
-
-            //
-            lblTitle2.Font = font10;
-            lblVersionTitle.Font = font10;
-            lblServerTitle.Font = font10;
-            lblServerVersion.Font = font10;
-            lblLocalTitle.Font = font10;
-            lblLocalVersion.Font = font10;
-            btnViewVer.Font = font10;
-
-            //
-            lblTitle3.Font = font10;
-            lblCntTitle.Font = font10;
-            lblOrdersTitle.Font = font10;
-            lblOrdersCnt.Font = font10;
-            lblOrderItemTitle.Font = font10;
-            lblOrderItemCnt.Font = font10;
-            lblOrderOptionItemTitle.Font = font10;
-            lblOrderOptionItemCnt.Font = font10;
-
-            lblPaymentTitle.Font = font10;
-            lblPaymentCnt.Font = font10;
-            lblPaymentCashTitle.Font = font10;
-            lblPaymentCashCnt.Font = font10;
-            lblPaymentCardTitle.Font = font10;
-            lblPaymentCardCnt.Font = font10;
-            lblPaymentCertTitle.Font = font10;
-            lblPaymentCertCnt.Font = font10;
-
-            btnViewRecord.Font = font10;
-
-        }
 
         private void btnViewVer_Click(object sender, EventArgs e)
         {

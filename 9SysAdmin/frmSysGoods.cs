@@ -46,6 +46,7 @@ namespace thepos._9SysAdmin
         String sv_option_template_id = "";
         String sv_badges_id = "";
         String sv_memo = "";
+        String sv_coupon_link_no = "";
         String ch_imagePath = "";
 
 
@@ -60,51 +61,6 @@ namespace thepos._9SysAdmin
             reload_all();
         }
 
-        private void initialize_font()
-        {
-            lblTitle.Font = font10;
-            lvwList.Font = font10;
-
-            lblKR.Font = font9;
-            lblEN.Font = font9;
-            lblCH.Font = font9;
-            lblJP.Font = font9;
-            lblNoticeTitle.Font = font9;
-
-            tbGoodsName.Font = font10;
-            tbGoodsNameEN.Font = font10;
-            tbGoodsNameCH.Font = font10;
-            tbGoodsNameJP.Font = font10;
-
-            tbGoodsNotice.Font = font10;
-
-            cbTicket.Font = font10;
-            cbTaxFree.Font = font10;
-            cbCutout.Font = font10;
-            cbSoldout.Font = font10;
-            cbAllim.Font = font10;
-
-            lblGoodsAmtTitle.Font = font10;
-            tbGoodsAmt.Font = font10;
-
-            lblShopTitle.Font = font10;
-            cbShop.Font = font10;
-
-            lblOptionTitle.Font = font10;
-            cbOptionTemplate.Font = font10;
-
-            lblBadgesTitle.Font = font10;
-            cbBadges.Font = font10;
-
-            lblMemoTitle.Font = font10;
-            tbMemo.Font = font10;
-
-            btnX.Font = font10;
-
-            btnAdd.Font = font10;
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-        }
 
         private void initialize_the()
         {
@@ -192,6 +148,7 @@ namespace thepos._9SysAdmin
             cbCutout.Checked = false;
 
             tbMemo.Text = "";
+            tbCouponLinkNo.Text = "";
             pbImage.Image = null;
         }
 
@@ -266,6 +223,8 @@ namespace thepos._9SysAdmin
 
 
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
+
 
                         if (tCutout == "Y")  // 중지
                         {
@@ -390,6 +349,7 @@ namespace thepos._9SysAdmin
 
 
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
+                        lvItem.SubItems.Add(arr[0]["couponLinkNo"].ToString());
 
 
 
@@ -547,6 +507,7 @@ namespace thepos._9SysAdmin
 
 
             tbMemo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(memo)].Text;
+            tbCouponLinkNo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(coupon_link_no)].Text;
 
             pbImage.Image = null;
 
@@ -589,6 +550,7 @@ namespace thepos._9SysAdmin
             sv_badges_id = cbBadges.SelectedIndex + "";
 
             sv_memo = tbMemo.Text;
+            sv_coupon_link_no = tbCouponLinkNo.Text;
             ch_imagePath = "0";
 
         }
@@ -758,6 +720,10 @@ namespace thepos._9SysAdmin
             if (sv_memo != tbMemo.Text)
                 parameters["memo"] = tbMemo.Text;
 
+            if (sv_coupon_link_no != tbCouponLinkNo.Text)
+                parameters["couponLinkNo"] = tbCouponLinkNo.Text;
+
+
             //
             if (ch_imagePath == "1")
             {
@@ -905,6 +871,7 @@ namespace thepos._9SysAdmin
 
 
             parameters["memo"] = tbMemo.Text;
+            parameters["couponLinkNo"] = tbCouponLinkNo.Text;
 
             if (pbImage.Image == null)
             {

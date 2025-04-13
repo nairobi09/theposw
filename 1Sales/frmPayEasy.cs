@@ -39,8 +39,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
-
             initial_the();
 
             isComplex = is_complex;
@@ -82,21 +80,6 @@ namespace thepos
 
 
 
-        }
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-            btnClose.Font = font12;
-
-            lblNetAmountTitle.Font = font10;
-            lblNetAmount.Font = font12;
-
-            lblBarcodeNoTitle.Font = font10;
-            tbBarcodeNo.Font = font12;
-
-            chkKakao.Font = font12;
-
-            btnEasyAuth.Font = font12;
         }
 
         private void initial_the()

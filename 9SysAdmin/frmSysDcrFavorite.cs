@@ -21,38 +21,11 @@ namespace thepos._1Sales
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             reload_server();
         }
 
-        void initialize_font()
-        {
-            lblTitle.Font = font10;
-
-            lvwList.Font = font10;
-
-            lblNameTitle.Font = font10;
-            tbName.Font = font10;
-
-            lblDesTitle.Font = font10;
-            cbDes.Font = font10;
-
-            lblTypeTitle.Font = font10;
-            cbType.Font = font10;
-
-            lblValueTitle.Font = font10;
-            tbValue.Font = font10;
-
-            btnAdd.Font = font10;
-            btnUpdate.Font = font10;
-            btnDelete.Font = font10;
-
-            btnSave.Font = font10;
-
-            lblInfo.Font = font10;
-        }
 
         private void initialize_the()
         {

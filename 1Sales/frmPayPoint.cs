@@ -24,8 +24,6 @@ namespace thepos
         public frmPayPoint()
         {
             InitializeComponent();
-
-            initialize_font();
             initial_the();
 
 
@@ -35,25 +33,6 @@ namespace thepos
 
         }
 
-
-        void initialize_font()
-        {
-            lblTitle.Font = font10;
-            btnClose.Font = font10;
-
-
-            lblNetAmountTitle.Font = font10;
-            lblNetAmount.Font = font10;
-
-
-            lblTicketNoTitle.Font = font10;
-            tbTicketNo.Font = font10;
-
-            btnRequestAuth.Font = font10;
-
-            btnClose.Font = font12;
-
-        }
 
         private void initial_the()
         {

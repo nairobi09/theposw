@@ -84,7 +84,7 @@
             // 
             // tbChargeAmt
             // 
-            this.tbChargeAmt.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbChargeAmt.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbChargeAmt.Location = new System.Drawing.Point(108, 418);
             this.tbChargeAmt.MaxLength = 7;
             this.tbChargeAmt.Name = "tbChargeAmt";
@@ -97,7 +97,7 @@
             // 
             this.btnReset.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnReset.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReset.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnReset.Location = new System.Drawing.Point(432, 464);
             this.btnReset.Name = "btnReset";
@@ -112,7 +112,7 @@
             // 
             this.btnCharge.BackColor = System.Drawing.Color.White;
             this.btnCharge.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCharge.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCharge.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCharge.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnCharge.Location = new System.Drawing.Point(108, 464);
             this.btnCharge.Name = "btnCharge";
@@ -125,7 +125,7 @@
             // 
             // lblChargeAmtTitle
             // 
-            this.lblChargeAmtTitle.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblChargeAmtTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblChargeAmtTitle.ForeColor = System.Drawing.Color.SaddleBrown;
             this.lblChargeAmtTitle.Location = new System.Drawing.Point(41, 422);
             this.lblChargeAmtTitle.Name = "lblChargeAmtTitle";
@@ -138,7 +138,7 @@
             // 
             this.btn1t.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn1t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn1t.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn1t.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn1t.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btn1t.Location = new System.Drawing.Point(288, 464);
             this.btn1t.Name = "btn1t";
@@ -153,7 +153,7 @@
             // 
             this.btn10t.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn10t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn10t.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn10t.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn10t.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btn10t.Location = new System.Drawing.Point(288, 412);
             this.btn10t.Name = "btn10t";
@@ -168,7 +168,7 @@
             // 
             this.btn5t.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn5t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn5t.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn5t.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn5t.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btn5t.Location = new System.Drawing.Point(360, 464);
             this.btn5t.Name = "btn5t";
@@ -183,7 +183,7 @@
             // 
             this.btn50t.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn50t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn50t.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn50t.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn50t.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btn50t.Location = new System.Drawing.Point(360, 412);
             this.btn50t.Name = "btn50t";
@@ -198,7 +198,7 @@
             // 
             this.btn100t.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btn100t.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn100t.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn100t.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn100t.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btn100t.Location = new System.Drawing.Point(432, 412);
             this.btn100t.Name = "btn100t";
@@ -252,7 +252,7 @@
             // 
             // dtBizDt
             // 
-            this.dtBizDt.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.dtBizDt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtBizDt.Location = new System.Drawing.Point(14, 30);
             this.dtBizDt.Name = "dtBizDt";
@@ -265,7 +265,7 @@
             // 
             this.tbTicketNo.BackColor = System.Drawing.SystemColors.Window;
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTicketNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(190, 30);
             this.tbTicketNo.MaxLength = 8;
             this.tbTicketNo.Name = "tbTicketNo";
@@ -317,7 +317,7 @@
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.SaddleBrown;
             this.btnView.Location = new System.Drawing.Point(280, 13);
             this.btnView.Name = "btnView";
@@ -379,6 +379,7 @@
             this.btnClose.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
@@ -392,6 +393,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);

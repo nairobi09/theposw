@@ -107,7 +107,6 @@ namespace thepos
             //? PC가 아니면 마우스 포인터 표시안함.
             //Cursor.Hide();
 
-            initialize_font();
             initialize_the();
 
             display_paymentConsol();
@@ -156,83 +155,6 @@ namespace thepos
         private void frmSales_Shown(object sender, EventArgs e)
         {
             ChangeTheMode(true);
-        }
-
-
-
-        private void initialize_font()
-        {
-
-            lblLocalModeTitle.Font = font10;
-
-            lblSiteNameTitle.Font = font10;
-            lblSiteName.Font = font10;
-
-            lblPosNoTitle.Font = font10;
-            lblPosNo.Font = font10;
-
-            lblUserNameTitle.Font = font10;
-            lblUserName.Font = font10;
-
-            lblBusinessDateTitle.Font = font10;
-            lblBizDate.Font = font12bold;
-
-            lblDate.Font = font10;
-            lblTime.Font = font12bold;
-
-            btnClose.Font = font12;
-
-
-            lvwOrderItem.Font = new Font("굴림", 11, FontStyle.Bold);
-            //lvwOrderItem.Font = font10;
-            lblDisplayAlarm.Font = font10;
-
-            btnOrderCancelAll.Font = font10;
-            btnOrderCancelSelect.Font = font10;
-            btnOrderCntDn.Font = font12;
-            btnOrderCntUp.Font = font12;
-            btnOrderCntChange.Font = font10;
-            btnOrderItemScrollUp.Font = font8;
-            btnOrderItemScrollDn.Font = font8;
-            btnOrderAmtChange.Font = font10;
-
-            lblOrderAmountSumTitle.Font = font9;
-            lblOrderAmountDCTitle.Font = font9;
-            lblOrderAmountChargeTitle.Font = font9;
-            lblOrderAmountReceiveTitle.Font = font9;
-            lblOrderAmountRestTitle.Font = font9;
-
-            lblOrderAmount.Font = font14;
-            lblOrderAmountDC.Font = font14;
-            lblOrderAmountNet.Font = font14;
-            lblOrderAmountReceive.Font = font14;
-            lblOrderAmountRest.Font = font14;
-
-            //lblKeyDisplay.Font = font13;
-            tbKeyDisplay.Font = font14;
-
-            btnKey1.Font = font14;
-            btnKey2.Font = font14;
-            btnKey3.Font = font14;
-            btnKey4.Font = font14;
-            btnKey5.Font = font14;
-            btnKey6.Font = font14;
-            btnKey7.Font = font14;
-            btnKey8.Font = font14;
-            btnKey9.Font = font14;
-            btnKey0.Font = font14;
-            btnKeyBS.Font = font14;
-            btnKeyClear.Font = font14;
-
-            btnOrderAmountDC.Font = font10;
-            btnOrderAllim.Font = font10;
-            btnOrderWaiting.Font = font10;
-
-            btnFlowTicketing.Font = font10;
-            btnFlowCharging.Font = font10;
-            btnFlowSettlement.Font = font10;
-            btnFlowLocker.Font = font10;
-
         }
 
         private void initialize_the()
@@ -330,12 +252,11 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_name_description";
 
-            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
-            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
-            renderer.DescriptionColor = Color.Gray;
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 12, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = 0;
-
+            renderer.TitleDescriptionSpace = -4;
             renderer.UseGdiTextRendering = false;
 
             return (renderer);
@@ -346,11 +267,11 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_amt_description";
 
-            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
-            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
-            renderer.DescriptionColor = Color.Gray;
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 12, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = 0;
+            renderer.TitleDescriptionSpace = -4;
 
             renderer.UseGdiTextRendering = false;
 
@@ -362,11 +283,12 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_dc_amount_description";
 
-            renderer.TitleFont = new Font("굴림", 11, FontStyle.Bold);
-            renderer.DescriptionFont = new Font("굴림", 8, FontStyle.Regular);
-            renderer.DescriptionColor = Color.Gray;
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 12, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = 0;
+            renderer.TitleDescriptionSpace = -4;
+
 
             renderer.UseGdiTextRendering = false;
 
@@ -434,7 +356,7 @@ namespace thepos
                 btnPayItem.ForeColor = Color.White;
                 btnPayItem.BackColor = Color.FromArgb(68, 87, 96);
 
-                btnPayItem.Font = font12;
+                btnPayItem.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
 
                 if (mPayConsol[i].code == "CASH")
                 {
@@ -505,19 +427,19 @@ namespace thepos
 
                 if (mGoodsGroup[i].columnspan == 1)
                 {
-                    btnGoodsGroup.Font = font9;
+                    btnGoodsGroup.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
                 }
                 else if (mGoodsGroup[i].rowspan == 1)
                 {
-                    btnGoodsGroup.Font = font12;
-            }
+                    btnGoodsGroup.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
+                }
                 else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan >= 2)
                 {
-                    btnGoodsGroup.Font = font20;
+                    btnGoodsGroup.Font = new Font("맑은 고딕", 20, FontStyle.Bold);
                 }
                 else
                 {
-                    btnGoodsGroup.Font = font14;
+                    btnGoodsGroup.Font = new Font("맑은 고딕", 14, FontStyle.Bold);
                 }
 
 
@@ -588,15 +510,15 @@ namespace thepos
 
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
-                        btnGoodsItem.Font = font9;
+                        btnGoodsItem.Font = new Font("맑은 고딕", 9);
                     }
                     else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 3)
                     {
-                        btnGoodsItem.Font = font20;
+                        btnGoodsItem.Font = new Font("맑은 고딕", 20);
                     }
                     else
                     {
-                        btnGoodsItem.Font = font12;
+                        btnGoodsItem.Font = new Font("맑은 고딕", 12);
                     }
 
 
@@ -638,8 +560,7 @@ namespace thepos
 
             if (mGoodsItem[i].online_coupon == "Y")
             {
-
-
+                // 별도 쿠폰메뉴 버튼 사용용망
 
 
             }
@@ -2193,16 +2114,18 @@ namespace thepos
                         {
                             ticket_seq++;
 
-                            if (mTicketMedia == "BC")  // 띠지
+                            if (mTicketMedia == "BC")  // 영수증
                             {
-                                // 티켓번호 + 2자리로 변경
-                                //t_ticket_no = mTheNo + ticket_seq.ToString("000");
                                 t_ticket_no = mTheNo + ticket_seq.ToString("00");
+                            }
+                            else if (mTicketMedia == "TG")  // 띠지
+                            {
+                                t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
                             }
                             else  // 팔찌
                             {
                                 //? 팔찌이면 스케너 입력로직 필요
-                                MessageBox.Show("스캐너 팔찌 입력입니다... ");
+                                MessageBox.Show("스캐너 팔찌 입력을 할 수 없습니다... ");
 
                                 //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
                                 t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
@@ -2255,9 +2178,15 @@ namespace thepos
 
                             //
                             // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
-                            if (mTicketMedia == "BC")  // 띠지
+                            // "", "BC", "RF", "TG" };
+                            // "", "영수증", "팔찌", "띠지" };
+                            if (mTicketMedia == "BC")  // 
                             {
                                 print_ticket(t_ticket_no, orderItem.goods_code);
+                            }
+                            else if (mTicketMedia == "TG")
+                            {
+                                MessageBox.Show("띠지 출력을 할 수 없습니다... \r\n" + t_ticket_no);
                             }
                         } 
                     }
@@ -5000,12 +4929,22 @@ namespace thepos
                                 strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
                                 strPrintPayment += "\r\n";
 
+                                //
+                                string strVanCode = arr[i]["vanCode"].ToString();
+                                string strCouponNo = arr[i]["couponNo"].ToString();
 
-                                tStr = arr[i]["vanCode"].ToString();
-                                strPrintPayment += tStr + Space(21 - encodelen(tStr));
+                                int lenVanCode = encodelen(strVanCode);
+                                int lenCouponNo = encodelen(strCouponNo);
 
-                                tStr = arr[i]["couponNo"].ToString();
-                                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+                                if (lenVanCode + lenCouponNo > 40)
+                                {
+                                    strPrintPayment += strVanCode + "\r\n" + strCouponNo;
+                                }
+                                else
+                                {
+                                    strPrintPayment += strVanCode + Space(42 - (lenVanCode + lenCouponNo)) + strCouponNo;
+                                }
+
                                 strPrintPayment += "\r\n";
 
                                 strPrintPayment += "\r\n";
@@ -5087,9 +5026,11 @@ namespace thepos
         public static void print_ticket(String t_ticket_no, String t_goods_code)
         {
 
-            if (mTicketPrinterPort.Trim().Length == 0)
+            // 티켓을 영수증에 출력
+
+            if (mBillPrinterPort.Trim().Length == 0)
             {
-                SetDisplayAlarm("W", "티켓프린터 미설정으로 티켓출력불가..");
+                SetDisplayAlarm("W", "영수증프린터 미설정으로 티켓출력불가..");
                 return;
             }
 
@@ -5154,14 +5095,35 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, CutPage());
 
-                //
-                PrintExtensions.Print(BytesValue, mTicketPrinterPort);
 
+                try
+                {
+                    SerialPort mySerialPort = new SerialPort();
+                    mySerialPort.PortName = mBillPrinterPort;
+                    mySerialPort.BaudRate = convert_number(mBillPrinterSpeed);
+                    mySerialPort.Parity = Parity.None;
+                    mySerialPort.StopBits = StopBits.One;
+                    mySerialPort.DataBits = 8;
+                    mySerialPort.Handshake = Handshake.None;
+
+                    mySerialPort.Open();
+
+                    mySerialPort.Write(BytesValue, 0, BytesValue.Length);
+                    mySerialPort.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("영수증프린터 출력 오류.\r\n" + ex.Message);
+                    return;
+                }
+                
+                //PrintExtensions.Print(BytesValue, mBillPrinterPort);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("티켓프린터 인쇄중 에러.\r\n" + ex.Message);  // 파일이 이미 있으므로 만들 수 없습니다.
+                MessageBox.Show("티켓 출력 오류.\r\n헬프데스크로 문의바랍니다.");  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
 
@@ -5282,7 +5244,7 @@ namespace thepos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
+                    MessageBox.Show("영수증프린터 출력 오류.\r\n" + ex.Message);
                     return;
                 }
 
@@ -5662,7 +5624,7 @@ namespace thepos
 
                 for (int k = 0; k < shopOrderPackList[i].orderPackList.Count; k++)
                 {
-                    if (shopOrderPackList[i].orderPackList[k]. allim == "Y")
+                    if (shopOrderPackList[i].orderPackList[k].allim == "Y")
                     {
                         is_allim = "Y";
                     }
@@ -6171,7 +6133,7 @@ namespace thepos
 
             if (paymentCert.van_code == "PM")
             {
-                couponPM p = new couponPM();
+                couponTM p = new couponTM();
                 ret = p.requestPmCertCancel(paymentCert.coupon_no);
             }
 

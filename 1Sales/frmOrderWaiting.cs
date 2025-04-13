@@ -21,7 +21,6 @@ namespace thepos
         public frmOrderWaiting()
         {
             InitializeComponent();
-            initialize_font();
             
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 40);
@@ -47,17 +46,6 @@ namespace thepos
                 lvwWaiting.Items[0].Selected = true;
             }
         }
-
-
-        void initialize_font()
-        {
-            lblTitle.Font = font12;
-            lvwWaiting.Font = font12;
-            btnDelete.Font = font10;
-            btnOK.Font = font10;
-            btnClose.Font = font12;
-        }
-
 
         private void btnOK_Click(object sender, EventArgs e)
         {

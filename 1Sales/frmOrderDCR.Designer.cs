@@ -70,6 +70,7 @@
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
+            this.lblTitle2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle2.Location = new System.Drawing.Point(105, 91);
             this.lblTitle2.Name = "lblTitle2";
             this.lblTitle2.Size = new System.Drawing.Size(115, 14);
@@ -81,6 +82,7 @@
             // 
             this.btnAllRate.BackColor = System.Drawing.Color.White;
             this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllRate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllRate.Location = new System.Drawing.Point(354, 445);
             this.btnAllRate.Name = "btnAllRate";
@@ -95,6 +97,7 @@
             // 
             this.btnAllAmount.BackColor = System.Drawing.Color.White;
             this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllAmount.Location = new System.Drawing.Point(354, 349);
             this.btnAllAmount.Name = "btnAllAmount";
@@ -109,6 +112,7 @@
             // 
             this.btnSelRate.BackColor = System.Drawing.Color.White;
             this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelRate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSelRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnSelRate.Location = new System.Drawing.Point(354, 245);
             this.btnSelRate.Name = "btnSelRate";
@@ -123,6 +127,7 @@
             // 
             this.btnSelAmount.BackColor = System.Drawing.Color.White;
             this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSelAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnSelAmount.Location = new System.Drawing.Point(354, 146);
             this.btnSelAmount.Name = "btnSelAmount";
@@ -211,6 +216,7 @@
             // lblTitle1
             // 
             this.lblTitle1.AutoSize = true;
+            this.lblTitle1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle1.Location = new System.Drawing.Point(364, 91);
             this.lblTitle1.Name = "lblTitle1";
             this.lblTitle1.Size = new System.Drawing.Size(87, 14);
@@ -224,6 +230,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(463, 20);
             this.btnClose.Name = "btnClose";
@@ -239,6 +246,7 @@
             this.btnDCCancel.BackColor = System.Drawing.Color.White;
             this.btnDCCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDCCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDCCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnDCCancel.Location = new System.Drawing.Point(354, 576);
             this.btnDCCancel.Name = "btnDCCancel";
@@ -252,6 +260,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);

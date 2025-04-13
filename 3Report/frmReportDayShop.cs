@@ -20,18 +20,7 @@ namespace thepos
         public frmReportDayShop()
         {
             InitializeComponent();
-            initialize_font();
             initialize_the();
-        }
-
-        private void initialize_font()
-        {
-            lblReportTitle.Font = font10;
-            dtpBizDate.Font = font10;
-            btnView.Font = font10;
-
-            lvwList.Font = font10;
-
         }
 
         private void initialize_the()

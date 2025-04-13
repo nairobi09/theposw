@@ -27,7 +27,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
             viewMonth();
@@ -35,91 +34,6 @@ namespace thepos
         }
 
 
-        private void initialize_font()
-        {
-            lblReportTitle.Font = font10;
-            btnPrev.Font = font8;
-            lblYYYYMM.Font = font10;
-            btnNext.Font = font8;
-
-            lblPosNoTitle.Font = font10;
-            cbPosNo.Font = font10;
-
-            lblShopTitle.Font = font10;
-            cbShop.Font = font10;
-
-            btnView.Font = font10;
-
-
-
-            d01.Font = font10; a01.Font = font10;
-            d02.Font = font10; a02.Font = font10;
-            d03.Font = font10; a03.Font = font10;
-            d04.Font = font10; a04.Font = font10;
-            d05.Font = font10; a05.Font = font10;
-            d06.Font = font10; a06.Font = font10;
-            d07.Font = font10; a07.Font = font10;
-            d08.Font = font10; a08.Font = font10;
-            d09.Font = font10; a09.Font = font10;
-            d10.Font = font10; a10.Font = font10;
-
-            d11.Font = font10; a11.Font = font10;
-            d12.Font = font10; a12.Font = font10;
-            d13.Font = font10; a13.Font = font10;
-            d14.Font = font10; a14.Font = font10;
-            d15.Font = font10; a15.Font = font10;
-            d16.Font = font10; a16.Font = font10;
-            d17.Font = font10; a17.Font = font10;
-            d18.Font = font10; a18.Font = font10;
-            d19.Font = font10; a19.Font = font10;
-            d20.Font = font10; a20.Font = font10;
-
-            d21.Font = font10; a21.Font = font10;
-            d22.Font = font10; a22.Font = font10;
-            d23.Font = font10; a23.Font = font10;
-            d24.Font = font10; a24.Font = font10;
-            d25.Font = font10; a25.Font = font10;
-            d26.Font = font10; a26.Font = font10;
-            d27.Font = font10; a27.Font = font10;
-            d28.Font = font10; a28.Font = font10;
-            d29.Font = font10; a29.Font = font10;
-            d30.Font = font10; a30.Font = font10;
-
-            d31.Font = font10; a31.Font = font10;
-            d32.Font = font10; a32.Font = font10;
-            d33.Font = font10; a33.Font = font10;
-            d34.Font = font10; a34.Font = font10;
-            d35.Font = font10; a35.Font = font10;
-            d36.Font = font10; a36.Font = font10;
-            d37.Font = font10; a37.Font = font10;
-            d38.Font = font10; a38.Font = font10;
-            d39.Font = font10; a39.Font = font10;
-            d40.Font = font10; a40.Font = font10;
-
-            d41.Font = font10; a41.Font = font10;
-            d42.Font = font10; a42.Font = font10;
-
-
-            ra1.Font = font10;
-            ra2.Font = font10;
-            ra3.Font = font10;
-            ra4.Font = font10;
-            ra5.Font = font10;
-            ra6.Font = font10;
-            ra7.Font = font10;
-
-            wa1.Font = font10;
-            wa2.Font = font10;
-            wa3.Font = font10;
-            wa4.Font = font10;
-            wa5.Font = font10;
-            wa6.Font = font10;
-
-            ma.Font = font10;
-
-
-
-        }
 
         private void initialize_the()
         {

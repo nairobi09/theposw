@@ -44,7 +44,6 @@ namespace thepos
         public frmPayCash(int net_amount, int r과세금액, int r면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
             InitializeComponent();
-            initialize_font();
 
             isComplex = is_complex;
             paySeq = seq;
@@ -107,48 +106,7 @@ namespace thepos
                 gbCashReceipt.Visible = true;
             }
 
-
-
         }
-
-        private void initialize_font()
-        {
-            lblTitle.Font = font12;
-
-            lbl1.Font = font10;
-            lbl2.Font = font10;
-            lbl3.Font = font10;
-
-            lblNetAmount.Font = font10;
-            lblRcvAmount.Font = font10;
-            lblRestAmount.Font = font10;
-
-            btnCashSimple.Font = font10;
-
-            btn1t.Font = font10;
-            btn5t.Font = font10;
-            btn10t.Font = font10;
-            btn50t.Font = font10;
-            btnReset.Font = font10;
-
-            lbl4.Font = font10;
-            lbl5.Font = font10;
-            lbl6.Font = font10;
-
-            rbTypeIndividual.Font = font10;
-            rbTypeBusiness.Font = font10;
-            rbTypeSelf.Font = font10;
-            
-            rb화면입력.Font = font10;
-            rbKeyin.Font = font10;
-            rb카드거래.Font = font10;
-
-            lblAuthNo.Font = font10;
-            btnCashRecept.Font = font10;
-
-            btnClose.Font = font12;
-        }
-
 
 
         private void btnCashSimple_Click(object sender, EventArgs e)
@@ -185,7 +143,7 @@ namespace thepos
 
 
                 // orders, orderItem 
-                order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외
+                order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외, 아래에서 출력
                 if (order_cnt == -1)
                 {
                     return; // 재로그인 요구

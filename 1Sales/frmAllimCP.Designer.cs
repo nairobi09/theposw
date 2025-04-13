@@ -209,6 +209,7 @@
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnView.Location = new System.Drawing.Point(369, 13);
             this.btnView.Name = "btnView";
@@ -238,7 +239,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.Gold;
-            this.lblTitle.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -295,7 +296,7 @@
             this.lvwOrderItem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.cnt_item});
-            this.lvwOrderItem.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lvwOrderItem.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwOrderItem.ForeColor = System.Drawing.Color.Black;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderItem.HideSelection = false;
@@ -312,7 +313,7 @@
             // 
             this.btnAllimSendCP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllimSendCP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllimSendCP.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAllimSendCP.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllimSendCP.ForeColor = System.Drawing.Color.White;
             this.btnAllimSendCP.Location = new System.Drawing.Point(355, 433);
             this.btnAllimSendCP.Name = "btnAllimSendCP";
@@ -344,7 +345,7 @@
             // 
             this.btnAllimFinish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnAllimFinish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllimFinish.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAllimFinish.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllimFinish.ForeColor = System.Drawing.Color.White;
             this.btnAllimFinish.Location = new System.Drawing.Point(355, 519);
             this.btnAllimFinish.Name = "btnAllimFinish";

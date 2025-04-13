@@ -37,7 +37,6 @@ namespace thepos
         {
             InitializeComponent();
 
-            initialize_font();
             initialize_the();
 
 
@@ -61,23 +60,6 @@ namespace thepos
         }
 
 
-        private void initialize_font()
-        {
-            //lvwOrderItem.Font = font16;
-
-            lblOrderAmountSumTitle.Font = font14;
-            lblOrderAmountDCTitle.Font = font14;
-            lblOrderAmountReceiveTitle.Font = font14;
-            lblOrderAmountRestTitle.Font = font14;
-            lblOrderAmountNetTitle.Font = font20;
-
-            lblOrderAmount.Font = font16;
-            lblOrderAmountDC.Font = font16;
-            lblOrderAmountReceive.Font = font16;
-            lblOrderAmountRest.Font = font16;
-            lblOrderAmountNet.Font = font24;
-
-        }
 
         private void initialize_the()
         {
@@ -97,6 +79,7 @@ namespace thepos
 
             this.lv_name.Renderer = rendererName();
             this.lv_amt.Renderer = rendererAmt();
+            this.lv_dc_amount.Renderer = rendererDcAmount();
         }
 
         public DescribedTaskRenderer rendererName()
@@ -104,12 +87,12 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_name_description";
 
-            renderer.TitleFont = new Font("굴림", 15, FontStyle.Regular);
-            renderer.DescriptionFont = new Font("굴림", 10, FontStyle.Regular);
-            renderer.DescriptionColor = Color.Gray;
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 15, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 10, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = 0;
-            renderer.UseGdiTextRendering = false;
+            renderer.TitleDescriptionSpace = -5;
+            renderer.UseGdiTextRendering = true;
 
             return (renderer);
         }
@@ -119,12 +102,28 @@ namespace thepos
             DescribedTaskRenderer renderer = new DescribedTaskRenderer();
             renderer.DescriptionAspectName = "option_amt_description";
 
-            renderer.TitleFont = new Font("굴림", 15, FontStyle.Regular);
-            renderer.DescriptionFont = new Font("굴림", 10, FontStyle.Regular);
-            renderer.DescriptionColor = Color.Gray;
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 15, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 10, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = 0;
+            renderer.TitleDescriptionSpace = -5;
             renderer.UseGdiTextRendering = false;
+
+            return (renderer);
+        }
+
+        public DescribedTaskRenderer rendererDcAmount()
+        {
+            DescribedTaskRenderer renderer = new DescribedTaskRenderer();
+            renderer.DescriptionAspectName = "option_dc_amount_description";
+
+            renderer.TitleFont = new Font(lvwOrderItem.Font.FontFamily, 15, FontStyle.Bold);
+            renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 10, FontStyle.Regular);
+            renderer.DescriptionColor = Color.Blue;
+            renderer.ImageTextSpace = 0;
+            renderer.TitleDescriptionSpace = -5;
+            renderer.UseGdiTextRendering = false;
+
 
             return (renderer);
         }
