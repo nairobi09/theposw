@@ -72,7 +72,6 @@
             this.tbSiteID.Name = "tbSiteID";
             this.tbSiteID.Size = new System.Drawing.Size(73, 15);
             this.tbSiteID.TabIndex = 0;
-            this.tbSiteID.Text = "2501";
             // 
             // tbPosNo
             // 
@@ -84,7 +83,6 @@
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(73, 15);
             this.tbPosNo.TabIndex = 1;
-            this.tbPosNo.Text = "01";
             // 
             // btnLogin
             // 

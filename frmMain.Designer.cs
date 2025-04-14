@@ -270,11 +270,11 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.LightGray;
-            this.btnClose.Location = new System.Drawing.Point(231, 71);
+            this.btnClose.Location = new System.Drawing.Point(224, 71);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(39, 38);
+            this.btnClose.Size = new System.Drawing.Size(46, 42);
             this.btnClose.TabIndex = 40;
             this.btnClose.TabStop = false;
             this.btnClose.Text = "✕";
@@ -327,7 +327,6 @@
             this.tbID.Size = new System.Drawing.Size(156, 27);
             this.tbID.TabIndex = 38;
             this.tbID.TabStop = false;
-            this.tbID.Text = "2501";
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbID.Click += new System.EventHandler(this.tbID_Click);
             // 
@@ -367,7 +366,6 @@
             this.tbPW.Size = new System.Drawing.Size(156, 27);
             this.tbPW.TabIndex = 38;
             this.tbPW.TabStop = false;
-            this.tbPW.Text = "4089";
             this.tbPW.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPW.Click += new System.EventHandler(this.tbPW_Click);
             // 
