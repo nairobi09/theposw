@@ -130,18 +130,18 @@ namespace thepos
             }
 
 
-            if (mTicketMedia == "BC")  // 영수증
+            if (mTicketMedia == "BC")  // 써멀|영수증
             {
                 String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
                 String goods_code = lvwList.SelectedItems[0].SubItems[5].Text.ToString();
 
                 print_ticket(ticket_no, goods_code);
             }
-            else if (mTicketMedia == "RF")  // 팔찌RF
+            else if (mTicketMedia == "RF")  // 팔찌|RF[예정]
             {
                 // 
             }
-            else if (mTicketMedia == "TG")  // 띠지
+            else if (mTicketMedia == "TG")  // 전용|띠지[예정]
             {
                 // 
 

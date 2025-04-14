@@ -601,7 +601,6 @@ namespace thepos
                             }
                         }
 
-
                         if (is_allim == "Y")
                         {
                             frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);

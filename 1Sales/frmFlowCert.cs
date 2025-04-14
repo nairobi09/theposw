@@ -59,9 +59,24 @@ namespace thepos
             mPanelMiddle.Controls.Clear();
         }
 
+
+        private void tbNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                view_reload();
+            }
+        }
         private void btnView_Click(object sender, EventArgs e)
         {
             //
+
+            view_reload();
+        }
+
+
+        private void view_reload()
+        { 
             mClearSaleForm();
 
 
@@ -71,7 +86,6 @@ namespace thepos
             }
 
 
-
             //? 쿠폰업체 추가시 아래 구분필요
             if (mCouponMID == "")
             {
@@ -79,13 +93,6 @@ namespace thepos
                 return;
             }
 
-
-            view_reload();
-        }
-
-
-        private void view_reload()
-        { 
 
             lvwCoupon.Items.Clear();
             clear_info();

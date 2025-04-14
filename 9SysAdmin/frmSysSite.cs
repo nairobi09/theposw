@@ -47,7 +47,7 @@ namespace thepos._9SysAdmin
             tmTicketTypeText = new String[3] { "", "선불", "후불" };
 
             tmTicketMedia = new String[4] { "", "BC", "RF", "TG" };
-            tmTicketMediaText = new String[4] { "", "영수증", "팔찌", "띠지" };
+            tmTicketMediaText = new String[4] { "", "써멀|영수증", "팔찌|RF [예정]", "전용|띠지 [예정]" };
 
             tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 

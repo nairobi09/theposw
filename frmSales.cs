@@ -5076,8 +5076,6 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(t_ticket_no));
                 //BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(t_ticket_no));
-                //BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Left());
 
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5117,8 +5115,6 @@ namespace thepos
                     MessageBox.Show("영수증프린터 출력 오류.\r\n" + ex.Message);
                     return;
                 }
-                
-                //PrintExtensions.Print(BytesValue, mBillPrinterPort);
 
             }
             catch (Exception ex)

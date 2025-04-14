@@ -341,6 +341,7 @@
             this.tbNo.Name = "tbNo";
             this.tbNo.Size = new System.Drawing.Size(249, 26);
             this.tbNo.TabIndex = 0;
+            this.tbNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbNo_KeyDown);
             // 
             // lblNoTitle
             // 
