@@ -42,8 +42,8 @@ namespace thepos._9SysAdmin
             mPrinterTypeCode[2] = "L";
 
             mPrinterTypeName[0] = "";
-            mPrinterTypeName[1] = "네트워크프린터";
-            mPrinterTypeName[2] = "영수증프린터";
+            mPrinterTypeName[1] = "업장 네트워크프린터";
+            mPrinterTypeName[2] = "로걸 영수증프린터";
 
 
             cbPrinterType.Items.Clear();

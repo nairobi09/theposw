@@ -1449,7 +1449,7 @@ namespace thepos
 
             for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                if (isExistOrderPrinter(mOrderItemList[i].shop_code) & mOrderItemList[i].ticket != "Y")
+                if (mOrderItemList[i].dcr_des != "E")
                 {
                     shop_code_list.Add(mOrderItemList[i].shop_code);
                 }
@@ -1472,7 +1472,7 @@ namespace thepos
             {
                 for (int k = 0; k < order_no_list.Count; k++)
                 {
-                    if (mOrderItemList[i].shop_code == shop_code_list[k] & mOrderItemList[i].ticket != "Y")
+                    if (mOrderItemList[i].shop_code == shop_code_list[k])
                     {
                         MemOrderItem orderItem = mOrderItemList[i];
                         orderItem.shop_order_no = order_no_list[k];
@@ -1527,7 +1527,7 @@ namespace thepos
             // - 조건에 맞는 건만 부여함.
             if (mPayClass == "OR" | mPayClass == "US")
             {
-                if (isExistOrderPrinter(memOrderItemArr[0].shop_code) & memOrderItemArr[0].ticket != "Y")
+                if (memOrderItemArr[0].dcr_des != "E")
                     memOrderItemArr[0].shop_order_no = get_new_order_no();
                 else
                     memOrderItemArr[0].shop_order_no = "";
@@ -1541,7 +1541,7 @@ namespace thepos
                     }
                     else
                     {
-                        if (isExistOrderPrinter(memOrderItemArr[i+ 1].shop_code) & memOrderItemArr[i + 1].ticket != "Y")
+                        if (memOrderItemArr[i + 1].dcr_des != "E")
                             memOrderItemArr[i + 1].shop_order_no = get_new_order_no();
                         else
                             memOrderItemArr[i + 1].shop_order_no = "";
@@ -1553,14 +1553,18 @@ namespace thepos
         }
 
 
-        public static bool isExistOrderPrinter(String shop_code)
+        public static bool xxx_isExistOrderPrinter(String shop_code)
         {
             if (shop_code == "")
             {
                 return false;
             }
+            else
+            {
+                return true;
+            }
 
-            //
+            /*
             for (int i = 0; i < mShop.Length; i++)
             {
                 if (mShop[i].shop_code == shop_code)
@@ -1573,6 +1577,7 @@ namespace thepos
             }
 
             return false;
+            */
         }
 
 
@@ -5427,10 +5432,6 @@ namespace thepos
             //
             return order_no;
         }
-
-
-
-
 
 
 

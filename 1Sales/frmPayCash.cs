@@ -315,34 +315,34 @@ namespace thepos
                     // 1. 주문서 출력 (옵션)
                     // 1. 알림톡 전송 (옵션)
                     // 2. 교환권 출력 (옵션)
-                    // 
 
-
-
-                    //
                     order_no_from_to = print_order(ref shopOrderPackList);
 
 
-                    // 알림톡 보내기 위한 알림상품이 있는지 검사
-                    String is_allim = "";
-
-                    for (int i = 0; i < shopOrderPackList.Count; i++)
+                    
+                    if (mAllimYn == "Y")   // 알림톡 사용여부
                     {
-                        for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
+                        // 알림톡 보내기 위한 알림상품이 있는지 검사
+                        String is_allim = "";
+
+                        for (int i = 0; i < shopOrderPackList.Count; i++)
                         {
-                            if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                            for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
                             {
-                                is_allim = "Y";
+                                if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                {
+                                    is_allim = "Y";
+                                }
                             }
+                        }
+
+                        if (is_allim == "Y")
+                        {
+                            frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
+                            fAllim.ShowDialog();
                         }
                     }
 
-
-                    if (is_allim == "Y")
-                    {
-                        frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
-                        fAllim.ShowDialog();
-                    }
                 }
 
 

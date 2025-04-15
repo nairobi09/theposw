@@ -65,11 +65,11 @@
             this.lblCutoffTime = new System.Windows.Forms.Label();
             this.lblCutoffType = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cbAllimTN = new System.Windows.Forms.ComboBox();
+            this.btnViewProfile = new System.Windows.Forms.Button();
+            this.cbAllimYN = new System.Windows.Forms.ComboBox();
             this.tbSenderProfile = new System.Windows.Forms.TextBox();
             this.lblSenderProfile = new System.Windows.Forms.Label();
             this.lblAllimTN = new System.Windows.Forms.Label();
-            this.btnViewProfile = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -487,7 +487,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnViewProfile);
-            this.groupBox5.Controls.Add(this.cbAllimTN);
+            this.groupBox5.Controls.Add(this.cbAllimYN);
             this.groupBox5.Controls.Add(this.tbSenderProfile);
             this.groupBox5.Controls.Add(this.lblSenderProfile);
             this.groupBox5.Controls.Add(this.lblAllimTN);
@@ -497,16 +497,30 @@
             this.groupBox5.TabIndex = 59;
             this.groupBox5.TabStop = false;
             // 
-            // cbAllimTN
+            // btnViewProfile
             // 
-            this.cbAllimTN.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbAllimTN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbAllimTN.FormattingEnabled = true;
-            this.cbAllimTN.Location = new System.Drawing.Point(107, 21);
-            this.cbAllimTN.Name = "cbAllimTN";
-            this.cbAllimTN.Size = new System.Drawing.Size(156, 21);
-            this.cbAllimTN.TabIndex = 57;
-            this.cbAllimTN.TabStop = false;
+            this.btnViewProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewProfile.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewProfile.ForeColor = System.Drawing.Color.DimGray;
+            this.btnViewProfile.Location = new System.Drawing.Point(107, 102);
+            this.btnViewProfile.Name = "btnViewProfile";
+            this.btnViewProfile.Size = new System.Drawing.Size(109, 30);
+            this.btnViewProfile.TabIndex = 58;
+            this.btnViewProfile.TabStop = false;
+            this.btnViewProfile.Text = "프로필보기";
+            this.btnViewProfile.UseVisualStyleBackColor = true;
+            this.btnViewProfile.Click += new System.EventHandler(this.btnViewProfile_Click);
+            // 
+            // cbAllimYN
+            // 
+            this.cbAllimYN.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbAllimYN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbAllimYN.FormattingEnabled = true;
+            this.cbAllimYN.Location = new System.Drawing.Point(107, 21);
+            this.cbAllimYN.Name = "cbAllimYN";
+            this.cbAllimYN.Size = new System.Drawing.Size(156, 21);
+            this.cbAllimYN.TabIndex = 57;
+            this.cbAllimYN.TabStop = false;
             // 
             // tbSenderProfile
             // 
@@ -539,20 +553,6 @@
             this.lblAllimTN.Size = new System.Drawing.Size(77, 14);
             this.lblAllimTN.TabIndex = 54;
             this.lblAllimTN.Text = "알림톡사용";
-            // 
-            // btnViewProfile
-            // 
-            this.btnViewProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewProfile.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnViewProfile.ForeColor = System.Drawing.Color.DimGray;
-            this.btnViewProfile.Location = new System.Drawing.Point(107, 102);
-            this.btnViewProfile.Name = "btnViewProfile";
-            this.btnViewProfile.Size = new System.Drawing.Size(109, 30);
-            this.btnViewProfile.TabIndex = 58;
-            this.btnViewProfile.TabStop = false;
-            this.btnViewProfile.Text = "프로필보기";
-            this.btnViewProfile.UseVisualStyleBackColor = true;
-            this.btnViewProfile.Click += new System.EventHandler(this.btnViewProfile_Click);
             // 
             // frmSysSite
             // 
@@ -622,7 +622,7 @@
         private System.Windows.Forms.Label lblCutoffTime1;
         private System.Windows.Forms.Label lblCutoffTime2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox cbAllimTN;
+        private System.Windows.Forms.ComboBox cbAllimYN;
         private System.Windows.Forms.TextBox tbSenderProfile;
         private System.Windows.Forms.Label lblSenderProfile;
         private System.Windows.Forms.Label lblAllimTN;

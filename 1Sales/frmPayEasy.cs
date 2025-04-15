@@ -273,25 +273,27 @@ namespace thepos
                         order_no_from_to = print_order(ref shopOrderPackList);
 
 
-                        // 알림톡 보내기 위한 알림상품이 있는지 검사
-                        String is_allim = "";
-
-                        for (int i = 0; i < shopOrderPackList.Count; i++)
+                        if (mAllimYn == "Y")
                         {
-                            for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
+                            // 알림톡 보내기 위한 알림상품이 있는지 검사
+                            String is_allim = "";
+
+                            for (int i = 0; i < shopOrderPackList.Count; i++)
                             {
-                                if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
                                 {
-                                    is_allim = "Y";
+                                    if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                    {
+                                        is_allim = "Y";
+                                    }
                                 }
                             }
-                        }
 
-
-                        if (is_allim == "Y")
-                        {
-                            frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
-                            fAllim.ShowDialog();
+                            if (is_allim == "Y")
+                            {
+                                frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
+                                fAllim.ShowDialog();
+                            }
                         }
                     }
 

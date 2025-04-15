@@ -82,8 +82,8 @@ namespace thepos._9SysAdmin
 
 
             //
-            cbAllimTN.Items.Add("사용");
-            cbAllimTN.Items.Add("미사용");
+            cbAllimYN.Items.Add("미사용");
+            cbAllimYN.Items.Add("사용");
 
 
         }
@@ -153,10 +153,7 @@ namespace thepos._9SysAdmin
 
                         tbCutoffTime.Text = arr[0]["cutoffTime"].ToString();
 
-
-
                         tbBizTelNo.Text = arr[0]["bizTelNo"].ToString();
-
 
 
                         //
@@ -183,17 +180,14 @@ namespace thepos._9SysAdmin
                         // 알림톡
                         if (arr[0]["allimYn"].ToString().Equals("Y"))
                         {
-                            cbAllimTN.SelectedIndex = 0;
+                            cbAllimYN.SelectedIndex = 1;
                         }
                         else
                         {
-                            cbAllimTN.SelectedIndex = 1;
+                            cbAllimYN.SelectedIndex = 0;
                         }
 
                         tbSenderProfile.Text = arr[0]["senderProfile"].ToString();
-
-
-
 
                     }
                 }
@@ -217,13 +211,9 @@ namespace thepos._9SysAdmin
 
             if (tbCutoffTime.Text.Length != 4)
             {
-
-
                 MessageBox.Show("마감시간 오류.", "thepos");
                 return;
             }
-
-
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -258,7 +248,6 @@ namespace thepos._9SysAdmin
             parameters["cutoffTime"] = tbCutoffTime.Text;
 
 
-
             parameters["callCenterNo"] = tbCallCenter.Text;
 
             //
@@ -275,6 +264,16 @@ namespace thepos._9SysAdmin
                     parameters["billImage"] = Convert.ToBase64String(ms.ToArray());
                 }
             }
+
+
+            // 알림톡
+            if (cbAllimYN.SelectedIndex == 0)
+                parameters["allimYn"] = "N";
+            else
+                parameters["allimYn"] = "Y";
+
+
+            parameters["senderProfile"] = tbSenderProfile.Text;
 
 
 
@@ -306,6 +305,15 @@ namespace thepos._9SysAdmin
                     mVanCode = tmVanCode[cbVanCode.SelectedIndex];
 
                     mCallCenterNo = tbCallCenter.Text;
+
+                    if (cbAllimYN.SelectedIndex == 1)
+                        mAllimYn = "Y";
+                    else
+                        mAllimYn = "N";
+
+                    mAllimSenderProfile = tbSenderProfile.Text;
+
+
 
                     MessageBox.Show("정상 수정 완료.", "thepos");
                 }
