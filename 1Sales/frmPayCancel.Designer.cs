@@ -68,7 +68,6 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
-            this.panelback.Paint += new System.Windows.Forms.PaintEventHandler(this.panelback_Paint);
             // 
             // lblNestAmount
             // 
@@ -82,7 +81,6 @@
             this.lblNestAmount.Tag = "0";
             this.lblNestAmount.Text = "0";
             this.lblNestAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblNestAmount.Click += new System.EventHandler(this.lblNestAmount_Click);
             // 
             // lblCancelAmount
             // 
@@ -96,7 +94,6 @@
             this.lblCancelAmount.Tag = "0";
             this.lblCancelAmount.Text = "0";
             this.lblCancelAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblCancelAmount.Click += new System.EventHandler(this.lblCancelAmount_Click);
             // 
             // lblT3
             // 
@@ -106,7 +103,6 @@
             this.lblT3.Size = new System.Drawing.Size(77, 14);
             this.lblT3.TabIndex = 52;
             this.lblT3.Text = "미취소금액";
-            this.lblT3.Click += new System.EventHandler(this.lblT3_Click);
             // 
             // lblNetAmount
             // 
@@ -120,7 +116,6 @@
             this.lblNetAmount.Tag = "0";
             this.lblNetAmount.Text = "0";
             this.lblNetAmount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblNetAmount.Click += new System.EventHandler(this.lblNetAmount_Click);
             // 
             // lblT2
             // 
@@ -130,7 +125,6 @@
             this.lblT2.Size = new System.Drawing.Size(63, 14);
             this.lblT2.TabIndex = 52;
             this.lblT2.Text = "취소금액";
-            this.lblT2.Click += new System.EventHandler(this.lblT2_Click);
             // 
             // lblT1
             // 
@@ -140,7 +134,6 @@
             this.lblT1.Size = new System.Drawing.Size(91, 14);
             this.lblT1.TabIndex = 53;
             this.lblT1.Text = "취소대상금액";
-            this.lblT1.Click += new System.EventHandler(this.lblT1_Click);
             // 
             // btnClose
             // 
@@ -169,7 +162,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "반품/취소";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // btnCancel
             // 
@@ -205,7 +197,6 @@
             this.lvwList.TabIndex = 44;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
-            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwPay_SelectedIndexChanged);
             // 
             // no
             // 

@@ -29,7 +29,7 @@
     <InstallUrl>http://thepos.co.kr/setup/theposw1/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -385,12 +385,6 @@
     <Compile Include="3Report\frmReportList1.Designer.cs">
       <DependentUpon>frmReportList1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLocalModeInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLocalModeInfo.Designer.cs">
-      <DependentUpon>frmLocalModeInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="3Report\frmReportShopOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -523,12 +517,6 @@
     <Compile Include="4Setup\frmSetupPos.Designer.cs">
       <DependentUpon>frmSetupPos.cs</DependentUpon>
     </Compile>
-    <Compile Include="4Setup\frmSyncLink.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="4Setup\frmSyncLink.Designer.cs">
-      <DependentUpon>frmSyncLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="9SysAdmin\frmSysOptionTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -657,9 +645,6 @@
     <EmbeddedResource Include="frmExit.resx">
       <DependentUpon>frmExit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLocalModeInfo.resx">
-      <DependentUpon>frmLocalModeInfo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -729,9 +714,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSub.resx">
       <DependentUpon>frmSub.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="4Setup\frmSyncLink.resx">
-      <DependentUpon>frmSyncLink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysOptionTemplate.resx">
       <DependentUpon>frmSysOptionTemplate.cs</DependentUpon>

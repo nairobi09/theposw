@@ -15,13 +15,20 @@ namespace thepos._9SysAdmin
     public partial class frmSysAdminPos : Form
     {
 
+        String Mode = "";
 
-
-        public frmSysAdminPos()
+        public frmSysAdminPos(String mode)
         {
             InitializeComponent();
 
             initialize_the();
+
+
+            if (mode == "Test")
+            {
+                lblTitle.Text = "기기 등록신청 - 테스트모드";
+                mBaseUri = uri_test;
+            }
 
         }
 

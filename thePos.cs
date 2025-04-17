@@ -674,7 +674,7 @@ namespace thepos
         public static bool mNetworkState;  
         public static bool mPrevNetworkState;
 
-        public static String mTheMode = "";  // Server Local
+        //public static String mTheMode = "";  // Server Local
 
 
         public static String mIsLogin = "N";
@@ -689,7 +689,7 @@ namespace thepos
 
 
         //
-        public static int mSyncLinkWaitCnt = 0;
+        //public static int mSyncLinkWaitCnt = 0;
 
 
 

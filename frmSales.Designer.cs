@@ -71,7 +71,6 @@ namespace thepos
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.lblLocalModeTitle = new System.Windows.Forms.Label();
             this.pbNetworkConn = new System.Windows.Forms.PictureBox();
             this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
@@ -716,7 +715,6 @@ namespace thepos
             // panelTitleConsole
             // 
             this.panelTitleConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.panelTitleConsole.Controls.Add(this.lblLocalModeTitle);
             this.panelTitleConsole.Controls.Add(this.pbNetworkConn);
             this.panelTitleConsole.Controls.Add(this.pbNetworkDisconn);
             this.panelTitleConsole.Controls.Add(this.lblPosNoTitle);
@@ -734,19 +732,6 @@ namespace thepos
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
-            // 
-            // lblLocalModeTitle
-            // 
-            this.lblLocalModeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLocalModeTitle.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblLocalModeTitle.Location = new System.Drawing.Point(57, 12);
-            this.lblLocalModeTitle.Margin = new System.Windows.Forms.Padding(0);
-            this.lblLocalModeTitle.Name = "lblLocalModeTitle";
-            this.lblLocalModeTitle.Size = new System.Drawing.Size(82, 22);
-            this.lblLocalModeTitle.TabIndex = 41;
-            this.lblLocalModeTitle.Text = "로컬모드";
-            this.lblLocalModeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLocalModeTitle.Visible = false;
             // 
             // pbNetworkConn
             // 
@@ -1529,7 +1514,6 @@ namespace thepos
         private System.Windows.Forms.Panel panelCancel;
         private System.Windows.Forms.PictureBox pbNetworkConn;
         private System.Windows.Forms.PictureBox pbNetworkDisconn;
-        private System.Windows.Forms.Label lblLocalModeTitle;
         private BrightIdeasSoftware.ObjectListView lvwOrderItem;
         private BrightIdeasSoftware.OLVColumn lv_no;
         private BrightIdeasSoftware.OLVColumn lv_name;

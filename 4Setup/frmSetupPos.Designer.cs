@@ -56,7 +56,6 @@
             this.tbValue = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.lblLocalMode = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -388,17 +387,6 @@
             this.lblTitle.TabIndex = 47;
             this.lblTitle.Text = "내기기 설정";
             // 
-            // lblLocalMode
-            // 
-            this.lblLocalMode.AutoSize = true;
-            this.lblLocalMode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblLocalMode.ForeColor = System.Drawing.Color.DarkOrange;
-            this.lblLocalMode.Location = new System.Drawing.Point(663, 41);
-            this.lblLocalMode.Name = "lblLocalMode";
-            this.lblLocalMode.Size = new System.Drawing.Size(67, 14);
-            this.lblLocalMode.TabIndex = 48;
-            this.lblLocalMode.Text = "로컬모드";
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
@@ -408,7 +396,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(850, 700);
-            this.Controls.Add(this.lblLocalMode);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -454,7 +441,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Label lblLocalMode;
         private System.Windows.Forms.TextBox tbValue;
         private System.Windows.Forms.Label lblMemo;
         private System.Windows.Forms.ColumnHeader ischange;

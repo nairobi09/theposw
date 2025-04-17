@@ -51,7 +51,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tbNo = new System.Windows.Forms.TextBox();
+            this.tbCouponNo = new System.Windows.Forms.TextBox();
             this.lblNoTitle = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -323,7 +323,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.tbNo);
+            this.panel1.Controls.Add(this.tbCouponNo);
             this.panel1.Controls.Add(this.lblNoTitle);
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(20, 66);
@@ -331,17 +331,17 @@
             this.panel1.Size = new System.Drawing.Size(482, 100);
             this.panel1.TabIndex = 77;
             // 
-            // tbNo
+            // tbCouponNo
             // 
-            this.tbNo.BackColor = System.Drawing.Color.LemonChiffon;
-            this.tbNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNo.Location = new System.Drawing.Point(91, 22);
-            this.tbNo.MaxLength = 40;
-            this.tbNo.Name = "tbNo";
-            this.tbNo.Size = new System.Drawing.Size(249, 26);
-            this.tbNo.TabIndex = 0;
-            this.tbNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbNo_KeyDown);
+            this.tbCouponNo.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tbCouponNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCouponNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCouponNo.Location = new System.Drawing.Point(91, 22);
+            this.tbCouponNo.MaxLength = 40;
+            this.tbCouponNo.Name = "tbCouponNo";
+            this.tbCouponNo.Size = new System.Drawing.Size(249, 26);
+            this.tbCouponNo.TabIndex = 0;
+            this.tbCouponNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCouponNo_KeyDown);
             // 
             // lblNoTitle
             // 
@@ -363,6 +363,7 @@
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 1;
+            this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -421,6 +422,7 @@
             this.lvwCoupon.Name = "lvwCoupon";
             this.lvwCoupon.Size = new System.Drawing.Size(483, 228);
             this.lvwCoupon.TabIndex = 2;
+            this.lvwCoupon.TabStop = false;
             this.lvwCoupon.UseCompatibleStateImageBehavior = false;
             this.lvwCoupon.View = System.Windows.Forms.View.Details;
             this.lvwCoupon.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
@@ -541,7 +543,7 @@
         private System.Windows.Forms.ColumnHeader coupon_no;
         private System.Windows.Forms.ColumnHeader cus_nm;
         private System.Windows.Forms.Label lblNoTitle;
-        private System.Windows.Forms.TextBox tbNo;
+        private System.Windows.Forms.TextBox tbCouponNo;
         private System.Windows.Forms.Button btnCouponCancel;
         private System.Windows.Forms.ColumnHeader qty;
         private System.Windows.Forms.ColumnHeader cus_hp;

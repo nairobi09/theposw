@@ -36,17 +36,6 @@ namespace thepos
             fSetup.Show();
         }
 
-        private void btnSyncLink_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "setupSyncLink") return;
-
-            mThisButtonClick = "setupSyncLink";
-            panelSetup.Controls.Clear();
-
-            frmSyncLink fSetup = new frmSyncLink() { TopLevel = false, TopMost = true };
-            panelSetup.Controls.Add(fSetup);
-            fSetup.Show();
-        }
 
         private void btnClose_Click(object sender, EventArgs e)
         {

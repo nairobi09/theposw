@@ -36,7 +36,6 @@
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.btnSetupPos = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSyncLink = new System.Windows.Forms.Button();
             this.panelTitleConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -119,29 +118,12 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnSyncLink);
             this.panel1.Controls.Add(this.btnSetupPos);
             this.panel1.Location = new System.Drawing.Point(864, 61);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(155, 700);
             this.panel1.TabIndex = 41;
-            // 
-            // btnSyncLink
-            // 
-            this.btnSyncLink.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnSyncLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSyncLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
-            this.btnSyncLink.ForeColor = System.Drawing.Color.White;
-            this.btnSyncLink.Location = new System.Drawing.Point(0, 88);
-            this.btnSyncLink.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSyncLink.Name = "btnSyncLink";
-            this.btnSyncLink.Size = new System.Drawing.Size(150, 80);
-            this.btnSyncLink.TabIndex = 28;
-            this.btnSyncLink.TabStop = false;
-            this.btnSyncLink.Text = "데이터 동기화";
-            this.btnSyncLink.UseVisualStyleBackColor = false;
-            this.btnSyncLink.Click += new System.EventHandler(this.btnSyncLink_Click);
             // 
             // frmSetup
             // 
@@ -174,6 +156,5 @@
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnSetupPos;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnSyncLink;
     }
 }

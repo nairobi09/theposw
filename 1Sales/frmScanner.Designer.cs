@@ -46,7 +46,7 @@
             this.tbScanning.Name = "tbScanning";
             this.tbScanning.Size = new System.Drawing.Size(214, 21);
             this.tbScanning.TabIndex = 0;
-            this.tbScanning.TextChanged += new System.EventHandler(this.tbScanning_TextChanged);
+            this.tbScanning.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbScanning_KeyDown);
             // 
             // btnCancel
             // 

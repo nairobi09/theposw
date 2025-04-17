@@ -17,11 +17,7 @@ using static thepos.frmSales;
 using static thepos.thePos;
 
 
-
 // %₩
-
-
-
 
 namespace thepos
 {
@@ -33,8 +29,6 @@ namespace thepos
         public frmOrderDCR()
         {
             InitializeComponent();
-
-            initialize_the();
 
             displayDCR();
 
@@ -81,17 +75,6 @@ namespace thepos
         }
 
 
-
-
-
-        private void initialize_the()
-        {
-
-
-        }
-
-
-
         private void ClickedDCR(int dcr_idx)
         {
             String code = mDCR[dcr_idx].dcr_code;
@@ -129,7 +112,7 @@ namespace thepos
 
                 if (isExist_DCR("E"))
                 {
-                    SetDisplayAlarm("W", "[전체할인]이 적용된경우 선택할인 불가.");
+                    SetDisplayAlarm("W", "[전체할인]이 적용된 경우 선택할인 불가.");
                     return;
                 }
 
@@ -163,7 +146,7 @@ namespace thepos
 
                 if (isExist_DCR("S"))
                 {
-                    SetDisplayAlarm("W", "[선택할인]이 적용된경우 전체할인 불가.");
+                    SetDisplayAlarm("W", "[선택할인]이 적용된 경우 전체할인 불가.");
                     return;
                 }
 
@@ -188,7 +171,7 @@ namespace thepos
                     {
                         if (dcr_e_idx != i)  // 전체할인항목 레코드는 합계에서 제외
                         {
-                            t_amount += ((mOrderItemList[i].amt + mOrderItemList[i].option_amt) + mOrderItemList[i].cnt);
+                            t_amount += ((mOrderItemList[i].amt + mOrderItemList[i].option_amt) * mOrderItemList[i].cnt);
                         }
                     }
                     t_dc_amount = (t_amount * value) / 100;

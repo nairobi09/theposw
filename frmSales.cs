@@ -256,7 +256,7 @@ namespace thepos
             renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
             renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = -4;
+            renderer.TitleDescriptionSpace = 0;
             renderer.UseGdiTextRendering = false;
 
             return (renderer);
@@ -271,7 +271,7 @@ namespace thepos
             renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
             renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = -4;
+            renderer.TitleDescriptionSpace = 0;
 
             renderer.UseGdiTextRendering = false;
 
@@ -287,7 +287,7 @@ namespace thepos
             renderer.DescriptionFont = new Font(lvwOrderItem.Font.FontFamily, 8, FontStyle.Regular);
             renderer.DescriptionColor = Color.Blue;
             renderer.ImageTextSpace = 0;
-            renderer.TitleDescriptionSpace = -4;
+            renderer.TitleDescriptionSpace = 0;
 
 
             renderer.UseGdiTextRendering = false;
@@ -302,36 +302,6 @@ namespace thepos
             //pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable()));
             pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
             pbNetworkDisconn.Visible = !pbNetworkConn.Visible;
-
-            if (mTheMode == "Server")
-            {
-                lblLocalModeTitle.Visible = false;
-
-                if (isFirst) 
-                { 
-
-                }
-                else
-                {
-                    SetDisplayAlarm("W", "모드변경 : 로컬 -> 서버");
-                }
-                
-            }
-            else
-            {
-                lblLocalModeTitle.Visible = true;
-
-                if (isFirst)
-                {
-                    
-                }
-                else
-                {
-                    SetDisplayAlarm("W", "모드변경 : 서버 -> 로걸");
-                }
-                
-            }
-
 
         }
 
@@ -751,12 +721,6 @@ namespace thepos
             }
 
 
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
 
             ConsoleDisable();
 
@@ -772,13 +736,6 @@ namespace thepos
 
         private void btnFlowTicketing_Click(object sender, EventArgs e)
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
@@ -793,13 +750,6 @@ namespace thepos
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             if (mTicketType == "PA")  //선불형
             {
 
@@ -832,13 +782,6 @@ namespace thepos
 
         private void btnFlowSettlement_Click(object sender, EventArgs e)
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             if (lvwOrderItem.Items.Count > 0)
             {
                 SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
@@ -859,13 +802,6 @@ namespace thepos
 
         private void btnFlowLocker_Click(object sender, EventArgs e)
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
@@ -993,13 +929,6 @@ namespace thepos
 
         private void ClickedPayPoint()
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             if (mOrderItemList.Count == 0)
             {
                 return;
@@ -1100,13 +1029,6 @@ namespace thepos
 
         private void ClickedPayEasy()
         {
-            if (mTheMode == "Local")
-            {
-                SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                return;
-            }
-
-
             if (mOrderItemList.Count == 0)
             {
                 return;
@@ -1585,72 +1507,6 @@ namespace thepos
         public static int SaveOrder(String ticket_no)
         {
 
-            int return_cnt = 0;
-
-            if (mTheMode == "Local")
-            {
-                return_cnt = SaveOrder_Local(ticket_no);  // order. orderitem
-            }
-            else
-            {
-                return_cnt = SaveOrder_Server(ticket_no);  // order. orderitem
-            }
-
-
-            return return_cnt;  // 주문항목수
-        }
-
-        public static int SaveOrder_Local(String ticket_no)
-        {
-            try
-            {
-                //
-                String sql = "INSERT INTO orders (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, cnt, isCancel) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "'," + mOrderItemList.Count + ", '')";
-                sql_excute_local_db(sql);
-
-
-
-                //
-                for (int i = 0; i < mOrderItemList.Count; i++)
-                {
-                    String t_option_no = "";
-
-                    if (mOrderItemList[i].orderOptionItemList.Count > 0)
-                    {
-                        t_option_no = mTheNo + i.ToString("00");
-                    }
-
-
-                    sql = "INSERT INTO orderItem (siteId, posNo, bizDt, theNo, refNo, tranType, orderDate, orderTime, goodsCode, goodsName, cnt, amt, optionAmt, ticketYn, taxFree, dcAmount, dcrType, dcrDes, dcrValue, payClass, ticketNo, isCancel, shopCode, shopOrderNo, optionNo) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','A','" + get_today_date() + "','" + get_today_time() + "','" + mOrderItemList[i].goods_code + "','" + mOrderItemList[i].goods_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + "," + mOrderItemList[i].option_amt + "," +
-                                "'" + mOrderItemList[i].ticket + "','" + mOrderItemList[i].taxfree + "'," + mOrderItemList[i].dc_amount + ",'" + mOrderItemList[i].dcr_type + "','" + mOrderItemList[i].dcr_des + "'," + mOrderItemList[i].dcr_value + ",'" + mPayClass + "','" + ticket_no + "','" + "','" + mOrderItemList[i].shop_code + "','" + mOrderItemList[i].shop_order_no + "','" + t_option_no + "')";
-                    sql_excute_local_db(sql);
-
-
-                    //// 옵션상품이 경우
-                    for (int k = 0; k < mOrderItemList[i].orderOptionItemList.Count; k++)
-                    {
-                        sql = "INSERT INTO orderOptionItem (siteId, posNo, bizDt, theNo, refNo, optionNo, orderDate, orderTime, goodsCode, optionCode, optionName, optionItemNo, optionItemName, cnt, amt, isCancel) " +
-                                    "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + t_option_no + "','" + get_today_date() + "','" + get_today_time() + "','" +
-                                    mOrderItemList[i].goods_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_code + "','" + mOrderItemList[i].orderOptionItemList[k].option_name + "'," + mOrderItemList[i].orderOptionItemList[k].option_item_no + ",'" + mOrderItemList[i].orderOptionItemList[k].option_item_name + "'," + mOrderItemList[i].cnt + "," + mOrderItemList[i].amt + ",'')";
-                        sql_excute_local_db(sql);
-                    }
-                }
-            }
-            catch (Exception e) 
-            {
-                MessageBox.Show("로컬데이터 오류. " + e.Message);
-                return -1;
-            }
-
-            return mOrderItemList.Count;
-
-        }
-
-        public static int SaveOrder_Server(String ticket_no)
-        {
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             // order
@@ -1860,97 +1716,8 @@ namespace thepos
         }
 
 
-        public static bool SavePayment(int paySeq, String payType, int netAmount, int dcAmount)
-        {
-            if (mTheMode == "Local")
-            {
-                if (!SavePayment_Local(paySeq, payType, netAmount, dcAmount))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if (!SavePayment_Server(paySeq, payType, netAmount, dcAmount))
-                {
-                    return false;
-                }
-            }
 
-            return true;
-        }
-
-
-        public static bool SavePayment_Local(int paySeq, String payType, int amount, int dcAmount)
-        {
-            //!
-
-            if (paySeq == 1)
-            {
-                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
-
-                if (payType == "Cash") amount_cash = amount;
-                else if (payType == "Card") amount_card = amount;
-                else if (payType == "Easy") amount_easy = amount;
-                else if (payType == "Point") amount_point = amount;
-
-                String sql = "INSERT INTO payment (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, tranType, payClass, billNo, netAmount, amountCash, amountCard, amountEasy, amountPoint, dcAmount, isCancel) " +
-                             "values ('" + mSiteId + "','" + mPosNo + "','" + mBizDate + "','" + mTheNo + "','" + mRefNo + "','" + get_today_date() + "','" + get_today_time() + "','A','" + mPayClass + "','" + mTheNo.Substring(14, 6) + "'," + amount + "," + amount_cash + "," + amount_card + "," + amount_easy + "," + amount_point + "," + dcAmount + ",'')";
-                sql_excute_local_db(sql);
-
-            }
-            else
-            {
-                int amount_net = 0;
-                int amount_cash = 0;
-                int amount_card = 0;
-                int amount_easy = 0;
-                int amount_point = 0;
-
-
-
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM payment WHERE theNo='" + mTheNo + "'");
-                if (dr.Read())
-                {
-                    amount_net = convert_number(dr["netAmount"].ToString());
-                    amount_cash = convert_number(dr["amountCash"].ToString());
-                    amount_card = convert_number(dr["amountCard"].ToString());
-                    amount_easy = convert_number(dr["amountEasy"].ToString());
-                    amount_point = convert_number(dr["amountPoint"].ToString());
-                }
-                else
-                {
-                    MessageBox.Show("결제데이터 오류. payment", "thepos");
-                    return false;
-                }
-
-                dr.Close();
-
-
-
-
-                amount_net += amount;
-
-                if (payType == "Cash") amount_cash += amount;
-                else if (payType == "Card") amount_card += amount;
-                else if (payType == "Easy") amount_easy += amount;
-                else if (payType == "Point") amount_point += amount;
-
-
-
-
-                String sql = "UPDATE payment SET netAmount = " + amount_net + ", amountCash = " + amount_cash + ", amountCard = " + amount_card + ", amountEasy = " + amount_easy + ", amountPoint = " + amount_point +
-                            " WHERE theNo='" + mTheNo + "' AND tranType = 'A' ";
-                int ret = sql_excute_local_db(sql);
-
-
-            }
-
-            return true;
-
-        }
-
-        public static bool SavePayment_Server(int paySeq, String payType, int amount, int dcAmount)
+        public static bool SavePayment(int paySeq, String payType, int amount, int dcAmount)
         {
             //!
             if (paySeq == 1)
@@ -2187,7 +1954,7 @@ namespace thepos
                             // "", "영수증", "팔찌", "띠지" };
                             if (mTicketMedia == "BC")  // 
                             {
-                                print_ticket(t_ticket_no, orderItem.goods_code);
+                                print_ticket(t_ticket_no, orderItem.goods_code, orderItem.coupon_no);
                             }
                             else if (mTicketMedia == "TG")
                             {
@@ -3811,484 +3578,6 @@ namespace thepos
 
         public static String make_bill_body(String tTheNo, String tranType, String except_order, String pay_keep)
         {
-            if (mTheMode == "Local")
-                return make_bill_body_local(tTheNo, tranType, except_order, pay_keep);
-            else
-                return make_bill_body_server(tTheNo, tranType, except_order, pay_keep);
-
-        }
-
-        public static String make_bill_body_local(String tTheNo, String tranType, String except_order, String pay_keep)
-        {
-            String strPrintHeader = "";
-            String strPrintOrder = "";
-            String strPrintPayment = "";
-
-            String tOrderDt = "";
-            int t과세가액 = 0;
-            int t면세가액 = 0;
-            int t할인금액 = 0;
-
-            String pay_keep_cash = pay_keep.Substring(0, 1);
-            String pay_keep_card = pay_keep.Substring(1, 1);
-
-            String pay_keep_cert = pay_keep.Substring(4, 1); //?# 쿠폰인증
-
-
-            //!
-            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orders WHERE theNo='" + tTheNo + "'");
-            if (dr.Read())
-            {
-                String d = dr["orderDate"].ToString();
-                String t = dr["orderTime"].ToString();
-                tOrderDt = d.Substring(0, 4) + "/" + d.Substring(4, 2) + "/" + d.Substring(6, 2) + " " +
-                            t.Substring(0, 2) + ":" + t.Substring(2, 2) + ":" + t.Substring(4, 2);
-            }
-            else
-            {
-                MessageBox.Show("데이터오류. local orders\n\n" + mErrorMsg, "thepos");
-            }
-            dr.Close();
-
-
-
-            String tStr = tTheNo.Substring(4, 8) + "-" + tTheNo.Substring(12, 2) + "-" + tTheNo.Substring(14, 6);
-            int space_cnt = 42 - (encodelen(tOrderDt) + encodelen(tStr));
-            strPrintHeader = tOrderDt + Space(space_cnt) + tStr;
-            strPrintHeader += "\r\n";
-
-
-
-            //!
-            strPrintOrder = "==========================================\r\n";  // 42
-            strPrintOrder += "상품명                 단가  수량     금액\r\n";
-            strPrintOrder += "------------------------------------------\r\n";  // 42
-
-
-            dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='A'");
-            while (dr.Read())
-            {
-                int amt = convert_number(dr["amt"].ToString());
-                int option_amt = convert_number(dr["optionAmt"].ToString());
-                int cnt = convert_number(dr["cnt"].ToString());
-                int dc_amt = convert_number(dr["dcAmount"].ToString());
-                String dcr_des = dr["dcrDes"].ToString();
-                String dcr_type = dr["dcrType"].ToString();
-                String dcr_value = dr["dcrValue"].ToString();
-
-                if (dcr_des == "E") // 전체할인
-                {
-                    if (dcr_type == "A")
-                    {
-                        tStr = dr["itemName"].ToString();
-                        strPrintOrder += tStr + Space(21 - encodelen(tStr));
-
-                        tStr = (-dc_amt).ToString("N0");        // 할인 정액
-                        strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-                    }
-                    else if (dcr_type == "R")
-                    {
-                        tStr = dr["goodsName"].ToString() + "-" + dcr_value + "%";
-                        strPrintOrder += tStr + Space(21 - encodelen(tStr));
-
-                        tStr = (-dc_amt).ToString("N0");        // 할인 정액
-                        strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-                    }
-                    strPrintOrder += "\r\n";
-                }
-                else                                 // 일반상품항목
-                {
-                    // 상품아이템
-                    
-                    String tGoodsName = "";
-
-                    if (dr["taxFree"].ToString() == "Y")
-                        tGoodsName = "*" + dr["goodsName"].ToString();
-                    else
-                        tGoodsName = dr["goodsName"].ToString();
-
-                    String tGoodsAmt = amt.ToString("N0");     //단가
-
-
-                    int tLenGoodsNameAmt = encodelen(tGoodsName) + encodelen(tGoodsAmt);
-
-                    if (tLenGoodsNameAmt > 26)
-                    {
-                        strPrintOrder += tGoodsName + "\r\n";
-                        strPrintOrder += Space(18) + Space(9 - encodelen(tGoodsAmt)) + tGoodsAmt;
-                    }
-                    else
-                    {
-                        strPrintOrder += tGoodsName + Space(27 - tLenGoodsNameAmt) + tGoodsAmt;
-                    }
-
-
-                    tStr = cnt.ToString("N0");     // 수량
-                    strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
-
-                    tStr = (amt * cnt).ToString("N0");     // 금액 = 단가*수량
-                    strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
-
-                    strPrintOrder += "\r\n";
-
-
-
-                    // 옵션아이템
-                    if (dr["optionNo"].ToString().Length > 0)
-                    {
-                        String tOptionName = "  ";
-                        SQLiteDataReader dr2 = sql_select_local_db("SELECT * FROM orderOptionItem WHERE optionNo='" + dr["optionNo"].ToString() + "'");
-                        while (dr2.Read())
-                        {
-                            tOptionName += dr2["optionItemName"].ToString() + " ";
-                        }
-
-                        String tOptionAmt = option_amt.ToString("N0");     //단가
-
-                        int tLenOptionNameAmt = encodelen(tOptionName) + encodelen(tOptionAmt);
-
-
-                        if (tLenOptionNameAmt > 27)
-                        {
-                            if (encodelen(tOptionName) > 42)
-                                strPrintOrder += tOptionName + "\r\n";
-                            else
-                                strPrintOrder += tOptionName + Space(42 - encodelen(tOptionName)) + "\r\n";
-
-
-                            strPrintOrder += Space(18) + Space(9 - encodelen(tOptionAmt)) + tOptionAmt;
-                        }
-                        else
-                        {
-                            strPrintOrder += tOptionName + Space(27 - tLenOptionNameAmt) + tOptionAmt;
-                        }
-
-
-                        tStr = cnt.ToString("N0");     // 수량
-                        strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
-
-                        tStr = (option_amt * cnt).ToString("N0");     // 금액 = 단가*수량
-                        strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
-
-                        strPrintOrder += "\r\n";
-                    }
-                    
-                    
-                    // 할인
-                    if (dcr_type == "A")
-                    {
-                        tStr = "  할인";
-                        strPrintOrder += tStr + Space(21 - encodelen(tStr));
-
-                        tStr = (-dc_amt).ToString("N0");        // 할인 정액
-                        strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-
-                        strPrintOrder += "\r\n";
-                    }
-                    else if (dr["dcrType"].ToString() == "R")
-                    {
-                        tStr = "  할인-" + dr["dcrValue"].ToString() + "%";
-                        strPrintOrder += tStr + Space(21 - encodelen(tStr));
-
-                        tStr = (-dc_amt).ToString("N0");        // 할인 정액
-                        strPrintOrder += Space(21 - encodelen(tStr)) + tStr;
-
-                        strPrintOrder += "\r\n";
-                    }
-                }
-
-                if (dr["taxFree"].ToString() == "Y") t면세가액 += ((cnt * amt) - dc_amt);
-                else t과세가액 += ((cnt * amt) - dc_amt);
-
-                t할인금액 += dc_amt;
-
-            }
-
-
-
-            //
-            strPrintPayment = "------------------------------------------\r\n";  // 42
-
-            if (t면세가액 > 0)
-            {
-                tStr = "*면세품목가액";
-                strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                tStr = (t면세가액).ToString("N0");
-                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-
-                strPrintPayment += "\r\n";
-            }
-
-            if (t과세가액 > 0)  // 공급가액
-            {
-                int t_tax = t과세가액 / 11;   // 부가세액
-                int t_amt = t과세가액 - t_tax; // 공급가액
-
-                tStr = "과세품목가액";
-                strPrintPayment += tStr + Space(21 - encodelen(tStr));
-                tStr = (t_amt).ToString("N0");
-                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                strPrintPayment += "\r\n";
-
-                tStr = "부가세액";
-                strPrintPayment += tStr + Space(21 - encodelen(tStr));
-                tStr = (t_tax).ToString("N0");
-                strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                strPrintPayment += "\r\n";
-            }
-
-            strPrintPayment += "------------------------------------------\r\n";  // 42
-
-            int tsum = t과세가액 + t면세가액 + t할인금액;
-            int tnet = tsum - t할인금액;
-
-
-            tStr = "총합계";
-            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-            tStr = (tsum).ToString("N0");
-            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-            strPrintPayment += "\r\n";
-
-            tStr = "할인계";
-            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-            tStr = (-t할인금액).ToString("N0");
-            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-            strPrintPayment += "\r\n";
-
-            tStr = "결제대상금액";
-            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-            tStr = (tnet).ToString("N0");
-            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-            strPrintPayment += "\r\n";
-
-            strPrintPayment += "------------------------------------------\r\n";  // 42
-
-
-
-            //! 현금결제
-            if (pay_keep_cash == "1")
-            {
-                dr = sql_select_local_db("SELECT * FROM paymentCash WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        int amount = convert_number(dr["amount"].ToString());
-
-
-                        if (dr["payType"].ToString() == "R0") // 단순현금
-                        {
-
-                            tStr = "현금";
-                            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                            if (tranType == "C")
-                                tStr = (-amount).ToString("N0");
-                            else
-                                tStr = amount.ToString("N0");
-
-                            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-
-                        }
-                        else if (dr["payType"].ToString() == "R1") // 현금영수증
-                        {
-                            tStr = "현금영수증";
-                            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                            if (tranType == "C")
-                                tStr = (-amount).ToString("N0");
-                            else
-                                tStr = amount.ToString("N0");
-
-                            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                            strPrintPayment += "\r\n";
-
-                            if (dr["receiptType"].ToString() == "1") // 소득공제
-                            {
-                                tStr = "소득공제";
-                            }
-                            else if (dr["receiptType"].ToString() == "2") // 지출증빙
-                            {
-                                tStr = "지출증빙";
-                            }
-                            else if (dr["receiptType"].ToString() == "S") //? 자진밝급
-                            {
-                                tStr = "자진발급";
-                            }
-
-                            strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                            String no = dr["issuedMethodNo"].ToString() + "";
-
-                            if (no.Contains('*'))
-                            {
-                                tStr = no;
-                            }
-                            else if (no.Length == 16)
-                            {
-                                tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
-                            }
-                            else if (no.Length == 11)
-                            {
-                                if (no.Substring(0, 3) == "010")
-                                {
-                                    tStr = no.Substring(0, 3) + "-****-" + no.Substring(6, 4);
-                                }
-                                else
-                                {
-                                    tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
-                                }
-                            }
-                            else if (no.Length > 8)
-                            {
-                                tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
-                            }
-                            else
-                            {
-                                tStr = no;
-                            }
-
-                            strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        }
-
-                        strPrintPayment += "\r\n";
-                        strPrintPayment += "\r\n";
-                    }
-                }
-            }
-
-
-            //! 카드결제
-            if (pay_keep_card == "1")
-            {
-                dr = sql_select_local_db("SELECT * FROM paymentCard WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        if (dr["payType"].ToString() == "C1") tStr = "카드결제";
-                        else if (dr["payType"].ToString() == "C0") tStr = "카드결제";  // 임의등록
-
-                        if (tranType == "C")
-                        {
-                            tStr += "취소";
-                        }
-
-                        int amount = convert_number(dr["amount"].ToString());
-
-
-                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                        if (tranType == "C")
-                            tStr = (-amount).ToString("N0");
-                        else
-                            tStr = amount.ToString("N0");
-
-                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        strPrintPayment += "\r\n";
-
-                        tStr = dr["cardName"].ToString();
-                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                        String no = dr["cardNo"].ToString();
-
-
-                        if (no.Contains('*'))
-                        {
-                            tStr = no;
-                        }
-                        else if (no.Length == 16)
-                        {
-                            tStr = no.Substring(0, 4) + "-" + no.Substring(4, 4) + "-****-" + no.Substring(12, 3) + "*";
-                        }
-                        else if (no.Length > 8)
-                        {
-                            tStr = no.Substring(0, 8) + CharCount('*', no.Length - 8);
-                        }
-                        else
-                        {
-                            tStr = no;
-                        }
-
-                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        strPrintPayment += "\r\n";
-
-                        if (dr["install"].ToString() == "00")
-                            tStr = "할부개월:일시불";
-                        else
-                            tStr = "할부개월:" + dr["install"].ToString();
-
-                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
-                        tStr = "승인번호:" + dr["authNo"].ToString().Trim();
-                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        strPrintPayment += "\r\n";
-                        strPrintPayment += "\r\n";
-
-                    }
-                }
-            }
-
-
-            //! 쿠폰
-            if (pay_keep_cert == "1")
-            {
-                dr = sql_select_local_db("SELECT * FROM paymentCert WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        if (dr["payType"].ToString() == "M0") tStr = "쿠폰";
-
-                        if (tranType == "C")
-                        {
-                            tStr += "취소";
-                        }
-
-                        int amount = convert_number(dr["amount"].ToString());
-
-
-                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                        if (tranType == "C")
-                            tStr = (-amount).ToString("N0");
-                        else
-                            tStr = amount.ToString("N0");
-
-                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        strPrintPayment += "\r\n";
-
-
-                        tStr = dr["vanCode"].ToString();
-                        strPrintPayment += tStr + Space(21 - encodelen(tStr));
-
-                        tStr = dr["couponNo"].ToString();
-                        strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
-                        strPrintPayment += "\r\n";
-
-                        strPrintPayment += "\r\n";
-
-                    }
-                }
-            }
-
-
-
-            strPrintPayment += "------------------------------------------\r\n";  // 42
-
-            if (except_order == "Y")
-            {
-                return strPrintHeader + strPrintPayment;
-            }
-            else
-            {
-                return strPrintHeader + strPrintOrder + strPrintPayment;
-            }
-        }
-
-
-        public static String make_bill_body_server(String tTheNo, String tranType, String except_order, String pay_keep)
-        {
             String strPrintHeader = "";
             String strPrintOrder = "";
             String strPrintPayment = "";
@@ -5028,7 +4317,7 @@ namespace thepos
 
 
 
-        public static void print_ticket(String t_ticket_no, String t_goods_code)
+        public static void print_ticket(String t_ticket_no, String t_goods_code, String t_coupon_no)
         {
 
             // 티켓을 영수증에 출력
@@ -5043,7 +4332,15 @@ namespace thepos
             try
             {
                 const string ESC = "\u001B";
+                const string GS = "\u001D";
                 const string InitializePrinter = ESC + "@";
+
+                const string BoldOn = ESC + "E" + "\u0001";
+                const string BoldOff = ESC + "E" + "\0";
+                const string DoubleOn = GS + "!" + "\u0011";  // 2x sized text (double-high + double-wide)
+                const string DoubleOff = GS + "!" + "\0";
+
+
 
                 PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
@@ -5059,14 +4356,32 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
 
 
+                //
                 String strPrint = mSiteName;
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+                
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
-                strPrint = get_goods_name(t_goods_code);
+                strPrint = "------------------------------------------";
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
 
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+
+                //
+                BytesValue = PrintExtensions.AddBytes(BytesValue, BoldOn);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOn);
+                strPrint = get_goods_name(t_goods_code);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOff);
+                BytesValue = PrintExtensions.AddBytes(BytesValue, BoldOff);
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
                 strPrint = mBizDate.Substring(0,4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
@@ -5074,21 +4389,25 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+
+                if ((t_coupon_no + "").Length > 0)
+                {
+                    strPrint = "쿠폰번호 : " + t_coupon_no;
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                }
+
+
+
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-                // 티켓번호 :  바코드, str
-
+                // 티켓번호 :  바코드
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(t_ticket_no));
-                //BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                
 
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5153,8 +4472,8 @@ namespace thepos
 
             if (isQuestion == true)
             {
-                frmYesNo fEnd = new frmYesNo(order_no_from_to);
-                var result = fEnd.ShowDialog();
+                frmYesNo fYesNo = new frmYesNo(order_no_from_to);
+                var result = fYesNo.ShowDialog();
                 if (result == DialogResult.Yes)
                 {
 
@@ -5164,6 +4483,8 @@ namespace thepos
                     return;
                 }
             }
+
+
 
             String headerBill = make_bill_header();
             String bodyBill = make_bill_body(the_no, tran_type, except_order, pay_keep);
@@ -5256,7 +4577,7 @@ namespace thepos
             }
             catch
             {
-                MessageBox.Show("영수증 출력 오류.\r\n헬프데스크로 문의바랍니다.");  // 파일이 이미 있으므로 만들 수 없습니다.
+                MessageBox.Show("영수증 출력 오류.\r\n카운터로 문의바랍니다.");  // 파일이 이미 있으므로 만들 수 없습니다.
                 return;
             }
         }
@@ -5376,63 +4697,29 @@ namespace thepos
         {
             String order_no = "";
 
-            if (mTheMode == "Local")
+            String sUrl = "orderNo?siteId=" + mSiteId + "&bizDt=" + mBizDate;
+            if (mRequestGet(sUrl))
             {
-
-                SQLiteDataReader dr;
-
-
-                int local_order_cnt = 0;
-
-                dr = sql_select_local_db("SELECT * FROM localOrderCnt WHERE biz_dt = '" + mBizDate + "'");
-                if (dr.Read())
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    local_order_cnt = int.Parse(dr["cnt"].ToString());
-                    local_order_cnt++;
-
-                    String sql = "UPDATE localOrderCnt SET cnt = " + local_order_cnt + " WHERE biz_dt='" + mBizDate + "'";
-                    int ret = sql_excute_local_db(sql);
+                    String data = mObj["orderNo"].ToString();
+                    JArray arr = JArray.Parse(data);
+                    order_no = convert_number(arr[0]["orderNo"].ToString()).ToString("0000");
                 }
                 else
                 {
-                    local_order_cnt = 1;
-
-                    String sql = "INSERT INTO localOrderCnt (biz_dt, cnt) values ('" + mBizDate + "', " + local_order_cnt + ")";
-                    int ret = sql_excute_local_db(sql);
+                    MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
-                dr.Close();
-
-
-                // 로컬모드 주문번호는 5자리
-                order_no = mPosNo + local_order_cnt.ToString("000");
-
             }
             else
             {
-                String sUrl = "orderNo?siteId=" + mSiteId + "&bizDt=" + mBizDate;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["orderNo"].ToString();
-                        JArray arr = JArray.Parse(data);
-                        order_no = convert_number(arr[0]["orderNo"].ToString()).ToString("0000");
-                    }
-                    else
-                    {
-                        MessageBox.Show("데이터 오류. orderNo\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류. orderNo\n\n" + mErrorMsg, "thepos");
-                }
+                MessageBox.Show("시스템오류. orderNo\n\n" + mErrorMsg, "thepos");
             }
+            
 
             //
             return order_no;
         }
-
 
 
 
@@ -5442,8 +4729,6 @@ namespace thepos
             // 1. 주문서, 교환권 출력
             // 2. 주문번호(From ~ To)  Return
             // 3. out파라메터 방식으로  정렬되는 상점별로 리스팅된 주문데이터 반환
-
-
 
 
             shopOrderPackList.Clear();

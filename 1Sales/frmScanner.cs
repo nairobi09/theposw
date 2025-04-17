@@ -25,9 +25,9 @@ namespace thepos
             mIsScanOK = false;
             mScanString = "";
             
-            scanLength = scan_length;
+            //scanLength = scan_length;
 
-            tbScanning.MaxLength = scan_length;
+            //tbScanning.MaxLength = scan_length;
 
         }
 
@@ -40,26 +40,14 @@ namespace thepos
             Close();
         }
 
-        private void tbScanning_TextChanged(object sender, EventArgs e)
+        private void tbScanning_KeyDown(object sender, KeyEventArgs e)
         {
-            if (tbScanning.Text.Length >= scanLength)
+            if (e.KeyCode == Keys.Enter)
             {
-                if (tbScanning.Text.Substring(0,4) == mSiteId)
-                {
-                    mScanString = tbScanning.Text;
-
-                    mIsScanOK = true;
-                    Close();
-                }
-                else
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    mScanString = tbScanning.Text;
-                    mIsScanOK = false;
-                    Close();
-                }
+                mIsScanOK = true;
+                mScanString = tbScanning.Text;
+                Close();
             }
         }
-
     }
 }

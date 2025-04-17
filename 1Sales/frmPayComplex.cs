@@ -104,14 +104,6 @@ namespace thepos
             mPanelHigh.Width = this.Width;
             mPanelHigh.Height = this.Height;
 
-
-
-            if (mTheMode == "Local")
-                btnRequestEasy.Enabled = false;
-            else
-                btnRequestEasy.Enabled = true;
-
-
         }
 
 
@@ -135,16 +127,6 @@ namespace thepos
 
         private void RequestPay(String pay_type)
         {
-            if (mTheMode == "Local")
-            {
-                if (pay_type == "EASY")
-                {
-                    SetDisplayAlarm("W", "로컬모드에서 사용불가.");
-                    return;
-                }
-            }
-
-
 
             int reqAmount;
 

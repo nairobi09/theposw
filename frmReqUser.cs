@@ -14,10 +14,19 @@ namespace thepos
 {
     public partial class frmReqUser : Form
     {
-        public frmReqUser()
+
+        String Mode = "";
+
+        public frmReqUser(String mode)
         {
             InitializeComponent();
 
+            Mode = mode;
+
+            if (Mode == "Test")
+            {
+                lblTitle.Text = "사용자계정신청 - Test";
+            }
 
         }
 
@@ -55,6 +64,16 @@ namespace thepos
                 return;
             }
 
+
+
+            if (Mode == "Test")
+            {
+                mBaseUri = uri_test;
+            }
+            else
+            {
+                mBaseUri = uri_real;
+            }
 
 
             // 사용자 등록 신청

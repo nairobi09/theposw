@@ -159,85 +159,43 @@ namespace thepos
             lvwPayOrder.Items.Clear();
 
             //!
-            if (mTheMode == "Local")
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+            if (mRequestGet(sUrl))
             {
-
-                String sql = "SELECT * FROM payment WHERE bizDt= '" + biz_date + "' AND posNo='" + pos_no + "' AND tranType='A'";
-
-                if (the_no == "")
+                if (mObj["resultCode"].ToString() == "200")
                 {
+                    String data = mObj["payments"].ToString();
+                    JArray arr = JArray.Parse(data);
 
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        String t_theNo = arr[i]["theNo"].ToString();
+                        String t_billNo = arr[i]["billNo"].ToString();
+                        String t_payClass = arr[i]["payClass"].ToString();
+                        int t_amountCash = convert_number(arr[i]["amountCash"].ToString());
+                        int t_amountCard = convert_number(arr[i]["amountCard"].ToString());
+                        int t_amountPoint = convert_number(arr[i]["amountPoint"].ToString());
+                        int t_amountEasy = convert_number(arr[i]["amountEasy"].ToString());
+                        int t_amountCert = convert_number(arr[i]["amountCert"].ToString());
+                        String t_payDate = arr[i]["payDate"].ToString();
+                        String t_payTime = arr[i]["payTime"].ToString();
+                        String t_posNo = arr[i]["posNo"].ToString();
+                        int t_netAmount = convert_number(arr[i]["netAmount"].ToString());
+                        int t_dcAmount = convert_number(arr[i]["dcAmount"].ToString());
+                        String t_isCancel = arr[i]["isCancel"].ToString();
+
+                        add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_amountCert, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
+                    }
                 }
                 else
                 {
-                    sql += " AND theNo = '" + the_no + "'";
+                    MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
-                
-
-                SQLiteDataReader dr = sql_select_local_db(sql);
-                while (dr.Read())
-                {
-                    String t_theNo = dr["theNo"].ToString();
-                    String t_billNo = dr["billNo"].ToString();
-                    String t_payClass = dr["payClass"].ToString();
-                    int t_amountCash = convert_number(dr["amountCash"].ToString());
-                    int t_amountCard = convert_number(dr["amountCard"].ToString());
-                    int t_amountPoint = convert_number(dr["amountPoint"].ToString());
-                    int t_amountEasy = convert_number(dr["amountEasy"].ToString());
-                    int t_amountCert = convert_number(dr["amountCert"].ToString());
-                    String t_payDate = dr["payDate"].ToString();
-                    String t_payTime = dr["payTime"].ToString();
-                    String t_posNo = dr["posNo"].ToString();
-                    int t_netAmount = convert_number(dr["netAmount"].ToString());
-                    int t_dcAmount = convert_number(dr["dcAmount"].ToString());
-                    String t_isCancel = dr["isCancel"].ToString();
-
-                    add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_amountCert, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
-                }
-                dr.Close();
-
             }
             else
             {
-                String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["payments"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            String t_theNo = arr[i]["theNo"].ToString();
-                            String t_billNo = arr[i]["billNo"].ToString();
-                            String t_payClass = arr[i]["payClass"].ToString();
-                            int t_amountCash = convert_number(arr[i]["amountCash"].ToString());
-                            int t_amountCard = convert_number(arr[i]["amountCard"].ToString());
-                            int t_amountPoint = convert_number(arr[i]["amountPoint"].ToString());
-                            int t_amountEasy = convert_number(arr[i]["amountEasy"].ToString());
-                            int t_amountCert = convert_number(arr[i]["amountCert"].ToString());
-                            String t_payDate = arr[i]["payDate"].ToString();
-                            String t_payTime = arr[i]["payTime"].ToString();
-                            String t_posNo = arr[i]["posNo"].ToString();
-                            int t_netAmount = convert_number(arr[i]["netAmount"].ToString());
-                            int t_dcAmount = convert_number(arr[i]["dcAmount"].ToString());
-                            String t_isCancel = arr[i]["isCancel"].ToString();
-
-                            add_viewList(t_theNo, t_billNo, t_payClass, t_amountCash, t_amountCard, t_amountPoint, t_amountEasy, t_amountCert, t_payDate, t_payTime, t_posNo, t_netAmount, t_dcAmount, t_isCancel);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
-                }
+                MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
             }
-
 
         }
 
@@ -260,68 +218,43 @@ namespace thepos
             String t_isCancel = "";
 
 
-            if (mTheMode == "Local")
-            {
-                String sql = "SELECT * FROM payment WHERE bizDt= '" + biz_date + "' AND posNo='" + pos_no + "' AND tranType='A' AND theNo = '" + the_no + "'";
-                SQLiteDataReader dr = sql_select_local_db(sql);
-                if (dr.Read())
-                {
-                    t_theNo = dr["theNo"].ToString();
-                    t_billNo = dr["billNo"].ToString();
-                    t_payClass = dr["payClass"].ToString();
-                    t_amountCash = convert_number(dr["amountCash"].ToString());
-                    t_amountCard = convert_number(dr["amountCard"].ToString());
-                    t_amountPoint = convert_number(dr["amountPoint"].ToString());
-                    t_amountEasy = convert_number(dr["amountEasy"].ToString());
-                    t_amountCert = convert_number(dr["amountCert"].ToString());
-                    t_payDate = dr["payDate"].ToString();
-                    t_payTime = dr["payTime"].ToString();
-                    t_posNo = dr["posNo"].ToString();
-                    t_netAmount = convert_number(dr["netAmount"].ToString());
-                    t_dcAmount = convert_number(dr["dcAmount"].ToString());
-                    t_isCancel = dr["isCancel"].ToString();
-                }
-                dr.Close();
 
-            }
-            else
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+            if (mRequestGet(sUrl))
             {
-                String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
-                if (mRequestGet(sUrl))
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["payments"].ToString();
-                        JArray arr = JArray.Parse(data);
+                    String data = mObj["payments"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                        if (arr.Count > 0)
-                        {
-                            t_theNo = arr[0]["theNo"].ToString();
-                            t_billNo = arr[0]["billNo"].ToString();
-                            t_payClass = arr[0]["payClass"].ToString();
-                            t_amountCash = convert_number(arr[0]["amountCash"].ToString());
-                            t_amountCard = convert_number(arr[0]["amountCard"].ToString());
-                            t_amountPoint = convert_number(arr[0]["amountPoint"].ToString());
-                            t_amountEasy = convert_number(arr[0]["amountEasy"].ToString());
-                            t_amountCert = convert_number(arr[0]["amountCert"].ToString());
-                            t_payDate = arr[0]["payDate"].ToString();
-                            t_payTime = arr[0]["payTime"].ToString();
-                            t_posNo = arr[0]["posNo"].ToString();
-                            t_netAmount = convert_number(arr[0]["netAmount"].ToString());
-                            t_dcAmount = convert_number(arr[0]["dcAmount"].ToString());
-                            t_isCancel = arr[0]["isCancel"].ToString();
-                        }
-                    }
-                    else
+                    if (arr.Count > 0)
                     {
-                        MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        t_theNo = arr[0]["theNo"].ToString();
+                        t_billNo = arr[0]["billNo"].ToString();
+                        t_payClass = arr[0]["payClass"].ToString();
+                        t_amountCash = convert_number(arr[0]["amountCash"].ToString());
+                        t_amountCard = convert_number(arr[0]["amountCard"].ToString());
+                        t_amountPoint = convert_number(arr[0]["amountPoint"].ToString());
+                        t_amountEasy = convert_number(arr[0]["amountEasy"].ToString());
+                        t_amountCert = convert_number(arr[0]["amountCert"].ToString());
+                        t_payDate = arr[0]["payDate"].ToString();
+                        t_payTime = arr[0]["payTime"].ToString();
+                        t_posNo = arr[0]["posNo"].ToString();
+                        t_netAmount = convert_number(arr[0]["netAmount"].ToString());
+                        t_dcAmount = convert_number(arr[0]["dcAmount"].ToString());
+                        t_isCancel = arr[0]["isCancel"].ToString();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
+            
 
 
 
@@ -449,44 +382,15 @@ namespace thepos
             lvwPayOrder.Items.Clear();
 
             //
-            if (mTheMode == "Local")
-                view_list_order_local(tTheNo, tranType);
-            else
-                view_list_order_server(tTheNo, tranType);
+            view_list_order(tTheNo, tranType);
 
             //
-            if (mTheMode == "Local")
-                view_list_pay_local(tTheNo, tranType, pay_keep);
-            else
-                view_list_pay_server(tTheNo, tranType, pay_keep);
-
+            view_list_pay(tTheNo, tranType, pay_keep);
 
         }
-        private void view_list_order_local(String tTheNo, String tranType)
-        {
-            SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='" + tranType + "'");
-            while (dr.Read())
-            {
-                ListViewItem lvItem = new ListViewItem();
 
-                String shop_order_no = dr["shopOrderNo"].ToString();
 
-                if (shop_order_no.Length >= 4)
-                    lvItem.Tag = "O";
-                else
-                    lvItem.Tag = "";
-
-                lvItem.Text = dr["shopOrderNo"].ToString();
-                lvItem.SubItems.Add(dr["goodsName"].ToString());
-                lvItem.SubItems.Add(convert_number(dr["cnt"].ToString()).ToString("N0"));
-                lvItem.SubItems.Add(get_shop_name(dr["shopCode"].ToString()));
-                lvwPayOrder.Items.Add(lvItem);
-            }
-
-            dr.Close();
-        }
-
-        private void view_list_order_server(String tTheNo, String tranType)
+        private void view_list_order(String tTheNo, String tranType)
         {
             String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tranType;
             if (mRequestGet(sUrl))
@@ -527,130 +431,8 @@ namespace thepos
         }
 
 
-        private void view_list_pay_local(String tTheNo, String tranType, String pay_keep)
-        {
-            String pay_keep_cash = pay_keep.Substring(0, 1);
-            String pay_keep_card = pay_keep.Substring(1, 1);
-            String pay_keep_point = pay_keep.Substring(2, 1);
-            String pay_keep_easy = pay_keep.Substring(3, 1);
 
-            String pay_name = "";
-            int pay_amount = 0;
-
-
-            //! 현금결제
-            if (pay_keep_cash == "1")
-            {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentCash WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        pay_name = get_pay_type_name(dr["payType"].ToString());
-                        pay_amount = convert_number(dr["amount"].ToString());
-
-                        if (tranType == "C") 
-                            pay_amount = -pay_amount;
-
-                        ListViewItem lvItem = new ListViewItem();
-                        lvItem.Tag = "P";
-                        lvItem.Text = "(결제)";
-                        lvItem.SubItems.Add(pay_name);
-                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
-                        lvItem.SubItems.Add("");
-                        lvwPayOrder.Items.Add(lvItem);
-                    }
-                }
-
-                dr.Close();
-            }
-
-
-            //! 카드결제
-            if (pay_keep_card == "1")
-            {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentCard WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        pay_name = get_pay_type_name(dr["payType"].ToString());
-                        pay_amount = convert_number(dr["amount"].ToString());
-
-                        if (tranType == "C")
-                            pay_amount = -pay_amount;
-
-                        ListViewItem lvItem = new ListViewItem();
-                        lvItem.Tag = "P";
-                        lvItem.Text = "(결제)";
-                        lvItem.SubItems.Add(pay_name);
-                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
-                        lvItem.SubItems.Add("");
-                        lvwPayOrder.Items.Add(lvItem);
-                    }
-                }
-
-                dr.Close();
-            }
-
-
-            //! 포인트
-            if (pay_keep_point == "1")
-            {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentPoint WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        pay_name = get_pay_type_name(dr["payType"].ToString());
-                        pay_amount = convert_number(dr["amount"].ToString());
-
-                        if (tranType == "C")
-                            pay_amount = -pay_amount;
-
-                        ListViewItem lvItem = new ListViewItem();
-                        lvItem.Tag = "P";
-                        lvItem.Text = "(결제)";
-                        lvItem.SubItems.Add(pay_name);
-                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
-                        lvItem.SubItems.Add("");
-                        lvwPayOrder.Items.Add(lvItem);
-                    }
-                }
-
-                dr.Close();
-            }
-
-
-            // 간편결제
-            if (pay_keep_easy == "1")
-            {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM paymentEasy WHERE theNo='" + tTheNo + "'");
-                while (dr.Read())
-                {
-                    if (dr["tranType"].ToString() == tranType)
-                    {
-                        pay_name = get_pay_type_name(dr["payType"].ToString());
-                        pay_amount = convert_number(dr["amount"].ToString());
-
-                        if (tranType == "C")
-                            pay_amount = -pay_amount;
-
-                        ListViewItem lvItem = new ListViewItem();
-                        lvItem.Tag = "P";
-                        lvItem.Text = "(결제)";
-                        lvItem.SubItems.Add(pay_name);
-                        lvItem.SubItems.Add(pay_amount.ToString("N0"));
-                        lvItem.SubItems.Add("");
-                        lvwPayOrder.Items.Add(lvItem);
-                    }
-                }
-
-                dr.Close();
-            }
-        }
-
-        private void view_list_pay_server(String tTheNo, String tranType, String pay_keep)
+        private void view_list_pay(String tTheNo, String tranType, String pay_keep)
         {
             String pay_keep_cash = pay_keep.Substring(0, 1);
             String pay_keep_card = pay_keep.Substring(1, 1);
@@ -843,8 +625,6 @@ namespace thepos
 
 
 
-
-
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
             if (lvwPayManager.SelectedItems.Count < 1)
@@ -954,9 +734,6 @@ namespace thepos
         }
 
 
-
-
-
         private void btnView_Click(object sender, EventArgs e)
         {
             //
@@ -1055,118 +832,73 @@ namespace thepos
 
 
 
-            if (mTheMode == "Local")
+            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+            if (mRequestGet(sUrl))
             {
-                SQLiteDataReader dr = sql_select_local_db("SELECT * FROM orderItem WHERE theNo='" + tTheNo + "' AND tranType='" + tran_type + "'");
-                while (dr.Read())
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    if (dr["shopOrderNo"].ToString() == t_order_no)
+                    String data = mObj["orderItems"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        t_shop_code = dr["shopCode"].ToString();
-                        t_order_dt = dr["orderDate"].ToString() + dr["orderTime"].ToString();
-
-                        orderPack.goods_name = dr["goodsName"].ToString();
-                        orderPack.goods_cnt = convert_number(dr["cnt"].ToString());
-
-
-                        option_name_list.Clear();
-                        option_item_name_list.Clear();
-
-                        //
-                        if (dr["optionNo"].ToString() != "")
+                        if (arr[i]["shopOrderNo"].ToString() == t_order_no)
                         {
-                            SQLiteDataReader dr2 = sql_select_local_db("SELECT * FROM orderOptionItem WHERE optionNo='" + dr["optionNo"].ToString() + "'");
-                            while (dr2.Read())
+                            t_shop_code = arr[i]["shopCode"].ToString();
+                            t_order_dt = arr[i]["orderDate"].ToString() + arr[i]["orderTime"].ToString();
+
+                            orderPack.goods_name = arr[i]["goodsName"].ToString();
+                            orderPack.goods_cnt = convert_number(arr[i]["cnt"].ToString());
+
+
+                            option_name_list.Clear();
+                            option_item_name_list.Clear();
+
+                            //
+                            if (arr[i]["optionNo"].ToString() != "")
                             {
-                                option_name_list.Add(dr2["optionName"].ToString());
-                                option_item_name_list.Add(dr2["optionItemName"].ToString());
-                            }
-                        }
-                        orderPack.option_name = option_name_list.ToList();
-                        orderPack.option_item_name = option_item_name_list.ToList();
-                        orderPackList.Add(orderPack);
-
-
-                        //
-                        shopOrderPack.order_no = t_order_no;
-                        shopOrderPack.shop_code = t_shop_code;
-                        shopOrderPack.order_dt = t_order_dt;
-                        shopOrderPack.orderPackList = orderPackList;
-                    }
-                }
-                dr.Close();
-            }
-            else
-            {
-                String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tran_type;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["orderItems"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            if (arr[i]["shopOrderNo"].ToString() == t_order_no)
-                            {
-                                t_shop_code = arr[i]["shopCode"].ToString();
-                                t_order_dt = arr[i]["orderDate"].ToString() + arr[i]["orderTime"].ToString();
-
-                                orderPack.goods_name = arr[i]["goodsName"].ToString();
-                                orderPack.goods_cnt = convert_number(arr[i]["cnt"].ToString());
-
-
-                                option_name_list.Clear();
-                                option_item_name_list.Clear();
-
-                                //
-                                if (arr[i]["optionNo"].ToString() != "")
+                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&optionNo=" + arr[i]["optionNo"].ToString();
+                                if (mRequestGet(sUrl))
                                 {
-                                    sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&optionNo=" + arr[i]["optionNo"].ToString();
-                                    if (mRequestGet(sUrl))
+                                    if (mObj["resultCode"].ToString() == "200")
                                     {
-                                        if (mObj["resultCode"].ToString() == "200")
-                                        {
-                                            String data2 = mObj["orderOptionItems"].ToString();
-                                            JArray arr2 = JArray.Parse(data2);
+                                        String data2 = mObj["orderOptionItems"].ToString();
+                                        JArray arr2 = JArray.Parse(data2);
 
-                                            for (int k = 0; k < arr2.Count; k++)
-                                            {
-                                                option_name_list.Add(arr2[k]["optionName"].ToString());
-                                                option_item_name_list.Add(arr2[k]["optionItemName"].ToString());
-                                            }
+                                        for (int k = 0; k < arr2.Count; k++)
+                                        {
+                                            option_name_list.Add(arr2[k]["optionName"].ToString());
+                                            option_item_name_list.Add(arr2[k]["optionItemName"].ToString());
                                         }
                                     }
                                 }
-
-                                orderPack.option_name = option_name_list.ToList();
-                                orderPack.option_item_name = option_item_name_list.ToList();
-                                orderPackList.Add(orderPack);
-
-                                shopOrderPack.order_no = t_order_no;
-                                shopOrderPack.shop_code = t_shop_code;
-                                shopOrderPack.order_dt = t_order_dt;
-                                shopOrderPack.orderPackList = orderPackList;
                             }
+
+                            orderPack.option_name = option_name_list.ToList();
+                            orderPack.option_item_name = option_item_name_list.ToList();
+                            orderPackList.Add(orderPack);
+
+                            shopOrderPack.order_no = t_order_no;
+                            shopOrderPack.shop_code = t_shop_code;
+                            shopOrderPack.order_dt = t_order_dt;
+                            shopOrderPack.orderPackList = orderPackList;
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
-
             }
-                
+            else
+            {
+                MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                return;
+            }
 
-
+            
+  
             if (tran_type == "A")
             {
                 // 업장주문서 출력 -> shop 등록정보 프린터
@@ -1183,8 +915,6 @@ namespace thepos
                 //주문교환권 출력 -> 영수증프린터
                 print_order_str("to_local", "취소교환권[재발급]", shopOrderPack);
             }
-
-
 
         }
 

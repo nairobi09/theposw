@@ -60,11 +60,15 @@ namespace thepos
         }
 
 
-        private void tbNo_KeyDown(object sender, KeyEventArgs e)
+        private void tbCouponNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                tbCouponNo.Enabled = false;
+
                 view_reload();
+
+                tbCouponNo.Enabled = true;
             }
         }
         private void btnView_Click(object sender, EventArgs e)
@@ -80,7 +84,7 @@ namespace thepos
             mClearSaleForm();
 
 
-            if (tbNo.Text.Trim() == "")
+            if (tbCouponNo.Text.Trim() == "")
             {
                 return;
             }
@@ -100,11 +104,10 @@ namespace thepos
 
 
             couponTM p = new couponTM();
-            int ret = p.requestPmCertView(tbNo.Text);
+            int ret = p.requestPmCertView(tbCouponNo.Text);
 
             if (ret == 0)
             {
-
                 if (mObj["result"].ToString() == "1000")
                 {
 
@@ -112,60 +115,69 @@ namespace thepos
                 else
                 {
                     MessageBox.Show("오류\n\n" + mObj["msg"].ToString(), "thepos");
+                    tbCouponNo.Text = "";
                     return;
                 }
-
-
-                String data = mObj["info"].ToString();
-                JObject info = JObject.Parse(data);
-
-                string coupon_no = info["barcode_no"].ToString();
-                string ustate_code = info["ustate"].ToString();
-                string coupon_name = info["cusitem"].ToString();
-                string coupon_link_no = info["cusitemId"].ToString();   // 상품코드 매칭용   TM + 0000
-
-                string qty = "1";
-
-                string cus_nm = info["cusnm"].ToString();
-                string cus_hp = info["cushp"].ToString();
-                string exp_date = info["expdate"].ToString();
-
-                string state = info["state"].ToString();
-                string ch_name = info["cuschnm"].ToString();
-
-
-
-                ListViewItem lvItem = new ListViewItem();
-
-                String ustate_name = "";
-
-                // (1: 사용, 2: 미사용)
-                if (ustate_code == "2")
-                    ustate_name = "사용가능";
-                else if (ustate_code == "1")
-                    ustate_name = "사용됨";
-                else
-                    ustate_name = "";
-
-
-                lvItem.Text = ustate_name;
-                lvItem.SubItems.Add(ustate_code);
-
-                lvItem.SubItems.Add(coupon_no);
-
-                lvItem.SubItems.Add(coupon_name);
-                lvItem.SubItems.Add(coupon_link_no);
-                lvItem.SubItems.Add(qty);
-
-                lvItem.SubItems.Add(cus_nm);
-                lvItem.SubItems.Add(cus_hp);
-                lvItem.SubItems.Add(exp_date);
-                lvItem.SubItems.Add(state);
-                lvItem.SubItems.Add(ch_name);
-
-                lvwCoupon.Items.Add(lvItem);
-
             }
+            else
+            {
+                MessageBox.Show("오류\n\n" + mErrorMsg, "thepos");
+                tbCouponNo.Text = "";
+                return;
+            }
+
+
+            String data = mObj["info"].ToString();
+            JObject info = JObject.Parse(data);
+
+            string coupon_no = info["barcode_no"].ToString();
+            string ustate_code = info["ustate"].ToString();
+            string coupon_name = info["cusitem"].ToString();
+            string coupon_link_no = info["cusitemId"].ToString();   // 상품코드 매칭용   TM + 0000
+
+            string qty = "1";
+
+            string cus_nm = info["cusnm"].ToString();
+            string cus_hp = info["cushp"].ToString();
+            string exp_date = info["expdate"].ToString();
+
+            string state = info["state"].ToString();
+            string ch_name = info["cuschnm"].ToString();
+
+
+            ListViewItem lvItem = new ListViewItem();
+
+            String ustate_name = "";
+
+            // (1: 사용, 2: 미사용)
+            if (ustate_code == "2")
+                ustate_name = "사용가능";
+            else if (ustate_code == "1")
+                ustate_name = "기사용쿠폰";
+            else
+                ustate_name = "";
+
+
+            lvItem.Text = ustate_name;
+            lvItem.SubItems.Add(ustate_code);
+
+            lvItem.SubItems.Add(coupon_no);
+
+            lvItem.SubItems.Add(coupon_name);
+            lvItem.SubItems.Add(coupon_link_no);
+            lvItem.SubItems.Add(qty);
+
+            lvItem.SubItems.Add(cus_nm);
+            lvItem.SubItems.Add(cus_hp);
+            lvItem.SubItems.Add(exp_date);
+            lvItem.SubItems.Add(state);
+            lvItem.SubItems.Add(ch_name);
+
+            lvwCoupon.Items.Add(lvItem);
+
+
+            //
+            tbCouponNo.Text = "";
 
         }
 
@@ -451,24 +463,11 @@ namespace thepos
             mPaymentCert.van_code = "TM";        // TM : 테이블메니저
 
 
-
             // 결제 항목 저장
-            if (mTheMode == "Local")
+            if (!SavePaymentCert(mPaymentCert))
             {
-                if (!SavePaymentCert_Local(mPaymentCert))
-                {
-                    return;
-                }
+                return;
             }
-            else
-            {
-                if (!SavePaymentCert_Server(mPaymentCert))
-                {
-                    return;
-                }
-            }
-
-
 
 
             SetDisplayAlarm("I", "쿠폰인증 주문완료.");
@@ -514,27 +513,15 @@ namespace thepos
             clear_info();
 
             //
-            tbNo.Text = "";
+            tbCouponNo.Text = "";
 
 
             //this.Close();
 
         }
 
-        private bool SavePaymentCert_Local(PaymentCert mPaymentCert)
-        {
 
-            String sql = "INSERT INTO paymentCert (siteId, posNo, bizDt, theNo, refNo, payDate, payTime, payType, tranType, payClass, ticketNo, paySeq, tranDate, amount, couponNo, isCancel, vanCode) " +
-                "values ('" + mPaymentCert.site_id + "','" + mPaymentCert.pos_no + "','" + mPaymentCert.biz_dt + "','" + mPaymentCert.the_no + "','" + mPaymentCert.ref_no + "','" + mPaymentCert.pay_date + "','" + mPaymentCert.pay_time + "','" + mPaymentCert.pay_type + "','" + mPaymentCert.tran_type + "','" + mPaymentCert.pay_class + "','" +
-                              mPaymentCert.ticket_no + "'," + mPaymentCert.pay_seq + ",'" + mPaymentCert.tran_date + "'," + mPaymentCert.amount + ",'" + mPaymentCert.coupon_no + "','" + mPaymentCert.is_cancel + "','" + mPaymentCert.van_code + "')";
-            int ret = sql_excute_local_db(sql);
-
-
-            return true;
-
-        }
-
-        private bool SavePaymentCert_Server(PaymentCert mPaymentCert)
+        private bool SavePaymentCert(PaymentCert mPaymentCert)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Clear();

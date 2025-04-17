@@ -19,9 +19,9 @@ namespace thepos
     public partial class frmSysAdmin : Form
     {
         String mThisButtonClick = "";
+        String Mode = "";
 
-
-        public frmSysAdmin(String in_patern)
+        public frmSysAdmin(String in_patern, String mode)
         {
             InitializeComponent();
 
@@ -36,9 +36,14 @@ namespace thepos
                     panelCertConsole.Visible = true;
                 }
             }
-
+            else
+            {
+                if (mode == "Test")
+                {
+                    Mode = "Test";
+                }
+            }
         }
-
 
 
         private void btnPos_Click(object sender, EventArgs e)
@@ -48,7 +53,7 @@ namespace thepos
             mThisButtonClick = "Pos";
             panelView.Controls.Clear();
 
-            frmSysAdminPos fSysAdmin = new frmSysAdminPos() { TopLevel = false, TopMost = true };
+            frmSysAdminPos fSysAdmin = new frmSysAdminPos(Mode) { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

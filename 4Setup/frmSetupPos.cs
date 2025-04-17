@@ -100,63 +100,37 @@ namespace thepos
         private void reload_setup_pos()
         {
 
-            if (mTheMode == "Local")
+            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+            if (mRequestGet(sUrl))
             {
-                lblLocalMode.Visible = true;
-
-
-                String sql = "SELECT * FROM setupPos";
-                SQLiteDataReader dr = sql_select_local_db(sql);
-                while (dr.Read())
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    for (int j = 0; j < listSetup.Length; j++)
+                    String data = mObj["setupPos"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        if (listSetup[j].code == dr["setupCode"].ToString())
+                        for (int j = 0; j < listSetup.Length; j++)
                         {
-                            listSetup[j].value = dr["setupValue"].ToString();
-                        }
-                    }
-                }
-                dr.Close();
-            }
-            else
-            {
-                lblLocalMode.Visible = false;
-
-
-                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["setupPos"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            for (int j = 0; j < listSetup.Length; j++)
+                            if (listSetup[j].code == arr[i]["setupCode"].ToString())
                             {
-                                if (listSetup[j].code == arr[i]["setupCode"].ToString())
-                                {
-                                    listSetup[j].value = arr[i]["setupValue"].ToString();
-                                }
+                                listSetup[j].value = arr[i]["setupValue"].ToString();
                             }
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("설정정보 오류. setupPos\n\n " + mObj["resultMsg"].ToString(), "thepos");
-                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("설정정보 오류. setupPos\n\n " + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
-
-
+            else
+            {
+                MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+            
 
 
             lvwList.Items.Clear();
@@ -308,89 +282,52 @@ namespace thepos
         {
             if (isAdd == false) return;
 
-            if (mTheMode == "Local")
+            //
+            for (int i = 0; i < lvwList.Items.Count; i++)
             {
-                DialogResult ret = MessageBox.Show("로컬사용모드. \r\n로컬DB에만 저장됩니다.", "thepos", MessageBoxButtons.OKCancel);
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-                if (ret == DialogResult.OK)
+                parameters["siteId"] = mSiteId;
+                parameters["posNo"] = mPosNo;
+                parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
+                parameters["setupName"] = lvwList.Items[i].Text;
+
+
+                if (lvwList.Items[i].SubItems[4].Text == "변경")
                 {
-                    int result = sql_excute_local_db("DELETE FROM setupPos");
-
-
-                    for (int i = 0; i < lvwList.Items.Count; i++)
-                    {
-                        String t_value = "";
-
-                        if (lvwList.Items[i].SubItems[4].Text == "변경")
-                        {
-                            t_value = lvwList.Items[i].SubItems[2].Text;
-                        }
-                        else
-                        {
-                            t_value = lvwList.Items[i].SubItems[1].Text;
-                        }
-
+                    parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
+                }
+                else
+                {
+                    parameters["setupValue"] = lvwList.Items[i].SubItems[1].Text;
+                }
                         
-                        String sql = "INSERT INTO setupPos (siteId, posNo, setupCode, setupName, setupValue, memo) " +
-                                "values ('" + mSiteId + "','" + mPosNo + "','" + lvwList.Items[i].Tag.ToString() + "','" + lvwList.Items[i].Text + "','" + t_value + "','')";
-                        result = sql_excute_local_db(sql);
+                        
+                parameters["memo"] = "";
 
-
+                if (mRequestPost("setupPos", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                            
+                    }
+                    else
+                    {
+                        MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
                 else
                 {
+                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
-            {
-                //
-                for (int i = 0; i < lvwList.Items.Count; i++)
-                {
-                    Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-                    parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
-                    parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
-                    parameters["setupName"] = lvwList.Items[i].Text;
+            //
+            MessageBox.Show("포스정보 저장완료.", "thepos");
 
-
-                    if (lvwList.Items[i].SubItems[4].Text == "변경")
-                    {
-                        parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
-                    }
-                    else
-                    {
-                        parameters["setupValue"] = lvwList.Items[i].SubItems[1].Text;
-                    }
-                        
-                        
-                    parameters["memo"] = "";
-
-                    if (mRequestPost("setupPos", parameters))
-                    {
-                        if (mObj["resultCode"].ToString() == "200")
-                        {
-                            
-                        }
-                        else
-                        {
-                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
-                        return;
-                    }
-                }
-
-                //
-                MessageBox.Show("포스정보 저장완료.", "thepos");
-
-            }
+            
 
 
             isAdd = false;
