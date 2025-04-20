@@ -183,7 +183,7 @@ namespace thepos
 
 
 
-            //#
+            //
             Form fForm;
             panelHigh.Controls.Clear();
             panelHigh.Visible = true;

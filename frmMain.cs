@@ -44,7 +44,12 @@ namespace thepos
 
         Thread threadSyncLink;
 
-        bool mServerStatus;
+        bool mServerStatus = false;
+
+        bool mNetworkState = false;
+        bool mPrevNetworkState = false;
+
+        bool isRunThread = true;
 
 
         public frmMain()
@@ -180,81 +185,59 @@ namespace thepos
             
             mNetworkState = NetworkInterface.GetIsNetworkAvailable();
 
-            //
-            mPrevNetworkState = mNetworkState;
-
 
             // 네트워크 상태 : 정상이미지를 보이기/숨기기
-            pbNetworkConn.Visible = NetworkInterface.GetIsNetworkAvailable();
-            pbNetworkDisconn.Visible = !pbNetworkConn.Visible;
-
-            // 서버 상태 : 최초 서버 테스트콜
-            mServerStatus = check_server_status();
-            if (mServerStatus == false)
-            {
-                lblServerStatusTitle.Visible = true;
-            }
-            else if (mServerStatus == true)
-            {
-                lblServerStatusTitle.Visible = false;
-            }
-
-
-            // SyncLink 쓰레드
-            threadSyncLink = new Thread(SyncLink);
-            threadSyncLink.Start();
+            pbNetworkConn.Visible = mNetworkState;
+            pbNetworkDisconn.Visible = !mNetworkState;
 
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try
-            {
-                threadSyncLink.Abort();
-            }
-            catch(Exception ex) 
-            { 
+            //
 
-            }
         }
 
 
         private void SyncLink()
         {
-            int mSyncLinkWaitCnt = 0;
+            int loop_cnt = 0;
+            int check_cnt = 0;
 
-            while (true)
+            while (isRunThread)
             {
                 //
-                Thread.Sleep(1000 * 10); // XX초
+                Thread.Sleep(1000); // 1초
 
-                mSyncLinkWaitCnt++;
+                loop_cnt++;
 
-                mNetworkState = NetworkInterface.GetIsNetworkAvailable();
+
+                if (loop_cnt >= 10)  // 10초
+                {
+                    check_cnt++;
+
+                    mNetworkState = NetworkInterface.GetIsNetworkAvailable();
+
+                    if (mPrevNetworkState != mNetworkState)
+                    {
+                        // 네트워크 상태 : 정상이미지를 보이기/숨기기
+                        pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = mNetworkState));
+                        pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
+                        mPrevNetworkState = mNetworkState;
+                    }
  
-                if (mPrevNetworkState != mNetworkState) 
-                {
-                   // 네트워크 상태 : 정상이미지를 보이기/숨기기
-                    pbNetworkConn.BeginInvoke(new Action(() => pbNetworkConn.Visible = mNetworkState));
-                    pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
+                    if ((mNetworkState != mServerStatus) | (check_cnt >= 6 * 10))  // 10분
+                    {
+                        // 서버 테스트콜
+                        mServerStatus = check_server_status();
+                        lblServerStatusTitle.BeginInvoke(new Action(() => lblServerStatusTitle.Visible = !mServerStatus));
+                        check_cnt = 0;
+                    }
 
-                    //
-                    mPrevNetworkState = mNetworkState;
+                    loop_cnt = 0;
                 }
-
-
-                if ((mNetworkState != mServerStatus) | (mSyncLinkWaitCnt >= 6 * 10))  // 10분
-                {
-                    // 서버 테스트콜
-                    mServerStatus = check_server_status();
-                    lblServerStatusTitle.BeginInvoke(new Action(() => lblServerStatusTitle.Visible = !mServerStatus));
-                }
-
-
             }
-
         }
-
 
 
         private void start_sub_screen()
@@ -302,6 +285,7 @@ namespace thepos
             lblSiteName.Text = "";
             lblPosNo.Text = "";
             lblUserName.Text = "";
+
         }
 
 
@@ -329,21 +313,36 @@ namespace thepos
         {
 
             // 설치후 최초실행
-            server_login();
-
-
-            // sub screen
-            if (mCustomerMonitor == "Y")
+            if (server_login())
             {
-                start_sub_screen();
+            }
+            else
+            {
+                return;
+            }
+
+            // 영업일
+            if (get_biz_date())
+            {
+
+            }
+            else
+            {
+                return;
             }
 
 
-            // 마우스 커서
-            if (mPosType == "POS" | mPosType == "POS-Ticket")
-            {
-                Cursor.Hide();
-            }
+            //
+            ready_thepos();
+
+
+
+            // SyncLink 쓰레드
+            isRunThread = true;
+
+            threadSyncLink = new Thread(SyncLink);
+            threadSyncLink.Start();  
+
 
 
             // 데이터 체크 임시
@@ -353,7 +352,7 @@ namespace thepos
         }
 
 
-        private void server_login()
+        private bool server_login()
         {
             // 
             if (tbID.Text == "1120" & tbPW.Text == "4089")
@@ -365,23 +364,22 @@ namespace thepos
                 if (ret == DialogResult.OK)  // Real
                 {
                     lblIsTest.Visible = false;
+                    return true;
                 }
                 else if (ret == DialogResult.Yes) // TEST
                 {
                     lblIsTest.Visible = true;
-
+                    return true;
                 }
                 else
                 {
-                    return;
+                    return false;
                 }
-
             }
             else
             {
-
                 mBaseUri = uri_real;
-                
+
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["userId"] = tbID.Text;
                 parameters["userPw"] = SHA1HashCrypt(tbPW.Text);
@@ -395,24 +393,54 @@ namespace thepos
                         mUserID = tbID.Text;
                         mUserName = mObj["userName"].ToString();
                         mPosNo = mObj["posNo"].ToString();
+
+                        return true;
                     }
                     else
                     {
                         MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
+                        return false;
                     }
                 }
                 else
                 {
                     MessageBox.Show("시스템오류\n\n" + "RequestPost Login", "thepos");
-                    return;
+                    return false;
                 }
-
 
             }
 
+        }
+
+        bool get_biz_date()
+        { 
+            // 개시마감 
+            String biz_date = "";
+            String biz_status = "";
+            mBizDate = "";
+
+            if (get_bizdate_status(ref biz_status, ref biz_date))
+            {
+                if (biz_status == "A")   // A영업중 F영업마감
+                {
+                    mBizDate = biz_date;
+                    return true;
+                }
+                else  // F:마감 Y:집계완료 X:초기상태
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
+                return false;
+            }
+        }
 
 
+        void ready_thepos()
+        {
 
             // 서버 -> 메모리
             sync_data_server_to_memory();
@@ -437,28 +465,19 @@ namespace thepos
             mIsLogin = "Y";
 
 
-            //////////////////////////////////
-            // 개시마감 
-            String biz_date = "";
-            String biz_status = "";
-            mBizDate = "";
+            // sub screen
+            if (mCustomerMonitor == "Y")
+            {
+                start_sub_screen();
+            }
 
-            if (get_bizdate_status(ref biz_status, ref biz_date))
+
+            // 마우스 커서
+            if (mPosType == "POS" | mPosType == "POS-Ticket")
             {
-                if (biz_status == "A")   // A영업중 F영업마감
-                {
-                    mBizDate = biz_date;
-                }
-                else  // F:마감 Y:집계완료 X:초기상태
-                {
-                    return;
-                }
+                Cursor.Hide();
             }
-            else
-            {
-                MessageBox.Show("개시마감관리 오류\n서버에서 정보를 읽어오지 못했습니다.", "thepos");
-                return;
-            }
+
         }
 
 
@@ -519,8 +538,6 @@ namespace thepos
                                     mByteLogoImage = null;
                                 }
                             }
-
-
                         }
                     }
                     else
@@ -887,6 +904,8 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
 
                             else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
+                            
+                            else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
 
                         }
                     }
@@ -1080,7 +1099,6 @@ namespace thepos
 
 
 
-
         // 판매관리
         private void btnSales_Click(object sender, EventArgs e)
         {
@@ -1172,23 +1190,34 @@ namespace thepos
             {
                 //? 로그아웃 프로세스 필요
 
+                isRunThread = false;
+
 
                 clear_login_init();  // 초기화
+
+
+                //
+                fSub.Close();
+
+
 
                 panelLogin.Visible = true;
 
 
             }
-            else if (ret == DialogResult.Retry)
+            else if (ret == DialogResult.OK)
             {
-                //??
 
+                isRunThread = false;
 
+                Thread.Sleep(1000);
+
+                this.Close();
 
             }
-            else if (ret == DialogResult.OK)  // 종료
+            else if (ret == DialogResult.Cancel)  // 종료
             {
-                this.Close();
+                
             }
 
                 

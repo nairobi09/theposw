@@ -69,7 +69,7 @@
             // lblOrderAmountNet
             // 
             this.lblOrderAmountNet.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountNet.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblOrderAmountNet.ForeColor = System.Drawing.Color.Blue;
             this.lblOrderAmountNet.Location = new System.Drawing.Point(291, 13);
             this.lblOrderAmountNet.Name = "lblOrderAmountNet";
             this.lblOrderAmountNet.Size = new System.Drawing.Size(303, 50);
@@ -102,7 +102,7 @@
             // lblOrderAmountNetTitle
             // 
             this.lblOrderAmountNetTitle.Font = new System.Drawing.Font("맑은 고딕", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblOrderAmountNetTitle.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblOrderAmountNetTitle.ForeColor = System.Drawing.Color.Blue;
             this.lblOrderAmountNetTitle.Location = new System.Drawing.Point(25, 13);
             this.lblOrderAmountNetTitle.Name = "lblOrderAmountNetTitle";
             this.lblOrderAmountNetTitle.Size = new System.Drawing.Size(126, 50);
@@ -306,7 +306,7 @@
             this.lblOrderAmountReceiveTitle.Name = "lblOrderAmountReceiveTitle";
             this.lblOrderAmountReceiveTitle.Size = new System.Drawing.Size(88, 27);
             this.lblOrderAmountReceiveTitle.TabIndex = 43;
-            this.lblOrderAmountReceiveTitle.Text = "받은금액";
+            this.lblOrderAmountReceiveTitle.Text = "내신금액";
             this.lblOrderAmountReceiveTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblOrderAmountReceive

@@ -179,6 +179,8 @@ namespace thepos
             //
             tbCouponNo.Text = "";
 
+            btnCoupon.Enabled = false;
+
         }
 
         private void clear_info()
@@ -338,6 +340,8 @@ namespace thepos
 
                     ReCalculateAmount();
 
+                    btnCoupon.Enabled = true;
+
                 }
                 else
                 {
@@ -456,12 +460,13 @@ namespace thepos
 
             mPaymentCert.ticket_no = ticketNo;
             mPaymentCert.pay_seq = 1; // 
-            mPaymentCert.tran_date = "";
+            mPaymentCert.tran_date = get_today_date() + get_today_time();
             mPaymentCert.amount = mNetAmount;    // 결제금액
             mPaymentCert.coupon_no = mOrderItemList[0].coupon_no;   //?  쿠폰인증 멀티 발권가능하도록 할것인가?
             mPaymentCert.is_cancel = "";         // 취소여부
             mPaymentCert.van_code = "TM";        // TM : 테이블메니저
-
+            mPaymentCert.cnt = mOrderItemList[0].cnt;        
+            mPaymentCert.coupon_link_no = lvwCoupon.SelectedItems[0].SubItems[lvwCoupon.Columns.IndexOf(coupon_link_no)].Text;
 
             // 결제 항목 저장
             if (!SavePaymentCert(mPaymentCert))

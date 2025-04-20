@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace thepos._1Sales
 {
     public partial class frmReportCoupon : Form
     {
+        String thisBizDt = "";
+
         public frmReportCoupon()
         {
             InitializeComponent();
@@ -22,9 +25,7 @@ namespace thepos._1Sales
         private void initialize_the()
         {
 
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
-
+            dtpBizDate.Value = DateTime.Now;
 
             cbCoupon.Items.Clear();
             cbCoupon.Items.Add("테이블메니저");
@@ -33,34 +34,61 @@ namespace thepos._1Sales
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            //? 쿠폰업체 추가시 아래 구분필요
-            if (mCouponMID == "")
-            {
-                MessageBox.Show("쿠픈판매 업체코드(MID) 미등록상태입니다.", "thepos");
-                return;
-            }
 
-
-
-            String from_dt = dtpFrom.Value.ToString("yyyy-MM-dd");
-            String to_dt = dtpTo.Value.ToString("yyyy-MM-dd");
-
+            thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
 
             lvwList.Items.Clear();
 
 
-
-            if (cbCoupon.SelectedIndex == 0)   // 플레이스엠
+            String sUrl = "paymentCert?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
+            if (mRequestGet(sUrl))
             {
-                couponTM p = new couponTM();
-                int ret = p.requestPmReportView(from_dt, to_dt);
-
-
-                if (ret == 0)
+                if (mObj["resultCode"].ToString() == "200")
                 {
+                    String data = mObj["paymentCerts"].ToString();
+                    JArray arr = JArray.Parse(data);
 
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem sumItem = new ListViewItem();
+                        sumItem.Text = arr[i]["vanCode"].ToString();
+                        sumItem.SubItems.Add(arr[i]["couponNo"].ToString());
+                        sumItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
+
+                        //
+                        int link_goods_idx = -1;
+                        
+                        String t_coupon_link_no = arr[i]["couponLinkNo"].ToString();
+
+
+
+                        for (int k = 0; k < mGoodsItem.Length; k++)
+                        {
+                            if (t_coupon_link_no == mGoodsItem[k].coupon_link_no)
+                            {
+                                link_goods_idx = k;
+                            }
+                        }
+
+                        String t_goods_code = "";
+                        String t_goods_name = "";
+                        if (link_goods_idx > -1)
+                        {
+                            t_goods_code = mGoodsItem[link_goods_idx].goods_code;
+                            t_goods_name = mGoodsItem[link_goods_idx].goods_name;
+                        }
+
+
+                        sumItem.SubItems.Add("[" + t_goods_code + "] " + t_goods_name);
+
+                        sumItem.SubItems.Add(arr[i]["cnt"].ToString());
+
+                        sumItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
+
+                        lvwList.Items.Add(sumItem);
+
+                    }
                 }
-
             }
 
         }

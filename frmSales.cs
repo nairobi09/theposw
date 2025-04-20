@@ -31,6 +31,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using System.Net;
 using System.Windows.Forms.DataVisualization.Charting;
 using theposw;
+using static thepos.frmSub;
 
 
 
@@ -142,14 +143,14 @@ namespace thepos
             }
 
 
-
             // Sub Screen 
             if (fSub != null)
             {
                 mPanelOrderInfo.Visible = true;
+
+                ReCalculateAmount();
+
             }
-
-
         }
 
         private void frmSales_Shown(object sender, EventArgs e)
@@ -524,21 +525,19 @@ namespace thepos
         }
 
 
-
         private void ClickedGoodsItem(int i)
         {
 
             if (mGoodsItem[i].online_coupon == "Y")
             {
-                // 별도 쿠폰메뉴 버튼 사용용망
+                // [쿠폰]버튼 기능과 동일.
+                flow_cert();
 
-
+                return;
             }
 
 
-
             // 옵션항목 목록: frmOrderOption에서 채운다.
-
             mOrderOptionItemList.Clear();
 
             int order_cnt = 1;
@@ -555,31 +554,25 @@ namespace thepos
 
                 // 수량을 전역변수에서 받음 : fk30fgu9w04ufgw
                 order_cnt = mOrderCntInOption;
-
             }
 
 
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  // 이미  동일 상품이 주문리스트뷰에 있는지
+            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
 
             if (lv_idx == -1)
             {
-
                 //
                 orderItem.option_name_description = "";   // 리스트뷰 상품항목 아랫줄에 표시
                 orderItem.option_amt_description = "";    // 리스트뷰 단가항목 아랫줄에 표시
-
-
                 
                 // DB저장후에  : orderItem.optionNo 이 생김...
-                
 
                 if (mOrderOptionItemList.Count > 0)
                 {
                     for (int k = 0;  k < mOrderOptionItemList.Count; k++)
                     {
                         orderItem.option_name_description += " " + mOrderOptionItemList[k].option_item_name;
-
                         orderItem.option_amt += (int)mOrderOptionItemList[k].amt;
                     }
                 }
@@ -606,11 +599,8 @@ namespace thepos
                 orderItem.taxfree = mGoodsItem[i].taxfree;
                 orderItem.allim = mGoodsItem[i].allim;
 
-
                 orderItem.cnt = order_cnt;
-
                 orderItem.amt = mGoodsItem[i].amt;
-                //orderItem.option_amt    // 위에서 세팅
 
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
@@ -624,21 +614,101 @@ namespace thepos
                 lvwOrderItem.SetObjects(mOrderItemList);
 
                 lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
-                lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
+                //lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
 
-                // 전체할인이 있으면 주문항목 가장 아래로 이동???
-                //move_dcr_e_last();
+                bool is_move = if_is_dcr_e_move_last();
 
+                if (is_move)
+                {
+                    recalculate_dcr_e_dc_amount(lvwOrderItem.Items.Count - 2);
+                }
+                else
+                {
+                    recalculate_dcr_e_dc_amount(lvwOrderItem.Items.Count - 1);
+                }
+                    
             }
             else
             {
-                set_item_change_ordercnt(lv_idx, "add", 1);
+                set_item_change_ordercnt(lv_idx, "add", order_cnt);
                 lvwOrderItem.Items[lv_idx].EnsureVisible();
-                lvwOrderItem.Items[lv_idx].Selected = true;
+                //lvwOrderItem.Items[lv_idx].Selected = true;
+
+                recalculate_dcr_e_dc_amount(lv_idx);
             }
+
 
             ReCalculateAmount();
         }
+
+        bool if_is_dcr_e_move_last()
+        {
+            //?? 전체할인은 맨아래로 내린다
+            int dcr_e_idx = get_lv_DCR("E");
+            if (dcr_e_idx > -1)
+            {
+                if (mOrderItemList.Count == dcr_e_idx + 2)
+                {
+                    MemOrderItem temp1 = mOrderItemList[dcr_e_idx];
+                    MemOrderItem temp2 = mOrderItemList[dcr_e_idx + 1];
+
+                    temp1.lv_order_no++;
+                    temp2.lv_order_no--;
+
+                    mOrderItemList[dcr_e_idx] = temp2;
+                    mOrderItemList[dcr_e_idx + 1] = temp1;
+
+                    lvwOrderItem.SetObjects(mOrderItemList);
+                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
+                    //lvwOrderItem.Items[dcr_e_idx].Selected = true;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        void recalculate_dcr_e_dc_amount(int selected_idx)
+        {
+            //?? 전체할인 비율이면 다시 계산
+            int dcr_e_idx = get_lv_DCR("E");
+            if (dcr_e_idx > -1)
+            {
+                if (mOrderItemList[dcr_e_idx].dcr_type == "R")
+                {
+                    int t_amount = 0;
+                    int t_dc_amount = 0;
+                    for (int i = 0; i < mOrderItemList.Count; i++)
+                    {
+                        if (dcr_e_idx != i)  // 전체할인항목 레코드는 합계에서 제외
+                        {
+                            t_amount += ((mOrderItemList[i].amt + mOrderItemList[i].option_amt) * mOrderItemList[i].cnt);
+                        }
+                    }
+                    t_dc_amount = (t_amount * mOrderItemList[dcr_e_idx].dcr_value) / 100;
+
+
+                    MemOrderItem orderItem = mOrderItemList[dcr_e_idx];
+                    orderItem.dc_amount = t_dc_amount;
+
+                    replace_mem_order_item(ref orderItem, "update");
+
+                    mOrderItemList[dcr_e_idx] = orderItem;
+
+                    lvwOrderItem.SetObjects(mOrderItemList);
+                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
+                    
+                }
+            }
+            
+            if (selected_idx > -1)
+            {
+                lvwOrderItem.Items[selected_idx].Selected = true;
+            }
+        }
+
+
 
         public static void replace_mem_order_item(ref MemOrderItem orderItem, String job)
         {
@@ -704,6 +774,11 @@ namespace thepos
         //
         private void btnFlowCert_Click(object sender, EventArgs e)
         {
+            flow_cert();
+        }
+
+        void flow_cert()
+        { 
             // 클리어 확인후
             if (mLvwOrderItem.Items.Count > 0)
             {
@@ -719,7 +794,6 @@ namespace thepos
                     return;
                 }
             }
-
 
 
             ConsoleDisable();
@@ -769,7 +843,7 @@ namespace thepos
 
             ConsoleDisable();
 
-            //#
+            //
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
@@ -849,7 +923,7 @@ namespace thepos
             countup_the_no();
             ConsoleDisable();
 
-            //#
+            //
             int select_idx = -1;
 
             if (mPayClass == "CH")
@@ -905,7 +979,7 @@ namespace thepos
             countup_the_no();
             ConsoleDisable();
 
-            //#
+            //
             int select_idx = -1;
 
             if (mPayClass == "CH")
@@ -958,7 +1032,7 @@ namespace thepos
             countup_the_no();
             ConsoleDisable();
 
-            //#
+            //
             mPanelPayment.Visible = true;
             mPanelPayment.Controls.Clear();
 
@@ -1002,7 +1076,7 @@ namespace thepos
             countup_the_no();
             ConsoleDisable();
 
-            //#
+            //
             int select_idx = -1;
 
             if (mPayClass == "CH")
@@ -1059,7 +1133,7 @@ namespace thepos
             countup_the_no();
             ConsoleDisable();
 
-            //#
+            //
             int select_idx = -1;
 
             if (mPayClass == "CH")
@@ -1168,7 +1242,7 @@ namespace thepos
                             parameters["goodsName"] = arr[i]["goodsName"].ToString();
                             parameters["cnt"] = arr[i]["cnt"].ToString();
                             parameters["amt"] = arr[i]["amt"].ToString();
-                            parameters["optionAmt"] = arr[i]["optionAmt"].ToString();  //#
+                            parameters["optionAmt"] = arr[i]["optionAmt"].ToString();
 
                             parameters["ticketYn"] = arr[i]["ticketYn"].ToString();
                             parameters["taxFree"] = arr[i]["taxFree"].ToString();
@@ -1379,8 +1453,7 @@ namespace thepos
                 dcAmount += mOrderItemList[i].dc_amount;
             }
 
-            //#  이거때문에 주문번호가 시리얼하지않고 중간에 빈다. 2024-03-07
-            //shop_code_list.Distinct().ToList();
+            // 동일한 번호 하나로 팩
             shop_code_list = shop_code_list.Distinct().ToList();
 
 
@@ -1473,35 +1546,6 @@ namespace thepos
 
             return memOrderItemArr;
         }
-
-
-        public static bool xxx_isExistOrderPrinter(String shop_code)
-        {
-            if (shop_code == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-
-            /*
-            for (int i = 0; i < mShop.Length; i++)
-            {
-                if (mShop[i].shop_code == shop_code)
-                {
-                    if (mShop[i].printer_type == "")
-                        return false;
-                    else
-                        return true;
-                }
-            }
-
-            return false;
-            */
-        }
-
 
 
         public static int SaveOrder(String ticket_no)
@@ -2716,6 +2760,8 @@ namespace thepos
 
                 //lvwOrderItem.SelectedItems[0].Remove();
 
+                int selected_idx = -1;
+
                 if (idx == lvwOrderItem.Items.Count & idx == 0)
                 {
                     // 
@@ -2723,12 +2769,15 @@ namespace thepos
                 else if (idx == lvwOrderItem.Items.Count)
                 {
                     lvwOrderItem.Items[idx - 1].Selected = true;
+                    selected_idx = idx - 1;
                 }
                 else
                 {
                     lvwOrderItem.Items[idx].Selected = true;
+                    selected_idx = idx;
                 }
 
+                recalculate_dcr_e_dc_amount(selected_idx);
 
                 ReCalculateAmount();
             }
@@ -2745,8 +2794,12 @@ namespace thepos
             {
                 if (amt > 0 & amt < 100000000)
                 {
-                    set_item_change_orderamt(lvwOrderItem.SelectedItems[0].Index, "set", amt);
+                    int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+                    set_item_change_orderamt(lv_idx, "set", amt);
                     tbKeyDisplay.Text = "";
+
+                    recalculate_dcr_e_dc_amount(lv_idx);
+
                     ReCalculateAmount();
                 }
                 else
@@ -2779,6 +2832,9 @@ namespace thepos
             }
 
             set_item_change_ordercnt(lv_idx, "add", -1);
+
+            recalculate_dcr_e_dc_amount(lv_idx);
+
             ReCalculateAmount();
 
         }
@@ -2800,6 +2856,9 @@ namespace thepos
             }
 
             set_item_change_ordercnt(lv_idx, "add", 1);
+
+            recalculate_dcr_e_dc_amount(lv_idx);
+
             ReCalculateAmount();
             
         }
@@ -2812,8 +2871,12 @@ namespace thepos
                 {
                     if (cnt > 0 & cnt < 1000)
                     {
-                        set_item_change_ordercnt(lvwOrderItem.SelectedItems[0].Index, "set", cnt);
+                        int lv_idx = lvwOrderItem.SelectedItems[0].Index;
+                        set_item_change_ordercnt(lv_idx, "set", cnt);
                         tbKeyDisplay.Text = "";
+
+                        recalculate_dcr_e_dc_amount(lv_idx);
+
                         ReCalculateAmount();
                     }
                     else
@@ -2838,7 +2901,7 @@ namespace thepos
         {
             ConsoleDisable();
 
-            //#
+            //
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
@@ -2857,7 +2920,7 @@ namespace thepos
             {
                 ConsoleDisable();
 
-                //#
+                //
                 mPanelMiddle.Controls.Clear();
                 mPanelMiddle.Visible = true;
 
@@ -2914,7 +2977,7 @@ namespace thepos
                 {
                     ConsoleDisable();
 
-                    //#
+                    //
                     mPanelMiddle.Visible = true;
                     mPanelMiddle.Controls.Clear();
 
@@ -2989,7 +3052,7 @@ namespace thepos
         {
             ConsoleDisable();
 
-            //#
+            //
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
@@ -3169,6 +3232,7 @@ namespace thepos
 
         public static void ReCalculateAmount()
         {
+
             int Amount = 0;
             int dcAmount = 0;
             mNetAmount = 0;
@@ -3182,6 +3246,7 @@ namespace thepos
                 dcAmount += orderItem.dc_amount;                    // 할인금액
                 mNetAmount += orderItem.net_amount;      // 결제금액
             }
+
 
             mLblOrderAmount.Text = Amount.ToString("N0");
             mLblOrderAmountDC.Text = dcAmount.ToString("N0");
@@ -3384,12 +3449,18 @@ namespace thepos
         public static int get_lvitem_idx(string code)
         {
             // 옵션이 있는 항목은 상품코드가 동일해도 다른 상품으로 간주한다.
+            //?? 아니면 옵션을 어떻게 동일한지 구분하는 방법은?
 
+
+            // mOrderOptionItemList  <-  옵션아이템선택화면 전역변수
 
             for (int i = 0; i < mOrderItemList.Count; i++)
             {
-                if (code == mOrderItemList[i].goods_code & mOrderItemList[i].option_item_cnt == 0)
-                { return i; }
+
+                if (code == mOrderItemList[i].goods_code & mOrderItemList[i].orderOptionItemList.SequenceEqual(mOrderOptionItemList))
+                { 
+                    return i; 
+                }
             }
             return -1;
         }
@@ -3591,7 +3662,7 @@ namespace thepos
             String pay_keep_card = pay_keep.Substring(1, 1);
             String pay_keep_point = pay_keep.Substring(2, 1);
             String pay_keep_easy = pay_keep.Substring(3, 1);
-            String pay_keep_cert = pay_keep.Substring(4, 1);   //?# 쿠폰인증
+            String pay_keep_cert = pay_keep.Substring(4, 1);   // 쿠폰인증
 
 
             //!
@@ -3787,7 +3858,7 @@ namespace thepos
                         }
 
                         
-                        //?  전체할인인 경우 과세가액 계산.. 아래로직을 [여기]로 옮겨야하나??
+                        //??  전체할인인 경우 과세가액 계산.. 아래로직을 [여기]로 옮겨야하나??
                         if (arr[i]["taxFree"].ToString() == "Y") t면세가액 += ((cnt * (amt + option_amt)) - dc_amt);
                         else t과세가액 += ((cnt * (amt + option_amt)) - dc_amt);
 
@@ -3866,7 +3937,7 @@ namespace thepos
 
 
 
-            //! 현금결제
+            // 현금결제
             if (pay_keep_cash == "1")
             {
                 sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo;
@@ -3980,7 +4051,7 @@ namespace thepos
             }
 
 
-            //! 카드결제
+            // 카드결제
             if (pay_keep_card == "1")
             {
                 sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo;
@@ -4061,7 +4132,7 @@ namespace thepos
             }
 
 
-            //! 포인트
+            // 포인트
             if (pay_keep_point == "1")
             {
                 sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo;
@@ -4111,7 +4182,7 @@ namespace thepos
             }
 
 
-            //? 간편결제
+            // 간편결제
             if (pay_keep_easy == "1")
             {
                 sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
@@ -4187,7 +4258,7 @@ namespace thepos
                 }
             }
 
-            //?#  쿠폰인증 추가개발 필요
+            //  쿠폰인증 추가개발 필요
             if (pay_keep_cert == "1")
             {
                 sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo;
@@ -4283,8 +4354,6 @@ namespace thepos
 
 
 
-
-
         public static byte[] CutPage()
         {
             byte[] partial_cut = new byte[3] { 0x1D, 0x56, 0x00 };
@@ -4348,8 +4417,6 @@ namespace thepos
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
 
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
@@ -4380,9 +4447,20 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOff);
                 BytesValue = PrintExtensions.AddBytes(BytesValue, BoldOff);
 
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+                if (false)
+                {
+                    strPrint = "- 1 매 - ";
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                }
+
 
                 strPrint = mBizDate.Substring(0,4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
@@ -4391,23 +4469,37 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-
                 if ((t_coupon_no + "").Length > 0)
                 {
                     strPrint = "쿠폰번호 : " + t_coupon_no;
                     BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 }
-
-
-
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
-                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
                 // 티켓번호 :  바코드
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.BarCode.Code128(t_ticket_no));
                 
 
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+
+
+                // 티켓 추가 텍스트                
+                if (mTicketAddText != "")
+                {
+                    strPrint = "------------------------------------------";
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
+
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(mTicketAddText));
+                }
+
+                
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());

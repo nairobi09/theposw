@@ -485,6 +485,7 @@
             // btnCoupon
             // 
             this.btnCoupon.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCoupon.Enabled = false;
             this.btnCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCoupon.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCoupon.ForeColor = System.Drawing.Color.White;

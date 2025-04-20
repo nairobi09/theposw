@@ -70,7 +70,7 @@ namespace thepos
             // pay_keep = is_cash + is_card + is_point + is_easy;
             if (pay_keep.Substring(0, 1) == "1") // cash
             {
-                //#
+                //
                 String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
                 if (mRequestGet(url))
                 {
@@ -92,7 +92,7 @@ namespace thepos
 
             if (pay_keep.Substring(1, 1) == "1") // card
             {
-                //#
+                //
                 String url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
                 if (mRequestGet(url))
                 {
@@ -114,7 +114,7 @@ namespace thepos
 
             if (pay_keep.Substring(2, 1) == "1") // point
             {
-                //#
+                //
                 String url = "paymentPoint?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no;
                 if (mRequestGet(url))
                 {
@@ -136,7 +136,7 @@ namespace thepos
 
             if (pay_keep.Substring(3, 1) == "1") // easy
             {
-                //#
+                //
                 String url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
                 if (mRequestGet(url))
                 {
@@ -158,7 +158,7 @@ namespace thepos
 
             if (pay_keep.Substring(4, 1) == "1") // cert
             {
-                //#
+                //
                 String url = "paymentCert?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
                 if (mRequestGet(url))
                 {
@@ -464,7 +464,7 @@ namespace thepos
                     cancel_payment(pay_seq, pCardAuth.amount, pay_type, is_cancel_stat);
 
 
-                    //# 취소건 추가
+                    // 취소건 추가
                     parameters["siteId"] = mSiteId;
                     parameters["posNo"] = mPosNo;
                     parameters["bizDt"] = mBizDate;
@@ -521,7 +521,7 @@ namespace thepos
                     
 
 
-                    //# 승인건에 취소마킹
+                    // 승인건에 취소마킹
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["bizDt"] = selected_biz_date;
@@ -574,7 +574,7 @@ namespace thepos
                 PaymentCash pCashAuth = new PaymentCash();
 
 
-                //#
+                //
                 String sUrl = "paymentCash?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A&paySeq=" + pay_seq;
                 if (mRequestGet(sUrl))
                 {
@@ -740,7 +740,7 @@ namespace thepos
                     cancel_payment(pay_seq, pCashAuth.amount, pay_type, is_cancel_stat);
 
 
-                    //# paymentCash 취소건 추가
+                    // paymentCash 취소건 추가
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["bizDt"] = mBizDate;
@@ -787,7 +787,7 @@ namespace thepos
 
 
 
-                    //# 승인건에 취소마킹
+                    // 승인건에 취소마킹
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["bizDt"] = selected_biz_date;
@@ -1361,7 +1361,7 @@ namespace thepos
             // orders
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-            //# 승인건 취소 마킹
+            // 승인건 취소 마킹
             parameters.Clear();
             parameters["siteId"] = mSiteId;
             parameters["bizDt"] = selected_biz_date;
@@ -1386,7 +1386,7 @@ namespace thepos
             }
 
 
-            //# orders 취소건 추가
+            // orders 취소건 추가
             String sUrl = "orders?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
@@ -1474,7 +1474,7 @@ namespace thepos
             // orderItem
 
 
-            //# orderItem 승인건 취소마킹
+            // orderItem 승인건 취소마킹
             parameters.Clear();
             parameters["siteId"] = mSiteId;
             parameters["bizDt"] = selected_biz_date;
@@ -1501,7 +1501,7 @@ namespace thepos
 
 
 
-            //# orderItem 취소건 추가
+            // orderItem 취소건 추가
             sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + selected_biz_date + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
@@ -1578,7 +1578,7 @@ namespace thepos
             
 
 
-            //# orderOptionItem 승인건 취소마킹
+            // orderOptionItem 승인건 취소마킹
             parameters.Clear();
             parameters["siteId"] = mSiteId;
             parameters["bizDt"] = selected_biz_date;
@@ -1613,7 +1613,7 @@ namespace thepos
 
             if (get_payment("A", selected_biz_date,  the_no, out paymentAuth) == 1)  // 선택일자의 승인건
             {
-                //# 승인건 취소마킹
+                // 승인건 취소마킹
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;

@@ -720,7 +720,7 @@ namespace thepos
             int select_idx = lvwPayManager.SelectedItems[0].Index;
 
 
-            //#
+            //
             mPanelCancel.Controls.Clear();
             mPanelCancel.Visible = true;
 

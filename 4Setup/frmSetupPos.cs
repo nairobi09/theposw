@@ -16,23 +16,16 @@ using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 
 
-
 //? 포스별 설정 항목
 
 /*
-
 
  * 
  * 컴포트 : 영수증프린터, 라벨프린터 
  * 클라이언트유형? : PC, 포스, 키오스크 -> 마우스포인터 표시여부
  * 
 
-
-
-
-
 */
-
 
 namespace thepos
 {
@@ -45,7 +38,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[11];
+        Setup[] listSetup = new Setup[12];
 
 
         bool isAdd = false;
@@ -77,6 +70,11 @@ namespace thepos
 
             // 고객화면 이미지
             setupItem.code = "SubMonitorImage";       setupItem.name = "고객화면 이미지"; setupItem.value = ""; setupItem.memo = "300*700 jpg"; listSetup[10] = setupItem;
+
+            // 티켓출력물 추가 텍스트
+            setupItem.code = "TicketAddText";         setupItem.name = "티켓출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[11] = setupItem;
+
+
 
             reload_setup_pos();
         }
@@ -164,6 +162,7 @@ namespace thepos
             cbValue.Visible = false;
             tbValue.Visible = false;
             panelImage.Visible = false;
+            panelMultiText.Visible = false;
 
 
             cbValue.SelectedIndex = -1;
@@ -259,6 +258,13 @@ namespace thepos
                     pbImage.Image = null;
                 }
             }
+            else if (code == listSetup[11].code)
+            {
+                panelMultiText.Visible = true;
+
+                tbMultiValue.Text = lblValue.Text;
+
+            }
 
         }
 
@@ -267,6 +273,11 @@ namespace thepos
             if (cbValue.Visible)
             {
                 lvwList.SelectedItems[0].SubItems[2].Text = cbValue.Text;
+                lvwList.SelectedItems[0].SubItems[4].Text = "변경";
+            }
+            else if (tbMultiValue.Visible)
+            {
+                lvwList.SelectedItems[0].SubItems[2].Text = tbMultiValue.Text;
                 lvwList.SelectedItems[0].SubItems[4].Text = "변경";
             }
             else
@@ -353,6 +364,8 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "CouponMID") mCouponMID = lvwList.Items[i].SubItems[1].Text;
 
                 else if (lvwList.Items[i].Tag.ToString() == "SubMonitorImage") mSubMonitorImage = lvwList.Items[i].SubItems[1].Text;
+
+                else if (lvwList.Items[i].Tag.ToString() == "TicketAddText") mTicketAddText = lvwList.Items[i].SubItems[1].Text;
             }
 
 

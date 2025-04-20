@@ -62,7 +62,7 @@ namespace thepos
             lvwList.Items.Clear();
 
 
-            //#
+            //
             String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
@@ -81,7 +81,7 @@ namespace thepos
                 MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
             }
 
-            //#
+            //
             url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
@@ -101,7 +101,7 @@ namespace thepos
             }
 
 
-            //#
+            //
             url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {

@@ -167,7 +167,7 @@
             // 
             this.c5.Text = "";
             this.c5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c5.Width = 90;
+            this.c5.Width = 80;
             // 
             // tvwList
             // 

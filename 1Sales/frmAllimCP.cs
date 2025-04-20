@@ -167,11 +167,39 @@ namespace theposw
 
             String tTheNo = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(the_no)].Text;
             String tShopOrderNo = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(shop_order_no)].Text;
+            //
+            String tAllimTypeCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(allim_type_code)].Text;
+            String tAllimStatusCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(allim_status_code)].Text;
+            String tIsCancel = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(cancel)].Text;
+
 
 
             //
-            String tAllimStatusCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(allim_status_code)].Text;
+            if (tAllimTypeCode.Equals("AT"))
+            {
+                if (tAllimStatusCode.Equals("0") | tAllimStatusCode.Equals("1"))
+                {
+                    if (tIsCancel.Equals("Y"))
+                    {
+                        btnAllimSendCP.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAllimSendCP.Enabled = true;
+                    }
+                }
+                else
+                {
+                    btnAllimSendCP.Enabled = false;
+                }
+            }
+            else
+            {
+                btnAllimSendCP.Enabled = false;
+            }
 
+
+            //
             if (tAllimStatusCode.Equals("0") | tAllimStatusCode.Equals("1"))
             {
                 btnAllimFinish.Enabled = true;
@@ -181,18 +209,6 @@ namespace theposw
                 btnAllimFinish.Enabled = false;
             }
 
-
-            //
-            String tAllimTypeCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(allim_type_code)].Text;
-
-            if (tAllimTypeCode.Equals("AT"))
-            {
-                btnAllimSendCP.Enabled = true;
-            }
-            else
-            {
-                btnAllimSendCP.Enabled = false;
-            }
 
 
             //
@@ -245,7 +261,6 @@ namespace theposw
                                 MessageBox.Show("시스템오류. orderOptionItem\n\n" + mErrorMsg, "thepos");
                             }
                         }
-
                     }
                 }
                 else
@@ -257,7 +272,6 @@ namespace theposw
             {
                 MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
             }
-
 
         }
 

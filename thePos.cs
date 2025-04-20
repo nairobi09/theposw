@@ -610,6 +610,10 @@ namespace thepos
             public String coupon_no;    // 
             public String is_cancel;    // 취소여부
             public String van_code;
+
+            public int cnt;
+            public String coupon_link_no;
+
         }
         public static List<PaymentCert> mPaymentCerts = new List<PaymentCert>();
 
@@ -671,9 +675,6 @@ namespace thepos
 
 
 
-        public static bool mNetworkState;  
-        public static bool mPrevNetworkState;
-
         //public static String mTheMode = "";  // Server Local
 
 
@@ -707,14 +708,14 @@ namespace thepos
         public static String mTicketPrinterSpeed = "";
 
 
-
-
         public static String mVanTID = "";    // 결제밴 T-ID
 
         // 앞으로 쿠폰 채널 
         public static String mCouponMID = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
 
         public static String mSubMonitorImage = "";   
+        public static String mTicketAddText = "";   
+
 
 
         //Local DB

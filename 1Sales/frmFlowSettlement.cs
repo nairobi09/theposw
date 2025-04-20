@@ -924,7 +924,7 @@ namespace thepos
             //
             void get_the_no(String tran_type, String pay_class)
             {
-                //#
+                //
                 String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&tranType=" + tran_type + "&payClass=" + pay_class;
                 if (mRequestGet(url))
                 {
@@ -943,7 +943,7 @@ namespace thepos
                     MessageBox.Show("시스템오류. paymentCash\n\n" + mErrorMsg, "thepos");
                 }
 
-                //#
+                //
                 url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&&tranType=" + tran_type + "&payClass=" + pay_class;
                 if (mRequestGet(url))
                 {
@@ -962,7 +962,7 @@ namespace thepos
                     MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
                 }
 
-                //#
+                //
                 url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + mThisBizDt + "&ticketNo=" + mSelectedTicketNo + "&&tranType=" + tran_type + "&payClass=" + pay_class;
                 if (mRequestGet(url))
                 {
