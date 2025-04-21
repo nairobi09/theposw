@@ -428,7 +428,7 @@ namespace thepos
                 }
                 else  // F:마감 Y:집계완료 X:초기상태
                 {
-                    return false;
+                    return true;
                 }
             }
             else
@@ -1196,8 +1196,21 @@ namespace thepos
                 clear_login_init();  // 초기화
 
 
-                //
-                fSub.Close();
+                // 고객화면이 떠있으면 종료
+                bool isSubForm = false;
+                foreach (Form f in System.Windows.Forms.Application.OpenForms)
+                {
+                    if (f.Name == "frmSub")
+                    {
+                        isSubForm = true;
+                    }
+                }
+                
+                if (isSubForm)
+                {
+                    fSub.Close();
+                }
+
 
 
 
