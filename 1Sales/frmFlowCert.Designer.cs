@@ -335,13 +335,14 @@
             // 
             this.tbCouponNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbCouponNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbCouponNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCouponNo.Font = new System.Drawing.Font("굴림", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCouponNo.Location = new System.Drawing.Point(91, 22);
             this.tbCouponNo.MaxLength = 40;
             this.tbCouponNo.Name = "tbCouponNo";
-            this.tbCouponNo.Size = new System.Drawing.Size(249, 26);
+            this.tbCouponNo.Size = new System.Drawing.Size(249, 27);
             this.tbCouponNo.TabIndex = 0;
             this.tbCouponNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCouponNo_KeyDown);
+            this.tbCouponNo.Leave += new System.EventHandler(this.tbCouponNo_Leave);
             // 
             // lblNoTitle
             // 

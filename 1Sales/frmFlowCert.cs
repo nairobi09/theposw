@@ -42,6 +42,9 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.tbCouponNo.Leave -= new System.EventHandler(this.tbCouponNo_Leave);
+
+
             // 주문리스트뷰를 클리어
             mOrderItemList.Clear();
             mLvwOrderItem.SetObjects(mOrderItemList);
@@ -64,16 +67,22 @@ namespace thepos
         {
             if (e.KeyCode == Keys.Enter)
             {
-                tbCouponNo.Enabled = false;
-
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                
                 view_reload();
 
-                tbCouponNo.Enabled = true;
+                tbCouponNo.Clear();
+                tbCouponNo.Focus();
             }
         }
         private void btnView_Click(object sender, EventArgs e)
         {
             //
+
+            // 샘플 티켓 출력용 - 테스트
+            //print_ticket("2501202504180186171301", "100004", "6976680442186471");
+
 
             view_reload();
         }
@@ -580,6 +589,10 @@ namespace thepos
 
         }
 
+        private void tbCouponNo_Leave(object sender, EventArgs e)
+        {
+            tbCouponNo.Focus();
+        }
 
     }
 }

@@ -1212,8 +1212,6 @@ namespace thepos
                 }
 
 
-
-
                 panelLogin.Visible = true;
 
 

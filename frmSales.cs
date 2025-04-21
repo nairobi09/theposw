@@ -127,19 +127,25 @@ namespace thepos
 
             if (mPosType == "POS-Ticket" |  mPosType == "PC-Ticket")
             {
-                // 티켓버튼 레이아웃으로 변경
-
-
                 // 티켓플로패널
                 panelFlowConsole.Visible = true;
 
                 btnOrderWaiting.Size = new Size(124, 48);
 
-
                 // 결제내역관리
                 btnPayManager.Location = new Point(350, 313);
                 btnPayManager.Size = new Size(124, 48);
+            }
+            else
+            {
+                // 티켓플로패널
+                panelFlowConsole.Visible = false;
 
+                btnOrderWaiting.Size = new Size(124, 100);
+
+                // 결제내역관리
+                btnPayManager.Location = new Point(350, 157);
+                btnPayManager.Size = new Size(124, 204);
             }
 
 
@@ -4452,7 +4458,7 @@ namespace thepos
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
 
 
-                if (false)
+                if (true)
                 {
                     strPrint = "- 1 매 - ";
                     BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
