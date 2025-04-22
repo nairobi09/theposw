@@ -1577,7 +1577,7 @@ namespace thepos
             }
             
 
-
+            //?? 옵션항목이 있을경우만 취소요청을 해야하는데 구분하는 방법 - 서버에서 업데이트 항목이 0건이면 정상응답주기로 함.  20250422
             // orderOptionItem 승인건 취소마킹
             parameters.Clear();
             parameters["siteId"] = mSiteId;
@@ -1593,13 +1593,13 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("오류. orderOptionItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. orderOptionItem\n\n" + mErrorMsg, "thepos");
                 return;
             }
             
