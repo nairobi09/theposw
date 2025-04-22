@@ -56,32 +56,39 @@ namespace thepos._1Sales
                         sumItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
 
                         //
-                        int link_goods_idx = -1;
-                        
                         String t_coupon_link_no = arr[i]["couponLinkNo"].ToString();
 
-
-
-                        for (int k = 0; k < mGoodsItem.Length; k++)
+                        if (t_coupon_link_no != "")
                         {
-                            if (t_coupon_link_no == mGoodsItem[k].coupon_link_no)
+                            int link_goods_idx = -1;
+                            for (int k = 0; k < mGoodsItem.Length; k++)
                             {
-                                link_goods_idx = k;
+                                if (t_coupon_link_no == mGoodsItem[k].coupon_link_no)
+                                {
+                                    link_goods_idx = k;
+                                }
                             }
-                        }
 
-                        String t_goods_code = "";
-                        String t_goods_name = "";
-                        if (link_goods_idx > -1)
+                            String t_goods_code = "";
+                            String t_goods_name = "";
+                            if (link_goods_idx > -1)
+                            {
+                                t_goods_code = mGoodsItem[link_goods_idx].goods_code;
+                                t_goods_name = mGoodsItem[link_goods_idx].goods_name;
+                            }
+    
+                            sumItem.SubItems.Add("[" + t_goods_code + "] " + t_goods_name);
+                        }
+                        else
                         {
-                            t_goods_code = mGoodsItem[link_goods_idx].goods_code;
-                            t_goods_name = mGoodsItem[link_goods_idx].goods_name;
+                            sumItem.SubItems.Add("");
                         }
 
 
-                        sumItem.SubItems.Add("[" + t_goods_code + "] " + t_goods_name);
 
-                        sumItem.SubItems.Add(arr[i]["cnt"].ToString());
+
+
+                            sumItem.SubItems.Add(arr[i]["cnt"].ToString());
 
                         sumItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
 

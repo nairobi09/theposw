@@ -156,13 +156,15 @@ namespace thepos
 
             ListViewItem lvItem = new ListViewItem();
 
-            String ustate_name = "";
 
-            // (1: 사용, 2: 미사용)
+            // (0:취소 1: 사용, 2: 미사용)
+            String ustate_name = "";
             if (ustate_code == "2")
                 ustate_name = "사용가능";
             else if (ustate_code == "1")
-                ustate_name = "기사용쿠폰";
+                ustate_name = "기사용티켓";
+            else if (ustate_code == "0")
+                ustate_name = "취소티켓";
             else
                 ustate_name = "";
 
@@ -558,7 +560,11 @@ namespace thepos
 
             parameters["couponNo"] = mPaymentCert.coupon_no;
             parameters["isCancel"] = mPaymentCert.is_cancel;
-            parameters["vanCode"] = mPaymentCert.van_code; ;
+            parameters["vanCode"] = mPaymentCert.van_code;
+
+            parameters["couponLinkNo"] = mPaymentCert.coupon_link_no;
+            parameters["cnt"] = mPaymentCert.cnt + "";
+
 
             if (mRequestPost("paymentCert", parameters))
             {
