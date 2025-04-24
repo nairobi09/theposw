@@ -200,7 +200,7 @@
             this.lblBizTelNo.AutoSize = true;
             this.lblBizTelNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBizTelNo.Location = new System.Drawing.Point(13, 164);
+            this.lblBizTelNo.Location = new System.Drawing.Point(13, 163);
             this.lblBizTelNo.Name = "lblBizTelNo";
             this.lblBizTelNo.Size = new System.Drawing.Size(63, 14);
             this.lblBizTelNo.TabIndex = 53;
@@ -211,7 +211,7 @@
             this.lblBizAddr.AutoSize = true;
             this.lblBizAddr.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizAddr.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblBizAddr.Location = new System.Drawing.Point(23, 145);
+            this.lblBizAddr.Location = new System.Drawing.Point(14, 136);
             this.lblBizAddr.Name = "lblBizAddr";
             this.lblBizAddr.Size = new System.Drawing.Size(35, 14);
             this.lblBizAddr.TabIndex = 53;

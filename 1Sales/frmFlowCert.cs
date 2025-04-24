@@ -93,7 +93,9 @@ namespace thepos
             mClearSaleForm();
 
 
-            if (tbCouponNo.Text.Trim() == "")
+            String t_coupon_no = tbCouponNo.Text.Replace("-", "");
+
+            if (t_coupon_no == "")
             {
                 return;
             }
@@ -113,7 +115,7 @@ namespace thepos
 
 
             couponTM p = new couponTM();
-            int ret = p.requestPmCertView(tbCouponNo.Text);
+            int ret = p.requestPmCertView(t_coupon_no);
 
             if (ret == 0)
             {

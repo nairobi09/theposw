@@ -66,8 +66,6 @@ namespace thepos._9SysAdmin
             parameters["initDt"] = get_today_date() + get_today_time();
             parameters["conCnt"] = "0";
 
-
-
             if (mRequestPost("pos", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
