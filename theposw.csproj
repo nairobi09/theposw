@@ -197,6 +197,12 @@
     <Compile Include="1Sales\frmAllimCP.Designer.cs">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysAdminLog.Designer.cs">
+      <DependentUpon>frmSysAdminLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="van\Toss\paymentToss.cs" />
     <Compile Include="van\PM\couponTM.cs" />
     <Compile Include="frmDevAdmin.cs">
@@ -553,6 +559,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmAllimOR.resx">
       <DependentUpon>frmAllimOR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysAdminLog.resx">
+      <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevAdmin.resx">
       <DependentUpon>frmDevAdmin.cs</DependentUpon>

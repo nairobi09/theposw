@@ -217,6 +217,16 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Log") return;
 
+            mThisButtonClick = "Log";
+            panelView.Controls.Clear();
+
+            frmSysAdminLog fSysAdmin = new frmSysAdminLog() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
     }
 }

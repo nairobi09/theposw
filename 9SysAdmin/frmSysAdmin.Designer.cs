@@ -46,6 +46,7 @@
             this.panelCertConsole = new System.Windows.Forms.Panel();
             this.btnPosMac = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
+            this.btnLog = new System.Windows.Forms.Button();
             this.panelAdminConsole.SuspendLayout();
             this.panelCertConsole.SuspendLayout();
             this.SuspendLayout();
@@ -263,12 +264,13 @@
             // 
             // panelCertConsole
             // 
+            this.panelCertConsole.Controls.Add(this.btnLog);
             this.panelCertConsole.Controls.Add(this.btnPosMac);
             this.panelCertConsole.Controls.Add(this.btnUser);
             this.panelCertConsole.Font = new System.Drawing.Font("맑은 고딕", 10F);
-            this.panelCertConsole.Location = new System.Drawing.Point(0, 639);
+            this.panelCertConsole.Location = new System.Drawing.Point(0, 634);
             this.panelCertConsole.Name = "panelCertConsole";
-            this.panelCertConsole.Size = new System.Drawing.Size(122, 68);
+            this.panelCertConsole.Size = new System.Drawing.Size(122, 86);
             this.panelCertConsole.TabIndex = 3;
             this.panelCertConsole.Visible = false;
             // 
@@ -281,7 +283,7 @@
             this.btnPosMac.Location = new System.Drawing.Point(7, 0);
             this.btnPosMac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPosMac.Name = "btnPosMac";
-            this.btnPosMac.Size = new System.Drawing.Size(112, 30);
+            this.btnPosMac.Size = new System.Drawing.Size(112, 25);
             this.btnPosMac.TabIndex = 1;
             this.btnPosMac.TabStop = false;
             this.btnPosMac.Text = "포스기기인증";
@@ -294,15 +296,31 @@
             this.btnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUser.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUser.ForeColor = System.Drawing.Color.Red;
-            this.btnUser.Location = new System.Drawing.Point(7, 33);
+            this.btnUser.Location = new System.Drawing.Point(7, 29);
             this.btnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUser.Name = "btnUser";
-            this.btnUser.Size = new System.Drawing.Size(112, 30);
+            this.btnUser.Size = new System.Drawing.Size(112, 25);
             this.btnUser.TabIndex = 2;
             this.btnUser.TabStop = false;
             this.btnUser.Text = "사용자인증";
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
+            // 
+            // btnLog
+            // 
+            this.btnLog.BackColor = System.Drawing.Color.White;
+            this.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLog.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLog.ForeColor = System.Drawing.Color.Red;
+            this.btnLog.Location = new System.Drawing.Point(6, 58);
+            this.btnLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(112, 25);
+            this.btnLog.TabIndex = 3;
+            this.btnLog.TabStop = false;
+            this.btnLog.Text = "로그";
+            this.btnLog.UseVisualStyleBackColor = false;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
             // frmSysAdmin
             // 
@@ -344,5 +362,6 @@
         private System.Windows.Forms.Button btnSysGoodsGroup2;
         private System.Windows.Forms.Button btnSysSoldout;
         private System.Windows.Forms.Button btnSysOption;
+        private System.Windows.Forms.Button btnLog;
     }
 }
