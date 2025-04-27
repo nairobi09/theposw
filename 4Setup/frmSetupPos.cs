@@ -228,7 +228,7 @@ namespace thepos
                 cbValue.Items.Add("57600");
                 cbValue.Items.Add("115200");
             }
-            else if (code == listSetup[8].code | code == listSetup[9].code)  // t-id
+            else if (code == listSetup[8].code | code == listSetup[9].code)  // t-id, MID
             {
                 tbValue.Visible = true;
 
@@ -296,42 +296,37 @@ namespace thepos
             //
             for (int i = 0; i < lvwList.Items.Count; i++)
             {
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-                parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mPosNo;
-                parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
-                parameters["setupName"] = lvwList.Items[i].Text;
-
-
                 if (lvwList.Items[i].SubItems[4].Text == "변경")
                 {
-                    parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
-                }
-                else
-                {
-                    parameters["setupValue"] = lvwList.Items[i].SubItems[1].Text;
-                }
-                        
-                        
-                parameters["memo"] = "";
+                    Dictionary<string, string> parameters = new Dictionary<string, string>();
 
-                if (mRequestPost("setupPos", parameters))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
+                    parameters["siteId"] = mSiteId;
+                    parameters["posNo"] = mPosNo;
+                    parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
+                    parameters["setupName"] = lvwList.Items[i].Text;
+
+                    // 변경값
+                    parameters["setupValue"] = lvwList.Items[i].SubItems[2].Text;
+
+                    parameters["memo"] = "";
+
+                    if (mRequestPost("setupPos", parameters))
                     {
-                            
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                            return;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("포스정보 오류. setupPos\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
                         return;
                     }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류. setupPos\n\n" + mErrorMsg, "thepos");
-                    return;
                 }
             }
 
