@@ -39,6 +39,9 @@
             this.goods_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.use_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnSaveExcel = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // btnView
@@ -47,7 +50,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(637, 27);
+            this.btnView.Location = new System.Drawing.Point(616, 23);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 97;
@@ -79,11 +82,11 @@
             // 
             // cbCoupon
             // 
-            this.cbCoupon.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbCoupon.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbCoupon.FormattingEnabled = true;
             this.cbCoupon.Location = new System.Drawing.Point(225, 27);
             this.cbCoupon.Name = "cbCoupon";
-            this.cbCoupon.Size = new System.Drawing.Size(148, 24);
+            this.cbCoupon.Size = new System.Drawing.Size(148, 21);
             this.cbCoupon.TabIndex = 99;
             this.cbCoupon.TabStop = false;
             // 
@@ -95,6 +98,7 @@
             this.link_no,
             this.goods_name,
             this.qty,
+            this.amount,
             this.use_date});
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
@@ -111,6 +115,7 @@
             // issuer
             // 
             this.issuer.Text = "쿠폰";
+            this.issuer.Width = 50;
             // 
             // coupon_no
             // 
@@ -125,22 +130,44 @@
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 200;
+            this.goods_name.Width = 180;
             // 
             // qty
             // 
             this.qty.Text = "수량";
             this.qty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.qty.Width = 50;
             // 
             // use_date
             // 
             this.use_date.Text = "사용일시";
-            this.use_date.Width = 140;
+            this.use_date.Width = 100;
+            // 
+            // amount
+            // 
+            this.amount.Text = "금액";
+            this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount.Width = 80;
+            // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.BackColor = System.Drawing.Color.White;
+            this.btnSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveExcel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSaveExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnSaveExcel.Location = new System.Drawing.Point(722, 23);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(57, 27);
+            this.btnSaveExcel.TabIndex = 101;
+            this.btnSaveExcel.Text = "엑셀";
+            this.btnSaveExcel.UseVisualStyleBackColor = false;
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
             // frmReportCoupon
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.cbCoupon);
             this.Controls.Add(this.btnView);
@@ -167,5 +194,8 @@
         private System.Windows.Forms.ColumnHeader qty;
         private System.Windows.Forms.ColumnHeader use_date;
         private System.Windows.Forms.ColumnHeader issuer;
+        private System.Windows.Forms.ColumnHeader amount;
+        private System.Windows.Forms.Button btnSaveExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

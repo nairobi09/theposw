@@ -46,7 +46,7 @@ namespace thepos._9SysAdmin
 
             String t_date = dtpBizDate.Value.ToString("yyyyMMdd");
 
-            String sUrl = "theposAppLog?logDate=" + t_date + "&siteId=" + tbSiteId.Text;
+            String sUrl = "theposAppLog?logDate=" + t_date + "&siteId=" + tbSiteId.Text + "&posNo=" + tbPosNo.Text + "&logTime=" + tbFromTime.Text;
 
             if (mRequestGet(sUrl))
             {
@@ -65,6 +65,16 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["formName"].ToString());
                         lvItem.SubItems.Add(arr[i]["formAction"].ToString());
                         lvItem.SubItems.Add(arr[i]["formMemo"].ToString());
+
+                        if (arr[i]["logLevel"].ToString() == "2")
+                        {
+                            lvItem.ForeColor = Color.Blue;
+                        }
+                        else if (arr[i]["logLevel"].ToString() == "3")
+                        {
+                            lvItem.ForeColor = Color.Red;
+                        }
+
                         lvwList.Items.Add(lvItem);
                     }
                 }

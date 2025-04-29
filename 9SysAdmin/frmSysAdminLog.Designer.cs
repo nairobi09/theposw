@@ -29,17 +29,19 @@
         private void InitializeComponent()
         {
             this.lvwList = new System.Windows.Forms.ListView();
+            this.log_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.log_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SiteId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PosNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.formName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.formAction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.log_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.formMemo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
             this.btnView = new System.Windows.Forms.Button();
+            this.tbPosNo = new System.Windows.Forms.TextBox();
+            this.tbFromTime = new System.Windows.Forms.TextBox();
             this.tbSiteId = new System.Windows.Forms.TextBox();
-            this.log_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.formMemo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -63,37 +65,46 @@
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
             // 
+            // log_date
+            // 
+            this.log_date.Text = "date";
+            this.log_date.Width = 70;
+            // 
+            // log_time
+            // 
+            this.log_time.Text = "time";
+            // 
             // SiteId
             // 
-            this.SiteId.Text = "SiteId";
+            this.SiteId.Text = "Ssite";
             this.SiteId.Width = 50;
             // 
             // PosNo
             // 
-            this.PosNo.Text = "PosNo";
+            this.PosNo.Text = "pos";
             this.PosNo.Width = 40;
             // 
             // formName
             // 
-            this.formName.Text = "formName";
+            this.formName.Text = "form";
             this.formName.Width = 120;
             // 
             // formAction
             // 
-            this.formAction.Text = "formAction";
+            this.formAction.Text = "action";
             this.formAction.Width = 150;
             // 
-            // log_date
+            // formMemo
             // 
-            this.log_date.Text = "일자";
-            this.log_date.Width = 80;
+            this.formMemo.Text = "memo";
+            this.formMemo.Width = 330;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(12, 24);
+            this.lblTitle.Location = new System.Drawing.Point(408, 26);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(35, 14);
             this.lblTitle.TabIndex = 29;
@@ -104,10 +115,11 @@
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(533, 24);
+            this.dtpBizDate.Location = new System.Drawing.Point(12, 24);
             this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
+            this.dtpBizDate.Size = new System.Drawing.Size(92, 23);
             this.dtpBizDate.TabIndex = 86;
+            this.dtpBizDate.TabStop = false;
             // 
             // btnView
             // 
@@ -119,33 +131,50 @@
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 85;
+            this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
+            // tbPosNo
+            // 
+            this.tbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbPosNo.Location = new System.Drawing.Point(234, 24);
+            this.tbPosNo.MaxLength = 2;
+            this.tbPosNo.Name = "tbPosNo";
+            this.tbPosNo.Size = new System.Drawing.Size(31, 23);
+            this.tbPosNo.TabIndex = 88;
+            this.tbPosNo.TabStop = false;
+            // 
+            // tbFromTime
+            // 
+            this.tbFromTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbFromTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbFromTime.Location = new System.Drawing.Point(110, 24);
+            this.tbFromTime.MaxLength = 6;
+            this.tbFromTime.Name = "tbFromTime";
+            this.tbFromTime.Size = new System.Drawing.Size(54, 23);
+            this.tbFromTime.TabIndex = 89;
+            this.tbFromTime.TabStop = false;
+            // 
             // tbSiteId
             // 
-            this.tbSiteId.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteId.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbSiteId.Location = new System.Drawing.Point(649, 21);
+            this.tbSiteId.Location = new System.Drawing.Point(187, 24);
             this.tbSiteId.MaxLength = 4;
             this.tbSiteId.Name = "tbSiteId";
-            this.tbSiteId.Size = new System.Drawing.Size(76, 26);
+            this.tbSiteId.Size = new System.Drawing.Size(41, 23);
             this.tbSiteId.TabIndex = 87;
-            // 
-            // log_time
-            // 
-            this.log_time.Text = "시간";
-            // 
-            // formMemo
-            // 
-            this.formMemo.Text = "formMemo";
-            this.formMemo.Width = 300;
+            this.tbSiteId.TabStop = false;
             // 
             // frmSysAdminLog
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.tbFromTime);
+            this.Controls.Add(this.tbPosNo);
             this.Controls.Add(this.tbSiteId);
             this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.btnView);
@@ -154,7 +183,7 @@
             this.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSysAdminLog";
-            this.Text = "frmSysAdminUser";
+            this.Text = " ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,8 +200,10 @@
         private System.Windows.Forms.ColumnHeader PosNo;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.TextBox tbSiteId;
         private System.Windows.Forms.ColumnHeader log_time;
         private System.Windows.Forms.ColumnHeader formMemo;
+        private System.Windows.Forms.TextBox tbPosNo;
+        private System.Windows.Forms.TextBox tbFromTime;
+        private System.Windows.Forms.TextBox tbSiteId;
     }
 }
