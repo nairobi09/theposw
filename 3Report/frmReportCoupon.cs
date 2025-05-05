@@ -45,7 +45,7 @@ namespace thepos._1Sales
             int tot_amount = 0;
 
 
-            String sUrl = "paymentCert?siteId=" + mSiteId + "&bizDt=" + thisBizDt;
+            String sUrl = "paymentCert?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&isCancel=";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

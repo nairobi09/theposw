@@ -20,7 +20,7 @@ namespace thepos
         String TM_URL = "https://gateway.ticketmanager.ai/";
 
 
-        public int requestPmCertView(String tCouponNo)
+        public int requestTmCertView(String tCouponNo)
         {
             var baseAddress = new Uri(TM_URL);
 
@@ -50,7 +50,7 @@ namespace thepos
 
 
 
-        public int requestPmCertAuth(String tCouponNo)
+        public int requestTmCertAuth(String tCouponNo)
         {
             var baseAddress = new Uri(TM_URL);
 
@@ -78,7 +78,7 @@ namespace thepos
 
         }
 
-        public int requestPmCertCancel(String tCouponNo)
+        public int requestTmCertCancel(String tCouponNo)
         {
 
             return -1;
@@ -86,7 +86,7 @@ namespace thepos
         }
     
     
-        public int requestPmReportView(String from_dt, String to_dt)
+        public int requestTmReportView(String from_dt, String to_dt)
         {
 
             

@@ -43,8 +43,8 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            tmTicketType = new String[3] { "", "PA", "PD" };
-            tmTicketTypeText = new String[3] { "", "선불", "후불" };
+            tmTicketType = new String[4] { "", "IN", "PA", "PD" };
+            tmTicketTypeText = new String[4] { "", "단순입장", "선불", "후불" };
 
             tmTicketMedia = new String[4] { "", "BC", "RF", "TG" };
             tmTicketMediaText = new String[4] { "", "써멀|영수증", "팔찌|RF [예정]", "전용|띠지 [예정]" };

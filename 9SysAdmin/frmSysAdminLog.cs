@@ -92,5 +92,18 @@ namespace thepos._9SysAdmin
 
         }
 
+        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            
+        }
+
+        private void lvwList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lvwList.SelectedItems.Count > 0)
+            {
+                tbFromTime.Text = lvwList.SelectedItems[0].SubItems[1].Text;
+            }
+        }
     }
 }

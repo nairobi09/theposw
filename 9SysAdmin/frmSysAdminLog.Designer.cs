@@ -64,6 +64,8 @@
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
+            this.lvwList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvwList_MouseDoubleClick);
             // 
             // log_date
             // 
@@ -76,7 +78,7 @@
             // 
             // SiteId
             // 
-            this.SiteId.Text = "Ssite";
+            this.SiteId.Text = "site";
             this.SiteId.Width = 50;
             // 
             // PosNo

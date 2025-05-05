@@ -1306,7 +1306,8 @@ namespace thepos
 
 
             frmSysAdmin frmSysAdmin = new frmSysAdmin(sysadmin_pw_patern, mode);
-            frmSysAdmin.ShowDialog();
+            //frmSysAdmin.ShowDialog();
+            frmSysAdmin.Show();
 
             sysadmin_pw_patern = "";
         }

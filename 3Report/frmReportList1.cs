@@ -126,13 +126,7 @@ namespace thepos
 
         void viewMonth()
         {
-
-
             String yyyymm = lblYYYYMM.Text.Replace("-", ""); ;
-
-
-
-
 
             for (int i = 1; i <= 31; i++)
             {
@@ -146,10 +140,7 @@ namespace thepos
                 p_amount_card[i] = 0;
                 p_amount_easy[i] = 0;
                 p_amount_cert[i] = 0;
-
             }
-
-
 
 
             if (prev_mode != viewMode)
@@ -157,7 +148,6 @@ namespace thepos
                 redraw_column(viewMode);
                 prev_mode = viewMode;
             }
-
 
 
             if (yyyymm != prev_yyyymm)
@@ -170,20 +160,14 @@ namespace thepos
 
                 last_date = convert_number(MonthLastDay.ToString("dd"));
 
-
                 prev_yyyymm = yyyymm;
 
             }
-
-
-                
-
-
+              
 
             String sUrl = "";
 
             lblListPath.Text = "";
-
 
             if (viewMode == "POS")
             {

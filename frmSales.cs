@@ -830,13 +830,9 @@ namespace thepos
 
         private void btnFlowCharging_Click(object sender, EventArgs e)
         {
-            if (mTicketType == "PA")  //선불형
+            if (mTicketType != "PD")  //후불형
             {
-
-            }
-            else
-            {
-                MessageBox.Show("티켓유형 후불형으로 설정되어있습니다. \n선불형인 경우만 충전할 수 있습니다.", "thepos");
+                MessageBox.Show("티켓유형 선불형인 경우만 충전할 수 있습니다.", "thepos");
                 return;
             }
 
@@ -4460,16 +4456,19 @@ namespace thepos
 
                 if (true)
                 {
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOn);
                     strPrint = "- 1 매 - ";
                     BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                    BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOff);
 
                     BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                     BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 }
 
-
+                BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOn);
                 strPrint = mBizDate.Substring(0,4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
                 BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
+                BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOff);
 
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
                 BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Lf());
@@ -5514,7 +5513,7 @@ namespace thepos
             if (paymentCert.van_code == "PM")
             {
                 couponTM p = new couponTM();
-                ret = p.requestPmCertCancel(paymentCert.coupon_no);
+                ret = p.requestTmCertCancel(paymentCert.coupon_no);
             }
 
             return ret;

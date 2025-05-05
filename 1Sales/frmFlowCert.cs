@@ -92,8 +92,8 @@ namespace thepos
         { 
             mClearSaleForm();
 
-
-            String t_coupon_no = tbCouponNo.Text.Replace("-", "");
+            //String t_coupon_no = tbCouponNo.Text.Replace("-", "");
+            String t_coupon_no = tbCouponNo.Text;
 
             if (t_coupon_no == "")
             {
@@ -115,7 +115,7 @@ namespace thepos
 
 
             couponTM p = new couponTM();
-            int ret = p.requestPmCertView(t_coupon_no);
+            int ret = p.requestTmCertView(t_coupon_no);
 
             if (ret == 0)
             {
@@ -378,7 +378,7 @@ namespace thepos
             string t_coupon_no = lvwCoupon.Items[lvwCoupon.SelectedItems[0].Index].SubItems[lvwCoupon.Columns.IndexOf(coupon_no)].Text;
 
             couponTM p = new couponTM();
-            int ret = p.requestPmCertAuth(t_coupon_no);
+            int ret = p.requestTmCertAuth(t_coupon_no);
 
             if (ret == 0)
             {
@@ -395,11 +395,7 @@ namespace thepos
                     return;
                 }
             }
-
         }
-
-
-
 
 
         private void order_pay_cert()
@@ -505,14 +501,13 @@ namespace thepos
 
 
 
-
             // 주문서 출력 : 업장용 + 고객용
             // 주문서 출력
+            /*
             String[] order_no_from_to = new String[2];
 
             order_no_from_to[0] = "";
             order_no_from_to[1] = "";
-
 
             List<shop_order_pack> shopOrderPackList = new List<shop_order_pack>();
 
@@ -521,7 +516,7 @@ namespace thepos
 
             // 영수증 출력
             print_bill(mTheNo, "A", "", "00001", true, order_no_from_to); // cert
-
+            */
 
 
             //
