@@ -43,7 +43,6 @@ namespace thepos
             // 기본 대기화면
             if (mSubMonitorImage.Length > 0)
             {
-
                 try
                 {
                     byte[] imgBytes = Convert.FromBase64String(mSubMonitorImage);
@@ -51,8 +50,9 @@ namespace thepos
                     ms.Write(imgBytes, 0, imgBytes.Length);
                     picLogo.Image = System.Drawing.Image.FromStream(ms, true);
                 }
-                catch
+                catch (Exception ex)
                 {
+
 
                 }
             }

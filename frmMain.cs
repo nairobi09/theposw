@@ -1120,6 +1120,9 @@ namespace thepos
             // 영업중상태: 개시후 마감전
             // 영업마감상태 : 마감이후 개시전
 
+            //
+            thepos_app_log(1, this.Name, "btnSales", "");
+
 
             String biz_Status = "";
             String biz_date = "";
@@ -1155,6 +1158,9 @@ namespace thepos
         // 영업관리
         private void btnBusiness_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnBusiness", "");
+
             panelDivision.Visible = true;
             panelDivision.Controls.Clear();
 
@@ -1167,6 +1173,9 @@ namespace thepos
         // 매출관리
         private void btnReports_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnReports", "");
+
             panelDivision.Visible = true;
             panelDivision.Controls.Clear();
 
@@ -1179,6 +1188,10 @@ namespace thepos
         // 환경설정
         private void btnSetup_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnSetup", "");
+
+
             panelDivision.Visible = true;
             panelDivision.Controls.Clear();
 
@@ -1193,13 +1206,17 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             //
-            thepos_app_log(2, this.Name, "Close", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, this.Name, "btnClose", "Close. appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
 
             this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnExit", "");
+
+
             frmExit fExit = new frmExit();
             DialogResult ret =  fExit.ShowDialog();
 
@@ -1313,6 +1330,10 @@ namespace thepos
         private void lblCallCenterNo_Click(object sender, EventArgs e)
         {
 
+            //
+            thepos_app_log(1, this.Name, "click admin", "");
+
+
             string mode = "";
             if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
@@ -1353,6 +1374,10 @@ namespace thepos
 
         private void btnSupport_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnSupport", "");
+
+
             //원격지원
             System.Diagnostics.Process.Start("http://786.co.kr");
         }
@@ -1360,12 +1385,20 @@ namespace thepos
 
         private void btnReqSupport_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnReqSupport", "원격지원");
+
+
             //원격지원
             System.Diagnostics.Process.Start("http://786.co.kr");
         }
 
         private void btnReqUser_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "btnReqUser", "");
+
+
             string mode = "";
             if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
