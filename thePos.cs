@@ -59,6 +59,14 @@ namespace thepos
 {
     public class thePos
     {
+
+        // 배포시 버전관리 - 로그와 연동
+
+        public static String mAppVersion = "2025-001";
+
+
+
+
         public struct CardTemp
         {
             public int amount;
@@ -155,6 +163,7 @@ namespace thepos
         public static HttpClientHandler handler = new HttpClientHandler();
         public static HttpClient mHttpClient;
 
+        public static HttpClient mHttpClientCoupon;
 
 
         public static String mBaseUri = "http://211.45.170.55:8080/";
@@ -714,12 +723,17 @@ namespace thepos
         public static String mCouponMID = "";   // 플레이스엠 쿠폰 채널 부여 번호      "3590";
 
         public static String mSubMonitorImage = "";   
-        public static String mTicketAddText = "";   
+        public static String mTicketAddText = "";
+
+
+        // 로그
+        public static int mAppLogLevel = 1;
+        // log_input :  1(info), 2(IMPORTANT), 3(error만)   >=  app_log_level :  1(ALL), 2(IMPORTANT), 3(ERROR), 4(NONE)
 
 
 
         //Local DB
-        public static SQLiteConnection mConn;
+        //public static SQLiteConnection mConn;
 
         public static Label mLblTheModeStatus;
 
@@ -1167,19 +1181,48 @@ namespace thepos
         }
 
 
-
-        public static SQLiteDataReader sql_select_local_db(String sql)
+        public static void thepos_app_log(int log_input, String form_name, String form_action, string form_memo)
         {
-            SQLiteCommand cmd = new SQLiteCommand(sql, mConn);
-            SQLiteDataReader dr = cmd.ExecuteReader();
-            return dr;
-        }
+            //  log_input
+            //  1 : 단순로그
+            //  2 : 로그인 등
+            //  3 : error - 에러
 
+            //  mLogLevel 
+            // 1 : ALL
+            // 2 : INFO  - 로그인 로그아웃 종료
+            // 3 : ERROR
+            // 4 : NONE
 
-        public static int sql_excute_local_db(String sql)
-        {
-            SQLiteCommand cmd = new SQLiteCommand(sql, mConn);
-            return cmd.ExecuteNonQuery();
+            if (log_input >= mAppLogLevel)
+            {
+                try
+                {
+                    String sUrl = "theposAppLog";
+
+                    Dictionary<string, string> parameters = new Dictionary<string, string>();
+                    parameters["logDate"] = get_today_date();
+                    parameters["logTime"] = get_today_time();
+                    parameters["logLevel"] = log_input + "";
+                    parameters["siteId"] = mSiteId;
+                    parameters["posNo"] = mPosNo;
+                    parameters["formName"] = form_name;
+                    parameters["formAction"] = form_action;
+                    parameters["formMemo"] = form_memo;
+
+                    var json = JsonConvert.SerializeObject(parameters);
+                    var data = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = mHttpClient.PostAsync(mBaseUri + sUrl, data).Result;
+
+                    //var responseContent = response.Content;
+                    //string responseString = responseContent.ReadAsStringAsync().Result;
+
+                }
+                catch (Exception e)
+                {
+                    //
+                }
+            }
         }
     }
 }

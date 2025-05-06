@@ -38,7 +38,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[12];
+        Setup[] listSetup = new Setup[13];
 
 
         bool isAdd = false;
@@ -74,6 +74,8 @@ namespace thepos
             // 티켓출력물 추가 텍스트
             setupItem.code = "TicketAddText";         setupItem.name = "티켓출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[11] = setupItem;
 
+            // 로그레벨 
+            setupItem.code = "AppLogLevel";         setupItem.name = "로그레벨"; setupItem.value = ""; setupItem.memo = ""; listSetup[12] = setupItem;
 
 
             reload_setup_pos();
@@ -265,6 +267,16 @@ namespace thepos
                 tbMultiValue.Text = lblValue.Text;
 
             }
+            else if (code == listSetup[12].code)
+            {
+                cbValue.Visible = true;
+
+                cbValue.Items.Clear();
+                cbValue.Items.Add("ALL");
+                cbValue.Items.Add("IMPORTANT"); // 로그인 로그아웃 종료
+                cbValue.Items.Add("ERROR");
+                cbValue.Items.Add("NONE");
+            }
 
         }
 
@@ -361,6 +373,18 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "SubMonitorImage") mSubMonitorImage = lvwList.Items[i].SubItems[1].Text;
 
                 else if (lvwList.Items[i].Tag.ToString() == "TicketAddText") mTicketAddText = lvwList.Items[i].SubItems[1].Text;
+
+                else if (lvwList.Items[i].Tag.ToString() == "AppLogLevel")
+                {
+                    //  mLogLevel -  1: ALL  2: ERROR  3: NONE
+                    String t_level = lvwList.Items[i].SubItems[1].Text;
+
+                    if (t_level == "ALL") mAppLogLevel = 1;
+                    else if (t_level == "IMPORTANT") mAppLogLevel = 2;
+                    else if (t_level == "ERROR") mAppLogLevel = 3;
+                    else if (t_level == "NONE") mAppLogLevel = 4;
+                    else mAppLogLevel = 4;
+                }
             }
 
 

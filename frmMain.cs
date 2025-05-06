@@ -61,6 +61,17 @@ namespace thepos
 
             initialize_the();
 
+
+#if DEBUG
+    mBaseUri = uri_test;
+#else
+    mBaseUri = uri_real;
+#endif
+
+
+            //
+            thepos_app_log(2, this.Name, "Start...", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+
         }
 
 
@@ -138,29 +149,6 @@ namespace thepos
                 return;
             }
 
-
-            // local DB
-            String cs = "";
-
-            try
-            {
-#if DEBUG
-                var enviroment = System.Environment.CurrentDirectory;
-                string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
-                cs = @"URI=file:" + projectDirectory + "\\local_theposm.db";
-
-#else
-                cs = @"URI=file:" + System.Windows.Forms.Application.StartupPath + "\\local_theposm.db";
-#endif
-
-                mConn = new SQLiteConnection(cs);
-                mConn.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("DB초기화 오류...\r\n" + ex.Message.ToString() + "\r\n" + cs, "thepos");
-                return;
-            }
 
 
             // Session key 로그인관련 
@@ -341,8 +329,12 @@ namespace thepos
             isRunThread = true;
 
             threadSyncLink = new Thread(SyncLink);
-            threadSyncLink.Start();  
+            threadSyncLink.Start();
 
+
+            // 쿠폰인증
+            mHttpClientCoupon = new HttpClient();
+            mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
 
 
             // 데이터 체크 임시
@@ -394,17 +386,28 @@ namespace thepos
                         mUserName = mObj["userName"].ToString();
                         mPosNo = mObj["posNo"].ToString();
 
+                        //
+                        thepos_app_log(2, this.Name, "login", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        String msg = mObj["resultMsg"].ToString();
+
+                        thepos_app_log(3, this.Name, "login", "로그인오류. " + msg);
+
+                        MessageBox.Show("로그인오류\n\n" + msg, "thepos");
                         return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + "RequestPost Login", "thepos");
+                    //
+                    thepos_app_log(3, this.Name, "login", "시스템오류. " + mErrorMsg);
+
+                    //
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return false;
                 }
 
@@ -804,44 +807,44 @@ namespace thepos
 
             // 4. 샵
             if (true)
-        {
-            String sUrl = "shop?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
             {
-                if (mObj["resultCode"].ToString() == "200")
+                String sUrl = "shop?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
                 {
-                    String data = mObj["shops"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-
-                    // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
-                    mShop = new Shop[arr.Count + 1];
-
-                    mShop[0].shop_code = "";
-                    mShop[0].shop_name = "";
-                    mShop[0].printer_type = "";
-                    mShop[0].network_printer_name = "";
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        mShop[i+1].shop_code = arr[i]["shopCode"].ToString();
-                        mShop[i+1].shop_name = arr[i]["shopName"].ToString();
-                        mShop[i+1].printer_type = arr[i]["printerType"].ToString();
-                        mShop[i+1].network_printer_name = arr[i]["networkPrinterName"].ToString();
+                        String data = mObj["shops"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+
+                        // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
+                        mShop = new Shop[arr.Count + 1];
+
+                        mShop[0].shop_code = "";
+                        mShop[0].shop_name = "";
+                        mShop[0].printer_type = "";
+                        mShop[0].network_printer_name = "";
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mShop[i+1].shop_code = arr[i]["shopCode"].ToString();
+                            mShop[i+1].shop_name = arr[i]["shopName"].ToString();
+                            mShop[i+1].printer_type = arr[i]["printerType"].ToString();
+                            mShop[i+1].network_printer_name = arr[i]["networkPrinterName"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("샵정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
             }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
 
 
             // 5. 포스
@@ -907,6 +910,17 @@ namespace thepos
                             
                             else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
 
+                            else if (arr[i]["setupCode"].ToString() == "AppLogLevel")
+                            {
+                                //  mLogLevel -  1: ALL  2: ERROR  3: NONE
+                                String t_level = arr[i]["setupValue"].ToString();
+
+                                if (t_level == "ALL") mAppLogLevel = 1;
+                                else if (t_level == "IMPORTANT") mAppLogLevel = 2;
+                                else if (t_level == "ERROR") mAppLogLevel = 3;
+                                else if (t_level == "NONE") mAppLogLevel = 4;
+                                else mAppLogLevel = 4;
+                            }
                         }
                     }
                 }
@@ -1178,6 +1192,9 @@ namespace thepos
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(2, this.Name, "Close", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+
             this.Close();
         }
 

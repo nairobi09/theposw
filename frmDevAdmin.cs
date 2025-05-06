@@ -54,15 +54,20 @@ namespace thepos
                     mUserName = "";
                     mPosNo = mObj["posNo"].ToString();
 
+                    //
+                    thepos_app_log(2, this.Name, "login", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+
                     Close();
                 }
                 else
                 {
+                    thepos_app_log(3, this.Name, "login", "로그인오류. " + mObj["resultMsg"].ToString());
                     MessageBox.Show("로그인오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
             {
+                thepos_app_log(3, this.Name, "login", "시스템오류. " + mErrorMsg);
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
             }
 

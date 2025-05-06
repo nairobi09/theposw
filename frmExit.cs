@@ -25,6 +25,10 @@ namespace thepos
         {
             mIsLogin = "N";
             this.DialogResult = DialogResult.Yes;   // 로그아웃
+
+            //
+            thepos_app_log(2, this.Name, "Logout", "appVersion=TPW2-" + mAppVersion + ", mac=" + mMacAddr);
+
             Close();
         }
 
@@ -32,6 +36,10 @@ namespace thepos
         {
             mIsLogin = "N";
             this.DialogResult = DialogResult.OK;    // 종료
+
+            //
+            thepos_app_log(2, this.Name, "Close", "appVersion=TPW2-" + mAppVersion + ", mac=" + mMacAddr);
+
             Close();
         }
 
