@@ -28,11 +28,16 @@ namespace thepos
                 lblTitle.Text = "사용자계정신청 - Test";
             }
 
+            //
+            thepos_app_log(1, this.Name, "open", "");
         }
 
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "close", ""); 
+
             Close();
         }
 

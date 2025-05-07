@@ -75,9 +75,6 @@ namespace thepos
         }
 
 
-
-
-
         private void add_viewList(String t_theNo, String t_billNo, String t_payClass, int t_amountCash, int t_amountCard, int t_amountPoint, int t_amountEasy, int t_amountCert, String t_payDate, String t_payTime, String t_posNo, int t_netAmount, int t_dcAmount, String t_isCancel)
         {
             ListViewItem lvItem = new ListViewItem();

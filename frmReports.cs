@@ -22,11 +22,16 @@ namespace thepos
         {
             InitializeComponent();
 
+            //
+            thepos_app_log(1, this.Name, "open", "");
         }
 
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            //
+            thepos_app_log(1, this.Name, "close", "");
+
             Close();
 
             mPanelDivision.Visible = false;

@@ -31,6 +31,8 @@ namespace thepos
 
             viewMonth();
 
+            thepos_app_log(1, this.Name, "open", "");
+
         }
 
 

@@ -62,7 +62,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "2025-001";
+        public static String mAppVersion = "TPW1-2025-001";
 
 
 

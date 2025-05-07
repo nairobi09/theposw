@@ -23,6 +23,8 @@ namespace thepos
             InitializeComponent();
 
             initialize_the();
+
+            thepos_app_log(1, this.Name, "open", "");
         }
 
 
@@ -57,7 +59,6 @@ namespace thepos
                 shop_code = mShop[cbShop.SelectedIndex - 1].shop_code;
             }
 
-
             lvwList.Items.Clear();
 
 
@@ -79,10 +80,8 @@ namespace thepos
                         Item.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
                         Item.SubItems.Add(arr[i]["orderDetail"].ToString());
 
-
                         lvwList.Items.Add(Item);
                     }
-
                 }
                 else
                 {
@@ -94,5 +93,6 @@ namespace thepos
                 MessageBox.Show("시스템오류. allim\n\n" + mErrorMsg, "thepos");
             }
         }
+
     }
 }

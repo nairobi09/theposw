@@ -29,7 +29,7 @@
     <InstallUrl>http://thepos.co.kr/setup/theposw1/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -81,7 +81,7 @@
     <ApplicationIcon>thepos_log.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>633BC70D9CF4FC07856689924792CE50ECB332BF</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CE65B74D501E171E1E4D0CE9C447E28EC74E36D7</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -559,6 +559,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmAllimOR.resx">
       <DependentUpon>frmAllimOR.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminLog.resx">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>

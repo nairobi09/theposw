@@ -52,11 +52,15 @@ namespace thepos
                 }
                 catch (Exception ex)
                 {
-
+                    //
+                    thepos_app_log(3, this.Name, "mSubMonitorImage", ex.Message);
 
                 }
             }
-            
+
+            //
+            thepos_app_log(1, this.Name, "open", "");
+
         }
 
 
@@ -130,6 +134,8 @@ namespace thepos
 
         private void frmSub_FormClosed(object sender, FormClosedEventArgs e)
         {
+            thepos_app_log(1, this.Name, "close", "");
+
             fSub = null;
         }
     }

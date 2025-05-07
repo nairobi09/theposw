@@ -70,7 +70,7 @@ namespace thepos
 
 
             //
-            thepos_app_log(2, this.Name, "Start...", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, "theposw1", "START.....", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
         }
 
@@ -387,7 +387,7 @@ namespace thepos
                         mPosNo = mObj["posNo"].ToString();
 
                         //
-                        thepos_app_log(2, this.Name, "login", "appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+                        thepos_app_log(2, this.Name, "login", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
                         return true;
                     }
@@ -1206,7 +1206,7 @@ namespace thepos
         private void btnClose_Click(object sender, EventArgs e)
         {
             //
-            thepos_app_log(2, this.Name, "btnClose", "Close. appVersion=TPW1-" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, this.Name, "btnClose", "Close. appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
             this.Close();
         }

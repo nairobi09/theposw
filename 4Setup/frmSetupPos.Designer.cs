@@ -429,6 +429,7 @@
             this.Name = "frmSetupPos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSetupPos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSetupPos_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

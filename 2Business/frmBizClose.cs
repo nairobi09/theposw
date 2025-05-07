@@ -26,9 +26,10 @@ namespace thepos
 
             initialize_the();
 
-
             load_biz_data();
 
+            //
+            thepos_app_log(1, this.Name, "open", "");
 
         }
 

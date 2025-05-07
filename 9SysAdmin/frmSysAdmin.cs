@@ -43,6 +43,8 @@ namespace thepos
                     Mode = "Test";
                 }
             }
+
+            thepos_app_log(1, this.Name, "open", "");
         }
 
 
@@ -227,6 +229,11 @@ namespace thepos
             frmSysAdminLog fSysAdmin = new frmSysAdminLog() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
+        }
+
+        private void frmSysAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            thepos_app_log(1, this.Name, "close", "");
         }
     }
 }

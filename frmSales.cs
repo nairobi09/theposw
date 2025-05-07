@@ -52,8 +52,6 @@ namespace thepos
     public partial class frmSales : Form
     {
 
-
-
         public static int mBillTheNo = 0;
         int mWaitingNoCounter = 0;
         public static int mSelectedWaitingNo = 0;
@@ -155,8 +153,10 @@ namespace thepos
                 mPanelOrderInfo.Visible = true;
 
                 ReCalculateAmount();
-
             }
+
+            //
+            thepos_app_log(1, this.Name, "open", "");
         }
 
         private void frmSales_Shown(object sender, EventArgs e)
@@ -3520,6 +3520,9 @@ namespace thepos
 
             // 메모리 초기화
             mOrderItemList.Clear();
+
+            //
+            thepos_app_log(1, this.Name, "close", "");
 
             this.Close();
 

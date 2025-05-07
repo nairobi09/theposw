@@ -44,9 +44,9 @@
             this.btnSysGoodsGroup = new System.Windows.Forms.Button();
             this.btnPos = new System.Windows.Forms.Button();
             this.panelCertConsole = new System.Windows.Forms.Panel();
+            this.btnLog = new System.Windows.Forms.Button();
             this.btnPosMac = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
-            this.btnLog = new System.Windows.Forms.Button();
             this.panelAdminConsole.SuspendLayout();
             this.panelCertConsole.SuspendLayout();
             this.SuspendLayout();
@@ -274,6 +274,22 @@
             this.panelCertConsole.TabIndex = 3;
             this.panelCertConsole.Visible = false;
             // 
+            // btnLog
+            // 
+            this.btnLog.BackColor = System.Drawing.Color.White;
+            this.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLog.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLog.ForeColor = System.Drawing.Color.Red;
+            this.btnLog.Location = new System.Drawing.Point(6, 58);
+            this.btnLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(112, 25);
+            this.btnLog.TabIndex = 3;
+            this.btnLog.TabStop = false;
+            this.btnLog.Text = "로그";
+            this.btnLog.UseVisualStyleBackColor = false;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            // 
             // btnPosMac
             // 
             this.btnPosMac.BackColor = System.Drawing.Color.White;
@@ -306,22 +322,6 @@
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // btnLog
-            // 
-            this.btnLog.BackColor = System.Drawing.Color.White;
-            this.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLog.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLog.ForeColor = System.Drawing.Color.Red;
-            this.btnLog.Location = new System.Drawing.Point(6, 58);
-            this.btnLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(112, 25);
-            this.btnLog.TabIndex = 3;
-            this.btnLog.TabStop = false;
-            this.btnLog.Text = "로그";
-            this.btnLog.UseVisualStyleBackColor = false;
-            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
-            // 
             // frmSysAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -338,6 +338,7 @@
             this.Name = "frmSysAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "사용자어드민";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSysAdmin_FormClosed);
             this.panelAdminConsole.ResumeLayout(false);
             this.panelCertConsole.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -20,6 +20,9 @@ namespace thepos
             InitializeComponent();
 
             initialize_the();
+
+            //
+            thepos_app_log(1, this.Name, "open", "");
         }
 
 
@@ -85,6 +88,7 @@ namespace thepos
             }
             else
             {
+
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
             }
 

@@ -329,8 +329,15 @@ namespace thepos
                 ret = UPay_Set("LGD_CASHCARDNUM", issued_method_no);
             }
 
+            string tReceiptType = "";
 
-            ret = UPay_Set("LGD_CASHRECEIPTUSE", receipt_type);
+            if (receipt_type == "1") tReceiptType = "1";
+            else 
+            if (receipt_type == "2") tReceiptType = "2";
+            else tReceiptType = "";
+
+
+            ret = UPay_Set("LGD_CASHRECEIPTUSE", tReceiptType);
             //ret = UPay_Set("LGD_CUSTOM_BUSINESSNUM", "");
 
             ret = UPay_Set("LGD_SEQNO", "001");
