@@ -26,6 +26,9 @@ namespace thepos
             InitializeComponent();
             initial_the();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
 
             netAmount = mNetAmount;
 
@@ -262,13 +265,19 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "SavePaymentPoint()", "오류 paymentPoint " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("오류 paymentPoint\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류 paymentPointd\n\n" + mErrorMsg, "thepos");
+                //
+                thepos_app_log(3, this.Name, "SavePaymentPoint()", "시스템오류 paymentPoint " + mErrorMsg);
+
+                MessageBox.Show("시스템오류 paymentPoint\n\n" + mErrorMsg, "thepos");
                 return false;
             }
 

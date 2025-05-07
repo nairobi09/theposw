@@ -41,6 +41,11 @@ namespace thepos
 
             initial_the();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
+
             isComplex = is_complex;
             paySeq = seq;
             isLast = is_last;
@@ -115,6 +120,9 @@ namespace thepos
 
             if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
             {
+                //
+                thepos_app_log(3, this.Name, "requestEasyAuth()", mErrorMsg);
+
                 display_error_msg(mErrorMsg);
             }
             else
@@ -414,12 +422,18 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "SavePaymentEasy()", "오류 paymentEasy " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "SavePaymentEasy()", "시스템오류 paymentEasy " + mErrorMsg);
+
                 MessageBox.Show("시스템오류 paymentEasy\n\n" + mErrorMsg, "thepos");
                 return false;
             }

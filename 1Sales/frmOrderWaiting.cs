@@ -21,7 +21,11 @@ namespace thepos
         public frmOrderWaiting()
         {
             InitializeComponent();
-            
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 40);
             lvwWaiting.SmallImageList = imgList;

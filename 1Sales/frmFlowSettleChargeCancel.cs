@@ -35,6 +35,9 @@ namespace thepos
 
             initial_the();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
 
             this.thisBizDt = biz_dt;
             this.ticket_no = ticket_no;

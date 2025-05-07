@@ -31,8 +31,8 @@ namespace thepos
 
                 var json = JsonConvert.SerializeObject(parameters);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                mHttpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
-                var response = mHttpClient.PostAsync(TM_URL + "extra/ticket/v1/info", data).Result;
+                //mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/info", data).Result;
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
@@ -61,8 +61,8 @@ namespace thepos
 
                 var json = JsonConvert.SerializeObject(parameters);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
-                mHttpClient.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
-                var response = mHttpClient.PostAsync(TM_URL + "extra/ticket/v1/use", data).Result;
+                //mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/use", data).Result;
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 

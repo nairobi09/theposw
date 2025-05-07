@@ -39,6 +39,10 @@ namespace thepos
             InitializeComponent();
 
             initialize_the();
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
         }
 
         private void initialize_the()
@@ -186,11 +190,17 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "viewList()", "데이터 오류. payment " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("데이터 오류. payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "viewList()", "시스템오류. payment " + mErrorMsg);
+
                 MessageBox.Show("시스템오류. payment\n\n" + mErrorMsg, "thepos");
             }
 
@@ -244,12 +254,18 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("영업개시마감 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    //
+                    thepos_app_log(3, "frmPayManager", "reviewList()", "데이터 오류. payment " + mObj["resultMsg"].ToString());
+
+                    MessageBox.Show("데이터 오류 payment\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
             {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                //
+                thepos_app_log(3, "frmPayManager", "reviewList()", "시스템오류 payment " + mErrorMsg);
+
+                MessageBox.Show("시스템오류 payment\n\n" + mErrorMsg, "thepos");
             }
             
 
@@ -418,11 +434,17 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "view_list_order()", "주문 데이터 오류 " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "view_list_order()", "시스템오류. orderItem " + mErrorMsg);
+
                 MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
             }
         }
@@ -884,12 +906,18 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("주문 데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    //
+                    thepos_app_log(3, this.Name, "btnPrintOrder_Click()", "주문 데이터 오류 orderItem. " + mObj["resultMsg"].ToString());
+
+                    MessageBox.Show("주문 데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "btnPrintOrder_Click()", "시스템오류. orderItem " + mErrorMsg);
+
                 MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
                 return;
             }

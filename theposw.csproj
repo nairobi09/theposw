@@ -204,7 +204,7 @@
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </Compile>
     <Compile Include="van\Toss\paymentToss.cs" />
-    <Compile Include="van\PM\couponTM.cs" />
+    <Compile Include="van\TM\couponTM.cs" />
     <Compile Include="frmDevAdmin.cs">
       <SubType>Form</SubType>
     </Compile>

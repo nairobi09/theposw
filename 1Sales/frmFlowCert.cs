@@ -19,6 +19,7 @@ using System.Collections;
 using System.Numerics;
 using static System.Windows.Forms.AxHost;
 using static thepos.ClsWin32Api;
+using System.Xml.Linq;
 
 
 namespace thepos
@@ -30,6 +31,10 @@ namespace thepos
         {
             InitializeComponent();
             initialize_the();
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
         }
 
         private void initialize_the()
@@ -83,7 +88,7 @@ namespace thepos
             // 샘플 티켓 출력용 - 테스트
             //print_ticket("2501202504180186171301", "100004", "6976680442186471");
 
-
+            
             view_reload();
         }
 
@@ -138,55 +143,70 @@ namespace thepos
             }
 
 
-            String data = mObj["info"].ToString();
-            JObject info = JObject.Parse(data);
+            // 다음 화면에서 에러날지 미리 해본다..
+            try
+            {
+                String data = mObj["info"].ToString();
+                JObject info = JObject.Parse(data);
 
-            string coupon_no = info["barcode_no"].ToString();
-            string ustate_code = info["ustate"].ToString();
-            string coupon_name = info["cusitem"].ToString();
-            string coupon_link_no = info["cusitemId"].ToString();   // 상품코드 매칭용   TM + 0000
+                string coupon_no = info["barcode_no"].ToString();
+                string ustate_code = info["ustate"].ToString();
+                string coupon_name = info["cusitem"].ToString();
+                string coupon_link_no = info["cusitemId"].ToString();   // 상품코드 매칭용   TM + 0000
 
-            string qty = "1";
+                string qty = "1";
 
-            string cus_nm = info["cusnm"].ToString();
-            string cus_hp = info["cushp"].ToString();
-            string exp_date = info["expdate"].ToString();
+                string cus_nm = info["cusnm"].ToString();
+                string cus_hp = info["cushp"].ToString();
+                string exp_date = info["expdate"].ToString();
 
-            string state = info["state"].ToString();
-            string ch_name = info["cuschnm"].ToString();
-
-
-            ListViewItem lvItem = new ListViewItem();
-
-
-            // (0:취소 1: 사용, 2: 미사용)
-            String ustate_name = "";
-            if (ustate_code == "2")
-                ustate_name = "사용가능";
-            else if (ustate_code == "1")
-                ustate_name = "기사용티켓";
-            else if (ustate_code == "0")
-                ustate_name = "취소티켓";
-            else
-                ustate_name = "";
+                string state = info["state"].ToString();
+                string ch_name = info["cuschnm"].ToString();
 
 
-            lvItem.Text = ustate_name;
-            lvItem.SubItems.Add(ustate_code);
+                ListViewItem lvItem = new ListViewItem();
 
-            lvItem.SubItems.Add(coupon_no);
 
-            lvItem.SubItems.Add(coupon_name);
-            lvItem.SubItems.Add(coupon_link_no);
-            lvItem.SubItems.Add(qty);
+                // (0:취소 1: 사용, 2: 미사용)
+                String ustate_name = "";
+                if (ustate_code == "2")
+                    ustate_name = "사용가능";
+                else if (ustate_code == "1")
+                    ustate_name = "기사용티켓";
+                else if (ustate_code == "0")
+                    ustate_name = "취소티켓";
+                else
+                    ustate_name = "";
 
-            lvItem.SubItems.Add(cus_nm);
-            lvItem.SubItems.Add(cus_hp);
-            lvItem.SubItems.Add(exp_date);
-            lvItem.SubItems.Add(state);
-            lvItem.SubItems.Add(ch_name);
 
-            lvwCoupon.Items.Add(lvItem);
+                lvItem.Text = ustate_name;
+                lvItem.SubItems.Add(ustate_code);
+
+                lvItem.SubItems.Add(coupon_no);
+
+                lvItem.SubItems.Add(coupon_name);
+                lvItem.SubItems.Add(coupon_link_no);
+                lvItem.SubItems.Add(qty);
+
+                lvItem.SubItems.Add(cus_nm);
+                lvItem.SubItems.Add(cus_hp);
+                lvItem.SubItems.Add(exp_date);
+                lvItem.SubItems.Add(state);
+                lvItem.SubItems.Add(ch_name);
+
+                lvwCoupon.Items.Add(lvItem);
+
+            }
+            catch (Exception e)
+            {
+                //
+                thepos_app_log(3, this.Name, "requestTmCertView()", "쿠폰조회중에 오류가 발생했습니다. " + e.Message);
+
+                MessageBox.Show("오류\n\n" + "쿠폰조회중에 오류가 발생했습니다.\r\n" + e.Message, "thepos");
+
+                return;
+            }
+
 
 
             //
@@ -265,6 +285,10 @@ namespace thepos
             if (link_goods_idx == -1)
             {
                 lblGoodsName.Text = "상품정보 연결 오류.";
+
+                //
+                thepos_app_log(3, this.Name, "link_goods_idx= -1", "쿠폰에 해당하는 상품정보가 없습니다. 관리자 문의바랍니다.");
+
 
                 SetDisplayAlarm("W", "쿠폰에 해당하는 상품정보가 없습니다.\r\n관리자 문의바랍니다.");
                 return;
@@ -358,6 +382,9 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "btnOK", "이 쿠폰은 사용할 수 없습니다.");
+
                     SetDisplayAlarm("W", "사용할 수 없는 쿠폰입니다.");
                     return;
                 }
@@ -384,6 +411,10 @@ namespace thepos
             {
                 if (mObj["result"].ToString() == "1000")
                 {
+                    //
+                    thepos_app_log(1, this.Name, "requestTmCertAuth()", "정상. coupon_no=" + t_coupon_no);
+
+
                     // 
                     order_pay_cert();
 
@@ -391,10 +422,26 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("오류\n\n" + mObj["msg"].ToString(), "thepos");
+                    String msg = mObj["msg"].ToString();
+
+                    //
+                    thepos_app_log(3, this.Name, "requestTmCertAuth()", "오류 " + msg + " coupon_no=" + t_coupon_no);
+
+
+                    MessageBox.Show("오류\n\n" + msg, "thepos");
                     return;
                 }
             }
+            else
+            {
+                //
+                thepos_app_log(3, this.Name, "requestTmCertAuth()", mErrorMsg);
+
+                MessageBox.Show(mErrorMsg, "thepos");
+                return;
+            }
+
+
         }
 
 

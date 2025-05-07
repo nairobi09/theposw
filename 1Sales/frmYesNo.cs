@@ -17,6 +17,10 @@ namespace thepos._1Sales
         {
             InitializeComponent();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             lblOrderNo.Text = order_no_arr[0];
 
 

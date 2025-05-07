@@ -30,6 +30,10 @@ namespace thepos
         {
             InitializeComponent();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             displayDCR();
 
         }

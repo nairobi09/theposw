@@ -45,6 +45,10 @@ namespace thepos
         {
             InitializeComponent();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             isComplex = is_complex;
             paySeq = seq;
             isLast = is_last;
@@ -645,12 +649,18 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "SavePaymentCash()", "오류 paymentCash " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("오류 paymentCash\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "SavePaymentCash()", "시스템오류 paymentCash\n\n" + mErrorMsg);
+
                 MessageBox.Show("시스템오류 paymentCash\n\n" + mErrorMsg, "thepos");
                 return false;
             }

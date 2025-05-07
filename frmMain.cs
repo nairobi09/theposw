@@ -332,7 +332,7 @@ namespace thepos
             threadSyncLink.Start();
 
 
-            // 쿠폰인증
+            // 쿠폰인증용
             mHttpClientCoupon = new HttpClient();
             mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
 

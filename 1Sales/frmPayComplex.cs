@@ -47,6 +47,10 @@ namespace thepos
 
             initial_the();
 
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             selectIdx = select_index;
 
 

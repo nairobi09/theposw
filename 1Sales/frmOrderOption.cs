@@ -39,6 +39,11 @@ namespace thepos
 
             initialize_the();
 
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
             goodsItem = goods_item;
 
 

@@ -10,6 +10,7 @@ using static thepos.frmSales;
 using static thepos.frmFlowCharging;
 using static thepos.frmFlowSettlement;
 using static thepos.frmPayComplex;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace thepos
 {
@@ -37,6 +38,11 @@ namespace thepos
             InitializeComponent();
 
             initial_the();
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
+
+
 
             isComplex = is_complex;
             paySeq = seq;
@@ -403,6 +409,9 @@ namespace thepos
 
             if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
             {
+                //
+                thepos_app_log(3, this.Name, "requestCardAuth()", mErrorMsg);
+
                 display_error_msg(mErrorMsg);
             }
             else
@@ -669,12 +678,18 @@ namespace thepos
                 }
                 else
                 {
+                    //
+                    thepos_app_log(3, this.Name, "SavePaymentCard()", "오류 paymentCard " + mObj["resultMsg"].ToString());
+
                     MessageBox.Show("오류 paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return false;
                 }
             }
             else
             {
+                //
+                thepos_app_log(3, this.Name, "SavePaymentCard()", "시스템오류 paymentCard " + mErrorMsg);
+
                 MessageBox.Show("시스템오류 paymentCard\n\n" + mErrorMsg, "thepos");
                 return false;
             }
