@@ -300,6 +300,9 @@ namespace thepos
         private void btnKeyLogin_Click(object sender, EventArgs e)
         {
 
+            mIsDevLogin = "";
+
+
             // 설치후 최초실행
             if (server_login())
             {
@@ -355,11 +358,17 @@ namespace thepos
 
                 if (ret == DialogResult.OK)  // Real
                 {
+                    //
+                    mIsDevLogin = "Y";  // 개발자 로그인은 로그를 남기지 않기위해
+
                     lblIsTest.Visible = false;
                     return true;
                 }
                 else if (ret == DialogResult.Yes) // TEST
                 {
+                    //
+                    mIsDevLogin = "Y";  // 개발자 로그인은 로그를 남기지 않기위해
+
                     lblIsTest.Visible = true;
                     return true;
                 }

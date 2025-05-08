@@ -25,6 +25,9 @@ namespace theposw
         {
             InitializeComponent();
             initialize_the();
+
+            //
+            thepos_app_log(1, this.Name, "Open", "");
         }
 
 

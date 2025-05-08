@@ -62,7 +62,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-001";
+        public static String mAppVersion = "TPW1-2025-002";
 
 
 
@@ -737,7 +737,8 @@ namespace thepos
 
         public static Label mLblTheModeStatus;
 
-
+        //
+        public static String mIsDevLogin = "";
 
 
 
@@ -1194,6 +1195,17 @@ namespace thepos
             // 3 : ERROR
             // 4 : NONE
 
+
+
+            // 개발자로그인은 앱로그를 안남긴다.
+            if (mIsDevLogin == "Y")
+            {
+                return;
+            }
+
+
+
+            //
             if (log_input >= mAppLogLevel)
             {
                 try

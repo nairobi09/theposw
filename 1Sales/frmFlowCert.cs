@@ -109,6 +109,9 @@ namespace thepos
             //? 쿠폰업체 추가시 아래 구분필요
             if (mCouponMID == "")
             {
+                //
+                thepos_app_log(3, this.Name, "view_reload()", "쿠픈판매 업체코드(MID) 미등록상태입니다.");
+
                 MessageBox.Show("쿠픈판매 업체코드(MID) 미등록상태입니다.", "thepos");
                 return;
             }

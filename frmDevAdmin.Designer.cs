@@ -35,6 +35,8 @@
             this.tbPosNo = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnLoginDev = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbTest
@@ -43,7 +45,7 @@
             this.cbTest.Checked = true;
             this.cbTest.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTest.ForeColor = System.Drawing.Color.LightGray;
-            this.cbTest.Location = new System.Drawing.Point(13, 68);
+            this.cbTest.Location = new System.Drawing.Point(51, 115);
             this.cbTest.Margin = new System.Windows.Forms.Padding(4);
             this.cbTest.Name = "cbTest";
             this.cbTest.Size = new System.Drawing.Size(56, 16);
@@ -53,7 +55,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(104, 67);
+            this.btnClose.Location = new System.Drawing.Point(132, 113);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(70, 25);
@@ -67,7 +69,7 @@
             this.tbSiteID.BackColor = System.Drawing.Color.DarkGray;
             this.tbSiteID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbSiteID.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSiteID.Location = new System.Drawing.Point(13, 12);
+            this.tbSiteID.Location = new System.Drawing.Point(51, 59);
             this.tbSiteID.Margin = new System.Windows.Forms.Padding(4);
             this.tbSiteID.Name = "tbSiteID";
             this.tbSiteID.Size = new System.Drawing.Size(73, 15);
@@ -78,7 +80,7 @@
             this.tbPosNo.BackColor = System.Drawing.Color.DarkGray;
             this.tbPosNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPosNo.Location = new System.Drawing.Point(13, 35);
+            this.tbPosNo.Location = new System.Drawing.Point(51, 82);
             this.tbPosNo.Margin = new System.Windows.Forms.Padding(4);
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(73, 15);
@@ -86,7 +88,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(104, 40);
+            this.btnLogin.Location = new System.Drawing.Point(132, 86);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(70, 25);
@@ -97,7 +99,7 @@
             // 
             // btnLoginDev
             // 
-            this.btnLoginDev.Location = new System.Drawing.Point(104, 13);
+            this.btnLoginDev.Location = new System.Drawing.Point(132, 59);
             this.btnLoginDev.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoginDev.Name = "btnLoginDev";
             this.btnLoginDev.Size = new System.Drawing.Size(70, 25);
@@ -106,11 +108,33 @@
             this.btnLoginDev.UseVisualStyleBackColor = true;
             this.btnLoginDev.Click += new System.EventHandler(this.btnLoginDev_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Gold;
+            this.label1.Location = new System.Drawing.Point(145, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 12);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "DevLogin";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Gold;
+            this.label2.Location = new System.Drawing.Point(12, 179);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(189, 12);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "DevLogin은 앱로그를 남기지 않음";
+            // 
             // frmDevAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(180, 100);
+            this.ClientSize = new System.Drawing.Size(250, 210);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoginDev);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnClose);
@@ -135,5 +159,7 @@
         public System.Windows.Forms.TextBox tbPosNo;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnLoginDev;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
