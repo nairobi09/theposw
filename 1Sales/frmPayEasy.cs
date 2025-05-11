@@ -117,15 +117,23 @@ namespace thepos
             tTaxAmount = t과세금액 - tTax;
             tFreeAmount = t면세금액;
 
-
-            if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
+            // 테스트모드에서는 그냥 PASS
+            if (mIsTestPayMode != "Test")
             {
-                //
-                thepos_app_log(3, this.Name, "requestEasyAuth()", mErrorMsg);
+                if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
+                {
+                    //
+                    thepos_app_log(3, this.Name, "requestEasyAuth()", mErrorMsg);
 
-                display_error_msg(mErrorMsg);
+                    display_error_msg(mErrorMsg);
+
+                    return;
+                }
             }
-            else
+
+
+
+            //
             {
                 //정상승인
                 int order_cnt = 0;
@@ -166,13 +174,16 @@ namespace thepos
                 mPaymentEasy.pos_no = mPosNo;
                 mPaymentEasy.the_no = mTheNo;
                 mPaymentEasy.ref_no = mRefNo;
+
                 mPaymentEasy.pay_date = get_today_date();
                 mPaymentEasy.pay_time = get_today_time();
                 mPaymentEasy.pay_type = "E1";       // 결제구분 : , 간편결제(E1)
                 mPaymentEasy.tran_type = "A";       // 승인 A 취소 C
                 mPaymentEasy.pay_class = mPayClass;
+
                 mPaymentEasy.ticket_no = ticketNo;
                 mPaymentEasy.pay_seq = paySeq;
+                mPaymentEasy.amount = netAmount;
                 mPaymentEasy.sign_path = "";
                 mPaymentEasy.is_cancel = "";
                 mPaymentEasy.van_code = mVanCode;

@@ -99,6 +99,12 @@ namespace thepos
                 mRefNo = ticketNo.Substring(0, 20);
             }
 
+
+            if (mIsTestPayMode == "Test")
+            {
+                btnCashRecept.Text = "현금영수증\r\n테스트(SKIP)";
+            }
+
         }
 
 
@@ -238,6 +244,7 @@ namespace thepos
                 }
 
                 // 티켓 저장
+
                 int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
 
                 if (ticket_cnt > 0)
@@ -273,7 +280,6 @@ namespace thepos
                 {
                     cancel_point_payment(ticketNo);
                 }
-                
 
 
 
@@ -282,7 +288,6 @@ namespace thepos
 
                 order_no_from_to[0] = "";
                 order_no_from_to[1] = "";
-
 
 
                 if (mPayClass == "OR")
@@ -339,10 +344,10 @@ namespace thepos
                 }
                 else
                 {
-                     if (isComplex == false)
-                     {
-                         mClearSaleForm();
-                     }                   
+                    if (isComplex == false)
+                    {
+                        mClearSaleForm();
+                    }                   
                 }
 
 
@@ -388,14 +393,24 @@ namespace thepos
             else if (rb카드거래.Checked) input_type = 2;
 
 
-
-            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out paymentCash) != 0)  // Toss process
+            // 테스트모드에서는 그냥 PASS
+            if (mIsTestPayMode != "Test")
             {
-                display_error_msg(mErrorMsg);
+                if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out paymentCash) != 0)  // Toss process
+                {
+                    //
+                    thepos_app_log(3, this.Name, "requestCashAuth()", mErrorMsg);
+
+                    display_error_msg(mErrorMsg);
+
+                    return;
+                }
             }
-            else
-            {
 
+
+            
+            //
+            {
                 //정상승인
                 int order_cnt = 0;
 

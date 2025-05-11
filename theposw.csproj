@@ -29,7 +29,7 @@
     <InstallUrl>http://thepos.co.kr/setup/theposw1/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationRevision>28</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -81,7 +81,7 @@
     <ApplicationIcon>thepos_log.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>CE65B74D501E171E1E4D0CE9C447E28EC74E36D7</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A31AAC35B1BEF3339B970C27484C3A3D62D290EB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>

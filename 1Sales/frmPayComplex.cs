@@ -31,7 +31,7 @@ namespace thepos
         TextBox saveKeyDisplay;
         String saveRightFace;
 
-        public static TextBox mTbReqAmount;
+        //public static TextBox mTbReqAmount;
 
         public static Panel mPanelHigh;
 
@@ -74,7 +74,7 @@ namespace thepos
 
                 int amt = orderItem.cnt * (orderItem.amt + orderItem.option_amt) - orderItem.dc_amount;
 
-                mTbReqAmount.Text = amt.ToString("N0");
+                mComplexTbReqAmount.Text = amt.ToString("N0");
             }
 
         }

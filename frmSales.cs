@@ -1928,85 +1928,97 @@ namespace thepos
 
                     if (orderItem.ticket == "Y")
                     {
-                        for (int k = 0; k < orderItem.cnt; k++)
+
+                        if (mTicketType == "IN")  // 입장전용 - 써멀로 한정
                         {
-                            ticket_seq++;
+                            t_ticket_no = mTheNo;
+                            print_bill_ticket(t_ticket_no, orderItem.goods_code, orderItem.cnt, orderItem.coupon_no);
 
-                            if (mTicketMedia == "BC")  // 영수증
+                        }
+                        else if (mTicketType == "PA" | mTicketType == "PD")  // 선불, 후불
+                        {
+
+                            for (int k = 0; k < orderItem.cnt; k++)
                             {
-                                t_ticket_no = mTheNo + ticket_seq.ToString("00");
-                            }
-                            else if (mTicketMedia == "TG")  // 띠지
-                            {
-                                t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
-                            }
-                            else  // 팔찌
-                            {
-                                //? 팔찌이면 스케너 입력로직 필요
-                                MessageBox.Show("스캐너 팔찌 입력을 할 수 없습니다... ");
+                                ticket_seq++;
 
-                                //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
-                                t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
-                            }
-
-                            Dictionary<string, string> parameters = new Dictionary<string, string>();
-                            parameters.Clear();
-                            parameters["siteId"] = mSiteId;
-                            parameters["bizDt"] = mBizDate;
-                            parameters["posNo"] = mPosNo;
-                            parameters["theNo"] = mTheNo;
-                            parameters["refNo"] = mRefNo;
-
-                            parameters["ticketNo"] = t_ticket_no;
-                            parameters["bangleNo"] = "";  //? 팔찌인 경우 - 값변경 필요
-                            parameters["ticketingDt"] = get_today_date() + get_today_time();
-                            parameters["chargeDt"] = "";
-                            parameters["settlementDt"] = "";
-
-                            parameters["pointChargeCnt"] = "0";
-                            parameters["pointUsageCnt"] = "0";
-
-                            parameters["pointCharge"] = "0";
-                            parameters["pointUsage"] = "0";
-                            parameters["settlePointCharge"] = "0";
-                            parameters["settlePointUsage"] = "0";
-
-                            parameters["goodsCode"] = orderItem.goods_code;
-                            parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
-                            parameters["lockerNo"] = "";
-                            parameters["openLocker"] = "1";             // 선불 :  항상 open
-                                                                        // 후불 :  최초 open -> 사용 close -> 정산 open
-                            if (mRequestPost("ticketFlow", parameters))
-                            {
-                                if (mObj["resultCode"].ToString() == "200")
+                                if (mTicketMedia == "BC")  // 영수증
                                 {
+                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");
+                                }
+                                else if (mTicketMedia == "TG")  // 띠지
+                                {
+                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
+                                }
+                                else  // 팔찌
+                                {
+                                    //? 팔찌이면 스케너 입력로직 필요
+                                    MessageBox.Show("스캐너 팔찌 입력을 할 수 없습니다... ");
 
+                                    //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...   theno + 팔찌번호?
+                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");  //? 임시
+                                }
+
+                                //
+                                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                                parameters.Clear();
+                                parameters["siteId"] = mSiteId;
+                                parameters["bizDt"] = mBizDate;
+                                parameters["posNo"] = mPosNo;
+                                parameters["theNo"] = mTheNo;
+                                parameters["refNo"] = mRefNo;
+
+                                parameters["ticketNo"] = t_ticket_no;
+                                parameters["bangleNo"] = "";  //? 팔찌인 경우 - 값변경 필요
+                                parameters["ticketingDt"] = get_today_date() + get_today_time();
+                                parameters["chargeDt"] = "";
+                                parameters["settlementDt"] = "";
+
+                                parameters["pointChargeCnt"] = "0";
+                                parameters["pointUsageCnt"] = "0";
+
+                                parameters["pointCharge"] = "0";
+                                parameters["pointUsage"] = "0";
+                                parameters["settlePointCharge"] = "0";
+                                parameters["settlePointUsage"] = "0";
+
+                                parameters["goodsCode"] = orderItem.goods_code;
+                                parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                                parameters["lockerNo"] = "";
+                                parameters["openLocker"] = "1";             // 선불 :  항상 open
+                                                                            // 후불 :  최초 open -> 사용 close -> 정산 open
+                                if (mRequestPost("ticketFlow", parameters))
+                                {
+                                    if (mObj["resultCode"].ToString() == "200")
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                        return -1;
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                    MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
                                     return -1;
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show("시스템오류 ticketFlow\n\n" + mErrorMsg, "thepos");
-                                return -1;
-                            }
 
-                            //
-                            // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
-                            // "", "BC", "RF", "TG" };
-                            // "", "영수증", "팔찌", "띠지" };
-                            if (mTicketMedia == "BC")  // 
-                            {
-                                print_ticket(t_ticket_no, orderItem.goods_code, orderItem.coupon_no);
+                                //
+                                // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
+                                // "", "BC", "RF", "TG" };
+                                // "", "영수증", "팔찌", "띠지" };
+                                if (mTicketMedia == "BC")  // 
+                                {
+                                    print_bill_ticket(t_ticket_no, orderItem.goods_code, 1, orderItem.coupon_no);
+                                }
+                                else if (mTicketMedia == "TG")
+                                {
+                                    MessageBox.Show("띠지 출력을 할 수 없습니다... \r\n" + t_ticket_no);
+                                }
                             }
-                            else if (mTicketMedia == "TG")
-                            {
-                                MessageBox.Show("띠지 출력을 할 수 없습니다... \r\n" + t_ticket_no);
-                            }
-                        } 
+                        }
                     }
                 }
 
@@ -3540,7 +3552,7 @@ namespace thepos
 
                     int amt = ((orderItem.amt + orderItem.option_amt) * orderItem.cnt) - orderItem.dc_amount;
 
-                    frmPayComplex.mTbReqAmount.Text = amt.ToString("N0");
+                    frmPayComplex.mComplexTbReqAmount.Text = amt.ToString("N0");
                 }
             }
 
@@ -4391,14 +4403,14 @@ namespace thepos
 
 
 
-        public static void print_ticket(String t_ticket_no, String t_goods_code, String t_coupon_no)
+        public static void print_bill_ticket(String t_ticket_no, String t_goods_code, int t_goods_cnt, String t_coupon_no)
         {
 
             // 티켓을 영수증에 출력
 
             if (mBillPrinterPort.Trim().Length == 0)
             {
-                SetDisplayAlarm("W", "영수증프린터 미설정으로 티켓출력불가..");
+                SetDisplayAlarm("W", "프린터 미설정으로 티켓출력불가..");
                 return;
             }
 
@@ -4460,7 +4472,7 @@ namespace thepos
                 if (true)
                 {
                     BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOn);
-                    strPrint = "- 1 매 - ";
+                    strPrint = "- " + t_goods_cnt + " 매 - ";
                     BytesValue = PrintExtensions.AddBytes(BytesValue, Encoding.Default.GetBytes(strPrint));
                     BytesValue = PrintExtensions.AddBytes(BytesValue, DoubleOff);
 
@@ -4565,7 +4577,7 @@ namespace thepos
 
             if (mBillPrinterPort.Trim().Length == 0)
             {
-                SetDisplayAlarm("W", "영수증프린터 미설정으로 영수증출력불가..");
+                //SetDisplayAlarm("W", "영수증프린터 미설정으로 영수증출력불가..");
                 return;
             }
 

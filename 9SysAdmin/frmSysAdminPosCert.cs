@@ -92,6 +92,7 @@ namespace thepos._9SysAdmin
 
 
             tbShopCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shop_code)].Text;
+            tbMAC.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(mac)].Text;
 
         }
 
@@ -104,6 +105,7 @@ namespace thepos._9SysAdmin
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = lvwList.SelectedItems[0].Text;
             parameters["shopCode"] = tbShopCode.Text;
+            parameters["macAddr"] = tbMAC.Text;
             parameters["posStatus"] = "Y";
 
 
@@ -131,22 +133,31 @@ namespace thepos._9SysAdmin
 
         }
 
-        private void btnStop_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (lvwList.SelectedItems.Count == 0) { return; }
+
+
+            if (MessageBox.Show("삭제.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+                return;
+            }
 
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = lvwList.SelectedItems[0].Text;
-            parameters["posStatus"] = "9"; // 정지
 
             //? bizDt 추가요망
-            if (mRequestPatch("pos", parameters))
+            if (mRequestDelete("pos", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 정지등록 완료.", "thepos");
+
                 }
                 else
                 {
@@ -163,5 +174,6 @@ namespace thepos._9SysAdmin
 
             reload_server();
         }
+
     }
 }

@@ -70,7 +70,7 @@ namespace thepos
 
 
             //
-            thepos_app_log(2, "theposw1", "START.....", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, "theposw1", "start.....", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
         }
 
@@ -256,7 +256,7 @@ namespace thepos
             mBizAddr = "";          // 주소
             mBizTelNo = "";         // 대표전화
 
-            mTicketType = "";  // ""미사용, "PA"선불, "PD"후불
+            mTicketType = "";  // ""미사용, "IN"입장전용, "PA"선불, "PD"후불
             mTicketMedia = "";  // 띠지BC   팔찌RF
             mVanCode = "";
             mCallCenterNo = "";
@@ -349,6 +349,10 @@ namespace thepos
 
         private bool server_login()
         {
+            mIsDevLogin = "";
+
+            mIsTestPayMode = "";
+
             // 
             if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
@@ -368,6 +372,8 @@ namespace thepos
                 {
                     //
                     mIsDevLogin = "Y";  // 개발자 로그인은 로그를 남기지 않기위해
+
+                    mIsTestPayMode = "Test";
 
                     lblIsTest.Visible = true;
                     return true;
@@ -404,7 +410,7 @@ namespace thepos
                     {
                         String msg = mObj["resultMsg"].ToString();
 
-                        thepos_app_log(3, this.Name, "login", "로그인오류. " + msg);
+                        thepos_app_log(3, this.Name, "login", "로그인오류. " + msg + " appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
                         MessageBox.Show("로그인오류\n\n" + msg, "thepos");
                         return false;
@@ -413,7 +419,7 @@ namespace thepos
                 else
                 {
                     //
-                    thepos_app_log(3, this.Name, "login", "시스템오류. " + mErrorMsg);
+                    thepos_app_log(3, this.Name, "login", "시스템오류. " + mErrorMsg + " appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
                     //
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");

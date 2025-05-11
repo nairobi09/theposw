@@ -139,7 +139,7 @@ namespace thepos
                 String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
                 String goods_code = lvwList.SelectedItems[0].SubItems[5].Text.ToString();
 
-                print_ticket(ticket_no, goods_code, "");
+                print_bill_ticket(ticket_no, goods_code, 1, "");
             }
             else if (mTicketMedia == "RF")  // 팔찌|RF[예정]
             {

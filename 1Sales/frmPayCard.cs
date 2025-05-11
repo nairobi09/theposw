@@ -83,6 +83,12 @@ namespace thepos
 
             }
 
+            if (mIsTestPayMode == "Test")
+            {
+                btnCardRequest.Text = "승인요청\r\n테스트(SKIP)";
+            }
+
+
         }
 
 
@@ -311,8 +317,14 @@ namespace thepos
                 order_no_from_to[0] = "";
                 order_no_from_to[1] = "";
 
+
                 if (mPayClass == "OR")
                 {
+                    // 주문알림 순서 
+                    // 1. 주문서 출력 (옵션)
+                    // 1. 알림톡 전송 (옵션)
+                    // 2. 교환권 출력 (옵션)
+
                     order_no_from_to = print_order(ref shopOrderPackList);
 
 
@@ -342,12 +354,12 @@ namespace thepos
 
 
 
-
                 // 영수증 출력
                 if (mPaySeq == 1)
                     print_bill(mTheNo, "A", "", "01000", true, order_no_from_to); // card
                 else
                     print_bill(mTheNo, "A", "", "11010", true, order_no_from_to); // cash card point easy
+
 
 
                 if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
@@ -364,6 +376,7 @@ namespace thepos
                         mClearSaleForm();
                     }
                 }
+
 
                 mPaySeq = 1;
             }
@@ -406,15 +419,23 @@ namespace thepos
             tFreeAmount = t면세금액;
 
 
+            // 테스트모드에서는 그냥 PASS
+            if (mIsTestPayMode != "Test")
+            { 
+                if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
+                {
+                    //
+                    thepos_app_log(3, this.Name, "requestCardAuth()", mErrorMsg);
 
-            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
-            {
-                //
-                thepos_app_log(3, this.Name, "requestCardAuth()", mErrorMsg);
+                    display_error_msg(mErrorMsg);
 
-                display_error_msg(mErrorMsg);
+                    return;
+                }
             }
-            else
+
+
+
+            //
             {
                 //정상승인
                 int order_cnt = 0;
@@ -422,7 +443,6 @@ namespace thepos
 
                 if (paySeq == 1)
                 {
-
                     set_shop_order_no_on_orderitem(out dcAmount);
 
 
@@ -456,13 +476,16 @@ namespace thepos
                 mPaymentCard.pos_no = mPosNo;
                 mPaymentCard.the_no = mTheNo;
                 mPaymentCard.ref_no = mRefNo;
+
                 mPaymentCard.pay_date = get_today_date();
                 mPaymentCard.pay_time = get_today_time();
                 mPaymentCard.pay_type = "C1";       // 결제구분 : , 카드결제(C1), 임의등록(C0)
                 mPaymentCard.tran_type = "A";       // 승인 A 취소 C
                 mPaymentCard.pay_class = mPayClass;
+
                 mPaymentCard.ticket_no = ticketNo;
                 mPaymentCard.pay_seq = paySeq;
+                mPaymentCard.amount = netAmount;
                 mPaymentCard.sign_path = "";
                 mPaymentCard.is_cancel = "";
                 mPaymentCard.van_code = mVanCode;
@@ -627,6 +650,7 @@ namespace thepos
                 this.Close();
             }
         }
+
 
 
         private bool SavePaymentCard(PaymentCard mPaymentCard)

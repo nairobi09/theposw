@@ -62,7 +62,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-002";
+        public static String mAppVersion = "TPW1-2025-003";
 
 
 
@@ -741,6 +741,9 @@ namespace thepos
         public static String mIsDevLogin = "";
 
 
+        public static String mIsTestPayMode = "";   // TEST LOGIN
+
+
 
 
 
@@ -1200,7 +1203,15 @@ namespace thepos
             // 개발자로그인은 앱로그를 안남긴다.
             if (mIsDevLogin == "Y")
             {
-                return;
+                if (mIsTestPayMode == "Test")
+                {
+                    //
+
+                }
+                else
+                {
+                    return;
+                }
             }
 
 
