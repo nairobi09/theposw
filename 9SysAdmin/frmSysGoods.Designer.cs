@@ -90,6 +90,7 @@
             this.badges_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.coupon_link_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btnExcelUp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -178,7 +179,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(721, 559);
+            this.btnAdd.Location = new System.Drawing.Point(721, 542);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(121, 50);
             this.btnAdd.TabIndex = 17;
@@ -193,7 +194,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(721, 613);
+            this.btnUpdate.Location = new System.Drawing.Point(721, 598);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(121, 35);
             this.btnUpdate.TabIndex = 18;
@@ -526,9 +527,9 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(721, 652);
+            this.btnDelete.Location = new System.Drawing.Point(721, 639);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(121, 35);
+            this.btnDelete.Size = new System.Drawing.Size(121, 25);
             this.btnDelete.TabIndex = 19;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
@@ -695,10 +696,25 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "image_add_32x32.png");
             // 
+            // btnExcelUp
+            // 
+            this.btnExcelUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcelUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnExcelUp.ForeColor = System.Drawing.Color.DimGray;
+            this.btnExcelUp.Location = new System.Drawing.Point(721, 670);
+            this.btnExcelUp.Name = "btnExcelUp";
+            this.btnExcelUp.Size = new System.Drawing.Size(121, 23);
+            this.btnExcelUp.TabIndex = 48;
+            this.btnExcelUp.TabStop = false;
+            this.btnExcelUp.Text = "엑셀업로드";
+            this.btnExcelUp.UseVisualStyleBackColor = true;
+            this.btnExcelUp.Click += new System.EventHandler(this.btnExcelUp_Click);
+            // 
             // frmSysGoods
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.btnExcelUp);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnUpdate);
@@ -777,5 +793,6 @@
         private System.Windows.Forms.TextBox tbCouponLinkNo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ColumnHeader coupon_link_no;
+        private System.Windows.Forms.Button btnExcelUp;
     }
 }

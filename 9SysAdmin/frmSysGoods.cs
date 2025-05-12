@@ -12,6 +12,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using theposw._9SysAdmin;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using static thepos.thePos;
@@ -1039,6 +1040,12 @@ namespace thepos._9SysAdmin
         {
             pbImage.Image = null;
             ch_imagePath = "1";
+        }
+
+        private void btnExcelUp_Click(object sender, EventArgs e)
+        {
+            frmExcelUp frm = new frmExcelUp();
+            frm.ShowDialog();
         }
     }
 }
