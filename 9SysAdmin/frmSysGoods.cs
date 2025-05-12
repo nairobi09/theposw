@@ -741,7 +741,7 @@ namespace thepos._9SysAdmin
             }
 
 
-
+            //
             if (mRequestPatch("goods", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -825,9 +825,9 @@ namespace thepos._9SysAdmin
             parameters["goodsNotice"] = tbGoodsNotice.Text.Trim();
 
             if (cbCoupon.Checked)
-                parameters["online_coupon"] = "Y";
+                parameters["onlineCoupon"] = "Y";
             else
-                parameters["online_coupon"] = "N";
+                parameters["onlineCoupon"] = "";
 
             if (cbTicket.Checked)
                 parameters["ticketYn"] = "Y";
@@ -868,6 +868,17 @@ namespace thepos._9SysAdmin
             else
             {
                 parameters["optionTemplateId"] = "";
+            }
+
+
+            // 배지
+            if (cbBadges.SelectedIndex > -1)
+            {
+                parameters["badgesId"] = mBadges[cbBadges.SelectedIndex].badges_id;
+            }
+            else
+            {
+                parameters["badgesId"] = "";
             }
 
 
@@ -1044,7 +1055,7 @@ namespace thepos._9SysAdmin
 
         private void btnExcelUp_Click(object sender, EventArgs e)
         {
-            frmExcelUp frm = new frmExcelUp();
+            frmSysGoodsExcelUp frm = new frmSysGoodsExcelUp();
             frm.ShowDialog();
         }
     }
