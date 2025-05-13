@@ -1330,6 +1330,7 @@ namespace thepos
         private void lblSiteAlias_Click(object sender, EventArgs e)
         {
             sysadmin_pw_patern = "";
+            lblUserNameTitle.ForeColor = System.Drawing.Color.White;
         }
 
         private void lblPosNoTitle_Click(object sender, EventArgs e)
@@ -1340,6 +1341,11 @@ namespace thepos
         private void lblUserNameTitle_Click(object sender, EventArgs e)
         {
             sysadmin_pw_patern += "2";
+
+            if (sysadmin_pw_patern == "1122")
+            {
+                lblUserNameTitle.ForeColor = System.Drawing.Color.Gold;
+            }
         }
 
         private void lblCallCenterNo_Click(object sender, EventArgs e)
@@ -1363,6 +1369,7 @@ namespace thepos
             frmSysAdmin.Show();
 
             sysadmin_pw_patern = "";
+            lblUserNameTitle.ForeColor = System.Drawing.Color.White;
         }
 
 

@@ -181,7 +181,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(721, 542);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(121, 50);
+            this.btnAdd.Size = new System.Drawing.Size(121, 40);
             this.btnAdd.TabIndex = 17;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
@@ -194,9 +194,9 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(721, 598);
+            this.btnUpdate.Location = new System.Drawing.Point(721, 588);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(121, 35);
+            this.btnUpdate.Size = new System.Drawing.Size(121, 40);
             this.btnUpdate.TabIndex = 18;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -527,7 +527,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(721, 639);
+            this.btnDelete.Location = new System.Drawing.Point(721, 634);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 25);
             this.btnDelete.TabIndex = 19;
@@ -704,7 +704,7 @@
             this.btnExcelUp.ForeColor = System.Drawing.Color.DimGray;
             this.btnExcelUp.Location = new System.Drawing.Point(721, 670);
             this.btnExcelUp.Name = "btnExcelUp";
-            this.btnExcelUp.Size = new System.Drawing.Size(121, 23);
+            this.btnExcelUp.Size = new System.Drawing.Size(121, 25);
             this.btnExcelUp.TabIndex = 48;
             this.btnExcelUp.TabStop = false;
             this.btnExcelUp.Text = "엑셀업로드";
