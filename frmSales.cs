@@ -4057,6 +4057,20 @@ namespace thepos
                                     }
 
                                     strPrintPayment += Space(21 - encodelen(tStr)) + tStr;
+
+
+
+                                    String authno = arr[i]["authNo"].ToString() + "";
+
+                                    if (authno.Length > 0)
+                                    {
+                                        strPrintPayment += "\r\n";
+
+                                        tStr = "승인번호: " + authno;
+                                        strPrintPayment += Space(42 - encodelen(tStr)) + tStr;
+
+                                    }
+
                                 }
 
                                 strPrintPayment += "\r\n";

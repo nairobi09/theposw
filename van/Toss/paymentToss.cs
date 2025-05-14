@@ -324,17 +324,20 @@ namespace thepos
             ret = UPay_Set("LGD_AMOUNT", amount.ToString());
 
 
+
             if (issued_method_no != "")
             {
                 ret = UPay_Set("LGD_CASHCARDNUM", issued_method_no);
             }
 
+
+                
             string tReceiptType = "";
 
             if (receipt_type == "1") tReceiptType = "1";
             else 
             if (receipt_type == "2") tReceiptType = "2";
-            else tReceiptType = "";
+            else tReceiptType = " ";
 
 
             ret = UPay_Set("LGD_CASHRECEIPTUSE", tReceiptType);
@@ -391,10 +394,10 @@ namespace thepos
 
             if (mTossResponse.Respcode == "0000")
             {
-                paymentCash.tran_date = mTossResponse.Trandate;
-                paymentCash.issued_method_no = mTossResponse.Cardno;
-                paymentCash.auth_no = mTossResponse.Authno;
-                paymentCash.tran_serial = mTossResponse.Tran_serial;
+                mPaymentCash.tran_date = mTossResponse.Trandate;
+                mPaymentCash.issued_method_no = mTossResponse.Cardno;
+                mPaymentCash.auth_no = mTossResponse.Authno;
+                mPaymentCash.tran_serial = mTossResponse.Tran_serial;
 
                 return 0;
             }

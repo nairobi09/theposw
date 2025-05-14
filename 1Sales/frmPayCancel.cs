@@ -702,17 +702,17 @@ namespace thepos
                         parameters["siteId"] = mSiteId;
                         parameters["bizDt"] = mBizDate;
                         parameters["posNo"] = mPosNo;
-                        parameters["theNo"] = pCashCancel.the_no;
-                        parameters["refNo"] = pCashCancel.ref_no;
+                        parameters["theNo"] = pCashAuth.the_no;
+                        parameters["refNo"] = pCashAuth.ref_no;
 
                         parameters["payDate"] = get_today_date();
                         parameters["payTime"] = get_today_time();
                         parameters["payType"] = "R1";       // 결제구분
                         parameters["tranType"] = "C";       // 승인 A 취소 C
-                        parameters["payClass"] = pCashCancel.pay_class;
+                        parameters["payClass"] = pCashAuth.pay_class;
 
-                        parameters["ticketNo"] = pCashCancel.ticket_no;
-                        parameters["paySeq"] = pCashCancel.pay_seq + "";
+                        parameters["ticketNo"] = pCashAuth.ticket_no;
+                        parameters["paySeq"] = pCashAuth.pay_seq + "";
                         parameters["tranDate"] = pCashCancel.tran_date;
                         parameters["amount"] = pCashCancel.amount + "";
                         parameters["receiptType"] = pCashCancel.receipt_type + "";
