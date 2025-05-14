@@ -35,6 +35,7 @@ namespace thepos._9SysAdmin
         String sv_goodsNameCH = "";
         String sv_goodsNameJP = "";
         String sv_goodsNotice = "";
+        String sv_barcode = "";
 
         String sv_amt = "";
         String sv_shopCode = "";
@@ -79,7 +80,7 @@ namespace thepos._9SysAdmin
             // 옵션은 자주 변경을 예상하여 상품화면띄울때마다 옵션정보 로드한다...
 
             // 3-1. optionTemplate
-            if (true)
+            if (false)
             {
                 String sUrl = "optionTemplate?siteId=" + mSiteId;
                 if (mRequestGet(sUrl))
@@ -128,7 +129,6 @@ namespace thepos._9SysAdmin
             {
                 cbBadges.Items.Add(mBadges[i].badges_name);
             }
-
 
         }
 
@@ -225,6 +225,8 @@ namespace thepos._9SysAdmin
 
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
                         lvItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["barCode"].ToString());
 
 
                         if (tCutout == "Y")  // 중지
@@ -352,6 +354,8 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
                         lvItem.SubItems.Add(arr[0]["couponLinkNo"].ToString());
 
+                        lvItem.SubItems.Add(arr[0]["barCode"].ToString());
+
 
 
                         if (tCutout == "Y")  // 중지
@@ -427,6 +431,7 @@ namespace thepos._9SysAdmin
             tbGoodsNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(goodsnameJP)].Text;
 
             tbGoodsNotice.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(notice)].Text;
+            tbBarCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(barcode)].Text;
 
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(online_coupon)].Text == "Y")
@@ -623,6 +628,12 @@ namespace thepos._9SysAdmin
             // notice
             if (sv_goodsNotice != tbGoodsNotice.Text.Trim())
                 parameters["goodsNotice"] = tbGoodsNotice.Text.Trim();
+
+            // barCode
+            if (sv_barcode != tbBarCode.Text.Trim())
+                parameters["barCode"] = tbBarCode.Text.Trim();
+
+
 
 
             //
@@ -823,6 +834,9 @@ namespace thepos._9SysAdmin
             parameters["goodsNameJP"] = tbGoodsNameJP.Text.Trim();
 
             parameters["goodsNotice"] = tbGoodsNotice.Text.Trim();
+
+            parameters["barCode"] = tbBarCode.Text.Trim();
+
 
             if (cbCoupon.Checked)
                 parameters["onlineCoupon"] = "Y";
@@ -1058,5 +1072,6 @@ namespace thepos._9SysAdmin
             frmSysGoodsExcelUp frm = new frmSysGoodsExcelUp();
             frm.ShowDialog();
         }
+
     }
 }

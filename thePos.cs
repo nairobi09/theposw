@@ -302,6 +302,7 @@ namespace thepos
             public int rowspan;
             public String option_template_id;
             public String coupon_link_no;
+            public String bar_code;
         }
         public static GoodsItem[] mGoodsItem;
 

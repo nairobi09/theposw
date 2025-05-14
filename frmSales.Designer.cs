@@ -122,6 +122,7 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
+            this.tbScanBarCode = new System.Windows.Forms.TextBox();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -1037,6 +1038,7 @@ namespace thepos
             // panelDisplayAlarmWhite
             // 
             this.panelDisplayAlarmWhite.BackColor = System.Drawing.Color.White;
+            this.panelDisplayAlarmWhite.Controls.Add(this.tbScanBarCode);
             this.panelDisplayAlarmWhite.Controls.Add(this.lblDisplayAlarm);
             this.panelDisplayAlarmWhite.Location = new System.Drawing.Point(6, 353);
             this.panelDisplayAlarmWhite.Name = "panelDisplayAlarmWhite";
@@ -1378,6 +1380,17 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
+            // tbScanBarCode
+            // 
+            this.tbScanBarCode.Font = new System.Drawing.Font("굴림", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbScanBarCode.Location = new System.Drawing.Point(295, 13);
+            this.tbScanBarCode.Margin = new System.Windows.Forms.Padding(0);
+            this.tbScanBarCode.Name = "tbScanBarCode";
+            this.tbScanBarCode.Size = new System.Drawing.Size(165, 15);
+            this.tbScanBarCode.TabIndex = 0;
+            this.tbScanBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbScanBarCode_KeyUp);
+            this.tbScanBarCode.Leave += new System.EventHandler(this.tbScanBarCode_Leave);
+            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1421,6 +1434,7 @@ namespace thepos
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
             this.panelDisplayAlarmWhite.ResumeLayout(false);
+            this.panelDisplayAlarmWhite.PerformLayout();
             this.panelOrderLvw.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lvwOrderItem)).EndInit();
             this.panelGoodsItem.ResumeLayout(false);
@@ -1526,6 +1540,7 @@ namespace thepos
         private System.Windows.Forms.Button btnOrderItemScrollDn;
         private System.Windows.Forms.Button btnOrderItemScrollUp;
         private System.Windows.Forms.Button btnOrderAllim;
+        private System.Windows.Forms.TextBox tbScanBarCode;
     }
 }
 

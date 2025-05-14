@@ -128,22 +128,22 @@ namespace thepos
                 // 티켓플로패널
                 panelFlowConsole.Visible = true;
 
-                btnOrderWaiting.Size = new Size(124, 48);
+                //btnOrderWaiting.Size = new Size(124, 48);
 
                 // 결제내역관리
-                btnPayManager.Location = new Point(350, 313);
-                btnPayManager.Size = new Size(124, 48);
+                //btnPayManager.Location = new Point(350, 313);
+                //btnPayManager.Size = new Size(124, 48);
             }
             else
             {
                 // 티켓플로패널
                 panelFlowConsole.Visible = false;
 
-                btnOrderWaiting.Size = new Size(124, 100);
-
+                //btnOrderWaiting.Size = new Size(124, 100);
+                
                 // 결제내역관리
-                btnPayManager.Location = new Point(350, 157);
-                btnPayManager.Size = new Size(124, 204);
+                btnPayManager.Location = new Point(350, 105);
+                btnPayManager.Size = new Size(124, 256);
             }
 
 
@@ -5553,5 +5553,64 @@ namespace thepos
             MessageBox.Show(msg, "thepos");
         }
 
+        private void tbScanBarCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                String input_barcode = tbScanBarCode.Text;
+                tbScanBarCode.Clear();
+
+                if (input_barcode.Length < 3)
+                {
+                    thepos_app_log(3, this.Name, "scanner", "skip. barcode=" + input_barcode);
+                    return;
+                }
+
+                if (input_barcode.Substring(0, 3) == "000")
+                {
+                    thepos_app_log(3, this.Name, "scanner", "skip. barcode=" + input_barcode);
+                    return;
+                }
+
+
+
+                int goods_idx = -1;
+
+                for (int i = 0; i < mGoodsItem.Length; i++)
+                {
+                    if (mGoodsItem[i].bar_code == input_barcode)
+                    {
+                        goods_idx = i;
+                        break;
+                    }
+                }
+
+
+                if (goods_idx == -1)
+                {
+                    thepos_app_log(3, this.Name, "tbScanBarCode_KeyUp()", "상품을 못찾음. input_barcode=" + input_barcode);
+                }
+                else
+                {
+                    //
+                    ClickedGoodsItem(goods_idx);
+                }
+
+
+                tbScanBarCode.Focus();
+            }
+
+
+
+
+        }
+
+        private void tbScanBarCode_Leave(object sender, EventArgs e)
+        {
+            tbScanBarCode.Focus();
+        }
     }
 }

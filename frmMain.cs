@@ -684,6 +684,7 @@ namespace thepos
                             mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
                             mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
                             mGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
+                            mGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
 
                             // 면세상픔은 상품명앞에 *을 붙인다.
                             if (mGoodsItem[i].taxfree == "1")
