@@ -35,7 +35,15 @@ namespace thepos._9SysAdmin
             initialize_the();
 
             get_goods();
-            get_posno_from_setupPos();
+
+            
+            for (int i = 0; i < mPosNoList.Length; i++)
+            {
+                cbPosNo.Items.Add(mPosNoList[i]);
+                cbSourcePosNo.Items.Add(mPosNoList[i]);
+            }
+
+            //get_posno_from_setupPos();
 
             /*
             for (int i = 0; i < mPosNoList.Length; i++)
@@ -143,7 +151,7 @@ namespace thepos._9SysAdmin
 
         private void cbPosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedPosNo = pos_no[cbPosNo.SelectedIndex];
+            mSelectedPosNo = mPosNoList[cbPosNo.SelectedIndex];
 
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
@@ -183,12 +191,12 @@ namespace thepos._9SysAdmin
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            mSelectedPosNo = pos_no[cbPosNo.SelectedIndex];
+            mSelectedPosNo = mPosNoList[cbPosNo.SelectedIndex];
 
 
-            if (pos_type[cbPosNo.SelectedIndex] != "KIOSK")
+            if (mSelectedPosNo.Substring(0,1) != "1")
             {
-                MessageBox.Show("KIOSK로 등록된 포스가 아닙니다.\r\n상품배치(POS) 메뉴에서 수정가능합니다.", "thepos");
+                MessageBox.Show("KIOSK로 등록된 기기가 아닙니다.", "thepos");
 
                 return;
             }

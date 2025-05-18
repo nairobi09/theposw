@@ -16,7 +16,6 @@ using System.Security.Cryptography;
 using System.Drawing.Text;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Drawing2D;
-using System.Data.SQLite;
 
 namespace thepos
 {

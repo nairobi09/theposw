@@ -182,6 +182,18 @@ namespace thepos
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+        private void btnSysFlowConsole_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "FlowConsole") return;
+
+            mThisButtonClick = "FlowConsole";
+            panelView.Controls.Clear();
+
+            frmSysFlowConsole fSysAdmin = new frmSysFlowConsole() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
 
         private void btnSysSite_Click(object sender, EventArgs e)
         {
@@ -235,5 +247,7 @@ namespace thepos
         {
             thepos_app_log(1, this.Name, "close", "");
         }
+
+
     }
 }

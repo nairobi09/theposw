@@ -33,7 +33,7 @@
             this.shop_order_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwOrderShop = new System.Windows.Forms.ListView();
             this.allim_status_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.order_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.allim_type_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,18 +42,15 @@
             this.allim_type_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.allim_status_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.the_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.lbl1 = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
-            this.lbl2 = new System.Windows.Forms.Label();
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbShop = new System.Windows.Forms.ComboBox();
             this.cnt_item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwOrderItem = new System.Windows.Forms.ListView();
@@ -74,7 +71,7 @@
             this.lvwOrderShop.BackColor = System.Drawing.Color.White;
             this.lvwOrderShop.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.allim_status_name,
-            this.shop_name,
+            this.pos_no,
             this.shop_order_no,
             this.order_time,
             this.cnt,
@@ -83,8 +80,7 @@
             this.cancel,
             this.allim_type_code,
             this.allim_status_code,
-            this.the_no,
-            this.shop_code});
+            this.the_no});
             this.lvwOrderShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwOrderShop.ForeColor = System.Drawing.Color.Black;
             this.lvwOrderShop.FullRowSelect = true;
@@ -106,10 +102,10 @@
             this.allim_status_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.allim_status_name.Width = 50;
             // 
-            // shop_name
+            // pos_no
             // 
-            this.shop_name.Text = "업장";
-            this.shop_name.Width = 50;
+            this.pos_no.Text = "포스";
+            this.pos_no.Width = 50;
             // 
             // order_time
             // 
@@ -125,15 +121,17 @@
             // allim_type_name
             // 
             this.allim_type_name.Text = "타입";
+            this.allim_type_name.Width = 70;
             // 
             // hhp_no
             // 
-            this.hhp_no.Text = "TEL";
+            this.hhp_no.Text = "번호";
             // 
             // cancel
             // 
             this.cancel.DisplayIndex = 9;
             this.cancel.Text = "취소";
+            this.cancel.Width = 50;
             // 
             // allim_type_code
             // 
@@ -151,11 +149,6 @@
             // 
             this.the_no.Text = "the_no";
             this.the_no.Width = 0;
-            // 
-            // shop_code
-            // 
-            this.shop_code.Text = "shop_code";
-            this.shop_code.Width = 0;
             // 
             // imageList
             // 
@@ -187,17 +180,6 @@
             this.dtpBizDate.TabIndex = 68;
             this.dtpBizDate.TabStop = false;
             this.dtpBizDate.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl2.Location = new System.Drawing.Point(121, 13);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(29, 12);
-            this.lbl2.TabIndex = 69;
-            this.lbl2.Text = "업장";
             // 
             // amount_card
             // 
@@ -259,25 +241,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.cbShop);
             this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.dtpBizDate);
-            this.panel1.Controls.Add(this.lbl2);
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(20, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 67);
             this.panel1.TabIndex = 77;
-            // 
-            // cbShop
-            // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(123, 30);
-            this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(92, 24);
-            this.cbShop.TabIndex = 94;
-            this.cbShop.TabStop = false;
             // 
             // cnt_item
             // 
@@ -320,7 +290,7 @@
             this.btnAllimSendCP.Size = new System.Drawing.Size(146, 80);
             this.btnAllimSendCP.TabIndex = 48;
             this.btnAllimSendCP.TabStop = false;
-            this.btnAllimSendCP.Text = "알림\r\n발송하기";
+            this.btnAllimSendCP.Text = "알림발송";
             this.btnAllimSendCP.UseVisualStyleBackColor = false;
             this.btnAllimSendCP.Click += new System.EventHandler(this.btnAllimSendCP_Click);
             // 
@@ -349,7 +319,7 @@
             this.btnAllimFinish.ForeColor = System.Drawing.Color.White;
             this.btnAllimFinish.Location = new System.Drawing.Point(355, 519);
             this.btnAllimFinish.Name = "btnAllimFinish";
-            this.btnAllimFinish.Size = new System.Drawing.Size(146, 80);
+            this.btnAllimFinish.Size = new System.Drawing.Size(146, 65);
             this.btnAllimFinish.TabIndex = 81;
             this.btnAllimFinish.TabStop = false;
             this.btnAllimFinish.Text = "완료\r\n";
@@ -383,7 +353,6 @@
         private System.Windows.Forms.ColumnHeader allim_status_code;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
-        private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.ColumnHeader amount_card;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Button btnClose;
@@ -395,13 +364,11 @@
         private System.Windows.Forms.ListView lvwOrderItem;
         private System.Windows.Forms.Button btnAllimSendCP;
         private System.Windows.Forms.Panel panelback;
-        private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.ColumnHeader hhp_no;
-        private System.Windows.Forms.ColumnHeader shop_name;
+        private System.Windows.Forms.ColumnHeader pos_no;
         private System.Windows.Forms.ColumnHeader allim_type_name;
         private System.Windows.Forms.ColumnHeader cancel;
         private System.Windows.Forms.ColumnHeader the_no;
-        private System.Windows.Forms.ColumnHeader shop_code;
         private System.Windows.Forms.Button btnAllimFinish;
         private System.Windows.Forms.ImageList imageList;
     }

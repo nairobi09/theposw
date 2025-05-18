@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
-using System.Data.SQLite;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 
@@ -38,7 +37,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[13];
+        Setup[] listSetup = new Setup[14];
 
 
         bool isAdd = false;
@@ -62,7 +61,7 @@ namespace thepos
             setupItem.code = "BillPrinterSpeed";      setupItem.name = "영수증프린터 속도";  setupItem.value = "";   setupItem.memo = "";    listSetup[5] = setupItem;
 
             setupItem.code = "TicketPrinterPort";     setupItem.name = "티켓전용프린터 포트";    setupItem.value = "";   setupItem.memo = "";    listSetup[6] = setupItem;
-            setupItem.code = "TicketPrinterSpeed";    setupItem.name = "티켓전용프린터 속도";    setupItem.value = "";   setupItem.memo = "";    listSetup[7] = setupItem;
+            setupItem.code = "TicketPrinterSpeed";    setupItem.name = "티켓전용프린터 속도";    setupItem.value = "";   setupItem.memo = "COM인 경우";    listSetup[7] = setupItem;
 
             setupItem.code = "VanTID";                setupItem.name = "결제밴 T-ID";       setupItem.value = "";   setupItem.memo = "미입력시 밴결제모듈내 입력된 T-ID로 설정됩니다.\r\nKovan의 경우 필수입력항목입니다.";    listSetup[8] = setupItem;
 
@@ -74,8 +73,11 @@ namespace thepos
             // 티켓출력물 추가 텍스트
             setupItem.code = "TicketAddText";         setupItem.name = "티켓출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[11] = setupItem;
 
+            // 영수증출력물 추가 텍스트
+            setupItem.code = "BillAddText"; setupItem.name = "영수증출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[12] = setupItem;
+
             // 로그레벨 
-            setupItem.code = "AppLogLevel";         setupItem.name = "로그레벨"; setupItem.value = ""; setupItem.memo = ""; listSetup[12] = setupItem;
+            setupItem.code = "AppLogLevel";         setupItem.name = "로그레벨"; setupItem.value = ""; setupItem.memo = ""; listSetup[13] = setupItem;
 
 
             reload_setup_pos();
@@ -180,9 +182,7 @@ namespace thepos
                 cbValue.Items.Clear();
                 cbValue.Items.Add("");
                 cbValue.Items.Add("POS");
-                cbValue.Items.Add("POS-Ticket");
                 cbValue.Items.Add("PC");
-                cbValue.Items.Add("PC-Ticket");
                 cbValue.Items.Add("KIOSK");
             }
             else if (code == listSetup[1].code)  // CustomerMonitor
@@ -216,6 +216,7 @@ namespace thepos
 
                 cbValue.Items.Clear ();
                 cbValue.Items.Add(" ");
+                cbValue.Items.Add("USB");
                 foreach (string s in SerialPort.GetPortNames())
                 {
                     cbValue.Items.Add(s);
@@ -263,14 +264,14 @@ namespace thepos
                     pbImage.Image = null;
                 }
             }
-            else if (code == listSetup[11].code)
+            else if (code == listSetup[11].code | code == listSetup[12].code)
             {
                 panelMultiText.Visible = true;
 
                 tbMultiValue.Text = lblValue.Text;
 
             }
-            else if (code == listSetup[12].code)
+            else if (code == listSetup[13].code)
             {
                 cbValue.Visible = true;
 
@@ -376,6 +377,7 @@ namespace thepos
                 else if (lvwList.Items[i].Tag.ToString() == "SubMonitorImage") mSubMonitorImage = lvwList.Items[i].SubItems[1].Text;
 
                 else if (lvwList.Items[i].Tag.ToString() == "TicketAddText") mTicketAddText = lvwList.Items[i].SubItems[1].Text;
+                else if (lvwList.Items[i].Tag.ToString() == "BillAddText") mBillAddText = lvwList.Items[i].SubItems[1].Text;
 
                 else if (lvwList.Items[i].Tag.ToString() == "AppLogLevel")
                 {

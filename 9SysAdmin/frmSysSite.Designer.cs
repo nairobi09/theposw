@@ -121,7 +121,7 @@
             this.tbSiteName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteName.Location = new System.Drawing.Point(98, 18);
             this.tbSiteName.Name = "tbSiteName";
-            this.tbSiteName.Size = new System.Drawing.Size(157, 23);
+            this.tbSiteName.Size = new System.Drawing.Size(193, 23);
             this.tbSiteName.TabIndex = 54;
             this.tbSiteName.TabStop = false;
             // 
@@ -151,7 +151,7 @@
             this.tbBizTelNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbBizTelNo.Location = new System.Drawing.Point(98, 158);
             this.tbBizTelNo.Name = "tbBizTelNo";
-            this.tbBizTelNo.Size = new System.Drawing.Size(157, 23);
+            this.tbBizTelNo.Size = new System.Drawing.Size(193, 23);
             this.tbBizTelNo.TabIndex = 54;
             this.tbBizTelNo.TabStop = false;
             // 
@@ -171,7 +171,7 @@
             this.tbCapName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbCapName.Location = new System.Drawing.Point(98, 102);
             this.tbCapName.Name = "tbCapName";
-            this.tbCapName.Size = new System.Drawing.Size(157, 23);
+            this.tbCapName.Size = new System.Drawing.Size(193, 23);
             this.tbCapName.TabIndex = 54;
             this.tbCapName.TabStop = false;
             // 
@@ -181,7 +181,7 @@
             this.tbRegistNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbRegistNo.Location = new System.Drawing.Point(98, 74);
             this.tbRegistNo.Name = "tbRegistNo";
-            this.tbRegistNo.Size = new System.Drawing.Size(157, 23);
+            this.tbRegistNo.Size = new System.Drawing.Size(193, 23);
             this.tbRegistNo.TabIndex = 54;
             this.tbRegistNo.TabStop = false;
             // 
@@ -191,7 +191,7 @@
             this.tbSiteAlias.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSiteAlias.Location = new System.Drawing.Point(98, 46);
             this.tbSiteAlias.Name = "tbSiteAlias";
-            this.tbSiteAlias.Size = new System.Drawing.Size(157, 23);
+            this.tbSiteAlias.Size = new System.Drawing.Size(193, 23);
             this.tbSiteAlias.TabIndex = 54;
             this.tbSiteAlias.TabStop = false;
             // 
@@ -273,7 +273,7 @@
             this.cbVanCode.FormattingEnabled = true;
             this.cbVanCode.Location = new System.Drawing.Point(98, 75);
             this.cbVanCode.Name = "cbVanCode";
-            this.cbVanCode.Size = new System.Drawing.Size(156, 21);
+            this.cbVanCode.Size = new System.Drawing.Size(193, 21);
             this.cbVanCode.TabIndex = 58;
             this.cbVanCode.TabStop = false;
             // 
@@ -284,7 +284,7 @@
             this.cbTicketMedia.FormattingEnabled = true;
             this.cbTicketMedia.Location = new System.Drawing.Point(98, 47);
             this.cbTicketMedia.Name = "cbTicketMedia";
-            this.cbTicketMedia.Size = new System.Drawing.Size(156, 21);
+            this.cbTicketMedia.Size = new System.Drawing.Size(193, 21);
             this.cbTicketMedia.TabIndex = 57;
             this.cbTicketMedia.TabStop = false;
             // 
@@ -295,7 +295,7 @@
             this.cbTicketType.FormattingEnabled = true;
             this.cbTicketType.Location = new System.Drawing.Point(98, 19);
             this.cbTicketType.Name = "cbTicketType";
-            this.cbTicketType.Size = new System.Drawing.Size(156, 21);
+            this.cbTicketType.Size = new System.Drawing.Size(193, 21);
             this.cbTicketType.TabIndex = 56;
             this.cbTicketType.TabStop = false;
             // 
@@ -423,7 +423,7 @@
             this.lblCutoffTime1.AutoSize = true;
             this.lblCutoffTime1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCutoffTime1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCutoffTime1.Location = new System.Drawing.Point(233, 55);
+            this.lblCutoffTime1.Location = new System.Drawing.Point(258, 55);
             this.lblCutoffTime1.Name = "lblCutoffTime1";
             this.lblCutoffTime1.Size = new System.Drawing.Size(102, 14);
             this.lblCutoffTime1.TabIndex = 57;
@@ -447,7 +447,7 @@
             this.cbCutoffType.FormattingEnabled = true;
             this.cbCutoffType.Location = new System.Drawing.Point(98, 18);
             this.cbCutoffType.Name = "cbCutoffType";
-            this.cbCutoffType.Size = new System.Drawing.Size(129, 21);
+            this.cbCutoffType.Size = new System.Drawing.Size(150, 21);
             this.cbCutoffType.TabIndex = 56;
             this.cbCutoffType.TabStop = false;
             // 
@@ -458,7 +458,7 @@
             this.tbCutoffTime.Location = new System.Drawing.Point(98, 49);
             this.tbCutoffTime.MaxLength = 4;
             this.tbCutoffTime.Name = "tbCutoffTime";
-            this.tbCutoffTime.Size = new System.Drawing.Size(131, 23);
+            this.tbCutoffTime.Size = new System.Drawing.Size(152, 23);
             this.tbCutoffTime.TabIndex = 55;
             this.tbCutoffTime.TabStop = false;
             // 
@@ -493,7 +493,7 @@
             this.groupBox5.Controls.Add(this.lblAllimTN);
             this.groupBox5.Location = new System.Drawing.Point(516, 47);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(287, 159);
+            this.groupBox5.Size = new System.Drawing.Size(298, 159);
             this.groupBox5.TabIndex = 59;
             this.groupBox5.TabStop = false;
             // 
@@ -518,7 +518,7 @@
             this.cbAllimYN.FormattingEnabled = true;
             this.cbAllimYN.Location = new System.Drawing.Point(107, 21);
             this.cbAllimYN.Name = "cbAllimYN";
-            this.cbAllimYN.Size = new System.Drawing.Size(156, 21);
+            this.cbAllimYN.Size = new System.Drawing.Size(170, 21);
             this.cbAllimYN.TabIndex = 57;
             this.cbAllimYN.TabStop = false;
             // 
@@ -528,7 +528,7 @@
             this.tbSenderProfile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.tbSenderProfile.Location = new System.Drawing.Point(107, 52);
             this.tbSenderProfile.Name = "tbSenderProfile";
-            this.tbSenderProfile.Size = new System.Drawing.Size(157, 23);
+            this.tbSenderProfile.Size = new System.Drawing.Size(171, 23);
             this.tbSenderProfile.TabIndex = 56;
             this.tbSenderProfile.TabStop = false;
             // 

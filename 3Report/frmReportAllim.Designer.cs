@@ -108,7 +108,7 @@
             // 
             // shop_name
             // 
-            this.shop_name.Text = "매장";
+            this.shop_name.Text = "업장";
             this.shop_name.Width = 110;
             // 
             // order_detail

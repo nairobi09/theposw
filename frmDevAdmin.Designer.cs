@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cbAuth = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cbTest
@@ -46,7 +47,7 @@
             this.cbTest.Checked = true;
             this.cbTest.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTest.ForeColor = System.Drawing.Color.LightGray;
-            this.cbTest.Location = new System.Drawing.Point(51, 101);
+            this.cbTest.Location = new System.Drawing.Point(51, 108);
             this.cbTest.Margin = new System.Windows.Forms.Padding(4);
             this.cbTest.Name = "cbTest";
             this.cbTest.Size = new System.Drawing.Size(56, 16);
@@ -123,7 +124,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Gold;
-            this.label2.Location = new System.Drawing.Point(49, 151);
+            this.label2.Location = new System.Drawing.Point(49, 191);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(189, 12);
             this.label2.TabIndex = 7;
@@ -133,17 +134,32 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Gold;
-            this.label3.Location = new System.Drawing.Point(49, 181);
+            this.label3.Location = new System.Drawing.Point(49, 221);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 36);
             this.label3.TabIndex = 13;
             this.label3.Text = "TEST 체크 경우\r\n - 테스트서버 연결\r\n - 밴사 결제과정을 SKIP함";
             // 
+            // cbAuth
+            // 
+            this.cbAuth.AutoSize = true;
+            this.cbAuth.Checked = true;
+            this.cbAuth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAuth.ForeColor = System.Drawing.Color.LightGray;
+            this.cbAuth.Location = new System.Drawing.Point(51, 144);
+            this.cbAuth.Margin = new System.Windows.Forms.Padding(4);
+            this.cbAuth.Name = "cbAuth";
+            this.cbAuth.Size = new System.Drawing.Size(56, 16);
+            this.cbAuth.TabIndex = 14;
+            this.cbAuth.Text = "AUTH";
+            this.cbAuth.UseVisualStyleBackColor = true;
+            // 
             // frmDevAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(340, 250);
+            this.ClientSize = new System.Drawing.Size(340, 304);
+            this.Controls.Add(this.cbAuth);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -174,5 +190,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox cbAuth;
     }
 }

@@ -72,6 +72,8 @@
             // chkKakao
             // 
             this.chkKakao.AutoSize = true;
+            this.chkKakao.Checked = true;
+            this.chkKakao.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkKakao.Location = new System.Drawing.Point(121, 99);
             this.chkKakao.Name = "chkKakao";
             this.chkKakao.Size = new System.Drawing.Size(96, 18);

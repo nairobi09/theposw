@@ -729,7 +729,6 @@
             // 
             // btnExcelUp
             // 
-            this.btnExcelUp.Enabled = false;
             this.btnExcelUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcelUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExcelUp.ForeColor = System.Drawing.Color.DimGray;

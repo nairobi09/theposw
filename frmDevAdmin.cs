@@ -48,9 +48,21 @@ namespace thepos
                 if (mObj["resultCode"].ToString() == "200")
                 {
                     mSiteId = mObj["siteId"].ToString();
-                    mUserID = "";
-                    mUserName = "";
+                    mUserID = "dev1";
+                    mUserName = "devlogin";
                     mPosNo = mObj["posNo"].ToString();
+                    mShopCode = mObj["shopCode"].ToString();
+
+                    if (cbAuth.Checked)
+                    {
+                        mUserAuth = "A";
+                    }
+                    else
+                    {
+                        mUserAuth = "U";
+                    }
+                        
+                    
 
                     //
                     thepos_app_log(2, this.Name, "login", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
@@ -111,6 +123,8 @@ namespace thepos
                     mUserID = tbSiteID.Text;
                     mUserName = mObj["userName"].ToString();
                     mPosNo = mObj["posNo"].ToString();
+                    mShopCode = mObj["shopCode"].ToString();
+                    mUserAuth = mObj["userAuth"].ToString();
 
                     //
                     thepos_app_log(1, this.Name, "login", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);

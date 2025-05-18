@@ -17,7 +17,6 @@ using System.Net;
 using System.Security.Policy;
 using System.Collections;
 using System.IO;
-using System.Data.SQLite;
 using static BrightIdeasSoftware.ObjectListView;
 
 /* 
@@ -118,8 +117,16 @@ namespace thepos
         public static String mCallCenterNo = "";
         public static String mServerDbVer = "";
 
+
+        public static String mShopCode = "";       // 내 업장코드
+        public static String mShopName = "";       // 내 업장명
+
         public static String mPosNo = "";       // 내 포스번호
         public static String[] mPosNoList;      // Site내 포스번호 목록
+
+        //
+        public static String mUserAuth = "";       //  내 사용자권한 : U or A
+
 
 
         // 주문서 - 상품정보 필드관리
@@ -209,6 +216,16 @@ namespace thepos
             public int rowspan;
         }
         public static PayConsol[] mPayConsol;
+
+        public struct FlowConsol
+        {
+            public string code;
+            public int column;
+            public int row;
+            public int columnspan;
+            public int rowspan;
+        }
+        public static FlowConsol[] mFlowConsol;
 
 
         public struct Badges
@@ -574,8 +591,6 @@ namespace thepos
             public String pay_type2;  // KKP
 
             public String barcode_no;
-
-
         }
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
@@ -725,7 +740,7 @@ namespace thepos
 
         public static String mSubMonitorImage = "";   
         public static String mTicketAddText = "";
-
+        public static String mBillAddText = "";
 
         // 로그
         public static int mAppLogLevel = 1;
@@ -743,6 +758,11 @@ namespace thepos
 
 
         public static String mIsTestPayMode = "";   // TEST LOGIN
+
+
+
+
+
 
 
 

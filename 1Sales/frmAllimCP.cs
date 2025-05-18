@@ -43,12 +43,6 @@ namespace theposw
             }
 
 
-            cbShop.Items.Clear();
-            for (int i = 0; i < mShop.Length; i++)
-            {
-                cbShop.Items.Add(mShop[i].shop_name);
-            }
-            cbShop.SelectedIndex = 0;
         }
 
 
@@ -57,12 +51,7 @@ namespace theposw
         {
             thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
 
-            String shop_code = "";
 
-            if (cbShop.SelectedIndex > 0)
-            {
-                shop_code = mShop[cbShop.SelectedIndex].shop_code;
-            }
 
             lvwOrderShop.Items.Clear();
             lvwOrderItem.Items.Clear();
@@ -72,7 +61,7 @@ namespace theposw
 
 
 
-            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + shop_code;
+            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + mShopCode;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -113,7 +102,7 @@ namespace theposw
 
                         lvItem.Text = allim_status_name;
 
-                        lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
+                        lvItem.SubItems.Add(arr[i]["posNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopOrderNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderTime"].ToString().Substring(0,2) + ":" + arr[i]["orderTime"].ToString().Substring(2, 2) + ":" + arr[i]["orderTime"].ToString().Substring(4, 2));
                         lvItem.SubItems.Add(arr[i]["cnt"].ToString());
@@ -128,7 +117,6 @@ namespace theposw
                         lvItem.SubItems.Add(arr[i]["orderAllimType"].ToString());
                         lvItem.SubItems.Add(arr[i]["orderAllimStatus"].ToString());
                         lvItem.SubItems.Add(arr[i]["theNo"].ToString());
-                        lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
 
                         
                         lvwOrderShop.Items.Add(lvItem);
@@ -300,7 +288,6 @@ namespace theposw
 
 
             String tTheNo = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(the_no)].Text;
-            String tShopCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(shop_code)].Text;
             String order_no = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(shop_order_no)].Text;
 
 
@@ -315,7 +302,7 @@ namespace theposw
 
             if (tAllimTypeCode == "AT")
             {
-                String sUrl = "allim?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&shopCode=" + tShopCode;
+                String sUrl = "allim?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&shopCode=" + mShopCode;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -336,7 +323,7 @@ namespace theposw
                         parameters["orderDate"] = arr[0]["orderDate"].ToString();
                         parameters["orderTime"] = arr[0]["orderTime"].ToString();
                         parameters["orderNo"] = arr[0]["orderNo"].ToString();
-                        parameters["shopCode"] = tShopCode;
+                        parameters["shopCode"] = mShopCode;
                         parameters["orderDetail"] = " " + arr[0]["orderDetail"].ToString();
 
                         if (mRequestPost("allim", parameters))
@@ -409,7 +396,6 @@ namespace theposw
         private void btnAllimFinish_Click(object sender, EventArgs e)
         {
             String tTheNo = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(the_no)].Text;
-            String tShopCode = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(shop_code)].Text;
             String tOrderNo = lvwOrderShop.SelectedItems[0].SubItems[lvwOrderShop.Columns.IndexOf(shop_order_no)].Text;
 
 

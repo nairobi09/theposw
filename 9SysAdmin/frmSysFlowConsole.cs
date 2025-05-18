@@ -15,14 +15,14 @@ using static thepos.thePos;
 
 namespace thepos._1Sales
 {
-    public partial class frmSysPayConsole : Form
+    public partial class frmSysFlowConsole : Form
     {
         String mSelectedPosNo = "";
 
 
 
 
-        public frmSysPayConsole()
+        public frmSysFlowConsole()
         {
             InitializeComponent();
 
@@ -73,18 +73,18 @@ namespace thepos._1Sales
             tbSizeX.Text = "";
             tbSizeY.Text = "";
 
-            tableLayoutPanelPayControlSelected.Controls.Clear();
+            tableLayoutPanelFlowControlSelected.Controls.Clear();
 
 
 
 
-            String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
+            String sUrl = "flowConsole?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
 
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["paymentConsoles"].ToString();
+                    String data = mObj["flowConsoles"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
@@ -119,7 +119,7 @@ namespace thepos._1Sales
 
         private void display_all_console()
         {
-            tableLayoutPanelPayControl.Controls.Clear();
+            tableLayoutPanelFlowControl.Controls.Clear();
 
             for (int i = 0; i < lvwConsoleLink.Items.Count; i++)
             {
@@ -134,11 +134,13 @@ namespace thepos._1Sales
                     btnItem.Padding = new Padding(0, 0, 0, 0);
 
                     String button_name = "";
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "CASH") { button_name = "현금\n결제"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "CARD") { button_name = "카드\n결제"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "COMPLEX") { button_name = "복합\n결제"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "POINT") { button_name = "포인트\n사용"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "EASY") { button_name = "간편\n결제"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "ALLIM") { button_name = "알림"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "CHARGING") { button_name = "충전"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT") { button_name = "정산"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "TICKET") { button_name = "티켓"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "LOCKER") { button_name = "락커"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "PAYMANAGER") { button_name = "결제내역관리"; }
 
                     btnItem.Text = button_name;
 
@@ -153,9 +155,9 @@ namespace thepos._1Sales
                     else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = new Font(btnItem.Font.FontFamily, 20); ; }
                     else { btnItem.Font = new Font(btnItem.Font.FontFamily, 14); }
 
-                    tableLayoutPanelPayControl.Controls.Add(btnItem, loc_x, loc_y);
-                    tableLayoutPanelPayControl.SetColumnSpan(btnItem, sz_x);
-                    tableLayoutPanelPayControl.SetRowSpan(btnItem, sz_y);
+                    tableLayoutPanelFlowControl.Controls.Add(btnItem, loc_x, loc_y);
+                    tableLayoutPanelFlowControl.SetColumnSpan(btnItem, sz_x);
+                    tableLayoutPanelFlowControl.SetRowSpan(btnItem, sz_y);
                 }
                 catch (Exception ex)
                 {
@@ -176,7 +178,7 @@ namespace thepos._1Sales
                 tbSizeX.Text = "";
                 tbSizeY.Text = "";
 
-                tableLayoutPanelPayControlSelected.Controls.Clear();
+                tableLayoutPanelFlowControlSelected.Controls.Clear();
             }
             else
             {
@@ -192,7 +194,7 @@ namespace thepos._1Sales
 
         private void display_selected_console()
         {
-            tableLayoutPanelPayControlSelected.Controls.Clear();
+            tableLayoutPanelFlowControlSelected.Controls.Clear();
 
             try
             {
@@ -212,11 +214,14 @@ namespace thepos._1Sales
 
 
                 String button_name = "";
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CASH") { button_name = "현금\n결제"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CARD") { button_name = "카드\n결제"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COMPLEX") { button_name = "복합\n결제"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "POINT") { button_name = "포인트\n사용"; btnGroupBlue.BackColor = Color.SaddleBrown; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "EASY") { button_name = "간편\n결제"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "ALLIM") { button_name = "알림"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CHARGING") { button_name = "충전"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT") { button_name = "정산"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "TICKET") { button_name = "티켓"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "LOCKER") { button_name = "락커"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CAGE") { button_name = "케이지"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "PAYMANAGER") { button_name = "결제내역관리"; }
 
                 btnGroupBlue.Text = button_name;
 
@@ -227,9 +232,9 @@ namespace thepos._1Sales
                 else { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 14); }
 
 
-                tableLayoutPanelPayControlSelected.Controls.Add(btnGroupBlue, locX, locY);
-                tableLayoutPanelPayControlSelected.SetColumnSpan(btnGroupBlue, szX);
-                tableLayoutPanelPayControlSelected.SetRowSpan(btnGroupBlue, szY);
+                tableLayoutPanelFlowControlSelected.Controls.Add(btnGroupBlue, locX, locY);
+                tableLayoutPanelFlowControlSelected.SetColumnSpan(btnGroupBlue, szX);
+                tableLayoutPanelFlowControlSelected.SetRowSpan(btnGroupBlue, szY);
             }
             catch (Exception ex)
             {
@@ -269,13 +274,13 @@ namespace thepos._1Sales
             parameters["posNo"] = mSelectedPosNo;
             parameters["buttonName"] = lvwConsole.SelectedItems[0].Text;
             parameters["buttonCode"] = lvwConsole.SelectedItems[0].Tag.ToString();
-            parameters["locateX"] = "9";
-            parameters["locateY"] = "3";
+            parameters["locateX"] = "1";
+            parameters["locateY"] = "5";
             parameters["sizeX"] = "1";
             parameters["sizeY"] = "1";
 
 
-            if (mRequestPost("paymentConsole", parameters))
+            if (mRequestPost("flowConsole", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -332,24 +337,24 @@ namespace thepos._1Sales
             int locX, locY, szX, szY;
 
             if (!get_number(tbLocateX.Text, ref tNum)) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
-            if (tNum > 9) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
+            if (tNum > 1) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
             locX = tNum;
 
             if (!get_number(tbLocateY.Text, ref tNum)) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
-            if (tNum > 3) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
+            if (tNum > 5) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
             locY = tNum;
 
             if (!get_number(tbSizeX.Text, ref tNum)) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
-            if (tNum > 10) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
+            if (tNum > 2) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
             szX = tNum;
 
             if (!get_number(tbSizeY.Text, ref tNum)) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
-            if (tNum > 4) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
+            if (tNum > 6) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
             szY = tNum;
 
 
-            if (locX + szX > 10) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
-            if (locY + szY > 4) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
+            if (locX + szX > 2) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
+            if (locY + szY > 6) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
 
             return true;
         }
@@ -380,7 +385,7 @@ namespace thepos._1Sales
             parameters["buttonCode"] = mSelectedbuttonCode;
 
 
-            if (mRequestDelete("paymentConsole", parameters))
+            if (mRequestDelete("flowConsole", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -429,7 +434,7 @@ namespace thepos._1Sales
             parameters["sizeY"] = tbSizeY.Text;
 
 
-            if (mRequestPatch("paymentConsole", parameters))
+            if (mRequestPatch("flowConsole", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -455,5 +460,7 @@ namespace thepos._1Sales
 
             display_all_console();
         }
+
+
     }
 }

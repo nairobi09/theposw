@@ -36,6 +36,9 @@
             this.req_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.auth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tbAuth = new System.Windows.Forms.TextBox();
+            this.lblShopCodeTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lvwList
@@ -44,6 +47,7 @@
             this.seq,
             this.stat,
             this.ID,
+            this.auth,
             this.name,
             this.req_date});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -56,6 +60,7 @@
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
+            this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             // 
             // seq
             // 
@@ -107,10 +112,37 @@
             this.lblTitle.TabIndex = 29;
             this.lblTitle.Text = "사용자계정 인증";
             // 
+            // auth
+            // 
+            this.auth.Text = "권한";
+            // 
+            // tbAuth
+            // 
+            this.tbAuth.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbAuth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbAuth.Location = new System.Drawing.Point(681, 341);
+            this.tbAuth.MaxLength = 1;
+            this.tbAuth.Name = "tbAuth";
+            this.tbAuth.Size = new System.Drawing.Size(64, 26);
+            this.tbAuth.TabIndex = 39;
+            // 
+            // lblShopCodeTitle
+            // 
+            this.lblShopCodeTitle.AutoSize = true;
+            this.lblShopCodeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblShopCodeTitle.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.lblShopCodeTitle.Location = new System.Drawing.Point(678, 319);
+            this.lblShopCodeTitle.Name = "lblShopCodeTitle";
+            this.lblShopCodeTitle.Size = new System.Drawing.Size(94, 14);
+            this.lblShopCodeTitle.TabIndex = 40;
+            this.lblShopCodeTitle.Text = "권한 (U or A)";
+            // 
             // frmSysAdminUserCert
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.tbAuth);
+            this.Controls.Add(this.lblShopCodeTitle);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.lblTitle);
@@ -133,5 +165,8 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ColumnHeader seq;
         private System.Windows.Forms.ColumnHeader stat;
+        private System.Windows.Forms.ColumnHeader auth;
+        private System.Windows.Forms.TextBox tbAuth;
+        private System.Windows.Forms.Label lblShopCodeTitle;
     }
 }

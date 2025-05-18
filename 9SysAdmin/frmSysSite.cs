@@ -43,11 +43,11 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            tmTicketType = new String[4] { "", "IN", "PA", "PD" };
-            tmTicketTypeText = new String[4] { "", "단순입장", "선불", "후불" };
+            tmTicketType = new String[5] { "", "IS", "IN", "PA", "PD" };
+            tmTicketTypeText = new String[5] { "", "단순입장 [통합티켓]", "단순입장 [개별티켓]", "선불", "후불" };
 
-            tmTicketMedia = new String[4] { "", "BC", "RF", "TG" };
-            tmTicketMediaText = new String[4] { "", "써멀|영수증", "팔찌|RF [예정]", "전용|띠지 [예정]" };
+            tmTicketMedia = new String[4] { "", "BC", "TG", "RF" };
+            tmTicketMediaText = new String[4] { "", "써멀|영수증", "전용|폼지 ", "팔찌|RF"};
 
             tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 
@@ -113,7 +113,7 @@ namespace thepos._9SysAdmin
 
                         // AP AD
                         String ticketType = arr[0]["ticketType"].ToString();
-                        for (int i = 0; i < mTicketType.Length; i++)
+                        for (int i = 0; i < tmTicketType.Length; i++)
                         {
                             if (tmTicketType[i] == ticketType)
                             {
@@ -123,7 +123,7 @@ namespace thepos._9SysAdmin
 
                         // 
                         String ticketMedia = arr[0]["ticketMedia"].ToString();
-                        for (int i = 0; i < mTicketMedia.Length; i++)
+                        for (int i = 0; i < tmTicketMedia.Length; i++)
                         {
                             if (tmTicketMedia[i] == ticketMedia)
                             {
@@ -246,7 +246,6 @@ namespace thepos._9SysAdmin
             //
             parameters["cutoffType"] = tmCutoffType[cbCutoffType.SelectedIndex];
             parameters["cutoffTime"] = tbCutoffTime.Text;
-
 
             parameters["callCenterNo"] = tbCallCenter.Text;
 

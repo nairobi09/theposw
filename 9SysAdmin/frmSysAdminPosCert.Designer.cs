@@ -46,11 +46,11 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.BackColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(633, 393);
+            this.btnDelete.ForeColor = System.Drawing.Color.Red;
+            this.btnDelete.Location = new System.Drawing.Point(639, 537);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(140, 35);
             this.btnDelete.TabIndex = 26;
@@ -65,7 +65,7 @@
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnter.ForeColor = System.Drawing.Color.White;
-            this.btnEnter.Location = new System.Drawing.Point(633, 330);
+            this.btnEnter.Location = new System.Drawing.Point(639, 474);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(140, 50);
             this.btnEnter.TabIndex = 25;
@@ -134,7 +134,7 @@
             // 
             this.tbShopCode.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbShopCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbShopCode.Location = new System.Drawing.Point(633, 223);
+            this.tbShopCode.Location = new System.Drawing.Point(639, 416);
             this.tbShopCode.MaxLength = 2;
             this.tbShopCode.Name = "tbShopCode";
             this.tbShopCode.Size = new System.Drawing.Size(140, 26);
@@ -145,17 +145,17 @@
             this.lblShopCodeTitle.AutoSize = true;
             this.lblShopCodeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblShopCodeTitle.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblShopCodeTitle.Location = new System.Drawing.Point(630, 201);
+            this.lblShopCodeTitle.Location = new System.Drawing.Point(636, 394);
             this.lblShopCodeTitle.Name = "lblShopCodeTitle";
-            this.lblShopCodeTitle.Size = new System.Drawing.Size(103, 14);
+            this.lblShopCodeTitle.Size = new System.Drawing.Size(63, 14);
             this.lblShopCodeTitle.TabIndex = 38;
-            this.lblShopCodeTitle.Text = "업장코드(선택)";
+            this.lblShopCodeTitle.Text = "업장코드";
             // 
             // tbMAC
             // 
             this.tbMAC.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbMAC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbMAC.Location = new System.Drawing.Point(633, 284);
+            this.tbMAC.Location = new System.Drawing.Point(639, 343);
             this.tbMAC.MaxLength = 50;
             this.tbMAC.Name = "tbMAC";
             this.tbMAC.Size = new System.Drawing.Size(165, 26);
@@ -166,7 +166,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label1.Location = new System.Drawing.Point(630, 262);
+            this.label1.Location = new System.Drawing.Point(636, 321);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 14);
             this.label1.TabIndex = 40;

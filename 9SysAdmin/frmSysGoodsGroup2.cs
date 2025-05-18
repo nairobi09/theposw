@@ -26,8 +26,14 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
+            for (int i = 0; i < mPosNoList.Length; i++)
+            {
+                comboPosNo.Items.Add(mPosNoList[i]);
+            }
+
+
             //get_posno();
-            get_posno_from_setupPos();
+            //get_posno_from_setupPos();
 
         }
 
@@ -97,12 +103,12 @@ namespace thepos._9SysAdmin
         {
             if (comboPosNo.SelectedIndex == -1) { return; }
 
-            mSelectedPosNo = pos_no[comboPosNo.SelectedIndex];
+            mSelectedPosNo = mPosNoList[comboPosNo.SelectedIndex];
 
 
-            if (pos_type[comboPosNo.SelectedIndex] != "KIOSK")
+            if (mSelectedPosNo.Substring(0,1) != "1")
             {
-                MessageBox.Show("KIOSK로 등록된 포스가 아닙니다.\r\n상품그룹(POS) 메뉴에서 수정가능합니다.", "thepos");
+                MessageBox.Show("KIOSK로 등록된 기기가 아닙니다.", "thepos");
 
                 return;
             }

@@ -71,7 +71,9 @@
             this.panel_in_0 = new System.Windows.Forms.Panel();
             this.lblSiteAlias = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
+            this.lblShopName = new System.Windows.Forms.Label();
             this.lblPosNo = new System.Windows.Forms.Label();
             this.lblCallCenterNo = new System.Windows.Forms.Label();
             this.panelDivision = new System.Windows.Forms.Panel();
@@ -233,9 +235,9 @@
             this.panelLogin.Controls.Add(this.panelNumpad);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLogin.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.panelLogin.Location = new System.Drawing.Point(680, 0);
+            this.panelLogin.Location = new System.Drawing.Point(684, 0);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(344, 768);
+            this.panelLogin.Size = new System.Drawing.Size(340, 768);
             this.panelLogin.TabIndex = 2;
             // 
             // btnReqUser
@@ -607,7 +609,7 @@
             this.lblUserNameTitle.Name = "lblUserNameTitle";
             this.lblUserNameTitle.Size = new System.Drawing.Size(135, 28);
             this.lblUserNameTitle.TabIndex = 3;
-            this.lblUserNameTitle.Text = "담당자";
+            this.lblUserNameTitle.Text = "담당";
             this.lblUserNameTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblUserNameTitle.Click += new System.EventHandler(this.lblUserNameTitle_Click);
             // 
@@ -627,7 +629,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblUserNameTitle);
             this.panel3.Controls.Add(this.lblUserName);
-            this.panel3.Location = new System.Drawing.Point(705, 206);
+            this.panel3.Location = new System.Drawing.Point(705, 237);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(275, 39);
             this.panel3.TabIndex = 4;
@@ -657,30 +659,54 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label2);
             this.panel6.Controls.Add(this.lblPosNoTitle);
+            this.panel6.Controls.Add(this.lblShopName);
             this.panel6.Controls.Add(this.lblPosNo);
-            this.panel6.Location = new System.Drawing.Point(705, 158);
+            this.panel6.Location = new System.Drawing.Point(705, 153);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(275, 39);
+            this.panel6.Size = new System.Drawing.Size(275, 76);
             this.panel6.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(-1, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(135, 28);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "업장";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPosNoTitle
             // 
             this.lblPosNoTitle.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.White;
-            this.lblPosNoTitle.Location = new System.Drawing.Point(-1, 5);
+            this.lblPosNoTitle.Location = new System.Drawing.Point(-1, 38);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(135, 28);
             this.lblPosNoTitle.TabIndex = 3;
-            this.lblPosNoTitle.Text = "포스번호";
+            this.lblPosNoTitle.Text = "포스";
             this.lblPosNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPosNoTitle.Click += new System.EventHandler(this.lblPosNoTitle_Click);
+            // 
+            // lblShopName
+            // 
+            this.lblShopName.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblShopName.ForeColor = System.Drawing.Color.Gold;
+            this.lblShopName.Location = new System.Drawing.Point(137, 10);
+            this.lblShopName.Name = "lblShopName";
+            this.lblShopName.Size = new System.Drawing.Size(138, 28);
+            this.lblShopName.TabIndex = 21;
+            this.lblShopName.Text = "_";
+            this.lblShopName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPosNo
             // 
             this.lblPosNo.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Gold;
-            this.lblPosNo.Location = new System.Drawing.Point(137, 5);
+            this.lblPosNo.Location = new System.Drawing.Point(137, 38);
             this.lblPosNo.Name = "lblPosNo";
             this.lblPosNo.Size = new System.Drawing.Size(138, 28);
             this.lblPosNo.TabIndex = 3;
@@ -848,5 +874,7 @@
         private System.Windows.Forms.Button btnReqUser;
         private System.Windows.Forms.Label lblIsTest;
         private System.Windows.Forms.Label lblServerStatusTitle;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblShopName;
     }
 }

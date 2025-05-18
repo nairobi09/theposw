@@ -371,7 +371,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -387,7 +387,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(20, 20);
@@ -485,10 +485,10 @@
             // 
             // btnCoupon
             // 
-            this.btnCoupon.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCoupon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCoupon.Enabled = false;
             this.btnCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCoupon.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCoupon.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCoupon.ForeColor = System.Drawing.Color.White;
             this.btnCoupon.Location = new System.Drawing.Point(408, 551);
             this.btnCoupon.Name = "btnCoupon";
@@ -501,7 +501,7 @@
             // 
             // btnCouponCancel
             // 
-            this.btnCouponCancel.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCouponCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCouponCancel.Enabled = false;
             this.btnCouponCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCouponCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -518,6 +518,7 @@
             // frmFlowCert
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(529, 704);
             this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -20,7 +20,6 @@ using static System.Net.Mime.MediaTypeNames;
 using Newtonsoft.Json.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Policy;
-using System.Data.SQLite;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -113,27 +112,9 @@ namespace thepos
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
 
 
-            try
-            {
-                tbID.Text = get_registry_id();
-                tbID.Tag = tbID.Text;
-            }
-            catch
-            {
-                MessageBox.Show("레지스트리 오류...", "thepos");
-                return;
-            }
 
-
-
-            if (tbID.Text.Length == 4)
-            {
-                mTbKeyDisplayController = tbPW;
-            }
-            else
-            {
-                mTbKeyDisplayController = tbID;
-            }
+            //
+            mTbKeyDisplayController = tbID;
 
 
             try
@@ -425,9 +406,7 @@ namespace thepos
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return false;
                 }
-
             }
-
         }
 
         bool get_biz_date()
@@ -459,9 +438,19 @@ namespace thepos
 
         void ready_thepos()
         {
-
             // 서버 -> 메모리
             sync_data_server_to_memory();
+
+
+            //
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                if (mShop[i].shop_code == mShopCode)
+                {
+                    mShopName = mShop[i].shop_name;
+                }
+            }
+
 
             // 일반(서버) 테마 적용
             btnBusiness.Enabled = true;
@@ -472,11 +461,10 @@ namespace thepos
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
+            lblShopName.Text = mShopName;
             lblPosNo.Text = mPosNo;
             lblUserName.Text = mUserName;
             lblCallCenterNo.Text = mCallCenterNo;
-
-            save_registry_info();
 
 
             // 로그인여부
@@ -874,13 +862,26 @@ namespace thepos
                         String pos = mObj["pos"].ToString();
                         JArray arr = JArray.Parse(pos);
 
-                        mPosNoList = new String[arr.Count];
+                        List<String> posno = new List<String>();
 
+                        
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mPosNoList[i] = arr[i]["posNo"].ToString();
-
+                            if (arr[i]["shopCode"].ToString() == mShopCode & (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1"))
+                            {
+                                posno.Add(arr[i]["posNo"].ToString());
+                            }
                         }
+
+
+                        
+                        mPosNoList = new String[posno.Count];
+
+                        for (int i = 0; i < posno.Count; i++)
+                        {
+                            mPosNoList[i] = posno[i];
+                        }
+
                     }
                     else
                     {
@@ -925,6 +926,7 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
                             
                             else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "BillAddText") mBillAddText = arr[i]["setupValue"].ToString();
 
                             else if (arr[i]["setupCode"].ToString() == "AppLogLevel")
                             {
@@ -999,6 +1001,41 @@ namespace thepos
                             mPayConsol[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
                             mPayConsol[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
                             mPayConsol[i].code = arr[i]["buttonCode"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+            // 8. flowConsole
+            if (true)
+            {
+                String sUrl = "flowConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["flowConsoles"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mFlowConsol = new FlowConsol[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mFlowConsol[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mFlowConsol[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mFlowConsol[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mFlowConsol[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                            mFlowConsol[i].code = arr[i]["buttonCode"].ToString();
                         }
                     }
                     else
@@ -1292,38 +1329,6 @@ namespace thepos
         private void tbPW_Click(object sender, EventArgs e)
         {
             mTbKeyDisplayController = tbPW;
-        }
-
-
-        private String get_registry_id()
-        {
-
-            RegistryKey reg;
-            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
-
-            return reg.GetValue("ID", "").ToString();
-        }
-
-
-
-        private void save_registry_info()
-        {
-
-            String dID = tbID.Text;
-            String tID = (tbID.Tag + "").ToString();
-
-            if ( dID == tID)
-            {
-                return;
-            }
-
-
-            RegistryKey reg;
-            reg = Registry.CurrentUser.CreateSubKey("Software").CreateSubKey("thepos");
-
-
-            reg.SetValue("ID", dID);
-
         }
 
 

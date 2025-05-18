@@ -16,7 +16,6 @@ using static thepos.thePos;
 using static thepos.frmSales;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.ComponentModel.Composition.Primitives;
-using System.Data.SQLite;
 using System.Web.UI.WebControls.Expressions;
 using System.Security.Policy;
 using thepos._1Sales;
@@ -160,7 +159,7 @@ namespace thepos
             lvwPayOrder.Items.Clear();
 
             //!
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&shopCode=" + mShopCode + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

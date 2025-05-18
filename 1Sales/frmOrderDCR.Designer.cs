@@ -70,10 +70,10 @@
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
-            this.lblTitle2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle2.Location = new System.Drawing.Point(105, 91);
             this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(115, 14);
+            this.lblTitle2.Size = new System.Drawing.Size(117, 19);
             this.lblTitle2.TabIndex = 51;
             this.lblTitle2.Text = "★ 할인 즐겨찾기";
             this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -82,14 +82,14 @@
             // 
             this.btnAllRate.BackColor = System.Drawing.Color.White;
             this.btnAllRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllRate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAllRate.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnAllRate.Location = new System.Drawing.Point(354, 445);
+            this.btnAllRate.Location = new System.Drawing.Point(350, 445);
             this.btnAllRate.Name = "btnAllRate";
-            this.btnAllRate.Size = new System.Drawing.Size(120, 80);
+            this.btnAllRate.Size = new System.Drawing.Size(128, 80);
             this.btnAllRate.TabIndex = 47;
             this.btnAllRate.TabStop = false;
-            this.btnAllRate.Text = "전체 % 적용";
+            this.btnAllRate.Text = "전체 % 할인";
             this.btnAllRate.UseVisualStyleBackColor = false;
             this.btnAllRate.Click += new System.EventHandler(this.btnAllRate_Click);
             // 
@@ -97,14 +97,14 @@
             // 
             this.btnAllAmount.BackColor = System.Drawing.Color.White;
             this.btnAllAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnAllAmount.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnAllAmount.Location = new System.Drawing.Point(354, 349);
+            this.btnAllAmount.Location = new System.Drawing.Point(350, 349);
             this.btnAllAmount.Name = "btnAllAmount";
-            this.btnAllAmount.Size = new System.Drawing.Size(120, 80);
+            this.btnAllAmount.Size = new System.Drawing.Size(128, 80);
             this.btnAllAmount.TabIndex = 48;
             this.btnAllAmount.TabStop = false;
-            this.btnAllAmount.Text = "전체 ₩ 적용";
+            this.btnAllAmount.Text = "전체 ₩ 할인";
             this.btnAllAmount.UseVisualStyleBackColor = false;
             this.btnAllAmount.Click += new System.EventHandler(this.btnAllAmount_Click);
             // 
@@ -112,14 +112,14 @@
             // 
             this.btnSelRate.BackColor = System.Drawing.Color.White;
             this.btnSelRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelRate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSelRate.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSelRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSelRate.Location = new System.Drawing.Point(354, 245);
+            this.btnSelRate.Location = new System.Drawing.Point(350, 245);
             this.btnSelRate.Name = "btnSelRate";
-            this.btnSelRate.Size = new System.Drawing.Size(120, 80);
+            this.btnSelRate.Size = new System.Drawing.Size(128, 80);
             this.btnSelRate.TabIndex = 49;
             this.btnSelRate.TabStop = false;
-            this.btnSelRate.Text = "선택 % 적용";
+            this.btnSelRate.Text = "선택 % 할인";
             this.btnSelRate.UseVisualStyleBackColor = false;
             this.btnSelRate.Click += new System.EventHandler(this.btnSelRate_Click);
             // 
@@ -127,14 +127,14 @@
             // 
             this.btnSelAmount.BackColor = System.Drawing.Color.White;
             this.btnSelAmount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSelAmount.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSelAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnSelAmount.Location = new System.Drawing.Point(354, 146);
+            this.btnSelAmount.Location = new System.Drawing.Point(350, 146);
             this.btnSelAmount.Name = "btnSelAmount";
-            this.btnSelAmount.Size = new System.Drawing.Size(120, 80);
+            this.btnSelAmount.Size = new System.Drawing.Size(128, 80);
             this.btnSelAmount.TabIndex = 50;
             this.btnSelAmount.TabStop = false;
-            this.btnSelAmount.Text = "선택 ₩ 적용";
+            this.btnSelAmount.Text = "선택 \\ 할인";
             this.btnSelAmount.UseVisualStyleBackColor = false;
             this.btnSelAmount.Click += new System.EventHandler(this.btnSelAmount_Click);
             // 
@@ -216,10 +216,10 @@
             // lblTitle1
             // 
             this.lblTitle1.AutoSize = true;
-            this.lblTitle1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTitle1.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle1.Location = new System.Drawing.Point(364, 91);
             this.lblTitle1.Name = "lblTitle1";
-            this.lblTitle1.Size = new System.Drawing.Size(87, 14);
+            this.lblTitle1.Size = new System.Drawing.Size(94, 19);
             this.lblTitle1.TabIndex = 44;
             this.lblTitle1.Text = "☑ 할인 적용";
             this.lblTitle1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -246,11 +246,11 @@
             this.btnDCCancel.BackColor = System.Drawing.Color.White;
             this.btnDCCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDCCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDCCancel.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDCCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnDCCancel.Location = new System.Drawing.Point(354, 576);
+            this.btnDCCancel.Location = new System.Drawing.Point(350, 576);
             this.btnDCCancel.Name = "btnDCCancel";
-            this.btnDCCancel.Size = new System.Drawing.Size(120, 80);
+            this.btnDCCancel.Size = new System.Drawing.Size(128, 80);
             this.btnDCCancel.TabIndex = 42;
             this.btnDCCancel.TabStop = false;
             this.btnDCCancel.Text = "할인취소";

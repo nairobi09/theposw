@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,6 +91,7 @@ namespace thepos._9SysAdmin
                         //lvItem.Text = arr[i]["serialKey"].ToString();
                         lvItem.SubItems.Add("정상");
                         lvItem.SubItems.Add(arr[i]["userId"].ToString());
+                        lvItem.SubItems.Add(arr[i]["userAuth"].ToString());
                         lvItem.SubItems.Add(arr[i]["userName"].ToString());
                         lvItem.SubItems.Add(arr[i]["registDt"].ToString());
                         lvItem.Tag = arr[i]["userPw"].ToString();
@@ -126,7 +128,7 @@ namespace thepos._9SysAdmin
             parameters["siteId"] = mSiteId;
             parameters["userName"] = lvwList.SelectedItems[0].SubItems[3].Text.ToString();
             parameters["userStatus"] = "Y";
-            parameters["userAuth"] = "U";
+            parameters["userAuth"] = tbAuth.Text;
             parameters["registDt"] = get_today_date() + get_today_time();
             parameters["conCnt"] = "0";
 
@@ -181,5 +183,11 @@ namespace thepos._9SysAdmin
 
         }
 
+        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvwList.SelectedItems.Count == 0) { return; }
+
+            tbAuth.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(auth)].Text;
+        }
     }
 }
