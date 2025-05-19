@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 using thepos._1Sales;
 using thepos._9SysAdmin;
+using theposw._9SysAdmin;
 using static thepos.thePos;
 
 namespace thepos
@@ -243,11 +244,22 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnTree_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "Tree") return;
+
+            mThisButtonClick = "Tree";
+            panelView.Controls.Clear();
+
+            frmSysAdminTree fSysAdmin = new frmSysAdminTree() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
         private void frmSysAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
             thepos_app_log(1, this.Name, "close", "");
         }
-
 
     }
 }
