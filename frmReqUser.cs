@@ -43,11 +43,25 @@ namespace thepos
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
+            if (tbSiteId.Text.Length < 4)
+            {
+                MessageBox.Show("고객코드 입력오류.(4자리)", "thepos");
+                return;
+            }
+
             if (tbID.Text.Length < 4)
             {
                 MessageBox.Show("ID 입력오류.(4자리)", "thepos");
                 return;
             }
+
+            if (tbID.Text == "0000" | tbID.Text == "1111" | tbID.Text == "1234" | tbID.Text == "1122")
+            {
+                MessageBox.Show("단순번호 사용불가", "thepos");
+                return;
+            }
+
+
 
 
             if (tbPW1.Text.Length < 4)
@@ -83,22 +97,24 @@ namespace thepos
 
             // 사용자 등록 신청
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["serialKey"] = get_today_date().Substring(3,5) + get_today_time().Substring(0,5);
             parameters["userId"] = tbID.Text;
             parameters["userPw"] = SHA1HashCrypt(tbPW1.Text);//? SHA1 변경
-            parameters["siteId"] = "0000"; // -> 신청시는 "" : 이후 인증시 ID를 선택함.
+            parameters["siteId"] = tbSiteId.Text;
             parameters["userName"] = tbName.Text;
+            parameters["userAuth"] = "U";
             parameters["userStatus"] = "0";
             parameters["initDt"] = get_today_date() + get_today_time();
-            //parameters["registDt"] = "";
+            parameters["registDt"] = "";
+            parameters["lastDt"] = "";
+            parameters["conCnt"] = "0";
 
 
 
-            if (mRequestPost("userTemp", parameters))
+            if (mRequestPost("user", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("등록신청완료\n\n" + "관리자의 인증심사 후 사용가능합니다.", "thepos");
+                    MessageBox.Show("등록신청완료\n\n" + "관리자의 인증후 사용가능합니다.", "thepos");
                     return;
                 }
                 else

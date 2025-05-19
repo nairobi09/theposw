@@ -94,8 +94,13 @@
             this.barcode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnExcelUp = new System.Windows.Forms.Button();
+            this.cbShopView = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnView = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -741,10 +746,56 @@
             this.btnExcelUp.UseVisualStyleBackColor = true;
             this.btnExcelUp.Click += new System.EventHandler(this.btnExcelUp_Click);
             // 
+            // cbShopView
+            // 
+            this.cbShopView.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShopView.FormattingEnabled = true;
+            this.cbShopView.Location = new System.Drawing.Point(49, 3);
+            this.cbShopView.Name = "cbShopView";
+            this.cbShopView.Size = new System.Drawing.Size(124, 23);
+            this.cbShopView.TabIndex = 79;
+            this.cbShopView.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.label4.Location = new System.Drawing.Point(6, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.TabIndex = 78;
+            this.label4.Text = "업장";
+            // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.White;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnView.Location = new System.Drawing.Point(748, 18);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(100, 29);
+            this.btnView.TabIndex = 80;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cbShopView);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(549, 17);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(183, 30);
+            this.panel1.TabIndex = 81;
+            // 
             // frmSysGoods
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnExcelUp);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.groupBox1);
@@ -758,6 +809,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -828,5 +881,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbBarCode;
         private System.Windows.Forms.ColumnHeader barcode;
+        private System.Windows.Forms.ComboBox cbShopView;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Panel panel1;
     }
 }

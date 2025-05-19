@@ -60,16 +60,31 @@ namespace thepos._9SysAdmin
             //initialize_font();
             initialize_the();
 
+
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
             reload_all();
         }
+
 
 
         private void initialize_the()
         {
             lvwList.HideSelection = true;
 
+            //
+            cbShopView.Items.Clear();
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                cbShopView.Items.Add(mShop[i].shop_name);
+            }
+
+            cbShopView.SelectedIndex = 0;
 
 
+            //
             cbShop.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
             {
@@ -160,11 +175,10 @@ namespace thepos._9SysAdmin
 
             clear_console();
 
-
-
             String tOnlineCoupon, tTicket, tTaxFree, tCutout, tSoldout, tAllim = "";
 
-            String sUrl = "goods?siteId=" + mSiteId + "&imageYn=Y";
+            String sUrl = "goods?siteId=" + mSiteId + "&imageYn=Y" + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
+
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -784,7 +798,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             //MessageBox.Show("정상 수정 완료.", "thepos");
@@ -944,7 +958,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
         }
 
@@ -994,7 +1008,7 @@ namespace thepos._9SysAdmin
             lvwList.Items[select_index].Remove();
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
             clear_console();
 
@@ -1072,6 +1086,7 @@ namespace thepos._9SysAdmin
             frmSysGoodsExcelUp frm = new frmSysGoodsExcelUp();
             frm.ShowDialog();
         }
+
 
     }
 }

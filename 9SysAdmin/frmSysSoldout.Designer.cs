@@ -76,7 +76,7 @@
             this.lvwGoodsList.Location = new System.Drawing.Point(25, 58);
             this.lvwGoodsList.MultiSelect = false;
             this.lvwGoodsList.Name = "lvwGoodsList";
-            this.lvwGoodsList.Size = new System.Drawing.Size(395, 460);
+            this.lvwGoodsList.Size = new System.Drawing.Size(453, 460);
             this.lvwGoodsList.TabIndex = 51;
             this.lvwGoodsList.TabStop = false;
             this.lvwGoodsList.UseCompatibleStateImageBehavior = false;
@@ -111,7 +111,7 @@
             this.groupBox1.Controls.Add(this.cbGoodsSoldout);
             this.groupBox1.Location = new System.Drawing.Point(25, 535);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 115);
+            this.groupBox1.Size = new System.Drawing.Size(453, 115);
             this.groupBox1.TabIndex = 64;
             this.groupBox1.TabStop = false;
             // 
@@ -121,7 +121,7 @@
             this.btnGoodsUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGoodsUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGoodsUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnGoodsUpdate.Location = new System.Drawing.Point(102, 53);
+            this.btnGoodsUpdate.Location = new System.Drawing.Point(158, 53);
             this.btnGoodsUpdate.Name = "btnGoodsUpdate";
             this.btnGoodsUpdate.Size = new System.Drawing.Size(120, 40);
             this.btnGoodsUpdate.TabIndex = 56;
@@ -135,7 +135,7 @@
             this.cbGoodsSoldout.AutoSize = true;
             this.cbGoodsSoldout.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbGoodsSoldout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.cbGoodsSoldout.Location = new System.Drawing.Point(102, 23);
+            this.cbGoodsSoldout.Location = new System.Drawing.Point(158, 23);
             this.cbGoodsSoldout.Name = "cbGoodsSoldout";
             this.cbGoodsSoldout.Size = new System.Drawing.Size(82, 18);
             this.cbGoodsSoldout.TabIndex = 55;
@@ -148,9 +148,9 @@
             // 
             this.groupBox3.Controls.Add(this.cbGroupSoldout);
             this.groupBox3.Controls.Add(this.btnGroupUpdate);
-            this.groupBox3.Location = new System.Drawing.Point(446, 535);
+            this.groupBox3.Location = new System.Drawing.Point(512, 535);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(330, 115);
+            this.groupBox3.Size = new System.Drawing.Size(299, 115);
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             // 
@@ -159,7 +159,7 @@
             this.cbGroupSoldout.AutoSize = true;
             this.cbGroupSoldout.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbGroupSoldout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.cbGroupSoldout.Location = new System.Drawing.Point(115, 24);
+            this.cbGroupSoldout.Location = new System.Drawing.Point(102, 24);
             this.cbGroupSoldout.Name = "cbGroupSoldout";
             this.cbGroupSoldout.Size = new System.Drawing.Size(82, 18);
             this.cbGroupSoldout.TabIndex = 56;
@@ -174,7 +174,7 @@
             this.btnGroupUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGroupUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnGroupUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnGroupUpdate.Location = new System.Drawing.Point(115, 53);
+            this.btnGroupUpdate.Location = new System.Drawing.Point(102, 53);
             this.btnGroupUpdate.Name = "btnGroupUpdate";
             this.btnGroupUpdate.Size = new System.Drawing.Size(120, 40);
             this.btnGroupUpdate.TabIndex = 39;
@@ -196,10 +196,10 @@
             this.lvwGroupList.GridLines = true;
             this.lvwGroupList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGroupList.HideSelection = false;
-            this.lvwGroupList.Location = new System.Drawing.Point(446, 58);
+            this.lvwGroupList.Location = new System.Drawing.Point(512, 58);
             this.lvwGroupList.MultiSelect = false;
             this.lvwGroupList.Name = "lvwGroupList";
-            this.lvwGroupList.Size = new System.Drawing.Size(385, 460);
+            this.lvwGroupList.Size = new System.Drawing.Size(299, 460);
             this.lvwGroupList.TabIndex = 65;
             this.lvwGroupList.TabStop = false;
             this.lvwGroupList.UseCompatibleStateImageBehavior = false;

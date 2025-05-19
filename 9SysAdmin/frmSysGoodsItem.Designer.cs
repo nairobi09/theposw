@@ -68,9 +68,14 @@
             this.lblCopyGroupTitle = new System.Windows.Forms.Label();
             this.cbSourcePosNo = new System.Windows.Forms.ComboBox();
             this.lblCopyPosNoTitle = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cbShopView = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnShopView = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwGoodsLink
@@ -178,7 +183,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle.Location = new System.Drawing.Point(17, 23);
+            this.lblTitle.Location = new System.Drawing.Point(429, 21);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(107, 14);
             this.lblTitle.TabIndex = 62;
@@ -548,10 +553,56 @@
             this.lblCopyPosNoTitle.TabIndex = 97;
             this.lblCopyPosNoTitle.Text = "소스포스";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.cbShopView);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(18, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(183, 30);
+            this.panel1.TabIndex = 101;
+            // 
+            // cbShopView
+            // 
+            this.cbShopView.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShopView.FormattingEnabled = true;
+            this.cbShopView.Location = new System.Drawing.Point(49, 3);
+            this.cbShopView.Name = "cbShopView";
+            this.cbShopView.Size = new System.Drawing.Size(124, 23);
+            this.cbShopView.TabIndex = 79;
+            this.cbShopView.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.label4.Location = new System.Drawing.Point(6, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.TabIndex = 78;
+            this.label4.Text = "업장";
+            // 
+            // btnShopView
+            // 
+            this.btnShopView.BackColor = System.Drawing.Color.White;
+            this.btnShopView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShopView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnShopView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnShopView.Location = new System.Drawing.Point(207, 15);
+            this.btnShopView.Name = "btnShopView";
+            this.btnShopView.Size = new System.Drawing.Size(100, 29);
+            this.btnShopView.TabIndex = 102;
+            this.btnShopView.Text = "조회";
+            this.btnShopView.UseVisualStyleBackColor = false;
+            this.btnShopView.Click += new System.EventHandler(this.btnShopView_Click);
+            // 
             // frmSysGoodsItem
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.btnShopView);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lvwGoodsLink);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnLink);
@@ -572,6 +623,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -618,5 +671,9 @@
         private System.Windows.Forms.ComboBox cbSourcePosNo;
         private System.Windows.Forms.Label lblCopyPosNoTitle;
         private System.Windows.Forms.ColumnHeader shop;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox cbShopView;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnShopView;
     }
 }

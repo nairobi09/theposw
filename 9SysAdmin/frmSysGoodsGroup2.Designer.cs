@@ -33,6 +33,7 @@
             this.lblPosNo = new System.Windows.Forms.Label();
             this.comboPosNo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tbGroupNameJP = new System.Windows.Forms.TextBox();
             this.lblGroupNameTitleJP = new System.Windows.Forms.Label();
             this.tbGroupNameCH = new System.Windows.Forms.TextBox();
@@ -54,7 +55,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -125,6 +125,16 @@
             this.groupBox1.Size = new System.Drawing.Size(214, 304);
             this.groupBox1.TabIndex = 53;
             this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(55, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 12);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "* 연속2개공백 => 줄바꿈";
             // 
             // tbGroupNameJP
             // 
@@ -276,7 +286,7 @@
             this.lvwList.Location = new System.Drawing.Point(83, 58);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(429, 303);
+            this.lvwList.Size = new System.Drawing.Size(429, 439);
             this.lvwList.TabIndex = 50;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -330,7 +340,7 @@
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUp.Location = new System.Drawing.Point(456, 370);
+            this.btnUp.Location = new System.Drawing.Point(456, 507);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(56, 40);
             this.btnUp.TabIndex = 57;
@@ -345,7 +355,7 @@
             this.btnDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDn.Location = new System.Drawing.Point(394, 370);
+            this.btnDn.Location = new System.Drawing.Point(394, 507);
             this.btnDn.Name = "btnDn";
             this.btnDn.Size = new System.Drawing.Size(56, 40);
             this.btnDn.TabIndex = 56;
@@ -353,16 +363,6 @@
             this.btnDn.Text = "▼";
             this.btnDn.UseVisualStyleBackColor = false;
             this.btnDn.Click += new System.EventHandler(this.btnDn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(55, 144);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 12);
-            this.label1.TabIndex = 58;
-            this.label1.Text = "* 연속2개공백 => 줄바꿈";
             // 
             // frmSysGoodsGroup2
             // 

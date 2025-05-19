@@ -329,7 +329,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
             reload_server();
         }
@@ -369,7 +369,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -402,7 +402,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
             reload_server();
         }
@@ -444,7 +444,7 @@ namespace thepos._9SysAdmin
 
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
         }

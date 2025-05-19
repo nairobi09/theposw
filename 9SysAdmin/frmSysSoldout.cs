@@ -24,8 +24,13 @@ namespace thepos._9SysAdmin
             InitializeComponent();
 
             reload_goods();
-
             reload_group();
+        }
+
+        private void btnShopView_Click(object sender, EventArgs e)
+        {
+            lvwGoodsList.Items.Clear();
+
         }
 
 
@@ -33,8 +38,7 @@ namespace thepos._9SysAdmin
         {
             lvwGoodsList.Items.Clear();
 
-
-            String sUrl = "goods?siteId=" + mSiteId;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShopCode;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -81,10 +85,6 @@ namespace thepos._9SysAdmin
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
-
-
-
-
         }
 
 
@@ -353,5 +353,7 @@ namespace thepos._9SysAdmin
                 return returnVal;
             }
         }
+
+
     }
 }

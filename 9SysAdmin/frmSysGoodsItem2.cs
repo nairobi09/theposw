@@ -34,9 +34,8 @@ namespace thepos._9SysAdmin
 
             initialize_the();
 
-            get_goods();
 
-            
+
             for (int i = 0; i < mPosNoList.Length; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
@@ -52,6 +51,16 @@ namespace thepos._9SysAdmin
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
             }
             */
+
+
+            //
+            cbShopView.Items.Clear();
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                cbShopView.Items.Add(mShop[i].shop_name);
+            }
+            cbShopView.SelectedIndex = 0;
+
         }
 
 
@@ -66,11 +75,19 @@ namespace thepos._9SysAdmin
 
         }
 
+
+        private void btnShopView_Click(object sender, EventArgs e)
+        {
+            lvwGoods.Items.Clear();
+            get_goods();
+        }
+
+
         private void get_goods()
         {
             String tTicket, tTaxFree = "";
 
-            String sUrl = "goods?siteId=" + mSiteId;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
 
             if (mRequestGet(sUrl))
             {
@@ -414,7 +431,7 @@ namespace thepos._9SysAdmin
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -458,7 +475,7 @@ namespace thepos._9SysAdmin
 
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             MessageBox.Show("저장완료", "thepos");
@@ -705,5 +722,7 @@ namespace thepos._9SysAdmin
                 return returnVal;
             }
         }
+
+
     }
 }

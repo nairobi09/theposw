@@ -40,6 +40,8 @@
             this.btnEnter = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbSiteId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblID.ForeColor = System.Drawing.Color.White;
-            this.lblID.Location = new System.Drawing.Point(201, 79);
+            this.lblID.Location = new System.Drawing.Point(203, 134);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(20, 14);
             this.lblID.TabIndex = 1;
@@ -68,7 +70,7 @@
             // tbID
             // 
             this.tbID.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbID.Location = new System.Drawing.Point(282, 73);
+            this.tbID.Location = new System.Drawing.Point(284, 128);
             this.tbID.MaxLength = 4;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(127, 29);
@@ -79,7 +81,7 @@
             this.lblPW.AutoSize = true;
             this.lblPW.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.White;
-            this.lblPW.Location = new System.Drawing.Point(201, 119);
+            this.lblPW.Location = new System.Drawing.Point(203, 174);
             this.lblPW.Name = "lblPW";
             this.lblPW.Size = new System.Drawing.Size(63, 14);
             this.lblPW.TabIndex = 1;
@@ -88,7 +90,7 @@
             // tbPW1
             // 
             this.tbPW1.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPW1.Location = new System.Drawing.Point(282, 111);
+            this.tbPW1.Location = new System.Drawing.Point(284, 166);
             this.tbPW1.MaxLength = 4;
             this.tbPW1.Name = "tbPW1";
             this.tbPW1.PasswordChar = '*';
@@ -98,7 +100,7 @@
             // tbPW2
             // 
             this.tbPW2.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPW2.Location = new System.Drawing.Point(282, 149);
+            this.tbPW2.Location = new System.Drawing.Point(284, 204);
             this.tbPW2.MaxLength = 4;
             this.tbPW2.Name = "tbPW2";
             this.tbPW2.PasswordChar = '*';
@@ -110,7 +112,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(201, 195);
+            this.lblName.Location = new System.Drawing.Point(203, 266);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(63, 14);
             this.lblName.TabIndex = 1;
@@ -119,7 +121,7 @@
             // tbName
             // 
             this.tbName.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbName.Location = new System.Drawing.Point(282, 187);
+            this.tbName.Location = new System.Drawing.Point(284, 258);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(127, 29);
             this.tbName.TabIndex = 4;
@@ -130,7 +132,7 @@
             this.btnEnter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnter.ForeColor = System.Drawing.Color.White;
-            this.btnEnter.Location = new System.Drawing.Point(309, 260);
+            this.btnEnter.Location = new System.Drawing.Point(311, 323);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(100, 50);
             this.btnEnter.TabIndex = 5;
@@ -143,7 +145,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(203, 260);
+            this.btnCancel.Location = new System.Drawing.Point(205, 323);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 50);
             this.btnCancel.TabIndex = 6;
@@ -154,6 +156,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.tbSiteId);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.tbID);
@@ -167,14 +171,34 @@
             this.panel1.Location = new System.Drawing.Point(5, 5);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(1);
-            this.panel1.Size = new System.Drawing.Size(590, 340);
+            this.panel1.Size = new System.Drawing.Size(590, 414);
             this.panel1.TabIndex = 4;
+            // 
+            // tbSiteId
+            // 
+            this.tbSiteId.Font = new System.Drawing.Font("굴림", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbSiteId.Location = new System.Drawing.Point(284, 67);
+            this.tbSiteId.MaxLength = 4;
+            this.tbSiteId.Name = "tbSiteId";
+            this.tbSiteId.Size = new System.Drawing.Size(127, 29);
+            this.tbSiteId.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(203, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 14);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "고객코드";
             // 
             // frmReqUser
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(600, 350);
+            this.ClientSize = new System.Drawing.Size(600, 425);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -200,5 +224,7 @@
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox tbSiteId;
+        private System.Windows.Forms.Label label1;
     }
 }

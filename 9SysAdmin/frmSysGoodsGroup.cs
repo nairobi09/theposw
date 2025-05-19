@@ -398,7 +398,7 @@ namespace thepos
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -453,7 +453,7 @@ namespace thepos
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -504,7 +504,7 @@ namespace thepos
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();

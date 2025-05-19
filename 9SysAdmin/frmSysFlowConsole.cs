@@ -404,7 +404,7 @@ namespace thepos._1Sales
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -453,7 +453,7 @@ namespace thepos._1Sales
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();

@@ -577,7 +577,7 @@ namespace thepos
             set_this_option();
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
             MessageBox.Show("정상 저장 완료.", "thepos");
 
@@ -830,7 +830,7 @@ namespace thepos
             MessageBox.Show("정상 저장 완료.", "thepos");
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
         }
 
 

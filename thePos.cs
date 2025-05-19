@@ -1180,7 +1180,7 @@ namespace thepos
         }
 
 
-        public static void set_version_basic_db_change()
+        public static void xxx_set_version_basic_db_change()
         {
             // 1단계 테이블이 변경될 경우 버전을 업데이트한다...
             Dictionary<string, string> parameters = new Dictionary<string, string>();

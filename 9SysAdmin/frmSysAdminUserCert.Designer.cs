@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.lvwList = new System.Windows.Forms.ListView();
-            this.seq = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.auth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.req_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnEnter = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.auth = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbAuth = new System.Windows.Forms.TextBox();
             this.lblShopCodeTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,7 +43,6 @@
             // lvwList
             // 
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.seq,
             this.stat,
             this.ID,
             this.auth,
@@ -62,11 +60,6 @@
             this.lvwList.View = System.Windows.Forms.View.Details;
             this.lvwList.SelectedIndexChanged += new System.EventHandler(this.lvwList_SelectedIndexChanged);
             // 
-            // seq
-            // 
-            this.seq.Text = "#";
-            this.seq.Width = 100;
-            // 
             // stat
             // 
             this.stat.Text = "상태";
@@ -76,6 +69,10 @@
             this.ID.Text = "ID";
             this.ID.Width = 70;
             // 
+            // auth
+            // 
+            this.auth.Text = "권한";
+            // 
             // name
             // 
             this.name.Text = "성명";
@@ -83,7 +80,7 @@
             // 
             // req_date
             // 
-            this.req_date.Text = "요청일";
+            this.req_date.Text = "등록일시";
             this.req_date.Width = 140;
             // 
             // btnEnter
@@ -111,10 +108,6 @@
             this.lblTitle.Size = new System.Drawing.Size(110, 14);
             this.lblTitle.TabIndex = 29;
             this.lblTitle.Text = "사용자계정 인증";
-            // 
-            // auth
-            // 
-            this.auth.Text = "권한";
             // 
             // tbAuth
             // 
@@ -163,7 +156,6 @@
         private System.Windows.Forms.ColumnHeader req_date;
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.ColumnHeader seq;
         private System.Windows.Forms.ColumnHeader stat;
         private System.Windows.Forms.ColumnHeader auth;
         private System.Windows.Forms.TextBox tbAuth;

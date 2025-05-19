@@ -35,7 +35,7 @@ namespace thepos
             InitializeComponent();
             initialize_the();
 
-            get_goods();
+            
 
             for (int i = 0; i < mPosNoList.Length; i++)
             {
@@ -54,6 +54,15 @@ namespace thepos
             }
             */
 
+
+            //
+            cbShopView.Items.Clear();
+            for (int i = 0; i < mShop.Length; i++)
+            {
+                cbShopView.Items.Add(mShop[i].shop_name);
+            }
+            cbShopView.SelectedIndex = 0;
+
         }
 
 
@@ -66,8 +75,15 @@ namespace thepos
             lvwGoodsLink.SmallImageList = imgList;
             lvwGoodsLink.HideSelection = true;
 
-
         }
+
+
+        private void btnShopView_Click(object sender, EventArgs e)
+        {
+            lvwGoods.Items.Clear();
+            get_goods();
+        }
+
 
         private void get_posno_from_setupPos()
         {
@@ -107,7 +123,7 @@ namespace thepos
         {
             String tTicket, tTaxFree = "";
 
-            String sUrl = "goods?siteId=" + mSiteId;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
 
             if (mRequestGet(sUrl))
             {
@@ -398,7 +414,7 @@ namespace thepos
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -451,7 +467,7 @@ namespace thepos
             }
 
             //
-            set_version_basic_db_change();
+            //set_version_basic_db_change();
 
 
             reload_server();
@@ -778,6 +794,7 @@ namespace thepos
                 return returnVal;
             }
         }
+
 
     }
 }
