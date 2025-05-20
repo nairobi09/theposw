@@ -137,11 +137,11 @@
             // 
             // cbShop
             // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbShop.FormattingEnabled = true;
             this.cbShop.Location = new System.Drawing.Point(377, 26);
             this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(92, 24);
+            this.cbShop.Size = new System.Drawing.Size(92, 23);
             this.cbShop.TabIndex = 93;
             this.cbShop.TabStop = false;
             // 

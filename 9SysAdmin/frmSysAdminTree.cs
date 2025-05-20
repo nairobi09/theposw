@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -353,7 +354,36 @@ namespace theposw._9SysAdmin
             }
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "POS_")
             {
-                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2);
+                String sUrl = "pos?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["pos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+
+                    }
+                }
+
+                // 빈줄
+                ListViewItem lvItem0 = new ListViewItem();
+                lvItem0.Text = " ";
+                lvItem0.SubItems.Add(" ");
+                lvwList.Items.Add(lvItem0);
+
+
+                sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2);
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

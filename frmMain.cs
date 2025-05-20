@@ -381,6 +381,7 @@ namespace thepos
                         mUserID = tbID.Text;
                         mUserName = mObj["userName"].ToString();
                         mPosNo = mObj["posNo"].ToString();
+                        mShopCode = mObj["shopCode"].ToString();
 
                         //
                         thepos_app_log(2, this.Name, "login", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);

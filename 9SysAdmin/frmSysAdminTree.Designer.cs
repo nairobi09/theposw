@@ -46,10 +46,10 @@
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(396, 70);
+            this.lvwList.Location = new System.Drawing.Point(446, 70);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(379, 607);
+            this.lvwList.Size = new System.Drawing.Size(395, 616);
             this.lvwList.TabIndex = 97;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -57,12 +57,12 @@
             // c0
             // 
             this.c0.Text = "항목";
-            this.c0.Width = 127;
+            this.c0.Width = 182;
             // 
             // c1
             // 
             this.c1.Text = "내용";
-            this.c1.Width = 124;
+            this.c1.Width = 183;
             // 
             // btnView
             // 
@@ -95,14 +95,14 @@
             this.tvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tvwList.Location = new System.Drawing.Point(29, 70);
             this.tvwList.Name = "tvwList";
-            this.tvwList.Size = new System.Drawing.Size(349, 606);
+            this.tvwList.Size = new System.Drawing.Size(399, 615);
             this.tvwList.TabIndex = 98;
             this.tvwList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwList_AfterSelect);
             // 
             // frmSysAdminTree
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 700);
+            this.ClientSize = new System.Drawing.Size(870, 710);
             this.Controls.Add(this.tvwList);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.btnView);

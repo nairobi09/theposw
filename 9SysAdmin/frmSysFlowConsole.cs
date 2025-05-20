@@ -33,7 +33,7 @@ namespace thepos._1Sales
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 32);
+            imgList.ImageSize = new Size(1, 24);
 
             lvwConsole.SmallImageList = imgList;
             lvwConsole.HideSelection = true;
