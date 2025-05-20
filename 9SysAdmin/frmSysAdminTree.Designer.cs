@@ -46,10 +46,10 @@
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(491, 70);
+            this.lvwList.Location = new System.Drawing.Point(396, 70);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(284, 607);
+            this.lvwList.Size = new System.Drawing.Size(379, 607);
             this.lvwList.TabIndex = 97;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -62,7 +62,6 @@
             // c1
             // 
             this.c1.Text = "내용";
-            this.c1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.c1.Width = 124;
             // 
             // btnView
@@ -71,7 +70,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(377, 24);
+            this.btnView.Location = new System.Drawing.Point(278, 25);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 29);
             this.btnView.TabIndex = 94;
@@ -96,7 +95,7 @@
             this.tvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tvwList.Location = new System.Drawing.Point(29, 70);
             this.tvwList.Name = "tvwList";
-            this.tvwList.Size = new System.Drawing.Size(446, 606);
+            this.tvwList.Size = new System.Drawing.Size(349, 606);
             this.tvwList.TabIndex = 98;
             this.tvwList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwList_AfterSelect);
             // 

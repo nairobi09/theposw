@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Office2019.Excel.RichData2;
 using DocumentFormat.OpenXml.Presentation;
 using Newtonsoft.Json.Linq;
 using static thepos.thePos;
@@ -49,18 +50,23 @@ namespace theposw._9SysAdmin
             //
             TreeNode nodeUser = new TreeNode();
             nodeUser.Text = "사용자";
-            nodeUser.Tag = "TOPUSER";
+            nodeUser.Tag = "TOP_USER";
             nodeSite.Nodes.Add(nodeUser);
 
             TreeNode nodeShop = new TreeNode();
             nodeShop.Text = "업장";
-            nodeShop.Tag = "TOPSHOP";
+            nodeShop.Tag = "TOP_SHOP";
             nodeSite.Nodes.Add(nodeShop);
 
             TreeNode nodePos = new TreeNode();
             nodePos.Text = "포스";
-            nodePos.Tag = "TOPPOS_";
+            nodePos.Tag = "TOP_POS_";
             nodeSite.Nodes.Add(nodePos);
+
+            TreeNode nodeOption = new TreeNode();
+            nodeOption.Text = "옵션템플릿";
+            nodeOption.Tag = "TOP_OPTN";
+            nodeSite.Nodes.Add(nodeOption);
 
             nodeSite.Expand();
 
@@ -79,7 +85,7 @@ namespace theposw._9SysAdmin
                     for (int k = 0; k < arr.Count; k++)
                     {
                         nodeUserList[k] = new TreeNode();
-                        nodeUserList[k].Text = "[" + arr[k]["userId"].ToString() + "] " + arr[k]["userName"].ToString();
+                        nodeUserList[k].Text = arr[k]["userName"].ToString();
                         nodeUserList[k].Tag = "USER" + arr[k]["userId"].ToString();
                         nodeUser.Nodes.Add(nodeUserList[k]);
                     }
@@ -105,7 +111,6 @@ namespace theposw._9SysAdmin
                         nodeShopList[i].Text = arr[i]["shopName"].ToString();
                         nodeShopList[i].Tag = "SHOP" + arr[i]["shopCode"].ToString();
                         nodeShop.Nodes.Add(nodeShopList[i]);
-
 
                         sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + arr[i]["shopCode"].ToString();
                         if (mRequestGet(sUrl))
@@ -170,7 +175,7 @@ namespace theposw._9SysAdmin
                                     nodeGoodsGroupList[k].Tag = "GRUP" + arr1[k]["groupCode"].ToString();
                                     nodePosList[i].Nodes.Add(nodeGoodsGroupList[k]);
 
-                                    // 상품
+                                    // 
                                     sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + arr[i]["posNo"].ToString() + "&groupCode=" + arr1[k]["groupCode"].ToString();
                                     if (mRequestGet(sUrl))
                                     {
@@ -196,10 +201,73 @@ namespace theposw._9SysAdmin
                     }
                     nodePos.Expand();
                 }
-
             }
 
 
+            //
+            sUrl = "optionTemplate?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["optionTemp"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    TreeNode[] optionTemplateList = new TreeNode[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        optionTemplateList[i] = new TreeNode();
+                        optionTemplateList[i].Text = arr[i]["optionTemplateName"].ToString();
+                        optionTemplateList[i].Tag = "OPTN" + arr[i]["optionTemplateId"].ToString();
+                        nodeOption.Nodes.Add(optionTemplateList[i]);
+
+                        // 
+                        sUrl = "tempOption?siteId=" + mSiteId + "&optionTemplateId=" + arr[i]["optionTemplateId"].ToString();
+                        if (mRequestGet(sUrl))
+                        {
+                            if (mObj["resultCode"].ToString() == "200")
+                            {
+                                data = mObj["tempOption"].ToString();
+                                JArray arr1 = JArray.Parse(data);
+
+                                TreeNode[] nodeTempOptionList = new TreeNode[arr1.Count];
+
+                                for (int k = 0; k < arr1.Count; k++)
+                                {
+                                    nodeTempOptionList[k] = new TreeNode();
+                                    nodeTempOptionList[k].Text = arr1[k]["optionId"].ToString() + " " + arr1[k]["optionName"].ToString();
+                                    nodeTempOptionList[k].Tag = "TOPT" + arr[i]["optionTemplateId"].ToString() + arr1[k]["optionId"].ToString();
+                                    optionTemplateList[i].Nodes.Add(nodeTempOptionList[k]);
+
+                                    // 상품
+                                    sUrl = "tempOptionItem?siteId=" + mSiteId + "&optionTemplateId=" + arr[i]["optionTemplateId"].ToString() + "&optionId=" + arr1[k]["optionId"].ToString();
+                                    if (mRequestGet(sUrl))
+                                    {
+                                        if (mObj["resultCode"].ToString() == "200")
+                                        {
+                                            data = mObj["optionItem"].ToString();
+                                            JArray arr2 = JArray.Parse(data);
+
+                                            TreeNode[] nodeTempOptionItemList = new TreeNode[arr2.Count];
+
+                                            for (int x = 0; x < arr2.Count; x++)
+                                            {
+                                                nodeTempOptionItemList[x] = new TreeNode();
+                                                nodeTempOptionItemList[x].Text = arr2[x]["optionItemId"].ToString() + " " + arr2[x]["optionItemName"].ToString();
+                                                nodeTempOptionItemList[x].Tag = "TOTM" + arr[i]["optionTemplateId"].ToString() + arr1[k]["optionId"].ToString() + arr2[x]["optionItemId"].ToString();
+                                                nodeTempOptionList[k].Nodes.Add(nodeTempOptionItemList[x]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    nodeOption.Expand();
+                }
+
+            }
         }
 
 
@@ -208,39 +276,193 @@ namespace theposw._9SysAdmin
         {
             lvwList.Items.Clear();
 
-
-            //
             TreeNode selectedNode = e.Node;
 
-
-
-            if (selectedNode.Tag.ToString().Substring(0, 3) == "TOP")
+            if (selectedNode.Tag.ToString().Substring(0, 4) == "TOP_")
             {
                 //
             }
-
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "SITE")
             {
-                
-            }
-            else if (selectedNode.Tag.ToString().Substring(0,4) == "USER")
-            {
+                String sUrl = "site?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["sites"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "USER")
+            {
+                String sUrl = "user?siteId=" + mSiteId + "&userId=" + selectedNode.Tag.ToString().Substring(4, 4);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["users"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
             }
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "SHOP")
             {
+                String sUrl = "shop?siteId=" + mSiteId + "&shopCode=" + selectedNode.Tag.ToString().Substring(4, 2);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["shops"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
             }
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "POS_")
             {
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["setupPos"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Text = arr[i]["setupCode"].ToString();
+                            lvItem.SubItems.Add(arr[i]["setupValue"].ToString());
+                            lvwList.Items.Add(lvItem);
+                        }
+                    }
+                }
             }
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "GOOD")
             {
+                String sUrl = "goods?siteId=" + mSiteId + "&goodsCode=" + selectedNode.Tag.ToString().Substring(4, 6);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goods"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
             }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "OPTN")
+            {
+                String sUrl = "optionTemplate?siteId=" + mSiteId + "&optionTemplateId=" + selectedNode.Tag.ToString().Substring(4, 4);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["optionTemp"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "TOPT")
+            {
+                String sUrl = "tempOption?siteId=" + mSiteId + "&optionTemplateId=" + selectedNode.Tag.ToString().Substring(4, 4) + "&optionId=" + selectedNode.Tag.ToString().Substring(8, 2);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["tempOption"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "TOTM")
+            {
+                String sUrl = "tempOptionItem?siteId=" + mSiteId + "&optionTemplateId=" + selectedNode.Tag.ToString().Substring(4, 4) + "&optionId=" + selectedNode.Tag.ToString().Substring(8, 2) + "&optionItemId=" + selectedNode.Tag.ToString().Substring(10, 2);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["optionItem"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
     }
