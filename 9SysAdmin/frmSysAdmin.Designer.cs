@@ -45,10 +45,11 @@
             this.btnSysGoodsGroup = new System.Windows.Forms.Button();
             this.btnPos = new System.Windows.Forms.Button();
             this.panelCertConsole = new System.Windows.Forms.Panel();
+            this.btnTree = new System.Windows.Forms.Button();
             this.btnLog = new System.Windows.Forms.Button();
             this.btnPosMac = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
-            this.btnTree = new System.Windows.Forms.Button();
+            this.btnSysGoodsTicket = new System.Windows.Forms.Button();
             this.panelAdminConsole.SuspendLayout();
             this.panelCertConsole.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             // panelAdminConsole
             // 
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsTicket);
             this.panelAdminConsole.Controls.Add(this.btnSysFlowConsole);
             this.panelAdminConsole.Controls.Add(this.btnSysOption);
             this.panelAdminConsole.Controls.Add(this.btnSysSoldout);
@@ -89,7 +91,7 @@
             this.btnSysFlowConsole.BackColor = System.Drawing.Color.White;
             this.btnSysFlowConsole.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysFlowConsole.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysFlowConsole.Location = new System.Drawing.Point(7, 499);
+            this.btnSysFlowConsole.Location = new System.Drawing.Point(7, 500);
             this.btnSysFlowConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysFlowConsole.Name = "btnSysFlowConsole";
             this.btnSysFlowConsole.Size = new System.Drawing.Size(112, 30);
@@ -119,7 +121,7 @@
             this.btnSysSoldout.BackColor = System.Drawing.Color.White;
             this.btnSysSoldout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysSoldout.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysSoldout.Location = new System.Drawing.Point(7, 404);
+            this.btnSysSoldout.Location = new System.Drawing.Point(7, 401);
             this.btnSysSoldout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysSoldout.Name = "btnSysSoldout";
             this.btnSysSoldout.Size = new System.Drawing.Size(112, 50);
@@ -134,13 +136,13 @@
             this.btnSysGoodsItem2.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsItem2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItem2.Location = new System.Drawing.Point(7, 352);
+            this.btnSysGoodsItem2.Location = new System.Drawing.Point(7, 361);
             this.btnSysGoodsItem2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItem2.Name = "btnSysGoodsItem2";
-            this.btnSysGoodsItem2.Size = new System.Drawing.Size(112, 40);
+            this.btnSysGoodsItem2.Size = new System.Drawing.Size(112, 30);
             this.btnSysGoodsItem2.TabIndex = 5;
             this.btnSysGoodsItem2.TabStop = false;
-            this.btnSysGoodsItem2.Text = "상품배치\r\n(KIOSK)";
+            this.btnSysGoodsItem2.Text = "(KIOSK)";
             this.btnSysGoodsItem2.UseVisualStyleBackColor = false;
             this.btnSysGoodsItem2.Click += new System.EventHandler(this.btnSysGoodsItem2_Click);
             // 
@@ -149,13 +151,13 @@
             this.btnSysGoodsGroup2.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsGroup2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsGroup2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsGroup2.Location = new System.Drawing.Point(7, 247);
+            this.btnSysGoodsGroup2.Location = new System.Drawing.Point(7, 276);
             this.btnSysGoodsGroup2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.btnSysGoodsGroup2.Name = "btnSysGoodsGroup2";
-            this.btnSysGoodsGroup2.Size = new System.Drawing.Size(112, 40);
+            this.btnSysGoodsGroup2.Size = new System.Drawing.Size(112, 30);
             this.btnSysGoodsGroup2.TabIndex = 4;
             this.btnSysGoodsGroup2.TabStop = false;
-            this.btnSysGoodsGroup2.Text = "상품그룹\r\n(KIOSK)";
+            this.btnSysGoodsGroup2.Text = "(KIOSK)";
             this.btnSysGoodsGroup2.UseVisualStyleBackColor = false;
             this.btnSysGoodsGroup2.Click += new System.EventHandler(this.btnSysGoodsGroup2_Click);
             // 
@@ -164,7 +166,7 @@
             this.btnDcrFavorite.BackColor = System.Drawing.Color.White;
             this.btnDcrFavorite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDcrFavorite.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDcrFavorite.Location = new System.Drawing.Point(7, 465);
+            this.btnDcrFavorite.Location = new System.Drawing.Point(7, 462);
             this.btnDcrFavorite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDcrFavorite.Name = "btnDcrFavorite";
             this.btnDcrFavorite.Size = new System.Drawing.Size(112, 30);
@@ -200,7 +202,7 @@
             this.btnSysShop.Size = new System.Drawing.Size(112, 40);
             this.btnSysShop.TabIndex = 1;
             this.btnSysShop.TabStop = false;
-            this.btnSysShop.Text = "업장";
+            this.btnSysShop.Text = "업장/분류";
             this.btnSysShop.UseVisualStyleBackColor = false;
             this.btnSysShop.Click += new System.EventHandler(this.btnSysShop_Click);
             // 
@@ -224,10 +226,10 @@
             this.btnSysGoodsItem.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsItem.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItem.Location = new System.Drawing.Point(7, 299);
+            this.btnSysGoodsItem.Location = new System.Drawing.Point(7, 318);
             this.btnSysGoodsItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItem.Name = "btnSysGoodsItem";
-            this.btnSysGoodsItem.Size = new System.Drawing.Size(112, 50);
+            this.btnSysGoodsItem.Size = new System.Drawing.Size(112, 40);
             this.btnSysGoodsItem.TabIndex = 0;
             this.btnSysGoodsItem.TabStop = false;
             this.btnSysGoodsItem.Text = "상품배치\r\n(POS)";
@@ -254,10 +256,10 @@
             this.btnSysGoodsGroup.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsGroup.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 194);
+            this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 233);
             this.btnSysGoodsGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsGroup.Name = "btnSysGoodsGroup";
-            this.btnSysGoodsGroup.Size = new System.Drawing.Size(112, 50);
+            this.btnSysGoodsGroup.Size = new System.Drawing.Size(112, 40);
             this.btnSysGoodsGroup.TabIndex = 0;
             this.btnSysGoodsGroup.TabStop = false;
             this.btnSysGoodsGroup.Text = "상품그룹\r\n(POS)";
@@ -292,6 +294,22 @@
             this.panelCertConsole.Size = new System.Drawing.Size(122, 103);
             this.panelCertConsole.TabIndex = 3;
             this.panelCertConsole.Visible = false;
+            // 
+            // btnTree
+            // 
+            this.btnTree.BackColor = System.Drawing.Color.White;
+            this.btnTree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTree.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnTree.ForeColor = System.Drawing.Color.Red;
+            this.btnTree.Location = new System.Drawing.Point(7, 71);
+            this.btnTree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTree.Name = "btnTree";
+            this.btnTree.Size = new System.Drawing.Size(54, 30);
+            this.btnTree.TabIndex = 4;
+            this.btnTree.TabStop = false;
+            this.btnTree.Text = "트리";
+            this.btnTree.UseVisualStyleBackColor = false;
+            this.btnTree.Click += new System.EventHandler(this.btnTree_Click);
             // 
             // btnLog
             // 
@@ -341,21 +359,20 @@
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // btnTree
+            // btnSysGoodsTicket
             // 
-            this.btnTree.BackColor = System.Drawing.Color.White;
-            this.btnTree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTree.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnTree.ForeColor = System.Drawing.Color.Red;
-            this.btnTree.Location = new System.Drawing.Point(7, 71);
-            this.btnTree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnTree.Name = "btnTree";
-            this.btnTree.Size = new System.Drawing.Size(54, 30);
-            this.btnTree.TabIndex = 4;
-            this.btnTree.TabStop = false;
-            this.btnTree.Text = "트리";
-            this.btnTree.UseVisualStyleBackColor = false;
-            this.btnTree.Click += new System.EventHandler(this.btnTree_Click);
+            this.btnSysGoodsTicket.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsTicket.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsTicket.Location = new System.Drawing.Point(7, 192);
+            this.btnSysGoodsTicket.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysGoodsTicket.Name = "btnSysGoodsTicket";
+            this.btnSysGoodsTicket.Size = new System.Drawing.Size(112, 30);
+            this.btnSysGoodsTicket.TabIndex = 9;
+            this.btnSysGoodsTicket.TabStop = false;
+            this.btnSysGoodsTicket.Text = "티켓상품";
+            this.btnSysGoodsTicket.UseVisualStyleBackColor = false;
+            this.btnSysGoodsTicket.Click += new System.EventHandler(this.btnSysGoodsTicket_Click);
             // 
             // frmSysAdmin
             // 
@@ -401,5 +418,6 @@
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.Button btnSysFlowConsole;
         private System.Windows.Forms.Button btnTree;
+        private System.Windows.Forms.Button btnSysGoodsTicket;
     }
 }

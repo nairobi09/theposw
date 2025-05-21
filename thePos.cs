@@ -287,6 +287,27 @@ namespace thepos
         public static Shop[] mShop;
 
 
+        public struct Nod1
+        {
+            public string shop_code;
+            public string nod1_code;
+            public string nod1_name;
+        }
+        public static Nod1[] mNod1;
+        
+
+        public struct Nod2
+        {
+            public string shop_code;
+            public string nod1_code;
+            public string nod2_code;
+            public string nod2_name;
+        }
+        public static Nod2[] mNod2;
+
+
+
+
         public struct GoodsGroup
         {
             public string group_code;

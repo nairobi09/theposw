@@ -121,6 +121,18 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnSysGoodsTicket_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsTicket") return;
+
+            mThisButtonClick = "GoodsTicket";
+            panelView.Controls.Clear();
+
+            frmSysGoodsTicket fSysAdmin = new frmSysGoodsTicket() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
         private void btnSysGoodsGroup_Click(object sender, EventArgs e)  // POS
         {
             if (mThisButtonClick == "GoodsGroup") return;
@@ -260,6 +272,7 @@ namespace thepos
         {
             thepos_app_log(1, this.Name, "close", "");
         }
+
 
     }
 }

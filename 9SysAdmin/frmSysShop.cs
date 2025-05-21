@@ -34,8 +34,8 @@ namespace thepos._9SysAdmin
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 24);
 
-            lvwList.SmallImageList = imgList;
-            lvwList.HideSelection = true;
+            lvwShop.SmallImageList = imgList;
+            lvwShop.HideSelection = true;
 
             mPrinterTypeCode[0] = "";
             mPrinterTypeCode[1] = "N";
@@ -59,7 +59,7 @@ namespace thepos._9SysAdmin
 
         private void reload_server()
         {
-            lvwList.Items.Clear();
+            lvwShop.Items.Clear();
 
             tbShopCode.Text = "";
             tbShopName.Text = "";
@@ -85,7 +85,7 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(get_printer_type_name(arr[i]["printerType"].ToString()));
                         lvItem.SubItems.Add(arr[i]["networkPrinterName"].ToString());
 
-                        lvwList.Items.Add(lvItem);
+                        lvwShop.Items.Add(lvItem);
                     }
                 }
                 else
@@ -101,11 +101,42 @@ namespace thepos._9SysAdmin
             }
 
 
+            //
+            lvwNod1.Items.Clear();
+            lvwNod2.Items.Clear();
+
+        }
+
+
+        //
+        private void lvwShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvwShop.SelectedItems.Count == 0) { return; }
+
+            tbShopCode.Text = lvwShop.SelectedItems[0].SubItems[lvwShop.Columns.IndexOf(shop_code)].Text;
+            tbShopName.Text = lvwShop.SelectedItems[0].SubItems[lvwShop.Columns.IndexOf(shop_name)].Text;
+
+
+            String code = lvwShop.SelectedItems[0].SubItems[lvwShop.Columns.IndexOf(printer_type_code)].Text;
+
+            for (int i = 0; i < cbPrinterType.Items.Count; i++)
+            {
+                if (code == mPrinterTypeCode[i])
+                {
+                    cbPrinterType.SelectedIndex = i;
+                }
+            }
+
+            tbNetworkPrinterName.Text = lvwShop.SelectedItems[0].SubItems[lvwShop.Columns.IndexOf(network_printer_name)].Text;
+
+
+            //
+
 
 
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnShopAdd_Click(object sender, EventArgs e)
         {
 
             if (tbShopCode.Text.Trim().Length != 2)
@@ -153,16 +184,12 @@ namespace thepos._9SysAdmin
                 return;
             }
 
-            //
-            //set_version_basic_db_change();
-
-
             reload_server();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnShopUpdate_Click(object sender, EventArgs e)
         {
-            if (lvwList.SelectedItems.Count == 0) { return; }
+            if (lvwShop.SelectedItems.Count == 0) { return; }
 
             if (tbShopCode.Text.Trim().Length != 2)
             {
@@ -208,38 +235,12 @@ namespace thepos._9SysAdmin
                 return;
             }
 
-            //
-            //set_version_basic_db_change();
-
-
             reload_server();
         }
 
-        private void lvwList_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnShopDelete_Click(object sender, EventArgs e)
         {
-            if (lvwList.SelectedItems.Count == 0) { return; }
-
-            tbShopCode.Text = lvwList.SelectedItems[0].Text;
-            tbShopName.Text = lvwList.SelectedItems[0].SubItems[1].Text;
-
-
-            String code = lvwList.SelectedItems[0].SubItems[2].Text;
-
-            for (int i = 0; i < cbPrinterType.Items.Count; i++)
-            {
-                if (code == mPrinterTypeCode[i])
-                {
-                    cbPrinterType.SelectedIndex = i;
-                }
-            }
-
-            tbNetworkPrinterName.Text = lvwList.SelectedItems[0].SubItems[4].Text;
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (lvwList.SelectedItems.Count == 0) { return; }
+            if (lvwShop.SelectedItems.Count == 0) { return; }
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
@@ -265,8 +266,6 @@ namespace thepos._9SysAdmin
             }
 
             reload_server();
-
-
         }
 
         String get_printer_type_name(String code)
@@ -281,5 +280,50 @@ namespace thepos._9SysAdmin
 
             return code;
         }
+
+
+        //
+        private void lvwNod1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod1Add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod1Update_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod1Delete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //
+        private void lvwNod2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod2Add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod2Update_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNod2Delete_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

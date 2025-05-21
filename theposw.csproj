@@ -246,6 +246,12 @@
     <Compile Include="9SysAdmin\frmSysAdminLog.Designer.cs">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsTicket.Designer.cs">
+      <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="site\2502\BXLLApi.cs" />
     <Compile Include="site\2502\BXLLApi_x64.cs" />
     <Compile Include="site\2502\BXLLApi_x86.cs" />
@@ -619,6 +625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminLog.resx">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsTicket.resx">
+      <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDevAdmin.resx">
       <DependentUpon>frmDevAdmin.cs</DependentUpon>

@@ -62,7 +62,6 @@
             this.tbGoodsNameEN = new System.Windows.Forms.TextBox();
             this.cbSoldout = new System.Windows.Forms.CheckBox();
             this.btnX = new System.Windows.Forms.Button();
-            this.pbImage = new System.Windows.Forms.PictureBox();
             this.cbShop = new System.Windows.Forms.ComboBox();
             this.tbMemo = new System.Windows.Forms.TextBox();
             this.lblMemoTitle = new System.Windows.Forms.Label();
@@ -98,9 +97,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pbImage = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -110,9 +110,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(34, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(96, 14);
+            this.lblTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "기초상품 관리";
+            this.lblTitle.Text = "기초상품";
             // 
             // tbGoodsName
             // 
@@ -498,17 +498,6 @@
             this.btnX.UseVisualStyleBackColor = true;
             this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
-            // pbImage
-            // 
-            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbImage.Location = new System.Drawing.Point(546, 18);
-            this.pbImage.Name = "pbImage";
-            this.pbImage.Size = new System.Drawing.Size(120, 120);
-            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbImage.TabIndex = 48;
-            this.pbImage.TabStop = false;
-            this.pbImage.Click += new System.EventHandler(this.pbImage_Click);
-            // 
             // cbShop
             // 
             this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -790,6 +779,17 @@
             this.panel1.Size = new System.Drawing.Size(183, 30);
             this.panel1.TabIndex = 81;
             // 
+            // pbImage
+            // 
+            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbImage.Location = new System.Drawing.Point(546, 18);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(120, 120);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbImage.TabIndex = 48;
+            this.pbImage.TabStop = false;
+            this.pbImage.Click += new System.EventHandler(this.pbImage_Click);
+            // 
             // frmSysGoods
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -808,9 +808,9 @@
             this.Text = "frmSysGoods";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

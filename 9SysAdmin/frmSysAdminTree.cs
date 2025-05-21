@@ -106,7 +106,7 @@ namespace theposw._9SysAdmin
 
                     TreeNode[] nodeShopList = new TreeNode[arr.Count];
 
-                    for (int i = 1; i < arr.Count; i++)
+                    for (int i = 0; i < arr.Count; i++)
                     {
                         nodeShopList[i] = new TreeNode();
                         nodeShopList[i].Text = arr[i]["shopName"].ToString();
@@ -173,7 +173,7 @@ namespace theposw._9SysAdmin
                                 {
                                     nodeGoodsGroupList[k] = new TreeNode();
                                     nodeGoodsGroupList[k].Text = arr1[k]["groupName"].ToString();
-                                    nodeGoodsGroupList[k].Tag = "GRUP" + arr1[k]["groupCode"].ToString();
+                                    nodeGoodsGroupList[k].Tag = "GDGR" + arr[i]["posNo"].ToString() + arr1[k]["groupCode"].ToString();
                                     nodePosList[i].Nodes.Add(nodeGoodsGroupList[k]);
 
                                     // 
@@ -191,7 +191,7 @@ namespace theposw._9SysAdmin
                                             {
                                                 nodeGoodsItemList[x] = new TreeNode();
                                                 nodeGoodsItemList[x].Text = arr2[x]["goodsName"].ToString();
-                                                nodeGoodsItemList[x].Tag = "GOOD" + arr2[x]["goodsCode"].ToString();
+                                                nodeGoodsItemList[x].Tag = "GDTM" + arr[i]["posNo"].ToString() + arr1[k]["groupCode"].ToString() + arr2[x]["goodsCode"].ToString();
                                                 nodeGoodsGroupList[k].Nodes.Add(nodeGoodsItemList[x]);
                                             }
                                         }
@@ -398,6 +398,54 @@ namespace theposw._9SysAdmin
                             lvItem.SubItems.Add(arr[i]["setupValue"].ToString());
                             lvwList.Items.Add(lvItem);
                         }
+                    }
+                }
+            }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "GDGR")
+            {
+                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2) + "&goodsGroup=" + selectedNode.Tag.ToString().Substring(6, 3);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goodsGroups"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+
+                    }
+                }
+            }
+            else if (selectedNode.Tag.ToString().Substring(0, 4) == "GDTM")
+            {
+                String sUrl = "goodsItem?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2) + "&goodsGroup=" + selectedNode.Tag.ToString().Substring(6, 3) + "&goodsCode=" + selectedNode.Tag.ToString().Substring(9, 6);
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goodsItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        foreach (JObject item in arr)
+                        {
+                            foreach (var property in item.Properties())
+                            {
+                                ListViewItem lvItem = new ListViewItem();
+                                lvItem.Text = property.Name;
+                                lvItem.SubItems.Add(property.Value.ToString());
+                                lvwList.Items.Add(lvItem);
+                            }
+                        }
+
                     }
                 }
             }
