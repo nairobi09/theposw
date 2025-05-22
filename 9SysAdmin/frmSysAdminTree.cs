@@ -55,7 +55,7 @@ namespace theposw._9SysAdmin
             nodeSite.Nodes.Add(nodeUser);
 
             TreeNode nodeShop = new TreeNode();
-            nodeShop.Text = "업장";
+            nodeShop.Text = "업장/분류";
             nodeShop.Tag = "TOP_SHOP";
             nodeSite.Nodes.Add(nodeShop);
 
@@ -68,6 +68,11 @@ namespace theposw._9SysAdmin
             nodeOption.Text = "옵션템플릿";
             nodeOption.Tag = "TOP_OPTN";
             nodeSite.Nodes.Add(nodeOption);
+
+            TreeNode nodeDCR = new TreeNode();
+            nodeDCR.Text = "할인";
+            nodeDCR.Tag = "TOP_DCR_";
+            nodeSite.Nodes.Add(nodeDCR);
 
             nodeSite.Expand();
 
@@ -108,33 +113,60 @@ namespace theposw._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
+                        if (arr[i]["shopCode"].ToString() == "")
+                        {
+                            continue;
+                        }
+
                         nodeShopList[i] = new TreeNode();
                         nodeShopList[i].Text = arr[i]["shopName"].ToString();
                         nodeShopList[i].Tag = "SHOP" + arr[i]["shopCode"].ToString();
+                        nodeShopList[i].ForeColor = Color.Blue;
                         nodeShop.Nodes.Add(nodeShopList[i]);
 
-                        sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + arr[i]["shopCode"].ToString();
+                        sUrl = "nod1?siteId=" + mSiteId + "&shopCode=" + arr[i]["shopCode"].ToString();
                         if (mRequestGet(sUrl))
                         {
                             if (mObj["resultCode"].ToString() == "200")
                             {
-                                String pos = mObj["goods"].ToString();
+                                String pos = mObj["nod1s"].ToString();
                                 JArray arr1 = JArray.Parse(pos);
 
-                        
-                                TreeNode[] nodeGoodsList = new TreeNode[arr1.Count];
+                                TreeNode[] nodeNod1List = new TreeNode[arr1.Count];
 
                                 for (int k = 0; k < arr1.Count; k++)
                                 {
-                                    nodeGoodsList[k] = new TreeNode();
-                                    nodeGoodsList[k].Text = arr1[k]["goodsName"].ToString();
-                                    nodeGoodsList[k].Tag = "GOOD" + arr1[k]["goodsCode"].ToString();
-                                    nodeShopList[i].Nodes.Add(nodeGoodsList[k]);
+                                    nodeNod1List[k] = new TreeNode();
+                                    nodeNod1List[k].Text = arr1[k]["nodName1"].ToString();
+                                    nodeNod1List[k].Tag = "NOD1" + arr[i]["shopCode"].ToString() + arr1[k]["nodCode1"].ToString();
+                                    nodeNod1List[k].ForeColor = Color.Blue;
+                                    nodeShopList[i].Nodes.Add(nodeNod1List[k]);
+
+                                    sUrl = "nod2?siteId=" + mSiteId + "&shopCode=" + arr[i]["shopCode"].ToString() + "&nodCode1=" + arr1[k]["nodCode1"].ToString();
+                                    if (mRequestGet(sUrl))
+                                    {
+                                        if (mObj["resultCode"].ToString() == "200")
+                                        {
+                                            String nod1 = mObj["nod2s"].ToString();
+                                            JArray arr2 = JArray.Parse(nod1);
+
+                                            TreeNode[] nodeNod2List = new TreeNode[arr2.Count];
+
+                                            for (int x = 0; x < arr2.Count; x++)
+                                            {
+                                                nodeNod2List[x] = new TreeNode();
+                                                nodeNod2List[x].Text = arr2[x]["nodName2"].ToString();
+                                                nodeNod2List[x].Tag = "NOD2" + arr[i]["shopCode"].ToString() + arr1[k]["nodCode1"].ToString() + arr2[x]["nodCode2"].ToString();
+                                                nodeNod2List[x].ForeColor = Color.Blue;
+                                                nodeNod1List[k].Nodes.Add(nodeNod2List[x]);
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
-                        nodeShop.Expand();
                     }
+                    nodeShop.Expand();
                 }
             }
 
@@ -156,6 +188,7 @@ namespace theposw._9SysAdmin
                         nodePosList[i] = new TreeNode();
                         nodePosList[i].Text = arr[i]["posNo"].ToString();
                         nodePosList[i].Tag = "POS_" + arr[i]["posNo"].ToString();
+                        nodePosList[i].ForeColor = Color.Blue;
                         nodePos.Nodes.Add(nodePosList[i]);
 
                         // 상품그룹
@@ -174,6 +207,7 @@ namespace theposw._9SysAdmin
                                     nodeGoodsGroupList[k] = new TreeNode();
                                     nodeGoodsGroupList[k].Text = arr1[k]["groupName"].ToString();
                                     nodeGoodsGroupList[k].Tag = "GDGR" + arr[i]["posNo"].ToString() + arr1[k]["groupCode"].ToString();
+                                    nodeGoodsGroupList[k].ForeColor = Color.Blue;
                                     nodePosList[i].Nodes.Add(nodeGoodsGroupList[k]);
 
                                     // 
@@ -267,10 +301,31 @@ namespace theposw._9SysAdmin
                     }
                     nodeOption.Expand();
                 }
+            }
 
+
+            //
+            sUrl = "dcrFavorite?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["dcr"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    TreeNode[] dcrList = new TreeNode[arr.Count];
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        dcrList[i] = new TreeNode();
+                        dcrList[i].Text = arr[i]["dcrName"].ToString();
+                        dcrList[i].Tag = "DCR_" + arr[i]["dcrCode"].ToString();
+                        nodeDCR.Nodes.Add(dcrList[i]);
+                    }
+                    nodeDCR.Expand();
+                }
             }
         }
-
 
 
         private void tvwList_AfterSelect(object sender, TreeViewEventArgs e)
@@ -403,7 +458,7 @@ namespace theposw._9SysAdmin
             }
             else if (selectedNode.Tag.ToString().Substring(0, 4) == "GDGR")
             {
-                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2) + "&goodsGroup=" + selectedNode.Tag.ToString().Substring(6, 3);
+                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + selectedNode.Tag.ToString().Substring(4, 2) + "&groupCode=" + selectedNode.Tag.ToString().Substring(6, 3);
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

@@ -50,28 +50,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNod1Delete = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tbNod1Name = new System.Windows.Forms.TextBox();
+            this.tbNodName1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tbNod1Code = new System.Windows.Forms.TextBox();
+            this.tbNodCode1 = new System.Windows.Forms.TextBox();
             this.btnNod1Update = new System.Windows.Forms.Button();
             this.btnNod1Add = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lvwNod1 = new System.Windows.Forms.ListView();
-            this.nod1_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nod1_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nod_code1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nod_name1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnNod2Delete = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tbNod2Name = new System.Windows.Forms.TextBox();
+            this.tbNodName2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbNod2Code = new System.Windows.Forms.TextBox();
+            this.tbNodCode2 = new System.Windows.Forms.TextBox();
             this.btnNod2Update = new System.Windows.Forms.Button();
             this.btnNod2Add = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lvwNod2 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nod_code2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nod_name2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -83,9 +84,9 @@
             this.btnShopDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShopDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnShopDelete.ForeColor = System.Drawing.Color.White;
-            this.btnShopDelete.Location = new System.Drawing.Point(317, 601);
+            this.btnShopDelete.Location = new System.Drawing.Point(317, 586);
             this.btnShopDelete.Name = "btnShopDelete";
-            this.btnShopDelete.Size = new System.Drawing.Size(100, 34);
+            this.btnShopDelete.Size = new System.Drawing.Size(84, 34);
             this.btnShopDelete.TabIndex = 55;
             this.btnShopDelete.TabStop = false;
             this.btnShopDelete.Text = "삭제";
@@ -103,7 +104,7 @@
             this.groupBox1.Controls.Add(this.lblGoodsNameTitle);
             this.groupBox1.Controls.Add(this.tbShopCode);
             this.groupBox1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox1.Location = new System.Drawing.Point(30, 469);
+            this.groupBox1.Location = new System.Drawing.Point(30, 454);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(271, 166);
             this.groupBox1.TabIndex = 54;
@@ -199,9 +200,9 @@
             this.btnShopUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShopUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnShopUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnShopUpdate.Location = new System.Drawing.Point(317, 547);
+            this.btnShopUpdate.Location = new System.Drawing.Point(317, 532);
             this.btnShopUpdate.Name = "btnShopUpdate";
-            this.btnShopUpdate.Size = new System.Drawing.Size(100, 48);
+            this.btnShopUpdate.Size = new System.Drawing.Size(84, 48);
             this.btnShopUpdate.TabIndex = 52;
             this.btnShopUpdate.TabStop = false;
             this.btnShopUpdate.Text = "수정";
@@ -214,9 +215,9 @@
             this.btnShopAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShopAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnShopAdd.ForeColor = System.Drawing.Color.White;
-            this.btnShopAdd.Location = new System.Drawing.Point(317, 494);
+            this.btnShopAdd.Location = new System.Drawing.Point(317, 479);
             this.btnShopAdd.Name = "btnShopAdd";
-            this.btnShopAdd.Size = new System.Drawing.Size(100, 48);
+            this.btnShopAdd.Size = new System.Drawing.Size(84, 48);
             this.btnShopAdd.TabIndex = 53;
             this.btnShopAdd.TabStop = false;
             this.btnShopAdd.Text = "추가";
@@ -287,11 +288,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(34, 679);
+            this.label1.Location = new System.Drawing.Point(34, 662);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(461, 12);
+            this.label1.Size = new System.Drawing.Size(291, 24);
             this.label1.TabIndex = 56;
-            this.label1.Text = "* 단독업장일 경우(레코드1개)  주문서/교환권 출력시 [코너 : 업장명]이 생략됩니다.";
+            this.label1.Text = "단독업장일 경우(레코드1개) \r\n주문서/교환권 출력시 [코너 : 업장명]이 생략됩니다.";
             // 
             // btnNod1Delete
             // 
@@ -299,7 +300,7 @@
             this.btnNod1Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod1Delete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod1Delete.ForeColor = System.Drawing.Color.White;
-            this.btnNod1Delete.Location = new System.Drawing.Point(603, 590);
+            this.btnNod1Delete.Location = new System.Drawing.Point(599, 575);
             this.btnNod1Delete.Name = "btnNod1Delete";
             this.btnNod1Delete.Size = new System.Drawing.Size(46, 45);
             this.btnNod1Delete.TabIndex = 62;
@@ -310,26 +311,26 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tbNod1Name);
+            this.groupBox2.Controls.Add(this.tbNodName1);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.tbNod1Code);
+            this.groupBox2.Controls.Add(this.tbNodCode1);
             this.groupBox2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox2.Location = new System.Drawing.Point(463, 469);
+            this.groupBox2.Location = new System.Drawing.Point(463, 454);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(183, 103);
             this.groupBox2.TabIndex = 61;
             this.groupBox2.TabStop = false;
             // 
-            // tbNod1Name
+            // tbNodName1
             // 
-            this.tbNod1Name.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNod1Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbNod1Name.Location = new System.Drawing.Point(68, 62);
-            this.tbNod1Name.MaxLength = 16;
-            this.tbNod1Name.Name = "tbNod1Name";
-            this.tbNod1Name.Size = new System.Drawing.Size(96, 23);
-            this.tbNod1Name.TabIndex = 5;
+            this.tbNodName1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbNodName1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbNodName1.Location = new System.Drawing.Point(68, 62);
+            this.tbNodName1.MaxLength = 16;
+            this.tbNodName1.Name = "tbNodName1";
+            this.tbNodName1.Size = new System.Drawing.Size(96, 23);
+            this.tbNodName1.TabIndex = 5;
             // 
             // label4
             // 
@@ -353,15 +354,15 @@
             this.label5.TabIndex = 43;
             this.label5.Text = "코드";
             // 
-            // tbNod1Code
+            // tbNodCode1
             // 
-            this.tbNod1Code.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNod1Code.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbNod1Code.Location = new System.Drawing.Point(68, 29);
-            this.tbNod1Code.MaxLength = 2;
-            this.tbNod1Code.Name = "tbNod1Code";
-            this.tbNod1Code.Size = new System.Drawing.Size(96, 23);
-            this.tbNod1Code.TabIndex = 4;
+            this.tbNodCode1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbNodCode1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbNodCode1.Location = new System.Drawing.Point(68, 29);
+            this.tbNodCode1.MaxLength = 2;
+            this.tbNodCode1.Name = "tbNodCode1";
+            this.tbNodCode1.Size = new System.Drawing.Size(96, 23);
+            this.tbNodCode1.TabIndex = 4;
             // 
             // btnNod1Update
             // 
@@ -369,9 +370,9 @@
             this.btnNod1Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod1Update.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod1Update.ForeColor = System.Drawing.Color.White;
-            this.btnNod1Update.Location = new System.Drawing.Point(534, 590);
+            this.btnNod1Update.Location = new System.Drawing.Point(532, 575);
             this.btnNod1Update.Name = "btnNod1Update";
-            this.btnNod1Update.Size = new System.Drawing.Size(67, 45);
+            this.btnNod1Update.Size = new System.Drawing.Size(63, 45);
             this.btnNod1Update.TabIndex = 59;
             this.btnNod1Update.TabStop = false;
             this.btnNod1Update.Text = "수정";
@@ -384,9 +385,9 @@
             this.btnNod1Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod1Add.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod1Add.ForeColor = System.Drawing.Color.White;
-            this.btnNod1Add.Location = new System.Drawing.Point(465, 590);
+            this.btnNod1Add.Location = new System.Drawing.Point(465, 575);
             this.btnNod1Add.Name = "btnNod1Add";
-            this.btnNod1Add.Size = new System.Drawing.Size(67, 45);
+            this.btnNod1Add.Size = new System.Drawing.Size(63, 45);
             this.btnNod1Add.TabIndex = 60;
             this.btnNod1Add.TabStop = false;
             this.btnNod1Add.Text = "추가";
@@ -408,8 +409,8 @@
             // 
             this.lvwNod1.BackColor = System.Drawing.SystemColors.Window;
             this.lvwNod1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nod1_code,
-            this.nod1_name});
+            this.nod_code1,
+            this.nod_name1});
             this.lvwNod1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwNod1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwNod1.FullRowSelect = true;
@@ -425,15 +426,15 @@
             this.lvwNod1.View = System.Windows.Forms.View.Details;
             this.lvwNod1.SelectedIndexChanged += new System.EventHandler(this.lvwNod1_SelectedIndexChanged);
             // 
-            // nod1_code
+            // nod_code1
             // 
-            this.nod1_code.Text = "코드";
-            this.nod1_code.Width = 45;
+            this.nod_code1.Text = "코드";
+            this.nod_code1.Width = 45;
             // 
-            // nod1_name
+            // nod_name1
             // 
-            this.nod1_name.Text = "분류명";
-            this.nod1_name.Width = 110;
+            this.nod_name1.Text = "분류명";
+            this.nod_name1.Width = 110;
             // 
             // btnNod2Delete
             // 
@@ -441,7 +442,7 @@
             this.btnNod2Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod2Delete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod2Delete.ForeColor = System.Drawing.Color.White;
-            this.btnNod2Delete.Location = new System.Drawing.Point(799, 590);
+            this.btnNod2Delete.Location = new System.Drawing.Point(797, 575);
             this.btnNod2Delete.Name = "btnNod2Delete";
             this.btnNod2Delete.Size = new System.Drawing.Size(46, 45);
             this.btnNod2Delete.TabIndex = 68;
@@ -452,26 +453,26 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.tbNod2Name);
+            this.groupBox3.Controls.Add(this.tbNodName2);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.tbNod2Code);
+            this.groupBox3.Controls.Add(this.tbNodCode2);
             this.groupBox3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(659, 469);
+            this.groupBox3.Location = new System.Drawing.Point(659, 454);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(183, 103);
             this.groupBox3.TabIndex = 67;
             this.groupBox3.TabStop = false;
             // 
-            // tbNod2Name
+            // tbNodName2
             // 
-            this.tbNod2Name.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNod2Name.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbNod2Name.Location = new System.Drawing.Point(68, 62);
-            this.tbNod2Name.MaxLength = 16;
-            this.tbNod2Name.Name = "tbNod2Name";
-            this.tbNod2Name.Size = new System.Drawing.Size(96, 23);
-            this.tbNod2Name.TabIndex = 7;
+            this.tbNodName2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbNodName2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbNodName2.Location = new System.Drawing.Point(68, 62);
+            this.tbNodName2.MaxLength = 16;
+            this.tbNodName2.Name = "tbNodName2";
+            this.tbNodName2.Size = new System.Drawing.Size(96, 23);
+            this.tbNodName2.TabIndex = 7;
             // 
             // label2
             // 
@@ -495,15 +496,15 @@
             this.label3.TabIndex = 43;
             this.label3.Text = "코드";
             // 
-            // tbNod2Code
+            // tbNodCode2
             // 
-            this.tbNod2Code.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbNod2Code.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbNod2Code.Location = new System.Drawing.Point(68, 29);
-            this.tbNod2Code.MaxLength = 2;
-            this.tbNod2Code.Name = "tbNod2Code";
-            this.tbNod2Code.Size = new System.Drawing.Size(96, 23);
-            this.tbNod2Code.TabIndex = 6;
+            this.tbNodCode2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbNodCode2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbNodCode2.Location = new System.Drawing.Point(68, 29);
+            this.tbNodCode2.MaxLength = 2;
+            this.tbNodCode2.Name = "tbNodCode2";
+            this.tbNodCode2.Size = new System.Drawing.Size(96, 23);
+            this.tbNodCode2.TabIndex = 6;
             // 
             // btnNod2Update
             // 
@@ -511,9 +512,9 @@
             this.btnNod2Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod2Update.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod2Update.ForeColor = System.Drawing.Color.White;
-            this.btnNod2Update.Location = new System.Drawing.Point(730, 590);
+            this.btnNod2Update.Location = new System.Drawing.Point(730, 575);
             this.btnNod2Update.Name = "btnNod2Update";
-            this.btnNod2Update.Size = new System.Drawing.Size(67, 45);
+            this.btnNod2Update.Size = new System.Drawing.Size(63, 45);
             this.btnNod2Update.TabIndex = 65;
             this.btnNod2Update.TabStop = false;
             this.btnNod2Update.Text = "수정";
@@ -526,9 +527,9 @@
             this.btnNod2Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNod2Add.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNod2Add.ForeColor = System.Drawing.Color.White;
-            this.btnNod2Add.Location = new System.Drawing.Point(661, 590);
+            this.btnNod2Add.Location = new System.Drawing.Point(661, 575);
             this.btnNod2Add.Name = "btnNod2Add";
-            this.btnNod2Add.Size = new System.Drawing.Size(67, 45);
+            this.btnNod2Add.Size = new System.Drawing.Size(65, 45);
             this.btnNod2Add.TabIndex = 66;
             this.btnNod2Add.TabStop = false;
             this.btnNod2Add.Text = "추가";
@@ -550,8 +551,8 @@
             // 
             this.lvwNod2.BackColor = System.Drawing.SystemColors.Window;
             this.lvwNod2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.nod_code2,
+            this.nod_name2});
             this.lvwNod2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwNod2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwNod2.FullRowSelect = true;
@@ -567,15 +568,25 @@
             this.lvwNod2.View = System.Windows.Forms.View.Details;
             this.lvwNod2.SelectedIndexChanged += new System.EventHandler(this.lvwNod2_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // nod_code2
             // 
-            this.columnHeader1.Text = "코드";
-            this.columnHeader1.Width = 45;
+            this.nod_code2.Text = "코드";
+            this.nod_code2.Width = 45;
             // 
-            // columnHeader2
+            // nod_name2
             // 
-            this.columnHeader2.Text = "분류명";
-            this.columnHeader2.Width = 110;
+            this.nod_name2.Text = "분류명";
+            this.nod_name2.Width = 110;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(474, 662);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(361, 24);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "상품항목에 분류정보가 적용되어  있는 경우\r\n분류정보를 삭제하면 이후 마감집계시 오류가 발생할 수 있습니다.";
             // 
             // frmSysShop
             // 
@@ -593,6 +604,7 @@
             this.Controls.Add(this.btnNod1Add);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lvwNod1);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnShopDelete);
             this.Controls.Add(this.groupBox1);
@@ -638,27 +650,28 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnNod1Delete;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox tbNod1Name;
+        private System.Windows.Forms.TextBox tbNodName1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbNod1Code;
+        private System.Windows.Forms.TextBox tbNodCode1;
         private System.Windows.Forms.Button btnNod1Update;
         private System.Windows.Forms.Button btnNod1Add;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListView lvwNod1;
-        private System.Windows.Forms.ColumnHeader nod1_code;
-        private System.Windows.Forms.ColumnHeader nod1_name;
+        private System.Windows.Forms.ColumnHeader nod_code1;
+        private System.Windows.Forms.ColumnHeader nod_name1;
         private System.Windows.Forms.Button btnNod2Delete;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox tbNod2Name;
+        private System.Windows.Forms.TextBox tbNodName2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbNod2Code;
+        private System.Windows.Forms.TextBox tbNodCode2;
         private System.Windows.Forms.Button btnNod2Update;
         private System.Windows.Forms.Button btnNod2Add;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ListView lvwNod2;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader nod_code2;
+        private System.Windows.Forms.ColumnHeader nod_name2;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -660,6 +660,8 @@ namespace thepos
                             mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
                             mGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
                             mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
+                            mGoodsItem[i].nod_code1 = arr[i]["nodCode1"].ToString();
+                            mGoodsItem[i].nod_code2 = arr[i]["nodCode2"].ToString();
                             mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
                             mGoodsItem[i].online_coupon = arr[i]["onlineCoupon"].ToString();
                             mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
@@ -821,7 +823,6 @@ namespace thepos
                         String data = mObj["shops"].ToString();
                         JArray arr = JArray.Parse(data);
 
-
                         // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
                         mShop = new Shop[arr.Count + 1];
 
@@ -865,7 +866,6 @@ namespace thepos
 
                         List<String> posno = new List<String>();
 
-                        
                         for (int i = 0; i < arr.Count; i++)
                         {
                             if (arr[i]["shopCode"].ToString() == mShopCode & (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1"))
@@ -874,15 +874,12 @@ namespace thepos
                             }
                         }
 
-
-                        
                         mPosNoList = new String[posno.Count];
 
                         for (int i = 0; i < posno.Count; i++)
                         {
                             mPosNoList[i] = posno[i];
                         }
-
                     }
                     else
                     {
