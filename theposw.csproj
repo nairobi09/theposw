@@ -111,11 +111,11 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClosedXML, Version=0.104.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\ClosedXML.0.104.2\lib\netstandard2.0\ClosedXML.dll</HintPath>
+    <Reference Include="ClosedXML, Version=0.105.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.105.0\lib\netstandard2.0\ClosedXML.dll</HintPath>
     </Reference>
     <Reference Include="ClosedXML.Parser, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1d5f7376574c51ec, processorArchitecture=MSIL">
-      <HintPath>packages\ClosedXML.Parser.1.2.0\lib\netstandard2.0\ClosedXML.Parser.dll</HintPath>
+      <HintPath>packages\ClosedXML.Parser.2.0.0\lib\netstandard2.0\ClosedXML.Parser.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=3.1.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>packages\DocumentFormat.OpenXml.3.1.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
@@ -141,8 +141,8 @@
     <Reference Include="PrinterUtility, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\PrinterUtility.1.1.1\lib\PrinterUtility.dll</HintPath>
     </Reference>
-    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\RBush.4.0.0\lib\net47\RBush.dll</HintPath>
+    <Reference Include="RBush, Version=4.0.0.0, Culture=neutral, PublicKeyToken=c77e27b81f4d0187, processorArchitecture=MSIL">
+      <HintPath>packages\RBush.Signed.4.0.0\lib\net47\RBush.dll</HintPath>
     </Reference>
     <Reference Include="SixLabors.Fonts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d998eea7b14cab13, processorArchitecture=MSIL">
       <HintPath>packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
@@ -198,6 +198,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmFlowTicketFlowDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowTicketFlowDetail.Designer.cs">
+      <DependentUpon>frmFlowTicketFlowDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="3Report\frmReportAllim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,11 +378,11 @@
     <Compile Include="1Sales\frmFlowSettlement.Designer.cs">
       <DependentUpon>frmFlowSettlement.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmFlowTicketing.cs">
+    <Compile Include="1Sales\frmFlowTicket.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmFlowTicketing.Designer.cs">
-      <DependentUpon>frmFlowTicketing.cs</DependentUpon>
+    <Compile Include="1Sales\frmFlowTicket.Designer.cs">
+      <DependentUpon>frmFlowTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmOrderDCR.cs">
       <SubType>Form</SubType>
@@ -595,14 +601,11 @@
     <Compile Include="thePos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="x64\SQLite.Interop.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\SQLite.Interop.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="1Sales\frmAllimCP.resx">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmFlowTicketFlowDetail.resx">
+      <DependentUpon>frmFlowTicketFlowDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>
@@ -698,8 +701,8 @@
     <EmbeddedResource Include="1Sales\frmFlowSettlement.resx">
       <DependentUpon>frmFlowSettlement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmFlowTicketing.resx">
-      <DependentUpon>frmFlowTicketing.cs</DependentUpon>
+    <EmbeddedResource Include="1Sales\frmFlowTicket.resx">
+      <DependentUpon>frmFlowTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderDCR.resx">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>

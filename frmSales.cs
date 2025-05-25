@@ -676,6 +676,8 @@ namespace thepos
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
                 orderItem.shop_code = mGoodsItem[i].shop_code;
+                orderItem.nod_code1 = mGoodsItem[i].nod_code1;
+                orderItem.nod_code2 = mGoodsItem[i].nod_code2;
 
                 //
                 replace_mem_order_item(ref orderItem, "add");
@@ -887,7 +889,12 @@ namespace thepos
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
-            frmFlowTicketing fForm = new frmFlowTicketing() { TopLevel = false, TopMost = true };
+            frmFlowTicket fForm = new frmFlowTicket() { TopLevel = false, TopMost = true };
+
+            /*
+            mPanelMiddle.Left = 1018 - fForm.Width;
+            mPanelMiddle.Width = fForm.Width;
+            */
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
             fForm.Show();
@@ -1788,6 +1795,8 @@ namespace thepos
                 parameters["ticketNo"] = ticket_no;  //
                 parameters["isCancel"] = "";
                 parameters["shopCode"] = mOrderItemList[i].shop_code;
+                parameters["nodCode1"] = mOrderItemList[i].nod_code1;
+                parameters["nodCode2"] = mOrderItemList[i].nod_code2;
 
                 parameters["shopOrderNo"] = mOrderItemList[i].shop_order_no;  // 업장주문번호
                 parameters["optionNo"] = t_option_no;
@@ -2025,35 +2034,46 @@ namespace thepos
 
                     if (orderItem.ticket == "Y")
                     {
-                        if (mTicketType == "IS")  // 입장전용 - 1장으로 출력 : 써멀로 한정
+                        if (mTicketType == "IS" | mTicketType == "OS")  // 1장으로 출력 : 써멀로 한정
                         {
                             ticket_seq++;
-                            t_ticket_no = mTheNo + ticket_seq.ToString("00"); 
-                            
-                            print_bill_ticket(t_ticket_no, orderItem.goods_code, orderItem.cnt, orderItem.coupon_no);
-                        }
-                        else if (mTicketType == "IN" | mTicketType == "PA" | mTicketType == "PD")  // 입장전용[개별출력], 선불, 후불
-                        {
+                            t_ticket_no = mTheNo + ticket_seq.ToString("00");
 
+                            
+                            if (mTicketType == "OS")
+                            {
+                                // ticketFlow POST
+                            }
+
+
+                            if (mTicketMedia == "BC")  // 영수증
+                            {
+                                print_bill_ticket(t_ticket_no, orderItem.goods_code, orderItem.cnt, orderItem.coupon_no);
+                            }
+                            else if (mTicketMedia == "TG")
+                            {
+
+                            }
+
+                        }
+                        else if (mTicketType == "IN" | mTicketType == "ON" | mTicketType == "PA" | mTicketType == "PD")  // IN 동춘, ON 키벤저스
+                        {
                             for (int k = 0; k < orderItem.cnt; k++)
                             {
                                 ticket_seq++;
 
-                                if (mTicketMedia == "RF")   // 팔찌
+                                if (mTicketMedia == "BC" | mTicketMedia == "TG")   // BC(서멀), TG(전용폼지)
+                                {
+                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");
+                                }
+                                else if (mTicketMedia == "RF")   // 팔찌
                                 {
                                     //? 팔찌이면 스케너 입력로직 필요
-                                    //t_ticket_no = "";  //? 스캐너로 읽어서 여기에...
-                                    //?? 임시
-                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");
-                                }
-                                else   // BC(서멀), TG(전용폼지)
-                                {
-                                    t_ticket_no = mTheNo + ticket_seq.ToString("00");
                                 }
 
 
-                                // ticketFlow POST - 선불, 후불 만
-                                if (mTicketType == "PA" | mTicketType == "PD")
+                                // ticketFlow POST
+                                if (mTicketType == "ON" | mTicketType == "PA" | mTicketType == "PD")
                                 {
                                     Dictionary<string, string> parameters = new Dictionary<string, string>();
                                     parameters.Clear();
@@ -2063,22 +2083,26 @@ namespace thepos
                                     parameters["theNo"] = mTheNo;
                                     parameters["refNo"] = mRefNo;
 
+                                    parameters["goodsCode"] = orderItem.goods_code;
+                                    
                                     parameters["ticketNo"] = t_ticket_no;
                                     parameters["bangleNo"] = "";  //? 팔찌인 경우 - 값변경 필요
+
                                     parameters["ticketingDt"] = get_today_date() + get_today_time();
+                                    parameters["entryDt"] = get_today_date() + get_today_time();  // 이후 입장게이트가 있으면 거기서 덮어쓰기
                                     parameters["chargeDt"] = "";
+                                    parameters["exitDt"] = "";
                                     parameters["settlementDt"] = "";
 
                                     parameters["pointChargeCnt"] = "0";
                                     parameters["pointUsageCnt"] = "0";
-
                                     parameters["pointCharge"] = "0";
                                     parameters["pointUsage"] = "0";
                                     parameters["settlePointCharge"] = "0";
                                     parameters["settlePointUsage"] = "0";
 
-                                    parameters["goodsCode"] = orderItem.goods_code;
-                                    parameters["flowStep"] = "1";               // 발권1 - *충전2 - 사용중3 - 정산(완료)4
+                                    parameters["flowStep"] = "0";               // 발권0 - 입장1 - 충전2 - 사용중3 - 퇴장4 - 정산(완료)9
+                                    
                                     parameters["lockerNo"] = "";
                                     parameters["openLocker"] = "1";             // 선불 :  항상 open
                                                                                 // 후불 :  최초 open -> 사용 close -> 정산 open
@@ -2102,7 +2126,6 @@ namespace thepos
                                 }
 
 
-                                //
                                 // 에러발생에 대비해서 인쇄출력은 가능한 마지막에 순서...
                                 // "", "BC", "RF", "TG" };
                                 // "", "영수증", "팔찌", "띠지" };
@@ -2112,20 +2135,13 @@ namespace thepos
                                 }
                                 else if (mTicketMedia == "TG")  // 전용폼지(띠지)
                                 {
-                                    //
                                     if (mSiteId == "2502") // 강아지숲
                                     {
-
-
-
-
+                                        //
 
                                     }
                                 }
-                                else if (mTicketMedia == "RF")   // 팔찌
-                                {
-                                    // SKIP..
-                                }
+
                             }
                         }
                     }

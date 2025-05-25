@@ -35,12 +35,6 @@ namespace thepos._9SysAdmin
 
         private void initialize_the()
         {
-            ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 24);
-
-            lvwShop.SmallImageList = imgList;
-            lvwShop.HideSelection = true;
-
             mPrinterTypeCode[0] = "";
             mPrinterTypeCode[1] = "N";
             mPrinterTypeCode[2] = "L";

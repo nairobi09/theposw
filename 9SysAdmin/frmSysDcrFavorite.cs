@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,8 +63,9 @@ namespace thepos._1Sales
                     {
                         ListViewItem lvItem = new ListViewItem();
 
-                        lvItem.Tag = arr[i]["dcrCode"].ToString();
+                        
                         lvItem.Text = arr[i]["sortNo"].ToString();
+                        lvItem.SubItems.Add(arr[i]["dcrCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["dcrName"].ToString());
 
                         lvItem.SubItems.Add(get_dcr_des_name(arr[i]["dcrDes"].ToString()));
@@ -92,6 +94,8 @@ namespace thepos._1Sales
         {
             if (lvwList.SelectedItems.Count == 0) { return; }
 
+
+            tbCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text;
             tbName.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name)].Text;
 
             cbDes.SelectedIndex = -1;
@@ -114,34 +118,54 @@ namespace thepos._1Sales
                 return;
             }
 
-            if (lvwList.Items.Count >= 8)
-            {
-                MessageBox.Show("최대 8개 항목 등록할 수 있습니다.");
-                return;
-            }
 
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["sortNo"] = "0";
+            parameters["dcrCode"] = tbCode.Text;
+            parameters["dcrName"] = tbName.Text;
 
-            ListViewItem lvItem = new ListViewItem();
-            lvItem.Text = "";
-            lvItem.Tag = get_new_code();
-            lvItem.SubItems.Add(tbName.Text);
-
+            //
             String dcr_des = "";
             if (cbDes.SelectedIndex == 0) dcr_des = "S";
             else if (cbDes.SelectedIndex == 1) dcr_des = "E";
-            lvItem.SubItems.Add(get_dcr_des_name(dcr_des));
 
+            parameters["dcrDes"] = dcr_des;
+
+            //
             String dcr_type = "";
             if (cbType.SelectedIndex == 0) dcr_type = "A";
             else if (cbType.SelectedIndex == 1) dcr_type = "R";
-            lvItem.SubItems.Add(get_dcr_type_name(dcr_type));
 
-            lvItem.SubItems.Add(tbValue.Text);
-            lvItem.SubItems.Add(dcr_des);
-            lvItem.SubItems.Add(dcr_type);
-            lvwList.Items.Add(lvItem);
+            parameters["dcrType"] = dcr_type;
 
-            resort_listview_no();
+            //
+            parameters["dcrValue"] = tbValue.Text;
+
+            if (mRequestPost("dcrFavorite", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("할인정보 입력오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+            MessageBox.Show("정상 저장 완료.", "thepos");
+
+            reload_server();
+
+            clear_console();
+
 
         }
 
@@ -155,26 +179,63 @@ namespace thepos._1Sales
                 return;
             }
 
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name)].Text = tbName.Text;
 
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["sortNo"] = "0";
+            parameters["dcrCode"] = tbCode.Text;
+            parameters["dcrName"] = tbName.Text;
+
+            //
             String dcr_des = "";
             if (cbDes.SelectedIndex == 0) dcr_des = "S";
             else if (cbDes.SelectedIndex == 1) dcr_des = "E";
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(des)].Text = get_dcr_des_name(dcr_des);
 
+            parameters["dcrDes"] = dcr_des;
+
+            //
             String dcr_type = "";
             if (cbType.SelectedIndex == 0) dcr_type = "A";
             else if (cbType.SelectedIndex == 1) dcr_type = "R";
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(type)].Text = get_dcr_type_name(dcr_type);
 
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(value)].Text = tbValue.Text;
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(des1)].Text = dcr_des;
-            lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(type1)].Text = dcr_type;
+            parameters["dcrType"] = dcr_type;
+
+            //
+            parameters["dcrValue"] = tbValue.Text;
+
+            if (mRequestPost("dcrFavorite", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("할인정보 수장오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
+            MessageBox.Show("정상 저장 완료.", "thepos");
+
+            reload_server();
+
+            clear_console();
 
         }
 
         private bool check_data()
         {
+            if (tbCode.Text.Trim().Length != 6) return false;
+
+            if (tbCode.Text.Substring(0,2) != "DC") return false;
+
+
             if (tbName.Text.Trim().Length < 1) return false;
             if (cbDes.SelectedIndex < 0) return false;
             if (cbType.SelectedIndex < 0) return false;
@@ -199,37 +260,10 @@ namespace thepos._1Sales
         {
             if (lvwList.SelectedItems.Count == 0) { return; }
 
-            lvwList.SelectedItems[0].Remove();
 
-
-            clear_console();
-
-            resort_listview_no();
-        }
-
-        private void clear_console()
-        {
-            tbName.Text = "";
-            cbDes.SelectedIndex = -1;
-            cbType.SelectedIndex = -1;
-            tbValue.Text = "";
-        }
-
-
-        private void resort_listview_no()
-        {
-            for (int i = 0; i < lvwList.Items.Count; i++)
-            {
-                lvwList.Items[i].Text = (i + 1).ToString();
-            }
-        }
-
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            // 전체 삭제
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
+            parameters["dcrCode"] = tbCode.Text;
 
             if (mRequestDelete("dcrFavorite", parameters))
             {
@@ -248,20 +282,47 @@ namespace thepos._1Sales
                 return;
             }
 
+            reload_server();
 
-            // 차례로 추가
+            clear_console();
+
+        }
+
+        private void clear_console()
+        {
+            tbCode.Text = "";
+            tbName.Text = "";
+            cbDes.SelectedIndex = -1;
+            cbType.SelectedIndex = -1;
+            tbValue.Text = "";
+        }
+
+
+        private void resort_listview_no()
+        {
             for (int i = 0; i < lvwList.Items.Count; i++)
             {
-                parameters.Clear();
-                parameters["siteId"] = mSiteId;
-                parameters["sortNo"] = lvwList.Items[i].Text;
-                parameters["dcrCode"] = lvwList.Items[i].Tag.ToString();
-                parameters["dcrName"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(name)].Text;
-                parameters["dcrDes"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(des1)].Text;
-                parameters["dcrType"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(type1)].Text;
-                parameters["dcrValue"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(value)].Text;
+                lvwList.Items[i].Text = (i + 1).ToString();
+            }
+        }
 
-                if (mRequestPost("dcrFavorite", parameters))
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            resort_listview_no();
+
+
+
+            // 차례로 순번 수정
+            for (int i = 0; i < lvwList.Items.Count; i++)
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["siteId"] = mSiteId;
+                parameters["dcrCode"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(code)].Text;
+                parameters["sortNo"] = lvwList.Items[i].Text;
+
+                if (mRequestPatch("dcrFavorite", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
@@ -269,7 +330,7 @@ namespace thepos._1Sales
                     }
                     else
                     {
-                        MessageBox.Show("할인정보 입력오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("할인정보 수정오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -333,22 +394,6 @@ namespace thepos._1Sales
             resort_listview_no();
         }
 
-        private String get_new_code()
-        {
-            int new_no = 1000;
-
-            for (int i = 0; i < lvwList.Items.Count; i++)
-            {
-                int tag_no = convert_number(lvwList.Items[i].Tag.ToString());
-
-                if (new_no < tag_no)
-                {
-                    new_no = tag_no;
-                }
-            }
-
-            return (new_no + 1).ToString();
-        }
 
     }
 }

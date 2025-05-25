@@ -57,10 +57,10 @@
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(12, 61);
+            this.lvwList.Location = new System.Drawing.Point(8, 43);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(846, 637);
+            this.lvwList.Size = new System.Drawing.Size(854, 659);
             this.lvwList.TabIndex = 33;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -99,14 +99,14 @@
             // formMemo
             // 
             this.formMemo.Text = "memo";
-            this.formMemo.Width = 330;
+            this.formMemo.Width = 339;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Red;
-            this.lblTitle.Location = new System.Drawing.Point(408, 26);
+            this.lblTitle.Location = new System.Drawing.Point(12, 17);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(35, 14);
             this.lblTitle.TabIndex = 29;
@@ -117,7 +117,7 @@
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(12, 24);
+            this.dtpBizDate.Location = new System.Drawing.Point(472, 12);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(92, 23);
             this.dtpBizDate.TabIndex = 86;
@@ -129,9 +129,9 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(749, 20);
+            this.btnView.Location = new System.Drawing.Point(749, 12);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 27);
+            this.btnView.Size = new System.Drawing.Size(100, 23);
             this.btnView.TabIndex = 85;
             this.btnView.TabStop = false;
             this.btnView.Text = "조회";
@@ -142,7 +142,7 @@
             // 
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbPosNo.Location = new System.Drawing.Point(234, 24);
+            this.tbPosNo.Location = new System.Drawing.Point(694, 12);
             this.tbPosNo.MaxLength = 2;
             this.tbPosNo.Name = "tbPosNo";
             this.tbPosNo.Size = new System.Drawing.Size(31, 23);
@@ -153,7 +153,7 @@
             // 
             this.tbFromTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbFromTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbFromTime.Location = new System.Drawing.Point(110, 24);
+            this.tbFromTime.Location = new System.Drawing.Point(570, 12);
             this.tbFromTime.MaxLength = 6;
             this.tbFromTime.Name = "tbFromTime";
             this.tbFromTime.Size = new System.Drawing.Size(54, 23);
@@ -164,7 +164,7 @@
             // 
             this.tbSiteId.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbSiteId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbSiteId.Location = new System.Drawing.Point(187, 24);
+            this.tbSiteId.Location = new System.Drawing.Point(647, 12);
             this.tbSiteId.MaxLength = 4;
             this.tbSiteId.Name = "tbSiteId";
             this.tbSiteId.Size = new System.Drawing.Size(41, 23);

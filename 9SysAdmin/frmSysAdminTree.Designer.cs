@@ -46,10 +46,10 @@
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(446, 70);
+            this.lvwList.Location = new System.Drawing.Point(446, 47);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(395, 616);
+            this.lvwList.Size = new System.Drawing.Size(412, 651);
             this.lvwList.TabIndex = 97;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -70,7 +70,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(278, 25);
+            this.btnView.Location = new System.Drawing.Point(340, 12);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 29);
             this.btnView.TabIndex = 94;
@@ -83,7 +83,7 @@
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.lblReportTitle.Location = new System.Drawing.Point(25, 30);
+            this.lblReportTitle.Location = new System.Drawing.Point(12, 17);
             this.lblReportTitle.Name = "lblReportTitle";
             this.lblReportTitle.Size = new System.Drawing.Size(93, 19);
             this.lblReportTitle.TabIndex = 92;
@@ -92,10 +92,11 @@
             // 
             // tvwList
             // 
+            this.tvwList.BackColor = System.Drawing.Color.White;
             this.tvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tvwList.Location = new System.Drawing.Point(29, 70);
+            this.tvwList.Location = new System.Drawing.Point(12, 47);
             this.tvwList.Name = "tvwList";
-            this.tvwList.Size = new System.Drawing.Size(399, 615);
+            this.tvwList.Size = new System.Drawing.Size(428, 651);
             this.tvwList.TabIndex = 98;
             this.tvwList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwList_AfterSelect);
             // 

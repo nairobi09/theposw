@@ -43,11 +43,11 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            tmTicketType = new String[5] { "", "IS", "IN", "PA", "PD" };
-            tmTicketTypeText = new String[5] { "", "단순입장 [통합티켓]", "단순입장 [개별티켓]", "선불", "후불" };
+            tmTicketType = new String[7] { "", "IS", "IN", "OS", "ON", "PA", "PD" };
+            tmTicketTypeText = new String[7] { "", "단순입장 [단체]", "단순입장 [개별]", "입퇴장 [단체]", "입퇴장 [개별]", "선불", "후불" };
 
-            tmTicketMedia = new String[4] { "", "BC", "TG", "RF" };
-            tmTicketMediaText = new String[4] { "", "써멀|영수증", "전용|폼지 ", "팔찌|RF"};
+            tmTicketMedia = new String[3] { "", "BC", "TG" };
+            tmTicketMediaText = new String[3] { "", "써멀|영수증", "전용|폼지"};
 
             tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 

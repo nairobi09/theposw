@@ -53,6 +53,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,6 +95,7 @@
             this.lvwList.BackColor = System.Drawing.SystemColors.Window;
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.no,
+            this.code,
             this.name,
             this.des,
             this.type,
@@ -103,10 +108,10 @@
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(118, 58);
+            this.lvwList.Location = new System.Drawing.Point(66, 58);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(382, 333);
+            this.lvwList.Size = new System.Drawing.Size(462, 333);
             this.lvwList.TabIndex = 48;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -162,7 +167,7 @@
             this.cbDes.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbDes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbDes.FormattingEnabled = true;
-            this.cbDes.Location = new System.Drawing.Point(583, 90);
+            this.cbDes.Location = new System.Drawing.Point(616, 136);
             this.cbDes.Name = "cbDes";
             this.cbDes.Size = new System.Drawing.Size(141, 21);
             this.cbDes.TabIndex = 53;
@@ -172,7 +177,7 @@
             this.lblNameTitle.AutoSize = true;
             this.lblNameTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNameTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblNameTitle.Location = new System.Drawing.Point(517, 64);
+            this.lblNameTitle.Location = new System.Drawing.Point(550, 110);
             this.lblNameTitle.Name = "lblNameTitle";
             this.lblNameTitle.Size = new System.Drawing.Size(49, 14);
             this.lblNameTitle.TabIndex = 51;
@@ -183,7 +188,7 @@
             this.lblDesTitle.AutoSize = true;
             this.lblDesTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblDesTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblDesTitle.Location = new System.Drawing.Point(517, 94);
+            this.lblDesTitle.Location = new System.Drawing.Point(550, 140);
             this.lblDesTitle.Name = "lblDesTitle";
             this.lblDesTitle.Size = new System.Drawing.Size(63, 14);
             this.lblDesTitle.TabIndex = 52;
@@ -193,7 +198,7 @@
             // 
             this.tbName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbName.Location = new System.Drawing.Point(583, 58);
+            this.tbName.Location = new System.Drawing.Point(616, 104);
             this.tbName.MaxLength = 30;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(141, 23);
@@ -201,10 +206,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(71, 121);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(138, 30);
@@ -216,10 +221,10 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Location = new System.Drawing.Point(71, 75);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(138, 40);
@@ -231,10 +236,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(71, 29);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(138, 40);
@@ -249,7 +254,7 @@
             this.cbType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbType.FormattingEnabled = true;
-            this.cbType.Location = new System.Drawing.Point(583, 120);
+            this.cbType.Location = new System.Drawing.Point(616, 166);
             this.cbType.Name = "cbType";
             this.cbType.Size = new System.Drawing.Size(141, 21);
             this.cbType.TabIndex = 58;
@@ -259,7 +264,7 @@
             this.lblTypeTitle.AutoSize = true;
             this.lblTypeTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTypeTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTypeTitle.Location = new System.Drawing.Point(517, 124);
+            this.lblTypeTitle.Location = new System.Drawing.Point(550, 170);
             this.lblTypeTitle.Name = "lblTypeTitle";
             this.lblTypeTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTypeTitle.TabIndex = 57;
@@ -270,7 +275,7 @@
             this.lblValueTitle.AutoSize = true;
             this.lblValueTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblValueTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblValueTitle.Location = new System.Drawing.Point(517, 156);
+            this.lblValueTitle.Location = new System.Drawing.Point(550, 202);
             this.lblValueTitle.Name = "lblValueTitle";
             this.lblValueTitle.Size = new System.Drawing.Size(49, 14);
             this.lblValueTitle.TabIndex = 60;
@@ -280,7 +285,7 @@
             // 
             this.tbValue.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbValue.Location = new System.Drawing.Point(583, 150);
+            this.tbValue.Location = new System.Drawing.Point(616, 196);
             this.tbValue.MaxLength = 30;
             this.tbValue.Name = "tbValue";
             this.tbValue.Size = new System.Drawing.Size(141, 23);
@@ -292,12 +297,12 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(586, 410);
+            this.btnSave.Location = new System.Drawing.Point(619, 410);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(138, 50);
             this.btnSave.TabIndex = 61;
             this.btnSave.TabStop = false;
-            this.btnSave.Text = "저장";
+            this.btnSave.Text = "순서저장";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -306,7 +311,7 @@
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblInfo.ForeColor = System.Drawing.Color.Gray;
-            this.lblInfo.Location = new System.Drawing.Point(231, 404);
+            this.lblInfo.Location = new System.Drawing.Point(97, 429);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(203, 14);
             this.lblInfo.TabIndex = 62;
@@ -319,16 +324,56 @@
             this.groupBox1.Controls.Add(this.btnDn);
             this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.btnDelete);
-            this.groupBox1.Location = new System.Drawing.Point(515, 219);
+            this.groupBox1.Location = new System.Drawing.Point(548, 219);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(219, 172);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(551, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 14);
+            this.label1.TabIndex = 65;
+            this.label1.Text = "할인코드";
+            // 
+            // tbCode
+            // 
+            this.tbCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbCode.Location = new System.Drawing.Point(616, 75);
+            this.tbCode.MaxLength = 6;
+            this.tbCode.Name = "tbCode";
+            this.tbCode.Size = new System.Drawing.Size(141, 23);
+            this.tbCode.TabIndex = 64;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(763, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 14);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "DC+(4자리)";
+            // 
+            // code
+            // 
+            this.code.Text = "할인코드";
+            this.code.Width = 80;
+            // 
             // frmSysDcrFavorite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbCode);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnSave);
@@ -377,5 +422,9 @@
         private System.Windows.Forms.ColumnHeader des1;
         private System.Windows.Forms.ColumnHeader type1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbCode;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader code;
     }
 }

@@ -698,6 +698,44 @@ namespace thepos
             }
 
 
+            // 3. goodsTicket
+            if (true)
+            {
+                String sUrl = "goodsTicket?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goods"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mGoodsTicket = new GoodsTicket[arr.Count + 1];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mGoodsTicket[i].goods_code = arr[i]["goodsCode"].ToString();
+                            mGoodsTicket[i].available_minute = arr[i]["availableMinute"].ToString();
+                            mGoodsTicket[i].is_charge = arr[i]["isCharge"].ToString();
+                            mGoodsTicket[i].ot_free_minute = arr[i]["otFreeMinute"].ToString();
+                            mGoodsTicket[i].ot_std_minute = arr[i]["otStdMinute"].ToString();
+                            mGoodsTicket[i].ot_amt = arr[i]["otAmt"].ToString();
+                            mGoodsTicket[i].link_goods_code = arr[i]["linkGoodsCode"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
 
             // 3-1. optionTemplate
             if (true)
@@ -851,6 +889,77 @@ namespace thepos
                     return;
                 }
             }
+
+            // 4-1. 분류1
+            if (true)
+            {
+                String sUrl = "nod1?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["nod1s"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
+                        mNod1 = new Nod1[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mNod1[i].shop_code = arr[i]["shopCode"].ToString();
+                            mNod1[i].nod_code1 = arr[i]["nodCode1"].ToString();
+                            mNod1[i].nod_name1 = arr[i]["nodName1"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("분류1 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+            // 4-2. 분류2
+            if (true)
+            {
+                String sUrl = "nod2?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["nod2s"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        // 업장콤보에 첫줄빈칸을 추가하기위함. -> 수정시  주문서/교환권 출력시 [코너 : 업장명] 출력생략부분을 확인해라!!
+                        mNod2 = new Nod2[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mNod2[i].shop_code = arr[i]["shopCode"].ToString();
+                            mNod2[i].nod_code1 = arr[i]["nodCode1"].ToString();
+                            mNod2[i].nod_code2 = arr[i]["nodCode2"].ToString();
+                            mNod2[i].nod_name2 = arr[i]["nodName2"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("분류2 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
 
 
             // 5. 포스
@@ -1306,7 +1415,7 @@ namespace thepos
 
                 isRunThread = false;
 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
 
                 this.Close();
 

@@ -201,7 +201,7 @@ namespace thepos
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
-                orderItem.cnt = 0;
+                orderItem.cnt = 1;
                 orderItem.amt = 0;
                 orderItem.option_amt = 0;
                 orderItem.dc_amount = t_dc_amount;
@@ -209,6 +209,9 @@ namespace thepos
                 orderItem.goods_code = e_dcr_code;  // 전체 할인코드
                 orderItem.goods_name = e_dcr_name;
                 orderItem.option_name_description = description_name;
+
+                orderItem.shop_code = mShopCode;  //  포스 업장코드
+
 
 
 

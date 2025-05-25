@@ -38,8 +38,8 @@
             this.link_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.qty = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.use_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.use_date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSaveExcel = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(616, 23);
+            this.btnView.Location = new System.Drawing.Point(600, 23);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 97;
@@ -138,16 +138,16 @@
             this.qty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.qty.Width = 50;
             // 
-            // use_date
-            // 
-            this.use_date.Text = "사용일시";
-            this.use_date.Width = 100;
-            // 
             // amount
             // 
             this.amount.Text = "금액";
             this.amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount.Width = 80;
+            // 
+            // use_date
+            // 
+            this.use_date.Text = "사용일시";
+            this.use_date.Width = 100;
             // 
             // btnSaveExcel
             // 

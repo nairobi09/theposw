@@ -39,6 +39,9 @@ namespace thepos._9SysAdmin
 
         String sv_amt = "";
         String sv_shopCode = "";
+        String sv_nodCode1 = "";
+        String sv_nodCode2 = "";
+
         String sv_online_coupon = "";
         String sv_ticketYn = "";
         String sv_taxFree = "";
@@ -50,6 +53,14 @@ namespace thepos._9SysAdmin
         String sv_memo = "";
         String sv_coupon_link_no = "";
         String ch_imagePath = "";
+
+
+
+
+        List<Nod1> thisNod1 = new List<Nod1>();
+
+        List<Nod2> thisNod2 = new List<Nod2>();
+
 
 
 
@@ -65,6 +76,11 @@ namespace thepos._9SysAdmin
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            if (cbShopView.SelectedIndex < 0) 
+            { 
+                cbShopView.SelectedIndex = 0; 
+            }
+
             reload_all();
         }
 
@@ -90,6 +106,16 @@ namespace thepos._9SysAdmin
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }
+            cbShop.SelectedIndex = 0;
+
+
+            //
+            cbNod1.Items.Clear();
+            cbNod1.Items.Add("");
+
+            cbNod2.Items.Clear();
+            cbNod2.Items.Add("");
+
 
 
             // 옵션은 자주 변경을 예상하여 상품화면띄울때마다 옵션정보 로드한다...
@@ -199,48 +225,54 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["goodsNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["goodsNameJp"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["goodsNotice"].ToString());
-
-
                         // goodscode
                         lvItem.SubItems.Add(arr[i]["goodsCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["amt"].ToString());  // 5
 
-                        lvItem.SubItems.Add(arr[i]["amt"].ToString());
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
 
-                        tOnlineCoupon = "";
+                        lvItem.SubItems.Add(arr[i]["nodCode1"].ToString());
+                        lvItem.SubItems.Add(get_nod1_name(arr[i]["shopCode"].ToString(), arr[i]["nodCode1"].ToString()));
+
+                        lvItem.SubItems.Add(arr[i]["nodCode2"].ToString());        // 10
+                        lvItem.SubItems.Add(get_nod2_name(arr[i]["shopCode"].ToString(), arr[i]["nodCode1"].ToString(), arr[i]["nodCode2"].ToString()));
+
+                        lvItem.SubItems.Add(arr[i]["optionTemplateId"].ToString());
+                        lvItem.SubItems.Add(get_option_template_name(arr[i]["optionTemplateId"].ToString()));
+
+
                         tTicket = "";
                         tTaxFree = "";
                         tCutout = "";
                         tSoldout = "";
                         tAllim = "";
+                        tOnlineCoupon = "";
 
-                        if (arr[i]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
                         if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-                        if (arr[i]["cutout"].ToString() == "Y") tCutout = "Y";
+                        if (arr[i]["cutout"].ToString() == "Y") tCutout = "Y";          // 15
                         if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
                         if (arr[i]["allim"].ToString() == "Y") tAllim = "Y";
+                        if (arr[i]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
 
-                        lvItem.SubItems.Add(tOnlineCoupon);
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
                         lvItem.SubItems.Add(tAllim);
+                        lvItem.SubItems.Add(tOnlineCoupon);
 
-                        lvItem.SubItems.Add(arr[i]["optionTemplateId"].ToString());
-                        lvItem.SubItems.Add(get_option_template_name(arr[i]["optionTemplateId"].ToString()));
+                        lvItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["barCode"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["badgesId"].ToString());
+                        lvItem.SubItems.Add(arr[i]["badgesId"].ToString());                     // 20
                         lvItem.SubItems.Add(get_badges_name(arr[i]["badgesId"].ToString()));
 
-
+                        lvItem.SubItems.Add(arr[i]["goodsNotice"].ToString());
                         lvItem.SubItems.Add(arr[i]["memo"].ToString());
-                        lvItem.SubItems.Add(arr[i]["couponLinkNo"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["barCode"].ToString());
+
 
 
                         if (tCutout == "Y")  // 중지
@@ -329,46 +361,54 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[0]["goodsNameCh"].ToString());
                         lvItem.SubItems.Add(arr[0]["goodsNameJp"].ToString());
 
-                        lvItem.SubItems.Add(arr[0]["goodsNotice"].ToString());
-
                         // goodscode
                         lvItem.SubItems.Add(arr[0]["goodsCode"].ToString());
                         lvItem.SubItems.Add(arr[0]["amt"].ToString());
+
                         lvItem.SubItems.Add(arr[0]["shopCode"].ToString());
                         lvItem.SubItems.Add(get_shop_name(arr[0]["shopCode"].ToString()));
 
-                        tOnlineCoupon = "";
+                        lvItem.SubItems.Add(arr[0]["nodCode1"].ToString());
+                        lvItem.SubItems.Add(get_nod1_name(arr[0]["shopCode"].ToString(), arr[0]["nodCode1"].ToString()));
+
+                        lvItem.SubItems.Add(arr[0]["nodCode2"].ToString());
+                        lvItem.SubItems.Add(get_nod2_name(arr[0]["shopCode"].ToString(), arr[0]["nodCode1"].ToString(), arr[0]["nodCode2"].ToString()));
+
+                        lvItem.SubItems.Add(arr[0]["optionTemplateId"].ToString());
+                        lvItem.SubItems.Add(get_option_template_name(arr[0]["optionTemplateId"].ToString()));
+
                         tTicket = "";
                         tTaxFree = "";
                         tCutout = "";
                         tSoldout = "";
                         tAllim = "";
+                        tOnlineCoupon = "";
 
-                        if (arr[0]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
                         if (arr[0]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[0]["cutout"].ToString() == "Y") tCutout = "Y";
                         if (arr[0]["soldout"].ToString() == "Y") tSoldout = "Y";
                         if (arr[0]["allim"].ToString() == "Y") tAllim = "Y";
+                        if (arr[0]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
 
-                        lvItem.SubItems.Add(tOnlineCoupon);
+
                         lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
                         lvItem.SubItems.Add(tAllim);
+                        lvItem.SubItems.Add(tOnlineCoupon);
 
-                        lvItem.SubItems.Add(arr[0]["optionTemplateId"].ToString());
-                        lvItem.SubItems.Add(get_option_template_name(arr[0]["optionTemplateId"].ToString()));
+                        lvItem.SubItems.Add(arr[0]["couponLinkNo"].ToString());
+                        lvItem.SubItems.Add(arr[0]["barCode"].ToString());
 
                         lvItem.SubItems.Add(arr[0]["badgesId"].ToString());
                         lvItem.SubItems.Add(get_badges_name(arr[0]["badgesId"].ToString()));
 
-
+                        lvItem.SubItems.Add(arr[0]["goodsNotice"].ToString());
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
-                        lvItem.SubItems.Add(arr[0]["couponLinkNo"].ToString());
 
-                        lvItem.SubItems.Add(arr[0]["barCode"].ToString());
+
 
 
 
@@ -481,8 +521,9 @@ namespace thepos._9SysAdmin
             //
             tbGoodsAmt.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(amt)].Text;
 
+            
+            //
             String shop_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shopcode)].Text;
-
 
             cbShop.SelectedIndex = -1;
             for (int i = 0; i < mShop.Length; i++)
@@ -492,6 +533,37 @@ namespace thepos._9SysAdmin
                     cbShop.SelectedIndex = i;
                 }
             }
+
+            //
+            Task.Delay(100);
+
+            //
+            String nod_code1 = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(nodcode1)].Text;
+
+            for (int i = 0; i < thisNod1.Count; i++)
+            {
+                if (thisNod1[i].nod_code1 == nod_code1)
+                {
+                    cbNod1.SelectedIndex = i;
+                }
+            }
+
+            //
+            Task.Delay(100);
+
+            //
+            String nod_code2 = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(nodcode2)].Text;
+
+            for (int i = 0; i < thisNod2.Count; i++)
+            {
+                if (thisNod2[i].nod_code2 == nod_code2)
+                {
+                    cbNod2.SelectedIndex = i;
+                }
+            }
+
+
+
 
             //
 
@@ -559,6 +631,9 @@ namespace thepos._9SysAdmin
 
             sv_amt = tbGoodsAmt.Text;
             sv_shopCode = cbShop.SelectedIndex + "";
+            sv_nodCode1 = cbNod1.SelectedIndex + "";
+            sv_nodCode1 = cbNod2.SelectedIndex + "";
+
             sv_online_coupon = cbCoupon.Checked + "";
             sv_ticketYn = cbTicket.Checked + "";
             sv_taxFree = cbTaxFree.Checked + "";
@@ -712,6 +787,14 @@ namespace thepos._9SysAdmin
             //
             if (sv_shopCode != cbShop.SelectedIndex + "")
                 parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
+
+            if (sv_nodCode1 != cbNod1.SelectedIndex + "")
+                parameters["nodCode1"] = thisNod1[cbNod1.SelectedIndex].nod_code1;
+
+            if (sv_nodCode2 != cbNod2.SelectedIndex + "")
+                parameters["nodCode2"] = thisNod2[cbNod2.SelectedIndex].nod_code2;
+
+
 
 
             //
@@ -884,8 +967,10 @@ namespace thepos._9SysAdmin
 
             parameters["amt"] = tbGoodsAmt.Text;
 
+            //
             parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
-
+            parameters["nodCode1"] = thisNod1[cbNod1.SelectedIndex].nod_code1;
+            parameters["nodCode2"] = thisNod2[cbNod2.SelectedIndex].nod_code2;
 
 
             //
@@ -1087,6 +1172,102 @@ namespace thepos._9SysAdmin
             frm.ShowDialog();
         }
 
+        private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbShop.SelectedIndex < 0)
+            {
+                return;
+            }
 
+
+            //
+            cbNod1.Items.Clear();
+            thisNod1.Clear();
+            Nod1 tNod1 = new Nod1();
+            tNod1.shop_code = "";
+            tNod1.nod_code1 = "";
+            tNod1.nod_name1 = "";
+            thisNod1.Add(tNod1);
+
+
+            //
+            cbNod2.Items.Clear();
+            thisNod2.Clear();
+            Nod2 tNod2 = new Nod2();
+            tNod2.shop_code = "";
+            tNod2.nod_code1 = "";
+            tNod2.nod_code2 = "";
+            tNod2.nod_name2 = "";
+            thisNod2.Add(tNod2);
+
+
+            //
+            String tShopCode = mShop[cbShop.SelectedIndex].shop_code;
+
+            if (cbShop.SelectedIndex > 0)
+            {
+                for (int i = 0; i < mNod1.Length; i++)
+                {
+                    if (mNod1[i].shop_code == tShopCode)
+                    {
+                        thisNod1.Add(mNod1[i]);
+                    }
+                }                
+            }
+
+
+            //
+            for (int i = 0;i < thisNod1.Count; i++)
+            {
+                cbNod1.Items.Add(thisNod1[i].nod_name1);
+            }
+
+            cbNod1.SelectedIndex = 0;
+
+
+        }
+
+        private void cbNod1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbNod1.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            //
+            cbNod2.Items.Clear();
+            thisNod2.Clear();
+            Nod2 tNod2 = new Nod2();
+            tNod2.shop_code = "";
+            tNod2.nod_code1 = "";
+            tNod2.nod_code2 = "";
+            tNod2.nod_name2 = "";
+            thisNod2.Add(tNod2);
+
+
+            String shop_code = thisNod1[cbNod1.SelectedIndex].shop_code;
+            String nod_code1 = thisNod1[cbNod1.SelectedIndex].nod_code1;
+
+            if (cbNod1.SelectedIndex > 0)
+            {
+                for (int i = 0; i < mNod2.Length; i++)
+                {
+                    if (mNod2[i].shop_code == shop_code & mNod2[i].nod_code1 == nod_code1)
+                    {
+                        thisNod2.Add(mNod2[i]);
+                    }
+                }
+            }
+
+
+            //
+            for (int i = 0; i < thisNod2.Count; i++)
+            {
+                cbNod2.Items.Add(thisNod2[i].nod_name2);
+            }
+
+            cbNod2.SelectedIndex = 0;
+
+        }
     }
 }

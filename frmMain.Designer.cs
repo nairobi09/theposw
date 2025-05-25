@@ -769,7 +769,7 @@
             // lblServerStatusTitle
             // 
             this.lblServerStatusTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblServerStatusTitle.ForeColor = System.Drawing.Color.DarkOrange;
+            this.lblServerStatusTitle.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblServerStatusTitle.Location = new System.Drawing.Point(90, 38);
             this.lblServerStatusTitle.Name = "lblServerStatusTitle";
             this.lblServerStatusTitle.Size = new System.Drawing.Size(115, 22);

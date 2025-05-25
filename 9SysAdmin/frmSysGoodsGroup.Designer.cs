@@ -84,7 +84,7 @@
             this.tableLayoutPanelGroup.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGroup.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tableLayoutPanelGroup.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelGroup.Location = new System.Drawing.Point(81, 514);
+            this.tableLayoutPanelGroup.Location = new System.Drawing.Point(81, 547);
             this.tableLayoutPanelGroup.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelGroup.Name = "tableLayoutPanelGroup";
             this.tableLayoutPanelGroup.RowCount = 2;
@@ -275,7 +275,7 @@
             this.btnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInput.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnInput.ForeColor = System.Drawing.Color.White;
-            this.btnInput.Location = new System.Drawing.Point(74, 271);
+            this.btnInput.Location = new System.Drawing.Point(74, 314);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(135, 40);
             this.btnInput.TabIndex = 39;
@@ -290,7 +290,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(74, 317);
+            this.btnUpdate.Location = new System.Drawing.Point(74, 360);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(135, 40);
             this.btnUpdate.TabIndex = 39;
@@ -325,7 +325,7 @@
             this.tableLayoutPanelGroupSelected.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelGroupSelected.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tableLayoutPanelGroupSelected.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanelGroupSelected.Location = new System.Drawing.Point(81, 376);
+            this.tableLayoutPanelGroupSelected.Location = new System.Drawing.Point(81, 409);
             this.tableLayoutPanelGroupSelected.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanelGroupSelected.Name = "tableLayoutPanelGroupSelected";
             this.tableLayoutPanelGroupSelected.RowCount = 2;
@@ -340,7 +340,7 @@
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnApply.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnApply.Location = new System.Drawing.Point(693, 604);
+            this.btnApply.Location = new System.Drawing.Point(692, 637);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(135, 40);
             this.btnApply.TabIndex = 43;
@@ -373,7 +373,7 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(619, 169);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(228, 416);
+            this.groupBox1.Size = new System.Drawing.Size(228, 452);
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             // 
@@ -443,7 +443,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(74, 363);
+            this.btnDelete.Location = new System.Drawing.Point(74, 406);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(135, 30);
             this.btnDelete.TabIndex = 42;
@@ -496,7 +496,7 @@
             this.groupBox2.Controls.Add(this.comboPosNo);
             this.groupBox2.Location = new System.Drawing.Point(619, 51);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 115);
+            this.groupBox2.Size = new System.Drawing.Size(228, 112);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             // 

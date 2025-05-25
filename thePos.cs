@@ -290,8 +290,8 @@ namespace thepos
         public struct Nod1
         {
             public string shop_code;
-            public string nod1_code;
-            public string nod1_name;
+            public string nod_code1;
+            public string nod_name1;
         }
         public static Nod1[] mNod1;
         
@@ -299,9 +299,9 @@ namespace thepos
         public struct Nod2
         {
             public string shop_code;
-            public string nod1_code;
-            public string nod2_code;
-            public string nod2_name;
+            public string nod_code1;
+            public string nod_code2;
+            public string nod_name2;
         }
         public static Nod2[] mNod2;
 
@@ -345,6 +345,21 @@ namespace thepos
             public String bar_code;
         }
         public static GoodsItem[] mGoodsItem;
+
+
+        public struct GoodsTicket
+        {
+            public string goods_code;
+            public string available_minute;
+            public String is_charge;
+            public String ot_free_minute;
+            public String ot_std_minute;
+            public String ot_amt;
+            public String link_goods_code;
+        }
+        public static GoodsTicket[] mGoodsTicket;
+
+
 
         /*
         public struct GoodsOption
@@ -417,6 +432,8 @@ namespace thepos
             public String taxfree;
             public String allim;
             public String shop_code;
+            public String nod_code1;
+            public String nod_code2;
 
             public String dcr_code;     // 
             public String dcr_type;     // type - "A" : 정액, "R" : 정율 
@@ -924,6 +941,28 @@ namespace thepos
 
         public static String get_goods_name(String code)
         {
+
+
+            if (code == "DCRE")
+            {
+                return "할인";
+            }
+
+
+            if (code.Substring(0,2) == "DC")
+            {
+                for (int i = 0; i < mDCR.Length; i++)
+                {
+                    if (mDCR[i].dcr_code == code)
+                    {
+                        return mDCR[i].dcr_name;
+                    }
+                }
+                return "할인";
+            }
+            
+            
+            
             if (code == "CHARGE")
                 return "충전";
 
@@ -1017,7 +1056,41 @@ namespace thepos
             return shop_code;
         }
 
+        public static String get_nod1_name(String shop_code, String nod_code1)
+        {
+            if (nod_code1 == "")
+            {
+                return "";
+            }
 
+            for (int i = 0; i < mNod1.Length; i++)
+            {
+                if (mNod1[i].shop_code == shop_code & mNod1[i].nod_code1 == nod_code1)
+                {
+                    return mNod1[i].nod_name1;
+                }
+            }
+
+            return nod_code1;
+        }
+
+        public static String get_nod2_name(String shop_code, String nod_code1, String nod_code2)
+        {
+            if (nod_code2 == "")
+            {
+                return "";
+            }
+
+            for (int i = 0; i < mNod2.Length; i++)
+            {
+                if (mNod2[i].shop_code == shop_code & mNod2[i].nod_code1 == nod_code1 & mNod2[i].nod_code2 == nod_code2)
+                {
+                    return mNod2[i].nod_name2;
+                }
+            }
+
+            return nod_code2;
+        }
 
         public static bool is_number(String str)
         {

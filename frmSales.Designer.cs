@@ -270,7 +270,7 @@ namespace thepos
             // 
             this.btnKeyBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyBS.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnKeyBS.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyBS.ForeColor = System.Drawing.Color.White;
             this.btnKeyBS.Location = new System.Drawing.Point(64, 208);
             this.btnKeyBS.Name = "btnKeyBS";
@@ -354,7 +354,7 @@ namespace thepos
             // 
             this.btnKeyClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnKeyClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyClear.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnKeyClear.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyClear.ForeColor = System.Drawing.Color.White;
             this.btnKeyClear.Location = new System.Drawing.Point(0, 208);
             this.btnKeyClear.Name = "btnKeyClear";
@@ -366,7 +366,9 @@ namespace thepos
             // 
             // panelOrderConsole
             // 
+            this.panelOrderConsole.Controls.Add(this.btnOrderItemScrollDn);
             this.panelOrderConsole.Controls.Add(this.tableLayoutPanelFlowControl);
+            this.panelOrderConsole.Controls.Add(this.btnOrderItemScrollUp);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntUp);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntDn);
             this.panelOrderConsole.Controls.Add(this.btnOrderCntChange);
@@ -524,7 +526,7 @@ namespace thepos
             this.btnOrderItemScrollDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollDn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(420, 398);
+            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(414, 1);
             this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
             this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 48);
             this.btnOrderItemScrollDn.TabIndex = 28;
@@ -539,7 +541,7 @@ namespace thepos
             this.btnOrderItemScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrderItemScrollUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(356, 398);
+            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(350, 1);
             this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
             this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 48);
             this.btnOrderItemScrollUp.TabIndex = 29;
@@ -1275,9 +1277,7 @@ namespace thepos
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.ControlBox = false;
-            this.Controls.Add(this.btnOrderItemScrollDn);
             this.Controls.Add(this.panelCancel);
-            this.Controls.Add(this.btnOrderItemScrollUp);
             this.Controls.Add(this.panelPayment);
             this.Controls.Add(this.panelMiddle);
             this.Controls.Add(this.tableLayoutPanelPayControl);
@@ -1362,7 +1362,6 @@ namespace thepos
         private System.Windows.Forms.Label lblOrderAmountSumTitle;
         private System.Windows.Forms.Panel panelDisplayAlarmWhite;
         private System.Windows.Forms.Panel panelKeyDisplayWhite;
-        private System.Windows.Forms.Label lblKeyDisplayXX;
         private System.Windows.Forms.Label lblDisplayAlarm;
         private System.Windows.Forms.Panel panelOrderLvw;
         private System.Windows.Forms.Panel panelGoodsItem;
@@ -1409,6 +1408,7 @@ namespace thepos
         private System.Windows.Forms.Button btnOrderItemScrollDn;
         private System.Windows.Forms.Button btnOrderItemScrollUp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelFlowControl;
+        private System.Windows.Forms.Label lblKeyDisplayXX;
     }
 }
 
