@@ -713,7 +713,7 @@ namespace thepos
             ReCalculateAmount();
         }
 
-        bool if_is_dcr_e_move_last()
+        public static bool if_is_dcr_e_move_last()
         {
             //?? 전체할인은 맨아래로 내린다
             int dcr_e_idx = get_lv_DCR("E");
@@ -730,8 +730,8 @@ namespace thepos
                     mOrderItemList[dcr_e_idx] = temp2;
                     mOrderItemList[dcr_e_idx + 1] = temp1;
 
-                    lvwOrderItem.SetObjects(mOrderItemList);
-                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
                     //lvwOrderItem.Items[dcr_e_idx].Selected = true;
 
                     return true;
@@ -741,7 +741,7 @@ namespace thepos
             return false;
         }
 
-        void recalculate_dcr_e_dc_amount(int selected_idx)
+        public static void recalculate_dcr_e_dc_amount(int selected_idx)
         {
             //?? 전체할인 비율이면 다시 계산
             int dcr_e_idx = get_lv_DCR("E");
@@ -768,15 +768,15 @@ namespace thepos
 
                     mOrderItemList[dcr_e_idx] = orderItem;
 
-                    lvwOrderItem.SetObjects(mOrderItemList);
-                    lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
                     
                 }
             }
             
             if (selected_idx > -1)
             {
-                lvwOrderItem.Items[selected_idx].Selected = true;
+                mLvwOrderItem.Items[selected_idx].Selected = true;
             }
         }
 

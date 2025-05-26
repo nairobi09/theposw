@@ -68,9 +68,9 @@
             this.btnTicketDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTicketDetail.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnTicketDetail.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnTicketDetail.Location = new System.Drawing.Point(212, 474);
+            this.btnTicketDetail.Location = new System.Drawing.Point(183, 474);
             this.btnTicketDetail.Name = "btnTicketDetail";
-            this.btnTicketDetail.Size = new System.Drawing.Size(100, 55);
+            this.btnTicketDetail.Size = new System.Drawing.Size(149, 55);
             this.btnTicketDetail.TabIndex = 78;
             this.btnTicketDetail.Text = "자세히보기";
             this.btnTicketDetail.UseVisualStyleBackColor = false;

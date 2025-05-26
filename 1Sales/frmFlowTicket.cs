@@ -123,19 +123,21 @@ namespace thepos
                     }
 
                     //
-                    ListViewItem item2 = new ListViewItem();
-                    item2.Text = save_the_no;
-                    item2.SubItems.Add(entry_cnt + "");
-                    item2.SubItems.Add(save_entry_dt.Substring(8, 2) + ":" + save_entry_dt.Substring(10, 2));
+                    if (save_the_no != "")
+                    {
+                        ListViewItem item2 = new ListViewItem();
+                        item2.Text = save_the_no;
+                        item2.SubItems.Add(entry_cnt + "");
+                        item2.SubItems.Add(save_entry_dt.Substring(8, 2) + ":" + save_entry_dt.Substring(10, 2));
 
-                    // 퇴장시간 계산
-                    item2.SubItems.Add("");
+                        // 퇴장시간 계산
+                        item2.SubItems.Add("");
 
-                    // 남은시간 경과시간
-                    item2.SubItems.Add("30분 남음");
+                        // 남은시간 경과시간
+                        item2.SubItems.Add("30분 남음");
 
-                    lvwList.Items.Add(item2);
-
+                        lvwList.Items.Add(item2);
+                    }
                 }
                 else
                 {
@@ -161,7 +163,7 @@ namespace thepos
             String the_no = lvwList.SelectedItems[0].Text.Substring(0,20);
 
 
-            frmFlowTicketFlowDetail frm = new frmFlowTicketFlowDetail(this_biz_date, the_no);
+            frmFlowTicketListl frm = new frmFlowTicketListl(this_biz_date, the_no);
             frm.ShowDialog();
 
 

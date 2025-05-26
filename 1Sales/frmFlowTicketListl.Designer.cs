@@ -1,6 +1,6 @@
 ﻿namespace theposw._1Sales
 {
-    partial class frmFlowTicketFlowDetail
+    partial class frmFlowTicketListl
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             this.entry_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exit_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gap_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ot_amt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ot_amount_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flow_step_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,6 +51,7 @@
             this.btmPay = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
             this.btnClose2 = new System.Windows.Forms.Button();
+            this.ot_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -63,13 +64,14 @@
             this.entry_dt_name,
             this.exit_dt_name,
             this.gap_dt_name,
-            this.ot_amt_name,
+            this.ot_amount_name,
             this.ticket_no,
             this.flow_step_code,
             this.goods_code,
             this.entry_dt,
             this.exit_dt,
             this.gap_dt,
+            this.ot_cnt,
             this.ot_amt,
             this.link_goods_code});
             this.lvwList.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,11 +118,11 @@
             this.gap_dt_name.Text = "경과";
             this.gap_dt_name.Width = 100;
             // 
-            // ot_amt_name
+            // ot_amount_name
             // 
-            this.ot_amt_name.Text = "초과요금";
-            this.ot_amt_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ot_amt_name.Width = 90;
+            this.ot_amount_name.Text = "초과요금";
+            this.ot_amount_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ot_amount_name.Width = 90;
             // 
             // ticket_no
             // 
@@ -267,6 +269,11 @@
             this.btnClose2.UseVisualStyleBackColor = false;
             this.btnClose2.Click += new System.EventHandler(this.btnClose2_Click);
             // 
+            // ot_cnt
+            // 
+            this.ot_cnt.Text = "ot_cnt";
+            this.ot_cnt.Width = 0;
+            // 
             // frmFlowTicketFlowDetail
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -308,11 +315,12 @@
         private System.Windows.Forms.ColumnHeader gap_dt;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btmPay;
-        private System.Windows.Forms.ColumnHeader ot_amt_name;
+        private System.Windows.Forms.ColumnHeader ot_amount_name;
         private System.Windows.Forms.Button btnEntry;
         private System.Windows.Forms.Button btnClose2;
         private System.Windows.Forms.ColumnHeader flow_step_code;
         private System.Windows.Forms.ColumnHeader ticket_no;
         private System.Windows.Forms.ColumnHeader ot_amt;
+        private System.Windows.Forms.ColumnHeader ot_cnt;
     }
 }

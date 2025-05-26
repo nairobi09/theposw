@@ -198,11 +198,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1Sales\frmFlowTicketFlowDetail.cs">
+    <Compile Include="1Sales\frmFlowTicketListl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmFlowTicketFlowDetail.Designer.cs">
-      <DependentUpon>frmFlowTicketFlowDetail.cs</DependentUpon>
+    <Compile Include="1Sales\frmFlowTicketListl.Designer.cs">
+      <DependentUpon>frmFlowTicketListl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="1Sales\frmFlowTicketTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowTicketTime.Designer.cs">
+      <DependentUpon>frmFlowTicketTime.cs</DependentUpon>
     </Compile>
     <Compile Include="3Report\frmReportAllim.cs">
       <SubType>Form</SubType>
@@ -604,8 +610,11 @@
     <EmbeddedResource Include="1Sales\frmAllimCP.resx">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmFlowTicketFlowDetail.resx">
-      <DependentUpon>frmFlowTicketFlowDetail.cs</DependentUpon>
+    <EmbeddedResource Include="1Sales\frmFlowTicketListl.resx">
+      <DependentUpon>frmFlowTicketListl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmFlowTicketTime.resx">
+      <DependentUpon>frmFlowTicketTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>

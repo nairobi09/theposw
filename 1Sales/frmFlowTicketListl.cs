@@ -16,14 +16,14 @@ using static thepos.frmSub;
 
 namespace theposw._1Sales
 {
-    public partial class frmFlowTicketFlowDetail : Form
+    public partial class frmFlowTicketListl : Form
     {
 
         String this_biz_date;
         String the_no;
 
 
-        public frmFlowTicketFlowDetail(String this_biz_date, String the_no)
+        public frmFlowTicketListl(String this_biz_date, String the_no)
         {
             this.this_biz_date = this_biz_date;
             this.the_no = the_no;
@@ -68,8 +68,13 @@ namespace theposw._1Sales
                     String data = mObj["ticketFlows"].ToString();
                     JArray arr = JArray.Parse(data);
 
+
                     for (int i = 0; i < arr.Count; i++)
                     {
+                        int n_ot_amt = 0;
+                        int n_ot_cnt = 0;
+                        int n_ot_amount = 0;
+
                         String tStatName = "";
 
                         ListViewItem item = new ListViewItem();
@@ -79,7 +84,6 @@ namespace theposw._1Sales
                         String exit_dt = arr[i]["exitDt"].ToString();
                         String goods_code = arr[i]["goodsCode"].ToString();
                         int gap_mm = 0;
-                        int ot_amount = 0;
 
 
                         if (tStat == "0") tStatName = "발권";
@@ -170,8 +174,11 @@ namespace theposw._1Sales
                             //추가금액
                             if (gap_mm > 0)
                             {
-                                ot_amount = get_ot_amt(gap_mm, goods_code);
-                                item.SubItems.Add(ot_amount.ToString("N0"));
+                                n_ot_cnt = get_ot_cnt(gap_mm, goods_code);
+                                n_ot_amt = get_ot_amt(goods_code);
+                                n_ot_amount = n_ot_cnt * n_ot_amt;
+
+                                item.SubItems.Add(n_ot_amount.ToString("N0"));
                             }
                             else
                             {
@@ -192,14 +199,14 @@ namespace theposw._1Sales
                         }
 
 
-
                         item.SubItems.Add(ticket_no);
                         item.SubItems.Add(tStat);
                         item.SubItems.Add(goods_code);  // goods_code
                         item.SubItems.Add(entry_dt);  // entry_dt
                         item.SubItems.Add(exit_dt);  // exit_dt
                         item.SubItems.Add(gap_mm + "");  // get_dt
-                        item.SubItems.Add(ot_amount + "");
+                        item.SubItems.Add(n_ot_cnt + "");
+                        item.SubItems.Add(n_ot_amt + "");
                         item.SubItems.Add(get_link_goods_code(goods_code));  // link_goods_code
 
                         item.Checked = true;
@@ -228,7 +235,22 @@ namespace theposw._1Sales
                 return;
             }
 
-            String now_dt = get_today_date() + get_today_time();
+            //
+            String ticket_input_dt = "";
+
+            frmFlowTicketTime frm = new frmFlowTicketTime();
+            DialogResult result = frm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ticket_input_dt = frm.return_datetime;
+            }
+            else
+            {
+                return;
+            }
+
+
 
             for (int i = 0; i < lvwList.CheckedItems.Count; i++)
             {
@@ -237,7 +259,7 @@ namespace theposw._1Sales
                 parameters["siteId"] = mSiteId;
                 parameters["bizDt"] = this_biz_date;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
-                parameters["entryDt"] = now_dt;
+                parameters["entryDt"] = ticket_input_dt;
                 parameters["flowStep"] = "1";  // 입장
 
                 if (mRequestPatch("ticketFlow", parameters))
@@ -314,12 +336,67 @@ namespace theposw._1Sales
                 return;
             }
 
-            MemOrderItem orderItem = new MemOrderItem();
+
+            for (int i = 0; i < lvwList.SelectedItems.Count; i++)
+            {
+                if (lvwList.SelectedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text == "4")
+                {
 
 
+                }
 
 
+                int link_idx = -1;
+                String link_code = lvwList.SelectedItems[i].SubItems[lvwList.Columns.IndexOf(link_goods_code)].Text;
 
+                for (int k = 0; k < mGoodsItem.Length; k++)
+                {
+                    if (mGoodsItem[k].goods_code == link_code)
+                    {
+                        link_idx = k;
+                    }
+                }
+
+                MemOrderItem orderItem = new MemOrderItem();
+                orderItem.order_no = mOrderItemList.Count + 1;
+                orderItem.goods_code = mGoodsItem[link_idx].goods_code.ToString();
+                orderItem.goods_name = mGoodsItem[link_idx].goods_name;
+                orderItem.ticket = mGoodsItem[link_idx].ticket;
+                orderItem.taxfree = mGoodsItem[link_idx].taxfree;
+                orderItem.allim = mGoodsItem[link_idx].allim;
+                //
+                orderItem.cnt = int.Parse(lvwList.SelectedItems[i].SubItems[lvwList.Columns.IndexOf(ot_cnt)].Text);
+                orderItem.amt = int.Parse(lvwList.SelectedItems[i].SubItems[lvwList.Columns.IndexOf(ot_amt)].Text);
+
+                orderItem.dcr_type = "";
+                orderItem.dcr_des = "";
+                orderItem.dcr_value = 0;
+                orderItem.shop_code = mGoodsItem[link_idx].shop_code;
+                orderItem.nod_code1 = mGoodsItem[link_idx].nod_code1;
+                orderItem.nod_code2 = mGoodsItem[link_idx].nod_code2;
+
+                //
+                replace_mem_order_item(ref orderItem, "add");
+
+                mOrderItemList.Add(orderItem);
+                mLvwOrderItem.SetObjects(mOrderItemList);
+
+                mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
+
+                bool is_move = if_is_dcr_e_move_last();
+
+                if (is_move)
+                {
+                    recalculate_dcr_e_dc_amount(mLvwOrderItem.Items.Count - 2);
+                }
+                else
+                {
+                    recalculate_dcr_e_dc_amount(mLvwOrderItem.Items.Count - 1);
+                }
+            }
+
+            ReCalculateAmount();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -364,15 +441,11 @@ namespace theposw._1Sales
             return 0;
         }
 
-
-        private int get_ot_amt(int gap_mm, String goods_code)
+        private int get_ot_cnt(int gap_mm, String goods_code)
         {
             String is_charge = "";
             String ot_free_minute = "";
             String ot_std_minute = "";
-            String ot_amt = "";
-            String link_goods_code = "";
-
 
             for (int i = 0; i < mGoodsTicket.Length; i++)
             {
@@ -381,27 +454,44 @@ namespace theposw._1Sales
                     is_charge = mGoodsTicket[i].is_charge;
                     ot_free_minute = mGoodsTicket[i].ot_free_minute; // 일반상품 0. 티켓상품 1
                     ot_std_minute = mGoodsTicket[i].ot_std_minute; // 과세품 0, 면세품 1
-                    ot_amt = mGoodsTicket[i].ot_amt;
-                    link_goods_code = mGoodsTicket[i].link_goods_code;
                 }
             }
 
-            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute) | !is_number(ot_amt))
+            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute))
+            {
+                return 0;
+            }
+
+            int n_ot_free_minute = Int16.Parse(ot_free_minute);
+            int n_ot_std_minute = Int16.Parse(ot_std_minute);
+            int real_ot_minute = gap_mm - n_ot_free_minute;
+            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
+
+            return ot_cnt;
+        }
+        private int get_ot_amt(String goods_code)
+        {
+            String is_charge = "";
+            String ot_amt = "";
+
+            for (int i = 0; i < mGoodsTicket.Length; i++)
+            {
+                if (mGoodsTicket[i].goods_code == goods_code)
+                {
+                    is_charge = mGoodsTicket[i].is_charge;
+                    ot_amt = mGoodsTicket[i].ot_amt;
+                }
+            }
+
+            if (is_charge != "Y" | !is_number(ot_amt))
             {
                 return 0;
             }
 
 
-            int n_ot_free_minute = Int16.Parse(ot_free_minute);
-            int n_ot_std_minute = Int16.Parse(ot_std_minute);
             int n_ot_amt = Int16.Parse(ot_amt);
 
-
-            int real_ot_minute = gap_mm - n_ot_free_minute;
-
-            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
-
-            return ot_cnt * n_ot_amt;
+            return n_ot_amt;
         }
 
         private String get_link_goods_code(String goods_code)
@@ -419,7 +509,6 @@ namespace theposw._1Sales
 
             return link_goods_code;
         }
-
 
 
 
