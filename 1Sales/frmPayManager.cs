@@ -67,7 +67,7 @@ namespace thepos
 
 
             saveKeyDisplay = mTbKeyDisplayController;
-            mTbKeyDisplayController = tbBillNo;
+            mTbKeyDisplayController = tbTheNo;
 
 
             mPanelCancel.Width = 529;
@@ -755,43 +755,27 @@ namespace thepos
         private void btnView_Click(object sender, EventArgs e)
         {
             //
-            String billNo = tbBillNo.Text;
+            String the_no = tbTheNo.Text;
 
-            if (billNo.Length == 6)
+            if (the_no.Length >= 20)
             {
-                if (cbPosNo.Text.Length == 2)
-                {
-
-                }
-                else
-                {
-                    SetDisplayAlarm("I", "포스번호 입력 누락.");
-                    return;
-                }
-
+                the_no = the_no.Substring(0, 20);
             }
-            else if (billNo.Length == 0)
+            else if (the_no.Length == 0)
             {
 
             }
             else
             {
-                SetDisplayAlarm("I", "주문번호 입력오류: 6자리.");
+                SetDisplayAlarm("I", "주문번호 입력오류: 20자리.");
                 return;
             }
 
 
             selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
             selected_pos_no = cbPosNo.Text;
-
-            if (billNo.Length == 6)
-            {
-                selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
-            }
-            else
-            {
-                selected_the_no = "";
-            }
+            selected_the_no = the_no;
+            
 
             viewList(selected_biz_date, selected_pos_no, selected_the_no);
 
@@ -942,54 +926,24 @@ namespace thepos
 
         }
 
-        private void btnScanner_Click(object sender, EventArgs e)
+        private void tbTheNo_KeyUp(object sender, KeyEventArgs e)
         {
-            btnScanner.Enabled = false;
-
-            Form f = new frmScanner(20);
-            f.ShowDialog();
-
-            if (mIsScanOK)
+            if (e.KeyCode == Keys.Enter)
             {
-                lvwPayManager.Items.Clear();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
 
-                try
+
+                String the_no = tbTheNo.Text;
+
+                tbTheNo.Text = "";
+
+
+                if (the_no.Length >= 20)
                 {
-                    String dt = mScanString.Substring(4, 8);
-                    String posno = mScanString.Substring(12, 2);
-                    String t6no = mScanString.Substring(14, 6);
-
-                    int yyyy = int.Parse(dt.Substring(0, 4));
-                    int mm = int.Parse(dt.Substring(4, 2));
-                    int dd = int.Parse(dt.Substring(6, 2));
-
-                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
-
-                    for (int i = 0; i < cbPosNo.Items.Count; i++)
-                    {
-                        if (cbPosNo.Items[i].ToString() == posno)
-                        {
-                            cbPosNo.SelectedIndex = i;
-                        }
-                    }
-
-                    tbBillNo.Text = t6no;
-
-
-
-                    String billNo = tbBillNo.Text;
-
                     selected_biz_date = dtBizDt.Value.ToString("yyyyMMdd");
                     selected_pos_no = cbPosNo.Text;
-
-                    if (billNo.Length == 6)
-                    {
-                        selected_the_no = mSiteId + selected_biz_date + selected_pos_no + billNo;
-                    }
-                    else
-                    {
-                        selected_the_no = "";
-                    }
+                    selected_the_no = the_no.Substring(0,20);
 
                     viewList(selected_biz_date, selected_pos_no, selected_the_no);
 
@@ -997,18 +951,12 @@ namespace thepos
                     {
                         lvwPayManager.Items[0].Selected = true;
                     }
+                }
 
-                }
-                catch
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    //return;
-                }
+
+
             }
 
-            btnScanner.Enabled = true;
         }
-
-
     }
 }

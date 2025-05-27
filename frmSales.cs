@@ -698,7 +698,6 @@ namespace thepos
                 {
                     recalculate_dcr_e_dc_amount(lvwOrderItem.Items.Count - 1);
                 }
-                    
             }
             else
             {

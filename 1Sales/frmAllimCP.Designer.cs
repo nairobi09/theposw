@@ -86,10 +86,10 @@
             this.lvwOrderShop.FullRowSelect = true;
             this.lvwOrderShop.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderShop.HideSelection = false;
-            this.lvwOrderShop.Location = new System.Drawing.Point(20, 141);
+            this.lvwOrderShop.Location = new System.Drawing.Point(5, 123);
             this.lvwOrderShop.MultiSelect = false;
             this.lvwOrderShop.Name = "lvwOrderShop";
-            this.lvwOrderShop.Size = new System.Drawing.Size(482, 284);
+            this.lvwOrderShop.Size = new System.Drawing.Size(511, 310);
             this.lvwOrderShop.SmallImageList = this.imageList;
             this.lvwOrderShop.TabIndex = 44;
             this.lvwOrderShop.UseCompatibleStateImageBehavior = false;
@@ -209,7 +209,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(463, 20);
+            this.btnClose.Location = new System.Drawing.Point(473, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -223,11 +223,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.Gold;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.Black;
-            this.lblTitle.Location = new System.Drawing.Point(20, 20);
+            this.lblTitle.Location = new System.Drawing.Point(5, 5);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(483, 39);
+            this.lblTitle.Size = new System.Drawing.Size(511, 39);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "주문알림";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -244,9 +244,9 @@
             this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.dtpBizDate);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(20, 65);
+            this.panel1.Location = new System.Drawing.Point(5, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 67);
+            this.panel1.Size = new System.Drawing.Size(511, 67);
             this.panel1.TabIndex = 77;
             // 
             // cnt_item
@@ -270,10 +270,10 @@
             this.lvwOrderItem.ForeColor = System.Drawing.Color.Black;
             this.lvwOrderItem.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderItem.HideSelection = false;
-            this.lvwOrderItem.Location = new System.Drawing.Point(20, 433);
+            this.lvwOrderItem.Location = new System.Drawing.Point(5, 439);
             this.lvwOrderItem.MultiSelect = false;
             this.lvwOrderItem.Name = "lvwOrderItem";
-            this.lvwOrderItem.Size = new System.Drawing.Size(329, 252);
+            this.lvwOrderItem.Size = new System.Drawing.Size(359, 252);
             this.lvwOrderItem.TabIndex = 80;
             this.lvwOrderItem.TabStop = false;
             this.lvwOrderItem.UseCompatibleStateImageBehavior = false;
@@ -285,7 +285,7 @@
             this.btnAllimSendCP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllimSendCP.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllimSendCP.ForeColor = System.Drawing.Color.White;
-            this.btnAllimSendCP.Location = new System.Drawing.Point(355, 433);
+            this.btnAllimSendCP.Location = new System.Drawing.Point(370, 439);
             this.btnAllimSendCP.Name = "btnAllimSendCP";
             this.btnAllimSendCP.Size = new System.Drawing.Size(146, 80);
             this.btnAllimSendCP.TabIndex = 48;
@@ -317,7 +317,7 @@
             this.btnAllimFinish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAllimFinish.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnAllimFinish.ForeColor = System.Drawing.Color.White;
-            this.btnAllimFinish.Location = new System.Drawing.Point(355, 519);
+            this.btnAllimFinish.Location = new System.Drawing.Point(370, 525);
             this.btnAllimFinish.Name = "btnAllimFinish";
             this.btnAllimFinish.Size = new System.Drawing.Size(146, 65);
             this.btnAllimFinish.TabIndex = 81;

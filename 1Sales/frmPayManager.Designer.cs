@@ -38,11 +38,10 @@
             this.btnPrintBillex = new System.Windows.Forms.Button();
             this.btnPrintOrder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnScanner = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl1 = new System.Windows.Forms.Label();
             this.dtBizDt = new System.Windows.Forms.DateTimePicker();
-            this.tbBillNo = new System.Windows.Forms.TextBox();
-            this.lbl3 = new System.Windows.Forms.Label();
+            this.tbTheNo = new System.Windows.Forms.TextBox();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
@@ -66,6 +65,7 @@
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelback
@@ -94,7 +94,7 @@
             this.btnPrintBilldisp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBilldisp.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBilldisp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBilldisp.Location = new System.Drawing.Point(382, 550);
+            this.btnPrintBilldisp.Location = new System.Drawing.Point(397, 558);
             this.btnPrintBilldisp.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBilldisp.Name = "btnPrintBilldisp";
             this.btnPrintBilldisp.Size = new System.Drawing.Size(119, 40);
@@ -117,10 +117,10 @@
             this.lvwPayOrder.FullRowSelect = true;
             this.lvwPayOrder.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayOrder.HideSelection = false;
-            this.lvwPayOrder.Location = new System.Drawing.Point(20, 464);
+            this.lvwPayOrder.Location = new System.Drawing.Point(4, 472);
             this.lvwPayOrder.MultiSelect = false;
             this.lvwPayOrder.Name = "lvwPayOrder";
-            this.lvwPayOrder.Size = new System.Drawing.Size(352, 221);
+            this.lvwPayOrder.Size = new System.Drawing.Size(386, 220);
             this.lvwPayOrder.TabIndex = 80;
             this.lvwPayOrder.TabStop = false;
             this.lvwPayOrder.UseCompatibleStateImageBehavior = false;
@@ -153,7 +153,7 @@
             this.btnPrintBillex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBillex.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBillex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBillex.Location = new System.Drawing.Point(382, 507);
+            this.btnPrintBillex.Location = new System.Drawing.Point(397, 515);
             this.btnPrintBillex.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBillex.Name = "btnPrintBillex";
             this.btnPrintBillex.Size = new System.Drawing.Size(119, 40);
@@ -169,7 +169,7 @@
             this.btnPrintOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintOrder.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintOrder.Location = new System.Drawing.Point(382, 597);
+            this.btnPrintOrder.Location = new System.Drawing.Point(397, 605);
             this.btnPrintOrder.Name = "btnPrintOrder";
             this.btnPrintOrder.Size = new System.Drawing.Size(119, 40);
             this.btnPrintOrder.TabIndex = 78;
@@ -181,32 +181,27 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnScanner);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.dtBizDt);
-            this.panel1.Controls.Add(this.tbBillNo);
-            this.panel1.Controls.Add(this.lbl3);
+            this.panel1.Controls.Add(this.tbTheNo);
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lbl2);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(20, 65);
+            this.panel1.Location = new System.Drawing.Point(4, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 67);
+            this.panel1.Size = new System.Drawing.Size(512, 67);
             this.panel1.TabIndex = 77;
             // 
-            // btnScanner
+            // pictureBox1
             // 
-            this.btnScanner.BackColor = System.Drawing.Color.White;
-            this.btnScanner.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScanner.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnScanner.Image = global::theposw.Properties.Resources.scanbar4;
-            this.btnScanner.Location = new System.Drawing.Point(386, 13);
-            this.btnScanner.Name = "btnScanner";
-            this.btnScanner.Size = new System.Drawing.Size(80, 40);
-            this.btnScanner.TabIndex = 76;
-            this.btnScanner.TabStop = false;
-            this.btnScanner.UseVisualStyleBackColor = false;
-            this.btnScanner.Click += new System.EventHandler(this.btnScanner_Click);
+            this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
+            this.pictureBox1.Location = new System.Drawing.Point(194, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 77;
+            this.pictureBox1.TabStop = false;
             // 
             // lbl1
             // 
@@ -231,30 +226,17 @@
             this.dtBizDt.TabStop = false;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
             // 
-            // tbBillNo
+            // tbTheNo
             // 
-            this.tbBillNo.BackColor = System.Drawing.Color.White;
-            this.tbBillNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBillNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbBillNo.Location = new System.Drawing.Point(190, 30);
-            this.tbBillNo.MaxLength = 6;
-            this.tbBillNo.Name = "tbBillNo";
-            this.tbBillNo.Size = new System.Drawing.Size(60, 23);
-            this.tbBillNo.TabIndex = 74;
-            this.tbBillNo.TabStop = false;
-            this.tbBillNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lbl3
-            // 
-            this.lbl3.AutoSize = true;
-            this.lbl3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl3.Location = new System.Drawing.Point(190, 13);
-            this.lbl3.Name = "lbl3";
-            this.lbl3.Size = new System.Drawing.Size(41, 12);
-            this.lbl3.TabIndex = 70;
-            this.lbl3.Text = "######";
-            this.lbl3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tbTheNo.BackColor = System.Drawing.Color.White;
+            this.tbTheNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbTheNo.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTheNo.Location = new System.Drawing.Point(192, 29);
+            this.tbTheNo.Name = "tbTheNo";
+            this.tbTheNo.Size = new System.Drawing.Size(173, 24);
+            this.tbTheNo.TabIndex = 0;
+            this.tbTheNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTheNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbTheNo_KeyUp);
             // 
             // cbPosNo
             // 
@@ -289,7 +271,7 @@
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(280, 13);
+            this.btnView.Location = new System.Drawing.Point(392, 13);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 40);
             this.btnView.TabIndex = 72;
@@ -305,7 +287,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(463, 20);
+            this.btnClose.Location = new System.Drawing.Point(474, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -319,11 +301,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(20, 20);
+            this.lblTitle.Location = new System.Drawing.Point(4, 5);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(483, 40);
+            this.lblTitle.Size = new System.Drawing.Size(512, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "결제내역관리";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -334,7 +316,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(382, 645);
+            this.btnCancel.Location = new System.Drawing.Point(397, 652);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(119, 40);
             this.btnCancel.TabIndex = 48;
@@ -349,7 +331,7 @@
             this.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBill.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnPrintBill.Location = new System.Drawing.Point(381, 464);
+            this.btnPrintBill.Location = new System.Drawing.Point(396, 472);
             this.btnPrintBill.Name = "btnPrintBill";
             this.btnPrintBill.Size = new System.Drawing.Size(120, 40);
             this.btnPrintBill.TabIndex = 48;
@@ -378,10 +360,10 @@
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
-            this.lvwPayManager.Location = new System.Drawing.Point(20, 140);
+            this.lvwPayManager.Location = new System.Drawing.Point(4, 124);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(482, 318);
+            this.lvwPayManager.Size = new System.Drawing.Size(512, 342);
             this.lvwPayManager.TabIndex = 44;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
@@ -472,6 +454,7 @@
             this.panelback.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,8 +478,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.DateTimePicker dtBizDt;
-        private System.Windows.Forms.TextBox tbBillNo;
-        private System.Windows.Forms.Label lbl3;
+        private System.Windows.Forms.TextBox tbTheNo;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Button btnView;
@@ -512,6 +494,6 @@
         private System.Windows.Forms.ColumnHeader amount_cnt;
         private System.Windows.Forms.ColumnHeader dc_shop;
         private System.Windows.Forms.Button btnPrintBilldisp;
-        private System.Windows.Forms.Button btnScanner;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

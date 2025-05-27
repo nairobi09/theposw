@@ -17,9 +17,24 @@ namespace theposw._1Sales
 
 
 
-        public frmFlowTicketTime()
+        public frmFlowTicketTime(String job)
         {
             InitializeComponent();
+
+            labelCurrentTime.Text = "현재시간  :  " + get_today_time().Substring(0,2) + ":" + get_today_time().Substring(2,2);
+
+            if (job == "Entry")
+            {
+                lblTitle.Text = "입장시간";
+            }
+            else if (job == "Exit")
+            {
+                lblTitle.Text = "퇴장시간";
+            }
+            else if (job == "Ebd")
+            {
+                lblTitle.Text = "완료시간";
+            }
         }
 
 
@@ -51,6 +66,8 @@ namespace theposw._1Sales
         {
             if (cbManualTime.Checked)
             {
+                panelManualTime.Enabled = true;
+
                 String hh = get_today_time().Substring(0, 2);
                 String mm = get_today_time().Substring(2, 1) + "0";
 
@@ -70,6 +87,13 @@ namespace theposw._1Sales
                     }
                 }
 
+            }
+            else
+            {
+                panelManualTime.Enabled = false;
+
+                cbHH.SelectedIndex = -1;
+                cbMM.SelectedIndex = -1;
             }
         }
     }
