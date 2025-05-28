@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using static System.Windows.Forms.AxHost;
 using System.Globalization;
 using static thepos.frmSub;
+using thepos;
 
 namespace theposw._1Sales
 {
@@ -33,9 +34,6 @@ namespace theposw._1Sales
             initialize_the();
 
 
-            lblTitle.Text = "팀티켓 - " + the_no;
-
-
             //
             thepos_app_log(1, this.Name, "Open", "");
 
@@ -53,6 +51,16 @@ namespace theposw._1Sales
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
+
+
+            lblTitle.Text = "팀티켓 - " + the_no;
+
+
+            // 할인 즐겨찾기
+            for (int i = 0; i < mDCR.Length; i++)
+            {
+                cbDCR.Items.Add(mDCR[i].dcr_name);
+            } 
 
         }
 
@@ -501,11 +509,19 @@ namespace theposw._1Sales
 
             ReCalculateAmount();
 
-
             //
             Close();
+        }
 
 
+
+        private void btnDC_Click(object sender, EventArgs e)
+        {
+
+
+
+
+        
         }
 
 
@@ -542,7 +558,7 @@ namespace theposw._1Sales
                 parameters["bizDt"] = this_biz_date;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["settlementDt"] = ticket_input_dt;
-                parameters["flowStep"] = "9";  // 입장
+                parameters["flowStep"] = "9";  // 완료
 
                 if (mRequestPatch("ticketFlow", parameters))
                 {

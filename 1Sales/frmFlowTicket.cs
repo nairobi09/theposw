@@ -64,18 +64,23 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-
             this_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
-
 
             get_flow_ticket("");
         }
 
-
         private void get_flow_ticket(String rTheNo)
         { 
+
             lvwList.Items.Clear();
 
+            get_flow_ticket_4(rTheNo);
+            get_flow_ticket_0123(rTheNo);
+        }
+
+
+        private void get_flow_ticket_0123(String rTheNo)
+        { 
             String now_dt = get_today_date() + get_today_time();
 
             String save_the_no = "";
@@ -146,7 +151,6 @@ namespace thepos
                             save_expect_exit_dt = expect_exit_dt;
                             entry_dt = arr[i]["entryDt"].ToString();
                         }
-
                     }
 
                     //
@@ -159,7 +163,6 @@ namespace thepos
 
                         // 퇴장시간 계산
                         item2.SubItems.Add(save_expect_exit_dt.Substring(8, 2) + ":" + save_expect_exit_dt.Substring(10, 2));
-
 
                         // 남은시간 경과시간
                         int gap_mm = get_diff_minute(now_dt, save_expect_exit_dt);
@@ -176,7 +179,6 @@ namespace thepos
                         }
 
                         lvwList.Items.Add(item2);
-
                     }
                 }
                 else
@@ -188,7 +190,97 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
             }
+        }
 
+        private void get_flow_ticket_4(String rTheNo)
+        {
+            String now_dt = get_today_date() + get_today_time();
+
+            String save_the_no = "";
+            int entry_cnt = 0;
+
+            String save_exit_dt = "20250101000000";
+            String entry_dt = "";
+
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + rTheNo + "&flowStep=4";   // flowStep=01 ->  0 or 1
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count > 0)
+                    {
+                        save_the_no = arr[0]["theNo"].ToString();
+                    }
+
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        if (arr[i]["theNo"].ToString() != save_the_no)
+                        {
+                            ListViewItem item = new ListViewItem();
+                            item.Text = save_the_no;
+                            item.SubItems.Add(entry_cnt + "");
+                            item.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
+
+                            // 퇴장시간 계산
+                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+
+                            item.SubItems.Add("시간초과");
+                            item.ForeColor = Color.Black;
+
+                            lvwList.Items.Add(item);
+
+                            //
+                            save_exit_dt = "20250101000000";
+                            entry_cnt = 0;
+                        }
+
+                        //
+                        save_the_no = arr[i]["theNo"].ToString();
+                        entry_cnt++;
+
+                        String goods_code = arr[i]["goodsCode"].ToString();
+                        entry_dt = arr[i]["entryDt"].ToString();
+
+                        // 퇴장 예상시간
+                        string exit_dt = arr[i]["exitDt"].ToString();
+
+                        if (Int32.Parse(save_exit_dt.Substring(6, 8)) < Int32.Parse(exit_dt.Substring(6, 8)))
+                        {
+                            save_exit_dt = exit_dt;
+                            entry_dt = arr[i]["entryDt"].ToString();
+                        }
+                    }
+
+                    //
+                    if (save_the_no != "")
+                    {
+                        ListViewItem item2 = new ListViewItem();
+                        item2.Text = save_the_no;
+                        item2.SubItems.Add(entry_cnt + "");
+                        item2.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
+
+                        // 퇴장시간 계산
+                        item2.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+
+                        item2.SubItems.Add("추가요금");
+                        item2.ForeColor = Color.Black;
+
+                        lvwList.Items.Add(item2);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
 
         }
 
@@ -227,8 +319,8 @@ namespace thepos
 
                 String no = tbTicketNo.Text.Substring(0,20);
 
-                get_flow_ticket(no);
-
+                get_flow_ticket_4(no);
+                get_flow_ticket_0123(no);
 
                 tbTicketNo.Clear();
                 tbTicketNo.Focus();
