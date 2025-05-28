@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnMonitor = new System.Windows.Forms.Button();
+            this.lblClickTime = new System.Windows.Forms.Label();
+            this.lblActTheNoCnt = new System.Windows.Forms.Label();
+            this.lblTicketNoCnt = new System.Windows.Forms.Label();
+            this.lblTheNoCnt = new System.Windows.Forms.Label();
+            this.lblActTicketNoCnt = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnTicketDetail = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
@@ -43,20 +54,9 @@
             this.entry_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exit_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gap_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbl2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblActTheNoCnt = new System.Windows.Forms.Label();
-            this.lblTicketNoCnt = new System.Windows.Forms.Label();
-            this.lblTheNoCnt = new System.Windows.Forms.Label();
-            this.lblActTicketNoCnt = new System.Windows.Forms.Label();
-            this.lblClickTime = new System.Windows.Forms.Label();
-            this.btnMonitor = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelback
@@ -75,12 +75,138 @@
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 4;
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnMonitor);
+            this.panel2.Controls.Add(this.lblClickTime);
+            this.panel2.Controls.Add(this.lblActTheNoCnt);
+            this.panel2.Controls.Add(this.lblTicketNoCnt);
+            this.panel2.Controls.Add(this.lblTheNoCnt);
+            this.panel2.Controls.Add(this.lblActTicketNoCnt);
+            this.panel2.Controls.Add(this.lbl1);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.lbl2);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(7, 473);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(376, 60);
+            this.panel2.TabIndex = 80;
+            // 
+            // btnMonitor
+            // 
+            this.btnMonitor.BackColor = System.Drawing.Color.Transparent;
+            this.btnMonitor.FlatAppearance.BorderSize = 0;
+            this.btnMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMonitor.Font = new System.Drawing.Font("굴림", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnMonitor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnMonitor.Location = new System.Drawing.Point(-1, -7);
+            this.btnMonitor.Name = "btnMonitor";
+            this.btnMonitor.Size = new System.Drawing.Size(72, 66);
+            this.btnMonitor.TabIndex = 86;
+            this.btnMonitor.Text = "↺";
+            this.btnMonitor.UseVisualStyleBackColor = false;
+            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
+            // 
+            // lblClickTime
+            // 
+            this.lblClickTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblClickTime.ForeColor = System.Drawing.Color.Blue;
+            this.lblClickTime.Location = new System.Drawing.Point(79, 23);
+            this.lblClickTime.Name = "lblClickTime";
+            this.lblClickTime.Size = new System.Drawing.Size(48, 15);
+            this.lblClickTime.TabIndex = 85;
+            // 
+            // lblActTheNoCnt
+            // 
+            this.lblActTheNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblActTheNoCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblActTheNoCnt.Location = new System.Drawing.Point(203, 11);
+            this.lblActTheNoCnt.Name = "lblActTheNoCnt";
+            this.lblActTheNoCnt.Size = new System.Drawing.Size(33, 12);
+            this.lblActTheNoCnt.TabIndex = 80;
+            this.lblActTheNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTicketNoCnt
+            // 
+            this.lblTicketNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTicketNoCnt.ForeColor = System.Drawing.Color.Black;
+            this.lblTicketNoCnt.Location = new System.Drawing.Point(319, 34);
+            this.lblTicketNoCnt.Name = "lblTicketNoCnt";
+            this.lblTicketNoCnt.Size = new System.Drawing.Size(33, 12);
+            this.lblTicketNoCnt.TabIndex = 81;
+            this.lblTicketNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTheNoCnt
+            // 
+            this.lblTheNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblTheNoCnt.ForeColor = System.Drawing.Color.Black;
+            this.lblTheNoCnt.Location = new System.Drawing.Point(319, 11);
+            this.lblTheNoCnt.Name = "lblTheNoCnt";
+            this.lblTheNoCnt.Size = new System.Drawing.Size(33, 12);
+            this.lblTheNoCnt.TabIndex = 82;
+            this.lblTheNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblActTicketNoCnt
+            // 
+            this.lblActTicketNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblActTicketNoCnt.ForeColor = System.Drawing.Color.Blue;
+            this.lblActTicketNoCnt.Location = new System.Drawing.Point(203, 34);
+            this.lblActTicketNoCnt.Name = "lblActTicketNoCnt";
+            this.lblActTicketNoCnt.Size = new System.Drawing.Size(33, 12);
+            this.lblActTicketNoCnt.TabIndex = 83;
+            this.lblActTicketNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.lbl1.Location = new System.Drawing.Point(146, 12);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(53, 12);
+            this.lbl1.TabIndex = 79;
+            this.lbl1.Text = "잔여팀수";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.label3.Location = new System.Drawing.Point(262, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 79;
+            this.label3.Text = "입장인원";
+            // 
+            // lbl2
+            // 
+            this.lbl2.AutoSize = true;
+            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.lbl2.Location = new System.Drawing.Point(262, 12);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(53, 12);
+            this.lbl2.TabIndex = 79;
+            this.lbl2.Text = "입장팀수";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.label1.Location = new System.Drawing.Point(146, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.TabIndex = 79;
+            this.label1.Text = "잔여인원";
+            // 
             // btnTicketDetail
             // 
             this.btnTicketDetail.BackColor = System.Drawing.Color.White;
             this.btnTicketDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTicketDetail.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnTicketDetail.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnTicketDetail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnTicketDetail.Location = new System.Drawing.Point(390, 473);
             this.btnTicketDetail.Name = "btnTicketDetail";
             this.btnTicketDetail.Size = new System.Drawing.Size(125, 60);
@@ -116,7 +242,7 @@
             // 
             this.lblBusinessTitle.AutoSize = true;
             this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBusinessTitle.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblBusinessTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblBusinessTitle.Location = new System.Drawing.Point(12, 16);
             this.lblBusinessTitle.Name = "lblBusinessTitle";
             this.lblBusinessTitle.Size = new System.Drawing.Size(63, 14);
@@ -139,7 +265,7 @@
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnView.Location = new System.Drawing.Point(397, 8);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 30);
@@ -228,132 +354,6 @@
             this.gap_dt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.gap_dt.Width = 80;
             // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(146, 12);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(53, 12);
-            this.lbl1.TabIndex = 79;
-            this.lbl1.Text = "잔여팀수";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.label1.Location = new System.Drawing.Point(146, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 79;
-            this.label1.Text = "잔여인원";
-            // 
-            // lbl2
-            // 
-            this.lbl2.AutoSize = true;
-            this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl2.Location = new System.Drawing.Point(262, 12);
-            this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(53, 12);
-            this.lbl2.TabIndex = 79;
-            this.lbl2.Text = "입장팀수";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.label3.Location = new System.Drawing.Point(262, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 79;
-            this.label3.Text = "입장인원";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnMonitor);
-            this.panel2.Controls.Add(this.lblClickTime);
-            this.panel2.Controls.Add(this.lblActTheNoCnt);
-            this.panel2.Controls.Add(this.lblTicketNoCnt);
-            this.panel2.Controls.Add(this.lblTheNoCnt);
-            this.panel2.Controls.Add(this.lblActTicketNoCnt);
-            this.panel2.Controls.Add(this.lbl1);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.lbl2);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(8, 473);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(376, 60);
-            this.panel2.TabIndex = 80;
-            // 
-            // lblActTheNoCnt
-            // 
-            this.lblActTheNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblActTheNoCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblActTheNoCnt.Location = new System.Drawing.Point(203, 11);
-            this.lblActTheNoCnt.Name = "lblActTheNoCnt";
-            this.lblActTheNoCnt.Size = new System.Drawing.Size(33, 12);
-            this.lblActTheNoCnt.TabIndex = 80;
-            this.lblActTheNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTicketNoCnt
-            // 
-            this.lblTicketNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTicketNoCnt.ForeColor = System.Drawing.Color.Black;
-            this.lblTicketNoCnt.Location = new System.Drawing.Point(319, 34);
-            this.lblTicketNoCnt.Name = "lblTicketNoCnt";
-            this.lblTicketNoCnt.Size = new System.Drawing.Size(33, 12);
-            this.lblTicketNoCnt.TabIndex = 81;
-            this.lblTicketNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTheNoCnt
-            // 
-            this.lblTheNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTheNoCnt.ForeColor = System.Drawing.Color.Black;
-            this.lblTheNoCnt.Location = new System.Drawing.Point(319, 11);
-            this.lblTheNoCnt.Name = "lblTheNoCnt";
-            this.lblTheNoCnt.Size = new System.Drawing.Size(33, 12);
-            this.lblTheNoCnt.TabIndex = 82;
-            this.lblTheNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblActTicketNoCnt
-            // 
-            this.lblActTicketNoCnt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblActTicketNoCnt.ForeColor = System.Drawing.Color.Blue;
-            this.lblActTicketNoCnt.Location = new System.Drawing.Point(203, 34);
-            this.lblActTicketNoCnt.Name = "lblActTicketNoCnt";
-            this.lblActTicketNoCnt.Size = new System.Drawing.Size(33, 12);
-            this.lblActTicketNoCnt.TabIndex = 83;
-            this.lblActTicketNoCnt.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblClickTime
-            // 
-            this.lblClickTime.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblClickTime.ForeColor = System.Drawing.Color.Blue;
-            this.lblClickTime.Location = new System.Drawing.Point(79, 23);
-            this.lblClickTime.Name = "lblClickTime";
-            this.lblClickTime.Size = new System.Drawing.Size(48, 15);
-            this.lblClickTime.TabIndex = 85;
-            // 
-            // btnMonitor
-            // 
-            this.btnMonitor.BackColor = System.Drawing.Color.Transparent;
-            this.btnMonitor.FlatAppearance.BorderSize = 0;
-            this.btnMonitor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMonitor.Font = new System.Drawing.Font("굴림", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnMonitor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnMonitor.Location = new System.Drawing.Point(-1, -7);
-            this.btnMonitor.Name = "btnMonitor";
-            this.btnMonitor.Size = new System.Drawing.Size(72, 66);
-            this.btnMonitor.TabIndex = 86;
-            this.btnMonitor.Text = "↺";
-            this.btnMonitor.UseVisualStyleBackColor = false;
-            this.btnMonitor.Click += new System.EventHandler(this.btnMonitor_Click);
-            // 
             // frmFlowTicket
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -366,10 +366,10 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketing_FormClosed);
             this.panelback.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -235,9 +235,9 @@
             this.panelLogin.Controls.Add(this.panelNumpad);
             this.panelLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelLogin.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.panelLogin.Location = new System.Drawing.Point(684, 0);
+            this.panelLogin.Location = new System.Drawing.Point(680, 0);
             this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(340, 768);
+            this.panelLogin.Size = new System.Drawing.Size(344, 768);
             this.panelLogin.TabIndex = 2;
             // 
             // btnReqUser

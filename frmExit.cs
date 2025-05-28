@@ -29,7 +29,7 @@ namespace thepos
             this.DialogResult = DialogResult.Yes;   // 로그아웃
 
             //
-            thepos_app_log(2, this.Name, "Logout", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, this.Name, "로그아웃", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
             Close();
         }
@@ -40,20 +40,28 @@ namespace thepos
             this.DialogResult = DialogResult.OK;    // 종료
 
             //
-            thepos_app_log(2, this.Name, "Close", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
+            thepos_app_log(2, this.Name, "종료", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
 
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;    // 취소
+            this.DialogResult = DialogResult.Cancel;    // 닫기
 
-            thepos_app_log(1, this.Name, "close", "");
+            thepos_app_log(1, this.Name, "닫기", "");
 
             Close();
         }
 
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Abort;
+
+            thepos_app_log(2, this.Name, "원장로드", "");
+
+            Close();
+        }
     }
 }
 

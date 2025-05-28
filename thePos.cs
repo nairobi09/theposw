@@ -63,6 +63,9 @@ namespace thepos
 
         public static String mAppVersion = "TPW1-2025-005";
 
+        public static String mTheposColor = "#3380cc";
+        //public static String mTheposColor = "#808080";
+
 
 
 
@@ -317,6 +320,7 @@ namespace thepos
             public int row;
             public int columnspan;
             public int rowspan;
+            public String btn_color;
         }
         public static GoodsGroup[] mGoodsGroup;
 
@@ -340,6 +344,7 @@ namespace thepos
             public int row;
             public int columnspan;
             public int rowspan;
+            public String btn_color;
             public String option_template_id;
             public String coupon_link_no;
             public String bar_code;

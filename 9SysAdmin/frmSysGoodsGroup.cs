@@ -11,6 +11,8 @@ using System.Linq;
 using static thepos.thePos;
 using Newtonsoft.Json.Linq;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Text.RegularExpressions;
 
 namespace thepos
 {
@@ -143,6 +145,8 @@ namespace thepos
             tbSizeX.Text = "";
             tbSizeY.Text = "";
 
+            tbColor.Text = "";
+
 
             String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
 
@@ -165,6 +169,9 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["locateY"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeX"].ToString());
                         lvItem.SubItems.Add(arr[i]["sizeY"].ToString());
+
+                        lvItem.SubItems.Add(arr[i]["btnColor"].ToString());
+
                         lvItem.Tag = arr[i]["groupCode"].ToString();
 
                         lvwList.Items.Add(lvItem);
@@ -207,6 +214,9 @@ namespace thepos
                 tbSizeX.Text = "";
                 tbSizeY.Text = "";
 
+                tbColor.Text = "";
+                btnColor.BackColor = ColorTranslator.FromHtml(tbColor.Text);
+
                 tableLayoutPanelGroupSelected.Controls.Clear();
             }
             else
@@ -220,6 +230,10 @@ namespace thepos
                 tbLocateY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locY)].Text;
                 tbSizeX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szX)].Text;
                 tbSizeY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szY)].Text;
+
+                tbColor.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(btn_color)].Text;
+
+                btnColor.BackColor = ColorTranslator.FromHtml(tbColor.Text);
 
                 display_selected_console();
             }
@@ -238,11 +252,15 @@ namespace thepos
                 int sz_x = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szX)].Text);
                 int sz_y = convert_number(lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(szY)].Text);
 
-                Button btnGroupBlue = new Button();
+                String btnColor = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(btn_color)].Text;
 
+                if (btnColor == "") btnColor = mTheposColor;
+
+
+                Button btnGroupBlue = new Button();
                 btnGroupBlue.FlatStyle = FlatStyle.Flat;
-                btnGroupBlue.ForeColor = Color.White;
-                btnGroupBlue.BackColor = SystemColors.Highlight;
+                btnGroupBlue.ForeColor = Color.White; 
+                btnGroupBlue.BackColor = ColorTranslator.FromHtml(btnColor);
                 btnGroupBlue.TabStop = false;
                 btnGroupBlue.Margin = new Padding(2, 2, 2, 2);
                 btnGroupBlue.Padding = new Padding(0, 0, 0, 0);
@@ -275,7 +293,7 @@ namespace thepos
 
         }
 
-        private void display_one_console(String name, int locX, int locY, int szX, int szY)
+        private void display_one_console(String name, int locX, int locY, int szX, int szY, String btnColor)
         {
             tableLayoutPanelGroupSelected.Controls.Clear();
 
@@ -319,20 +337,23 @@ namespace thepos
             {
                 try
                 {
+                    int loc_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locX)].Text);
+                    int loc_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locY)].Text);
+                    int sz_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szX)].Text);
+                    int sz_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szY)].Text);
+                    String btnColor = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(btn_color)].Text;
+
+                    if (btnColor == "") btnColor = mTheposColor;
+
                     Button btnGroup = new Button();
                     btnGroup.FlatStyle = FlatStyle.Flat;
-                    btnGroup.ForeColor = Color.White;
-                    btnGroup.BackColor = Color.Gray;
+                    btnGroup.ForeColor = ColorTranslator.FromHtml(btnColor);
+                    btnGroup.BackColor = Color.White;
                     btnGroup.TabStop = false;
                     btnGroup.Margin = new Padding(2, 2, 2, 2);
                     btnGroup.Padding = new Padding(0, 0, 0, 0);
                     btnGroup.Text = lvwList.Items[i].Text;
                     btnGroup.Dock = DockStyle.Fill;
-
-                    int loc_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locX)].Text);
-                    int loc_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(locY)].Text);
-                    int sz_x = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szX)].Text);
-                    int sz_y = convert_number(lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(szY)].Text);
 
                     if (sz_x == 1)                   { btnGroup.Font = new Font(btnGroup.Font.FontFamily, 9); }
                     else if (sz_x >= 3 & sz_y == 2)   { btnGroup.Font = new Font(btnGroup.Font.FontFamily, 20); }
@@ -347,9 +368,7 @@ namespace thepos
                     MessageBox.Show("오류. display all console()\n\n" + ex.Message, "thepos");
                     return;
                 }
-
             }
-
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -358,8 +377,9 @@ namespace thepos
 
 
             int locX = 0, locY = 0, SzX = 0, SzY = 0;
+            String btnColor = "";
 
-            if (!check_data(ref locX, ref locY, ref SzX, ref SzY))
+            if (!check_data(ref locX, ref locY, ref SzX, ref SzY, ref btnColor))
             {
                 return;
             }
@@ -378,6 +398,8 @@ namespace thepos
             parameters["locateY"] = locY.ToString();
             parameters["sizeX"] = SzX.ToString();
             parameters["sizeY"] = SzY.ToString();
+
+            parameters["btnColor"] = btnColor.ToString();
 
             if (mRequestPatch("goodsGroup", parameters))
             {
@@ -412,8 +434,9 @@ namespace thepos
         {
 
             int locX = 0, locY = 0, SzX = 0, SzY = 0;
+            String btnColor = "";
 
-            if (!check_data(ref locX, ref locY, ref SzX, ref SzY))
+            if (!check_data(ref locX, ref locY, ref SzX, ref SzY, ref btnColor))
             {
                 return;
             }
@@ -432,6 +455,8 @@ namespace thepos
             parameters["locateY"] = locY.ToString();
             parameters["sizeX"] = SzX.ToString();
             parameters["sizeY"] = SzY.ToString();
+
+            parameters["btnColor"] = btnColor.ToString();
 
 
             if (mRequestPost("goodsGroup", parameters))
@@ -516,7 +541,7 @@ namespace thepos
 
 
 
-        private bool check_data(ref int locX, ref int locY, ref int szX, ref int szY)
+        private bool check_data(ref int locX, ref int locY, ref int szX, ref int szY, ref String btnColor)
         {
 
             if (tbGroupName.Text.Trim().Length == 0)
@@ -547,6 +572,22 @@ namespace thepos
             if (locX + szX > 8) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
             if (locY + szY > 2) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
 
+
+
+            if (tbColor.Text == "")
+            {
+                btnColor = "";
+            }
+            else if (Regex.IsMatch(tbColor.Text, @"^#(?:[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$"))
+            {
+                btnColor = tbColor.Text;
+            }
+            else
+            {
+                MessageBox.Show("컬러값 오류.", "thepos");
+                return false;
+            }
+
             return true;
         }
 
@@ -556,15 +597,47 @@ namespace thepos
         private void btnApply_Click(object sender, EventArgs e)
         {
             int locX = 0, locY = 0, SzX = 0, SzY = 0;
+            String btnColor = "";
 
-            if (!check_data(ref locX, ref locY, ref SzX, ref SzY))
+            if (!check_data(ref locX, ref locY, ref SzX, ref SzY, ref btnColor))
             {
                 return;
             }
 
 
-            display_one_console(tbGroupName.Text, locX, locY, SzX, SzY);
+            display_one_console(tbGroupName.Text, locX, locY, SzX, SzY, btnColor);
         }
 
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 선택된 색상으로 폼의 배경색을 변경
+                Color color = colorDialog.Color;
+
+                string htmlColor = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+
+                tbColor.Text = htmlColor;
+                btnColor.BackColor = ColorTranslator.FromHtml(htmlColor);
+            }
+        }
+
+        private void tbColor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                String htmlColor = tbColor.Text;
+
+                try
+                {
+                    btnColor.BackColor = ColorTranslator.FromHtml(htmlColor);
+                }
+                catch
+                {
+                    MessageBox.Show("컬러값 오류.", "thepos");
+                    return;
+                }
+            }
+        }
     }
 }

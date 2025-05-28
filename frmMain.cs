@@ -484,12 +484,17 @@ namespace thepos
             {
                 Cursor.Hide();
             }
+            else
+            {
+                Cursor.Show();
+            }
+
 
         }
 
 
 
-        private void sync_data_server_to_memory()
+        public void sync_data_server_to_memory()
         {
             // 1. 사이트
             if (true)
@@ -625,6 +630,10 @@ namespace thepos
                             mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
                             mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                            String b_color = arr[i]["btnColor"].ToString();
+                            if (b_color == "") b_color = mTheposColor;
+                            mGoodsGroup[i].btn_color = b_color;
                         }
                     }
                     else
@@ -673,6 +682,13 @@ namespace thepos
                             mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
                             mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                            //
+                            String b_color = arr[i]["btnColor"].ToString();
+                            if (b_color == "") b_color = mTheposColor;
+                            mGoodsItem[i].btn_color = b_color;
+
+
                             mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
                             mGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
                             mGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
@@ -1380,15 +1396,13 @@ namespace thepos
             frmExit fExit = new frmExit();
             DialogResult ret =  fExit.ShowDialog();
 
-            if (ret == DialogResult.Yes)  // 로그아웃
+            //
+            if (ret == DialogResult.Yes)
             {
-                //? 로그아웃 프로세스 필요
-
+                // 로그아웃
                 isRunThread = false;
 
-
                 clear_login_init();  // 초기화
-
 
                 // 고객화면이 떠있으면 종료
                 bool isSubForm = false;
@@ -1405,14 +1419,12 @@ namespace thepos
                     fSub.Close();
                 }
 
-
                 panelLogin.Visible = true;
-
 
             }
             else if (ret == DialogResult.OK)
             {
-
+                // 종료
                 isRunThread = false;
 
                 Thread.Sleep(500);
@@ -1420,12 +1432,19 @@ namespace thepos
                 this.Close();
 
             }
-            else if (ret == DialogResult.Cancel)  // 종료
+            else if (ret == DialogResult.Abort)
             {
-                
+                // 원장로드
+                sync_data_server_to_memory();
+
+                MessageBox.Show("원장데이터 재로드 완료.", "thepos");
+
+            }
+            else if (ret == DialogResult.Cancel)
+            {
+                // 닫기
             }
 
-                
         }
 
         private void tbID_Click(object sender, EventArgs e)

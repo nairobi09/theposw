@@ -450,14 +450,15 @@ namespace thepos
 
             for (int i = 0; i < mGoodsGroup.Length; i++)
             {
+
                 Button btnGoodsGroup = new Button();
                 String group_code = mGoodsGroup[i].group_code;
                 btnGoodsGroup.Tag = mGoodsGroup[i].group_code;
                 btnGoodsGroup.Text = mGoodsGroup[i].group_name;
                 btnGoodsGroup.FlatStyle = FlatStyle.Flat;
+                btnGoodsGroup.ForeColor = ColorTranslator.FromHtml(mGoodsGroup[i].btn_color);
+                btnGoodsGroup.BackColor = Color.White; 
 
-                btnGoodsGroup.ForeColor = SystemColors.Highlight; 
-                btnGoodsGroup.BackColor = Color.White;
                 btnGoodsGroup.TabStop = false;
                 btnGoodsGroup.Margin = new Padding(2, 2, 2, 2);
                 btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
@@ -541,8 +542,9 @@ namespace thepos
                     btnGoodsItem.Tag = mGoodsItem[i].goods_code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
 
-                    btnGoodsItem.ForeColor = Color.White;
-                    btnGoodsItem.BackColor = SystemColors.Highlight;
+                    btnGoodsItem.ForeColor = Color.White; 
+                    btnGoodsItem.BackColor = ColorTranslator.FromHtml(mGoodsItem[i].btn_color);
+
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
                     btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
@@ -3541,14 +3543,14 @@ namespace thepos
             
             if (!isPressed)
             {
-                btn.ForeColor = SystemColors.Highlight;
+                btn.ForeColor = ColorTranslator.FromHtml(mGoodsGroup[button_idx].btn_color); ;
                 btn.BackColor = Color.White;
                 btn.FlatAppearance.BorderSize = 2;
             }
             else
             {
                 btn.ForeColor = Color.White;
-                btn.BackColor = SystemColors.Highlight;
+                btn.BackColor = ColorTranslator.FromHtml(mGoodsGroup[button_idx].btn_color); ;
                 btn.FlatAppearance.BorderSize = 0;
             }
             
