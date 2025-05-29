@@ -1770,8 +1770,6 @@ namespace thepos
                     }
                 }
 
-
-
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
                 parameters["posNo"] = mPosNo;
@@ -1793,7 +1791,12 @@ namespace thepos
                 parameters["dcrDes"] = mOrderItemList[i].dcr_des;
                 parameters["dcrValue"] = mOrderItemList[i].dcr_value + "";
                 parameters["payClass"] = mPayClass;  //
-                parameters["ticketNo"] = ticket_no;  //
+
+                if (ticket_no != "")
+                {
+                    parameters["ticketNo"] = ticket_no;  //
+                }
+
                 parameters["isCancel"] = "";
                 parameters["shopCode"] = mOrderItemList[i].shop_code;
                 parameters["nodCode1"] = mOrderItemList[i].nod_code1;
@@ -1818,6 +1821,7 @@ namespace thepos
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return -1;
                 }
+
 
                 // 옵션상품 경우
                 for (int k = 0; k < mOrderItemList[i].orderOptionItemList.Count; k++)
@@ -1862,6 +1866,39 @@ namespace thepos
                         return -1;
                     }
                 }
+
+
+
+                //
+                // 추가요금을 위한 별도처리 
+                // mOrderItemList[i].ticket_no 가 있고
+                // mOrderItemList[i].add_job = "TF4T9" 이면 : ticketFlow테이블 Patch step_flow를 4 -> 9로 변경
+                if (mOrderItemList[i].add_job == "TF4T9")
+                {
+                    parameters.Clear();
+                    parameters["bizDt"] = mBizDate;
+                    parameters["ticketNo"] = mOrderItemList[i].ticket_no; ;
+                    parameters["flowStep"] = "9";
+
+                    if (mRequestPatch("ticketFlow", parameters))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
+                        {
+                        }
+                        else
+                        {
+                            MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                            return -1;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                        return -1;
+                    }
+                }
+
+
             }
 
             return mOrderItemList.Count;
@@ -3652,8 +3689,23 @@ namespace thepos
                 }
             }
 
-            
 
+            /*
+            this.lvwOrderItem.Items.Cast<ListViewItem>()
+                .ToList().ForEach(item =>
+                {
+                    item.BackColor = Color.White;
+                    item.ForeColor = Color.Black;
+                });
+            this.lvwOrderItem.SelectedItems.Cast<ListViewItem>()
+                .ToList().ForEach(item =>
+                {
+                    item.BackColor = ColorTranslator.FromHtml(mTheposColor);
+                    item.ForeColor = Color.White;
+                });
+            */
+
+            
             this.lvwOrderItem.Items.Cast<ListViewItem>()
                 .ToList().ForEach(item =>
                 {

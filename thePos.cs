@@ -446,6 +446,7 @@ namespace thepos
             public int dcr_value;       // 할인금액 or 할인율
             public String pay_class;
             public String ticket_no;     // 충전, 사용인경우
+            public String add_job;       // 특수 예외작업용 : ex 최장시 추가용금 결제
             public String shop_order_no;
 
             public String coupon_no;

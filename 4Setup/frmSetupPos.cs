@@ -37,7 +37,7 @@ namespace thepos
             public String value;
             public String memo;
         }
-        Setup[] listSetup = new Setup[14];
+        Setup[] listSetup = new Setup[15];
 
 
         bool isAdd = false;
@@ -74,10 +74,13 @@ namespace thepos
             setupItem.code = "TicketAddText";         setupItem.name = "티켓출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[11] = setupItem;
 
             // 영수증출력물 추가 텍스트
-            setupItem.code = "BillAddText"; setupItem.name = "영수증출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[12] = setupItem;
+            setupItem.code = "BillAddText";         setupItem.name = "영수증출력물 추가텍스트"; setupItem.value = ""; setupItem.memo = ""; listSetup[12] = setupItem;
 
             // 로그레벨 
             setupItem.code = "AppLogLevel";         setupItem.name = "로그레벨"; setupItem.value = ""; setupItem.memo = ""; listSetup[13] = setupItem;
+
+            // 로그레벨 
+            setupItem.code = "PosBaseColor";        setupItem.name = "메뉴기본컬러"; setupItem.value = ""; setupItem.memo = ""; listSetup[14] = setupItem;
 
 
             reload_setup_pos();
@@ -234,7 +237,7 @@ namespace thepos
                 cbValue.Items.Add("57600");
                 cbValue.Items.Add("115200");
             }
-            else if (code == listSetup[8].code | code == listSetup[9].code)  // t-id, MID
+            else if (code == listSetup[8].code | code == listSetup[9].code | code == listSetup[14].code)  // t-id, MID, 기본컬러
             {
                 tbValue.Visible = true;
 
@@ -390,6 +393,7 @@ namespace thepos
                     else if (t_level == "NONE") mAppLogLevel = 4;
                     else mAppLogLevel = 4;
                 }
+                else if (lvwList.Items[i].Tag.ToString() == "PosBaseColor") mTheposColor = lvwList.Items[i].SubItems[1].Text;
             }
 
 

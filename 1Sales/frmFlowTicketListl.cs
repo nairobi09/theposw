@@ -20,6 +20,13 @@ namespace theposw._1Sales
     public partial class frmFlowTicketListl : Form
     {
 
+
+        // ☑ ☐  𐠮
+
+
+
+
+
         String this_biz_date;
         String the_no;
 
@@ -485,6 +492,7 @@ namespace theposw._1Sales
 
                 //
                 orderItem.ticket_no = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
+                orderItem.add_job = "TF4T9";   // 퇴장시 추가요금 결제
 
                 //
                 replace_mem_order_item(ref orderItem, "add");
@@ -517,11 +525,195 @@ namespace theposw._1Sales
 
         private void btnDC_Click(object sender, EventArgs e)
         {
+            // 
+            if (lvwList.CheckedItems.Count != 1)
+            {
+                MessageBox.Show("할인대상 1건만 선택해야합니다.", "thepos");
+                return;
+            }
+
+            if (cbDCR.SelectedIndex < 0)
+            {
+                MessageBox.Show("할인항목을 선택해주세요.", "thepos");
+                return;
+            }
+
+
+            if (lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "4")
+            {
+                MessageBox.Show("할인적용을 할 수 없는 건입니다.", "thepos");
+                return;
+            }
+
+
+
+            String code = mDCR[cbDCR.SelectedIndex].dcr_code;
+            String name = mDCR[cbDCR.SelectedIndex].dcr_name;
+            String des = mDCR[cbDCR.SelectedIndex].dcr_des;
+            String type = mDCR[cbDCR.SelectedIndex].dcr_type;
+            int value = mDCR[cbDCR.SelectedIndex].dcr_value;
+
+            applyDCR(des, type, value, code, "[전체할인]", name);
+        }
+
+
+        void applyDCR(String des, String type, int value, String e_dcr_code, String e_dcr_name, String description_name)
+        {
+
+            String selected_ticket_no = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
+
+
+            if (des == "S")   // 선택항목 할인
+            {
+
+                if (isExist_DCR("E"))
+                {
+                    MessageBox.Show("[전체할인]이 적용된 경우 선택할인 불가", "thepos");
+                    return;
+                }
+
+
+                int target_idx = -1;
+
+                for (int i = 0; mOrderItemList.Count > i; i++)
+                {
+                    if (mOrderItemList[i].ticket_no == selected_ticket_no)
+                    {
+                        target_idx = i;
+                    }
+                }
+
+                if (target_idx == -1)
+                {
+                    MessageBox.Show("할인적용 오류.", "thepos");
+                    return;
+                }
+
+
+                MemOrderItem orderItem = mOrderItemList[target_idx];
+                orderItem.dcr_des = des;
+                orderItem.dcr_type = type;
+                orderItem.dcr_value = value;
+
+
+                // 
+                replace_mem_order_item(ref orderItem, "update");
+
+                mOrderItemList[target_idx] = orderItem;
+                mLvwOrderItem.SetObjects(mOrderItemList);
+                mLvwOrderItem.Items[target_idx].Selected = true;
+
+                ReCalculateAmount();
+                
+
+            }
+            else if (des == "E")  // 전체할인
+            {
+                int t_dc_amount = 0;
+                bool isExist_E = false;
+
+
+                if (isExist_DCR("S"))
+                {
+                    SetDisplayAlarm("W", "[선택할인]이 적용된 경우 전체할인 불가.");
+                    return;
+                }
+
+
+                int dcr_e_idx = get_lv_DCR("E");
+
+                if (dcr_e_idx >= 0)  // 
+                {
+                    isExist_E = true;
+                }
+
+
+                if (type == "A")
+                {
+                    t_dc_amount = value;
+                }
+                else
+                if (type == "R")
+                {
+                    int t_amount = 0;
+                    for (int i = 0; i < mOrderItemList.Count; i++)
+                    {
+                        if (dcr_e_idx != i)  // 전체할인항목 레코드는 합계에서 제외
+                        {
+                            t_amount += ((mOrderItemList[i].amt + mOrderItemList[i].option_amt) * mOrderItemList[i].cnt);
+                        }
+                    }
+                    t_dc_amount = (t_amount * value) / 100;
+                }
+                else return;
+
+
+
+                MemOrderItem orderItem = new MemOrderItem();
+
+                if (isExist_E == true)
+                {
+                    orderItem = mOrderItemList[dcr_e_idx];
+                }
+
+
+                mOrderOptionItemList.Clear();
+
+                orderItem.option_item_cnt = mOrderOptionItemList.Count;
+                orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
+
+
+                orderItem.dcr_des = des;
+                orderItem.dcr_type = type;
+                orderItem.dcr_value = value;
+                orderItem.cnt = 1;
+                orderItem.amt = 0;
+                orderItem.option_amt = 0;
+                orderItem.dc_amount = t_dc_amount;
+                orderItem.net_amount = -t_dc_amount;
+                orderItem.goods_code = e_dcr_code;  // 전체 할인코드
+                orderItem.goods_name = e_dcr_name;
+                orderItem.option_name_description = description_name;
+
+                orderItem.shop_code = mShopCode;  //  포스 업장코드
 
 
 
 
-        
+                if (isExist_E == true)
+                {
+                    //
+                    replace_mem_order_item(ref orderItem, "update");
+
+                    mOrderItemList[dcr_e_idx] = orderItem;
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    mLvwOrderItem.Items[dcr_e_idx].Selected = true;
+                }
+                else
+                {
+                    //
+                    replace_mem_order_item(ref orderItem, "add");
+
+                    mOrderItemList.Add(orderItem);
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
+
+                    //? 전체할인항목을 맨아래 추가후 -> 이후에도 맨아래줄을 유지할 수 있는 방안 필요.
+
+
+                }
+
+                ReCalculateAmount();
+            }
+
+
+
+
+
+
         }
 
 

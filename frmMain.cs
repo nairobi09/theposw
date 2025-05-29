@@ -566,6 +566,61 @@ namespace thepos
             }
 
 
+            // 6. setupPos
+            if (true)
+            {
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["setupPos"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "BillPrinterSpeed") mBillPrinterSpeed = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "MobileExchangeType") mMobileExchangeType = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "PrintExchangeType") mPrintExchangeType = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
+                            else if (arr[i]["setupCode"].ToString() == "BillAddText") mBillAddText = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "AppLogLevel")
+                            {
+                                //  mLogLevel -  1: ALL  2: ERROR  3: NONE
+                                String t_level = arr[i]["setupValue"].ToString();
+
+                                if (t_level == "ALL") mAppLogLevel = 1;
+                                else if (t_level == "IMPORTANT") mAppLogLevel = 2;
+                                else if (t_level == "ERROR") mAppLogLevel = 3;
+                                else if (t_level == "NONE") mAppLogLevel = 4;
+                                else mAppLogLevel = 4;
+                            }
+                            else if (arr[i]["setupCode"].ToString() == "PosBaseColor")
+                            {
+                                if (arr[i]["setupValue"].ToString() != "")
+                                {
+                                    mTheposColor = arr[i]["setupValue"].ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
 
             // 1-2. site_allim
             if (mAllimYn == "Y")
@@ -1020,52 +1075,6 @@ namespace thepos
             }
 
 
-            // 6. setupPos
-            if (true)
-            {
-                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["setupPos"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            if (arr[i]["setupCode"].ToString() == "BillPrinterPort") mBillPrinterPort = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "BillPrinterSpeed") mBillPrinterSpeed = arr[i]["setupValue"].ToString();
-
-                            else if (arr[i]["setupCode"].ToString() == "MobileExchangeType") mMobileExchangeType = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "PrintExchangeType") mPrintExchangeType = arr[i]["setupValue"].ToString();
-
-                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterPort") mTicketPrinterPort = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "TicketPrinterSpeed") mTicketPrinterSpeed = arr[i]["setupValue"].ToString();
-
-                            else if (arr[i]["setupCode"].ToString() == "PosType") mPosType = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "CustomerMonitor") mCustomerMonitor = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
-
-                            else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
-                            
-                            else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
-                            else if (arr[i]["setupCode"].ToString() == "BillAddText") mBillAddText = arr[i]["setupValue"].ToString();
-
-                            else if (arr[i]["setupCode"].ToString() == "AppLogLevel")
-                            {
-                                //  mLogLevel -  1: ALL  2: ERROR  3: NONE
-                                String t_level = arr[i]["setupValue"].ToString();
-
-                                if (t_level == "ALL") mAppLogLevel = 1;
-                                else if (t_level == "IMPORTANT") mAppLogLevel = 2;
-                                else if (t_level == "ERROR") mAppLogLevel = 3;
-                                else if (t_level == "NONE") mAppLogLevel = 4;
-                                else mAppLogLevel = 4;
-                            }
-                        }
-                    }
-                }
-            }
 
 
             // 7. dcrFavorite
