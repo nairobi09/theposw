@@ -159,7 +159,7 @@ namespace thepos
             lvwPayOrder.Items.Clear();
 
             //!
-            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&shopCode=" + mShopCode + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
+            String sUrl = "payment?siteId=" + mSiteId + "&bizDt=" + biz_date + "&shopCode=" + myShopCode + "&posNo=" + pos_no + "&theNo=" + the_no + "&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

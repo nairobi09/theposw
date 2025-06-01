@@ -82,9 +82,9 @@
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(210, 331);
+            this.btnOK.Location = new System.Drawing.Point(162, 342);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(115, 64);
+            this.btnOK.Size = new System.Drawing.Size(178, 64);
             this.btnOK.TabIndex = 58;
             this.btnOK.Text = "입력";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -97,9 +97,9 @@
             this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNo.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNo.ForeColor = System.Drawing.Color.Black;
-            this.btnNo.Location = new System.Drawing.Point(93, 331);
+            this.btnNo.Location = new System.Drawing.Point(57, 342);
             this.btnNo.Name = "btnNo";
-            this.btnNo.Size = new System.Drawing.Size(111, 64);
+            this.btnNo.Size = new System.Drawing.Size(99, 64);
             this.btnNo.TabIndex = 59;
             this.btnNo.Text = "건너뛰기";
             this.btnNo.UseVisualStyleBackColor = false;

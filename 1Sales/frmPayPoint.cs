@@ -158,7 +158,7 @@ namespace thepos
 
             paymentPoint.site_id = mSiteId;
             paymentPoint.biz_dt = mBizDate;
-            paymentPoint.pos_no = mPosNo;
+            paymentPoint.pos_no = myPosNo;
             paymentPoint.the_no = mTheNo;
             paymentPoint.ref_no = ticketNo.Substring(0, 20);
 

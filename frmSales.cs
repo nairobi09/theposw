@@ -31,6 +31,9 @@ using System.Net;
 using System.Windows.Forms.DataVisualization.Charting;
 using theposw;
 using static thepos.frmSub;
+using DocumentFormat.OpenXml.VariantTypes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using theposw._1Sales;
 
 
 
@@ -153,7 +156,7 @@ namespace thepos
             setCurrentDateTitle();
 
             lblSiteName.Text = mSiteAlias;
-            lblPosNo.Text = mPosNo;
+            lblPosNo.Text = myPosNo;
 
             lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
             lblUserName.Text = mUserName;
@@ -553,15 +556,15 @@ namespace thepos
 
                     if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 9);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
                     }
                     else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 3)
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 20);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 20, FontStyle.Bold);
                     }
                     else
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 12);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
                     }
 
 
@@ -890,12 +893,8 @@ namespace thepos
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
+            //frmFlowTicket_xx fForm = new frmFlowTicket_xx() { TopLevel = false, TopMost = true };
             frmFlowTicket fForm = new frmFlowTicket() { TopLevel = false, TopMost = true };
-
-            /*
-            mPanelMiddle.Left = 1018 - fForm.Width;
-            mPanelMiddle.Width = fForm.Width;
-            */
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
             fForm.Show();
@@ -1267,7 +1266,7 @@ namespace thepos
         {
             error_msg = "";
 
-            String sUrl = "preCheck?siteId=" + mSiteId + "&posNo=" + mPosNo + "&bizDt=" + mBizDate;
+            String sUrl = "preCheck?siteId=" + mSiteId + "&posNo=" + myPosNo + "&bizDt=" + mBizDate;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -1336,7 +1335,7 @@ namespace thepos
                             Dictionary<string, string> parameters = new Dictionary<string, string>();
                             parameters.Clear();
                             parameters["siteId"] = mSiteId;
-                            parameters["posNo"] = mPosNo;
+                            parameters["posNo"] = myPosNo;
                             parameters["bizDt"] = mBizDate;
                             parameters["theNo"] = arr[i]["theNo"].ToString();
                             parameters["refNo"] = arr[i]["refNo"].ToString();
@@ -1661,7 +1660,7 @@ namespace thepos
             // order
             parameters.Clear();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mPosNo;
+            parameters["posNo"] = myPosNo;
             parameters["bizDt"] = mBizDate;
             parameters["theNo"] = mTheNo;
             parameters["refNo"] = mRefNo;
@@ -1720,7 +1719,7 @@ namespace thepos
 
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mPosNo;
+                parameters["posNo"] = myPosNo;
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
@@ -1772,7 +1771,7 @@ namespace thepos
 
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mPosNo;
+                parameters["posNo"] = myPosNo;
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
@@ -1794,7 +1793,11 @@ namespace thepos
 
                 if (ticket_no != "")
                 {
-                    parameters["ticketNo"] = ticket_no;  //
+                    parameters["ticketNo"] = ticket_no + "";
+                }
+                else
+                {
+                    parameters["ticketNo"] = mOrderItemList[i].ticket_no + "";
                 }
 
                 parameters["isCancel"] = "";
@@ -1828,7 +1831,7 @@ namespace thepos
                 {
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
+                    parameters["posNo"] = myPosNo;
                     parameters["bizDt"] = mBizDate;
                     parameters["theNo"] = mTheNo;
                     parameters["refNo"] = mRefNo;
@@ -1877,22 +1880,26 @@ namespace thepos
                 {
                     parameters.Clear();
                     parameters["bizDt"] = mBizDate;
-                    parameters["ticketNo"] = mOrderItemList[i].ticket_no; ;
+                    parameters["ticketNo"] = mOrderItemList[i].ticket_no;
                     parameters["flowStep"] = "9";
 
                     if (mRequestPatch("ticketFlow", parameters))
                     {
                         if (mObj["resultCode"].ToString() == "200")
                         {
+                            //
+                            thepos_app_log(1, "SaveOrder()", "add_job=" + mOrderItemList[i].add_job,  "PatchticketFlow, no=" + mOrderItemList[i].ticket_no + " flowStep ->9");
                         }
                         else
                         {
+                            thepos_app_log(3, "SaveOrder()", "PatchticketFlow, no=" + mOrderItemList[i].ticket_no, "오류 ticketFlow" + mObj["resultMsg"].ToString());
                             MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return -1;
                         }
                     }
                     else
                     {
+                        thepos_app_log(3, "SaveOrder()", "PatchticketFlow, no=" + mOrderItemList[i].ticket_no, "시스템오류 " + mErrorMsg);
                         MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                         return -1;
                     }
@@ -1914,8 +1921,8 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["shopCode"] = mShopCode;
-                parameters["posNo"] = mPosNo;
+                parameters["shopCode"] = myShopCode;
+                parameters["posNo"] = myPosNo;
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
@@ -2117,7 +2124,7 @@ namespace thepos
                                     parameters.Clear();
                                     parameters["siteId"] = mSiteId;
                                     parameters["bizDt"] = mBizDate;
-                                    parameters["posNo"] = mPosNo;
+                                    parameters["posNo"] = myPosNo;
                                     parameters["theNo"] = mTheNo;
                                     parameters["refNo"] = mRefNo;
 
@@ -2173,12 +2180,8 @@ namespace thepos
                                 }
                                 else if (mTicketMedia == "TG")  // 전용폼지(띠지)
                                 {
-                                    if (mSiteId == "2502") // 강아지숲
-                                    {
-                                        //
-
-                                    }
-                                }
+                                    print_label_ticket(t_ticket_no, get_today_date(), get_today_time(), orderItem.goods_code, orderItem.goods_name, orderItem.cnt, orderItem.amt, orderItem.coupon_no);
+                                } 
 
                             }
                         }
@@ -3752,7 +3755,7 @@ namespace thepos
             String seconddiff = ((long)timeSpan.TotalMilliseconds).ToString("00000000").Substring(0, 6);
 
 
-            mTheNo = mSiteId + mBizDate + mPosNo + seconddiff;
+            mTheNo = mSiteId + mBizDate + myPosNo + seconddiff;
 
 
             // 동잀하게 세팅후 -> 이후 필요시 별도세팅
@@ -4561,6 +4564,20 @@ namespace thepos
         {
             byte[] charSize = new byte[3] { 0x1D, Convert.ToByte('!'), 16 };
             return charSize;
+        }
+
+
+        public static void print_label_ticket(String t_ticket_no, String t_date, String t_time, String t_goods_code, String t_goods_name, int t_goods_cnt, int t_goods_amt, String t_coupon_no)
+        {
+            if (mTicketPrinterPort.Trim().Length == 0)
+            {
+                SetDisplayAlarm("W", "티켓프린터 미설정으로 티켓출력불가..");
+                return;
+            }
+
+
+            ticket_2502 p = new ticket_2502();
+            p.print_ticket_2502(t_ticket_no, t_date, t_time, t_goods_code, t_goods_name, t_goods_cnt, t_goods_amt, t_coupon_no);
         }
 
 

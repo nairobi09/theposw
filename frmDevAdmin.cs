@@ -50,8 +50,8 @@ namespace thepos
                     mSiteId = mObj["siteId"].ToString();
                     mUserID = "dev1";
                     mUserName = "devlogin";
-                    mPosNo = mObj["posNo"].ToString();
-                    mShopCode = mObj["shopCode"].ToString();
+                    myPosNo = mObj["posNo"].ToString();
+                    myShopCode = mObj["shopCode"].ToString();
 
                     if (cbAuth.Checked)
                     {
@@ -122,8 +122,8 @@ namespace thepos
                     mSiteId = mObj["siteId"].ToString();
                     mUserID = tbSiteID.Text;
                     mUserName = mObj["userName"].ToString();
-                    mPosNo = mObj["posNo"].ToString();
-                    mShopCode = mObj["shopCode"].ToString();
+                    myPosNo = mObj["posNo"].ToString();
+                    myShopCode = mObj["shopCode"].ToString();
                     mUserAuth = mObj["userAuth"].ToString();
 
                     //

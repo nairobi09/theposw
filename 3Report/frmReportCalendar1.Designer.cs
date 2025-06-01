@@ -2272,9 +2272,9 @@
             this.lblYYYYMM.BackColor = System.Drawing.Color.White;
             this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblYYYYMM.Location = new System.Drawing.Point(182, 27);
+            this.lblYYYYMM.Location = new System.Drawing.Point(243, 26);
             this.lblYYYYMM.Name = "lblYYYYMM";
-            this.lblYYYYMM.Size = new System.Drawing.Size(120, 27);
+            this.lblYYYYMM.Size = new System.Drawing.Size(90, 27);
             this.lblYYYYMM.TabIndex = 3;
             this.lblYYYYMM.Text = "2023-10";
             this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2299,9 +2299,9 @@
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrev.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnPrev.Location = new System.Drawing.Point(137, 27);
+            this.btnPrev.Location = new System.Drawing.Point(207, 26);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(40, 27);
+            this.btnPrev.Size = new System.Drawing.Size(30, 27);
             this.btnPrev.TabIndex = 5;
             this.btnPrev.TabStop = false;
             this.btnPrev.Text = "◀";
@@ -2314,9 +2314,9 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnNext.Location = new System.Drawing.Point(307, 27);
+            this.btnNext.Location = new System.Drawing.Point(337, 26);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(40, 27);
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
             this.btnNext.TabIndex = 6;
             this.btnNext.TabStop = false;
             this.btnNext.Text = "▶";

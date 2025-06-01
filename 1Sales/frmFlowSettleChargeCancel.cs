@@ -309,7 +309,7 @@ namespace thepos
 
 
                         parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = mPosNo;
+                        parameters["posNo"] = myPosNo;
                         parameters["bizDt"] = mBizDate;
                         parameters["theNo"] = pCardAuth.the_no;
                         parameters["refNo"] = pCardAuth.ref_no;
@@ -394,7 +394,7 @@ namespace thepos
 
                     //!
                     parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
+                    parameters["posNo"] = myPosNo;
                     parameters["bizDt"] = mBizDate;
                     parameters["theNo"] = pCardAuth.the_no;
                     parameters["refNo"] = pCardAuth.ref_no;
@@ -554,7 +554,7 @@ namespace thepos
                         parameters.Clear();
                         parameters["siteId"] = mSiteId;
                         parameters["bizDt"] = mBizDate;
-                        parameters["posNo"] = mPosNo;
+                        parameters["posNo"] = myPosNo;
                         parameters["theNo"] = pCashCancel.the_no;
                         parameters["refNo"] = pCashCancel.ref_no;
 
@@ -648,7 +648,7 @@ namespace thepos
                     parameters.Clear();
                     parameters["siteId"] = mSiteId;
                     parameters["bizDt"] = mBizDate;
-                    parameters["posNo"] = mPosNo;
+                    parameters["posNo"] = myPosNo;
                     parameters["theNo"] = pCashAuth.the_no;
                     parameters["refNo"] = pCashAuth.ref_no;
 
@@ -810,7 +810,7 @@ namespace thepos
 
 
                         parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = mPosNo;
+                        parameters["posNo"] = myPosNo;
                         parameters["bizDt"] = mBizDate;
                         parameters["theNo"] = pEasyAuth.the_no;
                         parameters["refNo"] = pEasyAuth.ref_no;
@@ -971,7 +971,7 @@ namespace thepos
                     {
                         Dictionary<string, string> param = new Dictionary<string, string>();
                         param["siteId"] = mSiteId;
-                        param["posNo"] = mPosNo;
+                        param["posNo"] = myPosNo;
                         param["bizDt"] = mBizDate;
                         param["theNo"] = arr[0]["theNo"].ToString();
                         param["refNo"] = arr[0]["refNo"].ToString();
@@ -1061,7 +1061,7 @@ namespace thepos
                     {
                         Dictionary<string, string> param = new Dictionary<string, string>();
                         param["siteId"] = mSiteId;
-                        param["posNo"] = mPosNo;
+                        param["posNo"] = myPosNo;
                         param["bizDt"] = mBizDate;
                         param["theNo"] = arr[0]["theNo"].ToString();
                         param["refNo"] = arr[0]["refNo"].ToString();
@@ -1190,7 +1190,7 @@ namespace thepos
             {
                 Dictionary<string, string> param = new Dictionary<string, string>();
                 param["siteId"] = mSiteId;
-                param["posNo"] = mPosNo;
+                param["posNo"] = myPosNo;
                 param["bizDt"] = mBizDate;
                 param["theNo"] = paymentAuth.the_no;
                 param["refNo"] = paymentAuth.ref_no;

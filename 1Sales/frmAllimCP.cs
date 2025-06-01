@@ -61,7 +61,7 @@ namespace theposw
 
 
 
-            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + mShopCode;
+            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + myShopCode;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -302,7 +302,7 @@ namespace theposw
 
             if (tAllimTypeCode == "AT")
             {
-                String sUrl = "allim?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&shopCode=" + mShopCode;
+                String sUrl = "allim?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + tTheNo + "&shopCode=" + myShopCode;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -313,7 +313,7 @@ namespace theposw
                         //
                         Dictionary<string, string> parameters = new Dictionary<string, string>();
                         parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = mPosNo;
+                        parameters["posNo"] = myPosNo;
                         parameters["bizDt"] = thisBizDt;
                         parameters["theNo"] = mTheNo;
                         parameters["senderProfile"] = arr[0]["senderProfile"].ToString(); ;
@@ -323,7 +323,7 @@ namespace theposw
                         parameters["orderDate"] = arr[0]["orderDate"].ToString();
                         parameters["orderTime"] = arr[0]["orderTime"].ToString();
                         parameters["orderNo"] = arr[0]["orderNo"].ToString();
-                        parameters["shopCode"] = mShopCode;
+                        parameters["shopCode"] = myShopCode;
                         parameters["orderDetail"] = " " + arr[0]["orderDetail"].ToString();
 
                         if (mRequestPost("allim", parameters))

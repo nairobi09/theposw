@@ -48,7 +48,9 @@ namespace thepos
             this.btnKey7 = new System.Windows.Forms.Button();
             this.btnKeyClear = new System.Windows.Forms.Button();
             this.panelOrderConsole = new System.Windows.Forms.Panel();
+            this.btnOrderItemScrollDn = new System.Windows.Forms.Button();
             this.tableLayoutPanelFlowControl = new System.Windows.Forms.TableLayoutPanel();
+            this.btnOrderItemScrollUp = new System.Windows.Forms.Button();
             this.btnOrderCntUp = new System.Windows.Forms.Button();
             this.btnOrderCntDn = new System.Windows.Forms.Button();
             this.btnOrderCntChange = new System.Windows.Forms.Button();
@@ -57,8 +59,6 @@ namespace thepos
             this.btnOrderWaiting = new System.Windows.Forms.Button();
             this.btnOrderAmountDC = new System.Windows.Forms.Button();
             this.btnOrderCancelAll = new System.Windows.Forms.Button();
-            this.btnOrderItemScrollDn = new System.Windows.Forms.Button();
-            this.btnOrderItemScrollUp = new System.Windows.Forms.Button();
             this.btnPay1 = new System.Windows.Forms.Button();
             this.btnPay2 = new System.Windows.Forms.Button();
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
@@ -382,6 +382,21 @@ namespace thepos
             this.panelOrderConsole.Size = new System.Drawing.Size(474, 367);
             this.panelOrderConsole.TabIndex = 25;
             // 
+            // btnOrderItemScrollDn
+            // 
+            this.btnOrderItemScrollDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderItemScrollDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderItemScrollDn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
+            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(414, 1);
+            this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
+            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 48);
+            this.btnOrderItemScrollDn.TabIndex = 28;
+            this.btnOrderItemScrollDn.TabStop = false;
+            this.btnOrderItemScrollDn.Text = "▼";
+            this.btnOrderItemScrollDn.UseVisualStyleBackColor = false;
+            this.btnOrderItemScrollDn.Click += new System.EventHandler(this.btnOrderItemScrollDn_Click);
+            // 
             // tableLayoutPanelFlowControl
             // 
             this.tableLayoutPanelFlowControl.ColumnCount = 2;
@@ -399,6 +414,21 @@ namespace thepos
             this.tableLayoutPanelFlowControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanelFlowControl.Size = new System.Drawing.Size(128, 312);
             this.tableLayoutPanelFlowControl.TabIndex = 1;
+            // 
+            // btnOrderItemScrollUp
+            // 
+            this.btnOrderItemScrollUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnOrderItemScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrderItemScrollUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
+            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(350, 1);
+            this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
+            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 48);
+            this.btnOrderItemScrollUp.TabIndex = 29;
+            this.btnOrderItemScrollUp.TabStop = false;
+            this.btnOrderItemScrollUp.Text = "▲";
+            this.btnOrderItemScrollUp.UseVisualStyleBackColor = false;
+            this.btnOrderItemScrollUp.Click += new System.EventHandler(this.btnOrderItemScrollUp_Click);
             // 
             // btnOrderCntUp
             // 
@@ -519,36 +549,6 @@ namespace thepos
             this.btnOrderCancelAll.Text = "전체\r\n취소";
             this.btnOrderCancelAll.UseVisualStyleBackColor = false;
             this.btnOrderCancelAll.Click += new System.EventHandler(this.btnOrderCancelAll_Click);
-            // 
-            // btnOrderItemScrollDn
-            // 
-            this.btnOrderItemScrollDn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderItemScrollDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderItemScrollDn.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderItemScrollDn.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollDn.Location = new System.Drawing.Point(414, 1);
-            this.btnOrderItemScrollDn.Name = "btnOrderItemScrollDn";
-            this.btnOrderItemScrollDn.Size = new System.Drawing.Size(60, 48);
-            this.btnOrderItemScrollDn.TabIndex = 28;
-            this.btnOrderItemScrollDn.TabStop = false;
-            this.btnOrderItemScrollDn.Text = "▼";
-            this.btnOrderItemScrollDn.UseVisualStyleBackColor = false;
-            this.btnOrderItemScrollDn.Click += new System.EventHandler(this.btnOrderItemScrollDn_Click);
-            // 
-            // btnOrderItemScrollUp
-            // 
-            this.btnOrderItemScrollUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnOrderItemScrollUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrderItemScrollUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOrderItemScrollUp.ForeColor = System.Drawing.Color.White;
-            this.btnOrderItemScrollUp.Location = new System.Drawing.Point(350, 1);
-            this.btnOrderItemScrollUp.Name = "btnOrderItemScrollUp";
-            this.btnOrderItemScrollUp.Size = new System.Drawing.Size(60, 48);
-            this.btnOrderItemScrollUp.TabIndex = 29;
-            this.btnOrderItemScrollUp.TabStop = false;
-            this.btnOrderItemScrollUp.Text = "▲";
-            this.btnOrderItemScrollUp.UseVisualStyleBackColor = false;
-            this.btnOrderItemScrollUp.Click += new System.EventHandler(this.btnOrderItemScrollUp_Click);
             // 
             // btnPay1
             // 

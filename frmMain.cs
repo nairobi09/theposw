@@ -94,7 +94,7 @@ namespace thepos
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
-            lblPosNo.Text = mPosNo;
+            lblPosNo.Text = myPosNo;
             lblUserName.Text = mUserName;
 
 
@@ -146,6 +146,7 @@ namespace thepos
             mBadges[1].badges_name = "NEW";
             mBadges[2].badges_name = "BEST";
             mBadges[3].badges_name = "사장픽";
+
 
         }
 
@@ -226,7 +227,7 @@ namespace thepos
         {
             mSiteAlias = "";
             mSiteName = "";
-            mPosNo = "";
+            myPosNo = "";
             mUserName = "";
 
             mSiteId = "";
@@ -244,7 +245,6 @@ namespace thepos
 
             mCornerType = "";  // 주문서 관리 - ""미사용, "E"단순일체형, "P"분리형
 
-            mPosNo = "";
             mBizDate = "";
 
             mUserID = "";
@@ -309,6 +309,9 @@ namespace thepos
 
 
 
+
+
+
             // SyncLink 쓰레드
             isRunThread = true;
 
@@ -319,6 +322,14 @@ namespace thepos
             // 쿠폰인증용
             mHttpClientCoupon = new HttpClient();
             mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
+
+
+            // sub screen
+            if (mCustomerMonitor == "Y")
+            {
+                start_sub_screen();
+            }
+
 
 
             // 데이터 체크 임시
@@ -380,8 +391,8 @@ namespace thepos
                         mSiteId = mObj["siteId"].ToString();
                         mUserID = tbID.Text;
                         mUserName = mObj["userName"].ToString();
-                        mPosNo = mObj["posNo"].ToString();
-                        mShopCode = mObj["shopCode"].ToString();
+                        myPosNo = mObj["posNo"].ToString();
+                        myShopCode = mObj["shopCode"].ToString();
 
                         //
                         thepos_app_log(2, this.Name, "login", "appVersion=" + mAppVersion + ", mac=" + mMacAddr);
@@ -439,6 +450,7 @@ namespace thepos
 
         void ready_thepos()
         {
+
             // 서버 -> 메모리
             sync_data_server_to_memory();
 
@@ -446,37 +458,26 @@ namespace thepos
             //
             for (int i = 0; i < mShop.Length; i++)
             {
-                if (mShop[i].shop_code == mShopCode)
+                if (mShop[i].shop_code == myShopCode)
                 {
-                    mShopName = mShop[i].shop_name;
+                    myShopName = mShop[i].shop_name;
                 }
             }
 
 
             // 일반(서버) 테마 적용
-            btnBusiness.Enabled = true;
-            btnReports.Enabled = true;
-            btnSupport.Enabled = true;
-
             panelLogin.Visible = false;
 
             lblSiteAlias.Text = mSiteAlias;
             lblSiteName.Text = mSiteName;
-            lblShopName.Text = mShopName;
-            lblPosNo.Text = mPosNo;
+            lblShopName.Text = myShopName;
+            lblPosNo.Text = myPosNo;
             lblUserName.Text = mUserName;
             lblCallCenterNo.Text = mCallCenterNo;
 
 
             // 로그인여부
             mIsLogin = "Y";
-
-
-            // sub screen
-            if (mCustomerMonitor == "Y")
-            {
-                start_sub_screen();
-            }
 
 
             // 마우스 커서
@@ -488,7 +489,6 @@ namespace thepos
             {
                 Cursor.Show();
             }
-
 
         }
 
@@ -569,7 +569,7 @@ namespace thepos
             // 6. setupPos
             if (true)
             {
-                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -666,7 +666,7 @@ namespace thepos
             // 2. goodsGroup
             if (true)
             {
-                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -681,6 +681,7 @@ namespace thepos
                             mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
                             mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
                             mGoodsGroup[i].soldout = arr[i]["soldout"].ToString();
+                            mGoodsGroup[i].cutout = arr[i]["cutout"].ToString();
                             mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
                             mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
                             mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
@@ -708,7 +709,7 @@ namespace thepos
             // 3. goodsItemAndGoods
             if (true)
             {
-                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1048,7 +1049,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["shopCode"].ToString() == mShopCode & (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1"))
+                            if (arr[i]["shopCode"].ToString() == myShopCode & (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1"))
                             {
                                 posno.Add(arr[i]["posNo"].ToString());
                             }
@@ -1116,7 +1117,7 @@ namespace thepos
             // 8. paymentConsole
             if (true)
             {
-                String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                String sUrl = "paymentConsole?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1151,7 +1152,7 @@ namespace thepos
             // 8. flowConsole
             if (true)
             {
-                String sUrl = "flowConsole?siteId=" + mSiteId + "&posNo=" + mPosNo;
+                String sUrl = "flowConsole?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1444,7 +1445,8 @@ namespace thepos
             else if (ret == DialogResult.Abort)
             {
                 // 원장로드
-                sync_data_server_to_memory();
+                //sync_data_server_to_memory();
+                ready_thepos();
 
                 MessageBox.Show("원장데이터 재로드 완료.", "thepos");
 
@@ -1516,7 +1518,7 @@ namespace thepos
 
         private bool check_server_status()
         {
-            String sUrl = "testCall?siteId=" + mSiteId + "&posNo=" + mPosNo + "&testDt=" + get_today_date() + get_today_time();
+            String sUrl = "testCall?siteId=" + mSiteId + "&posNo=" + myPosNo + "&testDt=" + get_today_date() + get_today_time();
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

@@ -61,7 +61,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-005";
+        public static String mAppVersion = "TPW1-2025-006";   // 2025 05 29
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -121,10 +121,10 @@ namespace thepos
         public static String mServerDbVer = "";
 
 
-        public static String mShopCode = "";       // 내 업장코드
-        public static String mShopName = "";       // 내 업장명
+        public static String myShopCode = "";       // 내 업장코드
+        public static String myShopName = "";       // 내 업장명
 
-        public static String mPosNo = "";       // 내 포스번호
+        public static String myPosNo = "";       // 내 포스번호
         public static String[] mPosNoList;      // Site내 포스번호 목록
 
         //
@@ -316,6 +316,7 @@ namespace thepos
             public string group_code;
             public string group_name;
             public string soldout;
+            public string cutout;
             public int column;
             public int row;
             public int columnspan;
@@ -1351,7 +1352,7 @@ namespace thepos
                     parameters["logTime"] = get_today_time();
                     parameters["logLevel"] = log_input + "";
                     parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
+                    parameters["posNo"] = myPosNo;
                     parameters["formName"] = form_name;
                     parameters["formAction"] = form_action;
                     parameters["formMemo"] = form_memo;

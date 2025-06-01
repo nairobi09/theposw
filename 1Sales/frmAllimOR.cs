@@ -36,13 +36,20 @@ namespace thepos
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (txtMobileNo.Text.Length < 7)
+            {
+                MessageBox.Show("번호입력 오류입니다.", "thepos");
+                return;
+            }
+
+
 
             for (int i = 0; i < shopOrderPackList.Count; i++)
             {
                 // 알림톡 발송
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mPosNo;
+                parameters["posNo"] = myPosNo;
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["senderProfile"] = mAllimSenderProfile;

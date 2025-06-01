@@ -23,14 +23,21 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            reload_goods();
-            reload_group();
+            for (int i = 0; i < mPosNoList.Length; i++)
+            {
+                cbPosNo.Items.Add(mPosNoList[i]);
+            }
         }
 
-        private void btnShopView_Click(object sender, EventArgs e)
-        {
-            lvwGoodsList.Items.Clear();
 
+        private void btnViewGoods_Click(object sender, EventArgs e)
+        {
+            reload_goods();
+        }
+
+        private void btnViewGroup_Click(object sender, EventArgs e)
+        {
+            reload_group();
         }
 
 
@@ -38,7 +45,7 @@ namespace thepos._9SysAdmin
         {
             lvwGoodsList.Items.Clear();
 
-            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShopCode;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + myShopCode;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -52,23 +59,28 @@ namespace thepos._9SysAdmin
                         lvItem.Text = get_shop_name(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
                         lvItem.SubItems.Add(arr[i]["amt"].ToString());
-                        lvItem.SubItems.Add(arr[i]["soldout"].ToString());
-                        lvItem.Tag = arr[i]["goodsCode"].ToString();
 
-                        if (arr[i]["soldout"].ToString() == "Y")
+                        String t_soldout = arr[i]["soldout"].ToString();
+                        if (t_soldout == "Y")
                         {
-                            lvItem.ForeColor = Color.Gray;
-                            lvItem.SubItems[1].ForeColor = Color.Gray;
-                            lvItem.SubItems[2].ForeColor = Color.Gray;
-                            lvItem.SubItems[3].ForeColor = Color.Gray;
+                            lvItem.SubItems.Add("Y");
                         }
                         else
                         {
-                            lvItem.ForeColor = Color.Blue;
-                            lvItem.SubItems[1].ForeColor = Color.Blue;
-                            lvItem.SubItems[2].ForeColor = Color.Blue;
-                            lvItem.SubItems[3].ForeColor = Color.Blue;
+                            lvItem.SubItems.Add("");
                         }
+
+                        String t_cutout = arr[i]["cutout"].ToString();
+                        if (t_cutout == "Y")
+                        {
+                            lvItem.SubItems.Add("Y");
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add("");
+                        }
+
+                        lvItem.Tag = arr[i]["goodsCode"].ToString();
 
                         lvwGoodsList.Items.Add(lvItem);
 
@@ -92,68 +104,62 @@ namespace thepos._9SysAdmin
         {
             lvwGroupList.Items.Clear();
 
-
-            for (int pos_idx = 0; pos_idx < mPosNoList.Length; pos_idx++)
+            if (cbPosNo.SelectedIndex < 0)
             {
-                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNoList[pos_idx];
+                return;
+            }
 
-                if (mRequestGet(sUrl))
+
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNoList[cbPosNo.SelectedIndex];
+
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
                 {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["goodsGroups"].ToString();
-                        JArray arr = JArray.Parse(data);
+                    String data = mObj["goodsGroups"].ToString();
+                    JArray arr = JArray.Parse(data);
 
-                        for (int i = 0; i < arr.Count; i++)
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Text = mPosNoList[cbPosNo.SelectedIndex];
+                        lvItem.SubItems.Add(arr[i]["groupName"].ToString());
+
+                        if (arr[i]["soldout"].ToString() == "Y")
                         {
-                            ListViewItem lvItem = new ListViewItem();
-                            lvItem.Text = mPosNoList[pos_idx];
-                            lvItem.SubItems.Add(arr[i]["groupName"].ToString());
-
-                            if (arr[i]["soldout"].ToString() == "Y")
-                            {
-                                lvItem.SubItems.Add("Y");
-                            }
-                            else
-                            {
-                                lvItem.SubItems.Add("");
-                            }
-                            
-                            lvItem.Tag = arr[i]["groupCode"].ToString();
-
-
-                            if (arr[i]["soldout"].ToString() == "Y")
-                            {
-                                lvItem.ForeColor = Color.Gray;
-                                lvItem.SubItems[1].ForeColor = Color.Gray;
-                                lvItem.SubItems[2].ForeColor = Color.Gray;
-                            }
-                            else
-                            {
-                                lvItem.ForeColor = Color.Blue;
-                                lvItem.SubItems[1].ForeColor = Color.Blue;
-                                lvItem.SubItems[2].ForeColor = Color.Blue;
-                            }
-
-
-
-                            lvwGroupList.Items.Add(lvItem);
-
+                            lvItem.SubItems.Add("Y");
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
+                        else
+                        {
+                            lvItem.SubItems.Add("");
+                        }
+
+                        if (arr[i]["cutout"].ToString() == "Y")
+                        {
+                            lvItem.SubItems.Add("Y");
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add("");
+                        }
+
+                        lvItem.Tag = arr[i]["groupCode"].ToString();
+
+                        lvwGroupList.Items.Add(lvItem);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    MessageBox.Show("상품그룹정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
-
             }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+
         }
 
         private void lvwGoodsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,6 +167,7 @@ namespace thepos._9SysAdmin
             if (lvwGoodsList.SelectedItems.Count == 0)
             {
                 cbGoodsSoldout.Checked = false;
+                cbGoodsCutout.Checked = false;
                 return; 
             }
 
@@ -173,11 +180,49 @@ namespace thepos._9SysAdmin
                 cbGoodsSoldout.Checked = false;
             }
 
+            if (lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_cutout)].Text == "Y")
+            {
+                cbGoodsCutout.Checked = true;
+            }
+            else
+            {
+                cbGoodsCutout.Checked = false;
+            }
         }
+
+        private void lvwGroupList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvwGroupList.SelectedItems.Count == 0)
+            {
+                cbGroupSoldout.Checked = false;
+                cbGroupCutout.Checked = false;
+                return;
+            }
+
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == "Y")
+            {
+                cbGroupSoldout.Checked = true;
+            }
+            else
+            {
+                cbGroupSoldout.Checked = false;
+            }
+
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text == "Y")
+            {
+                cbGroupCutout.Checked = true;
+            }
+            else
+            {
+                cbGroupCutout.Checked = false;
+            }
+        }
+
 
         private void btnGoodsUpdate_Click(object sender, EventArgs e)
         {
             String t_soldout = "";
+            String t_cutout = "";
 
             if (cbGoodsSoldout.Checked == true)
             {
@@ -188,7 +233,17 @@ namespace thepos._9SysAdmin
                 t_soldout = "";
             }
 
-            if (lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_soldout)].Text == t_soldout)
+            if (cbGoodsCutout.Checked == true)
+            {
+                t_cutout = "Y";
+            }
+            else
+            {
+                t_cutout = "";
+            }
+
+            if (lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_soldout)].Text == t_soldout & 
+                lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_cutout)].Text == t_cutout)
             {
                 return;
             }
@@ -198,6 +253,7 @@ namespace thepos._9SysAdmin
             parameters["siteId"] = mSiteId;
             parameters["goodsCode"] = lvwGoodsList.SelectedItems[0].Tag.ToString();
             parameters["soldout"] = t_soldout;
+            parameters["cutout"] = t_cutout;
 
             if (mRequestPatch("goods", parameters))
             {
@@ -205,21 +261,7 @@ namespace thepos._9SysAdmin
                 {
                     // 화면 업데이트 -> 전체 reload하지 않는다...
                     lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_soldout)].Text = t_soldout;
-
-                    if (t_soldout == "Y")
-                    {
-                        lvwGoodsList.SelectedItems[0].ForeColor = Color.Gray;
-                        lvwGoodsList.SelectedItems[0].SubItems[1].ForeColor = Color.Gray;
-                        lvwGoodsList.SelectedItems[0].SubItems[2].ForeColor = Color.Gray;
-                        lvwGoodsList.SelectedItems[0].SubItems[3].ForeColor = Color.Gray;
-                    }
-                    else
-                    {
-                        lvwGoodsList.SelectedItems[0].ForeColor = Color.Blue;
-                        lvwGoodsList.SelectedItems[0].SubItems[1].ForeColor = Color.Blue;
-                        lvwGoodsList.SelectedItems[0].SubItems[2].ForeColor = Color.Blue;
-                        lvwGoodsList.SelectedItems[0].SubItems[3].ForeColor = Color.Blue;
-                    }
+                    lvwGoodsList.SelectedItems[0].SubItems[lvwGoodsList.Columns.IndexOf(goods_cutout)].Text = t_cutout;
                 }
                 else
                 {
@@ -235,27 +277,12 @@ namespace thepos._9SysAdmin
 
         }
 
-        private void lvwGroupList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvwGroupList.SelectedItems.Count == 0)
-            {
-                cbGoodsSoldout.Checked = false;
-                return;
-            }
 
-            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == "Y")
-            {
-                cbGroupSoldout.Checked = true;
-            }
-            else
-            {
-                cbGroupSoldout.Checked = false;
-            }
-        }
 
         private void btnGroupUpdate_Click(object sender, EventArgs e)
         {
             String t_soldout = "";
+            String t_cutout = "";
 
             if (cbGroupSoldout.Checked == true)
             {
@@ -266,7 +293,17 @@ namespace thepos._9SysAdmin
                 t_soldout = "";
             }
 
-            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == t_soldout)
+            if (cbGroupCutout.Checked == true)
+            {
+                t_cutout = "Y";
+            }
+            else
+            {
+                t_cutout = "";
+            }
+
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == t_soldout &
+                lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text == t_cutout)
             {
                 return;
             }
@@ -277,6 +314,7 @@ namespace thepos._9SysAdmin
             parameters["posNo"] = lvwGroupList.SelectedItems[0].Text;
             parameters["groupCode"] = lvwGroupList.SelectedItems[0].Tag.ToString();
             parameters["soldout"] = t_soldout;
+            parameters["cutout"] = t_cutout;
 
             if (mRequestPatch("goodsGroup", parameters))
             {
@@ -284,19 +322,7 @@ namespace thepos._9SysAdmin
                 {
                     // 화면 업데이트 -> 전체 reload하지 않는다...
                     lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text = t_soldout;
-
-                    if (t_soldout == "Y")
-                    {
-                        lvwGroupList.SelectedItems[0].ForeColor = Color.Gray;
-                        lvwGroupList.SelectedItems[0].SubItems[1].ForeColor = Color.Gray;
-                        lvwGroupList.SelectedItems[0].SubItems[2].ForeColor = Color.Gray;
-                    }
-                    else
-                    {
-                        lvwGroupList.SelectedItems[0].ForeColor = Color.Blue;
-                        lvwGroupList.SelectedItems[0].SubItems[1].ForeColor = Color.Blue;
-                        lvwGroupList.SelectedItems[0].SubItems[2].ForeColor = Color.Blue;
-                    }
+                    lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text = t_cutout;
                 }
                 else
                 {

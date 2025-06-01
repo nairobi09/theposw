@@ -147,5 +147,6 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
     }
 }

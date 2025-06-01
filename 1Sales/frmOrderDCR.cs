@@ -210,7 +210,7 @@ namespace thepos
                 orderItem.goods_name = e_dcr_name;
                 orderItem.option_name_description = description_name;
 
-                orderItem.shop_code = mShopCode;  //  포스 업장코드
+                orderItem.shop_code = myShopCode;  //  포스 업장코드
 
 
 

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static thepos.thePos;
 
 namespace theposw
 {
@@ -19,11 +21,12 @@ namespace theposw
 
 
         // BIXOLON
-        public void print_ticket(String port, int baudrate)
+        public void print_ticket_2502(String t_ticket_no, String t_date, String t_time, String t_goods_code, String t_goods_name, int t_goods_cnt, int t_goods_amt, String t_coupon_no)
         {
             //
-            if (!ConnectPrinter(port, baudrate))
+            if (!ConnectPrinter(mTicketPrinterPort, 0))
                 return;
+
 
             int multiplier = 1;
             // 203 DPI : 1mm is about 7.99 dots
@@ -48,10 +51,10 @@ namespace theposw
             //  P8 : Underline
             //  P9 : RLE (Run-length encoding)
             //BXLLApi.PrintTrueFontLib(2 * dotsPer1mm, 5 * dotsPer1mm, "Arial", 14, 0, true, true, false, "Sample Label-1", false);
-            BXLLApi.PrintTrueFont(2 * dotsPer1mm, 5 * dotsPer1mm, "Arial", 14, 0, true, true, false, "Sample Label-1", false);
+            //BXLLApi.PrintTrueFont(2 * dotsPer1mm, 1 * dotsPer1mm, "Arial", 14, 3, true, true, false, "Sample Label-1", false);
 
             //	Draw Lines
-            BXLLApi.PrintBlock(1 * dotsPer1mm, 10 * dotsPer1mm, 71 * dotsPer1mm, 11 * dotsPer1mm, (int)SLCS_BLOCK_OPTION.LINE_OVER_WRITING, 0);
+            //BXLLApi.PrintBlock(1 * dotsPer1mm, 10 * dotsPer1mm, 71 * dotsPer1mm, 11 * dotsPer1mm, (int)SLCS_BLOCK_OPTION.LINE_OVER_WRITING, 0);
 
             //Print string using Vector Font
             //  P1 : Horizontal position (X) [dot]
@@ -78,18 +81,33 @@ namespace theposw
             // ※ : Third parameter, 'ASCII' must be set if Bixolon printer is SLP-T400, SLP-T403, SRP-770 and SRP-770II.
             //BXLLApi.PrintVectorFont(22, 65, "U", 34, 34, "0", false, false, false, (int)SLCS_ROTATION.ROTATE_0, SLCS_FONT_ALIGNMENT.LEFTALIGN.ToString(), (int)SLCS_FONT_DIRECTION.LEFTTORIGHT, "Sample Label-2");
 
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 12 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_24X38, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "SHIP TO:");
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 17 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_19X30, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, true, "BIXOLON");
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 21 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_16X25, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "7th FL, MiraeAsset Venture Tower,");
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 24 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_16X25, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "685, Sampyeong-dong, Bundang-gu,");
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 27 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_16X25, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "Seongnam-si, Gyeonggi-do,");
-            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 30 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_16X25, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "463-400, KOREA");
 
-            BXLLApi.PrintDeviceFont(3 * dotsPer1mm, 36 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_12X20, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "POSTAL CODE");
-            BXLLApi.Print1DBarcode(3 * dotsPer1mm, 40 * dotsPer1mm, (int)SLCS_BARCODE.CODE39, 4 * multiplier, 6 * multiplier, 48 * multiplier, (int)SLCS_ROTATION.ROTATE_0, (int)SLCS_HRI.HRI_NOT_PRINT, "1234567890");
 
-            BXLLApi.PrintDeviceFont(3 * dotsPer1mm, 50 * dotsPer1mm, (int)SLCS_DEVICE_FONT.ENG_12X20, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_0, false, "AWB:");
-            BXLLApi.Print1DBarcode(3 * dotsPer1mm, 53 * dotsPer1mm, (int)SLCS_BARCODE.CODE93, 4 * multiplier, 8 * multiplier, 90 * multiplier, (int)SLCS_ROTATION.ROTATE_0, (int)SLCS_HRI.HRI_NOT_PRINT, "8741493121");
+            DateTime date;
+            string weekdayKorean = "";
+
+            if (DateTime.TryParseExact(t_date, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            {
+                weekdayKorean = date.ToString("dddd", new CultureInfo("ko-KR"));
+            }
+            else
+            {
+            }
+
+
+            String str_date = t_date.Substring(2,2) + "-" + t_date.Substring(4,2) + "-" + t_date.Substring(6, 2) + " " + weekdayKorean;
+            String str_goods_name = t_goods_name;
+            String str_amt = t_goods_amt.ToString("N0");
+
+
+            BXLLApi.PrintDeviceFont(2 * dotsPer1mm, 245 * dotsPer1mm, (int)SLCS_DEVICE_FONT.KOR_24X24, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_270, true, "입장권 (Ticket)");
+            BXLLApi.PrintDeviceFont(6 * dotsPer1mm, 245 * dotsPer1mm, (int)SLCS_DEVICE_FONT.KOR_38X38, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_270, true, str_date);
+            BXLLApi.PrintDeviceFont(12 * dotsPer1mm, 245 * dotsPer1mm, (int)SLCS_DEVICE_FONT.KOR_24X24, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_270, false, str_goods_name);
+            BXLLApi.PrintDeviceFont(15 * dotsPer1mm, 245 * dotsPer1mm, (int)SLCS_DEVICE_FONT.KOR_24X24, multiplier, multiplier, (int)SLCS_ROTATION.ROTATE_270, false, str_amt);
+
+            BXLLApi.Print1DBarcode(3 * dotsPer1mm, 200 * dotsPer1mm, (int)SLCS_BARCODE.CODE128, 2 * multiplier, 5 * multiplier, 100 * multiplier, (int)SLCS_ROTATION.ROTATE_270, (int)SLCS_HRI.HRI_BELOW_SIZE2, t_ticket_no);
+
+
 
             //	Print Command
             BXLLApi.Prints(1, 1);
@@ -143,17 +161,17 @@ namespace theposw
             // 300 DPI : 1mm is about 11.81 dots
             // 600 DPI : 1mm is about 23.62 dots
             int dotsPer1mm = (int)Math.Round((float)BXLLApi.GetPrinterDPI() / 25.4f);
-            int nPaper_Width = 60 * dotsPer1mm;
-            int nPaper_Height = 200 * dotsPer1mm;
-            int nMarginX = 5 * dotsPer1mm;
-            int nMarginY = 5 * dotsPer1mm;
+            int nPaper_Width = 20 * dotsPer1mm;
+            int nPaper_Height = 245 * dotsPer1mm;
+            int nMarginX = 0 * dotsPer1mm;
+            int nMarginY = 0 * dotsPer1mm;
             int nSpeed = (int)SLCS_PRINT_SPEED.PRINTER_SETTING_SPEED;
             int nDensity = 14;
             int nOrientation = (int)SLCS_ORIENTATION.TOP2BOTTOM; // : (int)SLCS_ORIENTATION.BOTTOM2TOP;
 
             //int nSensorType = (int)SLCS_MEDIA_TYPE.GAP;
-            //int nSensorType = (int)SLCS_MEDIA_TYPE.BLACKMARK;
-            int nSensorType = (int)SLCS_MEDIA_TYPE.CONTINUOUS;
+            int nSensorType = (int)SLCS_MEDIA_TYPE.BLACKMARK;
+            //int nSensorType = (int)SLCS_MEDIA_TYPE.CONTINUOUS;
 
             //	Clear Buffer of Printer
             BXLLApi.ClearBuffer();

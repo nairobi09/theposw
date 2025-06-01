@@ -771,7 +771,7 @@ namespace thepos
                             Dictionary<string, string> param = new Dictionary<string, string>();
                             param.Clear();
                             param["siteId"] = mSiteId;
-                            param["posNo"] = mPosNo;
+                            param["posNo"] = myPosNo;
                             param["bizDt"] = mBizDate;
                             param["theNo"] = arr[0]["theNo"].ToString();
                             param["refNo"] = arr[0]["refNo"].ToString();

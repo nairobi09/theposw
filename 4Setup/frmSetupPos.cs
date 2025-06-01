@@ -13,6 +13,7 @@ using static thepos.thePos;
 using static thepos.frmMain;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
+using theposw;
 
 
 //? 포스별 설정 항목
@@ -100,7 +101,7 @@ namespace thepos
             lvwList.HideSelection = true;
 
             lblSiteName.Text = mSiteAlias;
-            lblPosNo.Text = mPosNo;
+            lblPosNo.Text = myPosNo;
 
         }
 
@@ -108,7 +109,7 @@ namespace thepos
         private void reload_setup_pos()
         {
 
-            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + mPosNo;
+            String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + myPosNo;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -203,7 +204,8 @@ namespace thepos
 
                 cbValue.Items.Clear();
                 cbValue.Items.Add(" ");  // 출력없음
-                cbValue.Items.Add("알림톡");  // 알림톡
+                cbValue.Items.Add("알림톡-필수");  // 알림톡
+                cbValue.Items.Add("알림톡-선택");  // 알림톡
             }
             else if (code == listSetup[3].code)  // 인쇄 교환권
             {
@@ -320,7 +322,7 @@ namespace thepos
                     Dictionary<string, string> parameters = new Dictionary<string, string>();
 
                     parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mPosNo;
+                    parameters["posNo"] = myPosNo;
                     parameters["setupCode"] = lvwList.Items[i].Tag.ToString();
                     parameters["setupName"] = lvwList.Items[i].Text;
 
@@ -440,5 +442,6 @@ namespace thepos
         {
             thepos_app_log(1, this.Name, "close", "");
         }
+
     }
 }

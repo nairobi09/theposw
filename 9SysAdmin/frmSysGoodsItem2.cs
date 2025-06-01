@@ -87,6 +87,12 @@ namespace thepos._9SysAdmin
         {
             String tTicket, tTaxFree = "";
 
+            if (cbShopView.SelectedIndex == -1)
+            {
+                return;
+            }
+
+
             String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
 
             if (mRequestGet(sUrl))

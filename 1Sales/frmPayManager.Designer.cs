@@ -39,7 +39,6 @@
             this.btnPrintOrder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl1 = new System.Windows.Forms.Label();
             this.dtBizDt = new System.Windows.Forms.DateTimePicker();
             this.tbTheNo = new System.Windows.Forms.TextBox();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
@@ -182,58 +181,46 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.lbl1);
             this.panel1.Controls.Add(this.dtBizDt);
             this.panel1.Controls.Add(this.tbTheNo);
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lbl2);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(4, 51);
+            this.panel1.Location = new System.Drawing.Point(5, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(512, 67);
+            this.panel1.Size = new System.Drawing.Size(512, 50);
             this.panel1.TabIndex = 77;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
-            this.pictureBox1.Location = new System.Drawing.Point(194, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(203, 15);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 77;
             this.pictureBox1.TabStop = false;
             // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(12, 13);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(53, 12);
-            this.lbl1.TabIndex = 71;
-            this.lbl1.Text = "영업일자";
-            // 
             // dtBizDt
             // 
             this.dtBizDt.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtBizDt.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBizDt.Location = new System.Drawing.Point(14, 30);
+            this.dtBizDt.Location = new System.Drawing.Point(8, 14);
             this.dtBizDt.Name = "dtBizDt";
-            this.dtBizDt.Size = new System.Drawing.Size(100, 23);
+            this.dtBizDt.Size = new System.Drawing.Size(94, 23);
             this.dtBizDt.TabIndex = 68;
             this.dtBizDt.TabStop = false;
             this.dtBizDt.Value = new System.DateTime(2023, 5, 19, 0, 0, 0, 0);
             // 
             // tbTheNo
             // 
-            this.tbTheNo.BackColor = System.Drawing.Color.White;
+            this.tbTheNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbTheNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTheNo.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbTheNo.Location = new System.Drawing.Point(192, 29);
+            this.tbTheNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.tbTheNo.Location = new System.Drawing.Point(231, 13);
             this.tbTheNo.Name = "tbTheNo";
-            this.tbTheNo.Size = new System.Drawing.Size(173, 24);
+            this.tbTheNo.Size = new System.Drawing.Size(165, 23);
             this.tbTheNo.TabIndex = 0;
             this.tbTheNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTheNo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbTheNo_KeyUp);
@@ -249,7 +236,7 @@
             "01",
             "02",
             "03"});
-            this.cbPosNo.Location = new System.Drawing.Point(124, 30);
+            this.cbPosNo.Location = new System.Drawing.Point(140, 15);
             this.cbPosNo.Name = "cbPosNo";
             this.cbPosNo.Size = new System.Drawing.Size(50, 21);
             this.cbPosNo.TabIndex = 73;
@@ -260,20 +247,20 @@
             this.lbl2.AutoSize = true;
             this.lbl2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl2.Location = new System.Drawing.Point(121, 13);
+            this.lbl2.Location = new System.Drawing.Point(110, 20);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(53, 12);
+            this.lbl2.Size = new System.Drawing.Size(29, 12);
             this.lbl2.TabIndex = 69;
-            this.lbl2.Text = "포스번호";
+            this.lbl2.Text = "포스";
             // 
             // btnView
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(392, 13);
+            this.btnView.Location = new System.Drawing.Point(404, 10);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 40);
+            this.btnView.Size = new System.Drawing.Size(100, 30);
             this.btnView.TabIndex = 72;
             this.btnView.TabStop = false;
             this.btnView.Text = "조회";
@@ -360,10 +347,10 @@
             this.lvwPayManager.FullRowSelect = true;
             this.lvwPayManager.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPayManager.HideSelection = false;
-            this.lvwPayManager.Location = new System.Drawing.Point(4, 124);
+            this.lvwPayManager.Location = new System.Drawing.Point(4, 107);
             this.lvwPayManager.MultiSelect = false;
             this.lvwPayManager.Name = "lvwPayManager";
-            this.lvwPayManager.Size = new System.Drawing.Size(512, 342);
+            this.lvwPayManager.Size = new System.Drawing.Size(512, 359);
             this.lvwPayManager.TabIndex = 44;
             this.lvwPayManager.UseCompatibleStateImageBehavior = false;
             this.lvwPayManager.View = System.Windows.Forms.View.Details;
@@ -476,7 +463,6 @@
         private System.Windows.Forms.ColumnHeader cancel_name;
         private System.Windows.Forms.ColumnHeader order_dt;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.DateTimePicker dtBizDt;
         private System.Windows.Forms.TextBox tbTheNo;
         private System.Windows.Forms.ComboBox cbPosNo;

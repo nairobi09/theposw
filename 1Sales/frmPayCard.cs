@@ -189,7 +189,7 @@ namespace thepos
             PaymentCard mPaymentCard = new PaymentCard();
             mPaymentCard.site_id = mSiteId;
             mPaymentCard.biz_dt = mBizDate;
-            mPaymentCard.pos_no = mPosNo;
+            mPaymentCard.pos_no = myPosNo;
             mPaymentCard.the_no = mTheNo;
             mPaymentCard.ref_no = mRefNo;
 
@@ -473,7 +473,7 @@ namespace thepos
                 // 서버저장 paymentCard
                 mPaymentCard.site_id = mSiteId;
                 mPaymentCard.biz_dt = mBizDate;
-                mPaymentCard.pos_no = mPosNo;
+                mPaymentCard.pos_no = myPosNo;
                 mPaymentCard.the_no = mTheNo;
                 mPaymentCard.ref_no = mRefNo;
 

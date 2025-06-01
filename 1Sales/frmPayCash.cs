@@ -80,6 +80,9 @@ namespace thepos
 
             if (mPayClass == "OR")
             {
+                //??
+                // add_job 관련
+
 
             }
             else if (mPayClass == "CH")
@@ -125,11 +128,7 @@ namespace thepos
 
             if (paySeq == 1)
             {
-
                 set_shop_order_no_on_orderitem(out dcAmount);
-
-
-
 
                 if (mPayClass == "ST")
                 {
@@ -160,7 +159,7 @@ namespace thepos
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.site_id = mSiteId;
             mPaymentCash.biz_dt = mBizDate;
-            mPaymentCash.pos_no = mPosNo;
+            mPaymentCash.pos_no = myPosNo;
             mPaymentCash.the_no = mTheNo;
             mPaymentCash.ref_no = mRefNo; // 
 
@@ -445,7 +444,7 @@ namespace thepos
 
                 paymentCash.site_id = mSiteId;
                 paymentCash.biz_dt = mBizDate;
-                paymentCash.pos_no = mPosNo;
+                paymentCash.pos_no = myPosNo;
                 paymentCash.the_no = mTheNo;
                 paymentCash.ref_no = mRefNo;
 

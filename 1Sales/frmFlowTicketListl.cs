@@ -17,21 +17,13 @@ using thepos;
 
 namespace theposw._1Sales
 {
-    public partial class frmFlowTicketListl : Form
+    public partial class frmFlowTicketList : Form
     {
-
-
-        // ☑ ☐  𐠮
-
-
-
-
-
         String this_biz_date;
         String the_no;
 
 
-        public frmFlowTicketListl(String this_biz_date, String the_no)
+        public frmFlowTicketList(String this_biz_date, String the_no)
         {
             this.this_biz_date = this_biz_date;
             this.the_no = the_no;
@@ -116,16 +108,17 @@ namespace theposw._1Sales
                         String exit_dt = arr[i]["exitDt"].ToString();
                         String goods_code = arr[i]["goodsCode"].ToString();
                         int gap_mm = 0;
+                        int ot_mm = 0;
 
 
                         // ■ 𖡖 ▶ ▷ ↺ ↻ ↻ ↺ ⟳ ⟲
 
-                             if (tStat == "0") tStatName = "▷ 발권";
+                        if (tStat == "0") tStatName = "▷ 발권";
                         else if (tStat == "1") tStatName = "▶ 입장";
                         else if (tStat == "2") tStatName = "▶ 충전";
                         else if (tStat == "3") tStatName = "▶ 사용";
                         else if (tStat == "4") tStatName = "■ 퇴장";
-                        else if (tStat == "9") tStatName = "□ 퇴장";
+                        else if (tStat == "9") tStatName = "□ 완료";
                         else                   tStatName = tStat;
 
                         //
@@ -154,17 +147,19 @@ namespace theposw._1Sales
                             item.SubItems.Add(expect_exit_dt.Substring(8, 2) + ":" + expect_exit_dt.Substring(10, 2));
 
                             // 경과
-                            DateTime dt1 = DateTime.ParseExact(now_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-                            DateTime dt2 = DateTime.ParseExact(expect_exit_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                            DateTime dt_curr = DateTime.ParseExact(now_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-                            // 시간 차이 계산
-                            TimeSpan diff = dt2 - dt1;
+                            DateTime dt_entry = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-                            // hh:mm 형식으로 출력
-                            gap_mm = (int)diff.TotalMinutes;
+                            DateTime dt_exit = DateTime.ParseExact(expect_exit_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
-                            if (gap_mm > 0)
+
+                            if (dt_curr < dt_exit)
                             {
+                                // 남음
+                                TimeSpan diff = dt_exit - dt_curr;
+                                gap_mm = (int)diff.TotalMinutes;
+
                                 item.SubItems.Add(gap_mm + "분 남음");
                                 item.ForeColor = Color.Blue;
 
@@ -173,31 +168,25 @@ namespace theposw._1Sales
                             }
                             else
                             {
-                                // 음수라 절대값으로
-                                gap_mm = Math.Abs(gap_mm);
+                                // 지남
+                                TimeSpan diff = dt_curr - dt_entry;
+                                gap_mm = (int)diff.TotalMinutes;
+
+                                diff = dt_curr - dt_exit;
+                                ot_mm = (int)diff.TotalMinutes;
 
 
-                                item.SubItems.Add(gap_mm + "분 지남");
+                                item.SubItems.Add(ot_mm + "분 지남");
                                 item.ForeColor = Color.Red;
 
-                                //
-                                int n_available_minute = get_goods_available_minute(goods_code);
-                                int ot_mm = gap_mm - n_available_minute;
+                                n_ot_cnt = get_ot_cnt(gap_mm, goods_code);
+                                n_ot_amt = get_ot_amt(goods_code);
+                                n_ot_amount = n_ot_cnt * n_ot_amt;
 
-                                //추가금액
-                                if (ot_mm > 0)
-                                {
-                                    n_ot_cnt = get_ot_cnt(gap_mm, goods_code);
-                                    n_ot_amt = get_ot_amt(goods_code);
-                                    n_ot_amount = n_ot_cnt * n_ot_amt;
+                                item.SubItems.Add(n_ot_amount.ToString("N0"));
 
-                                    item.SubItems.Add(n_ot_amount.ToString("N0"));
-                                }
-                                else
-                                {
-                                    item.SubItems.Add("");
-                                }
                             }
+
 
                         }
                         else if (tStat == "4")  // 퇴장
@@ -216,7 +205,7 @@ namespace theposw._1Sales
 
                             //
                             int n_available_minute = get_goods_available_minute(goods_code);
-                            int ot_mm = gap_mm - n_available_minute;
+                            ot_mm = gap_mm - n_available_minute;
 
 
                             if (ot_mm > 0)
@@ -298,6 +287,16 @@ namespace theposw._1Sales
                 return;
             }
 
+            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
+            {
+                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "0")
+                {
+                    MessageBox.Show("선택한 항목중에 입장처리를 할 수 없는 건이 포함되어있습니다.", "thepos");
+                    return;
+                }
+            }
+
+
             //
             String ticket_input_dt = "";
 
@@ -356,6 +355,18 @@ namespace theposw._1Sales
                 return;
             }
 
+            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
+            {
+                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "0" &
+                    lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "1" &
+                    lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "2" &
+                    lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "3")
+                {
+                    MessageBox.Show("선택한 항목중에 퇴장처리를 할 수 없는 건이 포함되어있습니다.", "thepos");
+                    return;
+                }
+            }
+
 
             //
             String ticket_input_dt = "";
@@ -403,15 +414,19 @@ namespace theposw._1Sales
                     if (mObj["resultCode"].ToString() == "200")
                     {
                         //
+                        thepos_app_log(1, this.Name, "퇴장", parameters["ticketNo"] +  " -> " + parameters["flowStep"]);
+
                     }
                     else
                     {
+                        thepos_app_log(3, this.Name, "mRequestPatch", "티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString());
                         MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
                 else
                 {
+                    thepos_app_log(3, this.Name, "mRequestPatch", "시스템오류. ticketFlow\n\n" + mErrorMsg);
                     MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
                     return;
                 }
@@ -436,15 +451,26 @@ namespace theposw._1Sales
             {
                 if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "4")
                 {
+                    MessageBox.Show("선택한 항목중에 결제주문를 할 수 없는 건이 포함되어있습니다.", "thepos");
+                    return;
+                }
+            }
+
+
+
+            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
+            {
+                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "4")
+                {
                     continue;
                 }
 
                 MemOrderItem orderItem = new MemOrderItem();
 
-                orderItem.cnt = int.Parse(lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ot_cnt)].Text);
-                orderItem.amt = int.Parse(lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ot_amt)].Text);
+                int t_cnt = int.Parse(lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ot_cnt)].Text);
+                int t_amt = int.Parse(lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ot_amt)].Text);
 
-                if (orderItem.cnt * orderItem.amt == 0)
+                if (t_cnt * t_amt == 0)
                 {
                     continue;
                 }
@@ -466,6 +492,9 @@ namespace theposw._1Sales
                     continue;
                 }
 
+
+                orderItem.cnt = 1;
+                orderItem.amt = t_cnt * t_amt;
 
                 //
                 mOrderOptionItemList.Clear();
@@ -513,12 +542,14 @@ namespace theposw._1Sales
                 {
                     recalculate_dcr_e_dc_amount(mLvwOrderItem.Items.Count - 1);
                 }
+
+                //
+                thepos_app_log(1, this.Name, "결제주문", "no=" + orderItem.ticket_no + " cnt=" + orderItem.cnt + "amt=" + orderItem.amt);
+
             }
 
             ReCalculateAmount();
 
-            //
-            Close();
         }
 
 
@@ -585,6 +616,7 @@ namespace theposw._1Sales
 
                 if (target_idx == -1)
                 {
+                    thepos_app_log(3, this.Name, "할인적용", "오류. selected_ticket_no=" + selected_ticket_no);
                     MessageBox.Show("할인적용 오류.", "thepos");
                     return;
                 }
@@ -604,7 +636,10 @@ namespace theposw._1Sales
                 mLvwOrderItem.Items[target_idx].Selected = true;
 
                 ReCalculateAmount();
-                
+
+                thepos_app_log(1, this.Name, "할인", "선택 dcr_des=" + orderItem.dcr_des + " dcr_type=" + orderItem.dcr_type + " dcr_value=" + orderItem.dcr_value);
+
+
 
             }
             else if (des == "E")  // 전체할인
@@ -675,8 +710,7 @@ namespace theposw._1Sales
                 orderItem.goods_name = e_dcr_name;
                 orderItem.option_name_description = description_name;
 
-                orderItem.shop_code = mShopCode;  //  포스 업장코드
-
+                orderItem.shop_code = myShopCode;  //  포스 업장코드
 
 
 
@@ -702,18 +736,51 @@ namespace theposw._1Sales
                     mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].Selected = true;
 
                     //? 전체할인항목을 맨아래 추가후 -> 이후에도 맨아래줄을 유지할 수 있는 방안 필요.
-
-
                 }
 
                 ReCalculateAmount();
+
+                //
+                thepos_app_log(1, this.Name, "할인", "전체 dcr_des = " + orderItem.dcr_des + " dcr_type = " + orderItem.dcr_type + " dcr_value = " + orderItem.dcr_value);
             }
+        }
 
 
 
+        private void btnDCCancel_Click(object sender, EventArgs e)
+        {
+            //할인취소
+            for (int i = 0; i < mOrderItemList.Count; i++)
+            {
+                MemOrderItem orderItem = mOrderItemList[i];
 
+                if (orderItem.dcr_des == "S")
+                {
+                    orderItem.dcr_des = "";
+                    orderItem.dcr_type = "";
+                    orderItem.dcr_value = 0;
+                    orderItem.dc_amount = 0;
 
+                    replace_mem_order_item(ref orderItem, "update");
 
+                    mOrderItemList[i] = orderItem;
+
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    ReCalculateAmount();
+
+                    thepos_app_log(1, this.Name, "할인취소", "선택");
+                }
+                else if (orderItem.dcr_des == "E")
+                {
+                    mOrderItemList.RemoveAt(i);
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    ReCalculateAmount();
+
+                    thepos_app_log(1, this.Name, "할인취소", "전체");
+                }
+            }
         }
 
 
@@ -724,6 +791,19 @@ namespace theposw._1Sales
             {
                 return;
             }
+
+
+            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
+            {
+                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "4")
+                {
+                    MessageBox.Show("선택한 항목중에 완료처리를 할 수 없는 건이 포함되어있습니다.", "thepos");
+                    return;
+                }
+            }
+
+
+
 
             //
             String ticket_input_dt = "";
@@ -778,7 +858,7 @@ namespace theposw._1Sales
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (lvwList.SelectedItems.Count < 1)
+            if (lvwList.CheckedItems.Count != 1)
             {
                 return;
             }
@@ -786,14 +866,20 @@ namespace theposw._1Sales
 
             if (mTicketMedia == "BC")  // 써멀|영수증
             {
-                String ticket_no = lvwList.SelectedItems[0].Tag.ToString();
-                String goods_code = lvwList.SelectedItems[0].SubItems[5].Text.ToString();
+                String t_ticket_no = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text.ToString();
+                String t_goods_code = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_code)].Text.ToString();
 
-                print_bill_ticket(ticket_no, goods_code, 1, "");
+                print_bill_ticket(t_ticket_no, t_goods_code, 1, "");
             }
             else if (mTicketMedia == "TG")  // 전용|띠지
             {
-                // 
+                String t_ticket_no = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text.ToString();
+                String t_goods_code = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_code)].Text.ToString();
+                String t_goods_name = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_name)].Text.ToString();
+                String t_datetime = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(entry_dt)].Text.ToString();
+
+                print_label_ticket(t_ticket_no, t_datetime.Substring(0,8), t_datetime.Substring(8, 6), t_goods_code, t_goods_name, 1, 0, "");
+
             }
             else if (mTicketMedia == "RF")  // 팔찌|RF[예정]
             {
@@ -910,11 +996,13 @@ namespace theposw._1Sales
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            thepos_app_log(1, this.Name, "close", "1");
             this.Close();
         }
 
         private void btnClose2_Click(object sender, EventArgs e)
         {
+            thepos_app_log(1, this.Name, "close", "2");
             this.Close();
         }
 

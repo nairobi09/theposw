@@ -41,6 +41,7 @@
             this.cbIsCharge = new System.Windows.Forms.CheckBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblSelectedGoodsName = new System.Windows.Forms.Label();
             this.tbLinkGoodsCode = new System.Windows.Forms.TextBox();
             this.tbOtAmt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,9 +59,7 @@
             this.ot_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.link_goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnGoodsLink = new System.Windows.Forms.Button();
-            this.lblSelectedGoodsName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,6 +219,16 @@
             this.groupBox1.TabIndex = 88;
             this.groupBox1.TabStop = false;
             // 
+            // lblSelectedGoodsName
+            // 
+            this.lblSelectedGoodsName.AutoSize = true;
+            this.lblSelectedGoodsName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblSelectedGoodsName.Location = new System.Drawing.Point(28, 28);
+            this.lblSelectedGoodsName.Name = "lblSelectedGoodsName";
+            this.lblSelectedGoodsName.Size = new System.Drawing.Size(15, 14);
+            this.lblSelectedGoodsName.TabIndex = 72;
+            this.lblSelectedGoodsName.Text = "_";
+            // 
             // tbLinkGoodsCode
             // 
             this.tbLinkGoodsCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -378,22 +387,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(193, 22);
+            this.label1.Location = new System.Drawing.Point(211, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 87;
             this.label1.Text = "티켓상품";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(195, 22);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 14);
-            this.label6.TabIndex = 87;
-            this.label6.Text = "티켓상품";
             // 
             // btnGoodsLink
             // 
@@ -410,16 +408,6 @@
             this.btnGoodsLink.UseVisualStyleBackColor = false;
             this.btnGoodsLink.Click += new System.EventHandler(this.btnGoodsLink_Click);
             // 
-            // lblSelectedGoodsName
-            // 
-            this.lblSelectedGoodsName.AutoSize = true;
-            this.lblSelectedGoodsName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblSelectedGoodsName.Location = new System.Drawing.Point(28, 28);
-            this.lblSelectedGoodsName.Name = "lblSelectedGoodsName";
-            this.lblSelectedGoodsName.Size = new System.Drawing.Size(15, 14);
-            this.lblSelectedGoodsName.TabIndex = 72;
-            this.lblSelectedGoodsName.Text = "_";
-            // 
             // frmSysGoodsTicket
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -432,7 +420,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -470,7 +457,6 @@
         private System.Windows.Forms.ColumnHeader code;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ColumnHeader available_minute;
         private System.Windows.Forms.ColumnHeader is_charge;
         private System.Windows.Forms.ColumnHeader ot_free_minute;

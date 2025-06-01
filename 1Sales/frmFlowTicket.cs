@@ -7,22 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using thepos;
 using static thepos.thePos;
 using static thepos.frmSales;
-using Newtonsoft.Json.Linq;
-using thepos._9SysAdmin;
-using theposw._1Sales;
 using System.Globalization;
+using Newtonsoft.Json.Linq;
 
-namespace thepos
+namespace theposw._1Sales
 {
-
-    // ↺
-
-
     public partial class frmFlowTicket : Form
     {
         String this_biz_date = "";
+
 
         public frmFlowTicket()
         {
@@ -32,7 +28,6 @@ namespace thepos
 
             //
             thepos_app_log(1, this.Name, "Open", "");
-
         }
 
         private void initialize_the()
@@ -40,27 +35,26 @@ namespace thepos
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
-            
-            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0,4)), convert_number(mBizDate.Substring(4,2)), convert_number(mBizDate.Substring(6,2)));
 
-
-
+            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.tbTicketNo.Leave -= new System.EventHandler(this.tbTicketNo_Leave);
 
+            this.Close();
         }
 
-        private void frmFlowTicketing_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmFlowTicket_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmSales.ConsoleEnable();
 
             mPanelMiddle.Visible = false;
             mPanelMiddle.Controls.Clear();
         }
+
 
         private void btnView_Click(object sender, EventArgs e)
         {
@@ -70,17 +64,24 @@ namespace thepos
         }
 
         private void get_flow_ticket(String rTheNo)
-        { 
-
+        {
             lvwList.Items.Clear();
 
-            get_flow_ticket_4(rTheNo);
-            get_flow_ticket_0123(rTheNo);
+            if (cbTicketAll.Checked)
+            {
+                get_flow_ticket_all(rTheNo);
+            }
+            else
+            {
+                get_flow_ticket_4(rTheNo);
+                get_flow_ticket_0123(rTheNo);
+            }
+
         }
 
 
         private void get_flow_ticket_0123(String rTheNo)
-        { 
+        {
             String now_dt = get_today_date() + get_today_time();
 
             String save_the_no = "";
@@ -135,7 +136,7 @@ namespace thepos
                             save_expect_exit_dt = "20991231235959";
                             entry_cnt = 0;
                         }
-                        
+
                         //
                         save_the_no = arr[i]["theNo"].ToString();
                         entry_cnt++;
@@ -144,9 +145,9 @@ namespace thepos
                         entry_dt = arr[i]["entryDt"].ToString();
 
                         // 퇴장 예상시간
-                        string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt); 
+                        string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
 
-                        if (Int32.Parse(save_expect_exit_dt.Substring(6,8)) > Int32.Parse(expect_exit_dt.Substring(6, 8)))
+                        if (Int32.Parse(save_expect_exit_dt.Substring(6, 8)) > Int32.Parse(expect_exit_dt.Substring(6, 8)))
                         {
                             save_expect_exit_dt = expect_exit_dt;
                             entry_dt = arr[i]["entryDt"].ToString();
@@ -281,8 +282,171 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
             }
+        }
+
+        private void get_flow_ticket_all(String rTheNo)
+        {
+            String now_dt = get_today_date() + get_today_time();
+
+            String save_the_no = "";
+            int entry_cnt = 0;
+
+            String save_flow_step = "9";
+            String save_exit_dt = "20991231235959";
+            String save_expect_exit_dt = "20991231235959";
+            String entry_dt = "";
+
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + rTheNo;   // flowStep = all
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["ticketFlows"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count > 0)
+                    {
+                        save_the_no = arr[0]["theNo"].ToString();
+                    }
+
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        if (arr[i]["theNo"].ToString() != save_the_no)
+                        {
+                            ListViewItem item = new ListViewItem();
+                            item.Text = save_the_no;
+                            item.SubItems.Add(entry_cnt + "");
+                            item.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
+
+
+                            if (save_flow_step == "9")
+                            {
+                                // 퇴장시간
+                                item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                item.ForeColor = Color.Gray;  // 완료 그레이
+                            }
+                            else if (save_flow_step == "4")
+                            {
+                                // 퇴장시간
+                                item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            }
+                            else  //  save_flow_step == 0123
+                            {
+                                // 퇴장시간 계산
+                                item.SubItems.Add(save_expect_exit_dt.Substring(8, 2) + ":" + save_expect_exit_dt.Substring(10, 2));
+
+                                // 남은시간 경과시간
+                                int gap_mm = get_diff_minute(now_dt, save_expect_exit_dt);
+
+                                if (gap_mm > 0)
+                                {
+                                    item.SubItems.Add(gap_mm + "분 남음");
+                                    item.ForeColor = Color.Blue;
+                                }
+                                else
+                                {
+                                    item.SubItems.Add(Math.Abs(gap_mm) + "분 지남");
+                                    item.ForeColor = Color.Red;
+                                }
+                            }
+
+                            lvwList.Items.Add(item);
+
+                            //
+                            save_exit_dt = "20991231235959";
+                            save_expect_exit_dt = "20991231235959";
+                            entry_cnt = 0;
+                            save_flow_step = "9";
+                        }
+
+                        //
+                        save_the_no = arr[i]["theNo"].ToString();
+                        entry_cnt++;
+
+                        String goods_code = arr[i]["goodsCode"].ToString();
+                        entry_dt = arr[i]["entryDt"].ToString();
+
+
+                        if (Int32.Parse(save_flow_step) > Int32.Parse(arr[i]["flowStep"].ToString()))
+                        {
+                            save_flow_step = arr[i]["flowStep"].ToString();
+
+                            if (save_flow_step == "4" | save_flow_step == "9")
+                            {
+                                save_exit_dt = arr[i]["exitDt"].ToString();
+                            }
+                            else
+                            {
+                                // 퇴장 예상시간
+                                string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
+
+                                if (Int32.Parse(save_expect_exit_dt.Substring(6, 8)) > Int32.Parse(expect_exit_dt.Substring(6, 8)))
+                                {
+                                    save_expect_exit_dt = expect_exit_dt;
+                                    entry_dt = arr[i]["entryDt"].ToString();
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    //
+                    if (save_the_no != "")
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Text = save_the_no;
+                        item.SubItems.Add(entry_cnt + "");
+                        item.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
+
+
+                        if (save_flow_step == "9")
+                        {
+                            // 퇴장시간
+                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            item.ForeColor = Color.Gray;  // 완료 그레이
+                        }
+                        else if (save_flow_step == "4")
+                        {
+                            // 퇴장시간
+                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                        }
+                        else  //  save_flow_step == 0123
+                        {
+                            // 퇴장시간 계산
+                            item.SubItems.Add(save_expect_exit_dt.Substring(8, 2) + ":" + save_expect_exit_dt.Substring(10, 2));
+
+                            // 남은시간 경과시간
+                            int gap_mm = get_diff_minute(now_dt, save_expect_exit_dt);
+
+                            if (gap_mm > 0)
+                            {
+                                item.SubItems.Add(gap_mm + "분 남음");
+                                item.ForeColor = Color.Blue;
+                            }
+                            else
+                            {
+                                item.SubItems.Add(Math.Abs(gap_mm) + "분 지남");
+                                item.ForeColor = Color.Red;
+                            }
+                        }
+
+                        lvwList.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
+            }
 
         }
+
 
         private void btnTicketDetail_Click(object sender, EventArgs e)
         {
@@ -291,15 +455,10 @@ namespace thepos
                 return;
             }
 
+            String the_no = lvwList.SelectedItems[0].Text.Substring(0, 20);
 
-            String the_no = lvwList.SelectedItems[0].Text.Substring(0,20);
-
-
-            frmFlowTicketListl frm = new frmFlowTicketListl(this_biz_date, the_no);
+            frmFlowTicketList frm = new frmFlowTicketList(this_biz_date, the_no);
             frm.ShowDialog();
-
-
-
         }
 
         private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
@@ -317,7 +476,7 @@ namespace thepos
                 }
 
 
-                String no = tbTicketNo.Text.Substring(0,20);
+                String no = tbTicketNo.Text.Substring(0, 20);
 
                 get_flow_ticket_4(no);
                 get_flow_ticket_0123(no);
@@ -330,14 +489,13 @@ namespace thepos
 
         private void tbTicketNo_Leave(object sender, EventArgs e)
         {
-            tbTicketNo.Focus();
+            //tbTicketNo.Focus();
         }
 
         private void btnMonitor_Click(object sender, EventArgs e)
         {
             ticket_monitor();
         }
-
 
         private void ticket_monitor()
         {
@@ -396,8 +554,6 @@ namespace thepos
         }
 
 
-
-
         private int get_goods_available_minute(String goods_code)
         {
             for (int i = 0; i < mGoodsTicket.Length; i++)
@@ -414,85 +570,6 @@ namespace thepos
             return 0;
         }
 
-        private int get_ot_cnt(int gap_mm, String goods_code)
-        {
-            String is_charge = "";
-            String available_minute = "";
-            String ot_free_minute = "";
-            String ot_std_minute = "";
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    is_charge = mGoodsTicket[i].is_charge;
-                    available_minute = mGoodsTicket[i].available_minute;
-                    ot_free_minute = mGoodsTicket[i].ot_free_minute; // 일반상품 0. 티켓상품 1
-                    ot_std_minute = mGoodsTicket[i].ot_std_minute; // 과세품 0, 면세품 1
-                }
-            }
-
-            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute))
-            {
-                return 0;
-            }
-
-            int n_available_minute = Int16.Parse(available_minute);
-            int n_ot_free_minute = Int16.Parse(ot_free_minute);
-
-            //
-            if (gap_mm < n_available_minute + n_ot_free_minute)
-            {
-                return 0;
-            }
-
-            //
-            int n_ot_std_minute = Int16.Parse(ot_std_minute);
-            int real_ot_minute = gap_mm - n_available_minute - n_ot_free_minute;
-            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
-
-            return ot_cnt;
-        }
-        private int get_ot_amt(String goods_code)
-        {
-            String is_charge = "";
-            String ot_amt = "";
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    is_charge = mGoodsTicket[i].is_charge;
-                    ot_amt = mGoodsTicket[i].ot_amt;
-                }
-            }
-
-            if (is_charge != "Y" | !is_number(ot_amt))
-            {
-                return 0;
-            }
-
-
-            int n_ot_amt = Int16.Parse(ot_amt);
-
-            return n_ot_amt;
-        }
-
-        private String get_link_goods_code(String goods_code)
-        {
-            String link_goods_code = "";
-
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    link_goods_code = mGoodsTicket[i].link_goods_code;
-                }
-            }
-
-            return link_goods_code;
-        }
 
     }
 }

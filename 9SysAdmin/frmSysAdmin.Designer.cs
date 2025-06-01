@@ -142,7 +142,7 @@
             this.btnSysSoldout.Size = new System.Drawing.Size(112, 40);
             this.btnSysSoldout.TabIndex = 6;
             this.btnSysSoldout.TabStop = false;
-            this.btnSysSoldout.Text = "품절";
+            this.btnSysSoldout.Text = "품절/절판";
             this.btnSysSoldout.UseVisualStyleBackColor = false;
             this.btnSysSoldout.Click += new System.EventHandler(this.btnSoldout_Click);
             // 
