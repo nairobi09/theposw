@@ -204,7 +204,7 @@ namespace thepos
 
                 cbValue.Items.Clear();
                 cbValue.Items.Add(" ");  // 출력없음
-                cbValue.Items.Add("알림톡-필수");  // 알림톡
+                cbValue.Items.Add("알림톡");  // 알림톡
                 cbValue.Items.Add("알림톡-선택");  // 알림톡
             }
             else if (code == listSetup[3].code)  // 인쇄 교환권

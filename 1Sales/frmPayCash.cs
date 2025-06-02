@@ -243,7 +243,6 @@ namespace thepos
                 }
 
                 // 티켓 저장
-
                 int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
 
                 if (ticket_cnt > 0)
@@ -299,27 +298,29 @@ namespace thepos
                     order_no_from_to = print_order(ref shopOrderPackList);
 
 
-                    
-                    if (mAllimYn == "Y")   // 알림톡 사용여부
+                    if (mAllimYn == "Y")   // Site설정 알림톡 사용여부
                     {
-                        // 알림톡 보내기 위한 알림상품이 있는지 검사
-                        String is_allim = "";
-
-                        for (int i = 0; i < shopOrderPackList.Count; i++)
+                        if (mMobileExchangeType == "알림톡" | mMobileExchangeType == "알림톡-선택")  // SetupPos설정 모바일교환권
                         {
-                            for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
+                            // 알림톡 보내기 위한 알림상품이 있는지 검사
+                            String is_allim = "";
+
+                            for (int i = 0; i < shopOrderPackList.Count; i++)
                             {
-                                if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
                                 {
-                                    is_allim = "Y";
+                                    if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                    {
+                                        is_allim = "Y";
+                                    }
                                 }
                             }
-                        }
 
-                        if (is_allim == "Y")
-                        {
-                            frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
-                            fAllim.ShowDialog();
+                            if (is_allim == "Y")
+                            {
+                                frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
+                                fAllim.ShowDialog();
+                            }
                         }
                     }
                 }
@@ -563,30 +564,34 @@ namespace thepos
                         order_no_from_to = print_order(ref shopOrderPackList);
 
 
-                        // 알림톡 보내기 위한 알림상품이 있는지 검사
-                        String is_allim = "";
-
-                        for (int i = 0; i < shopOrderPackList.Count; i++)
+                        if (mAllimYn == "Y")   // Site설정 알림톡 사용여부
                         {
-                            for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
+                            if (mMobileExchangeType == "알림톡" | mMobileExchangeType == "알림톡-선택")  // SetupPos설정 모바일교환권
                             {
-                                if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                // 알림톡 보내기 위한 알림상품이 있는지 검사
+                                String is_allim = "";
+
+                                for (int i = 0; i < shopOrderPackList.Count; i++)
                                 {
-                                    is_allim = "Y";
+                                    for (int j = 0; j < shopOrderPackList[i].orderPackList.Count; j++)
+                                    {
+                                        if (shopOrderPackList[i].orderPackList[j].allim == "Y")
+                                        {
+                                            is_allim = "Y";
+                                        }
+                                    }
+                                }
+
+                                if (is_allim == "Y")
+                                {
+                                    frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
+                                    fAllim.ShowDialog();
                                 }
                             }
-                        }
-
-
-                        if (is_allim == "Y")
-                        {
-                            frmAllimOR fAllim = new frmAllimOR(shopOrderPackList);
-                            fAllim.ShowDialog();
                         }
                     }
 
                 
-
 
                     // 영수증 출력
                     if (mPaySeq == 1)

@@ -101,8 +101,9 @@
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(99, 64);
             this.btnNo.TabIndex = 59;
-            this.btnNo.Text = "건너뛰기";
+            this.btnNo.Text = "닫기";
             this.btnNo.UseVisualStyleBackColor = false;
+            this.btnNo.Visible = false;
             this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
             // 
             // pictureBox2

@@ -488,10 +488,14 @@ namespace thepos
                 }
 
 
-                // 품절처리
-                if (mGoodsGroup[i].soldout == "Y")
+                
+                if (mGoodsGroup[i].cutout == "Y") // 절판처리
                 {
-                    btnGoodsGroup.ForeColor = Color.Gray;
+                    btnGoodsGroup.ForeColor = Color.LightGray;
+                }
+                else if (mGoodsGroup[i].soldout == "Y")
+                {
+                    btnGoodsGroup.ForeColor = Color.Gray; // 품절처리
                 }
                 else
                 {

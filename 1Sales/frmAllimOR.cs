@@ -25,6 +25,12 @@ namespace thepos
             thepos_app_log(1, this.Name, "Open", "");
 
 
+
+            if (mMobileExchangeType == "알림톡-선택")
+            {
+                btnNo.Visible = true;
+            }
+
             shopOrderPackList = list;
 
         }
