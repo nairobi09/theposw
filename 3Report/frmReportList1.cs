@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Presentation;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static thepos.thePos;
 
 namespace thepos
@@ -272,6 +274,7 @@ namespace thepos
                             Item.SubItems.Add(s_amount[i].ToString("N0"));
                             Item.SubItems.Add(s_dc_amount[i].ToString("N0"));
                             Item.SubItems.Add(s_net_amount[i].ToString("N0"));
+                            Item.SubItems.Add("");
                             lvwList.Items.Add(Item);
                         }
                     }
@@ -368,6 +371,56 @@ namespace thepos
                 lvwList.Columns[5].Text = "";
             }
 
+        }
+
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            if (lvwList.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            
+
+            //
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.FileName = "TM_" + mSiteAlias + "_" + tvwList.SelectedNode.Text  + "_" + lblYYYYMM.Text + ".xlsx";
+                sfd.Filter = "Excel Files|*.xlsx";
+                sfd.Title = "Save Excel File";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportListViewToExcel(lvwList, sfd.FileName);
+                    MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void ExportListViewToExcel(ListView listView, string filePath)
+        {
+            
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add(tvwList.SelectedNode.Text);
+
+            // 헤더 작성
+            for (int col = 0; col < listView.Columns.Count; col++)
+            {
+                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
+            }
+
+            // 데이터 작성
+            for (int row = 0; row < listView.Items.Count; row++)
+            {
+                for (int col = 0; col < listView.Columns.Count; col++)
+                {
+                    worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+                }
+            }
+
+            // 파일 저장
+            workbook.SaveAs(filePath);
         }
     }
 }

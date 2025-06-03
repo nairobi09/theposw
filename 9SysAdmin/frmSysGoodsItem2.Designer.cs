@@ -262,7 +262,7 @@
             this.lvwGoodsLink.Location = new System.Drawing.Point(401, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(226, 643);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(286, 643);
             this.lvwGoodsLink.TabIndex = 101;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -277,7 +277,7 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 100;
+            this.name.Width = 160;
             // 
             // amt
             // 
@@ -311,7 +311,7 @@
             // item_name
             // 
             this.item_name.Text = "상품명";
-            this.item_name.Width = 163;
+            this.item_name.Width = 160;
             // 
             // amt1
             // 
@@ -336,7 +336,7 @@
             this.btnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUp.Location = new System.Drawing.Point(637, 291);
+            this.btnUp.Location = new System.Drawing.Point(693, 612);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(40, 40);
             this.btnUp.TabIndex = 112;
@@ -351,7 +351,7 @@
             this.btnDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnDn.Location = new System.Drawing.Point(637, 337);
+            this.btnDn.Location = new System.Drawing.Point(693, 658);
             this.btnDn.Name = "btnDn";
             this.btnDn.Size = new System.Drawing.Size(40, 40);
             this.btnDn.TabIndex = 111;

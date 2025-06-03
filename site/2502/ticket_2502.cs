@@ -95,7 +95,7 @@ namespace theposw
             }
 
 
-            String str_date = t_date.Substring(2,2) + "-" + t_date.Substring(4,2) + "-" + t_date.Substring(6, 2) + " " + weekdayKorean;
+            String str_date = t_date.Substring(0,4) + "-" + t_date.Substring(4,2) + "-" + t_date.Substring(6, 2) + " " + weekdayKorean;
             String str_goods_name = t_goods_name;
             String str_amt = t_goods_amt.ToString("N0");
 

@@ -64,8 +64,6 @@ namespace thepos
             this.timerSecondEvent = new System.Windows.Forms.Timer(this.components);
             this.panelTitleWhite = new System.Windows.Forms.Panel();
             this.panelTitleConsole = new System.Windows.Forms.Panel();
-            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
-            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
@@ -115,13 +113,14 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
+            this.pbNetworkConn = new System.Windows.Forms.PictureBox();
+            this.pbNetworkDisconn = new System.Windows.Forms.PictureBox();
+            this.btnBarcode = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
             this.panelTitleConsole.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.panelOrderSumWhile.SuspendLayout();
             this.panelOrderSumBlack.SuspendLayout();
             this.panelDisplayAlarmWhite.SuspendLayout();
@@ -134,10 +133,13 @@ namespace thepos
             this.panelGoodsGroupWhite2.SuspendLayout();
             this.panelGoodsGroupWhite.SuspendLayout();
             this.tableLayoutPanelPayControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).BeginInit();
             this.SuspendLayout();
             // 
             // panelNumpad
             // 
+            this.panelNumpad.Controls.Add(this.btnBarcode);
             this.panelNumpad.Controls.Add(this.panelKeyDisplayWhite);
             this.panelNumpad.Controls.Add(this.btnKey1);
             this.panelNumpad.Controls.Add(this.btnKey2);
@@ -163,9 +165,9 @@ namespace thepos
             this.panelKeyDisplayWhite.BackColor = System.Drawing.Color.White;
             this.panelKeyDisplayWhite.Controls.Add(this.tbKeyDisplay);
             this.panelKeyDisplayWhite.Controls.Add(this.lblKeyDisplayXX);
-            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(0, 0);
+            this.panelKeyDisplayWhite.Location = new System.Drawing.Point(32, 0);
             this.panelKeyDisplayWhite.Name = "panelKeyDisplayWhite";
-            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(188, 48);
+            this.panelKeyDisplayWhite.Size = new System.Drawing.Size(156, 48);
             this.panelKeyDisplayWhite.TabIndex = 37;
             // 
             // tbKeyDisplay
@@ -174,12 +176,12 @@ namespace thepos
             this.tbKeyDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbKeyDisplay.Font = new System.Drawing.Font("맑은 고딕", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbKeyDisplay.ForeColor = System.Drawing.Color.White;
-            this.tbKeyDisplay.Location = new System.Drawing.Point(2, 10);
+            this.tbKeyDisplay.Location = new System.Drawing.Point(4, 10);
             this.tbKeyDisplay.Name = "tbKeyDisplay";
-            this.tbKeyDisplay.Size = new System.Drawing.Size(179, 27);
+            this.tbKeyDisplay.Size = new System.Drawing.Size(147, 27);
             this.tbKeyDisplay.TabIndex = 0;
             this.tbKeyDisplay.TabStop = false;
-            this.tbKeyDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbKeyDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbKeyDisplay.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbKeyDisplay_KeyUp);
             // 
             // lblKeyDisplayXX
@@ -191,7 +193,7 @@ namespace thepos
             this.lblKeyDisplayXX.Location = new System.Drawing.Point(1, 1);
             this.lblKeyDisplayXX.Name = "lblKeyDisplayXX";
             this.lblKeyDisplayXX.Padding = new System.Windows.Forms.Padding(0, 5, 5, 5);
-            this.lblKeyDisplayXX.Size = new System.Drawing.Size(186, 46);
+            this.lblKeyDisplayXX.Size = new System.Drawing.Size(154, 46);
             this.lblKeyDisplayXX.TabIndex = 3;
             this.lblKeyDisplayXX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -625,25 +627,6 @@ namespace thepos
             this.panelTitleConsole.Name = "panelTitleConsole";
             this.panelTitleConsole.Size = new System.Drawing.Size(1009, 42);
             this.panelTitleConsole.TabIndex = 32;
-            // 
-            // pbNetworkConn
-            // 
-            this.pbNetworkConn.Image = global::theposw.Properties.Resources.net_connect1;
-            this.pbNetworkConn.Location = new System.Drawing.Point(23, 13);
-            this.pbNetworkConn.Name = "pbNetworkConn";
-            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
-            this.pbNetworkConn.TabIndex = 39;
-            this.pbNetworkConn.TabStop = false;
-            this.pbNetworkConn.Visible = false;
-            // 
-            // pbNetworkDisconn
-            // 
-            this.pbNetworkDisconn.Image = global::theposw.Properties.Resources.net_disconnect1;
-            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 13);
-            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
-            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 22);
-            this.pbNetworkDisconn.TabIndex = 40;
-            this.pbNetworkDisconn.TabStop = false;
             // 
             // lblPosNoTitle
             // 
@@ -1271,6 +1254,40 @@ namespace thepos
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
             // 
+            // pbNetworkConn
+            // 
+            this.pbNetworkConn.Image = global::theposw.Properties.Resources.net_connect1;
+            this.pbNetworkConn.Location = new System.Drawing.Point(23, 13);
+            this.pbNetworkConn.Name = "pbNetworkConn";
+            this.pbNetworkConn.Size = new System.Drawing.Size(20, 21);
+            this.pbNetworkConn.TabIndex = 39;
+            this.pbNetworkConn.TabStop = false;
+            this.pbNetworkConn.Visible = false;
+            // 
+            // pbNetworkDisconn
+            // 
+            this.pbNetworkDisconn.Image = global::theposw.Properties.Resources.net_disconnect1;
+            this.pbNetworkDisconn.Location = new System.Drawing.Point(23, 13);
+            this.pbNetworkDisconn.Name = "pbNetworkDisconn";
+            this.pbNetworkDisconn.Size = new System.Drawing.Size(29, 22);
+            this.pbNetworkDisconn.TabIndex = 40;
+            this.pbNetworkDisconn.TabStop = false;
+            // 
+            // btnBarcode
+            // 
+            this.btnBarcode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBarcode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBarcode.ForeColor = System.Drawing.Color.White;
+            this.btnBarcode.Image = global::theposw.Properties.Resources.barcode;
+            this.btnBarcode.Location = new System.Drawing.Point(0, 0);
+            this.btnBarcode.Name = "btnBarcode";
+            this.btnBarcode.Size = new System.Drawing.Size(28, 48);
+            this.btnBarcode.TabIndex = 38;
+            this.btnBarcode.TabStop = false;
+            this.btnBarcode.UseVisualStyleBackColor = false;
+            this.btnBarcode.Click += new System.EventHandler(this.btnBarcode_Click);
+            // 
             // frmSales
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1305,8 +1322,6 @@ namespace thepos
             this.panelOrderConsole.ResumeLayout(false);
             this.panelTitleWhite.ResumeLayout(false);
             this.panelTitleConsole.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.panelOrderSumWhile.ResumeLayout(false);
             this.panelOrderSumBlack.ResumeLayout(false);
             this.panelOrderSumBlack.PerformLayout();
@@ -1320,6 +1335,8 @@ namespace thepos
             this.panelGoodsGroupWhite2.ResumeLayout(false);
             this.panelGoodsGroupWhite.ResumeLayout(false);
             this.tableLayoutPanelPayControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkConn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbNetworkDisconn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1409,6 +1426,7 @@ namespace thepos
         private System.Windows.Forms.Button btnOrderItemScrollUp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelFlowControl;
         private System.Windows.Forms.Label lblKeyDisplayXX;
+        private System.Windows.Forms.Button btnBarcode;
     }
 }
 

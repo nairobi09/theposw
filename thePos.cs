@@ -61,7 +61,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-006";   // 2025 05 29
+        public static String mAppVersion = "TPW1-2025-010";   // 2025 05 29
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -341,14 +341,15 @@ namespace thepos
             public String cutout;   // 중지
             public String soldout;  // Y품절
             public String allim;
+            public String option_template_id;
+            public String coupon_link_no;
+            //public String bar_code;
+
             public int column;
             public int row;
             public int columnspan;
             public int rowspan;
             public String btn_color;
-            public String option_template_id;
-            public String coupon_link_no;
-            public String bar_code;
         }
         public static GoodsItem[] mGoodsItem;
 
@@ -364,6 +365,27 @@ namespace thepos
             public String link_goods_code;
         }
         public static GoodsTicket[] mGoodsTicket;
+
+        public struct GoodsBarcode
+        {
+            public string goods_code;
+            public string goods_name;
+            public int amt;
+            public String online_coupon;
+            public String ticket; // 일반상품 0. 티켓상품 1
+            public String taxfree; // 과세품 0, 면세품 1
+            public String shop_code;
+            public String nod_code1;
+            public String nod_code2;
+            public String cutout;   // 중지
+            public String soldout;  // Y품절
+            public String allim;
+            public String bar_code;
+        }
+        public static List<GoodsBarcode> mGoodsBarcodeList = new List<GoodsBarcode>();
+
+
+
 
 
 
@@ -519,6 +541,7 @@ namespace thepos
         {
             public String site_id;
             public String biz_dt;  // yyyyMMdd
+            public String shop_code;
             public string pos_no;
             public String the_no;   // 결제단위
             public String ref_no;   // 입장단위
@@ -948,13 +971,10 @@ namespace thepos
 
         public static String get_goods_name(String code)
         {
-
-
             if (code == "DCRE")
             {
                 return "할인";
             }
-
 
             if (code.Substring(0,2) == "DC")
             {
@@ -968,8 +988,7 @@ namespace thepos
                 return "할인";
             }
             
-            
-            
+
             if (code == "CHARGE")
                 return "충전";
 

@@ -42,6 +42,7 @@
             this.c5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tvwList = new System.Windows.Forms.TreeView();
             this.lblListPath = new System.Windows.Forms.Label();
+            this.btnSaveExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnNext
@@ -188,10 +189,25 @@
             this.lblListPath.TabIndex = 91;
             this.lblListPath.Text = ">";
             // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.BackColor = System.Drawing.Color.White;
+            this.btnSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveExcel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSaveExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnSaveExcel.Location = new System.Drawing.Point(723, 25);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(57, 27);
+            this.btnSaveExcel.TabIndex = 102;
+            this.btnSaveExcel.Text = "엑셀";
+            this.btnSaveExcel.UseVisualStyleBackColor = false;
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            // 
             // frmReportList1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.lblListPath);
             this.Controls.Add(this.tvwList);
             this.Controls.Add(this.lvwList);
@@ -223,5 +239,6 @@
         private System.Windows.Forms.ColumnHeader c4;
         private System.Windows.Forms.Label lblListPath;
         private System.Windows.Forms.ColumnHeader c5;
+        private System.Windows.Forms.Button btnSaveExcel;
     }
 }

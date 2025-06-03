@@ -1706,8 +1706,9 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = myPosNo;
                 parameters["bizDt"] = mBizDate;
+                parameters["shopCode"] = myShopCode;
+                parameters["posNo"] = myPosNo;
                 parameters["theNo"] = paymentAuth.the_no;
                 parameters["refNo"] = paymentAuth.ref_no;
                 parameters["payDate"] = get_today_date();
@@ -1813,8 +1814,9 @@ namespace thepos
                     else if (arr.Count == 1)
                     {
                         payment.site_id = arr[0]["siteId"].ToString();
-                        payment.pos_no = arr[0]["posNo"].ToString();
                         payment.biz_dt = arr[0]["bizDt"].ToString();
+                        payment.shop_code = arr[0]["shopCode"].ToString();
+                        payment.pos_no = arr[0]["posNo"].ToString();
                         payment.the_no = arr[0]["theNo"].ToString();
                         payment.ref_no = arr[0]["refNo"].ToString();
 

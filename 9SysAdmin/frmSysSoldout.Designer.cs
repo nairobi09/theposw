@@ -55,6 +55,8 @@
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -131,7 +133,7 @@
             this.groupBox1.Controls.Add(this.cbGoodsSoldout);
             this.groupBox1.Location = new System.Drawing.Point(25, 536);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(446, 114);
+            this.groupBox1.Size = new System.Drawing.Size(446, 101);
             this.groupBox1.TabIndex = 64;
             this.groupBox1.TabStop = false;
             // 
@@ -185,7 +187,7 @@
             this.groupBox3.Controls.Add(this.btnGroupUpdate);
             this.groupBox3.Location = new System.Drawing.Point(498, 536);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(330, 114);
+            this.groupBox3.Size = new System.Drawing.Size(330, 101);
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             // 
@@ -362,10 +364,34 @@
             this.groupBox4.TabIndex = 89;
             this.groupBox4.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.Location = new System.Drawing.Point(290, 650);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 42);
+            this.label1.TabIndex = 90;
+            this.label1.Text = "[품절]\r\n포스기기 : Disable\r\n키오스크 : Disable";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(463, 650);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 42);
+            this.label2.TabIndex = 90;
+            this.label2.Text = "[절판]\r\n포스기기 : Disable\r\n키오스크 : Visible";
+            // 
             // frmSysSoldout
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(854, 671);
+            this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -384,6 +410,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -416,5 +443,7 @@
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

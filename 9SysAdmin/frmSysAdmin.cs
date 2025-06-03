@@ -171,6 +171,7 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+
         private void btnSysGoodsItem2_Click(object sender, EventArgs e)   // KIOSK
         {
             if (mThisButtonClick == "GoodsItem2") return;
@@ -272,7 +273,6 @@ namespace thepos
         {
             thepos_app_log(1, this.Name, "close", "");
         }
-
 
     }
 }

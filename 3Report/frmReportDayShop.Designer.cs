@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnView = new System.Windows.Forms.Button();
+            this.btnViewDaily = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.lvwList = new System.Windows.Forms.ListView();
             this.items_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,28 +38,32 @@
             this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
             this.btnSaveExcel = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.lblYYYYMM = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnView
+            // btnViewDaily
             // 
-            this.btnView.BackColor = System.Drawing.Color.White;
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(581, 26);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 27);
-            this.btnView.TabIndex = 78;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnViewDaily.BackColor = System.Drawing.Color.White;
+            this.btnViewDaily.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewDaily.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewDaily.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnViewDaily.Location = new System.Drawing.Point(287, 26);
+            this.btnViewDaily.Name = "btnViewDaily";
+            this.btnViewDaily.Size = new System.Drawing.Size(80, 27);
+            this.btnViewDaily.TabIndex = 78;
+            this.btnViewDaily.Text = "일별조회";
+            this.btnViewDaily.UseVisualStyleBackColor = false;
+            this.btnViewDaily.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
+            this.lblReportTitle.Location = new System.Drawing.Point(25, 35);
             this.lblReportTitle.Name = "lblReportTitle";
             this.lblReportTitle.Size = new System.Drawing.Size(102, 13);
             this.lblReportTitle.TabIndex = 76;
@@ -119,7 +123,7 @@
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(455, 28);
+            this.dtpBizDate.Location = new System.Drawing.Point(170, 28);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 84;
@@ -138,14 +142,71 @@
             this.btnSaveExcel.UseVisualStyleBackColor = false;
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.White;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnNext.Location = new System.Drawing.Point(560, 26);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
+            this.btnNext.TabIndex = 106;
+            this.btnNext.TabStop = false;
+            this.btnNext.Text = "▶";
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.BackColor = System.Drawing.Color.White;
+            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnPrev.Location = new System.Drawing.Point(426, 26);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(30, 27);
+            this.btnPrev.TabIndex = 105;
+            this.btnPrev.TabStop = false;
+            this.btnPrev.Text = "◀";
+            this.btnPrev.UseVisualStyleBackColor = false;
+            // 
+            // lblYYYYMM
+            // 
+            this.lblYYYYMM.BackColor = System.Drawing.Color.White;
+            this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblYYYYMM.Location = new System.Drawing.Point(458, 26);
+            this.lblYYYYMM.Name = "lblYYYYMM";
+            this.lblYYYYMM.Size = new System.Drawing.Size(100, 27);
+            this.lblYYYYMM.TabIndex = 104;
+            this.lblYYYYMM.Text = "2023-10";
+            this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.button1.Location = new System.Drawing.Point(598, 25);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(80, 29);
+            this.button1.TabIndex = 103;
+            this.button1.Text = "월별조회";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // frmReportDayShop
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.lblYYYYMM);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.btnView);
+            this.Controls.Add(this.btnViewDaily);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportDayShop";
@@ -156,7 +217,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnViewDaily;
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
@@ -166,5 +227,9 @@
         private System.Windows.Forms.ColumnHeader dc_amount;
         private System.Windows.Forms.ColumnHeader net_amount;
         private System.Windows.Forms.Button btnSaveExcel;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label lblYYYYMM;
+        private System.Windows.Forms.Button button1;
     }
 }

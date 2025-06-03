@@ -62,7 +62,7 @@ namespace thepos
 
 
 #if DEBUG
-    mBaseUri = uri_test;
+            mBaseUri = uri_test;
 #else
     mBaseUri = uri_real;
 #endif
@@ -152,7 +152,7 @@ namespace thepos
 
         private void frmMain_Shown(object sender, EventArgs e)
         {
-            
+
             mNetworkState = NetworkInterface.GetIsNetworkAvailable();
 
 
@@ -195,7 +195,7 @@ namespace thepos
                         pbNetworkDisconn.BeginInvoke(new Action(() => pbNetworkDisconn.Visible = !pbNetworkConn.Visible));
                         mPrevNetworkState = mNetworkState;
                     }
- 
+
                     if ((mNetworkState != mServerStatus) | (check_cnt >= 6 * 10))  // 10분
                     {
                         // 서버 테스트콜
@@ -422,7 +422,7 @@ namespace thepos
         }
 
         bool get_biz_date()
-        { 
+        {
             // 개시마감 
             String biz_date = "";
             String biz_status = "";
@@ -614,6 +614,7 @@ namespace thepos
                                 {
                                     mTheposColor = arr[i]["setupValue"].ToString();
                                 }
+
                             }
                         }
                     }
@@ -661,8 +662,6 @@ namespace thepos
             }
 
 
-
-
             // 2. goodsGroup
             if (true)
             {
@@ -706,16 +705,18 @@ namespace thepos
             }
 
 
-            // 3. goodsItemAndGoods
+
+
+            // 3. goodsItem
             if (true)
             {
-                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + myPosNo;
+                String sUrl = "goodsItem?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String goods_item = mObj["goodsItems"].ToString();
-                        JArray arr = JArray.Parse(goods_item);
+                        String data = mObj["goodsItems"].ToString();
+                        JArray arr = JArray.Parse(data);
 
                         mGoodsItem = new GoodsItem[arr.Count];
 
@@ -723,6 +724,141 @@ namespace thepos
                         {
                             mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
                             mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
+
+                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                            String b_color = arr[i]["btnColor"].ToString();
+                            if (b_color == "") b_color = mTheposColor;
+                            mGoodsItem[i].btn_color = b_color;
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+
+            // 3. goods
+            if (true)
+            {
+                String sUrl = "goods?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goods"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mGoodsBarcodeList.Clear();
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            String t_goods_code = arr[i]["goodsCode"].ToString();
+
+                            for (int k = 0; k < mGoodsItem.Length; k++)
+                            {
+                                if (mGoodsItem[k].goods_code == t_goods_code)
+                                {
+                                    mGoodsItem[k].goods_name = arr[i]["goodsName"].ToString();
+                                    mGoodsItem[k].shop_code = arr[i]["shopCode"].ToString();
+                                    mGoodsItem[k].nod_code1 = arr[i]["nodCode1"].ToString();
+                                    mGoodsItem[k].nod_code2 = arr[i]["nodCode2"].ToString();
+                                    mGoodsItem[k].amt = int.Parse(arr[i]["amt"].ToString());
+                                    mGoodsItem[k].online_coupon = arr[i]["onlineCoupon"].ToString();
+                                    mGoodsItem[k].ticket = arr[i]["ticketYn"].ToString();
+                                    mGoodsItem[k].taxfree = arr[i]["taxFree"].ToString();
+                                    mGoodsItem[k].cutout = arr[i]["cutout"].ToString();
+                                    mGoodsItem[k].soldout = arr[i]["soldout"].ToString();
+                                    mGoodsItem[k].allim = arr[i]["allim"].ToString();
+                                    mGoodsItem[k].option_template_id = arr[i]["optionTemplateId"].ToString();
+                                    mGoodsItem[k].coupon_link_no = arr[i]["couponLinkNo"].ToString();
+                                    //mGoodsItem[k].bar_code = arr[i]["barCode"].ToString();
+
+                                    // 면세상픔은 상품명앞에 *을 붙인다.
+                                    if (mGoodsItem[k].taxfree == "1")
+                                    {
+                                        mGoodsItem[k].goods_name = "*" + mGoodsItem[k].goods_name;
+                                    }
+                                }
+                            }
+
+
+                            //
+                            if (arr[i]["barCode"].ToString().Trim() != "")
+                            {
+                                GoodsBarcode goodsBarcode = new GoodsBarcode();
+                                goodsBarcode.goods_code = arr[i]["goodsCode"].ToString();
+                                goodsBarcode.goods_name = arr[i]["goodsName"].ToString();
+                                goodsBarcode.amt = int.Parse(arr[i]["amt"].ToString());
+                                goodsBarcode.online_coupon = arr[i]["onlineCoupon"].ToString();
+                                goodsBarcode.ticket = arr[i]["ticketYn"].ToString();
+                                goodsBarcode.taxfree = arr[i]["taxFree"].ToString();
+                                goodsBarcode.shop_code = arr[i]["shopCode"].ToString();
+                                goodsBarcode.nod_code1 = arr[i]["nodCode1"].ToString();
+                                goodsBarcode.nod_code2 = arr[i]["nodCode2"].ToString();
+                                goodsBarcode.cutout = arr[i]["cutout"].ToString();
+                                goodsBarcode.soldout = arr[i]["soldout"].ToString();
+                                goodsBarcode.allim = arr[i]["allim"].ToString();
+                                goodsBarcode.bar_code = arr[i]["barCode"].ToString().Trim();
+                                mGoodsBarcodeList.Add(goodsBarcode);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
+
+
+
+            // 3. goodsItemAndGoods
+            if (false)
+            {
+                String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + myPosNo;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["goodsItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        mGoodsItem = new GoodsItem[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                            mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
+
+                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+
+                            String b_color = arr[i]["btnColor"].ToString();
+                            if (b_color == "") b_color = mTheposColor;
+                            mGoodsItem[i].btn_color = b_color;
+                            //
                             mGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
                             mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
                             mGoodsItem[i].nod_code1 = arr[i]["nodCode1"].ToString();
@@ -734,20 +870,10 @@ namespace thepos
                             mGoodsItem[i].cutout = arr[i]["cutout"].ToString();
                             mGoodsItem[i].soldout = arr[i]["soldout"].ToString();
                             mGoodsItem[i].allim = arr[i]["allim"].ToString();
-                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
-
-                            //
-                            String b_color = arr[i]["btnColor"].ToString();
-                            if (b_color == "") b_color = mTheposColor;
-                            mGoodsItem[i].btn_color = b_color;
-
 
                             mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
                             mGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
-                            mGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
+                            //mGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
 
                             // 면세상픔은 상품명앞에 *을 붙인다.
                             if (mGoodsItem[i].taxfree == "1")
@@ -921,6 +1047,9 @@ namespace thepos
             }
 
 
+            // 3-4.  goods
+
+
 
             // 4. 샵
             if (true)
@@ -1032,8 +1161,6 @@ namespace thepos
             }
 
 
-
-
             // 5. 포스
             if (true)
             {
@@ -1074,8 +1201,6 @@ namespace thepos
                     return;
                 }
             }
-
-
 
 
             // 7. dcrFavorite

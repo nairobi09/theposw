@@ -468,13 +468,14 @@ namespace theposw._1Sales
                 e.Handled = true;
                 e.SuppressKeyPress = true;
 
+                lvwList.Items.Clear();
 
                 if (tbTicketNo.Text.Length < 20)
                 {
                     thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
+                    tbTicketNo.Text = "";
                     return;
                 }
-
 
                 String no = tbTicketNo.Text.Substring(0, 20);
 

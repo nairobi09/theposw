@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using ClosedXML.Excel;
 
 namespace thepos._1Sales
 {
@@ -132,51 +133,44 @@ namespace thepos._1Sales
 
 
             //
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                FileName = "TM_" + thisBizDt,
-                Filter = "CSV 파일 (*.csv)|*.csv",
-                Title = "CSV로 저장"
-            };
+                sfd.FileName = "TM_" + mSiteAlias + "_" + dtpBizDate.Text + ".xlsx";
+                sfd.Filter = "Excel Files|*.xlsx";
+                sfd.Title = "Save Excel File";
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                ExportListViewToCsv(lvwList, saveFileDialog.FileName);
-                MessageBox.Show("저장 완료!");
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportListViewToExcel(lvwList, sfd.FileName);
+                    MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
-
-        public void ExportListViewToCsv(ListView listView, string filePath)
+        private void ExportListViewToExcel(ListView listView, string filePath)
         {
-            StringBuilder csv = new StringBuilder();
+            
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add(dtpBizDate.Text);
 
             // 헤더 작성
-            foreach (ColumnHeader column in listView.Columns)
+            for (int col = 0; col < listView.Columns.Count; col++)
             {
-                csv.Append(column.Text + ",");
-            }
-            csv.Length--; // 마지막 콤마 제거
-            csv.AppendLine();
-
-            // 아이템 작성
-            foreach (ListViewItem item in listView.Items)
-            {
-                csv.Append(item.Text + ",");
-                csv.Append("=\"").Append(item.SubItems[1].Text.Replace("\"", "\"\"")).Append("\",");
-                csv.Append("=\"").Append(item.SubItems[2].Text.Replace("\"", "\"\"")).Append("\",");
-                csv.Append(item.SubItems[3].Text + ",");
-                csv.Append(item.SubItems[4].Text + ",");
-                csv.Append(item.SubItems[5].Text + ",");
-                csv.Append(item.SubItems[6].Text);
-
-                csv.AppendLine();
+                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
             }
 
-            File.WriteAllText(filePath, csv.ToString(), Encoding.UTF8);
+            // 데이터 작성
+            for (int row = 0; row < listView.Items.Count; row++)
+            {
+                for (int col = 0; col < listView.Columns.Count; col++)
+                {
+                    worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+                }
+            }
+
+            // 파일 저장
+            workbook.SaveAs(filePath);
         }
-
-
 
     }
 }
