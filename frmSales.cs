@@ -846,9 +846,23 @@ namespace thepos
             {
                 orderItem.option_dc_amount_description = "";
             }
-
-
         }
+
+
+        private void btnBarcode_Click(object sender, EventArgs e)
+        {
+            //ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmOrderBarcode fForm = new frmOrderBarcode() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
+        }
+
+
 
 
         // 티켓버튼콘솔
@@ -891,12 +905,11 @@ namespace thepos
 
         private void ClickedFlowTicket()
         {
-            ConsoleDisable();
+            //ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
-            //frmFlowTicket_xx fForm = new frmFlowTicket_xx() { TopLevel = false, TopMost = true };
             frmFlowTicket fForm = new frmFlowTicket() { TopLevel = false, TopMost = true };
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
@@ -3290,7 +3303,7 @@ namespace thepos
             lvwOrderItem.Items[lv_idx].Selected = true;
         }
 
-        private void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
+        public static void set_item_change_ordercnt(int lv_idx, String jobtype, int cnt)
         {
             if (mOrderItemList[lv_idx].dcr_des == "E")
             {
@@ -3319,9 +3332,9 @@ namespace thepos
 
             mOrderItemList[lv_idx] = orderItem;
 
-            lvwOrderItem.SetObjects(mOrderItemList);
+            mLvwOrderItem.SetObjects(mOrderItemList);
 
-            lvwOrderItem.Items[lv_idx].Selected = true;
+            mLvwOrderItem.Items[lv_idx].Selected = true;
 
 
         }
@@ -5761,108 +5774,111 @@ namespace thepos
                 }
 
 
-
-                int barcode_idx = -1;
-
-                for (int i = 0; i < mGoodsBarcodeList.Count; i++)
-                {
-                    if (mGoodsBarcodeList[i].bar_code == input_barcode)
-                    {
-                        barcode_idx = i;
-                        break;
-                    }
-                }
-
-
-                if (barcode_idx == -1)
-                {
-                    SetDisplayAlarm("W", "바코드상품을 찾을수 없습니다.");
-                    thepos_app_log(3, this.Name, "tbKeyDisplay_KeyUp()", " 바코드상품을 찾을수 없습니다. input_barcode=" + input_barcode);
-                }
-                else
-                {
-                    //
-                    if (mGoodsBarcodeList[barcode_idx].online_coupon == "Y")
-                    {
-                        //flow_cert();
-                        return;
-                    }
-
-
-                    // 옵션항목 목록: frmOrderOption에서 채운다.
-                    mOrderOptionItemList.Clear();
-
-
-                    MemOrderItem orderItem = new MemOrderItem();
-                    int lv_idx = (get_lvitem_idx(mGoodsBarcodeList[barcode_idx].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
-
-                    if (lv_idx == -1)
-                    {
-                        //
-                        orderItem.option_name_description = "";   // 리스트뷰 상품항목 아랫줄에 표시
-                        orderItem.option_amt_description = "";    // 리스트뷰 단가항목 아랫줄에 표시
-
-                        //
-                        orderItem.option_item_cnt = mOrderOptionItemList.Count;
-                        orderItem.option_no = "";
-                        orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
-
-                        orderItem.order_no = mOrderItemList.Count + 1;
-                        orderItem.goods_code = mGoodsBarcodeList[barcode_idx].goods_code.ToString();
-                        orderItem.goods_name = mGoodsBarcodeList[barcode_idx].goods_name;
-                        orderItem.ticket = mGoodsBarcodeList[barcode_idx].ticket;
-                        orderItem.taxfree = mGoodsBarcodeList[barcode_idx].taxfree;
-                        orderItem.allim = mGoodsBarcodeList[barcode_idx].allim;
-
-                        orderItem.cnt = 1;
-                        orderItem.amt = mGoodsBarcodeList[barcode_idx].amt;
-
-                        orderItem.dcr_type = "";
-                        orderItem.dcr_des = "";
-                        orderItem.dcr_value = 0;
-                        orderItem.shop_code = mGoodsBarcodeList[barcode_idx].shop_code;
-                        orderItem.nod_code1 = mGoodsBarcodeList[barcode_idx].nod_code1;
-                        orderItem.nod_code2 = mGoodsBarcodeList[barcode_idx].nod_code2;
-
-                        //
-                        replace_mem_order_item(ref orderItem, "add");
-
-                        mOrderItemList.Add(orderItem);
-                        lvwOrderItem.SetObjects(mOrderItemList);
-
-                        lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].EnsureVisible();
-                        //lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
-
-                        bool is_move = if_is_dcr_e_move_last();
-
-                        if (is_move)
-                        {
-                            recalculate_dcr_e_dc_amount(lvwOrderItem.Items.Count - 2);
-                        }
-                        else
-                        {
-                            recalculate_dcr_e_dc_amount(lvwOrderItem.Items.Count - 1);
-                        }
-                    }
-                    else
-                    {
-                        set_item_change_ordercnt(lv_idx, "add", 1);
-                        lvwOrderItem.Items[lv_idx].EnsureVisible();
-                        //lvwOrderItem.Items[lv_idx].Selected = true;
-
-                        recalculate_dcr_e_dc_amount(lv_idx);
-                    }
-
-                    ReCalculateAmount();
-
-                }
-
+                order_goods_barcode(input_barcode);
             }
         }
 
-        private void btnBarcode_Click(object sender, EventArgs e)
+
+
+        public static void order_goods_barcode(String input_barcode)
         {
 
+            int barcode_idx = -1;
+
+            for (int i = 0; i < mGoodsBarcodeList.Count; i++)
+            {
+                if (mGoodsBarcodeList[i].bar_code == input_barcode)
+                {
+                    barcode_idx = i;
+                    break;
+                }
+            }
+
+
+            if (barcode_idx == -1)
+            {
+                SetDisplayAlarm("W", "바코드상품을 찾을수 없습니다.");
+                thepos_app_log(3, "order_goods_barcode()", "order_goods_barcode()", " 바코드상품을 찾을수 없습니다. input_barcode=" + input_barcode);
+            }
+            else
+            {
+                //
+                if (mGoodsBarcodeList[barcode_idx].online_coupon == "Y")
+                {
+                    //flow_cert();
+                    return;
+                }
+
+
+                // 옵션항목 목록: frmOrderOption에서 채운다.
+                mOrderOptionItemList.Clear();
+
+
+                MemOrderItem orderItem = new MemOrderItem();
+                int lv_idx = (get_lvitem_idx(mGoodsBarcodeList[barcode_idx].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
+
+                if (lv_idx == -1)
+                {
+                    //
+                    orderItem.option_name_description = "";   // 리스트뷰 상품항목 아랫줄에 표시
+                    orderItem.option_amt_description = "";    // 리스트뷰 단가항목 아랫줄에 표시
+
+                    //
+                    orderItem.option_item_cnt = mOrderOptionItemList.Count;
+                    orderItem.option_no = "";
+                    orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
+
+                    orderItem.order_no = mOrderItemList.Count + 1;
+                    orderItem.goods_code = mGoodsBarcodeList[barcode_idx].goods_code.ToString();
+                    orderItem.goods_name = mGoodsBarcodeList[barcode_idx].goods_name;
+                    orderItem.ticket = mGoodsBarcodeList[barcode_idx].ticket;
+                    orderItem.taxfree = mGoodsBarcodeList[barcode_idx].taxfree;
+                    orderItem.allim = mGoodsBarcodeList[barcode_idx].allim;
+
+                    orderItem.cnt = 1;
+                    orderItem.amt = mGoodsBarcodeList[barcode_idx].amt;
+
+                    orderItem.dcr_type = "";
+                    orderItem.dcr_des = "";
+                    orderItem.dcr_value = 0;
+                    orderItem.shop_code = mGoodsBarcodeList[barcode_idx].shop_code;
+                    orderItem.nod_code1 = mGoodsBarcodeList[barcode_idx].nod_code1;
+                    orderItem.nod_code2 = mGoodsBarcodeList[barcode_idx].nod_code2;
+
+                    //
+                    replace_mem_order_item(ref orderItem, "add");
+
+                    mOrderItemList.Add(orderItem);
+                    mLvwOrderItem.SetObjects(mOrderItemList);
+
+                    mLvwOrderItem.Items[mLvwOrderItem.Items.Count - 1].EnsureVisible();
+                    //lvwOrderItem.Items[lvwOrderItem.Items.Count - 1].Selected = true;
+
+                    bool is_move = if_is_dcr_e_move_last();
+
+                    if (is_move)
+                    {
+                        recalculate_dcr_e_dc_amount(mLvwOrderItem.Items.Count - 2);
+                    }
+                    else
+                    {
+                        recalculate_dcr_e_dc_amount(mLvwOrderItem.Items.Count - 1);
+                    }
+                }
+                else
+                {
+                    set_item_change_ordercnt(lv_idx, "add", 1);
+                    mLvwOrderItem.Items[lv_idx].EnsureVisible();
+                    //lvwOrderItem.Items[lv_idx].Selected = true;
+
+                    recalculate_dcr_e_dc_amount(lv_idx);
+                }
+
+                ReCalculateAmount();
+
+            }
+
         }
+
     }
 }

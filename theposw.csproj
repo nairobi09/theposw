@@ -217,6 +217,12 @@
     <Compile Include="1Sales\frmFlowTicketTime.Designer.cs">
       <DependentUpon>frmFlowTicketTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="1Sales\frmOrderBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmOrderBarcode.Designer.cs">
+      <DependentUpon>frmOrderBarcode.cs</DependentUpon>
+    </Compile>
     <Compile Include="3Report\frmReportAllim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,6 +625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowTicketTime.resx">
       <DependentUpon>frmFlowTicketTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmOrderBarcode.resx">
+      <DependentUpon>frmOrderBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>
