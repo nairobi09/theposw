@@ -149,19 +149,17 @@ namespace thepos
             //  payment
             if (!SavePayment(paySeq, "Point", netAmount, dcAmount))
             {
-                return;
+                //return;
             }
 
 
 
             PaymentPoint paymentPoint = new PaymentPoint();
-
             paymentPoint.site_id = mSiteId;
             paymentPoint.biz_dt = mBizDate;
             paymentPoint.pos_no = myPosNo;
             paymentPoint.the_no = mTheNo;
             paymentPoint.ref_no = ticketNo.Substring(0, 20);
-
             paymentPoint.pay_date = get_today_date();
             paymentPoint.pay_time = get_today_time();
             paymentPoint.pay_type = mTicketType;        // 선불 후불

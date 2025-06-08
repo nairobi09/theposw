@@ -197,7 +197,7 @@ namespace thepos
                         // 옵션아이템 보기
                         if (arr[i]["optionNo"].ToString() != "")
                         {
-                            sUrl = "orderOptionItem?siteId=" + mSiteId + "&optionNo=" + arr[i]["optionNo"].ToString();
+                            sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&optionNo=" + arr[i]["optionNo"].ToString();
                             if (mRequestGet(sUrl))
                             {
                                 if (mObj["resultCode"].ToString() == "200")

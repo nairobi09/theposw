@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnViewDaily = new System.Windows.Forms.Button();
+            this.btnViewDay = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.lvwList = new System.Windows.Forms.ListView();
             this.items_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,22 +41,22 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.lblYYYYMM = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnViewMonth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnViewDaily
+            // btnViewDay
             // 
-            this.btnViewDaily.BackColor = System.Drawing.Color.White;
-            this.btnViewDaily.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewDaily.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnViewDaily.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnViewDaily.Location = new System.Drawing.Point(287, 26);
-            this.btnViewDaily.Name = "btnViewDaily";
-            this.btnViewDaily.Size = new System.Drawing.Size(80, 27);
-            this.btnViewDaily.TabIndex = 78;
-            this.btnViewDaily.Text = "일별조회";
-            this.btnViewDaily.UseVisualStyleBackColor = false;
-            this.btnViewDaily.Click += new System.EventHandler(this.btnView_Click);
+            this.btnViewDay.BackColor = System.Drawing.Color.White;
+            this.btnViewDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewDay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewDay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnViewDay.Location = new System.Drawing.Point(287, 26);
+            this.btnViewDay.Name = "btnViewDay";
+            this.btnViewDay.Size = new System.Drawing.Size(80, 27);
+            this.btnViewDay.TabIndex = 78;
+            this.btnViewDay.Text = "일별조회";
+            this.btnViewDay.UseVisualStyleBackColor = false;
+            this.btnViewDay.Click += new System.EventHandler(this.btnViewDay_Click);
             // 
             // lblReportTitle
             // 
@@ -155,6 +155,7 @@
             this.btnNext.TabStop = false;
             this.btnNext.Text = "▶";
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrev
             // 
@@ -169,6 +170,7 @@
             this.btnPrev.TabStop = false;
             this.btnPrev.Text = "◀";
             this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // lblYYYYMM
             // 
@@ -182,18 +184,19 @@
             this.lblYYYYMM.Text = "2023-10";
             this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btnViewMonth
             // 
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.button1.Location = new System.Drawing.Point(598, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 29);
-            this.button1.TabIndex = 103;
-            this.button1.Text = "월별조회";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnViewMonth.BackColor = System.Drawing.Color.White;
+            this.btnViewMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewMonth.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnViewMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnViewMonth.Location = new System.Drawing.Point(598, 25);
+            this.btnViewMonth.Name = "btnViewMonth";
+            this.btnViewMonth.Size = new System.Drawing.Size(80, 29);
+            this.btnViewMonth.TabIndex = 103;
+            this.btnViewMonth.Text = "월별조회";
+            this.btnViewMonth.UseVisualStyleBackColor = false;
+            this.btnViewMonth.Click += new System.EventHandler(this.btnViewMonth_Click);
             // 
             // frmReportDayShop
             // 
@@ -202,11 +205,11 @@
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.lblYYYYMM);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnViewMonth);
             this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.btnViewDaily);
+            this.Controls.Add(this.btnViewDay);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportDayShop";
@@ -217,7 +220,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnViewDaily;
+        private System.Windows.Forms.Button btnViewDay;
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
@@ -230,6 +233,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Label lblYYYYMM;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewMonth;
     }
 }

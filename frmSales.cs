@@ -123,7 +123,7 @@ namespace thepos
 
             if (default_click_no > -1)
             {
-                ClickedGoodsGroup(mGoodsGroup[default_click_no].group_code);   // 디폴트로 설정된 그룹을 첫화면에 보여주자
+                ClickedGoodsGroup(myGoodsGroup[default_click_no].group_code);   // 디폴트로 설정된 그룹을 첫화면에 보여주자
             }
 
                         
@@ -451,15 +451,15 @@ namespace thepos
             tableLayoutPanelGoodsGroup.Controls.Clear();
             tableLayoutPanelGoodsGroup.PerformLayout();
 
-            for (int i = 0; i < mGoodsGroup.Length; i++)
+            for (int i = 0; i < myGoodsGroup.Length; i++)
             {
 
                 Button btnGoodsGroup = new Button();
-                String group_code = mGoodsGroup[i].group_code;
-                btnGoodsGroup.Tag = mGoodsGroup[i].group_code;
-                btnGoodsGroup.Text = mGoodsGroup[i].group_name;
+                String group_code = myGoodsGroup[i].group_code;
+                btnGoodsGroup.Tag = myGoodsGroup[i].group_code;
+                btnGoodsGroup.Text = myGoodsGroup[i].group_name;
                 btnGoodsGroup.FlatStyle = FlatStyle.Flat;
-                btnGoodsGroup.ForeColor = ColorTranslator.FromHtml(mGoodsGroup[i].btn_color);
+                btnGoodsGroup.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[i].btn_color);
                 btnGoodsGroup.BackColor = Color.White; 
 
                 btnGoodsGroup.TabStop = false;
@@ -470,15 +470,15 @@ namespace thepos
                 btnGoodsGroup.FlatAppearance.BorderSize = 2;
 
 
-                if (mGoodsGroup[i].columnspan == 1)
+                if (myGoodsGroup[i].columnspan == 1)
                 {
                     btnGoodsGroup.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
                 }
-                else if (mGoodsGroup[i].rowspan == 1)
+                else if (myGoodsGroup[i].rowspan == 1)
                 {
                     btnGoodsGroup.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
                 }
-                else if (mGoodsGroup[i].columnspan >= 3 & mGoodsGroup[i].rowspan >= 2)
+                else if (myGoodsGroup[i].columnspan >= 3 & myGoodsGroup[i].rowspan >= 2)
                 {
                     btnGoodsGroup.Font = new Font("맑은 고딕", 20, FontStyle.Bold);
                 }
@@ -489,11 +489,11 @@ namespace thepos
 
 
                 
-                if (mGoodsGroup[i].cutout == "Y") // 절판처리
+                if (myGoodsGroup[i].cutout == "Y") // 절판처리
                 {
                     btnGoodsGroup.ForeColor = Color.LightGray;
                 }
-                else if (mGoodsGroup[i].soldout == "Y")
+                else if (myGoodsGroup[i].soldout == "Y")
                 {
                     btnGoodsGroup.ForeColor = Color.Gray; // 품절처리
                 }
@@ -502,17 +502,17 @@ namespace thepos
                     btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
 
                     // 디폴트로 클릭될 그룹을 찾는다.
-                    if (sum_colunm_row > mGoodsGroup[i].column + mGoodsGroup[i].row)
+                    if (sum_colunm_row > myGoodsGroup[i].column + myGoodsGroup[i].row)
                     {
-                        sum_colunm_row = mGoodsGroup[i].column + mGoodsGroup[i].row;
+                        sum_colunm_row = myGoodsGroup[i].column + myGoodsGroup[i].row;
                         default_click_no = i;
                     }
                 }
 
 
-                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, mGoodsGroup[i].column, mGoodsGroup[i].row);
-                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, mGoodsGroup[i].columnspan);
-                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, mGoodsGroup[i].rowspan);
+                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, myGoodsGroup[i].column, myGoodsGroup[i].row);
+                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, myGoodsGroup[i].columnspan);
+                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, myGoodsGroup[i].rowspan);
 
                 tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
 
@@ -539,18 +539,15 @@ namespace thepos
             setGroupButtonColor(last_groupcode, false);
             setGroupButtonColor(groupcode, true);
 
-            for (int i = 0; i < mGoodsItem.Length; i++)
+            for (int i = 0; i < myGoodsItem.Length; i++)
             {
-                if (groupcode == mGoodsItem[i].group_code)
+                if (groupcode == myGoodsItem[i].group_code)
                 {
                     int idx = i;
                     btnGoodsItem = new Button();
-                    btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + mGoodsItem[i].amt.ToString("N0");
-                    btnGoodsItem.Tag = mGoodsItem[i].goods_code;
+                    
+                    btnGoodsItem.Tag = myGoodsItem[i].goods_code;
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
-
-                    btnGoodsItem.ForeColor = Color.White; 
-                    btnGoodsItem.BackColor = ColorTranslator.FromHtml(mGoodsItem[i].btn_color);
 
                     btnGoodsItem.TabStop = false;
                     btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
@@ -558,11 +555,11 @@ namespace thepos
                     btnGoodsItem.Dock = DockStyle.Fill;
 
 
-                    if (mGoodsItem[i].columnspan == 1 | mGoodsItem[i].rowspan == 1)
+                    if (myGoodsItem[i].columnspan == 1 | myGoodsItem[i].rowspan == 1)
                     {
                         btnGoodsItem.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
                     }
-                    else if (mGoodsItem[i].columnspan >= 3 & mGoodsItem[i].rowspan >= 3)
+                    else if (myGoodsItem[i].columnspan >= 3 & myGoodsItem[i].rowspan >= 3)
                     {
                         btnGoodsItem.Font = new Font("맑은 고딕", 20, FontStyle.Bold);
                     }
@@ -573,30 +570,31 @@ namespace thepos
 
 
                     
-                    if (mGoodsItem[i].cutout == "Y")  // 중지
+                    if (myGoodsItem[i].cutout == "Y")  // 중지
                     {
                         btnGoodsItem.ForeColor = Color.White;
                         btnGoodsItem.BackColor = Color.White;
-
-                        btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + "[절판]";
+                        btnGoodsItem.Text = myGoodsItem[i].goods_name + "\n" + "[절판]";
                     }
-                    else if (mGoodsItem[i].soldout == "Y")  // 품절
+                    else if (myGoodsItem[i].soldout == "Y")  // 품절
                     {
                         btnGoodsItem.ForeColor = Color.Gray;
                         btnGoodsItem.BackColor = Color.White;
-
-                        btnGoodsItem.Text = mGoodsItem[i].goods_name + "\n" + "[품절]";
+                        btnGoodsItem.Text = myGoodsItem[i].goods_name + "\n" + "[품절]";
                     }
                     else
                     {
+                        btnGoodsItem.ForeColor = Color.White;
+                        btnGoodsItem.BackColor = ColorTranslator.FromHtml(myGoodsItem[i].btn_color);
+                        btnGoodsItem.Text = myGoodsItem[i].goods_name + "\n" + myGoodsItem[i].amt.ToString("N0");
+
                         btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx);
                     }
                     
 
-
-                    tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, mGoodsItem[i].column, mGoodsItem[i].row);
-                    tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, mGoodsItem[i].columnspan);
-                    tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, mGoodsItem[i].rowspan);
+                    tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, myGoodsItem[i].column, myGoodsItem[i].row);
+                    tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, myGoodsItem[i].columnspan);
+                    tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, myGoodsItem[i].rowspan);
                 }
             }
  
@@ -607,7 +605,7 @@ namespace thepos
         private void ClickedGoodsItem(int i)
         {
 
-            if (mGoodsItem[i].online_coupon == "Y")
+            if (myGoodsItem[i].online_coupon == "Y")
             {
                 // [쿠폰]버튼 기능과 동일.
                 flow_cert();
@@ -621,9 +619,9 @@ namespace thepos
 
             int order_cnt = 1;
 
-            if (mGoodsItem[i].option_template_id != "")
+            if (myGoodsItem[i].option_template_id != "")
             {
-                frmOrderOption fForm = new frmOrderOption(mGoodsItem[i]);
+                frmOrderOption fForm = new frmOrderOption(myGoodsItem[i]);
                 DialogResult ret = fForm.ShowDialog();
 
                 if (ret == DialogResult.Cancel)
@@ -637,7 +635,7 @@ namespace thepos
 
 
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(mGoodsItem[i].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
+            int lv_idx = (get_lvitem_idx(myGoodsItem[i].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
 
             if (lv_idx == -1)
             {
@@ -672,21 +670,21 @@ namespace thepos
                 orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
                 orderItem.order_no = mOrderItemList.Count + 1;
-                orderItem.goods_code = mGoodsItem[i].goods_code.ToString();
-                orderItem.goods_name = mGoodsItem[i].goods_name;
-                orderItem.ticket = mGoodsItem[i].ticket;
-                orderItem.taxfree = mGoodsItem[i].taxfree;
-                orderItem.allim = mGoodsItem[i].allim;
+                orderItem.goods_code = myGoodsItem[i].goods_code.ToString();
+                orderItem.goods_name = myGoodsItem[i].goods_name;
+                orderItem.ticket = myGoodsItem[i].ticket;
+                orderItem.taxfree = myGoodsItem[i].taxfree;
+                orderItem.allim = myGoodsItem[i].allim;
 
                 orderItem.cnt = order_cnt;
-                orderItem.amt = mGoodsItem[i].amt;
+                orderItem.amt = myGoodsItem[i].amt;
 
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
-                orderItem.shop_code = mGoodsItem[i].shop_code;
-                orderItem.nod_code1 = mGoodsItem[i].nod_code1;
-                orderItem.nod_code2 = mGoodsItem[i].nod_code2;
+                orderItem.shop_code = myGoodsItem[i].shop_code;
+                orderItem.nod_code1 = myGoodsItem[i].nod_code1;
+                orderItem.nod_code2 = myGoodsItem[i].nod_code2;
 
                 //
                 replace_mem_order_item(ref orderItem, "add");
@@ -1329,7 +1327,7 @@ namespace thepos
             
 
             // orderItem
-            String sUrl = "orderItem?siteId=" + mSiteId + "&ticketNo=" + ticket_no + "&payClass=US&tranType=A";
+            String sUrl = "orderItem?siteId=" + mSiteId + "&ticketNo=" + ticket_no + "&bizDt=" + ticket_no.Substring(4,8) + "&payClass=US&tranType=A";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -1453,7 +1451,7 @@ namespace thepos
 
             for (int i = 0; i < list_the_no.Count; i++)
             {
-                sUrl = "orders?siteId=" + mSiteId + "&theNo=" + list_the_no[i] + "&tranType=A";
+                sUrl = "orders?siteId=" + mSiteId + "&theNo=" + list_the_no[i] + "&tranType=A" + "&bizDt=" + list_the_no[i].Substring(4,8);
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1693,14 +1691,16 @@ namespace thepos
                 }
                 else
                 {
+                    thepos_app_log(3, "SaveOrder", "mRequestPost(orders)", "오류 " + mObj["resultMsg"].ToString());
                     MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return -1;
+                    //return -1;
                 }
             }
             else
             {
+                thepos_app_log(3, "SaveOrder", "mRequestPost(orders)", "시스템오류 " + mErrorMsg);
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return -1;
+                //return -1;
             }
 
 
@@ -1756,14 +1756,16 @@ namespace thepos
                     }
                     else
                     {
+                        thepos_app_log(3, "SaveOrder", "mRequestPost(orderShop)", "오류 " + mObj["resultMsg"].ToString());
                         MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return -1;
+                        //return -1;
                     }
                 }
                 else
                 {
+                    thepos_app_log(3, "SaveOrder", "mRequestPost(orderShop)", "시스템오류 " + mErrorMsg);
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                    return -1;
+                    //return -1;
                 }
 
             }
@@ -1831,14 +1833,16 @@ namespace thepos
                     }
                     else
                     {
+                        thepos_app_log(3, "SaveOrder", "mRequestPost(orderItem)", "오류 " + mObj["resultMsg"].ToString());
                         MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return -1;
+                        //return -1;
                     }
                 }
                 else
                 {
+                    thepos_app_log(3, "SaveOrder", "mRequestPost(orderItem)", "시스템오류\n\n" + mErrorMsg);
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                    return -1;
+                    //return -1;
                 }
 
 
@@ -1875,14 +1879,16 @@ namespace thepos
                         }
                         else
                         {
+                            thepos_app_log(3, "SaveOrder", "mRequestPost(orderOptionItem)", "오류 " + mObj["resultMsg"].ToString());
                             MessageBox.Show("오류 orderOptionItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                            return -1;
+                            //return -1;
                         }
                     }
                     else
                     {
+                        thepos_app_log(3, "SaveOrder", "mRequestPost(orderItem)", "시스템오류\n\n" + mErrorMsg);
                         MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                        return -1;
+                        //return -1;
                     }
                 }
 
@@ -1894,8 +1900,10 @@ namespace thepos
                 // mOrderItemList[i].add_job = "TF4T9" 이면 : ticketFlow테이블 Patch step_flow를 4 -> 9로 변경
                 if (mOrderItemList[i].add_job == "TF4T9")
                 {
+
                     parameters.Clear();
-                    parameters["bizDt"] = mBizDate;
+                    //parameters["bizDt"] = mBizDate;   // 전일티켓을 위해서 일자를 맞춘다.
+                    parameters["bizDt"] = mOrderItemList[i].ticket_no.Substring(4, 8);
                     parameters["ticketNo"] = mOrderItemList[i].ticket_no;
                     parameters["flowStep"] = "9";
 
@@ -1910,14 +1918,14 @@ namespace thepos
                         {
                             thepos_app_log(3, "SaveOrder()", "PatchticketFlow, no=" + mOrderItemList[i].ticket_no, "오류 ticketFlow" + mObj["resultMsg"].ToString());
                             MessageBox.Show("오류 ticketFlow\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                            return -1;
+                            //return -1;
                         }
                     }
                     else
                     {
                         thepos_app_log(3, "SaveOrder()", "PatchticketFlow, no=" + mOrderItemList[i].ticket_no, "시스템오류 " + mErrorMsg);
                         MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                        return -1;
+                        //return -1;
                     }
                 }
 
@@ -2250,7 +2258,7 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = t_no;
-                parameters["flowStep"] = "2";
+                parameters["flowStep"] = "2";   // 사용중
                 parameters["pointChargeCnt"] = (++prev_point_charge_cnt) + "";
                 parameters["pointCharge"] = (prev_point_charge + charge_amt) + "";
                 parameters["chargeDt"] = get_today_date() + get_today_time();
@@ -2407,7 +2415,7 @@ namespace thepos
 
                 if (point_usage == settle_point_usage & point_charge == settle_point_charge)
                 {
-                    flow_step = "9";                // 접수0 - 발급1 - *충전2 - 사용중3 - 정산중4 - 정산(완료)9
+                    flow_step = "9";                // 발권0 - 입장1 - *충전2 - 사용3 - 퇴장4 - 정산중5 - 정산(완료)9
 
                     if (mTicketType == "PD") // 후불
                     {
@@ -2416,7 +2424,7 @@ namespace thepos
                 }
                 else
                 {
-                    flow_step = "4"; 
+                    flow_step = "5";    // 정산중
                 }
 
 
@@ -2605,7 +2613,7 @@ namespace thepos
 
         public static void CancelTicketFlow(String auth_pay_class, String the_no, String ticket_no, int cancel_amount)
         {
-            //접수0 - 발급1 - *충전2 - 사용중3 - 정산중4 - 정산완료9
+            //발권0 - 입장1 - *충전2 - 사용3 - 퇴장4 - 정산중5 - 정산완료9
 
             if (auth_pay_class == "OR")  // 주문건의 취소
             {
@@ -2643,8 +2651,6 @@ namespace thepos
                                 {
                                     if (mObj["resultCode"].ToString() == "200")
                                     {
-
-
 
                                         MessageBox.Show("티켓취소 완료.", "thepos");
                                     }
@@ -2706,11 +2712,11 @@ namespace thepos
 
                             if (charge_cnt == 0)
                             {
-                                flow_step = "1";
+                                flow_step = "1";  // 입장
                             }
                             else
                             {
-                                flow_step = "2";
+                                flow_step = "2";  // 충전
                             }
 
 
@@ -3582,9 +3588,9 @@ namespace thepos
         {
             int button_idx = -1;
 
-            for (int i = 0; i < mGoodsGroup.Length; i++)
+            for (int i = 0; i < myGoodsGroup.Length; i++)
             {
-                if (mGoodsGroup[i].group_code == groupcode)
+                if (myGoodsGroup[i].group_code == groupcode)
                 {
                     button_idx = i;
                 }
@@ -3599,14 +3605,14 @@ namespace thepos
             
             if (!isPressed)
             {
-                btn.ForeColor = ColorTranslator.FromHtml(mGoodsGroup[button_idx].btn_color); ;
+                btn.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[button_idx].btn_color); ;
                 btn.BackColor = Color.White;
                 btn.FlatAppearance.BorderSize = 2;
             }
             else
             {
                 btn.ForeColor = Color.White;
-                btn.BackColor = ColorTranslator.FromHtml(mGoodsGroup[button_idx].btn_color); ;
+                btn.BackColor = ColorTranslator.FromHtml(myGoodsGroup[button_idx].btn_color); ;
                 btn.FlatAppearance.BorderSize = 0;
             }
             
@@ -3850,7 +3856,7 @@ namespace thepos
 
 
             //!
-            String sUrl = "orders?siteId=" + mSiteId + "&theNo=" + tTheNo;
+            String sUrl = "orders?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4,8);
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -3889,7 +3895,11 @@ namespace thepos
             strPrintOrder += "상품명                 단가  수량     금액\r\n";
             strPrintOrder += "------------------------------------------\r\n";  // 42
 
-            sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tranType;
+            
+            
+            sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + tTheNo.Substring(4, 8);
+
+
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -3967,7 +3977,7 @@ namespace thepos
                             // 옵션아이템
                             if (arr[i]["optionNo"].ToString() != "")
                             {
-                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&optionNo=" + arr[i]["optionNo"].ToString();
+                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + tTheNo.Substring(4, 8) + "&optionNo=" + arr[i]["optionNo"].ToString();
                                 if (mRequestGet(sUrl))
                                 {
                                     if (mObj["resultCode"].ToString() == "200")
@@ -4124,7 +4134,7 @@ namespace thepos
             // 현금결제
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCash?siteId=" + mSiteId + "&tranType=A" + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4,8);
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4134,10 +4144,9 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 int amount = convert_number(arr[i]["amount"].ToString());
-
 
                                 if (arr[i]["payType"].ToString() == "R0") // 단순현금
                                 {
@@ -4252,7 +4261,8 @@ namespace thepos
             // 카드결제
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCard?siteId=" + mSiteId + "&tranType=A" + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4, 8);
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4262,7 +4272,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 if (arr[i]["payType"].ToString() == "C1") tStr = "카드결제";
                                 else if (arr[i]["payType"].ToString() == "C0") tStr = "카드결제";  // 임의등록
@@ -4333,7 +4343,8 @@ namespace thepos
             // 포인트
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4, 8);
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4383,7 +4394,8 @@ namespace thepos
             // 간편결제
             if (pay_keep_easy == "1")
             {
-                sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentEasy?siteId=" + mSiteId + "&tranType=A" + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4, 8);
+                
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4393,7 +4405,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 tStr = "";
                                 if (arr[i]["payType"].ToString() == "E1") tStr = "간편결제";
@@ -4459,7 +4471,8 @@ namespace thepos
             //  쿠폰인증 추가개발 필요
             if (pay_keep_cert == "1")
             {
-                sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCert?siteId=" + mSiteId + "&tranType=A" + "&theNo=" + tTheNo + "&bizDt=" + tTheNo.Substring(4, 8);
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -4469,7 +4482,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 tStr = "";
                                 if (arr[i]["payType"].ToString() == "M0") tStr = "쿠폰";
@@ -5761,7 +5774,7 @@ namespace thepos
                 String input_barcode = tbKeyDisplay.Text;
                 tbKeyDisplay.Clear();
 
-                if (input_barcode.Length < 3)
+                if (input_barcode.Length < 5)
                 {
                     thepos_app_log(3, this.Name, "scanner", "skip. barcode=" + input_barcode);
                     return;
@@ -5785,9 +5798,9 @@ namespace thepos
 
             int barcode_idx = -1;
 
-            for (int i = 0; i < mGoodsBarcodeList.Count; i++)
+            for (int i = 0; i < mGoodsList.Count; i++)
             {
-                if (mGoodsBarcodeList[i].bar_code == input_barcode)
+                if (mGoodsList[i].bar_code == input_barcode)
                 {
                     barcode_idx = i;
                     break;
@@ -5803,7 +5816,7 @@ namespace thepos
             else
             {
                 //
-                if (mGoodsBarcodeList[barcode_idx].online_coupon == "Y")
+                if (mGoodsList[barcode_idx].online_coupon == "Y")
                 {
                     //flow_cert();
                     return;
@@ -5815,7 +5828,7 @@ namespace thepos
 
 
                 MemOrderItem orderItem = new MemOrderItem();
-                int lv_idx = (get_lvitem_idx(mGoodsBarcodeList[barcode_idx].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
+                int lv_idx = (get_lvitem_idx(mGoodsList[barcode_idx].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
 
                 if (lv_idx == -1)
                 {
@@ -5829,21 +5842,21 @@ namespace thepos
                     orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
                     orderItem.order_no = mOrderItemList.Count + 1;
-                    orderItem.goods_code = mGoodsBarcodeList[barcode_idx].goods_code.ToString();
-                    orderItem.goods_name = mGoodsBarcodeList[barcode_idx].goods_name;
-                    orderItem.ticket = mGoodsBarcodeList[barcode_idx].ticket;
-                    orderItem.taxfree = mGoodsBarcodeList[barcode_idx].taxfree;
-                    orderItem.allim = mGoodsBarcodeList[barcode_idx].allim;
+                    orderItem.goods_code = mGoodsList[barcode_idx].goods_code.ToString();
+                    orderItem.goods_name = mGoodsList[barcode_idx].goods_name;
+                    orderItem.ticket = mGoodsList[barcode_idx].ticket;
+                    orderItem.taxfree = mGoodsList[barcode_idx].taxfree;
+                    orderItem.allim = mGoodsList[barcode_idx].allim;
 
                     orderItem.cnt = 1;
-                    orderItem.amt = mGoodsBarcodeList[barcode_idx].amt;
+                    orderItem.amt = mGoodsList[barcode_idx].amt;
 
                     orderItem.dcr_type = "";
                     orderItem.dcr_des = "";
                     orderItem.dcr_value = 0;
-                    orderItem.shop_code = mGoodsBarcodeList[barcode_idx].shop_code;
-                    orderItem.nod_code1 = mGoodsBarcodeList[barcode_idx].nod_code1;
-                    orderItem.nod_code2 = mGoodsBarcodeList[barcode_idx].nod_code2;
+                    orderItem.shop_code = mGoodsList[barcode_idx].shop_code;
+                    orderItem.nod_code1 = mGoodsList[barcode_idx].nod_code1;
+                    orderItem.nod_code2 = mGoodsList[barcode_idx].nod_code2;
 
                     //
                     replace_mem_order_item(ref orderItem, "add");

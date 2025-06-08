@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.memo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nod1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbPosNo = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -64,10 +64,10 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // memo
+            // nod1
             // 
-            this.memo.Text = "비고";
-            this.memo.Width = 80;
+            this.nod1.Text = "분류1";
+            this.nod1.Width = 80;
             // 
             // cbPosNo
             // 
@@ -292,7 +292,7 @@
             this.item_name,
             this.amt1,
             this.shop,
-            this.memo});
+            this.nod1});
             this.lvwGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGoods.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwGoods.FullRowSelect = true;
@@ -451,7 +451,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader memo;
+        private System.Windows.Forms.ColumnHeader nod1;
         private System.Windows.Forms.ComboBox cbPosNo;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.GroupBox groupBox3;

@@ -84,7 +84,7 @@
             this.btnSettleBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettleBill.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSettleBill.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnSettleBill.Location = new System.Drawing.Point(382, 483);
+            this.btnSettleBill.Location = new System.Drawing.Point(385, 479);
             this.btnSettleBill.Name = "btnSettleBill";
             this.btnSettleBill.Size = new System.Drawing.Size(120, 40);
             this.btnSettleBill.TabIndex = 78;
@@ -97,7 +97,7 @@
             // 
             this.lblTicketSettleTitle.AutoSize = true;
             this.lblTicketSettleTitle.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblTicketSettleTitle.Location = new System.Drawing.Point(21, 322);
+            this.lblTicketSettleTitle.Location = new System.Drawing.Point(6, 301);
             this.lblTicketSettleTitle.Name = "lblTicketSettleTitle";
             this.lblTicketSettleTitle.Size = new System.Drawing.Size(53, 12);
             this.lblTicketSettleTitle.TabIndex = 71;
@@ -109,7 +109,7 @@
             this.btnCancelReq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelReq.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancelReq.ForeColor = System.Drawing.Color.White;
-            this.btnCancelReq.Location = new System.Drawing.Point(256, 483);
+            this.btnCancelReq.Location = new System.Drawing.Point(259, 479);
             this.btnCancelReq.Name = "btnCancelReq";
             this.btnCancelReq.Size = new System.Drawing.Size(120, 40);
             this.btnCancelReq.TabIndex = 77;
@@ -129,9 +129,9 @@
             this.panel1.Controls.Add(this.cbPosNo);
             this.panel1.Controls.Add(this.lblPosNoTitle);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(20, 65);
+            this.panel1.Location = new System.Drawing.Point(5, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(482, 67);
+            this.panel1.Size = new System.Drawing.Size(511, 67);
             this.panel1.TabIndex = 76;
             // 
             // lblBizDtTitle
@@ -244,10 +244,10 @@
             this.lvwTicketSettle.FullRowSelect = true;
             this.lvwTicketSettle.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwTicketSettle.HideSelection = false;
-            this.lvwTicketSettle.Location = new System.Drawing.Point(20, 337);
+            this.lvwTicketSettle.Location = new System.Drawing.Point(5, 316);
             this.lvwTicketSettle.MultiSelect = false;
             this.lvwTicketSettle.Name = "lvwTicketSettle";
-            this.lvwTicketSettle.Size = new System.Drawing.Size(482, 133);
+            this.lvwTicketSettle.Size = new System.Drawing.Size(511, 150);
             this.lvwTicketSettle.TabIndex = 67;
             this.lvwTicketSettle.UseCompatibleStateImageBehavior = false;
             this.lvwTicketSettle.View = System.Windows.Forms.View.Details;
@@ -294,10 +294,10 @@
             this.lvwTicketFlow.FullRowSelect = true;
             this.lvwTicketFlow.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwTicketFlow.HideSelection = false;
-            this.lvwTicketFlow.Location = new System.Drawing.Point(20, 140);
+            this.lvwTicketFlow.Location = new System.Drawing.Point(5, 124);
             this.lvwTicketFlow.MultiSelect = false;
             this.lvwTicketFlow.Name = "lvwTicketFlow";
-            this.lvwTicketFlow.Size = new System.Drawing.Size(483, 159);
+            this.lvwTicketFlow.Size = new System.Drawing.Size(511, 159);
             this.lvwTicketFlow.TabIndex = 67;
             this.lvwTicketFlow.UseCompatibleStateImageBehavior = false;
             this.lvwTicketFlow.View = System.Windows.Forms.View.Details;
@@ -344,7 +344,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(463, 20);
+            this.btnClose.Location = new System.Drawing.Point(474, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -358,11 +358,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(20, 20);
+            this.lblTitle.Location = new System.Drawing.Point(4, 5);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(483, 40);
+            this.lblTitle.Size = new System.Drawing.Size(512, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "정산";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

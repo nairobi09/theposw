@@ -31,7 +31,7 @@ namespace thepos
         {
             InitializeComponent();
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 comboPosNo.Items.Add(mPosNoList[i]);
             }
@@ -161,6 +161,7 @@ namespace thepos
                     {
                         ListViewItem lvItem = new ListViewItem();
                         lvItem.Text = arr[i]["groupName"].ToString();
+                        lvItem.SubItems.Add(arr[i]["groupCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["groupNameEn"].ToString());
                         lvItem.SubItems.Add(arr[i]["groupNameCh"].ToString());
                         lvItem.SubItems.Add(arr[i]["groupNameJp"].ToString());
@@ -172,7 +173,7 @@ namespace thepos
 
                         lvItem.SubItems.Add(arr[i]["btnColor"].ToString());
 
-                        lvItem.Tag = arr[i]["groupCode"].ToString();
+
 
                         lvwList.Items.Add(lvItem);
 
@@ -388,7 +389,7 @@ namespace thepos
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
-            parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
+            parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
             parameters["groupName"] = tbGroupName.Text;
             parameters["groupNameEn"] = tbGroupNameEN.Text;
             parameters["groupNameCh"] = tbGroupNameCH.Text;
@@ -507,7 +508,7 @@ namespace thepos
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["posNo"] = mSelectedPosNo;
-            parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
+            parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
 
 
             if (mRequestDelete("goodsGroup", parameters))

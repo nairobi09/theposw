@@ -28,17 +28,15 @@ namespace thepos
             initialize_the();
 
 
+        }
+
+        private void initialize_the()
+        {
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 28);
             lvwList.SmallImageList = imgList;
             lvwList.HideSelection = true;
 
-
-
-        }
-
-        private void initialize_the()
-        {
             //
             cbShop.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
@@ -92,16 +90,16 @@ namespace thepos
 
             lvwList.Items.Clear();
 
-            for (int i = 0; i < mGoodsBarcodeList.Count; i++)
+            for (int i = 0; i < mGoodsList.Count; i++)
             {
-                if (shop_code == mGoodsBarcodeList[i].shop_code | shop_code == "")
+                if ((mGoodsList[i].shop_code == shop_code | shop_code == "") & mGoodsList[i].bar_code != "")
                 {
                     ListViewItem item = new ListViewItem();
-                    item.Text = get_shop_name(mGoodsBarcodeList[i].shop_code);
-                    item.SubItems.Add(mGoodsBarcodeList[i].bar_code);
-                    item.SubItems.Add(mGoodsBarcodeList[i].goods_name);
-                    item.SubItems.Add(mGoodsBarcodeList[i].amt.ToString("N0"));
-                    item.SubItems.Add(mGoodsBarcodeList[i].goods_code);
+                    item.Text = get_shop_name(mGoodsList[i].shop_code);
+                    item.SubItems.Add(mGoodsList[i].bar_code);
+                    item.SubItems.Add(mGoodsList[i].goods_name);
+                    item.SubItems.Add(mGoodsList[i].amt.ToString("N0"));
+                    item.SubItems.Add(mGoodsList[i].goods_code);
                     lvwList.Items.Add(item);
                 }
             }

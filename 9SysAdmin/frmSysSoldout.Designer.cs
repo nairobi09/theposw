@@ -382,9 +382,9 @@
             this.label2.ForeColor = System.Drawing.Color.DimGray;
             this.label2.Location = new System.Drawing.Point(463, 650);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 42);
+            this.label2.Size = new System.Drawing.Size(130, 42);
             this.label2.TabIndex = 90;
-            this.label2.Text = "[절판]\r\n포스기기 : Disable\r\n키오스크 : Visible";
+            this.label2.Text = "[절판]\r\n포스기기 : Disable\r\n키오스크 : Invisible";
             // 
             // frmSysSoldout
             // 

@@ -37,7 +37,7 @@ namespace thepos
         private void initialize_the()
         {
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 30);
+            imgList.ImageSize = new Size(1, 28);
             lvwFlow.SmallImageList = imgList;
 
             saveKeyDisplay = mTbKeyDisplayController;
@@ -52,9 +52,9 @@ namespace thepos
 
 
             cbPosNo.Items.Clear();
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < myPosNoList.Count; i++)
             {
-                cbPosNo.Items.Add(mPosNoList[i]);
+                cbPosNo.Items.Add(myPosNoList[i]);
             }
             cbPosNo.Items.Add("");
             cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;

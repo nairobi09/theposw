@@ -368,7 +368,7 @@ namespace theposw._1Sales
                         entry_dt = arr[i]["entryDt"].ToString();
 
 
-                        if (Int32.Parse(save_flow_step) > Int32.Parse(arr[i]["flowStep"].ToString()))
+                        if (Int32.Parse(save_flow_step) >= Int32.Parse(arr[i]["flowStep"].ToString()))
                         {
                             save_flow_step = arr[i]["flowStep"].ToString();
 

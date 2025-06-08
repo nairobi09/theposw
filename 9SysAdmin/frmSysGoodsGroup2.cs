@@ -26,7 +26,7 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 comboPosNo.Items.Add(mPosNoList[i]);
             }

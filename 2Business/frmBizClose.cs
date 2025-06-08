@@ -147,7 +147,7 @@ namespace thepos
                         String data = mObj["dayPos"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        int[] pos_amount = new int[mPosNoList.Length];
+                        int[] pos_amount = new int[mPosNoList.Count];
 
 
                         for (int i = 0; i < arr.Count; i++)
@@ -157,7 +157,7 @@ namespace thepos
                             card_amt = convert_number(arr[i]["amountCard"].ToString());
                             easy_amt = convert_number(arr[i]["amountEasy"].ToString());
 
-                            for (int pos_idx = 0; pos_idx < mPosNoList.Length; pos_idx++)
+                            for (int pos_idx = 0; pos_idx < mPosNoList.Count; pos_idx++)
                             {
                                 if (arr[i]["posNo"].ToString() == mPosNoList[pos_idx])
                                 {
@@ -178,7 +178,7 @@ namespace thepos
                         lblAmountNet.Text = tot_net_amt.ToString("N0");
 
 
-                        for (int pos_idx = 0; pos_idx < mPosNoList.Length; pos_idx++)
+                        for (int pos_idx = 0; pos_idx < mPosNoList.Count; pos_idx++)
                         {
                             if (pos_idx < 10)
                             {

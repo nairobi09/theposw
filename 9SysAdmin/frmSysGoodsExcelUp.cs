@@ -49,6 +49,7 @@ namespace theposw._9SysAdmin
         String imagePath = "";
 
         String barCode = "";
+        String nodCode1 = "";
 
         //
         int int_goods_code = 0;
@@ -160,6 +161,7 @@ namespace theposw._9SysAdmin
                     couponLinkNo = "";
                     imagePath = "";
                     barCode = "";
+                    nodCode1 = "";
                 }
 
                 if (!row.IsNewRow)
@@ -191,6 +193,7 @@ namespace theposw._9SysAdmin
                         else if (columnName == "memo") { memo = cell.Value?.ToString() ?? string.Empty; }
                         else if (columnName == "couponLinkNo") { couponLinkNo = cell.Value?.ToString() ?? string.Empty; }
                         else if (columnName == "imagePath") { imagePath = cell.Value?.ToString() ?? string.Empty; }
+                        else if (columnName == "nodCode1") { nodCode1 = cell.Value?.ToString() ?? string.Empty; }
 
                     }
 
@@ -208,7 +211,7 @@ namespace theposw._9SysAdmin
                     parameter["barCode"] = barCode;
                     parameter["onlineCoupon"] = onlineCoupon;
                     parameter["ticketYn"] = ticketYn;
-                    parameter["taxFree"] = ticketYn;
+                    parameter["taxFree"] = taxFree;
                     parameter["cutout"] = cutout;
                     parameter["soldout"] = soldout;
                     parameter["allim"] = allim;
@@ -219,7 +222,10 @@ namespace theposw._9SysAdmin
                     parameter["memo"] = memo;
                     parameter["couponLinkNo"] = couponLinkNo;
                     parameter["imagePath"] = imagePath;
-                        
+
+                    parameter["nodCode1"] = nodCode1;
+                    parameter["nodCode2"] = "";
+
                     //
                     if (mRequestPost("goods", parameter))
                     {

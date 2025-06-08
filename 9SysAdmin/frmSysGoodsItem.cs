@@ -38,7 +38,7 @@ namespace thepos
 
             
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
@@ -48,7 +48,7 @@ namespace thepos
             //get_posno_from_setupPos();
 
             /*
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
@@ -141,9 +141,7 @@ namespace thepos
                             lvItem.Text = arr[i]["goodsName"].ToString();
                             lvItem.SubItems.Add(arr[i]["amt"].ToString());
                             lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
-
-                            lvItem.SubItems.Add(arr[i]["memo"].ToString());
-
+                            lvItem.SubItems.Add(get_nod1_name(arr[i]["shopCode"].ToString(), arr[i]["nodCode1"].ToString()));
                             lvItem.Tag = arr[i]["goodsCode"].ToString();
 
                             lvwGoods.Items.Add(lvItem);
@@ -286,10 +284,10 @@ namespace thepos
             {
                 try
                 {
-                    int loc_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text);
-                    int loc_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text);
-                    int sz_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text);
-                    int sz_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text);
+                    int loc_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(X)].Text);
+                    int loc_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(Y)].Text);
+                    int sz_x = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(W)].Text);
+                    int sz_y = convert_number(lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(H)].Text);
                     String btnColor = lvwGoodsLink.Items[i].SubItems[lvwGoodsLink.Columns.IndexOf(btn_color)].Text;
 
                     if (btnColor == "") btnColor = mTheposColor;
@@ -336,10 +334,10 @@ namespace thepos
             }
             else
             {
-                tbLocateX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locX)].Text;
-                tbLocateY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(locY)].Text;
-                tbSizeX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szX)].Text;
-                tbSizeY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(szY)].Text;
+                tbLocateX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(X)].Text;
+                tbLocateY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(Y)].Text;
+                tbSizeX.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(W)].Text;
+                tbSizeY.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(H)].Text;
 
                 tbColor.Text = lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(btn_color)].Text;
 
@@ -681,9 +679,6 @@ namespace thepos
 
             String sourcePosNo = cbSourcePosNo.SelectedItem.ToString();
             String sourceGroupCode = cbSourceGroup.SelectedValue.ToString();
-
-
-
 
 
             if (MessageBox.Show("기존의 연결상품을 모두 삭제하고, 선택한 그룹의 상품을 복사해옵니다.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)

@@ -79,7 +79,7 @@
             this.tbStartGoodsCode.Name = "tbStartGoodsCode";
             this.tbStartGoodsCode.Size = new System.Drawing.Size(74, 26);
             this.tbStartGoodsCode.TabIndex = 2;
-            this.tbStartGoodsCode.Text = "100000";
+            this.tbStartGoodsCode.Text = "100001";
             // 
             // btnOpenExcel
             // 

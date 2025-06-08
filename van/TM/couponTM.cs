@@ -28,11 +28,14 @@ namespace thepos
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["barcode_no"] = tCouponNo;
+                parameters["page"] = "1";
+                parameters["pageSize"] = "100";
+
 
                 var json = JsonConvert.SerializeObject(parameters);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
                 //mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
-                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/info", data).Result;
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoAll", data).Result;
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 

@@ -94,7 +94,7 @@ namespace thepos
 
             cbPosNo.Items.Clear();
             cbPosNo.Items.Add("");
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
             }

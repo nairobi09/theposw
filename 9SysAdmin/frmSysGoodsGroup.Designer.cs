@@ -53,6 +53,8 @@
             this.tableLayoutPanelGroupSelected = new System.Windows.Forms.TableLayoutPanel();
             this.btnApply = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblT6 = new System.Windows.Forms.Label();
+            this.lblT5 = new System.Windows.Forms.Label();
             this.btnColor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbColor = new System.Windows.Forms.TextBox();
@@ -68,8 +70,7 @@
             this.btnViewPosNo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.lblT6 = new System.Windows.Forms.Label();
-            this.lblT5 = new System.Windows.Forms.Label();
+            this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +104,7 @@
             this.lvwList.BackColor = System.Drawing.Color.White;
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
+            this.code,
             this.name_en,
             this.name_ch,
             this.name_jp,
@@ -366,6 +368,28 @@
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             // 
+            // lblT6
+            // 
+            this.lblT6.AutoSize = true;
+            this.lblT6.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblT6.Location = new System.Drawing.Point(166, 150);
+            this.lblT6.Name = "lblT6";
+            this.lblT6.Size = new System.Drawing.Size(15, 13);
+            this.lblT6.TabIndex = 71;
+            this.lblT6.Text = "Y";
+            // 
+            // lblT5
+            // 
+            this.lblT5.AutoSize = true;
+            this.lblT5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblT5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblT5.Location = new System.Drawing.Point(96, 152);
+            this.lblT5.Name = "lblT5";
+            this.lblT5.Size = new System.Drawing.Size(15, 13);
+            this.lblT5.TabIndex = 72;
+            this.lblT5.Text = "X";
+            // 
             // btnColor
             // 
             this.btnColor.BackColor = System.Drawing.Color.White;
@@ -526,27 +550,10 @@
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             // 
-            // lblT6
+            // code
             // 
-            this.lblT6.AutoSize = true;
-            this.lblT6.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblT6.Location = new System.Drawing.Point(166, 150);
-            this.lblT6.Name = "lblT6";
-            this.lblT6.Size = new System.Drawing.Size(15, 13);
-            this.lblT6.TabIndex = 71;
-            this.lblT6.Text = "Y";
-            // 
-            // lblT5
-            // 
-            this.lblT5.AutoSize = true;
-            this.lblT5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblT5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblT5.Location = new System.Drawing.Point(96, 152);
-            this.lblT5.Name = "lblT5";
-            this.lblT5.Size = new System.Drawing.Size(15, 13);
-            this.lblT5.TabIndex = 72;
-            this.lblT5.Text = "X";
+            this.code.Text = "code";
+            this.code.Width = 1;
             // 
             // frmSysGoodsGroup
             // 
@@ -618,5 +625,6 @@
         private System.Windows.Forms.ColumnHeader btn_color;
         private System.Windows.Forms.Label lblT6;
         private System.Windows.Forms.Label lblT5;
+        private System.Windows.Forms.ColumnHeader code;
     }
 }

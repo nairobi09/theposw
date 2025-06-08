@@ -124,8 +124,9 @@ namespace thepos
         public static String myShopCode = "";       // 내 업장코드
         public static String myShopName = "";       // 내 업장명
 
-        public static String myPosNo = "";       // 내 포스번호
-        public static String[] mPosNoList;      // Site내 포스번호 목록
+        public static String myPosNo = "";                              // 내 포스번호
+        public static List<String> myPosNoList = new List<string>();    // Site내+내업장내 포스번호 목록   0~ 1~
+        public static List<String> mPosNoList = new List<string>();     // Site내 포스번호 목록
 
         //
         public static String mUserAuth = "";       //  내 사용자권한 : U or A
@@ -323,7 +324,7 @@ namespace thepos
             public int rowspan;
             public String btn_color;
         }
-        public static GoodsGroup[] mGoodsGroup;
+        public static GoodsGroup[] myGoodsGroup;
 
 
         public struct GoodsItem
@@ -351,7 +352,7 @@ namespace thepos
             public int rowspan;
             public String btn_color;
         }
-        public static GoodsItem[] mGoodsItem;
+        public static GoodsItem[] myGoodsItem;
 
 
         public struct GoodsTicket
@@ -366,7 +367,9 @@ namespace thepos
         }
         public static GoodsTicket[] mGoodsTicket;
 
-        public struct GoodsBarcode
+
+
+        public struct Goods
         {
             public string goods_code;
             public string goods_name;
@@ -382,7 +385,7 @@ namespace thepos
             public String allim;
             public String bar_code;
         }
-        public static List<GoodsBarcode> mGoodsBarcodeList = new List<GoodsBarcode>();
+        public static List<Goods> mGoodsList = new List<Goods>();
 
 
 
@@ -411,10 +414,6 @@ namespace thepos
         */
 
 
-        // 상품명을 찾기위해서
-        public static List<string> aGoodsCode = new List<string>();
-        public static List<string> aGoodsName = new List<string>();
-        public static string aGoodsLoad = "N";
 
 
 
@@ -969,6 +968,21 @@ namespace thepos
             return name;
         }
 
+
+        public static int get_goods_amt(String code)
+        {
+            for (int i = 0; i < mGoodsList.Count; i++)
+            {
+                if (mGoodsList[i].goods_code == code)
+                {
+                    return mGoodsList[i].amt;
+                }
+            }
+
+            return 0;
+        }
+
+
         public static String get_goods_name(String code)
         {
             if (code == "DCRE")
@@ -993,42 +1007,12 @@ namespace thepos
                 return "충전";
 
 
-            // 상품명 찾기 전용 메모리 사용
-            if (aGoodsLoad == "N")
-            {
-                String sUrl = "goodsName?siteId=" + mSiteId;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String pos = mObj["goods"].ToString();
-                        JArray arr = JArray.Parse(pos);
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            aGoodsCode.Add(arr[i]["goodsCode"].ToString());
-                            aGoodsName.Add(arr[i]["goodsName"].ToString());
-                        }
-
-                        aGoodsLoad = "Y";
-                    }
-                    else
-                    {
-                        aGoodsLoad = "E";
-                    }
-                }
-                else
-                {
-                    aGoodsLoad = "E";
-                }
-            }
-
             
-            for (int i = 0; i < aGoodsCode.Count; i++)
+            for (int i = 0; i < mGoodsList.Count; i++)
             {
-                if (aGoodsCode[i] == code)
+                if (mGoodsList[i].goods_code == code)
                 {
-                    return aGoodsName[i];
+                    return mGoodsList[i].goods_name;
                 }
             }
 

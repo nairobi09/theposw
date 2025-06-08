@@ -46,7 +46,7 @@ namespace thepos
         {
             lvwOrder.Items.Clear();
 
-            String sUrl = "orders?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
+            String sUrl = "orders?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text + "&bizDt=" + tbTheNo.Text.Substring(4,8);
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -78,7 +78,7 @@ namespace thepos
         {
             lvwOrderItem.Items.Clear();
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text;
+            String sUrl = "orderItem?siteId=" + mSiteId + "&refNo=" + tbTheNo.Text + "&bizDt=" + tbTheNo.Text.Substring(4,8);
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

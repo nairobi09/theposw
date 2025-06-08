@@ -438,26 +438,36 @@ namespace theposw._9SysAdmin
             }
 
 
+
             //
-            sUrl = "dcrFavorite?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
+            for (int shop_idx = 0; shop_idx < shops.Length; shop_idx++)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                TreeNode nodeShop = new TreeNode();
+                nodeShop.Text = shops[shop_idx].shop_name;
+                nodeShop.Tag = "SHOP" + shops[shop_idx].shop_code;
+                nodeShop.ForeColor = Color.Red;
+                nodeDCR.Nodes.Add(nodeShop);
+
+                sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + shops[shop_idx].shop_code;
+                if (mRequestGet(sUrl))
                 {
-                    String data = mObj["dcr"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    TreeNode[] dcrList = new TreeNode[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        dcrList[i] = new TreeNode();
-                        dcrList[i].Text = arr[i]["dcrName"].ToString();
-                        dcrList[i].Tag = "DCR_" + arr[i]["dcrCode"].ToString();
-                        dcrList[i].ForeColor = Color.Gray;
-                        nodeDCR.Nodes.Add(dcrList[i]);
+                        String data = mObj["dcr"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        TreeNode[] dcrList = new TreeNode[arr.Count];
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            dcrList[i] = new TreeNode();
+                            dcrList[i].Text = arr[i]["dcrName"].ToString();
+                            dcrList[i].Tag = "DCR_" + arr[i]["dcrCode"].ToString();
+                            dcrList[i].ForeColor = Color.Gray;
+                            nodeShop.Nodes.Add(dcrList[i]);
+                        }
+                        nodeDCR.Expand();
                     }
-                    nodeDCR.Expand();
                 }
             }
         }

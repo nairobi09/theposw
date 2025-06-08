@@ -164,7 +164,7 @@ namespace thepos
                 //  payment
                 if (!SavePayment(paySeq, "Easy", netAmount, dcAmount))
                 {
-                    return;
+                    //return;
                 }
 
 
@@ -191,7 +191,7 @@ namespace thepos
 
                 if (!SavePaymentEasy(mPaymentEasy))
                 {
-                    return;
+                    //return;
                 }
 
 

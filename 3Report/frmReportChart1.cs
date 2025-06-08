@@ -34,15 +34,13 @@ namespace thepos
 
         private void initialize_the()
         {
-            
-
             String yyyymm = get_today_date().Substring(0, 6);
 
             lblYYYYMM.Text = yyyymm.Substring(0, 4) + "-" + yyyymm.Substring(4, 2);
 
             cbPosNo.Items.Clear();
             cbPosNo.Items.Add("");
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
             }

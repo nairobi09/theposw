@@ -23,9 +23,9 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < myPosNoList.Count; i++)
             {
-                cbPosNo.Items.Add(mPosNoList[i]);
+                cbPosNo.Items.Add(myPosNoList[i]);
             }
         }
 
@@ -50,8 +50,8 @@ namespace thepos._9SysAdmin
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String pos = mObj["goods"].ToString();
-                    JArray arr = JArray.Parse(pos);
+                    String data = mObj["goods"].ToString();
+                    JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
                     {
@@ -110,7 +110,7 @@ namespace thepos._9SysAdmin
             }
 
 
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mPosNoList[cbPosNo.SelectedIndex];
+            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + myPosNoList[cbPosNo.SelectedIndex];
 
             if (mRequestGet(sUrl))
             {

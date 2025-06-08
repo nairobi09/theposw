@@ -42,7 +42,7 @@ namespace thepos._1Sales
             lvwConsoleLink.HideSelection = true;
 
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 comboPosNo.Items.Add(mPosNoList[i]);
             }

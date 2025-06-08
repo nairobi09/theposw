@@ -455,6 +455,7 @@ namespace thepos
             sync_data_server_to_memory();
 
 
+
             //
             for (int i = 0; i < mShop.Length; i++)
             {
@@ -569,6 +570,22 @@ namespace thepos
             // 6. setupPos
             if (true)
             {
+                mBillPrinterPort = "";
+                mBillPrinterSpeed = "";
+                mMobileExchangeType = "";
+                mPrintExchangeType = "";
+                mTicketPrinterPort = "";
+                mTicketPrinterSpeed = "";
+                mPosType = "";
+                mCustomerMonitor = "";
+                mVanTID = "";
+                mCouponMID = "";
+                mTicketAddText = "";
+                mBillAddText = "";
+                mAppLogLevel = 4;
+                mTheposColor = "#3380cc";
+
+
                 String sUrl = "setupPos?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
@@ -593,6 +610,8 @@ namespace thepos
                             else if (arr[i]["setupCode"].ToString() == "VanTID") mVanTID = arr[i]["setupValue"].ToString();
 
                             else if (arr[i]["setupCode"].ToString() == "CouponMID") mCouponMID = arr[i]["setupValue"].ToString();
+
+                            else if (arr[i]["setupCode"].ToString() == "SubMonitorImage") mSubMonitorImage = arr[i]["setupValue"].ToString();
 
                             else if (arr[i]["setupCode"].ToString() == "TicketAddText") mTicketAddText = arr[i]["setupValue"].ToString();
                             else if (arr[i]["setupCode"].ToString() == "BillAddText") mBillAddText = arr[i]["setupValue"].ToString();
@@ -624,41 +643,53 @@ namespace thepos
 
 
             // 1-2. site_allim
-            if (mAllimYn == "Y")
-            {
-                String sUrl = "siteAllim?siteId=" + mSiteId;
+            if (true)
+            { 
+                mAllimSenderProfile = "";
+                mAllimSenderProfileKey = "";
+                mAllimSiteName = "";
+                mAllimUserId = "";
+                mAllimCorpCode = "";
+                mAllimOrCode = "";
+                mAllimCpCode = "";
+                mAllimEtcCode = "";
 
-                if (mRequestGet(sUrl))
+
+                if (mAllimYn == "Y")
                 {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["sites"].ToString();
-                        JArray arr = JArray.Parse(data);
+                    String sUrl = "siteAllim?siteId=" + mSiteId;
 
-                        if (arr.Count > 0)
+                    if (mRequestGet(sUrl))
+                    {
+                        if (mObj["resultCode"].ToString() == "200")
                         {
-                            mAllimSenderProfile = arr[0]["senderProfile"].ToString();
-                            mAllimSenderProfileKey = arr[0]["senderProfileKey"].ToString();
-                            mAllimSiteName = arr[0]["siteName"].ToString();
-                            mAllimUserId = arr[0]["allimUserId"].ToString();
-                            mAllimCorpCode = arr[0]["allimCorpCode"].ToString();
-                            mAllimOrCode = arr[0]["orAllimCode"].ToString();
-                            mAllimCpCode = arr[0]["cpAllimCode"].ToString();
-                            mAllimEtcCode = arr[0]["etcAllimCode"].ToString();
+                            String data = mObj["sites"].ToString();
+                            JArray arr = JArray.Parse(data);
+
+                            if (arr.Count > 0)
+                            {
+                                mAllimSenderProfile = arr[0]["senderProfile"].ToString();
+                                mAllimSenderProfileKey = arr[0]["senderProfileKey"].ToString();
+                                mAllimSiteName = arr[0]["siteName"].ToString();
+                                mAllimUserId = arr[0]["allimUserId"].ToString();
+                                mAllimCorpCode = arr[0]["allimCorpCode"].ToString();
+                                mAllimOrCode = arr[0]["orAllimCode"].ToString();
+                                mAllimCpCode = arr[0]["cpAllimCode"].ToString();
+                                mAllimEtcCode = arr[0]["etcAllimCode"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("알림톡정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                            return;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("알림톡정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                         return;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                    return;
-                }
-
             }
 
 
@@ -670,25 +701,25 @@ namespace thepos
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String goods_group = mObj["goodsGroups"].ToString();
-                        JArray arr = JArray.Parse(goods_group);
+                        String data = mObj["goodsGroups"].ToString();
+                        JArray arr = JArray.Parse(data);
 
-                        mGoodsGroup = new GoodsGroup[arr.Count];
+                        myGoodsGroup = new GoodsGroup[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
-                            mGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
-                            mGoodsGroup[i].soldout = arr[i]["soldout"].ToString();
-                            mGoodsGroup[i].cutout = arr[i]["cutout"].ToString();
-                            mGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
-                            mGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
-                            mGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                            mGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                            myGoodsGroup[i].group_code = arr[i]["groupCode"].ToString();
+                            myGoodsGroup[i].group_name = arr[i]["groupName"].ToString();
+                            myGoodsGroup[i].soldout = arr[i]["soldout"].ToString();
+                            myGoodsGroup[i].cutout = arr[i]["cutout"].ToString();
+                            myGoodsGroup[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            myGoodsGroup[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            myGoodsGroup[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            myGoodsGroup[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
 
                             String b_color = arr[i]["btnColor"].ToString();
-                            if (b_color == "") b_color = mTheposColor;
-                            mGoodsGroup[i].btn_color = b_color;
+                            if (b_color == "" | b_color == "null") b_color = mTheposColor;
+                            myGoodsGroup[i].btn_color = b_color;
                         }
                     }
                     else
@@ -718,23 +749,35 @@ namespace thepos
                         String data = mObj["goodsItems"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        mGoodsItem = new GoodsItem[arr.Count];
+                        myGoodsItem = new GoodsItem[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                            mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
+                            myGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                            myGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
 
-                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                            myGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            myGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            myGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            myGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
 
                             String b_color = arr[i]["btnColor"].ToString();
-                            if (b_color == "") b_color = mTheposColor;
-                            mGoodsItem[i].btn_color = b_color;
 
+                            if (b_color.Length == 7)
+                            {
+                                myGoodsItem[i].btn_color = b_color;
+                            }
+                            else
+                            {
+                                myGoodsItem[i].btn_color = mTheposColor;
+                            }
                         }
+
+
+                        GoodsItem[] gg = myGoodsItem;
+
+
+
                     }
                     else
                     {
@@ -762,59 +805,56 @@ namespace thepos
                         String data = mObj["goods"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        mGoodsBarcodeList.Clear();
+                        mGoodsList.Clear();
 
                         for (int i = 0; i < arr.Count; i++)
                         {
                             String t_goods_code = arr[i]["goodsCode"].ToString();
 
-                            for (int k = 0; k < mGoodsItem.Length; k++)
+                            for (int k = 0; k < myGoodsItem.Length; k++)
                             {
-                                if (mGoodsItem[k].goods_code == t_goods_code)
+                                if (myGoodsItem[k].goods_code == t_goods_code)
                                 {
-                                    mGoodsItem[k].goods_name = arr[i]["goodsName"].ToString();
-                                    mGoodsItem[k].shop_code = arr[i]["shopCode"].ToString();
-                                    mGoodsItem[k].nod_code1 = arr[i]["nodCode1"].ToString();
-                                    mGoodsItem[k].nod_code2 = arr[i]["nodCode2"].ToString();
-                                    mGoodsItem[k].amt = int.Parse(arr[i]["amt"].ToString());
-                                    mGoodsItem[k].online_coupon = arr[i]["onlineCoupon"].ToString();
-                                    mGoodsItem[k].ticket = arr[i]["ticketYn"].ToString();
-                                    mGoodsItem[k].taxfree = arr[i]["taxFree"].ToString();
-                                    mGoodsItem[k].cutout = arr[i]["cutout"].ToString();
-                                    mGoodsItem[k].soldout = arr[i]["soldout"].ToString();
-                                    mGoodsItem[k].allim = arr[i]["allim"].ToString();
-                                    mGoodsItem[k].option_template_id = arr[i]["optionTemplateId"].ToString();
-                                    mGoodsItem[k].coupon_link_no = arr[i]["couponLinkNo"].ToString();
-                                    //mGoodsItem[k].bar_code = arr[i]["barCode"].ToString();
+                                    myGoodsItem[k].goods_name = arr[i]["goodsName"].ToString();
+                                    myGoodsItem[k].shop_code = arr[i]["shopCode"].ToString();
+                                    myGoodsItem[k].nod_code1 = arr[i]["nodCode1"].ToString();
+                                    myGoodsItem[k].nod_code2 = arr[i]["nodCode2"].ToString();
+                                    myGoodsItem[k].amt = int.Parse(arr[i]["amt"].ToString());
+                                    myGoodsItem[k].online_coupon = arr[i]["onlineCoupon"].ToString();
+                                    myGoodsItem[k].ticket = arr[i]["ticketYn"].ToString();
+                                    myGoodsItem[k].taxfree = arr[i]["taxFree"].ToString();
+                                    myGoodsItem[k].cutout = arr[i]["cutout"].ToString();
+                                    myGoodsItem[k].soldout = arr[i]["soldout"].ToString();
+                                    myGoodsItem[k].allim = arr[i]["allim"].ToString();
+                                    myGoodsItem[k].option_template_id = arr[i]["optionTemplateId"].ToString();
+                                    myGoodsItem[k].coupon_link_no = arr[i]["couponLinkNo"].ToString();
+                                    //myGoodsItem[k].bar_code = arr[i]["barCode"].ToString();
 
                                     // 면세상픔은 상품명앞에 *을 붙인다.
-                                    if (mGoodsItem[k].taxfree == "1")
+                                    if (myGoodsItem[k].taxfree == "1")
                                     {
-                                        mGoodsItem[k].goods_name = "*" + mGoodsItem[k].goods_name;
+                                        myGoodsItem[k].goods_name = "*" + myGoodsItem[k].goods_name;
                                     }
                                 }
                             }
 
 
                             //
-                            if (arr[i]["barCode"].ToString().Trim() != "")
-                            {
-                                GoodsBarcode goodsBarcode = new GoodsBarcode();
-                                goodsBarcode.goods_code = arr[i]["goodsCode"].ToString();
-                                goodsBarcode.goods_name = arr[i]["goodsName"].ToString();
-                                goodsBarcode.amt = int.Parse(arr[i]["amt"].ToString());
-                                goodsBarcode.online_coupon = arr[i]["onlineCoupon"].ToString();
-                                goodsBarcode.ticket = arr[i]["ticketYn"].ToString();
-                                goodsBarcode.taxfree = arr[i]["taxFree"].ToString();
-                                goodsBarcode.shop_code = arr[i]["shopCode"].ToString();
-                                goodsBarcode.nod_code1 = arr[i]["nodCode1"].ToString();
-                                goodsBarcode.nod_code2 = arr[i]["nodCode2"].ToString();
-                                goodsBarcode.cutout = arr[i]["cutout"].ToString();
-                                goodsBarcode.soldout = arr[i]["soldout"].ToString();
-                                goodsBarcode.allim = arr[i]["allim"].ToString();
-                                goodsBarcode.bar_code = arr[i]["barCode"].ToString().Trim();
-                                mGoodsBarcodeList.Add(goodsBarcode);
-                            }
+                            Goods goods = new Goods();
+                            goods.goods_code = arr[i]["goodsCode"].ToString();
+                            goods.goods_name = arr[i]["goodsName"].ToString();
+                            goods.amt = int.Parse(arr[i]["amt"].ToString());
+                            goods.online_coupon = arr[i]["onlineCoupon"].ToString();
+                            goods.ticket = arr[i]["ticketYn"].ToString();
+                            goods.taxfree = arr[i]["taxFree"].ToString();
+                            goods.shop_code = arr[i]["shopCode"].ToString();
+                            goods.nod_code1 = arr[i]["nodCode1"].ToString();
+                            goods.nod_code2 = arr[i]["nodCode2"].ToString();
+                            goods.cutout = arr[i]["cutout"].ToString();
+                            goods.soldout = arr[i]["soldout"].ToString();
+                            goods.allim = arr[i]["allim"].ToString();
+                            goods.bar_code = arr[i]["barCode"].ToString().Trim();
+                            mGoodsList.Add(goods);
                         }
                     }
                     else
@@ -843,42 +883,42 @@ namespace thepos
                         String data = mObj["goodsItems"].ToString();
                         JArray arr = JArray.Parse(data);
 
-                        mGoodsItem = new GoodsItem[arr.Count];
+                        myGoodsItem = new GoodsItem[arr.Count];
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            mGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
-                            mGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
+                            myGoodsItem[i].group_code = arr[i]["groupCode"].ToString();
+                            myGoodsItem[i].goods_code = arr[i]["goodsCode"].ToString();
 
-                            mGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
-                            mGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
-                            mGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
-                            mGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
+                            myGoodsItem[i].column = int.Parse(arr[i]["locateX"].ToString());
+                            myGoodsItem[i].row = int.Parse(arr[i]["locateY"].ToString());
+                            myGoodsItem[i].columnspan = int.Parse(arr[i]["sizeX"].ToString());
+                            myGoodsItem[i].rowspan = int.Parse(arr[i]["sizeY"].ToString());
 
                             String b_color = arr[i]["btnColor"].ToString();
                             if (b_color == "") b_color = mTheposColor;
-                            mGoodsItem[i].btn_color = b_color;
+                            myGoodsItem[i].btn_color = b_color;
                             //
-                            mGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
-                            mGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
-                            mGoodsItem[i].nod_code1 = arr[i]["nodCode1"].ToString();
-                            mGoodsItem[i].nod_code2 = arr[i]["nodCode2"].ToString();
-                            mGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
-                            mGoodsItem[i].online_coupon = arr[i]["onlineCoupon"].ToString();
-                            mGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
-                            mGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
-                            mGoodsItem[i].cutout = arr[i]["cutout"].ToString();
-                            mGoodsItem[i].soldout = arr[i]["soldout"].ToString();
-                            mGoodsItem[i].allim = arr[i]["allim"].ToString();
+                            myGoodsItem[i].goods_name = arr[i]["goodsName"].ToString();
+                            myGoodsItem[i].shop_code = arr[i]["shopCode"].ToString();
+                            myGoodsItem[i].nod_code1 = arr[i]["nodCode1"].ToString();
+                            myGoodsItem[i].nod_code2 = arr[i]["nodCode2"].ToString();
+                            myGoodsItem[i].amt = int.Parse(arr[i]["amt"].ToString());
+                            myGoodsItem[i].online_coupon = arr[i]["onlineCoupon"].ToString();
+                            myGoodsItem[i].ticket = arr[i]["ticketYn"].ToString();
+                            myGoodsItem[i].taxfree = arr[i]["taxFree"].ToString();
+                            myGoodsItem[i].cutout = arr[i]["cutout"].ToString();
+                            myGoodsItem[i].soldout = arr[i]["soldout"].ToString();
+                            myGoodsItem[i].allim = arr[i]["allim"].ToString();
 
-                            mGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
-                            mGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
-                            //mGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
+                            myGoodsItem[i].option_template_id = arr[i]["optionTemplateId"].ToString();
+                            myGoodsItem[i].coupon_link_no = arr[i]["couponLinkNo"].ToString();
+                            //myGoodsItem[i].bar_code = arr[i]["barCode"].ToString();
 
                             // 면세상픔은 상품명앞에 *을 붙인다.
-                            if (mGoodsItem[i].taxfree == "1")
+                            if (myGoodsItem[i].taxfree == "1")
                             {
-                                mGoodsItem[i].goods_name = "*" + mGoodsItem[i].goods_name;
+                                myGoodsItem[i].goods_name = "*" + myGoodsItem[i].goods_name;
                             }
                         }
                     }
@@ -1164,29 +1204,34 @@ namespace thepos
             // 5. 포스
             if (true)
             {
+                mPosNoList.Clear();
+                myPosNoList.Clear();
+
+
                 String sUrl = "pos?siteId=" + mSiteId + "&posStatus=Y";
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        String pos = mObj["pos"].ToString();
-                        JArray arr = JArray.Parse(pos);
-
-                        List<String> posno = new List<String>();
+                        String data = mObj["pos"].ToString();
+                        JArray arr = JArray.Parse(data);
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["shopCode"].ToString() == myShopCode & (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1"))
+                            if (arr[i]["posNo"].ToString().Substring(0,1) == "0" | arr[i]["posNo"].ToString().Substring(0, 1) == "1")
                             {
-                                posno.Add(arr[i]["posNo"].ToString());
+                                //
+                                mPosNoList.Add(arr[i]["posNo"].ToString());  // 사이트내
+
+
+                                if (arr[i]["shopCode"].ToString() == myShopCode)
+                                {
+                                    //
+                                    myPosNoList.Add(arr[i]["posNo"].ToString());  // 내업장내
+                                }
                             }
-                        }
 
-                        mPosNoList = new String[posno.Count];
 
-                        for (int i = 0; i < posno.Count; i++)
-                        {
-                            mPosNoList[i] = posno[i];
                         }
                     }
                     else
@@ -1206,7 +1251,7 @@ namespace thepos
             // 7. dcrFavorite
             if (true)
             {
-                String sUrl = "dcrFavorite?siteId=" + mSiteId;
+                String sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + myShopCode;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

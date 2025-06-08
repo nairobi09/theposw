@@ -50,7 +50,7 @@ namespace thepos
             dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 30);
+            imgList.ImageSize = new Size(1, 28);
             lvwPayManager.SmallImageList = imgList;
             lvwPayOrder.SmallImageList = imgList;
 
@@ -58,9 +58,9 @@ namespace thepos
 
             cbPosNo.Items.Add("");
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < myPosNoList.Count; i++)
             {
-                cbPosNo.Items.Add(mPosNoList[i]);
+                cbPosNo.Items.Add(myPosNoList[i]);
             }
 
             cbPosNo.SelectedIndex = 0;
@@ -404,7 +404,11 @@ namespace thepos
 
         private void view_list_order(String tTheNo, String tranType)
         {
-            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tranType;
+            String sUrl = "";
+
+            sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + selected_biz_date + "&tranType=A";
+            
+
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -466,7 +470,8 @@ namespace thepos
             //! 현금결제
             if (pay_keep_cash == "1")
             {
-                sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCash?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -476,7 +481,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 pay_name = get_pay_type_name(arr[i]["payType"].ToString());
                                 pay_amount = convert_number(arr[i]["amount"].ToString());
@@ -502,7 +507,8 @@ namespace thepos
             //! 카드결제
             if (pay_keep_card == "1")
             {
-                sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCard?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -512,7 +518,6 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
                             {
                                 pay_name = get_pay_type_name(arr[i]["payType"].ToString());
                                 pay_amount = convert_number(arr[i]["amount"].ToString());
@@ -538,7 +543,9 @@ namespace thepos
             //! 포인트
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -572,7 +579,9 @@ namespace thepos
             // 간편결제
             if (pay_keep_easy == "1")
             {
-                sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentEasy?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -582,7 +591,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 pay_name = get_pay_type_name(arr[i]["payType"].ToString());
                                 pay_amount = convert_number(arr[i]["amount"].ToString());
@@ -607,7 +616,9 @@ namespace thepos
             //! 쿠폰인증
             if (pay_keep_cert == "1")
             {
-                sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo;
+                sUrl = "paymentCert?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+
+
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -617,7 +628,7 @@ namespace thepos
 
                         for (int i = 0; i < arr.Count; i++)
                         {
-                            if (arr[i]["tranType"].ToString() == tranType)
+                            
                             {
                                 pay_name = get_pay_type_name(arr[i]["payType"].ToString());
                                 pay_amount = convert_number(arr[i]["amount"].ToString());
@@ -833,8 +844,18 @@ namespace thepos
             List<int> t_good_cnt = new List<int>();
 
 
+            String sUrl = "";
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+            if (tran_type == "A")
+            {
+                sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + selected_biz_date + "&tranType=" + tran_type;
+            }
+            else
+            {
+                sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=" + tran_type;
+            }
+
+
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

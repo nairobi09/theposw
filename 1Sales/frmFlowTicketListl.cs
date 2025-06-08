@@ -479,9 +479,9 @@ namespace theposw._1Sales
                 int link_idx = -1;
                 String link_code = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(link_goods_code)].Text;
 
-                for (int k = 0; k < mGoodsItem.Length; k++)
+                for (int k = 0; k < myGoodsItem.Length; k++)
                 {
-                    if (mGoodsItem[k].goods_code == link_code)
+                    if (myGoodsItem[k].goods_code == link_code)
                     {
                         link_idx = k;
                     }
@@ -506,18 +506,18 @@ namespace theposw._1Sales
 
                 //
                 orderItem.order_no = mOrderItemList.Count + 1;
-                orderItem.goods_code = mGoodsItem[link_idx].goods_code.ToString();
-                orderItem.goods_name = mGoodsItem[link_idx].goods_name;
-                orderItem.ticket = mGoodsItem[link_idx].ticket;
-                orderItem.taxfree = mGoodsItem[link_idx].taxfree;
-                orderItem.allim = mGoodsItem[link_idx].allim;
+                orderItem.goods_code = myGoodsItem[link_idx].goods_code.ToString();
+                orderItem.goods_name = myGoodsItem[link_idx].goods_name;
+                orderItem.ticket = myGoodsItem[link_idx].ticket;
+                orderItem.taxfree = myGoodsItem[link_idx].taxfree;
+                orderItem.allim = myGoodsItem[link_idx].allim;
 
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
-                orderItem.shop_code = mGoodsItem[link_idx].shop_code;
-                orderItem.nod_code1 = mGoodsItem[link_idx].nod_code1;
-                orderItem.nod_code2 = mGoodsItem[link_idx].nod_code2;
+                orderItem.shop_code = myGoodsItem[link_idx].shop_code;
+                orderItem.nod_code1 = myGoodsItem[link_idx].nod_code1;
+                orderItem.nod_code2 = myGoodsItem[link_idx].nod_code2;
 
                 //
                 orderItem.ticket_no = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
@@ -803,6 +803,15 @@ namespace theposw._1Sales
             }
 
 
+            if (MessageBox.Show("선택한 항목 " + lvwList.CheckedItems.Count + "건을 강제종료 처리합니다.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+
 
 
             //
@@ -877,8 +886,9 @@ namespace theposw._1Sales
                 String t_goods_code = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_code)].Text.ToString();
                 String t_goods_name = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_name)].Text.ToString();
                 String t_datetime = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(entry_dt)].Text.ToString();
+                int t_goods_amt = get_goods_amt(t_goods_code);
 
-                print_label_ticket(t_ticket_no, t_datetime.Substring(0,8), t_datetime.Substring(8, 6), t_goods_code, t_goods_name, 1, 0, "");
+                print_label_ticket(t_ticket_no, t_datetime.Substring(0,8), t_datetime.Substring(8, 6), t_goods_code, t_goods_name, 1, t_goods_amt, "");
 
             }
             else if (mTicketMedia == "RF")  // 팔찌|RF[예정]
@@ -925,8 +935,8 @@ namespace theposw._1Sales
                 {
                     is_charge = mGoodsTicket[i].is_charge;
                     available_minute = mGoodsTicket[i].available_minute;
-                    ot_free_minute = mGoodsTicket[i].ot_free_minute; // 일반상품 0. 티켓상품 1
-                    ot_std_minute = mGoodsTicket[i].ot_std_minute; // 과세품 0, 면세품 1
+                    ot_free_minute = mGoodsTicket[i].ot_free_minute;
+                    ot_std_minute = mGoodsTicket[i].ot_std_minute;
                 }
             }
 

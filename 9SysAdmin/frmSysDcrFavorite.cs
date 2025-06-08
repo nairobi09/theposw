@@ -200,7 +200,6 @@ namespace thepos._1Sales
                 return;
             }
 
-            MessageBox.Show("정상 저장 완료.", "thepos");
 
             reload_server();
 
@@ -262,7 +261,6 @@ namespace thepos._1Sales
                 return;
             }
 
-            MessageBox.Show("정상 저장 완료.", "thepos");
 
             reload_server();
 

@@ -33,6 +33,11 @@ namespace theposw
 
         private void initialize_the()
         {
+            ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(1, 28);
+            lvwOrderShop.SmallImageList = imgList;
+
+
             if (mBizDate == "")
             {
 

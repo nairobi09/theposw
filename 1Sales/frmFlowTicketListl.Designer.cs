@@ -83,14 +83,14 @@
             this.ot_cnt,
             this.ot_amt,
             this.link_goods_code});
-            this.lvwList.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
             this.lvwList.Location = new System.Drawing.Point(8, 45);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(642, 276);
+            this.lvwList.Size = new System.Drawing.Size(643, 276);
             this.lvwList.TabIndex = 45;
             this.lvwList.TabStop = false;
             this.lvwList.UseCompatibleStateImageBehavior = false;
@@ -114,24 +114,22 @@
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 100;
+            this.goods_name.Width = 140;
             // 
             // entry_dt_name
             // 
             this.entry_dt_name.Text = "입장";
             this.entry_dt_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.entry_dt_name.Width = 70;
             // 
             // exit_dt_name
             // 
             this.exit_dt_name.Text = "퇴장";
             this.exit_dt_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.exit_dt_name.Width = 70;
             // 
             // gap_dt_name
             // 
             this.gap_dt_name.Text = "경과";
-            this.gap_dt_name.Width = 100;
+            this.gap_dt_name.Width = 80;
             // 
             // ot_amount_name
             // 
@@ -209,7 +207,7 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(643, 30);
+            this.lblTitle.Size = new System.Drawing.Size(644, 30);
             this.lblTitle.TabIndex = 46;
             this.lblTitle.Text = "티켓";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -280,7 +278,7 @@
             this.btnClose2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose2.ForeColor = System.Drawing.Color.Black;
-            this.btnClose2.Location = new System.Drawing.Point(580, 327);
+            this.btnClose2.Location = new System.Drawing.Point(581, 327);
             this.btnClose2.Name = "btnClose2";
             this.btnClose2.Size = new System.Drawing.Size(70, 70);
             this.btnClose2.TabIndex = 80;
@@ -355,7 +353,7 @@
             this.btnEnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnd.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnEnd.ForeColor = System.Drawing.Color.Black;
-            this.btnEnd.Location = new System.Drawing.Point(525, 327);
+            this.btnEnd.Location = new System.Drawing.Point(526, 327);
             this.btnEnd.Name = "btnEnd";
             this.btnEnd.Size = new System.Drawing.Size(45, 70);
             this.btnEnd.TabIndex = 89;
@@ -394,6 +392,7 @@
             // frmFlowTicketList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(660, 406);
             this.Controls.Add(this.btnDCCancel);
             this.Controls.Add(this.cbDCR);

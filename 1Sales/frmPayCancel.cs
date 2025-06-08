@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Drawing.Text;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Drawing2D;
+using static thepos.frmSub;
 
 namespace thepos
 {
@@ -1450,6 +1451,7 @@ namespace thepos
                         parameters["orderTime"] = get_today_time();
                         parameters["cnt"] = arr[0]["cnt"].ToString();
                         parameters["isCancel"] = "Y";
+                        parameters["userId"] = mUserID;
 
                         if (mRequestPost("orders", parameters))
                         {
@@ -1866,7 +1868,7 @@ namespace thepos
 
             List<MemOrderItem> MemOrderItemList = new List<MemOrderItem>();
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=C";
+            String sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=C" + "&bizDt=" + mBizDate;  //??bizDt
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

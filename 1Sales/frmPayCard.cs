@@ -180,7 +180,7 @@ namespace thepos
             //  payment
             if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
             {
-                return;
+                //return;
             }
 
 
@@ -468,7 +468,7 @@ namespace thepos
                 //  payment
                 if (!SavePayment(paySeq, "Card", netAmount, dcAmount))
                 {
-                    return;
+                    //return;
                 }
 
 

@@ -144,7 +144,8 @@ namespace thepos
                 order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외, 아래에서 출력
                 if (order_cnt == -1)
                 {
-                    return; // 재로그인 요구
+                    thepos_app_log(2, this.Name, "SaveOrder()", "order_cnt=" + order_cnt);
+                    //return; // 재로그인 요구
                 }
             }
 
@@ -152,7 +153,7 @@ namespace thepos
             //  payment
             if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
             {
-                return;
+                //return;
             }
 
 
@@ -184,7 +185,7 @@ namespace thepos
             // 결제 항목 저장
             if (!SavePaymentCash(mPaymentCash))
             {
-                return;
+                //return;
             }
 
 
@@ -439,7 +440,7 @@ namespace thepos
                 //  payment
                 if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
                 {
-                    return;
+                    //return;
                 }
 
 
@@ -465,7 +466,7 @@ namespace thepos
                 
                 if (!SavePaymentCash(paymentCash))
                 {
-                    return;
+                    //return;
                 }
 
 

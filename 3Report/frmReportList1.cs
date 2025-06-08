@@ -57,7 +57,6 @@ namespace thepos
         {
             TreeNode[] nodeTop = new TreeNode[2];
 
-
             // 포스
             nodeTop[0] = new TreeNode();
             nodeTop[0].Text = "포스별";
@@ -66,9 +65,9 @@ namespace thepos
             tvwList.Nodes.Add(nodeTop[0]);
 
 
-            TreeNode[] nodePos = new TreeNode[mPosNoList.Length];
+            TreeNode[] nodePos = new TreeNode[mPosNoList.Count];
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 nodePos[i] = new TreeNode();
                 nodePos[i].Text = mPosNoList[i];
@@ -87,7 +86,7 @@ namespace thepos
 
             TreeNode[] nodeShop = new TreeNode[mShop.Length];
 
-            for (int i = 0; i < mShop.Length; i++)
+            for (int i = 1; i < mShop.Length; i++)   // i = 1  -> 첫 빈칸은 제외
             {
                 nodeShop[i] = new TreeNode();
                 nodeShop[i].Text = mShop[i].shop_name;
@@ -96,15 +95,15 @@ namespace thepos
             }
 
 
-            for (int i = 0; i < mGoodsItem.Length; i++)
+            for (int i = 0; i < mGoodsList.Count; i++)
             {
-                for (int shop_idx = 0; shop_idx < nodeShop.Length; shop_idx++)
+                for (int shop_idx = 1; shop_idx < nodeShop.Length; shop_idx++)   // shop_idx = 1  -> 첫 빈칸은 제외
                 {
-                    if (nodeShop[shop_idx].Tag.ToString() == "S" + mGoodsItem[i].shop_code)
+                    if (nodeShop[shop_idx].Tag.ToString() == "S" + mGoodsList[i].shop_code)
                     {
                         TreeNode nodeGoods = new TreeNode();
-                        nodeGoods.Text = mGoodsItem[i].goods_name;
-                        nodeGoods.Tag = "G" + mGoodsItem[i].goods_code;
+                        nodeGoods.Text = mGoodsList[i].goods_name;
+                        nodeGoods.Tag = "G" + mGoodsList[i].goods_code;
 
                         nodeShop[shop_idx].Nodes.Add(nodeGoods);
                     }

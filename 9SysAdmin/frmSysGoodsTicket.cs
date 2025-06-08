@@ -174,25 +174,32 @@ namespace theposw._9SysAdmin
                 return;
             }
 
-            if (tbOtFreeMinute.Text != "" & !is_number(tbOtFreeMinute.Text))
+            if (!is_number(tbOtFreeMinute.Text))
             {
                 MessageBox.Show("초과무료이용시간(분) 오류.", "thepos");
                 return;
             }
 
-            if (tbOtStdMinute.Text != "" & !is_number(tbOtStdMinute.Text))
+            if (!is_number(tbOtStdMinute.Text))
             {
                 MessageBox.Show("초과이용기준시간(분) 오류.", "thepos");
                 return;
             }
 
-            if (tbOtAmt.Text != "" & !is_number(tbOtAmt.Text))
+            if (Int16.Parse(tbOtStdMinute.Text) == 0)
+            {
+                MessageBox.Show("초과이용기준시간(분) 오류. 0이상 유효", "thepos");
+                return;
+            }
+
+
+            if (!is_number(tbOtAmt.Text))
             {
                 MessageBox.Show("초과이용기준당요금 오류.", "thepos");
                 return;
             }
 
-            if (tbLinkGoodsCode.Text != "" & !is_number(tbLinkGoodsCode.Text))
+            if (tbLinkGoodsCode.Text.Length != 6)
             {
                 MessageBox.Show("연결상품코드 오류.", "thepos");
                 return;
@@ -250,25 +257,33 @@ namespace theposw._9SysAdmin
                 return;
             }
 
-            if (tbOtFreeMinute.Text != "" & !is_number(tbOtFreeMinute.Text))
+            if (!is_number(tbOtFreeMinute.Text))
             {
                 MessageBox.Show("초과무료이용시간(분) 오류.", "thepos");
                 return;
             }
 
-            if (tbOtStdMinute.Text != "" & !is_number(tbOtStdMinute.Text))
+            if (!is_number(tbOtStdMinute.Text))
             {
                 MessageBox.Show("초과이용기준시간(분) 오류.", "thepos");
                 return;
             }
+            
+            if (Int16.Parse(tbOtStdMinute.Text) == 0)
+            {
+                MessageBox.Show("초과이용기준시간(분) 오류. 0이상 유효", "thepos");
+                return;
+            }
 
-            if (tbOtAmt.Text != "" & !is_number(tbOtAmt.Text))
+
+
+            if (!is_number(tbOtAmt.Text))
             {
                 MessageBox.Show("초과이용기준당요금 오류.", "thepos");
                 return;
             }
 
-            if (tbLinkGoodsCode.Text != "" & !is_number(tbLinkGoodsCode.Text))
+            if (tbLinkGoodsCode.Text.Length != 6)
             {
                 MessageBox.Show("연결상품코드 오류.", "thepos");
                 return;

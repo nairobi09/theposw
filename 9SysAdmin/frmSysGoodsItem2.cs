@@ -36,7 +36,7 @@ namespace thepos._9SysAdmin
 
 
 
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
@@ -45,7 +45,7 @@ namespace thepos._9SysAdmin
             //get_posno_from_setupPos();
 
             /*
-            for (int i = 0; i < mPosNoList.Length; i++)
+            for (int i = 0; i < mPosNoList.Count; i++)
             {
                 cbPosNo.Items.Add(mPosNoList[i]);
                 cbSourcePosNo.Items.Add(mPosNoList[i]);
@@ -110,16 +110,7 @@ namespace thepos._9SysAdmin
                             lvItem.Text = arr[i]["goodsName"].ToString();
                             lvItem.SubItems.Add(arr[i]["amt"].ToString());
                             lvItem.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
-
-                            tTicket = "";
-                            tTaxFree = "";
-
-                            if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
-                            if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
-
-                            lvItem.SubItems.Add(tTicket);
-                            lvItem.SubItems.Add(tTaxFree);
-                            lvItem.SubItems.Add(arr[i]["memo"].ToString());
+                            lvItem.SubItems.Add(get_nod1_name(arr[i]["shopCode"].ToString(), arr[i]["nodCode1"].ToString()));
 
                             lvItem.Tag = arr[i]["goodsCode"].ToString();
 
