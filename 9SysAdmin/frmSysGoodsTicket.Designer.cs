@@ -95,10 +95,10 @@
             this.lvwGoods.FullRowSelect = true;
             this.lvwGoods.GridLines = true;
             this.lvwGoods.HideSelection = false;
-            this.lvwGoods.Location = new System.Drawing.Point(12, 54);
+            this.lvwGoods.Location = new System.Drawing.Point(9, 54);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(192, 471);
+            this.lvwGoods.Size = new System.Drawing.Size(228, 471);
             this.lvwGoods.TabIndex = 86;
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -111,7 +111,7 @@
             // goodsname
             // 
             this.goodsname.Text = "상품명";
-            this.goodsname.Width = 100;
+            this.goodsname.Width = 150;
             // 
             // tbOtStdMinute
             // 
@@ -310,7 +310,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle.Location = new System.Drawing.Point(23, 22);
+            this.lblTitle.Location = new System.Drawing.Point(12, 22);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(35, 14);
             this.lblTitle.TabIndex = 87;
@@ -333,10 +333,10 @@
             this.lvwGoodsTicket.FullRowSelect = true;
             this.lvwGoodsTicket.GridLines = true;
             this.lvwGoodsTicket.HideSelection = false;
-            this.lvwGoodsTicket.Location = new System.Drawing.Point(210, 54);
+            this.lvwGoodsTicket.Location = new System.Drawing.Point(242, 54);
             this.lvwGoodsTicket.MultiSelect = false;
             this.lvwGoodsTicket.Name = "lvwGoodsTicket";
-            this.lvwGoodsTicket.Size = new System.Drawing.Size(639, 471);
+            this.lvwGoodsTicket.Size = new System.Drawing.Size(619, 471);
             this.lvwGoodsTicket.TabIndex = 90;
             this.lvwGoodsTicket.TabStop = false;
             this.lvwGoodsTicket.UseCompatibleStateImageBehavior = false;
@@ -350,12 +350,11 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 100;
+            this.name.Width = 150;
             // 
             // available_minute
             // 
-            this.available_minute.Text = "이용(분)";
-            this.available_minute.Width = 70;
+            this.available_minute.Text = "이용";
             // 
             // is_charge
             // 
@@ -364,13 +363,13 @@
             // 
             // ot_free_minute
             // 
-            this.ot_free_minute.Text = "초과무료(분)";
-            this.ot_free_minute.Width = 100;
+            this.ot_free_minute.Text = "초과무료";
+            this.ot_free_minute.Width = 70;
             // 
             // ot_std_minute
             // 
-            this.ot_std_minute.Text = "초과기준(분)";
-            this.ot_std_minute.Width = 90;
+            this.ot_std_minute.Text = "초과기준";
+            this.ot_std_minute.Width = 70;
             // 
             // ot_amt
             // 
@@ -387,7 +386,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(211, 22);
+            this.label1.Location = new System.Drawing.Point(239, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 14);
             this.label1.TabIndex = 87;
