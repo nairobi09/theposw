@@ -406,7 +406,7 @@ namespace thepos
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    MessageBox.Show("정상 그룹수정 완료.", "thepos");
+                    //MessageBox.Show("정상 그룹수정 완료.", "thepos");
                 }
                 else
                 {

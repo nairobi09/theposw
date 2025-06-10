@@ -43,30 +43,21 @@ namespace theposw._9SysAdmin
 
         private void get_goods()
         {
-
+ 
             lvwGoods.Items.Clear();
 
-            //
-            String sUrl = "goods?siteId=" + mSiteId + "&ticketYn=Y";
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["goods"].ToString();
-                    JArray arr = JArray.Parse(data);
 
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        if (arr[i]["ticketYn"].ToString() == "Y")
-                        {
-                            ListViewItem lvItem;
-                            lvItem = new ListViewItem(arr[i]["goodsCode"].ToString());
-                            lvItem.SubItems.Add(arr[i]["goodsName"].ToString());
-                            lvwGoods.Items.Add(lvItem);
-                        }
-                    }
+            for (int i = 0; i < mGoodsList.Count; i++)
+            {
+                if (mGoodsList[i].ticket == "Y")
+                {
+                    ListViewItem lvItem;
+                    lvItem = new ListViewItem(mGoodsList[i].goods_code);
+                    lvItem.SubItems.Add(mGoodsList[i].goods_name);
+                    lvwGoods.Items.Add(lvItem);
                 }
             }
+
         }
 
         private void get_goodsTicket()
