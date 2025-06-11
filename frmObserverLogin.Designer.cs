@@ -38,7 +38,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbPinNo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnClose
@@ -131,7 +130,6 @@
             this.tbPinNo.Name = "tbPinNo";
             this.tbPinNo.Size = new System.Drawing.Size(89, 16);
             this.tbPinNo.TabIndex = 44;
-            this.tbPinNo.Text = "20250630";
             // 
             // label4
             // 
@@ -146,25 +144,11 @@
             this.label4.Text = "PIN NO";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbl
-            // 
-            this.lbl.AutoSize = true;
-            this.lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbl.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lbl.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl.Location = new System.Drawing.Point(267, 195);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(16, 15);
-            this.lbl.TabIndex = 46;
-            this.lbl.Text = "_";
-            this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // frmObserverLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(561, 316);
-            this.Controls.Add(this.lbl);
             this.Controls.Add(this.tbPinNo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbPosNo);
@@ -195,6 +179,5 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox tbPinNo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lbl;
     }
 }
