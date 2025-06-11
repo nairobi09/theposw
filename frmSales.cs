@@ -2496,7 +2496,7 @@ namespace thepos
                                 }
                             }
 
-                            if (MaxflowStep == 1)
+                            if (MaxflowStep < 2)
                             {
                                 return 1;
                             }
@@ -2639,7 +2639,7 @@ namespace thepos
                                 }
                             }
 
-                            if (MaxflowStep == 1)
+                            if (MaxflowStep < 2)
                             {
                                 // delete
                                 Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -5081,7 +5081,29 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-                    shop_order_count++;
+
+                    if (mSiteId == "2502")
+                    {
+                        if (mOrderItemList[i].shop_code == "FB")
+                        {
+                            if (mOrderItemList[i].nod_code1 == "41")
+                            {
+                                shop_order_count++;
+                            }
+                            else
+                            {
+                                // 레스토랑외 제외
+                            }
+                        }
+                        else
+                        {
+                            shop_order_count++;
+                        }
+                    }
+                    else
+                    {
+                        shop_order_count++;
+                    }
                 }
             }
 
@@ -5095,8 +5117,32 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-                    orderItemArr[t_cnt] = mOrderItemList[i];
-                    t_cnt++;
+                    if (mSiteId == "2502")
+                    {
+                        if (mOrderItemList[i].shop_code == "FB")
+                        {
+                            if (mOrderItemList[i].nod_code1 == "41")
+                            {
+                                orderItemArr[t_cnt] = mOrderItemList[i];
+                                t_cnt++;
+                            }
+                            else
+                            {
+                                // 레스토랑외 제외
+                            }
+                        }
+                        else
+                        {
+                            orderItemArr[t_cnt] = mOrderItemList[i];
+                            t_cnt++;
+                        }
+                    }
+                    else
+                    {
+                        orderItemArr[t_cnt] = mOrderItemList[i];
+                        t_cnt++;
+                    }
+
                 }
             }
 
@@ -5279,6 +5325,7 @@ namespace thepos
                 {
                     if (mShop[i].shop_code == shopOrderPack.shop_code)
                     {
+
                         printer_type = mShop[i].printer_type;
 
                         if (mShop[i].printer_type == "N")      printer_name = mShop[i].network_printer_name;    // Network

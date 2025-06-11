@@ -319,7 +319,7 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["entryDt"] = ticket_input_dt;
                 parameters["flowStep"] = "1";  // 입장
@@ -389,7 +389,7 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["exitDt"] = ticket_input_dt;
 
@@ -479,9 +479,9 @@ namespace theposw._1Sales
                 int link_idx = -1;
                 String link_code = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(link_goods_code)].Text;
 
-                for (int k = 0; k < myGoodsItem.Length; k++)
+                for (int k = 0; k < mGoodsList.Count; k++)
                 {
-                    if (myGoodsItem[k].goods_code == link_code)
+                    if (mGoodsList[k].goods_code == link_code)
                     {
                         link_idx = k;
                     }
@@ -506,18 +506,18 @@ namespace theposw._1Sales
 
                 //
                 orderItem.order_no = mOrderItemList.Count + 1;
-                orderItem.goods_code = myGoodsItem[link_idx].goods_code.ToString();
-                orderItem.goods_name = myGoodsItem[link_idx].goods_name;
-                orderItem.ticket = myGoodsItem[link_idx].ticket;
-                orderItem.taxfree = myGoodsItem[link_idx].taxfree;
-                orderItem.allim = myGoodsItem[link_idx].allim;
+                orderItem.goods_code = mGoodsList[link_idx].goods_code.ToString();
+                orderItem.goods_name = mGoodsList[link_idx].goods_name;
+                orderItem.ticket = mGoodsList[link_idx].ticket;
+                orderItem.taxfree = mGoodsList[link_idx].taxfree;
+                orderItem.allim = mGoodsList[link_idx].allim;
 
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
-                orderItem.shop_code = myGoodsItem[link_idx].shop_code;
-                orderItem.nod_code1 = myGoodsItem[link_idx].nod_code1;
-                orderItem.nod_code2 = myGoodsItem[link_idx].nod_code2;
+                orderItem.shop_code = mGoodsList[link_idx].shop_code;
+                orderItem.nod_code1 = mGoodsList[link_idx].nod_code1;
+                orderItem.nod_code2 = mGoodsList[link_idx].nod_code2;
 
                 //
                 orderItem.ticket_no = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
@@ -836,7 +836,7 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["settlementDt"] = ticket_input_dt;
                 parameters["flowStep"] = "9";  // 완료
