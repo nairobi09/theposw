@@ -635,7 +635,7 @@ namespace thepos
 
 
             MemOrderItem orderItem = new MemOrderItem();
-            int lv_idx = (get_lvitem_idx(myGoodsItem[i].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
+            int lv_idx = (get_lvitem_idx(myGoodsItem[i].goods_code));
 
             if (lv_idx == -1)
             {
@@ -720,7 +720,7 @@ namespace thepos
 
         public static bool if_is_dcr_e_move_last()
         {
-            //?? 전체할인은 맨아래로 내린다
+            // 전체할인은 맨아래로 내린다
             int dcr_e_idx = get_lv_DCR("E");
             if (dcr_e_idx > -1)
             {
@@ -748,7 +748,7 @@ namespace thepos
 
         public static void recalculate_dcr_e_dc_amount(int selected_idx)
         {
-            //?? 전체할인 비율이면 다시 계산
+            // 전체할인 비율이면 다시 계산
             int dcr_e_idx = get_lv_DCR("E");
             if (dcr_e_idx > -1)
             {
@@ -1778,7 +1778,7 @@ namespace thepos
             {
                 String t_option_no = "";
 
-                //??
+                //
                 if (mOrderItemList[i].option_item_cnt > 0)
                 {
                     if (mOrderItemList[i].orderOptionItemList.Count > 0)
@@ -2641,6 +2641,7 @@ namespace thepos
 
                             if (MaxflowStep < 2)
                             {
+                                //???? 삭제대신 취소마킹하는 방식으로 변경개발 필요
                                 // delete
                                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                                 parameters["siteId"] = mSiteId;
@@ -3621,8 +3622,6 @@ namespace thepos
         public static int get_lvitem_idx(string code)
         {
             // 옵션이 있는 항목은 상품코드가 동일해도 다른 상품으로 간주한다.
-            //?? 아니면 옵션을 어떻게 동일한지 구분하는 방법은?
-
 
             // mOrderOptionItemList  <-  옵션아이템선택화면 전역변수
 
@@ -5081,7 +5080,11 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
+                    shop_order_count++;
 
+
+                    //???? 임시 하드코딩 : 
+                    /*
                     if (mSiteId == "2502")
                     {
                         if (mOrderItemList[i].shop_code == "FB")
@@ -5104,6 +5107,8 @@ namespace thepos
                     {
                         shop_order_count++;
                     }
+                    */
+
                 }
             }
 
@@ -5117,6 +5122,9 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
+
+                    //???? 임시 하드코딩 : 
+                    /*
                     if (mSiteId == "2502")
                     {
                         if (mOrderItemList[i].shop_code == "FB")
@@ -5142,6 +5150,9 @@ namespace thepos
                         orderItemArr[t_cnt] = mOrderItemList[i];
                         t_cnt++;
                     }
+                    */
+                    orderItemArr[t_cnt] = mOrderItemList[i];
+                    t_cnt++;
 
                 }
             }
@@ -5875,7 +5886,7 @@ namespace thepos
 
 
                 MemOrderItem orderItem = new MemOrderItem();
-                int lv_idx = (get_lvitem_idx(mGoodsList[barcode_idx].goods_code));  //?? 이미  동일 상품이 주문리스트뷰에 있는지.. 옵션내용은 어떻게 비교할 것인가?
+                int lv_idx = (get_lvitem_idx(mGoodsList[barcode_idx].goods_code));
 
                 if (lv_idx == -1)
                 {

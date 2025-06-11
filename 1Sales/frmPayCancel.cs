@@ -673,7 +673,7 @@ namespace thepos
                 int ret = CheckCancelTicketFlow(pCashAuth.pay_class, pCashAuth.the_no, pCashAuth.ticket_no);
                 if (ret < 0)
                 {
-                    return;
+                    //return;
                 }
 
 

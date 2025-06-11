@@ -346,7 +346,26 @@ namespace thepos
             mIsTestPayMode = "";
 
             // 
-            if (tbID.Text == "1120" & tbPW.Text == "4089")
+            if (tbID.Text == "2502" & tbPW.Text == "0106")
+            {
+                // 옵저버 전용 로그인
+                frmObserverLogin frm = new frmObserverLogin();
+                DialogResult ret = frm.ShowDialog();
+
+                if (ret == DialogResult.OK)  // Real
+                {
+                    //
+                    //mIsDevLogin = "Y";  // 옵저버는 로그를 남긴다.
+
+                    lblIsTest.Visible = false;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (tbID.Text == "1120" & tbPW.Text == "4089")
             {
                 // 개발자 전용 로그인
                 frmDevAdmin frm = new frmDevAdmin();
