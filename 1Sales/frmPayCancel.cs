@@ -1587,6 +1587,9 @@ namespace thepos
 
                         parameters["isCancel"] = "Y";
                         parameters["shopCode"] = arr[i]["shopCode"].ToString();
+                        parameters["nodCode1"] = arr[i]["nodCode1"].ToString();
+                        parameters["nodCode2"] = arr[i]["nodCode2"].ToString();
+
                         parameters["shopOrderNo"] = arr[i]["shopOrderNo"].ToString();
                         parameters["optionNo"] = arr[i]["optionNo"].ToString();
 

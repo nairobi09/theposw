@@ -2496,7 +2496,7 @@ namespace thepos
                                 }
                             }
 
-                            if (MaxflowStep < 2)
+                            if (MaxflowStep <= 9)
                             {
                                 return 1;
                             }
@@ -2639,7 +2639,7 @@ namespace thepos
                                 }
                             }
 
-                            if (MaxflowStep < 2)
+                            if (MaxflowStep <= 9)
                             {
                                 //???? 삭제대신 취소마킹하는 방식으로 변경개발 필요
                                 // delete
@@ -5080,11 +5080,10 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-                    shop_order_count++;
+                    //shop_order_count++;
 
 
                     //???? 임시 하드코딩 : 
-                    /*
                     if (mSiteId == "2502")
                     {
                         if (mOrderItemList[i].shop_code == "FB")
@@ -5107,7 +5106,7 @@ namespace thepos
                     {
                         shop_order_count++;
                     }
-                    */
+                    
 
                 }
             }
@@ -5124,7 +5123,6 @@ namespace thepos
                 {
 
                     //???? 임시 하드코딩 : 
-                    /*
                     if (mSiteId == "2502")
                     {
                         if (mOrderItemList[i].shop_code == "FB")
@@ -5150,9 +5148,9 @@ namespace thepos
                         orderItemArr[t_cnt] = mOrderItemList[i];
                         t_cnt++;
                     }
-                    */
-                    orderItemArr[t_cnt] = mOrderItemList[i];
-                    t_cnt++;
+
+                    //orderItemArr[t_cnt] = mOrderItemList[i];
+                    //t_cnt++;
 
                 }
             }
@@ -5378,6 +5376,9 @@ namespace thepos
             byte[] BytesValue = new byte[0];
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, InitializePrinter);
+            
+
+
             BytesValue = PrintExtensions.AddBytes(BytesValue, obj.Alignment.Center());
 
             BytesValue = PrintExtensions.AddBytes(BytesValue, sizeCharMedium());
@@ -5486,7 +5487,25 @@ namespace thepos
                     //client.Connect(printer_name, 9100);
 
                     NetworkStream stream = client.GetStream();
+
+
+
+                    // ESC/POS Beep Command: ESC B n t
+                    // n = 횟수 (1~9), t = 길이 (1=100ms 단위)
+                    byte[] beepCommand = new byte[] { 0x1B, 0x42, 0x03, 0x02 }; // 3회, 200ms
+                    stream.Write(beepCommand, 0, beepCommand.Length);
+
+
                     stream.Write(BytesValue, 0, BytesValue.Length);
+
+
+
+
+
+
+
+
+
 
                     stream.Flush();
                     stream.Close();

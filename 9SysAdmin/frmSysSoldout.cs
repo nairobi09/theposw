@@ -122,7 +122,7 @@ namespace thepos._9SysAdmin
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = mPosNoList[cbPosNo.SelectedIndex];
+                        lvItem.Text = myPosNoList[cbPosNo.SelectedIndex];
                         lvItem.SubItems.Add(arr[i]["groupName"].ToString());
 
                         if (arr[i]["soldout"].ToString() == "Y")

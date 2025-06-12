@@ -49,7 +49,7 @@ namespace thepos
 
 
 
-            mBaseUri = uri_real;
+            mBaseUri = uri_test;
 
 
             // 로그인
