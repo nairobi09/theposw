@@ -139,8 +139,14 @@ namespace theposw._1Sales
 
                         //
                         save_the_no = arr[i]["theNo"].ToString();
-                        entry_cnt++;
 
+
+                        // 수량
+                        int num = 1;
+                        get_number(arr[i]["goodsCnt"].ToString(), ref num);
+                        entry_cnt += num;
+
+                        //
                         String goods_code = arr[i]["goodsCode"].ToString();
                         entry_dt = arr[i]["entryDt"].ToString();
 

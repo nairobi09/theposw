@@ -107,6 +107,7 @@ namespace theposw._1Sales
                         String entry_dt = arr[i]["entryDt"].ToString();
                         String exit_dt = arr[i]["exitDt"].ToString();
                         String goods_code = arr[i]["goodsCode"].ToString();
+                        String goods_cnt = arr[i]["goodsCnt"].ToString();
                         int gap_mm = 0;
                         int ot_mm = 0;
 
@@ -126,8 +127,9 @@ namespace theposw._1Sales
                         item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
                         item.SubItems.Add(tStatName);
                         item.SubItems.Add(get_goods_name(goods_code));
+                        item.SubItems.Add(goods_cnt);
 
-                        
+
                         if (entry_dt.Length == 14)
                         {
                             item.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
@@ -492,9 +494,14 @@ namespace theposw._1Sales
                     continue;
                 }
 
-
-                orderItem.cnt = 1;
                 orderItem.amt = t_cnt * t_amt;
+
+
+                int num = 1;
+                get_number(lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(goods_cnt)].Text, ref num);
+
+                orderItem.cnt = num;
+
 
                 //
                 mOrderOptionItemList.Clear();
@@ -885,10 +892,13 @@ namespace theposw._1Sales
                 String t_ticket_no = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text.ToString();
                 String t_goods_code = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_code)].Text.ToString();
                 String t_goods_name = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_name)].Text.ToString();
+
+                int t_goods_cnt = convert_number(lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(goods_cnt)].Text.ToString(), 1);
+                
                 String t_datetime = lvwList.CheckedItems[0].SubItems[lvwList.Columns.IndexOf(entry_dt)].Text.ToString();
                 int t_goods_amt = get_goods_amt(t_goods_code);
 
-                print_label_ticket(t_ticket_no, t_datetime.Substring(0,8), t_datetime.Substring(8, 6), t_goods_code, t_goods_name, 1, t_goods_amt, "");
+                print_label_ticket(t_ticket_no, t_datetime.Substring(0,8), t_datetime.Substring(8, 6), t_goods_code, t_goods_name, t_goods_cnt, t_goods_amt, "");
 
             }
             else if (mTicketMedia == "RF")  // 팔찌|RF[예정]

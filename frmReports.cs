@@ -61,6 +61,19 @@ namespace thepos
             fBiz.Show();
         }
 
+        private void btnReportMonthShop_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "MonthShop") return;
+
+            mThisButtonClick = "MonthShop";
+            panelReport.Controls.Clear();
+
+            frmReportMonthShop fBiz = new frmReportMonthShop() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+
         private void btnReportDayDetail_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "DayDetail") return;
@@ -147,6 +160,7 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
 
     }
 }

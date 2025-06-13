@@ -16,13 +16,13 @@ using System.Drawing.Text;
 
 namespace thepos
 {
-    public partial class frmReportDayShop : Form
+    public partial class frmReportMonthShop : Form
     {
         String d_type = "";
         String d_str = "";
 
 
-        public frmReportDayShop()
+        public frmReportMonthShop()
         {
             InitializeComponent();
             initialize_the();
@@ -32,36 +32,31 @@ namespace thepos
 
         private void initialize_the()
         {
-            if (mBizDate == "")
-            {
 
-            }
-            else
-            {
-                dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
-            }
+            String yyyymm = get_today_date().Substring(0, 6);
+            lblYYYYMM.Text = yyyymm.Substring(0, 4) + "-" + yyyymm.Substring(4, 2);
+
         }
 
 
-
-        private void btnViewDay_Click(object sender, EventArgs e)
+        private void btnViewMonth_Click(object sender, EventArgs e)
         {
-            d_type = "Day";
-            d_str = dtpBizDate.Value.ToString("yyyyMMdd");
+            d_type = "Month";
+            d_str = lblYYYYMM.Text.Replace("-", ""); ;
             report_shop(d_str);
         }
+
 
         private void report_shop(String r_date)
         {
             lvwList.Items.Clear();
 
-            String sUrl = "reportDayShop?siteId=" + mSiteId + "&bizDt=" + r_date + "&goodsName=" + tbKeyword.Text;
-
+            String sUrl = "reportMonthlyShop?siteId=" + mSiteId + "&bizDtMon=" + r_date + "&goodsName=" + tbKeyword.Text;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["dayShops"].ToString();
+                    String data = mObj["monthShops"].ToString();
                     get_list(data);
 
                 }
@@ -72,9 +67,8 @@ namespace thepos
             }
             else
             {
-                MessageBox.Show("시스템오류. reportDayShop\n\n" + mErrorMsg, "thepos");
+                MessageBox.Show("시스템오류. reportMonthShop\n\n" + mErrorMsg, "thepos");
             }
-
 
         }
                 
@@ -320,7 +314,7 @@ namespace thepos
         {
 
             var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(dtpBizDate.Text);
+            var worksheet = workbook.Worksheets.Add(d_str);
 
             // 헤더 작성
             for (int col = 0; col < listView.Columns.Count; col++)
@@ -341,5 +335,23 @@ namespace thepos
             workbook.SaveAs(filePath);
         }
 
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            DateTime CurrMonth = Convert.ToDateTime(lblYYYYMM.Text + "-01");
+
+            DateTime PrevMonth = CurrMonth.AddMonths(-1);
+
+            lblYYYYMM.Text = PrevMonth.ToString("yyyy-MM");
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            DateTime CurrMonth = Convert.ToDateTime(lblYYYYMM.Text + "-01");
+
+            DateTime NextMonth = CurrMonth.AddMonths(1);
+
+            lblYYYYMM.Text = NextMonth.ToString("yyyy-MM");
+
+        }
     }
 }

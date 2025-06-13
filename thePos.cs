@@ -1134,6 +1134,18 @@ namespace thepos
             return -1;
         }
 
+        public static int convert_number(String str, int return_num)
+        {
+            int out_number;
+            if (int.TryParse(str.Replace(",", ""), out out_number))
+            {
+                return out_number;
+            }
+
+            return return_num;
+        }
+
+
         public static bool mRequestGet(String sUrl)
         {
             try

@@ -27,10 +27,10 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://thepos.co.kr/setup/theposw1/</InstallUrl>
-    <MinimumRequiredVersion>1.0.0.52</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.53</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>53</ApplicationRevision>
+    <ApplicationRevision>54</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -98,7 +98,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>
@@ -246,6 +246,12 @@
     </Compile>
     <Compile Include="1Sales\frmAllimCP.Designer.cs">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportMonthShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportMonthShop.Designer.cs">
+      <DependentUpon>frmReportMonthShop.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysAdminTree.cs">
       <SubType>Form</SubType>
@@ -644,6 +650,9 @@
     <EmbeddedResource Include="1Sales\frmAllimOR.resx">
       <DependentUpon>frmAllimOR.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportMonthShop.resx">
+      <DependentUpon>frmReportMonthShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdminTree.resx">
       <DependentUpon>frmSysAdminTree.cs</DependentUpon>

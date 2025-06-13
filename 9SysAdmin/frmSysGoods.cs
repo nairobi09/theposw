@@ -185,7 +185,7 @@ namespace thepos._9SysAdmin
             tbGoodsName.Tag = "";
             tbGoodsAmt.Text = "";
             cbShop.SelectedIndex = -1;
-            cbTicket.Checked = false;
+            cbTicket.SelectedIndex = 0;
             cbTaxFree.Checked = false;
             cbCutout.Checked = false;
 
@@ -250,6 +250,10 @@ namespace thepos._9SysAdmin
                         tOnlineCoupon = "";
 
                         if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
+                        else 
+                        if (arr[i]["ticketYn"].ToString() == "Ys") tTicket = "Ys";
+                        else tTicket = "";
+
                         if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[i]["cutout"].ToString() == "Y") tCutout = "Y";          // 15
                         if (arr[i]["soldout"].ToString() == "Y") tSoldout = "Y";
@@ -385,6 +389,10 @@ namespace thepos._9SysAdmin
                         tOnlineCoupon = "";
 
                         if (arr[0]["ticketYn"].ToString() == "Y") tTicket = "Y";
+                        else if (arr[0]["ticketYn"].ToString() == "Ys") tTicket = "Ys";
+                        else tTicket = "";
+
+
                         if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[0]["cutout"].ToString() == "Y") tCutout = "Y";
                         if (arr[0]["soldout"].ToString() == "Y") tSoldout = "Y";
@@ -407,8 +415,6 @@ namespace thepos._9SysAdmin
 
                         lvItem.SubItems.Add(arr[0]["goodsNotice"].ToString());
                         lvItem.SubItems.Add(arr[0]["memo"].ToString());
-
-
 
 
 
@@ -494,9 +500,11 @@ namespace thepos._9SysAdmin
                 cbCoupon.Checked = false;
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticket)].Text == "Y")
-                cbTicket.Checked = true;
+                cbTicket.SelectedIndex = 1;
+            else if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticket)].Text == "Ys")
+                cbTicket.SelectedIndex = 2;
             else
-                cbTicket.Checked = false;
+                cbTicket.SelectedIndex = 0;
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(taxfree)].Text == "Y")
                 cbTaxFree.Checked = true;
@@ -635,7 +643,7 @@ namespace thepos._9SysAdmin
             sv_nodCode1 = cbNod2.SelectedIndex + "";
 
             sv_online_coupon = cbCoupon.Checked + "";
-            sv_ticketYn = cbTicket.Checked + "";
+            sv_ticketYn = cbTicket.SelectedIndex + "";
             sv_taxFree = cbTaxFree.Checked + "";
             sv_cutout = cbCutout.Checked + "";
             sv_soldout = cbSoldout.Checked + "";
@@ -735,12 +743,14 @@ namespace thepos._9SysAdmin
             }
 
             //
-            if (sv_ticketYn != cbTicket.Checked + "")
+            if (sv_ticketYn != cbTicket.SelectedIndex + "")
             {
-                if (cbTicket.Checked)
+                if (cbTicket.SelectedIndex == 1)
                     parameters["ticketYn"] = "Y";
+                else if (cbTicket.SelectedIndex == 2)
+                    parameters["ticketYn"] = "Ys";
                 else
-                    parameters["ticketYn"] = "";
+                    parameters["ticketYn"] = "N";
             }
 
             //
@@ -940,8 +950,10 @@ namespace thepos._9SysAdmin
             else
                 parameters["onlineCoupon"] = "";
 
-            if (cbTicket.Checked)
+            if (cbTicket.SelectedIndex == 1)
                 parameters["ticketYn"] = "Y";
+            else if (cbTicket.SelectedIndex == 2)
+                parameters["ticketYn"] = "Ys";
             else
                 parameters["ticketYn"] = "N";
 

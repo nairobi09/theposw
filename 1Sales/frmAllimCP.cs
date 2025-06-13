@@ -66,7 +66,7 @@ namespace theposw
 
 
 
-            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + myShopCode;
+            String sUrl = "orderShop?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + myShopCode + "&allim=Y";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -210,7 +210,7 @@ namespace theposw
             //
             lvwOrderItem.Items.Clear();
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopOrderNo=" + tShopOrderNo + "&tranType=A";
+            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopOrderNo=" + tShopOrderNo + "&tranType=A" + "&allim=Y";
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

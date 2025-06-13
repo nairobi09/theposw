@@ -43,13 +43,11 @@ namespace theposw._9SysAdmin
 
         private void get_goods()
         {
- 
             lvwGoods.Items.Clear();
-
 
             for (int i = 0; i < mGoodsList.Count; i++)
             {
-                if (mGoodsList[i].ticket == "Y")
+                if (mGoodsList[i].ticket == "Y" | mGoodsList[i].ticket == "Ys")
                 {
                     ListViewItem lvItem;
                     lvItem = new ListViewItem(mGoodsList[i].goods_code);
@@ -57,7 +55,6 @@ namespace theposw._9SysAdmin
                     lvwGoods.Items.Add(lvItem);
                 }
             }
-
         }
 
         private void get_goodsTicket()
