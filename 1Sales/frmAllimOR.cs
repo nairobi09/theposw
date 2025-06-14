@@ -42,7 +42,7 @@ namespace thepos
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtMobileNo.Text.Length < 7)
+            if (tbTelNo.Text.Length < 7)
             {
                 MessageBox.Show("번호입력 오류입니다.", "thepos");
                 return;
@@ -60,7 +60,7 @@ namespace thepos
                 parameters["theNo"] = mTheNo;
                 parameters["senderProfile"] = mAllimSenderProfile;
                 parameters["allimType"] = "OR";
-                parameters["allimTelNo"] = "010" + txtMobileNo.Text.ToString();
+                parameters["allimTelNo"] = "010" + tbTelNo.Text.ToString();
                 parameters["siteName"] = get_shop_name(shopOrderPackList[i].shop_code);
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
@@ -119,7 +119,7 @@ namespace thepos
                     parameters["shopOrderNo"] = shopOrderPackList[i].order_no;
                     parameters["orderAllimType"] = "AT";
                     parameters["orderAllimStatus"] = "0";   // 0주문 1알림전송 2완료
-                    parameters["orderAllimMemo"] = txtMobileNo.Text.ToString().Substring(4, 4);
+                    parameters["orderAllimMemo"] = tbTelNo.Text.ToString().Substring(4, 4);
 
                     if (mRequestPatch("orderShop", parameters))
                     {
@@ -145,5 +145,72 @@ namespace thepos
 
             this.Close();
         }
+
+
+        private void btnKey1_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "1";
+        }
+
+        private void btnKey2_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "2";
+        }
+
+        private void btnKey3_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "3";
+        }
+
+        private void btnKey4_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "4";
+        }
+
+        private void btnKey5_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "5";
+        }
+
+        private void btnKey6_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "6";
+        }
+
+        private void btnKey7_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "7";
+        }
+
+        private void btnKey8_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "8";
+        }
+
+        private void btnKey9_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "9";
+        }
+
+        private void btnKey0_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text += "0";
+        }
+
+        private void btnKeyClear_Click(object sender, EventArgs e)
+        {
+            tbTelNo.Text = "";
+        }
+
+        private void btnKeyBS_Click(object sender, EventArgs e)
+        {
+            int len = tbTelNo.Text.Length;
+
+            if (len > 0)
+            {
+                tbTelNo.Text = tbTelNo.Text.Substring(0, len - 1);
+            }
+        }
+
     }
 }
