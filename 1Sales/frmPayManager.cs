@@ -99,6 +99,15 @@ namespace thepos
             if (t_amountEasy > 0) is_easy = "1";
             if (t_amountCert > 0) is_cert = "1";
 
+
+            if (t_amountCash + t_amountCard + t_amountPoint + t_amountEasy + t_amountCert == 0)
+            {
+                is_cash = "1";
+            }
+
+
+
+
             pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
 
 
@@ -288,6 +297,14 @@ namespace thepos
             if (t_amountPoint > 0) is_point = "1";
             if (t_amountEasy > 0) is_easy = "1";
             if (t_amountCert > 0) is_cert = "1";
+
+            if (t_amountCash + t_amountCard + t_amountPoint + t_amountEasy + t_amountCert == 0)
+            {
+                is_cash = "1";
+            }
+
+
+
 
             pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
 
