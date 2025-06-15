@@ -5203,34 +5203,6 @@ namespace thepos
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
                     shop_order_count++;
-
-
-                    //???? 임시 하드코딩 : 
-                    /*
-                    if (mSiteId == "2502")
-                    {
-                        if (mOrderItemList[i].shop_code == "FB")
-                        {
-                            if (mOrderItemList[i].nod_code1 == "41")
-                            {
-                                shop_order_count++;
-                            }
-                            else
-                            {
-                                // 레스토랑외 제외
-                            }
-                        }
-                        else
-                        {
-                            shop_order_count++;
-                        }
-                    }
-                    else
-                    {
-                        shop_order_count++;
-                    }
-                    */
-
                 }
             }
 
@@ -5244,36 +5216,6 @@ namespace thepos
             {
                 if (mOrderItemList[i].dcr_des != "E")  // "E" 전체할인
                 {
-
-                    //???? 임시 하드코딩 : 
-                    /*
-                    if (mSiteId == "2502")
-                    {
-                        if (mOrderItemList[i].shop_code == "FB")
-                        {
-                            if (mOrderItemList[i].nod_code1 == "41")
-                            {
-                                orderItemArr[t_cnt] = mOrderItemList[i];
-                                t_cnt++;
-                            }
-                            else
-                            {
-                                // 레스토랑외 제외
-                            }
-                        }
-                        else
-                        {
-                            orderItemArr[t_cnt] = mOrderItemList[i];
-                            t_cnt++;
-                        }
-                    }
-                    else
-                    {
-                        orderItemArr[t_cnt] = mOrderItemList[i];
-                        t_cnt++;
-                    }
-                    */
-
                     orderItemArr[t_cnt] = mOrderItemList[i];
                     t_cnt++;
 
