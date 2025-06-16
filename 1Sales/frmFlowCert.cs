@@ -122,7 +122,7 @@ namespace thepos
                 }
                 else
                 {
-                    thepos_app_log(3, this.Name, "view_reload()", "오류 " + mObj["msg"].ToString() + " no=" + t_coupon_no);
+                    thepos_app_log(3, this.Name, "requestTmCertView()", "오류 " + mObj["msg"].ToString() + " no=" + t_coupon_no);
                     MessageBox.Show("오류\n\n" + mObj["msg"].ToString(), "thepos");
                     tbCouponNo.Text = "";
                     return;
@@ -130,7 +130,7 @@ namespace thepos
             }
             else
             {
-                thepos_app_log(3, this.Name, "view_reload()", "오류 " + mErrorMsg + " no=" + t_coupon_no);
+                thepos_app_log(3, this.Name, "requestTmCertView()", "오류 " + mErrorMsg + " no=" + t_coupon_no);
                 MessageBox.Show("오류\n\n" + mErrorMsg, "thepos");
                 tbCouponNo.Text = "";
                 return;

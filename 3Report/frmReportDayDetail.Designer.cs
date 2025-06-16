@@ -186,7 +186,7 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 200;
+            this.name.Width = 250;
             // 
             // amt
             // 

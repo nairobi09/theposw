@@ -102,7 +102,7 @@
             // item_name
             // 
             this.item_name.Text = "상품명";
-            this.item_name.Width = 100;
+            this.item_name.Width = 270;
             // 
             // item_cnt
             // 
