@@ -329,7 +329,15 @@ namespace theposw._1Sales
                             if (save_flow_step == "9")
                             {
                                 // 퇴장시간
-                                item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                if (save_exit_dt == "")
+                                {
+                                    item.SubItems.Add("");
+                                }
+                                else
+                                {
+                                    item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                }
+
                                 item.ForeColor = Color.Gray;  // 완료 그레이
                             }
                             else if (save_flow_step == "4")

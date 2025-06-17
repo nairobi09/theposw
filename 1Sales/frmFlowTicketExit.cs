@@ -17,31 +17,19 @@ using thepos;
 
 namespace theposw._1Sales
 {
-    public partial class frmFlowTicketList : Form
+    public partial class frmFlowTicketExit : Form
     {
-        String this_biz_date;
-        String the_no;
 
 
-        public frmFlowTicketList(String this_biz_date, String the_no)
+        public frmFlowTicketExit()
         {
-            this.this_biz_date = this_biz_date;
-            this.the_no = the_no;
 
             InitializeComponent();
 
             initialize_the();
 
-
             //
             thepos_app_log(1, this.Name, "Open", "");
-
-
-            load_ticket_list();
-
-
-            // 최초 퇴장 대기
-            btn_0123();
 
         }
 
@@ -50,9 +38,6 @@ namespace theposw._1Sales
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
-
-
-            lblTitle.Text = "팀티켓 - " + the_no;
 
 
             // 할인 즐겨찾기
@@ -64,18 +49,51 @@ namespace theposw._1Sales
             //
             if (mDCR.Length > 0) cbDCR.SelectedIndex = 0;
 
-
-
         }
 
-
-        private void btnReload_Click(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
-            load_ticket_list();
+            if (tbTicketNo.Text.Length < 20)
+            {
+                SetDisplayAlarm("W", "티켓번호 오류.");
+                return;
+            }
+
+            String no = tbTicketNo.Text.Substring(0, 20);
+
+            load_ticket_list(no);
+
+        }
+
+        private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                lvwList.Items.Clear();
+
+                if (tbTicketNo.Text.Length < 20)
+                {
+                    SetDisplayAlarm("W", "티켓번호 오류.");
+                    thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
+                    tbTicketNo.Text = "";
+                    return;
+                }
+
+                String no = tbTicketNo.Text.Substring(0, 20);
+
+                load_ticket_list(no);
+
+                tbTicketNo.Clear();
+                tbTicketNo.Focus();
+
+            }
         }
 
 
-        private void load_ticket_list()
+        private void load_ticket_list(String the_no)
         {
             // 0 발권
             // 1 입장 - Blue or Red
@@ -89,7 +107,7 @@ namespace theposw._1Sales
 
             lvwList.Items.Clear();
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + the_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -294,72 +312,6 @@ namespace theposw._1Sales
         }
 
 
-        private void btnEntry_Click(object sender, EventArgs e)
-        {
-            if (lvwList.CheckedItems.Count < 1)
-            {
-                return;
-            }
-
-            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
-            {
-                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text != "0")
-                {
-                    MessageBox.Show("선택한 항목중에 입장처리를 할 수 없는 건이 포함되어있습니다.", "thepos");
-                    return;
-                }
-            }
-
-
-            //
-            String ticket_input_dt = "";
-
-            frmFlowTicketTime frm = new frmFlowTicketTime("Entry");
-            DialogResult result = frm.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ticket_input_dt = frm.return_datetime;
-            }
-            else
-            {
-                return;
-            }
-
-
-
-            for (int i = 0; i < lvwList.CheckedItems.Count; i++)
-            {
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters.Clear();
-                parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = mBizDate;
-                parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
-                parameters["entryDt"] = ticket_input_dt;
-                parameters["flowStep"] = "1";  // 입장
-
-                if (mRequestPatch("ticketFlow", parameters))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        //
-                    }
-                    else
-                    {
-                        MessageBox.Show("티켓데이터 오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
-                    return;
-                }
-            }
-
-            //
-            load_ticket_list();
-        }
 
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -403,8 +355,7 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
-                //parameters["bizDt"] = mBizDate;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["exitDt"] = ticket_input_dt;
 
@@ -865,8 +816,7 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
-                //parameters["bizDt"] = mBizDate;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["settlementDt"] = ticket_input_dt;
                 parameters["flowStep"] = "9";  // 완료
@@ -1039,13 +989,7 @@ namespace theposw._1Sales
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            thepos_app_log(1, this.Name, "close", "1");
-            this.Close();
-        }
-
-        private void btnClose2_Click(object sender, EventArgs e)
-        {
-            thepos_app_log(1, this.Name, "close", "2");
+            thepos_app_log(1, this.Name, "close", "");
             this.Close();
         }
 
