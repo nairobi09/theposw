@@ -11,6 +11,7 @@ using static thepos.frmFlowCharging;
 using static thepos.frmFlowSettlement;
 using static thepos.frmPayComplex;
 using System.Windows.Forms.DataVisualization.Charting;
+using theposw._1Sales;
 
 namespace thepos
 {
@@ -806,7 +807,14 @@ namespace thepos
                 mPanelPayment.Visible = false;
                 frmSales.ConsoleEnable();
             }
-                
+
+
+            // 빠른퇴장 화면이 떠있다면..
+            if (isFlowTicketExit == true)
+            {
+                // reload...
+                frmFlowTicketExit.load_ticket_list();
+            }
 
         }
 

@@ -16,6 +16,7 @@ using System.IO;
 using System.Diagnostics;
 using thepos._1Sales;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using theposw._1Sales;
 
 namespace thepos
 {
@@ -47,6 +48,7 @@ namespace thepos
 
             //
             thepos_app_log(1, this.Name, "Open", "");
+
 
 
             isComplex = is_complex;
@@ -805,6 +807,15 @@ namespace thepos
                 mPanelPayment.Visible = false;
                 frmSales.ConsoleEnable();
             }
+
+            // 빠른퇴장 화면이 떠있다면..
+            if (isFlowTicketExit == true)
+            {
+                // reload...
+                frmFlowTicketExit.load_ticket_list();
+            }
+
+
 
         }
 

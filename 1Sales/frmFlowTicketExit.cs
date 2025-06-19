@@ -19,7 +19,9 @@ namespace theposw._1Sales
 {
     public partial class frmFlowTicketExit : Form
     {
-        String this_the_no = "";
+        public static String this_the_no = "";
+
+        public static ListView mLvwList;
 
 
         public frmFlowTicketExit()
@@ -39,6 +41,15 @@ namespace theposw._1Sales
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
+
+
+            mLvwList = lvwList;
+
+
+
+            // 화면 떴다.
+            isFlowTicketExit = true;
+
 
 
             // 할인 즐겨찾기
@@ -108,7 +119,14 @@ namespace theposw._1Sales
         }
 
 
-        private void load_ticket_list(String the_no)
+        public static void load_ticket_list()
+        {
+            load_ticket_list(this_the_no);
+        }
+
+
+
+        public static void load_ticket_list(String the_no)
         {
             // 0 발권
             // 1 입장 - Blue or Red
@@ -119,7 +137,7 @@ namespace theposw._1Sales
             // 9 정산 (완료) - Gray
 
 
-            lvwList.Items.Clear();
+            mLvwList.Items.Clear();
 
             String now_dt = get_today_date() + get_today_time();
 
@@ -310,9 +328,9 @@ namespace theposw._1Sales
                         item.SubItems.Add(get_link_goods_code(goods_code));  // link_goods_code
                         item.Checked = false;
 
-                        
 
-                        lvwList.Items.Add(item);
+
+                        mLvwList.Items.Add(item);
 
                     }
 
@@ -897,7 +915,7 @@ namespace theposw._1Sales
             }
         }
 
-        private String get_expect_exit_dt(String goods_code, String entry_dt)
+        public static String get_expect_exit_dt(String goods_code, String entry_dt)
         {
             int minutesToAdd = get_goods_available_minute(goods_code);
             DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
@@ -906,7 +924,7 @@ namespace theposw._1Sales
         }
 
 
-        private int get_goods_available_minute(String goods_code)
+        public static int get_goods_available_minute(String goods_code)
         {
             for (int i = 0; i < mGoodsTicket.Length; i++)
             {
@@ -922,7 +940,7 @@ namespace theposw._1Sales
             return 0;
         }
 
-        private int get_ot_cnt(int gap_mm, String goods_code)
+        public static int get_ot_cnt(int gap_mm, String goods_code)
         {
             String is_charge = "";
             String available_minute = "";
@@ -961,7 +979,7 @@ namespace theposw._1Sales
 
             return ot_cnt;
         }
-        private int get_ot_amt(String goods_code)
+        public static int get_ot_amt(String goods_code)
         {
             String is_charge = "";
             String ot_amt = "";
@@ -986,7 +1004,7 @@ namespace theposw._1Sales
             return n_ot_amt;
         }
 
-        private String get_link_goods_code(String goods_code)
+        public static String get_link_goods_code(String goods_code)
         {
             String link_goods_code = "";
 
@@ -1056,6 +1074,11 @@ namespace theposw._1Sales
 
         private void frmFlowTicketExit_FormClosed(object sender, FormClosedEventArgs e)
         {
+
+            //
+            isFlowTicketExit = false;
+
+
             frmSales.ConsoleEnable();
 
             mPanelMiddle.Visible = false;

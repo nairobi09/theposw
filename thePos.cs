@@ -831,8 +831,8 @@ namespace thepos
 
 
 
-
-
+        // 빠른퇴장 화면이 떠있는지 보자...
+        public static bool isFlowTicketExit = false;
 
 
 
