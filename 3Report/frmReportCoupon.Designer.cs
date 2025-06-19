@@ -120,7 +120,7 @@
             // coupon_no
             // 
             this.coupon_no.Text = "쿠폰번호";
-            this.coupon_no.Width = 200;
+            this.coupon_no.Width = 130;
             // 
             // link_no
             // 
@@ -130,7 +130,7 @@
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 180;
+            this.goods_name.Width = 250;
             // 
             // qty
             // 

@@ -50,6 +50,16 @@ namespace thepos
             this.select_idx= select_idx;
 
             viewList();
+
+        }
+
+        private void frmPayCancel_Shown(object sender, EventArgs e)
+        {
+            if (pay_keep.Substring(4, 1) == "1")
+            {
+                // 테이블메니저 취소
+                MessageBox.Show("본 취소는 주문 및 발권티켓 정산을 위한 취소만 실행합니다.\r\n사용한 쿠폰취소는 테이블메니저에 별도로 요청하셔야 합니다.", "쿠폰취소");
+            }
         }
 
 
@@ -58,9 +68,7 @@ namespace thepos
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
-
         }
-
 
 
         private void viewList()
@@ -947,7 +955,7 @@ namespace thepos
                 int ret = CheckCancelTicketFlow(pEasyAuth.pay_class, pEasyAuth.the_no, "");
                 if (ret < 0)
                 {
-                    return;
+                    //return;
                 }
 
 
@@ -1212,6 +1220,7 @@ namespace thepos
             }
             else if (pay_type == "M0")
             {
+
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 PaymentCert pCertAuth = new PaymentCert();
 
@@ -1269,7 +1278,7 @@ namespace thepos
                 int ret = CheckCancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, "");
                 if (ret < 0)
                 {
-                    return;
+                    //return;
                 }
                 
 
@@ -1889,6 +1898,7 @@ namespace thepos
 
                             memOrderItem.shop_order_no = shop_order_no;
                             memOrderItem.shop_code = arr[i]["shopCode"].ToString();
+                            memOrderItem.nod_code1 = arr[i]["nodCode1"].ToString();
                             memOrderItem.goods_name = arr[i]["goodsName"].ToString();
                             memOrderItem.cnt = convert_number(arr[i]["cnt"].ToString());
 
@@ -1925,15 +1935,14 @@ namespace thepos
 
             List<String> t_good_name = new List<String>();
             List<int> t_good_cnt = new List<int>();
+            List<String> t_nod_code1 = new List<String>();
 
             t_shop_code = MemOrderItemList[0].shop_code;
             t_order_no = MemOrderItemList[0].shop_order_no;
             
             t_good_name.Add(MemOrderItemList[0].goods_name);
             t_good_cnt.Add(MemOrderItemList[0].cnt);
-
-
-
+            t_nod_code1.Add(MemOrderItemList[0].nod_code1);
 
 
 
@@ -1943,30 +1952,35 @@ namespace thepos
                 {
                     t_good_name.Add(MemOrderItemList[i + 1].goods_name);
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                    t_nod_code1.Add(MemOrderItemList[i + 1].nod_code1);
                 }
                 else
                 {
                     // 업장주문서 출력 -> shop 등록정보 프린터
-                    print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                    print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_nod_code1, t_order_dt);
 
                     // 주문교환권 출력 -> 영수증프린터
-                    print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+                    print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_nod_code1, t_order_dt);
 
 
                     t_good_name.Clear();
                     t_good_cnt.Clear();
+                    t_nod_code1.Clear();
+                    
                     t_shop_code = MemOrderItemList[i + 1].shop_code;
                     t_order_no = MemOrderItemList[i + 1].shop_order_no;
+                    
                     t_good_name.Add(MemOrderItemList[i + 1].goods_name);
                     t_good_cnt.Add(MemOrderItemList[i + 1].cnt);
+                    t_nod_code1.Add(MemOrderItemList[i + 1].nod_code1);
                 }
             }
 
             // 업장주문서 출력 -> shop 등록정보 프린터
-            print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            print_order_str("to_shop", t_shop_code, "취소주문서", t_order_no, t_good_name, t_good_cnt, t_nod_code1, t_order_dt);
 
             // 주문교환권 출력 -> 영수증프린터
-            print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_order_dt);
+            print_order_str("to_local", t_shop_code, "취소교환권", t_order_no, t_good_name, t_good_cnt, t_nod_code1, t_order_dt);
 
         }
 
@@ -1988,6 +2002,7 @@ namespace thepos
                 reviewList(selected_biz_date, pos_no, the_no, select_idx);
             }
         }
+
 
     }
 }

@@ -117,19 +117,20 @@ namespace theposw._1Sales
                         int ot_mm = 0;
 
 
-                        // ■ 𖡖 ▶ ▷ ↺ ↻ ↻ ↺ ⟳ ⟲
+                        // ■ 𖡖 ▶ ▷ ↺ ↻ ↻ ↺ ⟳ ⟲ ✕
 
                         if (tStat == "0") tStatName = "▷ 발권";
                         else if (tStat == "1") tStatName = "▶ 입장";
                         else if (tStat == "2") tStatName = "▶ 충전";
                         else if (tStat == "3") tStatName = "▶ 사용";
                         else if (tStat == "4") tStatName = "■ 퇴장";
+                        else if (tStat == "8") tStatName = "✕ 취소";
                         else if (tStat == "9") tStatName = "□ 완료";
                         else                   tStatName = tStat;
 
                         //
                         item.Text = "";
-                        item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
+                        item.SubItems.Add(ticket_no.Substring(20, 2));
                         item.SubItems.Add(tStatName);
                         item.SubItems.Add(get_goods_name(goods_code));
                         item.SubItems.Add(goods_cnt);
@@ -242,7 +243,7 @@ namespace theposw._1Sales
                             item.ForeColor = Color.Black;
 
                         }
-                        else if (tStat == "9")   //  완료
+                        else if (tStat == "8" | tStat == "9")   //  완료
                         {
                             // 퇴장
                             if (exit_dt == "")
@@ -824,7 +825,8 @@ namespace theposw._1Sales
 
             for (int i = 0; i < lvwList.CheckedItems.Count; i++)
             {
-                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text == "9")
+                if (lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text == "8" |
+                    lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(flow_step_code)].Text == "9")
                 {
                     MessageBox.Show("선택한 항목중에 강제종료처리를 할 수 없는 건이 포함되어 있습니다.", "thepos");
                     return;

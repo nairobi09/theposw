@@ -395,6 +395,8 @@ namespace thepos
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
                 orderItem.shop_code = myGoodsItem[t_goods_idx].shop_code;
+                orderItem.nod_code1 = myGoodsItem[t_goods_idx].nod_code1;
+                orderItem.nod_code2 = myGoodsItem[t_goods_idx].nod_code2;
                 orderItem.coupon_no = t_coupon_no;
                 mOrderItemList.Add(orderItem);
                 //
@@ -472,7 +474,7 @@ namespace thepos
                 // 결제 항목 저장
                 if (!SavePaymentCert(mPaymentCert))
                 {
-                    return;
+                    //return;
                 }
 
             }

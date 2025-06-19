@@ -19,6 +19,7 @@ namespace theposw._1Sales
 {
     public partial class frmFlowTicketExit : Form
     {
+        String this_the_no = "";
 
 
         public frmFlowTicketExit()
@@ -53,16 +54,24 @@ namespace theposw._1Sales
 
         private void btnView_Click(object sender, EventArgs e)
         {
+            lvwList.Items.Clear();
+            lblTheNo.Text = "";
+
+
             if (tbTicketNo.Text.Length < 20)
             {
                 SetDisplayAlarm("W", "티켓번호 오류.");
                 return;
             }
 
-            String no = tbTicketNo.Text.Substring(0, 20);
+            this_the_no = tbTicketNo.Text.Substring(0, 20);
+            tbTicketNo.Text = "";
 
-            load_ticket_list(no);
+            load_ticket_list(this_the_no);
 
+            btn_0123();
+
+            lblTheNo.Text = this_the_no;
         }
 
         private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
@@ -73,6 +82,7 @@ namespace theposw._1Sales
                 e.SuppressKeyPress = true;
 
                 lvwList.Items.Clear();
+                lblTheNo.Text = "";
 
                 if (tbTicketNo.Text.Length < 20)
                 {
@@ -82,9 +92,13 @@ namespace theposw._1Sales
                     return;
                 }
 
-                String no = tbTicketNo.Text.Substring(0, 20);
+                this_the_no = tbTicketNo.Text.Substring(0, 20);
 
-                load_ticket_list(no);
+                load_ticket_list(this_the_no);
+
+                btn_0123();
+
+                lblTheNo.Text = this_the_no;
 
                 tbTicketNo.Clear();
                 tbTicketNo.Focus();
@@ -100,12 +114,13 @@ namespace theposw._1Sales
             // 2 충전
             // 3 사용 
             // 4 퇴장 (정산전) - Black
+            // 8 취소        - Gray
             // 9 정산 (완료) - Gray
-
-            String now_dt = get_today_date() + get_today_time();
 
 
             lvwList.Items.Clear();
+
+            String now_dt = get_today_date() + get_today_time();
 
             String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
@@ -142,12 +157,13 @@ namespace theposw._1Sales
                         else if (tStat == "2") tStatName = "▶ 충전";
                         else if (tStat == "3") tStatName = "▶ 사용";
                         else if (tStat == "4") tStatName = "■ 퇴장";
+                        else if (tStat == "8") tStatName = "✕ 취소";
                         else if (tStat == "9") tStatName = "□ 완료";
                         else                   tStatName = tStat;
 
                         //
                         item.Text = "";
-                        item.SubItems.Add(ticket_no.Substring(14, 6) + "-" + ticket_no.Substring(20, 2));
+                        item.SubItems.Add(ticket_no.Substring(20, 2));
                         item.SubItems.Add(tStatName);
                         item.SubItems.Add(get_goods_name(goods_code));
                         item.SubItems.Add(goods_cnt);
@@ -260,7 +276,7 @@ namespace theposw._1Sales
                             item.ForeColor = Color.Black;
 
                         }
-                        else if (tStat == "9")   //  완료
+                        else if (tStat == "8" | tStat == "9")   // 취소, 완료
                         {
                             // 퇴장
                             if (exit_dt == "")
@@ -399,7 +415,7 @@ namespace theposw._1Sales
             }
 
             //
-            load_ticket_list();
+            load_ticket_list(this_the_no);
 
             btn_4();
         }
@@ -841,7 +857,7 @@ namespace theposw._1Sales
             }
 
             //
-            load_ticket_list();
+            load_ticket_list(this_the_no);
         }
 
 
@@ -1037,5 +1053,17 @@ namespace theposw._1Sales
             }
         }
 
+        private void frmFlowTicketExit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmSales.ConsoleEnable();
+
+            mPanelMiddle.Visible = false;
+            mPanelMiddle.Controls.Clear();
+        }
+
+        private void tbTicketNo_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

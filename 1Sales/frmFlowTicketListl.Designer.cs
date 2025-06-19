@@ -33,6 +33,7 @@
             this.ticket_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flow_step_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.entry_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.exit_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gap_dt_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,7 +61,6 @@
             this.btnEnd = new System.Windows.Forms.Button();
             this.cbDCR = new System.Windows.Forms.ComboBox();
             this.btnDCCancel = new System.Windows.Forms.Button();
-            this.goods_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -105,18 +105,23 @@
             // 
             // ticket_name
             // 
-            this.ticket_name.Text = "티켓";
-            this.ticket_name.Width = 80;
+            this.ticket_name.Text = "#";
+            this.ticket_name.Width = 30;
             // 
             // flow_step_name
             // 
             this.flow_step_name.Text = "상태";
-            this.flow_step_name.Width = 80;
             // 
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 150;
+            this.goods_name.Width = 200;
+            // 
+            // goods_cnt
+            // 
+            this.goods_cnt.Text = "수";
+            this.goods_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.goods_cnt.Width = 30;
             // 
             // entry_dt_name
             // 
@@ -212,7 +217,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(644, 30);
             this.lblTitle.TabIndex = 46;
-            this.lblTitle.Text = "티켓";
+            this.lblTitle.Text = "팀티켓";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPrint
@@ -391,12 +396,6 @@
             this.btnDCCancel.Text = "취소";
             this.btnDCCancel.UseVisualStyleBackColor = false;
             this.btnDCCancel.Click += new System.EventHandler(this.btnDCCancel_Click);
-            // 
-            // goods_cnt
-            // 
-            this.goods_cnt.Text = "수";
-            this.goods_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.goods_cnt.Width = 30;
             // 
             // frmFlowTicketList
             // 

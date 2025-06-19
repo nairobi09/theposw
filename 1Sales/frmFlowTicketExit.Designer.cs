@@ -62,8 +62,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
+            this.panelback = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwList
@@ -92,7 +94,7 @@
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(8, 101);
+            this.lvwList.Location = new System.Drawing.Point(4, 109);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
             this.lvwList.Size = new System.Drawing.Size(512, 343);
@@ -108,18 +110,17 @@
             // 
             // ticket_name
             // 
-            this.ticket_name.Text = "티켓";
-            this.ticket_name.Width = 80;
+            this.ticket_name.Text = "#";
+            this.ticket_name.Width = 30;
             // 
             // flow_step_name
             // 
             this.flow_step_name.Text = "상태";
-            this.flow_step_name.Width = 80;
             // 
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 150;
+            this.goods_name.Width = 130;
             // 
             // goods_cnt
             // 
@@ -131,6 +132,7 @@
             // 
             this.entry_dt_name.Text = "입장";
             this.entry_dt_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.entry_dt_name.Width = 50;
             // 
             // exit_dt_name
             // 
@@ -145,9 +147,9 @@
             // 
             // ot_amount_name
             // 
-            this.ot_amount_name.Text = "초과요금";
+            this.ot_amount_name.Text = "요금";
             this.ot_amount_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ot_amount_name.Width = 70;
+            this.ot_amount_name.Width = 40;
             // 
             // ticket_no
             // 
@@ -199,9 +201,9 @@
             this.btnClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(479, 7);
+            this.btnClose.Location = new System.Drawing.Point(470, 10);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 30);
             this.btnClose.TabIndex = 47;
@@ -215,11 +217,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(7, 7);
+            this.lblTitle.Location = new System.Drawing.Point(3, 5);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(510, 30);
+            this.lblTitle.Size = new System.Drawing.Size(510, 40);
             this.lblTitle.TabIndex = 46;
             this.lblTitle.Text = "빠른퇴장";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -230,9 +232,9 @@
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrint.ForeColor = System.Drawing.Color.Black;
-            this.btnPrint.Location = new System.Drawing.Point(8, 498);
+            this.btnPrint.Location = new System.Drawing.Point(8, 487);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(45, 35);
+            this.btnPrint.Size = new System.Drawing.Size(54, 44);
             this.btnPrint.TabIndex = 79;
             this.btnPrint.TabStop = false;
             this.btnPrint.Text = "출력";
@@ -245,7 +247,7 @@
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExit.ForeColor = System.Drawing.Color.Blue;
-            this.btnExit.Location = new System.Drawing.Point(123, 463);
+            this.btnExit.Location = new System.Drawing.Point(169, 461);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(110, 70);
             this.btnExit.TabIndex = 79;
@@ -260,7 +262,7 @@
             this.btmPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btmPay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btmPay.ForeColor = System.Drawing.Color.Black;
-            this.btmPay.Location = new System.Drawing.Point(238, 463);
+            this.btmPay.Location = new System.Drawing.Point(284, 461);
             this.btmPay.Name = "btmPay";
             this.btmPay.Size = new System.Drawing.Size(90, 70);
             this.btmPay.TabIndex = 79;
@@ -275,7 +277,7 @@
             this.btnDC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDC.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDC.ForeColor = System.Drawing.Color.Black;
-            this.btnDC.Location = new System.Drawing.Point(334, 489);
+            this.btnDC.Location = new System.Drawing.Point(380, 487);
             this.btnDC.Name = "btnDC";
             this.btnDC.Size = new System.Drawing.Size(86, 44);
             this.btnDC.TabIndex = 81;
@@ -290,9 +292,9 @@
             this.btn123.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn123.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn123.ForeColor = System.Drawing.Color.Blue;
-            this.btn123.Location = new System.Drawing.Point(8, 463);
+            this.btn123.Location = new System.Drawing.Point(68, 487);
             this.btn123.Name = "btn123";
-            this.btn123.Size = new System.Drawing.Size(45, 30);
+            this.btn123.Size = new System.Drawing.Size(40, 44);
             this.btn123.TabIndex = 83;
             this.btn123.TabStop = false;
             this.btn123.Text = "1";
@@ -305,9 +307,9 @@
             this.btn4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn4.ForeColor = System.Drawing.Color.Black;
-            this.btn4.Location = new System.Drawing.Point(58, 463);
+            this.btn4.Location = new System.Drawing.Point(113, 487);
             this.btn4.Name = "btn4";
-            this.btn4.Size = new System.Drawing.Size(45, 30);
+            this.btn4.Size = new System.Drawing.Size(40, 44);
             this.btn4.TabIndex = 85;
             this.btn4.TabStop = false;
             this.btn4.Text = "2";
@@ -320,7 +322,7 @@
             this.cbDCR.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbDCR.FormattingEnabled = true;
             this.cbDCR.ItemHeight = 13;
-            this.cbDCR.Location = new System.Drawing.Point(333, 463);
+            this.cbDCR.Location = new System.Drawing.Point(379, 461);
             this.cbDCR.Name = "cbDCR";
             this.cbDCR.Size = new System.Drawing.Size(137, 21);
             this.cbDCR.TabIndex = 90;
@@ -332,7 +334,7 @@
             this.btnDCCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDCCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDCCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnDCCancel.Location = new System.Drawing.Point(425, 489);
+            this.btnDCCancel.Location = new System.Drawing.Point(471, 487);
             this.btnDCCancel.Name = "btnDCCancel";
             this.btnDCCancel.Size = new System.Drawing.Size(45, 44);
             this.btnDCCancel.TabIndex = 91;
@@ -348,7 +350,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.tbTicketNo);
             this.panel1.Controls.Add(this.btnView);
-            this.panel1.Location = new System.Drawing.Point(8, 43);
+            this.panel1.Location = new System.Drawing.Point(4, 51);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(511, 50);
             this.panel1.TabIndex = 92;
@@ -356,9 +358,9 @@
             // lblTheNo
             // 
             this.lblTheNo.AutoSize = true;
-            this.lblTheNo.Location = new System.Drawing.Point(18, 19);
+            this.lblTheNo.Location = new System.Drawing.Point(13, 19);
             this.lblTheNo.Name = "lblTheNo";
-            this.lblTheNo.Size = new System.Drawing.Size(11, 12);
+            this.lblTheNo.Size = new System.Drawing.Size(14, 13);
             this.lblTheNo.TabIndex = 79;
             this.lblTheNo.Text = "_";
             // 
@@ -378,10 +380,11 @@
             this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbTicketNo.Location = new System.Drawing.Point(229, 12);
             this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(165, 23);
+            this.tbTicketNo.Size = new System.Drawing.Size(175, 23);
             this.tbTicketNo.TabIndex = 0;
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTicketNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTicketNo_KeyDown);
+            this.tbTicketNo.Leave += new System.EventHandler(this.tbTicketNo_Leave);
             // 
             // btnView
             // 
@@ -389,42 +392,54 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(402, 9);
+            this.btnView.Location = new System.Drawing.Point(412, 9);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 30);
+            this.btnView.Size = new System.Drawing.Size(90, 30);
             this.btnView.TabIndex = 72;
             this.btnView.TabStop = false;
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
+            // panelback
+            // 
+            this.panelback.BackColor = System.Drawing.Color.LightGray;
+            this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnClose);
+            this.panelback.Controls.Add(this.panel1);
+            this.panelback.Controls.Add(this.lvwList);
+            this.panelback.Controls.Add(this.btnDCCancel);
+            this.panelback.Controls.Add(this.cbDCR);
+            this.panelback.Controls.Add(this.btnPrint);
+            this.panelback.Controls.Add(this.btn4);
+            this.panelback.Controls.Add(this.btnExit);
+            this.panelback.Controls.Add(this.btn123);
+            this.panelback.Controls.Add(this.btmPay);
+            this.panelback.Controls.Add(this.btnDC);
+            this.panelback.Controls.Add(this.lblTitle);
+            this.panelback.Font = new System.Drawing.Font("굴림체", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Location = new System.Drawing.Point(3, 3);
+            this.panelback.Name = "panelback";
+            this.panelback.Size = new System.Drawing.Size(523, 539);
+            this.panelback.TabIndex = 93;
+            // 
             // frmFlowTicketExit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(529, 545);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnDCCancel);
-            this.Controls.Add(this.cbDCR);
-            this.Controls.Add(this.btn4);
-            this.Controls.Add(this.btn123);
-            this.Controls.Add(this.btnDC);
-            this.Controls.Add(this.btmPay);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.lvwList);
+            this.Controls.Add(this.panelback);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(356, 352);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFlowTicketExit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmTicketFlowDetail";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketExit_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelback.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -465,5 +480,6 @@
         private System.Windows.Forms.TextBox tbTicketNo;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblTheNo;
+        private System.Windows.Forms.Panel panelback;
     }
 }

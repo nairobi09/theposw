@@ -58,6 +58,13 @@ namespace theposw._1Sales
 
         private void btnView_Click(object sender, EventArgs e)
         {
+
+            if (tbTicketNo.Text.Length < 20)
+            {
+
+            }
+
+
             this_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
 
             get_flow_ticket("");
@@ -325,7 +332,6 @@ namespace theposw._1Sales
                             item.SubItems.Add(entry_cnt + "");
                             item.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
 
-
                             if (save_flow_step == "9")
                             {
                                 // 퇴장시간
@@ -337,13 +343,27 @@ namespace theposw._1Sales
                                 {
                                     item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
                                 }
-
                                 item.ForeColor = Color.Gray;  // 완료 그레이
+                            }
+                            else if (save_flow_step == "8")
+                            {
+                                // 퇴장시간
+                                if (save_exit_dt == "")
+                                {
+                                    item.SubItems.Add("");
+                                }
+                                else
+                                {
+                                    item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                }
+                                item.SubItems.Add("취소");
+                                item.ForeColor = Color.Gray;  // 취소 그레이
                             }
                             else if (save_flow_step == "4")
                             {
                                 // 퇴장시간
                                 item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+
                             }
                             else  //  save_flow_step == 0123
                             {
@@ -419,6 +439,13 @@ namespace theposw._1Sales
                         {
                             // 퇴장시간
                             item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            item.ForeColor = Color.Gray;  // 완료 그레이
+                        }
+                        else if (save_flow_step == "8")
+                        {
+                            // 퇴장시간
+                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            item.SubItems.Add("취소");
                             item.ForeColor = Color.Gray;  // 완료 그레이
                         }
                         else if (save_flow_step == "4")

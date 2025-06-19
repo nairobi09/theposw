@@ -231,7 +231,7 @@
             this.btnCashRecept.ForeColor = System.Drawing.Color.White;
             this.btnCashRecept.Location = new System.Drawing.Point(307, 213);
             this.btnCashRecept.Name = "btnCashRecept";
-            this.btnCashRecept.Size = new System.Drawing.Size(140, 60);
+            this.btnCashRecept.Size = new System.Drawing.Size(140, 50);
             this.btnCashRecept.TabIndex = 44;
             this.btnCashRecept.Text = "현금영수증";
             this.btnCashRecept.UseVisualStyleBackColor = false;
@@ -273,9 +273,9 @@
             this.btnCashSimple.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCashSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashSimple.ForeColor = System.Drawing.Color.White;
-            this.btnCashSimple.Location = new System.Drawing.Point(307, 105);
+            this.btnCashSimple.Location = new System.Drawing.Point(307, 91);
             this.btnCashSimple.Name = "btnCashSimple";
-            this.btnCashSimple.Size = new System.Drawing.Size(140, 42);
+            this.btnCashSimple.Size = new System.Drawing.Size(140, 60);
             this.btnCashSimple.TabIndex = 44;
             this.btnCashSimple.Text = "단순현금";
             this.btnCashSimple.UseVisualStyleBackColor = false;

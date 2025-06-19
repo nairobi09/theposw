@@ -168,7 +168,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(193, 575);
+            this.btnCancel.Location = new System.Drawing.Point(191, 581);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(140, 50);
             this.btnCancel.TabIndex = 48;
@@ -193,7 +193,7 @@
             this.lvwList.Location = new System.Drawing.Point(17, 178);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(485, 375);
+            this.lvwList.Size = new System.Drawing.Size(485, 346);
             this.lvwList.TabIndex = 44;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -244,6 +244,7 @@
             this.Text = "frmPayCancel";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPayCancel_FormClosed);
+            this.Shown += new System.EventHandler(this.frmPayCancel_Shown);
             this.panelback.ResumeLayout(false);
             this.panelback.PerformLayout();
             this.ResumeLayout(false);

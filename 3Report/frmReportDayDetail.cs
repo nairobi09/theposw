@@ -84,7 +84,14 @@ namespace thepos
                         if (convert_number(arr[i]["amountEasy"].ToString()) > 0) is_easy = "1";
                         if (convert_number(arr[i]["amountCert"].ToString()) > 0) is_cert = "1";
                         pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
+
                         lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
+
+                        //
+                        if (pay_keep == "00000")
+                        {
+                            pay_keep = "10001";
+                        }
 
                         lvItem.SubItems.Add((convert_number(arr[i]["dcAmount"].ToString())).ToString("N0"));
                         lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));

@@ -113,6 +113,10 @@ namespace thepos
 
         private void btnCashSimple_Click(object sender, EventArgs e)
         {
+            // 돈통열기
+            open_money_case();
+
+
             //!
             int order_cnt = 0;
             int dcAmount = 0;
@@ -362,6 +366,9 @@ namespace thepos
 
         private void btnCashRecept_Click(object sender, EventArgs e)
         {
+            // 돈통열기
+            open_money_case();
+
 
             String receipt_type = "";
 

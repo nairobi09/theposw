@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnUncheck = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbCouponNo = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@
             this.goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_idx = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPay = new System.Windows.Forms.Button();
-            this.btnCheck = new System.Windows.Forms.Button();
-            this.btnUncheck = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +76,36 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 5;
+            // 
+            // btnUncheck
+            // 
+            this.btnUncheck.BackColor = System.Drawing.Color.White;
+            this.btnUncheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUncheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUncheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnUncheck.Location = new System.Drawing.Point(74, 527);
+            this.btnUncheck.Name = "btnUncheck";
+            this.btnUncheck.Size = new System.Drawing.Size(60, 60);
+            this.btnUncheck.TabIndex = 80;
+            this.btnUncheck.TabStop = false;
+            this.btnUncheck.Text = "전체\r\n해제";
+            this.btnUncheck.UseVisualStyleBackColor = false;
+            this.btnUncheck.Click += new System.EventHandler(this.btnUncheck_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.BackColor = System.Drawing.Color.White;
+            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCheck.Location = new System.Drawing.Point(8, 527);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(60, 60);
+            this.btnCheck.TabIndex = 79;
+            this.btnCheck.TabStop = false;
+            this.btnCheck.Text = "전체\r\n선택";
+            this.btnCheck.UseVisualStyleBackColor = false;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // panel1
             // 
@@ -189,6 +219,7 @@
             this.lvwCoupon.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwCoupon.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwCoupon.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvwCoupon.HideSelection = false;
             this.lvwCoupon.Location = new System.Drawing.Point(5, 106);
             this.lvwCoupon.MultiSelect = false;
             this.lvwCoupon.Name = "lvwCoupon";
@@ -206,7 +237,7 @@
             // state_name
             // 
             this.state_name.Text = "상태";
-            this.state_name.Width = 100;
+            this.state_name.Width = 70;
             // 
             // coupon_no
             // 
@@ -216,7 +247,7 @@
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 120;
+            this.goods_name.Width = 200;
             // 
             // goods_cnt
             // 
@@ -227,7 +258,7 @@
             // cus_hp
             // 
             this.cus_hp.Text = "고객";
-            this.cus_hp.Width = 100;
+            this.cus_hp.Width = 90;
             // 
             // view_state_code
             // 
@@ -280,7 +311,7 @@
             this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay.ForeColor = System.Drawing.Color.White;
-            this.btnPay.Location = new System.Drawing.Point(366, 584);
+            this.btnPay.Location = new System.Drawing.Point(366, 527);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(140, 60);
             this.btnPay.TabIndex = 78;
@@ -288,36 +319,6 @@
             this.btnPay.Text = "인증발권";
             this.btnPay.UseVisualStyleBackColor = false;
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.BackColor = System.Drawing.Color.White;
-            this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnCheck.Location = new System.Drawing.Point(8, 584);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(60, 60);
-            this.btnCheck.TabIndex = 79;
-            this.btnCheck.TabStop = false;
-            this.btnCheck.Text = "전체\r\n선택";
-            this.btnCheck.UseVisualStyleBackColor = false;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
-            // 
-            // btnUncheck
-            // 
-            this.btnUncheck.BackColor = System.Drawing.Color.White;
-            this.btnUncheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUncheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnUncheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnUncheck.Location = new System.Drawing.Point(74, 584);
-            this.btnUncheck.Name = "btnUncheck";
-            this.btnUncheck.Size = new System.Drawing.Size(60, 60);
-            this.btnUncheck.TabIndex = 80;
-            this.btnUncheck.TabStop = false;
-            this.btnUncheck.Text = "전체\r\n해제";
-            this.btnUncheck.UseVisualStyleBackColor = false;
-            this.btnUncheck.Click += new System.EventHandler(this.btnUncheck_Click);
             // 
             // frmFlowCert
             // 

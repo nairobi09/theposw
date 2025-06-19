@@ -33,9 +33,10 @@
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("충전");
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("정산");
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("티켓");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("락커");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("결제내역관리");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("[공백]");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("빠른퇴장");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("락커");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("결제내역관리");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("[공백]");
             this.tableLayoutPanelFlowControlSelected = new System.Windows.Forms.TableLayoutPanel();
             this.btnLink = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
@@ -261,9 +262,10 @@
             listViewItem3.Tag = "CHARGING";
             listViewItem4.Tag = "SETTLEMENT";
             listViewItem5.Tag = "TICKET";
-            listViewItem6.Tag = "LOCKER";
-            listViewItem7.Tag = "PAYMANAGER";
-            listViewItem8.Tag = "DUMMY";
+            listViewItem6.Tag = "TICKETEXIT";
+            listViewItem7.Tag = "LOCKER";
+            listViewItem8.Tag = "PAYMANAGER";
+            listViewItem9.Tag = "DUMMY";
             this.lvwConsole.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -272,7 +274,8 @@
             listViewItem5,
             listViewItem6,
             listViewItem7,
-            listViewItem8});
+            listViewItem8,
+            listViewItem9});
             this.lvwConsole.Location = new System.Drawing.Point(109, 90);
             this.lvwConsole.MultiSelect = false;
             this.lvwConsole.Name = "lvwConsole";

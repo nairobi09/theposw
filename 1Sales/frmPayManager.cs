@@ -100,18 +100,14 @@ namespace thepos
             if (t_amountCert > 0) is_cert = "1";
 
 
-            if (t_amountCash + t_amountCard + t_amountPoint + t_amountEasy + t_amountCert == 0)
-            {
-                is_cash = "1";
-            }
-
-
-
-
             pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
-
-
             lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
+
+
+            if (pay_keep == "00000")
+            {
+                pay_keep = "10001";
+            }
 
 
             lvItem.SubItems.Add(get_MMddHHmm(t_payDate, t_payTime));
@@ -301,6 +297,7 @@ namespace thepos
             if (t_amountCash + t_amountCard + t_amountPoint + t_amountEasy + t_amountCert == 0)
             {
                 is_cash = "1";
+                is_cert = "1";
             }
 
 
@@ -889,6 +886,7 @@ namespace thepos
 
                             orderPack.goods_name = arr[i]["goodsName"].ToString();
                             orderPack.goods_cnt = convert_number(arr[i]["cnt"].ToString());
+                            orderPack.nod_code1 = arr[i]["nodCode1"].ToString();
 
 
                             option_name_list.Clear();

@@ -421,6 +421,12 @@ namespace thepos
                     btnFlowItem.Text = "티켓";
                     btnFlowItem.Click += (sender, args) => ClickedFlowTicket();
                 }
+                else if (mFlowConsol[i].code == "TICKETEXIT")
+                {
+                    btnFlowItem.Name = "btnPayConsoleTicketExit";
+                    btnFlowItem.Text = "빠른퇴장";
+                    btnFlowItem.Click += (sender, args) => ClickedFlowTicketExit();
+                }
                 else if (mFlowConsol[i].code == "LOCKER")
                 {
                     btnFlowItem.Name = "btnPayConsoleLocker";
@@ -913,7 +919,19 @@ namespace thepos
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
             fForm.Show();
+        }
 
+        private void ClickedFlowTicketExit()
+        {
+            //ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowTicketExit fForm = new frmFlowTicketExit() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
         }
 
         private void ClickedFlowCharging()
@@ -2614,7 +2632,7 @@ namespace thepos
                                 }
                             }
 
-                            if (MaxflowStep <= 9)
+                            if (MaxflowStep <= 9)  //???? 일단 전부 취소가능
                             {
                                 return 1;
                             }
@@ -2731,7 +2749,7 @@ namespace thepos
 
         public static void CancelTicketFlow(String auth_pay_class, String the_no, String ticket_no, int cancel_amount)
         {
-            //발권0 - 입장1 - *충전2 - 사용3 - 퇴장4 - 정산중5 - 정산완료9
+            //발권0 - 입장1 - *충전2 - 사용3 - 퇴장4 - 취소8 - 정산완료9
 
             if (auth_pay_class == "OR")  // 주문건의 취소
             {
@@ -2759,34 +2777,38 @@ namespace thepos
 
                             if (MaxflowStep <= 9)
                             {
-                                //???? 삭제대신 취소마킹하는 방식으로 변경개발 필요
-                                // delete
+                                // delete -> patch 방식으로 변경
+                                //???? 이후 선불 후불의 경우 취소로직 고민필요
                                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                                 parameters["siteId"] = mSiteId;
                                 parameters["bizDt"] = mBizDate;
                                 parameters["theNo"] = the_no;
+                                parameters["flowStep"] = "8";   // 취소8
 
-                                if (mRequestDelete("ticketFlow", parameters))
+
+                                if (mRequestPatch("ticketFlow", parameters))
                                 {
                                     if (mObj["resultCode"].ToString() == "200")
                                     {
-
+                                        thepos_app_log(1, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
                                         MessageBox.Show("티켓취소 완료.", "thepos");
                                     }
                                     else
                                     {
+                                        thepos_app_log(3, "CancelTicketFlow()", "취소", "오류 " + mObj["resultMsg"].ToString());
                                         MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                     }
                                 }
                                 else
                                 {
+                                    thepos_app_log(3, "CancelTicketFlow()", "취소", "시스템오류 " + mErrorMsg);
                                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                                 }
                                 //
                             }
                             else
                             {
-                                MessageBox.Show("티켓사용이후 주문취소불가.", "thepos");
+                                MessageBox.Show("주문취소불가.", "thepos");
                             }
                         }
                         else
@@ -5398,8 +5420,6 @@ namespace thepos
             String printer_name = "";
 
 
-
-
             shop_order_pack shopOrderPackPrint = JsonConvert.DeserializeObject<shop_order_pack>(
                 JsonConvert.SerializeObject(shopOrderPack)
             );
@@ -5432,7 +5452,7 @@ namespace thepos
                         {
                             shopOrderPackPrint.orderPackList.RemoveAt(i);
                         }
-                    } 
+                    }
                 }
 
                 if (shopOrderPackPrint.orderPackList.Count == 0)
@@ -5461,13 +5481,6 @@ namespace thepos
                 SetDisplayAlarm("E", title + "프린터 미설정");
                 return;
             }
-
-
-
-
-
-
-
 
 
 
@@ -5605,13 +5618,6 @@ namespace thepos
 
 
 
-
-
-
-
-
-
-
                     stream.Flush();
                     stream.Close();
 
@@ -5653,7 +5659,7 @@ namespace thepos
 
 
         // 취소용
-        public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, String order_dt)  // 주문서
+        public static void print_order_str(String to_printer, String shop, String title, String order_no, List<String> name, List<int> cnt, List<String> nod_code1, String order_dt)  // 주문서
         {
             String printer_type = "";
             String printer_name = "";
@@ -5674,6 +5680,28 @@ namespace thepos
                         }
                     }
                 }
+
+                //???? 하드코딩 : 키벤저스 F&B 주문서 출력 예외처리 - 레스토랑 메뉴만 주방주문서 출력한다.
+                if (mSiteId == "2502" & shop == "FB")
+                {
+                    for (int i = nod_code1.Count - 1; i >= 0; i--)
+                    {
+                        if (nod_code1[i] != "41")
+                        {
+                            name.RemoveAt(i);
+                            cnt.RemoveAt(i);
+                            nod_code1.RemoveAt(i);
+                        }
+                    }
+                }
+
+                if (nod_code1.Count == 0)
+                {
+                    return;
+                }
+                //????
+
+
             }
             else if (to_printer == "to_local")
             {
@@ -6077,18 +6105,20 @@ namespace thepos
 
         private void btnMoney_Click(object sender, EventArgs e)
         {
+            open_money_case();
+        }
+
+
+        public static void open_money_case()
+        { 
             const string ESC = "\u001B";
             const string InitializePrinter = ESC + "@";
 
             PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
 
-
             byte[] BytesValue = new byte[0];
-
-
             byte[] openDrawerCommand = new byte[] { 0x1B, 0x70, 0x00, 0x19, 0xFA };
             BytesValue = PrintExtensions.AddBytes(BytesValue, openDrawerCommand);
-
 
 
             try
@@ -6109,7 +6139,7 @@ namespace thepos
             }
             catch (Exception ex)
             {
-                MessageBox.Show("오류.\r\n" + ex.Message);
+                //MessageBox.Show("오류.\r\n" + ex.Message);
                 return;
             }
         }
