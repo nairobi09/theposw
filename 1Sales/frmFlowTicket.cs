@@ -55,19 +55,56 @@ namespace theposw._1Sales
             mPanelMiddle.Controls.Clear();
         }
 
+        private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                lvwList.Items.Clear();
+
+                if (tbTicketNo.Text.Length < 20)
+                {
+                    SetDisplayAlarm("W", "티켓번호 오류.");
+                    thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
+                    tbTicketNo.Text = "";
+                    return;
+                }
+
+                String no = tbTicketNo.Text.Substring(0, 20);
+
+                get_flow_ticket_4(no);
+                get_flow_ticket_0123(no);
+
+                tbTicketNo.Clear();
+                tbTicketNo.Focus();
+
+            }
+        }
 
         private void btnView_Click(object sender, EventArgs e)
         {
 
-            if (tbTicketNo.Text.Length < 20)
+            if (tbTicketNo.Text.Length < 20 & tbTicketNo.Text.Length > 0)
             {
-
+                SetDisplayAlarm("W", "티켓번호 오류.");
+                thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
+                return;
             }
 
 
+            String no = "";
+            
+            if (tbTicketNo.Text.Length >= 20)
+            {
+                no = tbTicketNo.Text.Substring(0, 20);
+            }
+            
+
             this_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
 
-            get_flow_ticket("");
+            get_flow_ticket(no);
         }
 
         private void get_flow_ticket(String rTheNo)
@@ -502,32 +539,7 @@ namespace theposw._1Sales
             frm.ShowDialog();
         }
 
-        private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
 
-                lvwList.Items.Clear();
-
-                if (tbTicketNo.Text.Length < 20)
-                {
-                    thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
-                    tbTicketNo.Text = "";
-                    return;
-                }
-
-                String no = tbTicketNo.Text.Substring(0, 20);
-
-                get_flow_ticket_4(no);
-                get_flow_ticket_0123(no);
-
-                tbTicketNo.Clear();
-                tbTicketNo.Focus();
-
-            }
-        }
 
         private void tbTicketNo_Leave(object sender, EventArgs e)
         {

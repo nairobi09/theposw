@@ -61,6 +61,7 @@ namespace theposw._1Sales
             if (tbTicketNo.Text.Length < 20)
             {
                 SetDisplayAlarm("W", "티켓번호 오류.");
+                thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
                 return;
             }
 

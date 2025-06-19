@@ -120,7 +120,7 @@
             // goods_name
             // 
             this.goods_name.Text = "상품명";
-            this.goods_name.Width = 130;
+            this.goods_name.Width = 120;
             // 
             // goods_cnt
             // 
@@ -149,7 +149,6 @@
             // 
             this.ot_amount_name.Text = "요금";
             this.ot_amount_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ot_amount_name.Width = 40;
             // 
             // ticket_no
             // 
