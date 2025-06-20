@@ -404,8 +404,8 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
-                //parameters["bizDt"] = mBizDate;
+                //parameters["bizDt"] = this_biz_date;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["exitDt"] = ticket_input_dt;
 
