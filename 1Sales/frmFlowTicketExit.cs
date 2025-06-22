@@ -139,6 +139,13 @@ namespace theposw._1Sales
 
             mLvwList.Items.Clear();
 
+            //
+            if (the_no == "")
+            {
+                return;
+            }
+
+
             String now_dt = get_today_date() + get_today_time();
 
             String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
@@ -581,7 +588,10 @@ namespace theposw._1Sales
             //
             if (des == "E")
             {
-
+                if (lvwList.Items.Count == 0)
+                {
+                    return;
+                }
             }
             else
             {
@@ -638,6 +648,7 @@ namespace theposw._1Sales
 
 
                 MemOrderItem orderItem = mOrderItemList[target_idx];
+                orderItem.dcr_code = e_dcr_code;
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
@@ -712,7 +723,7 @@ namespace theposw._1Sales
                 orderItem.option_item_cnt = mOrderOptionItemList.Count;
                 orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
-
+                orderItem.dcr_code = e_dcr_code;
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
@@ -756,7 +767,7 @@ namespace theposw._1Sales
                 ReCalculateAmount();
 
                 //
-                thepos_app_log(1, this.Name, "할인", "전체 dcr_des = " + orderItem.dcr_des + " dcr_type = " + orderItem.dcr_type + " dcr_value = " + orderItem.dcr_value);
+                thepos_app_log(1, this.Name, "할인클릭", "전체 dcr_des = " + orderItem.dcr_des + " dcr_type = " + orderItem.dcr_type + " dcr_value = " + orderItem.dcr_value);
             }
         }
 
@@ -771,6 +782,7 @@ namespace theposw._1Sales
 
                 if (orderItem.dcr_des == "S")
                 {
+                    orderItem.dcr_code = "";
                     orderItem.dcr_des = "";
                     orderItem.dcr_type = "";
                     orderItem.dcr_value = 0;
@@ -784,7 +796,7 @@ namespace theposw._1Sales
 
                     ReCalculateAmount();
 
-                    thepos_app_log(1, this.Name, "할인취소", "선택");
+                    thepos_app_log(1, this.Name, "할인취소클릭", "선택");
                 }
                 else if (orderItem.dcr_des == "E")
                 {
@@ -793,7 +805,7 @@ namespace theposw._1Sales
 
                     ReCalculateAmount();
 
-                    thepos_app_log(1, this.Name, "할인취소", "전체");
+                    thepos_app_log(1, this.Name, "할인취소클릭", "전체");
                 }
             }
         }

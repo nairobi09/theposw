@@ -49,6 +49,7 @@ namespace thepos
             this.btnKey7 = new System.Windows.Forms.Button();
             this.btnKeyClear = new System.Windows.Forms.Button();
             this.panelOrderConsole = new System.Windows.Forms.Panel();
+            this.btnMoney = new System.Windows.Forms.Button();
             this.btnOrderItemScrollDn = new System.Windows.Forms.Button();
             this.tableLayoutPanelFlowControl = new System.Windows.Forms.TableLayoutPanel();
             this.btnOrderItemScrollUp = new System.Windows.Forms.Button();
@@ -116,7 +117,6 @@ namespace thepos
             this.panelMiddle = new System.Windows.Forms.Panel();
             this.panelPayment = new System.Windows.Forms.Panel();
             this.panelCancel = new System.Windows.Forms.Panel();
-            this.btnMoney = new System.Windows.Forms.Button();
             this.panelNumpad.SuspendLayout();
             this.panelKeyDisplayWhite.SuspendLayout();
             this.panelOrderConsole.SuspendLayout();
@@ -400,6 +400,21 @@ namespace thepos
             this.panelOrderConsole.Name = "panelOrderConsole";
             this.panelOrderConsole.Size = new System.Drawing.Size(474, 367);
             this.panelOrderConsole.TabIndex = 25;
+            // 
+            // btnMoney
+            // 
+            this.btnMoney.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnMoney.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoney.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnMoney.ForeColor = System.Drawing.Color.White;
+            this.btnMoney.Location = new System.Drawing.Point(417, 1);
+            this.btnMoney.Name = "btnMoney";
+            this.btnMoney.Size = new System.Drawing.Size(56, 48);
+            this.btnMoney.TabIndex = 30;
+            this.btnMoney.TabStop = false;
+            this.btnMoney.Text = "돈통";
+            this.btnMoney.UseVisualStyleBackColor = false;
+            this.btnMoney.Click += new System.EventHandler(this.btnMoney_Click);
             // 
             // btnOrderItemScrollDn
             // 
@@ -1289,21 +1304,6 @@ namespace thepos
             this.panelCancel.Size = new System.Drawing.Size(140, 100);
             this.panelCancel.TabIndex = 53;
             this.panelCancel.Visible = false;
-            // 
-            // btnMoney
-            // 
-            this.btnMoney.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnMoney.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMoney.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnMoney.ForeColor = System.Drawing.Color.White;
-            this.btnMoney.Location = new System.Drawing.Point(417, 1);
-            this.btnMoney.Name = "btnMoney";
-            this.btnMoney.Size = new System.Drawing.Size(56, 48);
-            this.btnMoney.TabIndex = 30;
-            this.btnMoney.TabStop = false;
-            this.btnMoney.Text = "돈통";
-            this.btnMoney.UseVisualStyleBackColor = false;
-            this.btnMoney.Click += new System.EventHandler(this.btnMoney_Click);
             // 
             // frmSales
             // 

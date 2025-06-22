@@ -18,6 +18,8 @@ namespace thepos
     {
         //thepos the = new thepos();
 
+        private int sortColumn = -1;
+
         public frmOrderBarcode()
         {
             InitializeComponent();
@@ -69,13 +71,8 @@ namespace thepos
             this.Close();
         }
 
-        private void lvwWaiting_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
-        {
-            e.Cancel = true;
-            e.NewWidth = lvwList.Columns[e.ColumnIndex].Width;
-        }
 
-        private void frmOrderWaiting_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmOrderBarcode_FormClosed(object sender, FormClosedEventArgs e)
         {
             mPanelMiddle.Visible = false;
 
@@ -104,6 +101,49 @@ namespace thepos
                 }
             }
 
+        }
+
+        private void lvwList_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            //?? 숫자컬럼(단가) Sorting 고려하기
+
+            if (e.Column != sortColumn)
+            {
+                sortColumn = e.Column;
+                lvwList.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                if (lvwList.Sorting == SortOrder.Ascending)
+                {
+                    lvwList.Sorting = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwList.Sorting = SortOrder.Ascending;
+                }
+            }
+
+
+            lvwList.Sort();
+            this.lvwList.ListViewItemSorter = new MyListViewComparer(e.Column, lvwList.Sorting);
+        }
+
+        class MyListViewComparer : IComparer
+        {
+            private int col; private SortOrder order; public MyListViewComparer() { col = 0; order = SortOrder.Ascending; }
+
+            public MyListViewComparer(int column, SortOrder order) { col = column; this.order = order; }
+
+            public int Compare(object x, object y)
+            {
+                int returnVal = -1; returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+
+                // Determine whether the sort order is descending. 
+                if (order == SortOrder.Descending) returnVal *= -1; // Invert the value returned by String.Compare. 
+
+                return returnVal;
+            }
         }
     }
 }

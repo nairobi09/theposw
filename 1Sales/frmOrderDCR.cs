@@ -126,6 +126,7 @@ namespace thepos
 
                     MemOrderItem orderItem = mOrderItemList[sel_idx];
 
+                    orderItem.dcr_code = e_dcr_code;
                     orderItem.dcr_des = des;
                     orderItem.dcr_type = type;
                     orderItem.dcr_value = value;
@@ -197,7 +198,7 @@ namespace thepos
                 orderItem.option_item_cnt = mOrderOptionItemList.Count;
                 orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
 
-
+                orderItem.dcr_code = e_dcr_code;
                 orderItem.dcr_des = des;
                 orderItem.dcr_type = type;
                 orderItem.dcr_value = value;
@@ -259,6 +260,7 @@ namespace thepos
 
                 if (orderItem.dcr_des == "S")
                 {
+                    orderItem.dcr_code = "";
                     orderItem.dcr_des = "";
                     orderItem.dcr_type = "";
                     orderItem.dcr_value = 0;

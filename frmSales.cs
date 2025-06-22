@@ -857,7 +857,7 @@ namespace thepos
         private void btnBarcode_Click(object sender, EventArgs e)
         {
             //ConsoleDisable();
-
+            
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
@@ -865,6 +865,7 @@ namespace thepos
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
             fForm.Show();
+
         }
 
 
@@ -1834,6 +1835,7 @@ namespace thepos
                 parameters["taxFree"] = mOrderItemList[i].taxfree;
                 parameters["allim"] = mOrderItemList[i].allim;
                 parameters["dcAmount"] = mOrderItemList[i].dc_amount + "";
+                parameters["dcrCode"] = mOrderItemList[i].dcr_code + "";
                 parameters["dcrType"] = mOrderItemList[i].dcr_type;
                 parameters["dcrDes"] = mOrderItemList[i].dcr_des;
                 parameters["dcrValue"] = mOrderItemList[i].dcr_value + "";

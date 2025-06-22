@@ -160,7 +160,7 @@
             this.lvwList.TabIndex = 41;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
-            this.lvwList.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvwWaiting_ColumnWidthChanging);
+            this.lvwList.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwList_ColumnClick);
             // 
             // shop_name
             // 
@@ -170,7 +170,7 @@
             // bar_code
             // 
             this.bar_code.Text = "바코드";
-            this.bar_code.Width = 100;
+            this.bar_code.Width = 110;
             // 
             // goods_name
             // 
@@ -210,7 +210,7 @@
             this.Name = "frmOrderBarcode";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmWaiting";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderWaiting_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmOrderBarcode_FormClosed);
             this.panelback.ResumeLayout(false);
             this.panelback.PerformLayout();
             this.ResumeLayout(false);

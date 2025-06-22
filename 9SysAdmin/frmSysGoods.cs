@@ -1114,7 +1114,7 @@ namespace thepos._9SysAdmin
 
         private void lvwList_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            //? 숫자컬럼(단가) Sorting 고려하기
+            //?? 숫자컬럼(단가) Sorting 고려하기
 
             if (e.Column != sortColumn)
             {

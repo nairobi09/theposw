@@ -61,7 +61,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-010";   // 2025 05 29
+        public static String mAppVersion = "TPW1-2025-011";   // 
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
