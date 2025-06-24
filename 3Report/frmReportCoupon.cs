@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace thepos._1Sales
 {
@@ -161,10 +162,27 @@ namespace thepos._1Sales
             // 데이터 작성
             for (int row = 0; row < listView.Items.Count; row++)
             {
+
+                worksheet.Cell(row + 2, 1).Value = listView.Items[row].SubItems[0].Text;
+                worksheet.Cell(row + 2, 2).Value = listView.Items[row].SubItems[1].Text;
+                worksheet.Cell(row + 2, 3).Value = listView.Items[row].SubItems[2].Text;
+                worksheet.Cell(row + 2, 4).Value = listView.Items[row].SubItems[3].Text;
+
+                double.TryParse(listView.Items[row].SubItems[4].Text.Replace(",", ""), out double number1);
+                worksheet.Cell(row + 2, 5).Value = number1;
+
+                double.TryParse(listView.Items[row].SubItems[5].Text.Replace(",", ""), out double number2);
+                worksheet.Cell(row + 2, 6).Value = number2;
+
+                worksheet.Cell(row + 2, 7).Value = listView.Items[row].SubItems[6].Text;
+
+
                 for (int col = 0; col < listView.Columns.Count; col++)
                 {
-                    worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+                    System.Drawing.Color foreColor = listView.Items[row].SubItems[col].ForeColor;
+                    worksheet.Cell(row + 2, col + 1).Style.Font.FontColor = XLColor.FromColor(foreColor);
                 }
+
             }
 
             // 파일 저장

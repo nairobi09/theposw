@@ -273,7 +273,7 @@ namespace thepos
                         strAlarm += " 티켓정산 등록.";
 
                         // 정산화면 리스트뷰 갱신
-                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
                     }
 
                     SetDisplayAlarm("I", strAlarm);
@@ -555,7 +555,7 @@ namespace thepos
                             strAlarm += " 티켓정산 등록.";
 
                             // 정산화면 리스트뷰 갱신
-                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);

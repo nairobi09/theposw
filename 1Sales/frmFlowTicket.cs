@@ -17,8 +17,6 @@ namespace theposw._1Sales
 {
     public partial class frmFlowTicket : Form
     {
-        String this_biz_date = "";
-
 
         public frmFlowTicket()
         {
@@ -35,8 +33,6 @@ namespace theposw._1Sales
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 30);
             lvwList.SmallImageList = imgList;
-
-            dtBusiness.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
 
         }
 
@@ -100,9 +96,6 @@ namespace theposw._1Sales
             {
                 no = tbTicketNo.Text.Substring(0, 20);
             }
-            
-
-            this_biz_date = dtBusiness.Value.ToString("yyyyMMdd");
 
             get_flow_ticket(no);
         }
@@ -134,7 +127,7 @@ namespace theposw._1Sales
             String save_expect_exit_dt = "20991231235959";
             String entry_dt = "";
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + rTheNo + "&flowStep=0123";   // flowStep=01 ->  0 or 1
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + rTheNo + "&flowStep=0123";   // flowStep=01 ->  0 or 1
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -253,7 +246,7 @@ namespace theposw._1Sales
             String save_exit_dt = "20250101000000";
             String entry_dt = "";
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + rTheNo + "&flowStep=4";   // flowStep=01 ->  0 or 1
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + rTheNo + "&flowStep=4";   // flowStep=01 ->  0 or 1
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -346,7 +339,7 @@ namespace theposw._1Sales
             String save_expect_exit_dt = "20991231235959";
             String entry_dt = "";
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + rTheNo;   // flowStep = all
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + rTheNo;   // flowStep = all
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -535,7 +528,7 @@ namespace theposw._1Sales
 
             String the_no = lvwList.SelectedItems[0].Text.Substring(0, 20);
 
-            frmFlowTicketList frm = new frmFlowTicketList(this_biz_date, the_no);
+            frmFlowTicketList frm = new frmFlowTicketList(the_no);
             frm.ShowDialog();
         }
 

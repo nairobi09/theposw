@@ -25,7 +25,6 @@ namespace thepos._9SysAdmin
         private BindingList<object> shopList = new BindingList<object>();
 
 
-        int max_goodscode = 100000;  // 6자리
 
         private int sortColumn = -1;
 
@@ -315,15 +314,6 @@ namespace thepos._9SysAdmin
                         lvwList.Items.Add(lvItem);
 
 
-                        int code_num = 0;
-                        if (get_number(arr[i]["goodsCode"].ToString(), ref code_num))
-                        {
-                            if (max_goodscode < code_num)
-                            {
-                                max_goodscode = code_num;
-                            }
-                        }
-
                     }
                 }
                 else
@@ -448,15 +438,6 @@ namespace thepos._9SysAdmin
 
                         lvItem.Tag = arr[0]["imagePath"].ToString();
 
-
-                        int code_num = 0;
-                        if (get_number(arr[0]["goodsCode"].ToString(), ref code_num))
-                        {
-                            if (max_goodscode < code_num)
-                            {
-                                max_goodscode = code_num;
-                            }
-                        }
 
                         return lvItem;
 
@@ -795,6 +776,11 @@ namespace thepos._9SysAdmin
                 parameters["amt"] = tbGoodsAmt.Text;
 
             //
+            if (cbShop.SelectedIndex == -1) cbShop.SelectedIndex = 0;
+            if (cbNod1.SelectedIndex == -1) cbNod1.SelectedIndex = 0;
+            if (cbNod2.SelectedIndex == -1) cbNod2.SelectedIndex = 0;
+
+
             if (sv_shopCode != cbShop.SelectedIndex + "")
                 parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
 
@@ -923,17 +909,42 @@ namespace thepos._9SysAdmin
             }
 
 
-
-
             if (cbShop.SelectedIndex == -1) return;
 
 
-            //
-            max_goodscode++;
+
+            String new_goodscode = "";
+
+            // goodsCode를 가장 큰값을 서버에 물어본다.
+            String sUrl = "requestGoodsCode?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String date = mObj["goodsCodes"].ToString();
+                    JArray arr = JArray.Parse(date);
+                    new_goodscode = arr[0]["goodsCode"].ToString();
+                }
+                else
+                {
+                    thepos_app_log(3, this.Name, "btnAdd_Click()", "상품신규등록 시스템 채번오류. url=" + sUrl + " result_msg = " + mObj["resultMsg"].ToString());
+                    MessageBox.Show("상품신규등록 시스템 채번오류.\r\n시스템 관리자 문의바랍니다.", "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                thepos_app_log(3, this.Name, "btnAdd_Click()", "상품신규등록 시스템 채번오류. url=" + sUrl);
+                MessageBox.Show("상품신규등록 시스템 채번오류.\r\n시스템 관리자 문의바랍니다.", "thepos");
+                return;
+            }
+
+
+
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["goodsCode"] = max_goodscode.ToString();
+            parameters["goodsCode"] = new_goodscode;
 
             parameters["goodsName"] = tbGoodsName.Text.Trim();
             parameters["goodsNameEN"] = tbGoodsNameEN.Text.Trim();
@@ -1043,7 +1054,7 @@ namespace thepos._9SysAdmin
 
 
             //
-            ListViewItem lvItem = reload_select(max_goodscode.ToString());
+            ListViewItem lvItem = reload_select(new_goodscode);
 
             if (lvItem != null)
             {

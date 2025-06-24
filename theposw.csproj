@@ -583,12 +583,6 @@
     <Compile Include="1Sales\frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmScanner.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="1Sales\frmScanner.Designer.cs">
-      <DependentUpon>frmScanner.cs</DependentUpon>
-    </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -817,9 +811,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmScanner.resx">
-      <DependentUpon>frmScanner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsItem.resx">
       <DependentUpon>frmSysGoodsItem.cs</DependentUpon>

@@ -18,7 +18,6 @@ namespace thepos
     public partial class frmFlowSettleChargeCancel : Form
     {
 
-        String thisBizDt;
         String ticket_no;
 
         bool is_apply = false;
@@ -29,7 +28,7 @@ namespace thepos
         int select_idx;
 
 
-        public frmFlowSettleChargeCancel(String biz_dt, String ticket_no)
+        public frmFlowSettleChargeCancel(String ticket_no)
         {
             InitializeComponent();
 
@@ -39,7 +38,6 @@ namespace thepos
             thepos_app_log(1, this.Name, "Open", "");
 
 
-            this.thisBizDt = biz_dt;
             this.ticket_no = ticket_no;
 
             viewList();
@@ -66,7 +64,7 @@ namespace thepos
 
 
             //
-            String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
+            String url = "paymentCash?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -85,7 +83,7 @@ namespace thepos
             }
 
             //
-            url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
+            url = "paymentCard?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -105,7 +103,7 @@ namespace thepos
 
 
             //
-            url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
+            url = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no + "&tranType=A&payClass=CH";
             if (mRequestGet(url))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -203,7 +201,7 @@ namespace thepos
         private void frmFlowSettleChargeCancel_FormClosed(object sender, FormClosedEventArgs e)
         {
             //
-            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisBizDt, frmFlowSettlement.mThisPosNo, frmFlowSettlement.mThisTicketNo);
+            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
 
 
             mPanelCancel.Visible = false;
@@ -233,7 +231,7 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 PaymentCard pCardAuth = new PaymentCard();
 
-                String sUrl = "paymentCard?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
+                String sUrl = "paymentCard?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -482,7 +480,7 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 PaymentCash pCashAuth = new PaymentCash();
 
-                String sUrl = "paymentCash?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
+                String sUrl = "paymentCash?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -731,7 +729,7 @@ namespace thepos
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 PaymentEasy pEasyAuth = new PaymentEasy();
 
-                String sUrl = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
+                String sUrl = "paymentEasy?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + selected_the_no + "&tranType=A&paySeq=" + pay_seq;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -1155,7 +1153,7 @@ namespace thepos
         {
             // 승인건 
             Payment paymentAuth = new Payment();
-            if (get_payment(thisBizDt, the_no, "A", out paymentAuth) != 1)
+            if (get_payment(mBizDate, the_no, "A", out paymentAuth) != 1)
             {
                 return false;
             }
@@ -1235,7 +1233,7 @@ namespace thepos
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Clear();
             parameters["siteId"] = mSiteId;
-            parameters["bizDt"] = thisBizDt;
+            parameters["bizDt"] = mBizDate;
             parameters["theNo"] = the_no;
             parameters["tranType"] = "A";
             parameters["isCancel"] = "y";

@@ -54,16 +54,6 @@ namespace thepos
             lvwTicketFlow.SmallImageList = imgList;
             lvwTicketSettle.SmallImageList = imgList;
 
-            dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
-
-
-            cbPosNo.Items.Clear();
-            for (int i = 0; i < myPosNoList.Count; i++)
-            {
-                cbPosNo.Items.Add(myPosNoList[i]);
-            }
-            cbPosNo.Items.Add("");
-            cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;
 
 
             saveKeyDisplay = mTbKeyDisplayController;
@@ -94,21 +84,15 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (cbPosNo.SelectedIndex < 0) return;
+            String no = tbTicketNo.Text;
 
-            mSelectedTicketNo = "";
-            mThisBizDt = dtBizDt.Value.ToString("yyyyMMdd");
-            mThisPosNo = cbPosNo.Text;
-
-            mThisTicketNo = "";
-            String t8No = tbTicketNo.Text;
-
-            if (t8No.Length == 8 & mThisPosNo.Length == 2)
+            if (no.Length != 22)
             {
-                mThisTicketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + mThisPosNo + t8No;
+                return;
             }
 
-            view_ticket_flow(mThisBizDt, mThisPosNo, mThisTicketNo);
+
+            view_ticket_flow(no);
 
             // 결제버튼
             mTableLayoutPanelPayControl.Enabled = false;
@@ -116,7 +100,25 @@ namespace thepos
         }
 
 
-        public static void view_ticket_flow(String biz_date, String pos_no, String t_no)
+        private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            String no = tbTicketNo.Text;
+
+            if (no.Length != 22)
+            {
+                return;
+            }
+
+
+            view_ticket_flow(no);
+
+            // 결제버튼
+            mTableLayoutPanelPayControl.Enabled = false;
+        }
+
+
+
+        public static void view_ticket_flow(String t_no)
         { 
 
             mLvwTicketFlow.Items.Clear();
@@ -125,7 +127,7 @@ namespace thepos
 
 
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
             if (mRequestGet(sUrl))
             {
@@ -170,12 +172,13 @@ namespace thepos
                         String ticket_no = ticketFlow.ticket_no;
                         String tStat = "";
 
-                        if (ticketFlow.flow_step == "0") tStat = "접수";
-                        else if (ticketFlow.flow_step == "1") tStat = "발권";
+                        if (ticketFlow.flow_step == "0") tStat = "발권";
+                        else if (ticketFlow.flow_step == "1") tStat = "입장";
                         else if (ticketFlow.flow_step == "2") tStat = "충전";
                         else if (ticketFlow.flow_step == "3") tStat = "사용중";
-                        else if (ticketFlow.flow_step == "4") tStat = "정산중";
-                        else if (ticketFlow.flow_step == "9") tStat = "정산완료";
+                        else if (ticketFlow.flow_step == "4") tStat = "퇴장";
+                        else if (ticketFlow.flow_step == "8") tStat = "취소";
+                        else if (ticketFlow.flow_step == "9") tStat = "완료";
 
 
                         item.Tag = ticketFlow;
@@ -655,7 +658,7 @@ namespace thepos
             mPanelCancel.Controls.Clear();
             mPanelCancel.Visible = true;
 
-            Form fForm = new frmFlowSettleChargeCancel(mThisTicketFlow.biz_dt, mThisTicketFlow.ticket_no) { TopLevel = false, TopMost = true };
+            Form fForm = new frmFlowSettleChargeCancel(mThisTicketFlow.ticket_no) { TopLevel = false, TopMost = true };
 
             mPanelCancel.Controls.Add(fForm);
             fForm.Show();
@@ -668,55 +671,6 @@ namespace thepos
             //? 화면갱신
             //view_on_ticketpay();
 
-
-        }
-
-        private void btnScanner_Click(object sender, EventArgs e)
-        {
-            btnScanner.Enabled = false;
-
-            Form fFlow;
-            fFlow = new frmScanner(22);  // ticket_no
-            fFlow.ShowDialog();
-
-
-            if (mIsScanOK)
-            {
-                try
-                {
-                    String dt = mScanString.Substring(4, 8);
-                    String posno = mScanString.Substring(12, 2);
-                    String t7no = mScanString.Substring(14, 8);
-
-                    int yyyy = int.Parse(dt.Substring(0, 4));
-                    int mm = int.Parse(dt.Substring(4, 2));
-                    int dd = int.Parse(dt.Substring(6, 2));
-
-                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
-                    mThisBizDt = dtBizDt.Value.ToString("yyyyMMdd");
-
-                    for (int i = 0; i < cbPosNo.Items.Count; i++)
-                    {
-                        if (cbPosNo.Items[i].ToString() == posno)
-                        {
-                            cbPosNo.SelectedIndex = i;
-                        }
-                    }
-
-                    mThisPosNo = cbPosNo.Text;
-
-                    tbTicketNo.Text = t7no;
-
-                    view_ticket_flow(dt, posno, mScanString);
-                }
-                catch
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    //return;
-                }
-            }
-
-            btnScanner.Enabled = true;
 
         }
 
@@ -1016,6 +970,7 @@ namespace thepos
 
 
         }
+
 
     }
 }

@@ -23,7 +23,7 @@ namespace theposw._1Sales
         String the_no;
 
 
-        public frmFlowTicketList(String this_biz_date, String the_no)
+        public frmFlowTicketList(String the_no)
         {
             this.this_biz_date = this_biz_date;
             this.the_no = the_no;
@@ -89,7 +89,7 @@ namespace theposw._1Sales
 
             lvwList.Items.Clear();
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + this_biz_date + "&theNo=" + the_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")

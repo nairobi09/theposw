@@ -1992,19 +1992,26 @@ namespace thepos
                 parameters["netAmount"] = amount + "";
 
 
+                String is_cash = "0", is_card = "0", is_easy = "0", is_point = "0", is_cert = "0";
                 int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0, amount_cert = 0;
-
-                if (payType == "Cash") amount_cash = amount;
-                else if (payType == "Card") amount_card = amount;
-                else if (payType == "Easy") amount_easy = amount;
-                else if (payType == "Point") amount_point = amount;
-                else if (payType == "Cert") amount_cert = amount;
+                
+                if (payType == "Cash") { is_cash = "1"; amount_cash = amount; }
+                else if (payType == "Card") { is_card = "1"; amount_card = amount; }
+                else if (payType == "Easy") { is_easy = "1"; amount_easy = amount; }
+                else if (payType == "Point") { is_point = "1"; amount_point = amount; }
+                else if (payType == "Cert") { is_cert = "1"; amount_cert = amount; }
 
                 parameters["amountCash"] = amount_cash + "";
                 parameters["amountCard"] = amount_card + "";
                 parameters["amountEasy"] = amount_easy + "";
                 parameters["amountPoint"] = amount_point + "";
                 parameters["amountCert"] = amount_cert + "";
+
+                parameters["isCash"] = is_cash;
+                parameters["isCard"] = is_card;
+                parameters["isEasy"] = is_easy;
+                parameters["isPoint"] = is_point;
+                parameters["isCert"] = is_cert;
 
                 parameters["dcAmount"] = dcAmount + "";
                 parameters["isCancel"] = "";
@@ -3137,7 +3144,7 @@ namespace thepos
 
             if (int.TryParse(tbKeyDisplay.Text, out int amt))
             {
-                if (amt > 0 & amt < 100000000)
+                if (amt >= 0 & amt < 100000000)
                 {
                     int lv_idx = lvwOrderItem.SelectedItems[0].Index;
                     set_item_change_orderamt(lv_idx, "set", amt);
@@ -4244,7 +4251,11 @@ namespace thepos
                 strPrintPayment += "\r\n";
             }
 
-            strPrintPayment += "------------------------------------------\r\n";  // 42
+            if (t면세가액 > 0 | t과세가액 > 0)
+            {
+                strPrintPayment += "------------------------------------------\r\n";  // 42
+            }
+
 
             int tsum = t과세가액 + t면세가액 + t할인금액;
             int tnet = tsum - t할인금액;

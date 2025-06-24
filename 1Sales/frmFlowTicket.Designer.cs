@@ -46,9 +46,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cbTicketAll = new System.Windows.Forms.CheckBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
-            this.lblBusinessTitle = new System.Windows.Forms.Label();
-            this.dtBusiness = new System.Windows.Forms.DateTimePicker();
-            this.btnView = new System.Windows.Forms.Button();
             this.exit_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnTicketDetail = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -56,6 +53,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lvwList = new System.Windows.Forms.ListView();
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -213,7 +211,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
-            this.pictureBox1.Location = new System.Drawing.Point(202, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(167, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -224,7 +222,7 @@
             // 
             this.cbTicketAll.AutoSize = true;
             this.cbTicketAll.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbTicketAll.Location = new System.Drawing.Point(146, 16);
+            this.cbTicketAll.Location = new System.Drawing.Point(78, 16);
             this.cbTicketAll.Name = "cbTicketAll";
             this.cbTicketAll.Size = new System.Drawing.Size(54, 18);
             this.cbTicketAll.TabIndex = 73;
@@ -236,51 +234,13 @@
             // 
             this.tbTicketNo.BackColor = System.Drawing.Color.LemonChiffon;
             this.tbTicketNo.Font = new System.Drawing.Font("굴림체", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbTicketNo.Location = new System.Drawing.Point(229, 12);
+            this.tbTicketNo.Location = new System.Drawing.Point(194, 12);
             this.tbTicketNo.Name = "tbTicketNo";
             this.tbTicketNo.Size = new System.Drawing.Size(165, 23);
             this.tbTicketNo.TabIndex = 0;
             this.tbTicketNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbTicketNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbTicketNo_KeyDown);
             this.tbTicketNo.Leave += new System.EventHandler(this.tbTicketNo_Leave);
-            // 
-            // lblBusinessTitle
-            // 
-            this.lblBusinessTitle.AutoSize = true;
-            this.lblBusinessTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblBusinessTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lblBusinessTitle.Location = new System.Drawing.Point(4, 17);
-            this.lblBusinessTitle.Name = "lblBusinessTitle";
-            this.lblBusinessTitle.Size = new System.Drawing.Size(35, 14);
-            this.lblBusinessTitle.TabIndex = 71;
-            this.lblBusinessTitle.Text = "일자";
-            this.lblBusinessTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dtBusiness
-            // 
-            this.dtBusiness.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtBusiness.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBusiness.Location = new System.Drawing.Point(41, 12);
-            this.dtBusiness.Name = "dtBusiness";
-            this.dtBusiness.Size = new System.Drawing.Size(95, 23);
-            this.dtBusiness.TabIndex = 68;
-            this.dtBusiness.TabStop = false;
-            this.dtBusiness.Value = new System.DateTime(2023, 5, 19, 1, 4, 57, 0);
-            // 
-            // btnView
-            // 
-            this.btnView.BackColor = System.Drawing.Color.White;
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(402, 9);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 30);
-            this.btnView.TabIndex = 72;
-            this.btnView.TabStop = false;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // exit_dt
             // 
@@ -308,8 +268,6 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.cbTicketAll);
             this.panel1.Controls.Add(this.tbTicketNo);
-            this.panel1.Controls.Add(this.lblBusinessTitle);
-            this.panel1.Controls.Add(this.dtBusiness);
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(5, 50);
             this.panel1.Name = "panel1";
@@ -384,6 +342,21 @@
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 5;
             // 
+            // btnView
+            // 
+            this.btnView.BackColor = System.Drawing.Color.White;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnView.Location = new System.Drawing.Point(367, 9);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(120, 30);
+            this.btnView.TabIndex = 72;
+            this.btnView.TabStop = false;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
             // frmFlowTicket
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -423,9 +396,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox cbTicketAll;
         private System.Windows.Forms.TextBox tbTicketNo;
-        private System.Windows.Forms.Label lblBusinessTitle;
-        private System.Windows.Forms.DateTimePicker dtBusiness;
-        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ColumnHeader exit_dt;
         private System.Windows.Forms.Button btnTicketDetail;
         private System.Windows.Forms.Panel panel1;
@@ -433,5 +403,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.Panel panelback;
+        private System.Windows.Forms.Button btnView;
     }
 }

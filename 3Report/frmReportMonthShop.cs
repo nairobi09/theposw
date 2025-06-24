@@ -327,7 +327,25 @@ namespace thepos
             {
                 for (int col = 0; col < listView.Columns.Count; col++)
                 {
-                    worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+                    //worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+
+                    string text = listView.Items[row].SubItems[col].Text;
+
+                    // 콤마 제거 후 숫자인 경우 숫자로 저장
+                    if (double.TryParse(text.Replace(",", ""), out double number))
+                    {
+                        worksheet.Cell(row + 2, col + 1).Value = number;
+                    }
+                    else
+                    {
+                        worksheet.Cell(row + 2, col + 1).Value = text; // 숫자가 아닌 경우 문자열로 저장
+                    }
+                }
+
+                for (int col = 0; col < listView.Columns.Count; col++)
+                {
+                    System.Drawing.Color foreColor = listView.Items[row].SubItems[col].ForeColor;
+                    worksheet.Cell(row + 2, col + 1).Style.Font.FontColor = XLColor.FromColor(foreColor);
                 }
             }
 

@@ -47,18 +47,6 @@ namespace thepos
             mPayClass = "CH"; // 충전 charge
 
 
-            //dtBusiness.Value = DateTime.Now;
-            dtBizDt.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
-
-
-            cbPosNo.Items.Clear();
-            for (int i = 0; i < myPosNoList.Count; i++)
-            {
-                cbPosNo.Items.Add(myPosNoList[i]);
-            }
-            cbPosNo.Items.Add("");
-            cbPosNo.SelectedIndex = cbPosNo.Items.Count - 1;
-
             mLvwFlow = lvwFlow;
 
         }
@@ -85,42 +73,22 @@ namespace thepos
         private void btnView_Click(object sender, EventArgs e)
         {
 
-            if (cbPosNo.SelectedIndex < 0) return;
+            String no = tbTicketNo.Text;
 
 
-            String biz_date = dtBizDt.Value.ToString("yyyyMMdd");
-            String pos_no = cbPosNo.Text;
-
-            String ticketNo = "";
-            String t8No = tbTicketNo.Text;
-
-
-            if (t8No.Length == 0)
+            if (no.Length != 22)
             {
-                // 통과
-            }
-            else if (t8No.Length == 8 & pos_no.Length == 2)
-            {
-                ticketNo = mSiteId + dtBizDt.Value.ToString("yyyyMMdd") + pos_no + t8No;
-            }
-            else if (t8No.Length == 8 & pos_no.Length != 2)
-            {
-                SetDisplayAlarm("I", "티켓번호로 조회시 포스번호 필수입니다.");
-                return;
-            }
-            else
-            {
-                SetDisplayAlarm("I", "조회입력값 오류입니다.");
+
                 return;
             }
 
 
 
-            view_flow(biz_date, pos_no, ticketNo);
+            view_flow(no);
         }
 
 
-        public void view_flow(String biz_date, String pos_no, String t_no)
+        public void view_flow(String t_no)
         {
 
             mOrderItemList.Clear();
@@ -130,7 +98,7 @@ namespace thepos
 
             lvwFlow.Items.Clear();
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + biz_date + "&posNo=" + pos_no + "&ticketNo=" + t_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
             if (mRequestGet(sUrl))
             {
@@ -200,7 +168,7 @@ namespace thepos
 
         public static void review_flow(String t_no, int select_index)
         {
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&ticketNo=" + t_no;
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
             if (mRequestGet(sUrl))
             {
@@ -261,54 +229,6 @@ namespace thepos
             {
                 MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
             }
-        }
-
-
-        private void btnScanner_Click(object sender, EventArgs e)
-        {
-            btnScanner.Enabled = false;
-
-            Form fFlow;
-            fFlow = new frmScanner(22);  // ticket_no
-            fFlow.ShowDialog();
-
-
-            if (mIsScanOK)
-            {
-                try
-                {
-                    String dt = mScanString.Substring(4, 8);
-                    String posno = mScanString.Substring(12, 2);
-                    String t8no = mScanString.Substring(14, 8);
-
-                    int yyyy = int.Parse(dt.Substring(0, 4));
-                    int mm = int.Parse(dt.Substring(4, 2));
-                    int dd = int.Parse(dt.Substring(6, 2));
-
-                    dtBizDt.Value = new DateTime(yyyy, mm, dd);
-
-                    for (int i = 0; i < cbPosNo.Items.Count; i++)
-                    {
-                        if (cbPosNo.Items[i].ToString() == posno)
-                        {
-                            cbPosNo.SelectedIndex = i;
-                        }
-                    }
-
-                    tbTicketNo.Text = t8no;
-
-
-                    view_flow(dt, posno, mScanString);
-
-                }
-                catch
-                {
-                    SetDisplayAlarm("W", "스캔데이터 포멧 오류.");
-                    //return;
-                }
-            }
-
-            btnScanner.Enabled = true;
         }
 
 
@@ -444,6 +364,38 @@ namespace thepos
             tbChargeAmt.Text = mChargeAmt.ToString("N0");
         }
 
+        private void tbTicketNo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
 
+                lvwFlow.Items.Clear();
+
+                if (tbTicketNo.Text.Length != 22)
+                {
+                    SetDisplayAlarm("W", "티켓번호 오류.");
+                    thepos_app_log(3, this.Name, "scanner", "skip. no=" + tbTicketNo.Text);
+                    tbTicketNo.Text = "";
+                    return;
+                }
+
+                String no = tbTicketNo.Text;
+
+                //
+
+
+
+
+                tbTicketNo.Clear();
+                tbTicketNo.Focus();
+            }
+        }
+
+        private void tbTicketNo_Leave(object sender, EventArgs e)
+        {
+
+        }
     }
 }

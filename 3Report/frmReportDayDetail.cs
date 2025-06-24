@@ -72,27 +72,19 @@ namespace thepos
                         lvItem.SubItems.Add(get_pay_class_name(arr[i]["payClass"].ToString()));
 
 
-                        String is_cash = "0";
-                        String is_card = "0";
-                        String is_point = "0";
-                        String is_easy = "0";
-                        String is_cert = "0";
+                        String is_cash = arr[i]["isCash"].ToString();
+                        String is_card = arr[i]["isCard"].ToString();
+                        String is_point = arr[i]["isPoint"].ToString();
+                        String is_easy = arr[i]["isEasy"].ToString();
+                        String is_cert = arr[i]["isCert"].ToString();
+
                         String pay_keep = "";
-                        if (convert_number(arr[i]["amountCash"].ToString()) > 0) is_cash = "1";
-                        if (convert_number(arr[i]["amountCard"].ToString()) > 0) is_card = "1";
-                        if (convert_number(arr[i]["amountPoint"].ToString()) > 0) is_point = "1";
-                        if (convert_number(arr[i]["amountEasy"].ToString()) > 0) is_easy = "1";
-                        if (convert_number(arr[i]["amountCert"].ToString()) > 0) is_cert = "1";
+
                         pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
 
                         lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
 
-                        //
-                        if (pay_keep == "00000")
-                        {
-                            pay_keep = "10001";
-                        }
-
+                        
                         lvItem.SubItems.Add((convert_number(arr[i]["dcAmount"].ToString())).ToString("N0"));
                         lvItem.SubItems.Add((convert_number(arr[i]["netAmount"].ToString())).ToString("N0"));
 
