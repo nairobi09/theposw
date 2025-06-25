@@ -74,8 +74,6 @@ namespace thepos
                             {
                                 String is_cancel = arr[i]["isCancel"].ToString();
 
-
-
                                 if (arr[i]["tranType"].ToString() == "A")
                                 {
                                     ListViewItem lvItem = new ListViewItem();

@@ -1737,6 +1737,7 @@ namespace thepos
 
 
             int order_shop_cnt = 0;
+            int allim_cnt = 0;
             String shop_order_no = "";
             String is_allim = "";
 
@@ -1744,6 +1745,7 @@ namespace thepos
             {
                 order_shop_cnt = 0;
                 shop_order_no = "";
+                allim_cnt = 0;
 
                 for (int k = 0; k < mOrderItemList.Count; k++)
                 {
@@ -1755,6 +1757,7 @@ namespace thepos
                         if (mOrderItemList[k].allim == "Y")
                         {
                             is_allim = "Y";
+                            allim_cnt++;
                         }
                         
                     }
@@ -1768,8 +1771,8 @@ namespace thepos
                 parameters["refNo"] = mRefNo;
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
-                parameters["cnt"] = order_shop_cnt + "";
-                parameters["isCancel"] = " ";
+                parameters["order_cnt"] = order_shop_cnt + "";
+                parameters["cnt"] = allim_cnt + "";
                 parameters["shopCode"] = shop_code_list[i] + "";
                 parameters["shopOrderNo"] = shop_order_no;
 
