@@ -5640,9 +5640,10 @@ namespace thepos
                     //client.EndConnect(result);
                     client.Close();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
+                    thepos_app_log(3, "print_order_str()", "주문서 출력 오류. ", "Exception.msg=" + ex.Message);
+                    MessageBox.Show("주문서 출력 오류. \r\n 시스템관리자에게 알려주시기 바랍니다.");
                 }
             }
             else
@@ -5665,6 +5666,7 @@ namespace thepos
                 }
                 catch (Exception ex)
                 {
+                    thepos_app_log(3, "print_order_str()", "프린터 출력 오류. ", "Exception.msg=" + ex.Message);
                     MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
                     return;
                 }
@@ -5840,9 +5842,10 @@ namespace thepos
                     stream.Close();
                     client.Close();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("주문서 출력 오류. \r\n 헬프데스크로 문의바랍니다.");
+                    thepos_app_log(3, "print_order_str()", "취소주문서 출력 오류. ", "Exception.msg=" + ex.Message);
+                    MessageBox.Show("주문서 출력 오류. \r\n 시스템관리자에게 알려주시기 바랍니다.");
                 }
             }
             else
@@ -5865,6 +5868,7 @@ namespace thepos
                 }
                 catch (Exception ex)
                 {
+                    thepos_app_log(3, "print_order_str()", "프린터 출력 오류. ", "Exception.msg=" + ex.Message);
                     MessageBox.Show("프린터 출력 오류.\r\n" + ex.Message);
                     return;
                 }

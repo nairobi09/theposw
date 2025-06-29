@@ -122,8 +122,8 @@ namespace thepos
                 }
                 else
                 {
-                    thepos_app_log(3, this.Name, "requestTmCertView()", "오류 " + mObj["msg"].ToString() + " no=" + t_coupon_no);
-                    MessageBox.Show("오류\n\n" + mObj["msg"].ToString(), "thepos");
+                    thepos_app_log(3, this.Name, "requestTmCertView()", "오류 1. " + mObj["msg"].ToString() + " 2. 최근(10분이내) 구매한 쿠폰이라면 잠시후 다시 시도해 보시기 바랍니다." + " no=" + t_coupon_no);
+                    MessageBox.Show("오류\r\n\r\n1. " + mObj["msg"].ToString() + "\r\n\r\n2. 최근(10분이내) 구매한 쿠폰이라면 잠시후 다시 시도해 보시기 바랍니다.", "thepos");
                     tbCouponNo.Text = "";
                     return;
                 }

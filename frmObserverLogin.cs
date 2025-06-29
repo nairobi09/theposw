@@ -40,7 +40,7 @@ namespace thepos
             }
 
 
-            if (tbPinNo.Text != "20250630")
+            if (tbPinNo.Text != "20251231")
             {
                 MessageBox.Show("PIN NO 오류", "thepos");
                 return;
@@ -49,7 +49,8 @@ namespace thepos
 
 
 
-            mBaseUri = uri_test;
+            //mBaseUri = uri_test;
+            mBaseUri = uri_real;
 
 
             // 로그인

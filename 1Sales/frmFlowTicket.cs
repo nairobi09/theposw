@@ -384,7 +384,14 @@ namespace theposw._1Sales
                                 }
                                 else
                                 {
-                                    item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                    if (save_exit_dt == "20991231235959")
+                                    {
+                                        item.SubItems.Add("");
+                                    }
+                                    else
+                                    {
+                                        item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                    }
                                 }
                                 item.SubItems.Add("취소");
                                 item.ForeColor = Color.Gray;  // 취소 그레이
@@ -468,15 +475,36 @@ namespace theposw._1Sales
                         if (save_flow_step == "9")
                         {
                             // 퇴장시간
-                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            if (save_exit_dt == "")
+                            {
+                                item.SubItems.Add("");
+                            }
+                            else
+                            {
+                                item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            }
                             item.ForeColor = Color.Gray;  // 완료 그레이
                         }
                         else if (save_flow_step == "8")
                         {
                             // 퇴장시간
-                            item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                            if (save_exit_dt == "")
+                            {
+                                item.SubItems.Add("");
+                            }
+                            else
+                            {
+                                if (save_exit_dt == "20991231235959")
+                                {
+                                    item.SubItems.Add("");
+                                }
+                                else
+                                {
+                                    item.SubItems.Add(save_exit_dt.Substring(8, 2) + ":" + save_exit_dt.Substring(10, 2));
+                                }
+                            }
                             item.SubItems.Add("취소");
-                            item.ForeColor = Color.Gray;  // 완료 그레이
+                            item.ForeColor = Color.Gray;  // 취소 그레이
                         }
                         else if (save_flow_step == "4")
                         {

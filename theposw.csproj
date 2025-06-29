@@ -27,10 +27,10 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://thepos.co.kr/setup/theposw1/</InstallUrl>
-    <MinimumRequiredVersion>1.0.0.68</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.69</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>69</ApplicationRevision>
+    <ApplicationRevision>70</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -228,6 +228,12 @@
     </Compile>
     <Compile Include="1Sales\frmOrderBarcode.Designer.cs">
       <DependentUpon>frmOrderBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="2Business\frmBizCashCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Business\frmBizCashCheck.Designer.cs">
+      <DependentUpon>frmBizCashCheck.cs</DependentUpon>
     </Compile>
     <Compile Include="3Report\frmReportAllim.cs">
       <SubType>Form</SubType>
@@ -643,6 +649,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderBarcode.resx">
       <DependentUpon>frmOrderBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2Business\frmBizCashCheck.resx">
+      <DependentUpon>frmBizCashCheck.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>

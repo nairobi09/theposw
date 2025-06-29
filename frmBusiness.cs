@@ -60,6 +60,18 @@ namespace thepos
 
             if (sKey == "BS")
             {
+                if (mTbKeyController.SelectionLength > 0)
+                {
+                    // 선택된 텍스트 삭제
+                    int selStart = mTbKeyController.SelectionStart;
+                    string newText = mTbKeyController.Text.Remove(selStart, mTbKeyController.SelectionLength);
+                    mTbKeyController.Text = newText;
+
+                    // 커서 위치 재설정
+                    mTbKeyController.SelectionStart = selStart;
+                }
+
+
                 if (mTbKeyController.Text.Length > 0)
                 {
                     mTbKeyController.Text = mTbKeyController.Text.Substring(0, mTbKeyController.Text.Length - 1);
@@ -71,6 +83,17 @@ namespace thepos
             }
             else
             {
+                if (mTbKeyController.SelectionLength > 0)
+                {
+                    // 선택된 텍스트 삭제
+                    int selStart = mTbKeyController.SelectionStart;
+                    string newText = mTbKeyController.Text.Remove(selStart, mTbKeyController.SelectionLength);
+                    mTbKeyController.Text = newText;
+
+                    // 커서 위치 재설정
+                    mTbKeyController.SelectionStart = selStart;
+                }
+
                 mTbKeyController.Text += sKey;
             }
         }
@@ -80,7 +103,7 @@ namespace thepos
 
         // 메뉴버튼
 
-        // 1.개시
+        // 준비금
         private void btnBizOpen_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizOpen") return;
@@ -93,7 +116,21 @@ namespace thepos
             fBiz.Show();
         }
 
-        // 마감
+        // 시제점검
+        private void btnCashCheck_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "BizCashCheck") return;
+
+            mThisButtonClick = "BizCashCheck";
+            panelBiz.Controls.Clear();
+
+            frmBizCashCheck fBiz = new frmBizCashCheck() { TopLevel = false, TopMost = true };
+            panelBiz.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+
+        // 마감정산
         private void btnBizClose_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizClose") return;
@@ -115,6 +152,7 @@ namespace thepos
 
             mPanelDivision.Visible = false;
         }
+
 
     }
 }

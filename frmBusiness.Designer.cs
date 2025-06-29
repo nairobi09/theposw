@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusiness));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCashCheck = new System.Windows.Forms.Button();
             this.btnBizClose = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
@@ -59,13 +60,29 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnCashCheck);
             this.panel1.Controls.Add(this.btnBizClose);
             this.panel1.Controls.Add(this.btnBizOpen);
             this.panel1.Controls.Add(this.panelNumpad);
-            this.panel1.Location = new System.Drawing.Point(767, 58);
+            this.panel1.Location = new System.Drawing.Point(817, 58);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 700);
+            this.panel1.Size = new System.Drawing.Size(200, 700);
             this.panel1.TabIndex = 9;
+            // 
+            // btnCashCheck
+            // 
+            this.btnCashCheck.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnCashCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCashCheck.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCashCheck.ForeColor = System.Drawing.Color.White;
+            this.btnCashCheck.Location = new System.Drawing.Point(5, 70);
+            this.btnCashCheck.Name = "btnCashCheck";
+            this.btnCashCheck.Size = new System.Drawing.Size(184, 60);
+            this.btnCashCheck.TabIndex = 28;
+            this.btnCashCheck.TabStop = false;
+            this.btnCashCheck.Text = "시제점검";
+            this.btnCashCheck.UseVisualStyleBackColor = false;
+            this.btnCashCheck.Click += new System.EventHandler(this.btnCashCheck_Click);
             // 
             // btnBizClose
             // 
@@ -73,12 +90,12 @@
             this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
-            this.btnBizClose.Location = new System.Drawing.Point(32, 121);
+            this.btnBizClose.Location = new System.Drawing.Point(5, 141);
             this.btnBizClose.Name = "btnBizClose";
-            this.btnBizClose.Size = new System.Drawing.Size(188, 80);
+            this.btnBizClose.Size = new System.Drawing.Size(184, 60);
             this.btnBizClose.TabIndex = 27;
             this.btnBizClose.TabStop = false;
-            this.btnBizClose.Text = "영업마감";
+            this.btnBizClose.Text = "마감정산";
             this.btnBizClose.UseVisualStyleBackColor = false;
             this.btnBizClose.Click += new System.EventHandler(this.btnBizClose_Click);
             // 
@@ -88,12 +105,12 @@
             this.btnBizOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizOpen.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpen.Location = new System.Drawing.Point(32, 35);
+            this.btnBizOpen.Location = new System.Drawing.Point(5, 0);
             this.btnBizOpen.Name = "btnBizOpen";
-            this.btnBizOpen.Size = new System.Drawing.Size(188, 80);
+            this.btnBizOpen.Size = new System.Drawing.Size(184, 60);
             this.btnBizOpen.TabIndex = 27;
             this.btnBizOpen.TabStop = false;
-            this.btnBizOpen.Text = "영업개시";
+            this.btnBizOpen.Text = "준비금";
             this.btnBizOpen.UseVisualStyleBackColor = false;
             this.btnBizOpen.Click += new System.EventHandler(this.btnBizOpen_Click);
             // 
@@ -111,11 +128,11 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(30, 461);
+            this.panelNumpad.Location = new System.Drawing.Point(4, 437);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(190, 218);
+            this.panelNumpad.Size = new System.Drawing.Size(189, 218);
             this.panelNumpad.TabIndex = 25;
             // 
             // btnKey1
@@ -191,9 +208,9 @@
             // 
             // btnKeyBS
             // 
-            this.btnKeyBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
+            this.btnKeyBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnKeyBS.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnKeyBS.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKeyBS.ForeColor = System.Drawing.Color.White;
             this.btnKeyBS.Location = new System.Drawing.Point(64, 159);
             this.btnKeyBS.Name = "btnKeyBS";
@@ -275,7 +292,7 @@
             // 
             // btnKeyClear
             // 
-            this.btnKeyClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
+            this.btnKeyClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnKeyClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyClear.ForeColor = System.Drawing.Color.White;
@@ -291,7 +308,7 @@
             // 
             this.panelBiz.Location = new System.Drawing.Point(7, 58);
             this.panelBiz.Name = "panelBiz";
-            this.panelBiz.Size = new System.Drawing.Size(750, 700);
+            this.panelBiz.Size = new System.Drawing.Size(800, 700);
             this.panelBiz.TabIndex = 10;
             // 
             // panelTitleWhite
@@ -388,5 +405,6 @@
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnCashCheck;
     }
 }
