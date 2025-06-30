@@ -47,9 +47,12 @@
             this.lblBizOpenUserTitle = new System.Windows.Forms.Label();
             this.lblBizDate = new System.Windows.Forms.Label();
             this.lblAmountCashTitle = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnPrintCard = new System.Windows.Forms.Button();
             this.btnPrintPay = new System.Windows.Forms.Button();
-            this.btnPrintGoods = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -77,10 +80,10 @@
             this.lvwGoods.GridLines = true;
             this.lvwGoods.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoods.HideSelection = false;
-            this.lvwGoods.Location = new System.Drawing.Point(488, 77);
+            this.lvwGoods.Location = new System.Drawing.Point(488, 111);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(291, 522);
+            this.lvwGoods.Size = new System.Drawing.Size(291, 509);
             this.lvwGoods.TabIndex = 165;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
             this.lvwGoods.View = System.Windows.Forms.View.Details;
@@ -113,10 +116,10 @@
             this.lvwCard.GridLines = true;
             this.lvwCard.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwCard.HideSelection = false;
-            this.lvwCard.Location = new System.Drawing.Point(20, 192);
+            this.lvwCard.Location = new System.Drawing.Point(20, 226);
             this.lvwCard.MultiSelect = false;
             this.lvwCard.Name = "lvwCard";
-            this.lvwCard.Size = new System.Drawing.Size(213, 407);
+            this.lvwCard.Size = new System.Drawing.Size(213, 394);
             this.lvwCard.TabIndex = 166;
             this.lvwCard.UseCompatibleStateImageBehavior = false;
             this.lvwCard.View = System.Windows.Forms.View.Details;
@@ -148,10 +151,10 @@
             this.lvwPay.GridLines = true;
             this.lvwPay.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwPay.HideSelection = false;
-            this.lvwPay.Location = new System.Drawing.Point(248, 77);
+            this.lvwPay.Location = new System.Drawing.Point(249, 111);
             this.lvwPay.MultiSelect = false;
             this.lvwPay.Name = "lvwPay";
-            this.lvwPay.Size = new System.Drawing.Size(223, 522);
+            this.lvwPay.Size = new System.Drawing.Size(223, 509);
             this.lvwPay.TabIndex = 167;
             this.lvwPay.UseCompatibleStateImageBehavior = false;
             this.lvwPay.View = System.Windows.Forms.View.Details;
@@ -174,7 +177,8 @@
             // 
             // lblLoginName
             // 
-            this.lblLoginName.BackColor = System.Drawing.Color.LightGray;
+            this.lblLoginName.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoginName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblLoginName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblLoginName.ForeColor = System.Drawing.Color.Black;
             this.lblLoginName.Location = new System.Drawing.Point(120, 145);
@@ -188,7 +192,8 @@
             // 
             // lblPosNo
             // 
-            this.lblPosNo.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosNo.BackColor = System.Drawing.Color.Transparent;
+            this.lblPosNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.Black;
             this.lblPosNo.Location = new System.Drawing.Point(120, 111);
@@ -228,7 +233,8 @@
             // 
             // lblBizDate
             // 
-            this.lblBizDate.BackColor = System.Drawing.Color.LightGray;
+            this.lblBizDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblBizDate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizDate.ForeColor = System.Drawing.Color.Black;
             this.lblBizDate.Location = new System.Drawing.Point(120, 77);
@@ -254,12 +260,25 @@
             this.lblAmountCashTitle.Text = "영업일자";
             this.lblAmountCashTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrint.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.btnPrint.Location = new System.Drawing.Point(640, 639);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(120, 40);
+            this.btnPrint.TabIndex = 176;
+            this.btnPrint.Text = "정산";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrintGoods_Click);
+            // 
             // btnPrintCard
             // 
             this.btnPrintCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintCard.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintCard.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrintCard.Location = new System.Drawing.Point(72, 623);
+            this.btnPrintCard.Location = new System.Drawing.Point(72, 639);
             this.btnPrintCard.Name = "btnPrintCard";
             this.btnPrintCard.Size = new System.Drawing.Size(120, 40);
             this.btnPrintCard.TabIndex = 174;
@@ -272,31 +291,65 @@
             this.btnPrintPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintPay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPrintPay.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrintPay.Location = new System.Drawing.Point(310, 623);
+            this.btnPrintPay.Location = new System.Drawing.Point(310, 639);
             this.btnPrintPay.Name = "btnPrintPay";
             this.btnPrintPay.Size = new System.Drawing.Size(120, 40);
             this.btnPrintPay.TabIndex = 175;
             this.btnPrintPay.Text = "출력";
             this.btnPrintPay.UseVisualStyleBackColor = false;
+            this.btnPrintPay.Click += new System.EventHandler(this.btnPrintPay_Click);
             // 
-            // btnPrintGoods
+            // label2
             // 
-            this.btnPrintGoods.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintGoods.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPrintGoods.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrintGoods.Location = new System.Drawing.Point(580, 623);
-            this.btnPrintGoods.Name = "btnPrintGoods";
-            this.btnPrintGoods.Size = new System.Drawing.Size(120, 40);
-            this.btnPrintGoods.TabIndex = 176;
-            this.btnPrintGoods.Text = "출력";
-            this.btnPrintGoods.UseVisualStyleBackColor = false;
+            this.label2.BackColor = System.Drawing.Color.LightGray;
+            this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(249, 77);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(5);
+            this.label2.Size = new System.Drawing.Size(223, 26);
+            this.label2.TabIndex = 177;
+            this.label2.Text = "정산표";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.LightGray;
+            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(488, 77);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(5);
+            this.label3.Size = new System.Drawing.Size(291, 26);
+            this.label3.TabIndex = 178;
+            this.label3.Text = "품목별 매출";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.LightGray;
+            this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(20, 191);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(5);
+            this.label4.Size = new System.Drawing.Size(213, 26);
+            this.label4.TabIndex = 179;
+            this.label4.Text = "카드사별 매출";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmBizClose
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(800, 700);
-            this.Controls.Add(this.btnPrintGoods);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnPrintPay);
             this.Controls.Add(this.btnPrintCard);
             this.Controls.Add(this.lblLoginName);
@@ -336,8 +389,11 @@
         private System.Windows.Forms.Label lblBizOpenUserTitle;
         private System.Windows.Forms.Label lblBizDate;
         private System.Windows.Forms.Label lblAmountCashTitle;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintCard;
         private System.Windows.Forms.Button btnPrintPay;
-        private System.Windows.Forms.Button btnPrintGoods;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

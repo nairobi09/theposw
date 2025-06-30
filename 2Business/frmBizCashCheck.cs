@@ -19,7 +19,9 @@ namespace thepos
         bool isNew = true;
 
 
-        int cash_amount = 0;  // 매출금액
+        int cash_amount = 0;  // 현금매출금액
+        int cash_amount_cncl = 0;  // 현금매출취소금액
+
         int cash_starting = 0;  // 준비금
 
 
@@ -61,7 +63,7 @@ namespace thepos
 
 
             load_cash_amount();  // 현금매출액 구하기
-            lblCashAmount.Text = cash_amount.ToString("N0");
+            lblCashAmount.Text = (cash_amount - cash_amount_cncl).ToString("N0");
 
 
             load_cash_info();  // 준비금 구하기
@@ -96,7 +98,7 @@ namespace thepos
 
         private void load_cash_amount()
         {
-            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + mBizDate;
+            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + myPosNo;
 
             if (mRequestGet(sUrl))
             {
@@ -105,12 +107,10 @@ namespace thepos
                     String data = mObj["dayPos"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    for (int i = 0; i < arr.Count; i++)
+                    if (arr.Count > 0)
                     {
-                        if (arr[i]["posNo"].ToString() == myPosNo)
-                        {
-                            cash_amount = convert_number(arr[i]["amountCash"].ToString());
-                        }
+                        cash_amount = convert_number(arr[0]["amountCash"].ToString());
+                        cash_amount_cncl = convert_number(arr[0]["amountCashCncl"].ToString());
                     }
                 }
                 else
@@ -168,7 +168,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    //MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

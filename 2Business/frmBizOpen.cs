@@ -74,7 +74,7 @@ namespace thepos
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    //MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }
@@ -88,6 +88,15 @@ namespace thepos
 
         private void btnBizOpenInput_Click(object sender, EventArgs e)
         {
+            if (!is_number(tbBizStartingCash.Text))
+            {
+                MessageBox.Show("준비금(숫자형) 오류.", "thepos");
+                return;
+            }
+
+            
+
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["bizDt"] = mBizDate;

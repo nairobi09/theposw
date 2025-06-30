@@ -556,6 +556,12 @@ namespace thepos
             public int amount_easy;
             public int amount_point;
             public int amount_cert;
+            public String is_cash;
+            public String is_card;
+            public String is_easy;
+            public String is_point;
+            public String is_cert;
+
             public int dc_amount;       // 할인금액
             public String is_cancel;   // 취소여부 : 미취소"", 취소중0, 취소1
         }

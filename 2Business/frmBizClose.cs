@@ -44,7 +44,7 @@ namespace thepos
 
         private void initialize_the()
         {
-            lblBizDate.Text = "";
+            lblBizDate.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
             lblPosNo.Text = myPosNo;
             lblLoginName.Text = mUserName;
 
@@ -105,10 +105,9 @@ namespace thepos
 
         }
 
-
         private void load_pay_data()
         {
-            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + mBizDate;
+            String sUrl = "reportDayPos?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + myPosNo;
 
             if (mRequestGet(sUrl))
             {
@@ -117,56 +116,92 @@ namespace thepos
                     String data = mObj["dayPos"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    for (int i = 0; i < arr.Count; i++)
+
+                    if (arr.Count > 0)
                     {
-                        if (arr[i]["posNo"].ToString() == myPosNo)
-                        {
-                            int cash_cnt = convert_number(arr[i]["cntCash"].ToString());
-                            int card_cnt = convert_number(arr[i]["cntCard"].ToString());
-                            int easy_cnt = convert_number(arr[i]["cntEasy"].ToString());
-                            int cert_cnt = convert_number(arr[i]["cntCert"].ToString());
-                            int net_cnt = cash_cnt + card_cnt + easy_cnt + cert_cnt;
+                        int cash_cnt = convert_number(arr[0]["cntCash"].ToString());
+                        int card_cnt = convert_number(arr[0]["cntCard"].ToString());
+                        int easy_cnt = convert_number(arr[0]["cntEasy"].ToString());
+                        int cert_cnt = convert_number(arr[0]["cntCert"].ToString());
 
-                            int cash_amount = convert_number(arr[i]["amountCash"].ToString());
-                            int card_amount = convert_number(arr[i]["amountCard"].ToString());
-                            int easy_amount = convert_number(arr[i]["amountEasy"].ToString());
-                            int cert_amount = convert_number(arr[i]["amountCert"].ToString());
-                            int net_amount = convert_number(arr[i]["netAmount"].ToString());
+                        int cash_amount = convert_number(arr[0]["amountCash"].ToString());
+                        int card_amount = convert_number(arr[0]["amountCard"].ToString());
+                        int easy_amount = convert_number(arr[0]["amountEasy"].ToString());
+                        int cert_amount = convert_number(arr[0]["amountCert"].ToString());
 
-                            ListViewItem sItem;
+                        int cash_cnt_cncl = convert_number(arr[0]["cntCashCncl"].ToString());
+                        int card_cnt_cncl = convert_number(arr[0]["cntCardCncl"].ToString());
+                        int easy_cnt_cncl = convert_number(arr[0]["cntEasyCncl"].ToString());
+                        int cert_cnt_cncl = convert_number(arr[0]["cntCertCncl"].ToString());
 
-                            sItem = new ListViewItem();
-                            sItem.Text = "현금";
-                            sItem.SubItems.Add(cash_cnt.ToString("N0"));
-                            sItem.SubItems.Add(cash_amount.ToString("N0"));
-                            lvwPay.Items.Add(sItem);
+                        int cash_amount_cncl = convert_number(arr[0]["amountCashCncl"].ToString());
+                        int card_amount_cncl = convert_number(arr[0]["amountCardCncl"].ToString());
+                        int easy_amount_cncl = convert_number(arr[0]["amountEasyCncl"].ToString());
+                        int cert_amount_cncl = convert_number(arr[0]["amountCertCncl"].ToString());
 
-                            sItem = new ListViewItem();
-                            sItem.Text = "카드";
-                            sItem.SubItems.Add(card_cnt.ToString("N0"));
-                            sItem.SubItems.Add(card_amount.ToString("N0"));
-                            lvwPay.Items.Add(sItem);
+                        int net_count = convert_number(arr[0]["netCount"].ToString());
+                        int net_amount = convert_number(arr[0]["netAmount"].ToString());
 
-                            sItem = new ListViewItem();
-                            sItem.Text = "간편";
-                            sItem.SubItems.Add(easy_cnt.ToString("N0"));
-                            sItem.SubItems.Add(easy_amount.ToString("N0"));
-                            lvwPay.Items.Add(sItem);
+                        ListViewItem sItem;
 
-                            sItem = new ListViewItem();
-                            sItem.Text = "쿠폰";
-                            sItem.SubItems.Add(cert_cnt.ToString("N0"));
-                            sItem.SubItems.Add(cert_amount.ToString("N0"));
-                            lvwPay.Items.Add(sItem);
+                        sItem = new ListViewItem();
+                        sItem.Text = "현금";
+                        sItem.SubItems.Add(cash_cnt.ToString("N0"));
+                        sItem.SubItems.Add(cash_amount.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
 
-                            sItem = new ListViewItem();
-                            sItem.Text = "합계";
-                            sItem.SubItems.Add(net_cnt.ToString("N0"));
-                            sItem.SubItems.Add(net_amount.ToString("N0"));
-                            lvwPay.Items.Add(sItem);
+                        sItem = new ListViewItem();
+                        sItem.Text = "카드";
+                        sItem.SubItems.Add(card_cnt.ToString("N0"));
+                        sItem.SubItems.Add(card_amount.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
 
-                        }
+                        sItem = new ListViewItem();
+                        sItem.Text = "간편";
+                        sItem.SubItems.Add(easy_cnt.ToString("N0"));
+                        sItem.SubItems.Add(easy_amount.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "쿠폰";
+                        sItem.SubItems.Add(cert_cnt.ToString("N0"));
+                        sItem.SubItems.Add(cert_amount.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "현금취소";
+                        sItem.SubItems.Add(cash_cnt_cncl.ToString("N0"));
+                        sItem.SubItems.Add(cash_amount_cncl.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "카드취소";
+                        sItem.SubItems.Add(card_cnt_cncl.ToString("N0"));
+                        sItem.SubItems.Add(card_amount_cncl.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "간편취소";
+                        sItem.SubItems.Add(easy_cnt_cncl.ToString("N0"));
+                        sItem.SubItems.Add(easy_amount_cncl.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "쿠폰취소";
+                        sItem.SubItems.Add(cert_cnt_cncl.ToString("N0"));
+                        sItem.SubItems.Add(cert_amount_cncl.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
+
+
+                        sItem = new ListViewItem();
+                        sItem.Text = "합계";
+                        sItem.SubItems.Add(net_count.ToString("N0"));
+                        sItem.SubItems.Add(net_amount.ToString("N0"));
+                        lvwPay.Items.Add(sItem);
                     }
+                  
+
                 }
                 else
                 {
@@ -181,7 +216,6 @@ namespace thepos
             }
 
         }
-
 
         private void load_goods_data()
         {
@@ -238,6 +272,7 @@ namespace thepos
 
         }
 
+
         private void btnPrintCard_Click(object sender, EventArgs e)
         {
             if (mBillPrinterPort.Trim().Length == 0)
@@ -246,10 +281,37 @@ namespace thepos
                 return;
             }
 
-
             String strPrint = make_print_card();
+            print_data(strPrint);
+        }
+
+        private void btnPrintPay_Click(object sender, EventArgs e)
+        {
+            if (mBillPrinterPort.Trim().Length == 0)
+            {
+                MessageBox.Show("프린터 미설정으로 출력불가");
+                return;
+            }
+
+            String strPrint = make_print_pay();
+            print_data(strPrint);
+        }
+
+        private void btnPrintGoods_Click(object sender, EventArgs e)
+        {
+            if (mBillPrinterPort.Trim().Length == 0)
+            {
+                MessageBox.Show("프린터 미설정으로 출력불가");
+                return;
+            }
+
+            String strPrint = make_print_goods();
+            print_data(strPrint);
+        }
 
 
+        private void print_data(String strPrint)
+        { 
 
             try
             {
@@ -371,8 +433,171 @@ namespace thepos
             String yyyymmdd = get_today_date();
             String hhmmss = get_today_time();
 
-            str_body += "출력 : " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " ";
-            str_body += hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2) + "\r\n";
+            str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
+            str2 = "담당: " + mUserName;
+            space_cnt = 42 - (encodelen(str1) + encodelen(str2));
+            str_body += str1 + Space(space_cnt) + str2;
+
+            return str_body;
+        }
+
+        private String make_print_pay()
+        { 
+            String str_body = "";
+            String str1 = "";
+            String str2 = "";
+            int space_cnt = 0;
+
+            str_body += "[ 정 산 표 ]\r\n\r\n";
+
+
+            str1 = "영업일: " + mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
+            str2 = "POS No. " + myPosNo;
+            space_cnt = 42 - (encodelen(str1) + encodelen(str2));
+            str_body += str1 + Space(space_cnt) + str2;
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+            str_body += "<결제집계내역>\r\n";
+            str_body += "------------------------------------------\r\n";  // 42
+
+            space_cnt = 16 - encodelen("종류");
+            str_body += "종류" + Space(space_cnt);
+            space_cnt = 12 - encodelen("건수");
+            str_body += Space(space_cnt) + "건수";
+            space_cnt = 14 - encodelen("금액");
+            str_body += Space(space_cnt) + "금액" + "\r\n";
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+
+            for (int i = 0; i < lvwPay.Items.Count; i++)
+            {
+                String card_name = lvwPay.Items[i].Text;
+                String cnt = lvwPay.Items[i].SubItems[1].Text;
+                String amount = lvwPay.Items[i].SubItems[2].Text;
+
+                space_cnt = 16 - encodelen(card_name);
+                str_body += card_name + Space(space_cnt);
+
+                space_cnt = 12 - encodelen(cnt);
+                str_body += Space(space_cnt) + cnt;
+
+                space_cnt = 14 - encodelen(amount);
+                str_body += Space(space_cnt) + amount + "\r\n";
+            }
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+
+
+
+
+
+
+            // 현금 매출액
+
+            // 준비금
+
+            // 실현금액
+
+            // 현금 과부족
+
+            
+            
+            
+            // 입력권종목록
+
+            // 입력권종 합계
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            String yyyymmdd = get_today_date();
+            String hhmmss = get_today_time();
+
+            str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
+            str2 = "담당: " + mUserName;
+            space_cnt = 42 - (encodelen(str1) + encodelen(str2));
+            str_body += str1 + Space(space_cnt) + str2;
+
+            return str_body;
+        }
+
+        private String make_print_goods()
+        {
+            String str_body = "";
+            String str1 = "";
+            String str2 = "";
+            int space_cnt = 0;
+
+            str_body += "[ 품목별 매출 ]\r\n\r\n";
+
+
+            str1 = "영업일: " + mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
+            str2 = "POS No. " + myPosNo;
+            space_cnt = 42 - (encodelen(str1) + encodelen(str2));
+            str_body += str1 + Space(space_cnt) + str2;
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+            space_cnt = 22 - encodelen("품 목 명");
+            str_body += "품 목 명" + Space(space_cnt);
+            space_cnt = 6 - encodelen("건수");
+            str_body += Space(space_cnt) + "건수";
+            space_cnt = 14 - encodelen("금액");
+            str_body += Space(space_cnt) + "금액" + "\r\n";
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+
+            for (int i = 0; i < lvwGoods.Items.Count; i++)
+            {
+                String goods_name = lvwGoods.Items[i].Text;
+                String cnt = lvwGoods.Items[i].SubItems[1].Text;
+                String amount = lvwGoods.Items[i].SubItems[2].Text;
+
+
+                space_cnt = encodelen(goods_name) + encodelen(cnt);
+
+                if (space_cnt > 28)
+                {
+                    str_body += goods_name + Space(42 - encodelen(goods_name)) + "\r\n";
+                    str_body += Space(22) + Space(6 - encodelen(cnt)) + cnt;
+                }
+                else
+                {
+                    str_body += goods_name + Space(28 - space_cnt) + cnt;
+                }
+
+                space_cnt = 14 - encodelen(amount);
+                str_body += Space(space_cnt) + amount + "\r\n";
+
+            }
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+
+            String yyyymmdd = get_today_date();
+            String hhmmss = get_today_time();
+
+            str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
+            str2 = "담당: " + mUserName;
+            space_cnt = 42 - (encodelen(str1) + encodelen(str2));
+            str_body += str1 + Space(space_cnt) + str2;
 
             return str_body;
         }

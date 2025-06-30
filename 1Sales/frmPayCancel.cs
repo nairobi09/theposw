@@ -1708,14 +1708,14 @@ namespace thepos
             
             if (c_cnt == 0) 
             {
-                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0;
+                int amount_cash = 0, amount_card = 0, amount_easy = 0, amount_point = 0, amount_cert = 0;
                 String pay_type1 = pay_type.Substring(0, 1);
 
                 if (pay_type1 == "R") amount_cash = amount;
                 else if (pay_type1 == "C") amount_card = amount;
                 else if (pay_type1 == "E") amount_easy = amount;
                 else if (pay_type1 == "P") amount_point = amount;
-
+                else if (pay_type1 == "M") amount_cert = amount;
 
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
@@ -1736,6 +1736,13 @@ namespace thepos
                 parameters["amountCard"] = amount_card + "";
                 parameters["amountEasy"] = amount_easy + "";
                 parameters["amountPoint"] = amount_point + "";
+
+                parameters["isCash"] = paymentAuth.is_cash;
+                parameters["isCard"] = paymentAuth.is_card;
+                parameters["isEasy"] = paymentAuth.is_easy;
+                parameters["isPoint"] = paymentAuth.is_point;
+                parameters["isCert"] = paymentAuth.is_cert;
+
                 parameters["dcAmount"] = paymentAuth.dc_amount + "";
                 parameters["isCancel"] = is_cancel;
                 if (mRequestPost("payment", parameters))
@@ -1846,6 +1853,12 @@ namespace thepos
                         payment.amount_easy = convert_number(arr[0]["amountEasy"].ToString());
                         payment.amount_point = convert_number(arr[0]["amountPoint"].ToString());
                         payment.amount_cert = convert_number(arr[0]["amountCert"].ToString());
+
+                        payment.is_cash = arr[0]["isCash"].ToString();
+                        payment.is_card = arr[0]["isCard"].ToString();
+                        payment.is_easy = arr[0]["isEasy"].ToString();
+                        payment.is_point = arr[0]["isPoint"].ToString();
+                        payment.is_cert = arr[0]["isCert"].ToString();
 
                         payment.dc_amount = convert_number(arr[0]["dcAmount"].ToString());
                         payment.is_cancel = arr[0]["isCancel"].ToString();
