@@ -35,8 +35,8 @@
             this.goods_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwCard = new System.Windows.Forms.ListView();
             this.card_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.card_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.card_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.card_cnt1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.card_amount1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwPay = new System.Windows.Forms.ListView();
             this.pay_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pay_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -109,8 +109,8 @@
             // 
             this.lvwCard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.card_name,
-            this.card_cnt,
-            this.card_amount});
+            this.card_cnt1,
+            this.card_amount1});
             this.lvwCard.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwCard.FullRowSelect = true;
             this.lvwCard.GridLines = true;
@@ -128,17 +128,17 @@
             // 
             this.card_name.Text = "카드사";
             // 
-            // card_cnt
+            // card_cnt1
             // 
-            this.card_cnt.Text = "수량";
-            this.card_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.card_cnt.Width = 40;
+            this.card_cnt1.Text = "수량";
+            this.card_cnt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.card_cnt1.Width = 40;
             // 
-            // card_amount
+            // card_amount1
             // 
-            this.card_amount.Text = "금액";
-            this.card_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.card_amount.Width = 90;
+            this.card_amount1.Text = "금액";
+            this.card_amount1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.card_amount1.Width = 90;
             // 
             // lvwPay
             // 
@@ -377,8 +377,8 @@
         private System.Windows.Forms.ColumnHeader goods_amount;
         private System.Windows.Forms.ListView lvwCard;
         private System.Windows.Forms.ColumnHeader card_name;
-        private System.Windows.Forms.ColumnHeader card_cnt;
-        private System.Windows.Forms.ColumnHeader card_amount;
+        private System.Windows.Forms.ColumnHeader card_cnt1;
+        private System.Windows.Forms.ColumnHeader card_amount1;
         private System.Windows.Forms.ListView lvwPay;
         private System.Windows.Forms.ColumnHeader pay_name;
         private System.Windows.Forms.ColumnHeader pay_cnt;

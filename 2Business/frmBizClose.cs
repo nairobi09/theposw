@@ -20,6 +20,28 @@ namespace thepos
 {
     public partial class frmBizClose : Form
     {
+        int cash_cnt = 0;
+        int card_cnt = 0;
+        int easy_cnt = 0;
+        int cert_cnt = 0;
+
+        int cash_amount = 0;
+        int card_amount = 0;
+        int easy_amount = 0;
+        int cert_amount = 0;
+
+        int cash_cnt_cncl = 0;
+        int card_cnt_cncl = 0;
+        int easy_cnt_cncl = 0;
+        int cert_cnt_cncl = 0;
+
+        int cash_amount_cncl = 0;
+        int card_amount_cncl = 0;
+        int easy_amount_cncl = 0;
+        int cert_amount_cncl = 0;
+
+        int net_count = 0;
+        int net_amount = 0;
 
 
         public frmBizClose()
@@ -119,28 +141,28 @@ namespace thepos
 
                     if (arr.Count > 0)
                     {
-                        int cash_cnt = convert_number(arr[0]["cntCash"].ToString());
-                        int card_cnt = convert_number(arr[0]["cntCard"].ToString());
-                        int easy_cnt = convert_number(arr[0]["cntEasy"].ToString());
-                        int cert_cnt = convert_number(arr[0]["cntCert"].ToString());
+                        cash_cnt = convert_number(arr[0]["cntCash"].ToString());
+                        card_cnt = convert_number(arr[0]["cntCard"].ToString());
+                        easy_cnt = convert_number(arr[0]["cntEasy"].ToString());
+                        cert_cnt = convert_number(arr[0]["cntCert"].ToString());
 
-                        int cash_amount = convert_number(arr[0]["amountCash"].ToString());
-                        int card_amount = convert_number(arr[0]["amountCard"].ToString());
-                        int easy_amount = convert_number(arr[0]["amountEasy"].ToString());
-                        int cert_amount = convert_number(arr[0]["amountCert"].ToString());
+                        cash_amount = convert_number(arr[0]["amountCash"].ToString());
+                        card_amount = convert_number(arr[0]["amountCard"].ToString());
+                        easy_amount = convert_number(arr[0]["amountEasy"].ToString());
+                        cert_amount = convert_number(arr[0]["amountCert"].ToString());
 
-                        int cash_cnt_cncl = convert_number(arr[0]["cntCashCncl"].ToString());
-                        int card_cnt_cncl = convert_number(arr[0]["cntCardCncl"].ToString());
-                        int easy_cnt_cncl = convert_number(arr[0]["cntEasyCncl"].ToString());
-                        int cert_cnt_cncl = convert_number(arr[0]["cntCertCncl"].ToString());
+                        cash_cnt_cncl = convert_number(arr[0]["cntCashCncl"].ToString());
+                        card_cnt_cncl = convert_number(arr[0]["cntCardCncl"].ToString());
+                        easy_cnt_cncl = convert_number(arr[0]["cntEasyCncl"].ToString());
+                        cert_cnt_cncl = convert_number(arr[0]["cntCertCncl"].ToString());
 
-                        int cash_amount_cncl = convert_number(arr[0]["amountCashCncl"].ToString());
-                        int card_amount_cncl = convert_number(arr[0]["amountCardCncl"].ToString());
-                        int easy_amount_cncl = convert_number(arr[0]["amountEasyCncl"].ToString());
-                        int cert_amount_cncl = convert_number(arr[0]["amountCertCncl"].ToString());
+                        cash_amount_cncl = convert_number(arr[0]["amountCashCncl"].ToString());
+                        card_amount_cncl = convert_number(arr[0]["amountCardCncl"].ToString());
+                        easy_amount_cncl = convert_number(arr[0]["amountEasyCncl"].ToString());
+                        cert_amount_cncl = convert_number(arr[0]["amountCertCncl"].ToString());
 
-                        int net_count = convert_number(arr[0]["netCount"].ToString());
-                        int net_amount = convert_number(arr[0]["netAmount"].ToString());
+                        net_count = convert_number(arr[0]["netCount"].ToString());
+                        net_amount = convert_number(arr[0]["netAmount"].ToString());
 
                         ListViewItem sItem;
 
@@ -152,8 +174,8 @@ namespace thepos
 
                         sItem = new ListViewItem();
                         sItem.Text = "카드";
-                        sItem.SubItems.Add(card_cnt.ToString("N0"));
-                        sItem.SubItems.Add(card_amount.ToString("N0"));
+                        sItem.SubItems.Add(card_cnt1.ToString("N0"));
+                        sItem.SubItems.Add(card_amount1.ToString("N0"));
                         lvwPay.Items.Add(sItem);
 
                         sItem = new ListViewItem();
@@ -471,59 +493,200 @@ namespace thepos
             str_body += "------------------------------------------\r\n";  // 42
 
 
-            for (int i = 0; i < lvwPay.Items.Count; i++)
-            {
-                String card_name = lvwPay.Items[i].Text;
-                String cnt = lvwPay.Items[i].SubItems[1].Text;
-                String amount = lvwPay.Items[i].SubItems[2].Text;
+            space_cnt = 16 - encodelen("현금");       str_body += "현금" + Space(space_cnt);
+            str1 = cash_cnt.ToString("N0");             space_cnt = 12 - encodelen(str1);            str_body += Space(space_cnt) + str1;
+            str2 = cash_amount.ToString("N0");          space_cnt = 14 - encodelen(str2);            str_body += Space(space_cnt) + str2 + "\r\n";
 
-                space_cnt = 16 - encodelen(card_name);
-                str_body += card_name + Space(space_cnt);
+            space_cnt = 16 - encodelen("카드"); str_body += "카드" + Space(space_cnt);
+            str1 = card_cnt.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = card_amount.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
 
-                space_cnt = 12 - encodelen(cnt);
-                str_body += Space(space_cnt) + cnt;
+            space_cnt = 16 - encodelen("간편"); str_body += "간편" + Space(space_cnt);
+            str1 = easy_cnt.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = easy_amount.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
 
-                space_cnt = 14 - encodelen(amount);
-                str_body += Space(space_cnt) + amount + "\r\n";
-            }
+            space_cnt = 16 - encodelen("쿠폰"); str_body += "쿠폰" + Space(space_cnt);
+            str1 = cert_cnt.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = cert_amount.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+
+            space_cnt = 16 - encodelen("현금취소"); str_body += "현금취소" + Space(space_cnt);
+            str1 = cash_cnt_cncl.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = cash_amount_cncl.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+            space_cnt = 16 - encodelen("카드취소"); str_body += "카드취소" + Space(space_cnt);
+            str1 = card_cnt_cncl.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = card_amount_cncl.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+            space_cnt = 16 - encodelen("간편취소"); str_body += "간편취소" + Space(space_cnt);
+            str1 = easy_cnt_cncl.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = easy_amount_cncl.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+            space_cnt = 16 - encodelen("쿠폰취소"); str_body += "쿠폰취소" + Space(space_cnt);
+            str1 = cert_cnt_cncl.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = cert_amount_cncl.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+            space_cnt = 16 - encodelen("결제합계"); str_body += "결제합계" + Space(space_cnt);
+            str1 = net_count.ToString("N0"); space_cnt = 12 - encodelen(str1); str_body += Space(space_cnt) + str1;
+            str2 = net_amount.ToString("N0"); space_cnt = 14 - encodelen(str2); str_body += Space(space_cnt) + str2 + "\r\n";
+
+            str_body += "------------------------------------------\r\n";  // 42
+
+
+            int tax_amount = net_amount / 11;
+            int supply_amount = net_amount - tax_amount;
+
+
+            String str_amount = supply_amount.ToString("N0");
+            space_cnt = 28 - encodelen("공급가액"); str_body += "공급가액" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
+
+            str_amount = tax_amount.ToString("N0");
+            space_cnt = 28 - encodelen("부가세액"); str_body += "부가세액" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
+
+            str_amount = net_amount.ToString("N0");
+            space_cnt = 28 - encodelen("실매출액"); str_body += "실매출액" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
+
 
             str_body += "------------------------------------------\r\n";  // 42
 
 
 
+            // 입력권종목록
+            int cash_starting = 0;
+
+            int cnt_50000 = 0;
+            int cnt_10000 = 0;
+            int cnt_5000 = 0;
+            int cnt_1000 = 0;
+            int cnt_500 = 0;
+            int cnt_100 = 0;
+            int cnt_50 = 0;
+            int cnt_10 = 0;
+            int amount_etc = 0;
+
+            int real_cash_amount = 0;
+
+
+            String sUrl = "reportDailyCash?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&posNo=" + myPosNo;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["dailyCash"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    for (int i = 0; i < arr.Count; i++)
+                    {
+                        cash_starting = convert_number(arr[i]["startingCash"].ToString());
+
+                        cnt_50000 = convert_number(arr[i]["fiftyKCnt"].ToString());
+                        cnt_10000 = convert_number(arr[i]["tenKCnt"].ToString());
+                        cnt_5000 = convert_number(arr[i]["fiveKCnt"].ToString());
+                        cnt_1000 = convert_number(arr[i]["oneKCnt"].ToString());
+                        cnt_500 = convert_number(arr[i]["fiveHCnt"].ToString());
+                        cnt_100 = convert_number(arr[i]["oneHCnt"].ToString());
+                        cnt_50 = convert_number(arr[i]["fiftyCnt"].ToString());
+                        cnt_10 = convert_number(arr[i]["tenCnt"].ToString());
+                        amount_etc = convert_number(arr[i]["etcAmount"].ToString());
+
+                        real_cash_amount = amount_etc + (cnt_50000 * 50000) + (cnt_10000 * 10000) + (cnt_5000 * 5000) + (cnt_1000 * 1000) + (cnt_500 * 500) + (cnt_100 * 100) + (cnt_50 * 50) + (cnt_10 * 10);
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+            }
 
 
 
-
-            // 현금 매출액
+            // 현금매출액
+            String str_amount = cash_amount.ToString("N0");
+            space_cnt = 28 - encodelen("현금매출액"); str_body += "현금매출액" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
 
             // 준비금
+            str_amount = cash_starting.ToString("N0");
+            space_cnt = 28 - encodelen("준비금"); str_body += "준비금" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
 
             // 실현금액
+            str_amount = real_cash_amount.ToString("N0");
+            space_cnt = 28 - encodelen("실현금액"); str_body += "실현금액" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
+
 
             // 현금 과부족
+            str_amount = (real_cash_amount - (cash_amount + cash_starting)).ToString("N0");
+            space_cnt = 28 - encodelen("현금과부족"); str_body += "현금과부족" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
 
-            
-            
-            
-            // 입력권종목록
+
+            str_body += "------------------------------------------\r\n\r\n";  // 42
+
+
+
 
             // 입력권종 합계
+            str_body += "<입력권종목록>\r\n";
+            str_body += "------------------------------------------\r\n";  // 42
+            str_body += "권종                    수량          금액\r\n";  // 42
+            str_body += "------------------------------------------\r\n";  // 42
 
+            //
+            space_cnt = 22 - encodelen("기타");            str_body += "기타" + Space(space_cnt);
+            str_body += Space(6);
+            space_cnt = 14 - encodelen("amount_etc");            str_body += amount_etc + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("50,000권");                  str_body += "50,000권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_50000 + "");              str_body += cnt_50000 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_50000 * 50000) + "");   str_body += (cnt_50000 * 50000) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("10,000권");                  str_body += "10,000권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_10000 + "");              str_body += cnt_10000 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_10000 * 10000) + "");   str_body += (cnt_10000 * 10000) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("5,000권"); str_body += "5,000권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_5000 + ""); str_body += cnt_5000 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_5000 * 5000) + ""); str_body += (cnt_5000 * 5000) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("1,000권"); str_body += "1,000권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_1000 + ""); str_body += cnt_1000 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_1000 * 1000) + ""); str_body += (cnt_1000 * 1000) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("500권"); str_body += "500권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_500 + ""); str_body += cnt_500 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_500 * 500) + ""); str_body += (cnt_500 * 500) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("100권"); str_body += "100권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_100 + ""); str_body += cnt_100 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_100 * 100) + ""); str_body += (cnt_100 * 100) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("50권"); str_body += "50권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_50 + ""); str_body += cnt_50 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_50 * 500) + ""); str_body += (cnt_50 * 50) + "" + Space(space_cnt);
+            //
+            space_cnt = 22 - encodelen("10권"); str_body += "10권" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_10 + ""); str_body += cnt_10 + Space(space_cnt);
+            space_cnt = 14 - encodelen((cnt_10 * 10) + ""); str_body += (cnt_10 * 10) + "" + Space(space_cnt);
 
+            str_body += "------------------------------------------\r\n";  // 42
+                                                                        
+             //
+            str_amount = real_cash_amount.ToString("N0");
+            space_cnt = 28 - encodelen("입력권종 합계"); str_body += "입력권종 합계" + Space(space_cnt);
+            space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
 
-
-
-
-
-
-
-
-
-
-
-
-
+            str_body += "------------------------------------------\r\n";  // 42
 
 
             String yyyymmdd = get_today_date();
