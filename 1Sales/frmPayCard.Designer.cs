@@ -156,7 +156,7 @@
             this.btnKeyInputAuthNo.BackColor = System.Drawing.Color.White;
             this.btnKeyInputAuthNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputAuthNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(331, 68);
+            this.btnKeyInputAuthNo.Location = new System.Drawing.Point(331, 71);
             this.btnKeyInputAuthNo.Name = "btnKeyInputAuthNo";
             this.btnKeyInputAuthNo.Size = new System.Drawing.Size(40, 30);
             this.btnKeyInputAuthNo.TabIndex = 51;
@@ -169,7 +169,7 @@
             this.btnKeyInputCardNo.BackColor = System.Drawing.Color.White;
             this.btnKeyInputCardNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyInputCardNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnKeyInputCardNo.Location = new System.Drawing.Point(331, 29);
+            this.btnKeyInputCardNo.Location = new System.Drawing.Point(331, 32);
             this.btnKeyInputCardNo.Name = "btnKeyInputCardNo";
             this.btnKeyInputCardNo.Size = new System.Drawing.Size(40, 30);
             this.btnKeyInputCardNo.TabIndex = 51;
@@ -206,9 +206,9 @@
             this.btnCardTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.btnCardTemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCardTemp.ForeColor = System.Drawing.Color.White;
-            this.btnCardTemp.Location = new System.Drawing.Point(349, 115);
+            this.btnCardTemp.Location = new System.Drawing.Point(364, 116);
             this.btnCardTemp.Name = "btnCardTemp";
-            this.btnCardTemp.Size = new System.Drawing.Size(97, 47);
+            this.btnCardTemp.Size = new System.Drawing.Size(97, 40);
             this.btnCardTemp.TabIndex = 50;
             this.btnCardTemp.Text = "임의등록";
             this.btnCardTemp.UseVisualStyleBackColor = false;
@@ -382,7 +382,7 @@
             this.btnCardRequest.ForeColor = System.Drawing.Color.White;
             this.btnCardRequest.Location = new System.Drawing.Point(331, 112);
             this.btnCardRequest.Name = "btnCardRequest";
-            this.btnCardRequest.Size = new System.Drawing.Size(130, 70);
+            this.btnCardRequest.Size = new System.Drawing.Size(130, 84);
             this.btnCardRequest.TabIndex = 47;
             this.btnCardRequest.Text = "승인요청";
             this.btnCardRequest.UseVisualStyleBackColor = false;

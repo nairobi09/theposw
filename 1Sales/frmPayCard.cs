@@ -129,6 +129,18 @@ namespace thepos
         private void btnCardTemp_Click(object sender, EventArgs e)
         {
 
+            if (tbCardNo.Text.Length < 12)
+            {
+                SetDisplayAlarm("W", "카드번호 오류.");
+                return;
+            }
+
+            if (tbAuthNo.Text.Length < 6)
+            {
+                SetDisplayAlarm("W", "승인번호 오류.");
+                return;
+            }
+
             if (tbInstall.Text.Length != 2)
             {
                 SetDisplayAlarm("W", "할부개월 오류.");

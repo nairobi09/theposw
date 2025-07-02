@@ -75,7 +75,7 @@
             this.btnCashCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashCheck.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCashCheck.ForeColor = System.Drawing.Color.White;
-            this.btnCashCheck.Location = new System.Drawing.Point(5, 70);
+            this.btnCashCheck.Location = new System.Drawing.Point(5, 67);
             this.btnCashCheck.Name = "btnCashCheck";
             this.btnCashCheck.Size = new System.Drawing.Size(184, 60);
             this.btnCashCheck.TabIndex = 28;
@@ -90,12 +90,12 @@
             this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizClose.ForeColor = System.Drawing.Color.White;
-            this.btnBizClose.Location = new System.Drawing.Point(5, 141);
+            this.btnBizClose.Location = new System.Drawing.Point(5, 143);
             this.btnBizClose.Name = "btnBizClose";
-            this.btnBizClose.Size = new System.Drawing.Size(184, 60);
+            this.btnBizClose.Size = new System.Drawing.Size(184, 70);
             this.btnBizClose.TabIndex = 27;
             this.btnBizClose.TabStop = false;
-            this.btnBizClose.Text = "마감정산";
+            this.btnBizClose.Text = "정산";
             this.btnBizClose.UseVisualStyleBackColor = false;
             this.btnBizClose.Click += new System.EventHandler(this.btnBizClose_Click);
             // 

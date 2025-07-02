@@ -34,10 +34,10 @@
             this.amount_cash = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_easy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.amount_cert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
-            this.amount_cert = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -65,7 +65,7 @@
             // pos_no
             // 
             this.pos_no.Text = "포스번호";
-            this.pos_no.Width = 80;
+            this.pos_no.Width = 70;
             // 
             // net_amount
             // 
@@ -90,6 +90,12 @@
             this.amount_easy.Text = "간편금액";
             this.amount_easy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount_easy.Width = 90;
+            // 
+            // amount_cert
+            // 
+            this.amount_cert.Text = "쿠폰금액";
+            this.amount_cert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.amount_cert.Width = 90;
             // 
             // btnView
             // 
@@ -126,12 +132,6 @@
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 88;
-            // 
-            // amount_cert
-            // 
-            this.amount_cert.Text = "쿠폰금액";
-            this.amount_cert.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amount_cert.Width = 90;
             // 
             // frmReportDayPos
             // 

@@ -48,8 +48,6 @@
             this.lblBizDate = new System.Windows.Forms.Label();
             this.lblAmountCashTitle = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.btnPrintCard = new System.Windows.Forms.Button();
-            this.btnPrintPay = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,7 +55,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(17, 19);
@@ -207,7 +205,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Peru;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(21, 111);
@@ -220,7 +218,7 @@
             // 
             // lblBizOpenUserTitle
             // 
-            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizOpenUserTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizOpenUserTitle.ForeColor = System.Drawing.Color.White;
             this.lblBizOpenUserTitle.Location = new System.Drawing.Point(21, 145);
@@ -248,7 +246,7 @@
             // 
             // lblAmountCashTitle
             // 
-            this.lblAmountCashTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblAmountCashTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAmountCashTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmountCashTitle.ForeColor = System.Drawing.Color.White;
             this.lblAmountCashTitle.Location = new System.Drawing.Point(21, 77);
@@ -262,42 +260,17 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPrint.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrint.Location = new System.Drawing.Point(640, 639);
+            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPrint.Location = new System.Drawing.Point(608, 637);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(120, 40);
+            this.btnPrint.Size = new System.Drawing.Size(150, 45);
             this.btnPrint.TabIndex = 176;
             this.btnPrint.Text = "정산";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrintGoods_Click);
-            // 
-            // btnPrintCard
-            // 
-            this.btnPrintCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintCard.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPrintCard.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrintCard.Location = new System.Drawing.Point(72, 639);
-            this.btnPrintCard.Name = "btnPrintCard";
-            this.btnPrintCard.Size = new System.Drawing.Size(120, 40);
-            this.btnPrintCard.TabIndex = 174;
-            this.btnPrintCard.Text = "출력";
-            this.btnPrintCard.UseVisualStyleBackColor = false;
-            this.btnPrintCard.Click += new System.EventHandler(this.btnPrintCard_Click);
-            // 
-            // btnPrintPay
-            // 
-            this.btnPrintPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintPay.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnPrintPay.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.btnPrintPay.Location = new System.Drawing.Point(310, 639);
-            this.btnPrintPay.Name = "btnPrintPay";
-            this.btnPrintPay.Size = new System.Drawing.Size(120, 40);
-            this.btnPrintPay.TabIndex = 175;
-            this.btnPrintPay.Text = "출력";
-            this.btnPrintPay.UseVisualStyleBackColor = false;
-            this.btnPrintPay.Click += new System.EventHandler(this.btnPrintPay_Click);
             // 
             // label2
             // 
@@ -350,8 +323,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.btnPrintPay);
-            this.Controls.Add(this.btnPrintCard);
             this.Controls.Add(this.lblLoginName);
             this.Controls.Add(this.lblPosNo);
             this.Controls.Add(this.label1);
@@ -390,8 +361,6 @@
         private System.Windows.Forms.Label lblBizDate;
         private System.Windows.Forms.Label lblAmountCashTitle;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnPrintCard;
-        private System.Windows.Forms.Button btnPrintPay;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

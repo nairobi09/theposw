@@ -74,14 +74,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblBizOpenUserTitle = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblPosNo = new System.Windows.Forms.Label();
+            this.lblLoginName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle01
             // 
-            this.lblTitle01.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle01.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle01.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle01.ForeColor = System.Drawing.Color.White;
             this.lblTitle01.Location = new System.Drawing.Point(20, 64);
@@ -109,7 +109,7 @@
             // 
             // lblTitle09
             // 
-            this.lblTitle09.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle09.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle09.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle09.ForeColor = System.Drawing.Color.White;
             this.lblTitle09.Location = new System.Drawing.Point(20, 336);
@@ -137,7 +137,7 @@
             // 
             // lblTitle08
             // 
-            this.lblTitle08.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle08.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle08.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle08.ForeColor = System.Drawing.Color.White;
             this.lblTitle08.Location = new System.Drawing.Point(20, 302);
@@ -165,7 +165,7 @@
             // 
             // lblTitle07
             // 
-            this.lblTitle07.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle07.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle07.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle07.ForeColor = System.Drawing.Color.White;
             this.lblTitle07.Location = new System.Drawing.Point(20, 268);
@@ -193,7 +193,7 @@
             // 
             // lblTitle06
             // 
-            this.lblTitle06.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle06.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle06.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle06.ForeColor = System.Drawing.Color.White;
             this.lblTitle06.Location = new System.Drawing.Point(20, 234);
@@ -261,7 +261,7 @@
             // 
             // label4
             // 
-            this.label4.BackColor = System.Drawing.Color.Peru;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label4.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(20, 382);
@@ -392,7 +392,7 @@
             // 
             // btnBizCloseInput
             // 
-            this.btnBizCloseInput.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnBizCloseInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnBizCloseInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizCloseInput.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizCloseInput.ForeColor = System.Drawing.Color.White;
@@ -407,7 +407,7 @@
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.Peru;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(147, 26);
@@ -421,7 +421,7 @@
             // 
             // lblPosAmountTitle
             // 
-            this.lblPosAmountTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblPosAmountTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPosAmountTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosAmountTitle.ForeColor = System.Drawing.Color.White;
             this.lblPosAmountTitle.Location = new System.Drawing.Point(259, 26);
@@ -435,7 +435,7 @@
             // 
             // lblTitle02
             // 
-            this.lblTitle02.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle02.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle02.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle02.ForeColor = System.Drawing.Color.White;
             this.lblTitle02.Location = new System.Drawing.Point(20, 98);
@@ -463,7 +463,7 @@
             // 
             // lblTitle03
             // 
-            this.lblTitle03.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle03.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle03.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle03.ForeColor = System.Drawing.Color.White;
             this.lblTitle03.Location = new System.Drawing.Point(20, 132);
@@ -477,7 +477,7 @@
             // 
             // lblTitle00
             // 
-            this.lblTitle00.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle00.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle00.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle00.ForeColor = System.Drawing.Color.White;
             this.lblTitle00.Location = new System.Drawing.Point(20, 26);
@@ -505,7 +505,7 @@
             // 
             // lblTitle04
             // 
-            this.lblTitle04.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle04.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle04.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle04.ForeColor = System.Drawing.Color.White;
             this.lblTitle04.Location = new System.Drawing.Point(20, 166);
@@ -533,7 +533,7 @@
             // 
             // lblTitle05
             // 
-            this.lblTitle05.BackColor = System.Drawing.Color.Peru;
+            this.lblTitle05.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle05.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle05.ForeColor = System.Drawing.Color.White;
             this.lblTitle05.Location = new System.Drawing.Point(20, 200);
@@ -575,7 +575,7 @@
             // 
             // lblAmountNetTitle
             // 
-            this.lblAmountNetTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblAmountNetTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAmountNetTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmountNetTitle.ForeColor = System.Drawing.Color.White;
             this.lblAmountNetTitle.Location = new System.Drawing.Point(41, 342);
@@ -589,7 +589,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(25, 25);
@@ -617,7 +617,7 @@
             // 
             // lblAmountEasyTitle
             // 
-            this.lblAmountEasyTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblAmountEasyTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAmountEasyTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmountEasyTitle.ForeColor = System.Drawing.Color.White;
             this.lblAmountEasyTitle.Location = new System.Drawing.Point(41, 300);
@@ -645,7 +645,7 @@
             // 
             // lblAmountCardTitle
             // 
-            this.lblAmountCardTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblAmountCardTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAmountCardTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmountCardTitle.ForeColor = System.Drawing.Color.White;
             this.lblAmountCardTitle.Location = new System.Drawing.Point(41, 265);
@@ -673,7 +673,7 @@
             // 
             // lblAmountCashTitle
             // 
-            this.lblAmountCashTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblAmountCashTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblAmountCashTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblAmountCashTitle.ForeColor = System.Drawing.Color.White;
             this.lblAmountCashTitle.Location = new System.Drawing.Point(41, 120);
@@ -701,7 +701,7 @@
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Peru;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(41, 384);
@@ -715,7 +715,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.Peru;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(41, 154);
@@ -728,7 +728,7 @@
             // 
             // lblBizOpenUserTitle
             // 
-            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizOpenUserTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizOpenUserTitle.ForeColor = System.Drawing.Color.White;
             this.lblBizOpenUserTitle.Location = new System.Drawing.Point(41, 188);
@@ -739,41 +739,41 @@
             this.lblBizOpenUserTitle.Text = "담당자";
             this.lblBizOpenUserTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // lblPosNo
             // 
-            this.label5.BackColor = System.Drawing.Color.LightGray;
-            this.label5.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(163, 154);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(5);
-            this.label5.Size = new System.Drawing.Size(141, 30);
-            this.label5.TabIndex = 141;
-            this.label5.Text = "0";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPosNo.BackColor = System.Drawing.Color.LightGray;
+            this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblPosNo.ForeColor = System.Drawing.Color.Black;
+            this.lblPosNo.Location = new System.Drawing.Point(163, 154);
+            this.lblPosNo.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPosNo.Name = "lblPosNo";
+            this.lblPosNo.Padding = new System.Windows.Forms.Padding(5);
+            this.lblPosNo.Size = new System.Drawing.Size(141, 30);
+            this.lblPosNo.TabIndex = 141;
+            this.lblPosNo.Text = "0";
+            this.lblPosNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // lblLoginName
             // 
-            this.label6.BackColor = System.Drawing.Color.LightGray;
-            this.label6.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(163, 188);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(5);
-            this.label6.Size = new System.Drawing.Size(141, 30);
-            this.label6.TabIndex = 142;
-            this.label6.Text = "0";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLoginName.BackColor = System.Drawing.Color.LightGray;
+            this.lblLoginName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblLoginName.ForeColor = System.Drawing.Color.Black;
+            this.lblLoginName.Location = new System.Drawing.Point(163, 188);
+            this.lblLoginName.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLoginName.Name = "lblLoginName";
+            this.lblLoginName.Padding = new System.Windows.Forms.Padding(5);
+            this.lblLoginName.Size = new System.Drawing.Size(141, 30);
+            this.lblLoginName.TabIndex = 142;
+            this.lblLoginName.Text = "0";
+            this.lblLoginName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmBizCashCheck
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(800, 700);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblLoginName);
+            this.Controls.Add(this.lblPosNo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblBizOpenUserTitle);
             this.Controls.Add(this.lblCashDiff);
@@ -844,7 +844,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblBizOpenUserTitle;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPosNo;
+        private System.Windows.Forms.Label lblLoginName;
     }
 }

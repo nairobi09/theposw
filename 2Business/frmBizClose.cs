@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -174,8 +175,8 @@ namespace thepos
 
                         sItem = new ListViewItem();
                         sItem.Text = "카드";
-                        sItem.SubItems.Add(card_cnt1.ToString("N0"));
-                        sItem.SubItems.Add(card_amount1.ToString("N0"));
+                        sItem.SubItems.Add(card_cnt.ToString("N0"));
+                        sItem.SubItems.Add(card_amount.ToString("N0"));
                         lvwPay.Items.Add(sItem);
 
                         sItem = new ListViewItem();
@@ -289,45 +290,42 @@ namespace thepos
                 return;
             }
 
-
-
-
         }
 
 
-        private void btnPrintCard_Click(object sender, EventArgs e)
-        {
-            if (mBillPrinterPort.Trim().Length == 0)
-            {
-                MessageBox.Show("프린터 미설정으로 출력불가");
-                return;
-            }
-
-            String strPrint = make_print_card();
-            print_data(strPrint);
-        }
-
-        private void btnPrintPay_Click(object sender, EventArgs e)
-        {
-            if (mBillPrinterPort.Trim().Length == 0)
-            {
-                MessageBox.Show("프린터 미설정으로 출력불가");
-                return;
-            }
-
-            String strPrint = make_print_pay();
-            print_data(strPrint);
-        }
 
         private void btnPrintGoods_Click(object sender, EventArgs e)
         {
+
+            if (MessageBox.Show("일정산 리포트 3종 출력.\r\n\r\n- 정산표\r\n- 카드사별 매출\r\n- 품목별 매출", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+
+
+
             if (mBillPrinterPort.Trim().Length == 0)
             {
                 MessageBox.Show("프린터 미설정으로 출력불가");
                 return;
             }
 
-            String strPrint = make_print_goods();
+
+            String strPrint = make_print_card();
+            print_data(strPrint);
+
+            Thread.Sleep(1000);
+
+            strPrint = make_print_pay();
+            print_data(strPrint);
+
+            Thread.Sleep(1000);
+
+            strPrint = make_print_goods();
             print_data(strPrint);
         }
 
@@ -458,7 +456,7 @@ namespace thepos
             str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
             str2 = "담당: " + mUserName;
             space_cnt = 42 - (encodelen(str1) + encodelen(str2));
-            str_body += str1 + Space(space_cnt) + str2;
+            str_body += str1 + Space(space_cnt) + str2 + "\r\n";
 
             return str_body;
         }
@@ -610,7 +608,7 @@ namespace thepos
 
 
             // 현금매출액
-            String str_amount = cash_amount.ToString("N0");
+            str_amount = cash_amount.ToString("N0");
             space_cnt = 28 - encodelen("현금매출액"); str_body += "현금매출액" + Space(space_cnt);
             space_cnt = 14 - encodelen(str_amount); str_body += Space(space_cnt) + str_amount;
 
@@ -645,39 +643,39 @@ namespace thepos
             //
             space_cnt = 22 - encodelen("기타");            str_body += "기타" + Space(space_cnt);
             str_body += Space(6);
-            space_cnt = 14 - encodelen("amount_etc");            str_body += amount_etc + Space(space_cnt);
+            space_cnt = 14 - encodelen(amount_etc + "");            str_body += Space(space_cnt) + amount_etc + "\r\n";
             //
             space_cnt = 22 - encodelen("50,000권");                  str_body += "50,000권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_50000 + "");              str_body += cnt_50000 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_50000 * 50000) + "");   str_body += (cnt_50000 * 50000) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_50000 + "");              str_body += Space(space_cnt) + cnt_50000;
+            space_cnt = 14 - encodelen((cnt_50000 * 50000) + "");   str_body += Space(space_cnt) + (cnt_50000 * 50000) + "\r\n";
             //
             space_cnt = 22 - encodelen("10,000권");                  str_body += "10,000권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_10000 + "");              str_body += cnt_10000 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_10000 * 10000) + "");   str_body += (cnt_10000 * 10000) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_10000 + "");              str_body += Space(space_cnt) + cnt_10000;
+            space_cnt = 14 - encodelen((cnt_10000 * 10000) + "");   str_body += Space(space_cnt) + (cnt_10000 * 10000) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("5,000권"); str_body += "5,000권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_5000 + ""); str_body += cnt_5000 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_5000 * 5000) + ""); str_body += (cnt_5000 * 5000) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_5000 + ""); str_body += Space(space_cnt) + cnt_5000;
+            space_cnt = 14 - encodelen((cnt_5000 * 5000) + ""); str_body += Space(space_cnt) + (cnt_5000 * 5000) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("1,000권"); str_body += "1,000권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_1000 + ""); str_body += cnt_1000 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_1000 * 1000) + ""); str_body += (cnt_1000 * 1000) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_1000 + ""); str_body += Space(space_cnt) + cnt_1000;
+            space_cnt = 14 - encodelen((cnt_1000 * 1000) + ""); str_body += Space(space_cnt) + (cnt_1000 * 1000) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("500권"); str_body += "500권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_500 + ""); str_body += cnt_500 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_500 * 500) + ""); str_body += (cnt_500 * 500) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_500 + ""); str_body += Space(space_cnt) + cnt_500;
+            space_cnt = 14 - encodelen((cnt_500 * 500) + ""); str_body += Space(space_cnt) + (cnt_500 * 500) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("100권"); str_body += "100권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_100 + ""); str_body += cnt_100 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_100 * 100) + ""); str_body += (cnt_100 * 100) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_100 + ""); str_body += Space(space_cnt) + cnt_100;
+            space_cnt = 14 - encodelen((cnt_100 * 100) + ""); str_body += Space(space_cnt) + (cnt_100 * 100) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("50권"); str_body += "50권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_50 + ""); str_body += cnt_50 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_50 * 500) + ""); str_body += (cnt_50 * 50) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_50 + ""); str_body += Space(space_cnt) + cnt_50;
+            space_cnt = 14 - encodelen((cnt_50 * 500) + ""); str_body += Space(space_cnt) + (cnt_50 * 50) + "" + "\r\n";
             //
             space_cnt = 22 - encodelen("10권"); str_body += "10권" + Space(space_cnt);
-            space_cnt = 6 - encodelen(cnt_10 + ""); str_body += cnt_10 + Space(space_cnt);
-            space_cnt = 14 - encodelen((cnt_10 * 10) + ""); str_body += (cnt_10 * 10) + "" + Space(space_cnt);
+            space_cnt = 6 - encodelen(cnt_10 + ""); str_body += Space(space_cnt) + cnt_10;
+            space_cnt = 14 - encodelen((cnt_10 * 10) + ""); str_body += Space(space_cnt) + (cnt_10 * 10) + "" + "\r\n";
 
             str_body += "------------------------------------------\r\n";  // 42
                                                                         
@@ -695,7 +693,7 @@ namespace thepos
             str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
             str2 = "담당: " + mUserName;
             space_cnt = 42 - (encodelen(str1) + encodelen(str2));
-            str_body += str1 + Space(space_cnt) + str2;
+            str_body += str1 + Space(space_cnt) + str2 + "\r\n";
 
             return str_body;
         }
@@ -760,7 +758,7 @@ namespace thepos
             str1 = "출력: " + yyyymmdd.Substring(0, 4) + "-" + yyyymmdd.Substring(4, 2) + "-" + yyyymmdd.Substring(6, 2) + " " + hhmmss.Substring(0, 2) + ":" + hhmmss.Substring(2, 2) + ":" + hhmmss.Substring(2, 2);
             str2 = "담당: " + mUserName;
             space_cnt = 42 - (encodelen(str1) + encodelen(str2));
-            str_body += str1 + Space(space_cnt) + str2;
+            str_body += str1 + Space(space_cnt) + str2 + "\r\n";
 
             return str_body;
         }

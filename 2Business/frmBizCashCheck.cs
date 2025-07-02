@@ -54,12 +54,7 @@ namespace thepos
             thepos_app_log(1, this.Name, "open", "");
 
 
-
             initialize_the();
-
-
-            //
-            lblBizDt.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
 
 
             load_cash_amount();  // 현금매출액 구하기
@@ -69,7 +64,6 @@ namespace thepos
             load_cash_info();  // 준비금 구하기
             lblCashStarting.Text = cash_starting.ToString("N0");
 
-
             calculate_cash_real();
 
         }
@@ -77,8 +71,11 @@ namespace thepos
 
         private void initialize_the()
         {
+            //
+            lblBizDt.Text = mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
 
-
+            lblPosNo.Text = myPosNo;
+            lblLoginName.Text = mUserName;
         }
 
         private void calculate_cash_real()

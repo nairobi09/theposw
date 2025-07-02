@@ -74,10 +74,11 @@ namespace thepos
                     for (int i = 0; i < arr.Count; i++)
                     {
                         net_amt = convert_number(arr[i]["netAmount"].ToString());
-                        cash_amt = convert_number(arr[i]["amountCash"].ToString());
-                        card_amt = convert_number(arr[i]["amountCard"].ToString());
-                        easy_amt = convert_number(arr[i]["amountEasy"].ToString());
-                        cert_amt = convert_number(arr[i]["amountCert"].ToString());
+                        cash_amt = convert_number(arr[i]["amountCash"].ToString()) - convert_number(arr[i]["amountCashCncl"].ToString());
+                        card_amt = convert_number(arr[i]["amountCard"].ToString()) - convert_number(arr[i]["amountCardCncl"].ToString());
+                        easy_amt = convert_number(arr[i]["amountEasy"].ToString()) - convert_number(arr[i]["amountEasyCncl"].ToString());
+                        cert_amt = convert_number(arr[i]["amountCert"].ToString()) - convert_number(arr[i]["amountCertCncl"].ToString());
+
 
                         ListViewItem Item = new ListViewItem();
                         Item.Text = arr[i]["posNo"].ToString();
@@ -86,6 +87,7 @@ namespace thepos
                         Item.SubItems.Add(card_amt.ToString("N0"));
                         Item.SubItems.Add(easy_amt.ToString("N0"));
                         Item.SubItems.Add(cert_amt.ToString("N0"));
+
 
                         Item.ForeColor = Color.Gray;
                         Item.SubItems[1].ForeColor = Color.Gray;
@@ -105,7 +107,7 @@ namespace thepos
 
                     // 합계 표시
                     ListViewItem tItem = new ListViewItem();
-                    tItem.Text = "[전체] 합계";
+                    tItem.Text = "[합계]";
                     tItem.SubItems.Add(tot_net_amt.ToString("N0"));
                     tItem.SubItems.Add(tot_cash_amt.ToString("N0"));
                     tItem.SubItems.Add(tot_card_amt.ToString("N0"));

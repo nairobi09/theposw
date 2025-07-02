@@ -834,7 +834,7 @@ namespace theposw._1Sales
             }
 
 
-            if (MessageBox.Show("선택한 항목 " + lvwList.CheckedItems.Count + "건을 강제종료 처리합니다.", "thwpos", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("선택한 항목 " + lvwList.CheckedItems.Count + "건을 강제종료 처리합니다.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
             }

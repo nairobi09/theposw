@@ -77,7 +77,7 @@
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.Peru;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(32, 70);
@@ -127,7 +127,7 @@
             // 
             // btnBizOpenInput
             // 
-            this.btnBizOpenInput.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnBizOpenInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnBizOpenInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizOpenInput.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpenInput.ForeColor = System.Drawing.Color.White;
@@ -141,7 +141,7 @@
             // 
             // lblBizOpenUserTitle
             // 
-            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizOpenUserTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizOpenUserTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizOpenUserTitle.ForeColor = System.Drawing.Color.White;
             this.lblBizOpenUserTitle.Location = new System.Drawing.Point(32, 107);
@@ -154,7 +154,7 @@
             // 
             // lblBizOpenAmountTitle
             // 
-            this.lblBizOpenAmountTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizOpenAmountTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizOpenAmountTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizOpenAmountTitle.ForeColor = System.Drawing.Color.White;
             this.lblBizOpenAmountTitle.Location = new System.Drawing.Point(32, 174);
@@ -167,7 +167,7 @@
             // 
             // lblBizDateTitle
             // 
-            this.lblBizDateTitle.BackColor = System.Drawing.Color.Peru;
+            this.lblBizDateTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblBizDateTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblBizDateTitle.ForeColor = System.Drawing.Color.White;
             this.lblBizDateTitle.Location = new System.Drawing.Point(32, 32);
@@ -192,7 +192,7 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.SaddleBrown;
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
