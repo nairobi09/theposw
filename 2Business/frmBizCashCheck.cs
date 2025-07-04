@@ -163,9 +163,14 @@ namespace thepos
 
                     }
                 }
+                else if (mObj["resultCode"].ToString() == "601")
+                {
+                    // {\"resultCode\":\"601\",\"resultMsg\":\"조회 결과가 없습니다.\",\
+                    return;
+                }
                 else
                 {
-                    //MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    MessageBox.Show("데이터 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     return;
                 }
             }

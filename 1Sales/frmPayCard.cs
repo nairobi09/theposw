@@ -184,7 +184,7 @@ namespace thepos
                 order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외
                 if (order_cnt == -1)
                 {
-                    return; // 재로그인 요구
+                    //return; // 재로그인 요구
                 }
 
             }
@@ -232,7 +232,7 @@ namespace thepos
             // 결제 항목 저장
             if (!SavePaymentCard(mPaymentCard))
             {
-                return;
+                //return;
             }
 
 
@@ -473,7 +473,7 @@ namespace thepos
                     order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외
                     if (order_cnt == -1)
                     {
-                        return; // 재로그인 요구
+                        //return; // 재로그인 요구
                     }
                 }
 
@@ -511,7 +511,7 @@ namespace thepos
 
                 if (!SavePaymentCard(mPaymentCard))
                 {
-                    return;
+                    //return;
                 }
 
 
