@@ -4120,7 +4120,16 @@ namespace thepos
                             strPrintOrder += Space(6 - encodelen(tStr)) + tStr;
 
                             tStr = (amt * cnt).ToString("N0");     // 금액 = 단가*수량
-                            strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+
+                            if (encodelen(tStr) > 9)
+                            {
+                                strPrintOrder += Space(9) + "\r\n";
+                                strPrintOrder += Space(42 - encodelen(tStr)) + tStr;
+                            }
+                            else
+                            {
+                                strPrintOrder += Space(9 - encodelen(tStr)) + tStr;
+                            }
 
                             strPrintOrder += "\r\n";
 
@@ -4675,8 +4684,6 @@ namespace thepos
                                 {
                                     strPrintPayment += strVanCode + Space(42 - (lenVanCode + lenCouponNo)) + strCouponNo;
                                 }
-
-                                strPrintPayment += "\r\n";
 
                                 strPrintPayment += "\r\n";
 

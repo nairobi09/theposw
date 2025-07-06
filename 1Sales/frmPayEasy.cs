@@ -117,20 +117,15 @@ namespace thepos
             tTaxAmount = t과세금액 - tTax;
             tFreeAmount = t면세금액;
 
-            // 테스트모드에서는 그냥 PASS
-            if (mIsTestPayMode != "Test")
+            if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
             {
-                if (requestEasyAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, barcode_no, is_kakaopay, out mPaymentEasy) != 0)
-                {
-                    //
-                    thepos_app_log(3, this.Name, "requestEasyAuth()", mErrorMsg);
+                //
+                thepos_app_log(3, this.Name, "requestEasyAuth()", mErrorMsg);
 
-                    display_error_msg(mErrorMsg);
+                display_error_msg(mErrorMsg);
 
-                    return;
-                }
+                return;
             }
-
 
 
             //

@@ -94,110 +94,122 @@ namespace thepos
             PaymentCard paymentCard = new PaymentCard();
             pCard = paymentCard;
 
-            string FS = ((char)28).ToString();
-            string Halbu = String.Format("{0:00}", install);
-            string SendData = "";
-
-            if (is_cup == "1") //은련
-                SendData = "0200" + FS + "UP" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + FS + FS + FS + FS + "해외은련승인요청" + FS;
-            else
-                SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용승인" + FS;
-
-
-            byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
-            byte[] mRecv = new byte[2048];
-
-            int ret = NICEVCAT(mSend, mRecv);
-
-            if (ret != 1)
+            try
             {
-                if (ret == -1) mErrorMsg = "NVCAT 실행 중이 아님";
-                else if (ret == -2) mErrorMsg = "거래금액이 존재하지 않음";
-                else if (ret == -6) mErrorMsg = "카드리딩 타임아웃";
-                else if (ret == -7) mErrorMsg = "사용자 및 리더기 요청 취소";
-                else if (ret == -8) mErrorMsg = "FALLBACK 거래 요청 필요";
-                else if (ret == -9) mErrorMsg = "기타 오류";
-                
-                else if (ret == -10) mErrorMsg = "IC 우선 거래 요청 필요 (IC카드 MS리딩시)";
-                else if (ret == -11) mErrorMsg = "FALLBACK 거래 아님";
-                else if (ret == -12) mErrorMsg = "거래 불가 카드";
-                else if (ret == -13) mErrorMsg = "서명 요청 오류";
-                
-                else if (ret == -15) mErrorMsg = "카드리더 PORT OPEN 오류";
-                else if (ret == -16) mErrorMsg = "직전거래 망상취소 불가";
-                else if (ret == -17) mErrorMsg = "중복 요청 불가";
-                else if (ret == -18) mErrorMsg = "지원되지 않는 카드";
-                else if (ret == -19) mErrorMsg = "현금IC카드 복수계좌 미지원";
+                string FS = ((char)28).ToString();
+                string Halbu = String.Format("{0:00}", install);
+                string SendData = "";
 
-                else if (ret == -20) mErrorMsg = "TIT 카드 리더기 오류";
-                else if (ret == -21) mErrorMsg = "NVCAT 내부 망상취소 실패 (해당 카드사 확인요망)";
-                
-                else if (ret == -26) mErrorMsg = "리더기 응답데이터 수신 실패 (결제 재요청 필요)";
-                else if (ret == -27) mErrorMsg = "리더기 요청 실패 (결제 재요청 필요)";
-                else if (ret == -28) mErrorMsg = "서버 연결 실패 (결제 재요청 필요)";
-                else if (ret == -29) mErrorMsg = "요청 전문 송신 실패 (결제 재요청 필요)";
-                else mErrorMsg = "NICE VCAT 오류.";
-
-                return -1;
-            }
-
-
-            //
-            mNiceResponse = parse_response(mRecv);
-
-
-            // 응답 코드
-            String ResCd = mNiceResponse.t응답코드;
-            // 응답 메세지
-            String ResMag = mNiceResponse.t응답메시지;
-
-            // 정상 응답
-            if (ResCd == "0000")
-            {
-                // 마스킹 카드번호
-                paymentCard.card_no = mNiceResponse.t카드BIN;
-                // 거래번호
-                paymentCard.tran_serial = mNiceResponse.t거래일련번호;  
-
-                // 할부개월
-                paymentCard.install = mNiceResponse.t할부;
-                // 총거래 금액
-                paymentCard.amount = int.Parse(mNiceResponse.t거래금액);
-
-                // 거래일시
-                paymentCard.tran_date = mNiceResponse.t승인일시;
-                // 승인번호
-                paymentCard.auth_no = mNiceResponse.t승인번호;
-
-
-                //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
-                // 매입사 코드
-                paymentCard.acq_code = mNiceResponse.t매입사코드;
-                // 발급사 코드
-                paymentCard.isu_code = mNiceResponse.t발급사코드;
-
-
-                // 발급사 명
-                paymentCard.card_name = mNiceResponse.t발급사명;
-                // 가맹점 번호
-                paymentCard.merchant_no = mNiceResponse.t가맹점번호;
-                // 기프트잔액
-                if (is_number(mNiceResponse.t잔액))
-                    paymentCard.gift_change = int.Parse(mNiceResponse.t잔액);
+                if (is_cup == "1") //은련
+                    SendData = "0200" + FS + "UP" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + FS + FS + FS + FS + "해외은련승인요청" + FS;
                 else
-                    paymentCard.gift_change = 0;
+                    SendData = "0200" + FS + "10" + FS + "C" + FS + tAmount + FS + tTax + FS + tServiceAmt + FS + Halbu + FS + "" + FS + "" + FS + "" + FS + FS + FS + FS + "" + FS + FS + FS + FS + "신용승인" + FS;
 
-                pCard = paymentCard;
 
-                return 0;
+                byte[] mSend = System.Text.Encoding.GetEncoding(1252).GetBytes(SendData);
+                byte[] mRecv = new byte[2048];
+
+                int ret = NICEVCAT(mSend, mRecv);
+
+                if (ret != 1)
+                {
+                    if (ret == -1) mErrorMsg = "NVCAT 실행 중이 아님";
+                    else if (ret == -2) mErrorMsg = "거래금액이 존재하지 않음";
+                    else if (ret == -6) mErrorMsg = "카드리딩 타임아웃";
+                    else if (ret == -7) mErrorMsg = "사용자 및 리더기 요청 취소";
+                    else if (ret == -8) mErrorMsg = "FALLBACK 거래 요청 필요";
+                    else if (ret == -9) mErrorMsg = "기타 오류";
+                
+                    else if (ret == -10) mErrorMsg = "IC 우선 거래 요청 필요 (IC카드 MS리딩시)";
+                    else if (ret == -11) mErrorMsg = "FALLBACK 거래 아님";
+                    else if (ret == -12) mErrorMsg = "거래 불가 카드";
+                    else if (ret == -13) mErrorMsg = "서명 요청 오류";
+                
+                    else if (ret == -15) mErrorMsg = "카드리더 PORT OPEN 오류";
+                    else if (ret == -16) mErrorMsg = "직전거래 망상취소 불가";
+                    else if (ret == -17) mErrorMsg = "중복 요청 불가";
+                    else if (ret == -18) mErrorMsg = "지원되지 않는 카드";
+                    else if (ret == -19) mErrorMsg = "현금IC카드 복수계좌 미지원";
+
+                    else if (ret == -20) mErrorMsg = "TIT 카드 리더기 오류";
+                    else if (ret == -21) mErrorMsg = "NVCAT 내부 망상취소 실패 (해당 카드사 확인요망)";
+                
+                    else if (ret == -26) mErrorMsg = "리더기 응답데이터 수신 실패 (결제 재요청 필요)";
+                    else if (ret == -27) mErrorMsg = "리더기 요청 실패 (결제 재요청 필요)";
+                    else if (ret == -28) mErrorMsg = "서버 연결 실패 (결제 재요청 필요)";
+                    else if (ret == -29) mErrorMsg = "요청 전문 송신 실패 (결제 재요청 필요)";
+                    else mErrorMsg = "NICE VCAT 오류.";
+
+                    thepos_app_log(3, "paymentNice", "requestNiceCardAuth()", mErrorMsg + " ret=" + ret);
+
+                    return -1;
+                }
+
+
+                //
+                mNiceResponse = parse_response(mRecv);
+
+
+                // 응답 코드
+                String ResCd = mNiceResponse.t응답코드;
+                // 응답 메세지
+                String ResMag = mNiceResponse.t응답메시지;
+
+                // 정상 응답
+                if (ResCd == "0000")
+                {
+                    // 마스킹 카드번호
+                    paymentCard.card_no = mNiceResponse.t카드BIN;
+                    // 거래번호
+                    paymentCard.tran_serial = mNiceResponse.t거래일련번호;  
+
+                    // 할부개월
+                    paymentCard.install = mNiceResponse.t할부;
+                    // 총거래 금액
+                    paymentCard.amount = int.Parse(mNiceResponse.t거래금액);
+
+                    // 거래일시
+                    paymentCard.tran_date = mNiceResponse.t승인일시;
+                    // 승인번호
+                    paymentCard.auth_no = mNiceResponse.t승인번호;
+
+
+                    //? 발급사,매입사 코드 -> 공통관리코드로 변환 필요
+                    // 매입사 코드
+                    paymentCard.acq_code = mNiceResponse.t매입사코드;
+                    // 발급사 코드
+                    paymentCard.isu_code = mNiceResponse.t발급사코드;
+
+
+                    // 발급사 명
+                    paymentCard.card_name = mNiceResponse.t발급사명;
+                    // 가맹점 번호
+                    paymentCard.merchant_no = mNiceResponse.t가맹점번호;
+                    // 기프트잔액
+                    if (is_number(mNiceResponse.t잔액))
+                        paymentCard.gift_change = int.Parse(mNiceResponse.t잔액);
+                    else
+                        paymentCard.gift_change = 0;
+
+                    pCard = paymentCard;
+
+                    return 0;
+                }
+                else
+                {
+                    mErrorMsg = ResMag;
+                    return -1;
+                }
             }
-            else
+            catch (Exception e)
             {
-                mErrorMsg = ResMag;
+                thepos_app_log(3, "paymentNice", "requestNiceCardAuth()", e.Message);
+
+                mErrorMsg = e.Message;
                 return -1;
             }
-
         }
+
 
         public int requestNiceCardCancel(PaymentCard pCardAuth, out PaymentCard pCardCancel)
         {
@@ -390,7 +402,35 @@ namespace thepos
 
             if (ret != 1)
             {
-                mErrorMsg = "NICE VCAT 오류.";
+                if (ret == -1) mErrorMsg = "NVCAT 실행 중이 아님";
+                else if (ret == -2) mErrorMsg = "거래금액이 존재하지 않음";
+                else if (ret == -6) mErrorMsg = "카드리딩 타임아웃";
+                else if (ret == -7) mErrorMsg = "사용자 및 리더기 요청 취소";
+                else if (ret == -8) mErrorMsg = "FALLBACK 거래 요청 필요";
+                else if (ret == -9) mErrorMsg = "기타 오류";
+
+                else if (ret == -10) mErrorMsg = "IC 우선 거래 요청 필요 (IC카드 MS리딩시)";
+                else if (ret == -11) mErrorMsg = "FALLBACK 거래 아님";
+                else if (ret == -12) mErrorMsg = "거래 불가 카드";
+                else if (ret == -13) mErrorMsg = "서명 요청 오류";
+
+                else if (ret == -15) mErrorMsg = "카드리더 PORT OPEN 오류";
+                else if (ret == -16) mErrorMsg = "직전거래 망상취소 불가";
+                else if (ret == -17) mErrorMsg = "중복 요청 불가";
+                else if (ret == -18) mErrorMsg = "지원되지 않는 카드";
+                else if (ret == -19) mErrorMsg = "현금IC카드 복수계좌 미지원";
+
+                else if (ret == -20) mErrorMsg = "TIT 카드 리더기 오류";
+                else if (ret == -21) mErrorMsg = "NVCAT 내부 망상취소 실패 (해당 카드사 확인요망)";
+
+                else if (ret == -26) mErrorMsg = "리더기 응답데이터 수신 실패 (결제 재요청 필요)";
+                else if (ret == -27) mErrorMsg = "리더기 요청 실패 (결제 재요청 필요)";
+                else if (ret == -28) mErrorMsg = "서버 연결 실패 (결제 재요청 필요)";
+                else if (ret == -29) mErrorMsg = "요청 전문 송신 실패 (결제 재요청 필요)";
+                else mErrorMsg = "NICE VCAT 오류.";
+
+                thepos_app_log(3, "paymentNice", "requestNiceCashAuth()", mErrorMsg + " ret=" + ret);
+
                 return -1;
             }
 

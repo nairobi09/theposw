@@ -86,7 +86,7 @@ namespace thepos
 
             lblCashReal.Text = amount_real_sum.ToString("N0");
 
-            int int과부족 = amount_real_sum - (cash_amount + cash_starting);
+            int int과부족 = amount_real_sum - (cash_amount - cash_amount_cncl + cash_starting);
 
             lblCashDiff.Text = int과부족.ToString("N0");
 

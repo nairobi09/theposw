@@ -81,14 +81,7 @@ namespace thepos
                 //
                 ticketNo = frmFlowSettlement.mSelectedTicketNo;
                 mRefNo = ticketNo.Substring(0, 20);
-
             }
-
-            if (mIsTestPayMode == "Test")
-            {
-                btnCardRequest.Text = "승인요청\r\n테스트(SKIP)";
-            }
-
 
         }
 
@@ -409,6 +402,9 @@ namespace thepos
                 return;
             }
 
+            // 이중클릭 방지
+            btnCardRequest.Enabled = false;
+
 
             String is_cup = "0";
 
@@ -435,23 +431,24 @@ namespace thepos
             tFreeAmount = t면세금액;
 
 
-            // 테스트모드에서는 그냥 PASS
-            if (mIsTestPayMode != "Test")
-            { 
-                if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
-                {
-                    //
-                    thepos_app_log(3, this.Name, "requestCardAuth()", mErrorMsg);
 
-                    display_error_msg(mErrorMsg);
+            if (requestCardAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, install, is_cup, out mPaymentCard) != 0)
+            {
+                //
+                thepos_app_log(3, this.Name, "requestCardAuth()", mErrorMsg);
 
-                    return;
-                }
+                display_error_msg(mErrorMsg);
+
+
+                // 다시 버튼 사용가능
+                btnCardRequest.Enabled = true;
+
+
+                return;
             }
 
 
 
-            //
             {
                 //정상승인
                 int order_cnt = 0;
