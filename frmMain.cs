@@ -846,7 +846,7 @@ namespace thepos
                                     myGoodsItem[k].soldout = arr[i]["soldout"].ToString();
                                     myGoodsItem[k].allim = arr[i]["allim"].ToString();
                                     myGoodsItem[k].option_template_id = arr[i]["optionTemplateId"].ToString();
-                                    myGoodsItem[k].coupon_link_no = arr[i]["couponLinkNo"].ToString();
+                                    //myGoodsItem[k].coupon_link_no = arr[i]["couponLinkNo"].ToString();
                                     //myGoodsItem[k].bar_code = arr[i]["barCode"].ToString();
 
                                     // 면세상픔은 상품명앞에 *을 붙인다.
@@ -873,6 +873,7 @@ namespace thepos
                             goods.soldout = arr[i]["soldout"].ToString();
                             goods.allim = arr[i]["allim"].ToString();
                             goods.bar_code = arr[i]["barCode"].ToString().Trim();
+                            goods.coupon_link_no = arr[i]["couponLinkNo"].ToString();
                             mGoodsList.Add(goods);
                         }
                     }

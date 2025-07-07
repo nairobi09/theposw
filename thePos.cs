@@ -384,6 +384,7 @@ namespace thepos
             public String soldout;  // Y품절
             public String allim;
             public String bar_code;
+            public String coupon_link_no;
         }
         public static List<Goods> mGoodsList = new List<Goods>();
 

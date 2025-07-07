@@ -69,9 +69,9 @@ namespace thepos._1Sales
                         if (t_coupon_link_no != "")
                         {
                             int link_goods_idx = -1;
-                            for (int k = 0; k < myGoodsItem.Length; k++)
+                            for (int k = 0; k < mGoodsList.Count; k++)
                             {
-                                if (t_coupon_link_no == myGoodsItem[k].coupon_link_no)
+                                if (t_coupon_link_no == mGoodsList[k].coupon_link_no)
                                 {
                                     link_goods_idx = k;
                                 }
@@ -81,8 +81,8 @@ namespace thepos._1Sales
                             String t_goods_name = "";
                             if (link_goods_idx > -1)
                             {
-                                t_goods_code = myGoodsItem[link_goods_idx].goods_code;
-                                t_goods_name = myGoodsItem[link_goods_idx].goods_name;
+                                t_goods_code = mGoodsList[link_goods_idx].goods_code;
+                                t_goods_name = mGoodsList[link_goods_idx].goods_name;
                             }
     
                             sumItem.SubItems.Add("[" + t_goods_code + "] " + t_goods_name);
