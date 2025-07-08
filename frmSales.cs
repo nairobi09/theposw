@@ -2802,7 +2802,7 @@ namespace thepos
                                 {
                                     if (mObj["resultCode"].ToString() == "200")
                                     {
-                                        thepos_app_log(1, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
+                                        thepos_app_log(2, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
                                         MessageBox.Show("티켓취소 완료.", "thepos");
                                     }
                                     else

@@ -379,11 +379,11 @@
     <Compile Include="9SysAdmin\frmSysPayConsole.Designer.cs">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
     </Compile>
-    <Compile Include="2Business\frmBizClose.cs">
+    <Compile Include="2Business\frmBizSettlement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="2Business\frmBizClose.Designer.cs">
-      <DependentUpon>frmBizClose.cs</DependentUpon>
+    <Compile Include="2Business\frmBizSettlement.Designer.cs">
+      <DependentUpon>frmBizSettlement.cs</DependentUpon>
     </Compile>
     <Compile Include="2Business\frmBizOpen.cs">
       <SubType>Form</SubType>
@@ -732,8 +732,8 @@
     <EmbeddedResource Include="9SysAdmin\frmSysPayConsole.resx">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2Business\frmBizClose.resx">
-      <DependentUpon>frmBizClose.cs</DependentUpon>
+    <EmbeddedResource Include="2Business\frmBizSettlement.resx">
+      <DependentUpon>frmBizSettlement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>

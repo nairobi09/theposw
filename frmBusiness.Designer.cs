@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusiness));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCashCheck = new System.Windows.Forms.Button();
-            this.btnBizClose = new System.Windows.Forms.Button();
+            this.btnBizSettlement = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
             this.btnKey1 = new System.Windows.Forms.Button();
@@ -61,7 +61,7 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnCashCheck);
-            this.panel1.Controls.Add(this.btnBizClose);
+            this.panel1.Controls.Add(this.btnBizSettlement);
             this.panel1.Controls.Add(this.btnBizOpen);
             this.panel1.Controls.Add(this.panelNumpad);
             this.panel1.Location = new System.Drawing.Point(817, 58);
@@ -84,20 +84,20 @@
             this.btnCashCheck.UseVisualStyleBackColor = false;
             this.btnCashCheck.Click += new System.EventHandler(this.btnCashCheck_Click);
             // 
-            // btnBizClose
+            // btnBizSettlement
             // 
-            this.btnBizClose.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnBizClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizClose.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnBizClose.ForeColor = System.Drawing.Color.White;
-            this.btnBizClose.Location = new System.Drawing.Point(5, 143);
-            this.btnBizClose.Name = "btnBizClose";
-            this.btnBizClose.Size = new System.Drawing.Size(184, 70);
-            this.btnBizClose.TabIndex = 27;
-            this.btnBizClose.TabStop = false;
-            this.btnBizClose.Text = "정산";
-            this.btnBizClose.UseVisualStyleBackColor = false;
-            this.btnBizClose.Click += new System.EventHandler(this.btnBizClose_Click);
+            this.btnBizSettlement.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnBizSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBizSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizSettlement.ForeColor = System.Drawing.Color.White;
+            this.btnBizSettlement.Location = new System.Drawing.Point(5, 143);
+            this.btnBizSettlement.Name = "btnBizSettlement";
+            this.btnBizSettlement.Size = new System.Drawing.Size(184, 70);
+            this.btnBizSettlement.TabIndex = 27;
+            this.btnBizSettlement.TabStop = false;
+            this.btnBizSettlement.Text = "정산";
+            this.btnBizSettlement.UseVisualStyleBackColor = false;
+            this.btnBizSettlement.Click += new System.EventHandler(this.btnBizSettlement_Click);
             // 
             // btnBizOpen
             // 
@@ -401,7 +401,7 @@
         private System.Windows.Forms.Button btnKeyClear;
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnBizOpen;
-        private System.Windows.Forms.Button btnBizClose;
+        private System.Windows.Forms.Button btnBizSettlement;
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;

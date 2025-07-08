@@ -19,7 +19,7 @@ using static thepos.thePos;
 
 namespace thepos
 {
-    public partial class frmBizClose : Form
+    public partial class frmBizSettlement : Form
     {
         int cash_cnt = 0;
         int card_cnt = 0;
@@ -45,7 +45,7 @@ namespace thepos
         int net_amount = 0;
 
 
-        public frmBizClose()
+        public frmBizSettlement()
         {
             InitializeComponent();
 

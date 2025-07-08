@@ -131,14 +131,14 @@ namespace thepos
 
 
         // 마감정산
-        private void btnBizClose_Click(object sender, EventArgs e)
+        private void btnBizSettlement_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizClose") return;
 
             mThisButtonClick = "BizClose";
             panelBiz.Controls.Clear();
 
-            frmBizClose fBiz = new frmBizClose() { TopLevel = false, TopMost = true };
+            frmBizSettlement fBiz = new frmBizSettlement() { TopLevel = false, TopMost = true };
             panelBiz.Controls.Add(fBiz);
             fBiz.Show();
         }

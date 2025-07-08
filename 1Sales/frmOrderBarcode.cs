@@ -57,6 +57,8 @@ namespace thepos
 
             String t_bar_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(bar_code)].Text;
 
+            //
+            thepos_app_log(2, this.Name, "바코드상품선택", "barcode=" + t_bar_code);
 
             order_goods_barcode(t_bar_code);
         }
