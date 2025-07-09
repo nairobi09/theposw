@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReports));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReportMonthCard = new System.Windows.Forms.Button();
+            this.btnReportDayCard = new System.Windows.Forms.Button();
             this.btnReportMonthShop = new System.Windows.Forms.Button();
             this.btnReportAllim = new System.Windows.Forms.Button();
             this.btnReportCoupon = new System.Windows.Forms.Button();
@@ -53,6 +55,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnReportMonthCard);
+            this.panel1.Controls.Add(this.btnReportDayCard);
             this.panel1.Controls.Add(this.btnReportMonthShop);
             this.panel1.Controls.Add(this.btnReportAllim);
             this.panel1.Controls.Add(this.btnReportCoupon);
@@ -68,6 +72,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(207, 700);
             this.panel1.TabIndex = 38;
+            // 
+            // btnReportMonthCard
+            // 
+            this.btnReportMonthCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportMonthCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportMonthCard.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnReportMonthCard.ForeColor = System.Drawing.Color.White;
+            this.btnReportMonthCard.Location = new System.Drawing.Point(123, 340);
+            this.btnReportMonthCard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportMonthCard.Name = "btnReportMonthCard";
+            this.btnReportMonthCard.Size = new System.Drawing.Size(79, 80);
+            this.btnReportMonthCard.TabIndex = 33;
+            this.btnReportMonthCard.TabStop = false;
+            this.btnReportMonthCard.Text = "카드사별\r\n(월별)";
+            this.btnReportMonthCard.UseVisualStyleBackColor = false;
+            this.btnReportMonthCard.Click += new System.EventHandler(this.btnReportMonthCard_Click);
+            // 
+            // btnReportDayCard
+            // 
+            this.btnReportDayCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnReportDayCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportDayCard.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnReportDayCard.ForeColor = System.Drawing.Color.White;
+            this.btnReportDayCard.Location = new System.Drawing.Point(0, 340);
+            this.btnReportDayCard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReportDayCard.Name = "btnReportDayCard";
+            this.btnReportDayCard.Size = new System.Drawing.Size(120, 80);
+            this.btnReportDayCard.TabIndex = 32;
+            this.btnReportDayCard.TabStop = false;
+            this.btnReportDayCard.Text = "카드사별 매출\r\n(일별)";
+            this.btnReportDayCard.UseVisualStyleBackColor = false;
+            this.btnReportDayCard.Click += new System.EventHandler(this.btnReportDayCard_Click);
             // 
             // btnReportMonthShop
             // 
@@ -91,7 +127,7 @@
             this.btnReportAllim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportAllim.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportAllim.ForeColor = System.Drawing.Color.White;
-            this.btnReportAllim.Location = new System.Drawing.Point(123, 340);
+            this.btnReportAllim.Location = new System.Drawing.Point(123, 424);
             this.btnReportAllim.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportAllim.Name = "btnReportAllim";
             this.btnReportAllim.Size = new System.Drawing.Size(79, 80);
@@ -107,7 +143,7 @@
             this.btnReportCoupon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportCoupon.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnReportCoupon.ForeColor = System.Drawing.Color.White;
-            this.btnReportCoupon.Location = new System.Drawing.Point(0, 340);
+            this.btnReportCoupon.Location = new System.Drawing.Point(0, 424);
             this.btnReportCoupon.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReportCoupon.Name = "btnReportCoupon";
             this.btnReportCoupon.Size = new System.Drawing.Size(120, 80);
@@ -326,5 +362,7 @@
         private System.Windows.Forms.Button btnReportAllim;
         private System.Windows.Forms.Button btnReportCoupon;
         private System.Windows.Forms.Button btnReportShopOreder;
+        private System.Windows.Forms.Button btnReportMonthCard;
+        private System.Windows.Forms.Button btnReportDayCard;
     }
 }

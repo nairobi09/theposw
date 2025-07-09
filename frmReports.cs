@@ -161,6 +161,28 @@ namespace thepos
             fBiz.Show();
         }
 
+        private void btnReportDayCard_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayCard") return;
 
+            mThisButtonClick = "DayCard";
+            panelReport.Controls.Clear();
+
+            frmReportDayCard fBiz = new frmReportDayCard() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportMonthCard_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "MonthCard") return;
+
+            mThisButtonClick = "MonthCard";
+            panelReport.Controls.Clear();
+
+            frmReportMonthCard fBiz = new frmReportMonthCard() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
     }
 }

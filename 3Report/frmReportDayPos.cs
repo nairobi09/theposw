@@ -89,13 +89,6 @@ namespace thepos
                         Item.SubItems.Add(cert_amt.ToString("N0"));
 
 
-                        Item.ForeColor = Color.Gray;
-                        Item.SubItems[1].ForeColor = Color.Gray;
-                        Item.SubItems[2].ForeColor = Color.Gray;
-                        Item.SubItems[3].ForeColor = Color.Gray;
-                        Item.SubItems[4].ForeColor = Color.Gray;
-                        Item.SubItems[5].ForeColor = Color.Gray;
-
                         lvwList.Items.Add(Item);
 
                         tot_net_amt += net_amt;

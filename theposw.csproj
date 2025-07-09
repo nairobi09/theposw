@@ -259,6 +259,18 @@
     <Compile Include="1Sales\frmAllimCP.Designer.cs">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
     </Compile>
+    <Compile Include="3Report\frmReportMonthCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportMonthCard.Designer.cs">
+      <DependentUpon>frmReportMonthCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportDayCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportDayCard.Designer.cs">
+      <DependentUpon>frmReportDayCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="3Report\frmReportMonthShop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -662,6 +674,12 @@
     <EmbeddedResource Include="1Sales\frmAllimOR.resx">
       <DependentUpon>frmAllimOR.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportMonthCard.resx">
+      <DependentUpon>frmReportMonthCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportDayCard.resx">
+      <DependentUpon>frmReportDayCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportMonthShop.resx">
       <DependentUpon>frmReportMonthShop.cs</DependentUpon>
