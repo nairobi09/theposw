@@ -1388,7 +1388,7 @@ namespace thepos
                     //string responseString = responseContent.ReadAsStringAsync().Result;
 
                 }
-                catch (Exception e)
+                catch
                 {
                     //
                 }
