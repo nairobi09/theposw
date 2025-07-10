@@ -1312,11 +1312,14 @@ namespace thepos
                         parameters["payClass"] = pCertAuth.pay_class;
                         parameters["ticketNo"] = pCertAuth.ticket_no;
                         parameters["paySeq"] = pCertAuth.pay_seq + "";
-                        parameters["tranDate"] = pCertCancel.tran_date;
+                        parameters["tranDate"] = pCertAuth.tran_date; //?
                         parameters["amount"] = pCertAuth.amount + "";
                         parameters["couponNo"] = pCertAuth.coupon_no;
                         parameters["isCancel"] = "Y";
                         parameters["vanCode"] = pCertAuth.van_code;
+                        parameters["couponLinkNo"] = pCertAuth.coupon_link_no;  //?
+                        parameters["cnt"] = pCertAuth.cnt + "";  //?
+
 
                         if (mRequestPost("paymentCert", parameters))
                         {
@@ -1326,13 +1329,15 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류 paymentEasy\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                thepos_app_log(3, this.Name, "mRequestPost()", "오류 paymentCert " + mObj["resultMsg"].ToString());
+                                MessageBox.Show("오류 paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
                                 return;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("시스템오류 paymentEasy\n\n" + mErrorMsg, "thepos");
+                            thepos_app_log(3, this.Name, "mRequestPost()", "시스템오류 paymentCert " + mErrorMsg);
+                            MessageBox.Show("시스템오류 paymentCert\n\n" + mErrorMsg, "thepos");
                             return;
                         }
 

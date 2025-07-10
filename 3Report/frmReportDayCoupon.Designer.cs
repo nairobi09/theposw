@@ -1,6 +1,6 @@
 ﻿namespace thepos._1Sales
 {
-    partial class frmReportCoupon
+    partial class frmReportDayCoupon
     {
         /// <summary>
         /// Required designer variable.
@@ -163,7 +163,7 @@
             this.btnSaveExcel.UseVisualStyleBackColor = false;
             this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
             // 
-            // frmReportCoupon
+            // frmReportDayCoupon
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
@@ -174,8 +174,8 @@
             this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmReportCoupon";
-            this.Text = "frmReportCoupon";
+            this.Name = "frmReportDayCoupon";
+            this.Text = "frmReportDayCoupon";
             this.ResumeLayout(false);
             this.PerformLayout();
 

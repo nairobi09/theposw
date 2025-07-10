@@ -137,17 +137,6 @@ namespace thepos
             fBiz.Show();
         }
 
-        private void btnReportCoupon_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "CouponCert") return;
-
-            mThisButtonClick = "CouponCert";
-            panelReport.Controls.Clear();
-
-            frmReportCoupon fBiz = new frmReportCoupon() { TopLevel = false, TopMost = true };
-            panelReport.Controls.Add(fBiz);
-            fBiz.Show();
-        }
 
         private void btnReportAllim_Click(object sender, EventArgs e)
         {
@@ -181,6 +170,30 @@ namespace thepos
             panelReport.Controls.Clear();
 
             frmReportMonthCard fBiz = new frmReportMonthCard() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportDayCoupon_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayCoupon") return;
+
+            mThisButtonClick = "DayCoupon";
+            panelReport.Controls.Clear();
+
+            frmReportDayCoupon fBiz = new frmReportDayCoupon() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
+
+        private void btnReportMonthCoupon_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "MonthCoupon") return;
+
+            mThisButtonClick = "MonthCoupon";
+            panelReport.Controls.Clear();
+
+            frmReportMonthCoupon fBiz = new frmReportMonthCoupon() { TopLevel = false, TopMost = true };
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }

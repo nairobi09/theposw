@@ -37,12 +37,12 @@
             this.c06 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c07 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c08 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.c11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.c33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
-            this.c11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lvwList
@@ -118,6 +118,12 @@
             this.c08.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.c08.Width = 75;
             // 
+            // c11
+            // 
+            this.c11.Text = "NH농협";
+            this.c11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.c11.Width = 70;
+            // 
             // c17
             // 
             this.c17.Text = "우리";
@@ -149,12 +155,12 @@
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.lblReportTitle.Location = new System.Drawing.Point(25, 33);
+            this.lblReportTitle.Location = new System.Drawing.Point(25, 27);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(176, 14);
+            this.lblReportTitle.Size = new System.Drawing.Size(176, 28);
             this.lblReportTitle.TabIndex = 85;
-            this.lblReportTitle.Text = "일별 카드사별 포스별 매출";
-            this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblReportTitle.Text = "일별 카드사별 포스별 매출\r\n(매입사 기준)";
+            this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dtpBizDate
             // 
@@ -165,12 +171,6 @@
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 88;
-            // 
-            // c11
-            // 
-            this.c11.Text = "NH농협";
-            this.c11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.c11.Width = 70;
             // 
             // frmReportDayCard
             // 

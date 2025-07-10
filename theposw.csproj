@@ -241,11 +241,11 @@
     <Compile Include="3Report\frmReportAllim.Designer.cs">
       <DependentUpon>frmReportAllim.cs</DependentUpon>
     </Compile>
-    <Compile Include="3Report\frmReportCoupon.cs">
+    <Compile Include="3Report\frmReportDayCoupon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="3Report\frmReportCoupon.Designer.cs">
-      <DependentUpon>frmReportCoupon.cs</DependentUpon>
+    <Compile Include="3Report\frmReportDayCoupon.Designer.cs">
+      <DependentUpon>frmReportDayCoupon.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmAllimOR.cs">
       <SubType>Form</SubType>
@@ -258,6 +258,12 @@
     </Compile>
     <Compile Include="1Sales\frmAllimCP.Designer.cs">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="3Report\frmReportMonthCoupon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="3Report\frmReportMonthCoupon.Designer.cs">
+      <DependentUpon>frmReportMonthCoupon.cs</DependentUpon>
     </Compile>
     <Compile Include="3Report\frmReportMonthCard.cs">
       <SubType>Form</SubType>
@@ -668,12 +674,15 @@
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="3Report\frmReportCoupon.resx">
-      <DependentUpon>frmReportCoupon.cs</DependentUpon>
+    <EmbeddedResource Include="3Report\frmReportDayCoupon.resx">
+      <DependentUpon>frmReportDayCoupon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmAllimOR.resx">
       <DependentUpon>frmAllimOR.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="3Report\frmReportMonthCoupon.resx">
+      <DependentUpon>frmReportMonthCoupon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportMonthCard.resx">
       <DependentUpon>frmReportMonthCard.cs</DependentUpon>

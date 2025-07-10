@@ -16,11 +16,11 @@ using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace thepos._1Sales
 {
-    public partial class frmReportCoupon : Form
+    public partial class frmReportDayCoupon : Form
     {
         String thisBizDt = "";
 
-        public frmReportCoupon()
+        public frmReportDayCoupon()
         {
             InitializeComponent();
             initialize_the();
