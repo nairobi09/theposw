@@ -378,7 +378,6 @@ namespace thepos
                         {
                             //
                             thepos_app_log(3, this.Name, "btnCancel_Click()", "결제자료 오류. paymentCard");
-
                             MessageBox.Show("결제자료 오류. paymentCard\n\n", "thepos");
                             return;
                         }
@@ -387,7 +386,6 @@ namespace thepos
                     {
                         //
                         thepos_app_log(3, this.Name, "btnCancel_Click()", "결제자료 오류. paymentCard" + mObj["resultMsg"].ToString());
-
                         MessageBox.Show("결제자료 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
@@ -396,7 +394,6 @@ namespace thepos
                 {
                     //
                     thepos_app_log(3, this.Name, "btnCancel_Click()", "시스템오류. paymentCard\n\n" + mErrorMsg);
-
                     MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
                     return;
                 }
@@ -1194,12 +1191,14 @@ namespace thepos
                         }
                         else
                         {
+                            thepos_app_log(3, this.Name, "mRequestPatch()", "오류. paymentPoint\n\n" + mObj["resultMsg"].ToString());
                             MessageBox.Show("오류. paymentPoint\n\n" + mObj["resultMsg"].ToString(), "thepos");
                             return;
                         }
                     }
                     else
                     {
+                        thepos_app_log(3, this.Name, "mRequestPatch()", "시스템오류. paymentPoint\n\n" + mErrorMsg);
                         MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
                         return;
                     }
@@ -1257,20 +1256,23 @@ namespace thepos
                         }
                         else
                         {
+                            thepos_app_log(3, this.Name, "mRequestGet()", "결제자료 오류. paymentCert");
                             MessageBox.Show("결제자료 오류. paymentCert\n\n", "thepos");
-                            return;
+                            //return;
                         }
                     }
                     else
                     {
+                        thepos_app_log(3, this.Name, "mRequestGet()", "결제자료 오류. paymentCert " + mObj["resultMsg"].ToString());
                         MessageBox.Show("결제자료 오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
+                        //return;
                     }
                 }
                 else
                 {
+                    thepos_app_log(3, this.Name, "mRequestGet()", "시스템오류. paymentCert\n\n" + mErrorMsg);
                     MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
-                    return;
+                    //return;
                 }
 
 

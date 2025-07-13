@@ -102,7 +102,7 @@ namespace thepos
                             }
                         }
 
-                        ListViewItem tItem = new ListViewItem(tdate.Substring(8,2));
+                        ListViewItem tItem = new ListViewItem(tdate.Substring(8, 2));
                         tItem.SubItems.Add(net_amount.ToString("N0"));
 
                         for (int k = 0; k < card_code.Length; k++)
@@ -128,17 +128,8 @@ namespace thepos
 
                     lvwList.Items.Add(sItem);
 
-
                 }
             }
-
-                
-            
-            
-            
-            //
-
-
 
         }
 
@@ -160,6 +151,28 @@ namespace thepos
 
             lblYYYYMM.Text = NextMonth.ToString("yyyy-MM");
 
+        }
+
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            if (lvwList.Items.Count == 0)
+            {
+                return;
+            }
+
+            //
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.FileName = "TP_" + mSiteAlias + "_" + "월간 카드사별 매출" + "_" + lblYYYYMM.Text + ".xlsx";
+                sfd.Filter = "Excel Files|*.xlsx";
+                sfd.Title = "Save Excel File";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportListViewToExcel(lvwList, sfd.FileName, lblYYYYMM.Text);
+                    MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

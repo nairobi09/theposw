@@ -28,28 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cbShop = new System.Windows.Forms.ComboBox();
             this.btnView = new System.Windows.Forms.Button();
             this.lvwList = new System.Windows.Forms.ListView();
-            this.dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_order_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.allim_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tel_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.order_detail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
+            this.mm_dd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblReportTitle = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.lblYYYYMM = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // cbShop
-            // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(377, 27);
-            this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(92, 24);
-            this.cbShop.TabIndex = 98;
-            this.cbShop.TabStop = false;
             // 
             // btnView
             // 
@@ -57,7 +44,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(475, 25);
+            this.btnView.Location = new System.Drawing.Point(680, 28);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 97;
@@ -68,12 +55,8 @@
             // lvwList
             // 
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.dt,
-            this.shop_order_no,
-            this.allim_type,
-            this.tel_no,
-            this.shop_name,
-            this.order_detail});
+            this.mm_dd,
+            this.cnt});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.GridLines = true;
@@ -87,44 +70,16 @@
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
             // 
-            // dt
+            // mm_dd
             // 
-            this.dt.Text = "일시";
-            this.dt.Width = 70;
+            this.mm_dd.Text = "일시";
+            this.mm_dd.Width = 40;
             // 
-            // shop_order_no
+            // cnt
             // 
-            this.shop_order_no.Text = "주문번호";
-            this.shop_order_no.Width = 70;
-            // 
-            // allim_type
-            // 
-            this.allim_type.Text = "타입";
-            // 
-            // tel_no
-            // 
-            this.tel_no.Text = "발송번호";
-            this.tel_no.Width = 100;
-            // 
-            // shop_name
-            // 
-            this.shop_name.Text = "업장";
-            this.shop_name.Width = 110;
-            // 
-            // order_detail
-            // 
-            this.order_detail.Text = "주문상세";
-            this.order_detail.Width = 320;
-            // 
-            // dtpBizDate
-            // 
-            this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(261, 27);
-            this.dtpBizDate.Name = "dtpBizDate";
-            this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
-            this.dtpBizDate.TabIndex = 96;
+            this.cnt.Text = "발송수량";
+            this.cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.cnt.Width = 80;
             // 
             // lblReportTitle
             // 
@@ -133,19 +88,62 @@
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblReportTitle.Location = new System.Drawing.Point(25, 34);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(35, 14);
+            this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
             this.lblReportTitle.TabIndex = 95;
-            this.lblReportTitle.Text = "알림";
+            this.lblReportTitle.Text = "알림발송내역";
             this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.White;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnNext.Location = new System.Drawing.Point(463, 28);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
+            this.btnNext.TabIndex = 112;
+            this.btnNext.TabStop = false;
+            this.btnNext.Text = "▶";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.BackColor = System.Drawing.Color.White;
+            this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrev.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnPrev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnPrev.Location = new System.Drawing.Point(329, 28);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(30, 27);
+            this.btnPrev.TabIndex = 111;
+            this.btnPrev.TabStop = false;
+            this.btnPrev.Text = "◀";
+            this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // lblYYYYMM
+            // 
+            this.lblYYYYMM.BackColor = System.Drawing.Color.White;
+            this.lblYYYYMM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblYYYYMM.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblYYYYMM.Location = new System.Drawing.Point(361, 28);
+            this.lblYYYYMM.Name = "lblYYYYMM";
+            this.lblYYYYMM.Size = new System.Drawing.Size(100, 27);
+            this.lblYYYYMM.TabIndex = 110;
+            this.lblYYYYMM.Text = "2023-10";
+            this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmReportAllim
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
-            this.Controls.Add(this.cbShop);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.btnPrev);
+            this.Controls.Add(this.lblYYYYMM);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lblReportTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportAllim";
@@ -156,17 +154,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ListView lvwList;
-        private System.Windows.Forms.ColumnHeader shop_order_no;
-        private System.Windows.Forms.ColumnHeader dt;
-        private System.Windows.Forms.ColumnHeader tel_no;
-        private System.Windows.Forms.ColumnHeader shop_name;
-        private System.Windows.Forms.ColumnHeader allim_type;
-        private System.Windows.Forms.DateTimePicker dtpBizDate;
+        private System.Windows.Forms.ColumnHeader cnt;
+        private System.Windows.Forms.ColumnHeader mm_dd;
         private System.Windows.Forms.Label lblReportTitle;
-        private System.Windows.Forms.ColumnHeader order_detail;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label lblYYYYMM;
     }
 }

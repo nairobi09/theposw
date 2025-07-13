@@ -166,9 +166,28 @@ namespace thepos
 
             lvwList.Items.Add(sItem);
 
+        }
 
+        private void btnSaveExcel_Click(object sender, EventArgs e)
+        {
+            if (lvwList.Items.Count == 0)
+            {
+                return;
+            }
 
+            //
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.FileName = "TP_" + mSiteAlias + "_" + "일별 카드사별 포스별 매출" + "_" + dtpBizDate + ".xlsx";
+                sfd.Filter = "Excel Files|*.xlsx";
+                sfd.Title = "Save Excel File";
 
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    ExportListViewToExcel(lvwList, sfd.FileName, dtpBizDate.Text);
+                    MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

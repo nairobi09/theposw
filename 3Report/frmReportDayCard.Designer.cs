@@ -43,6 +43,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
+            this.btnSaveExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvwList
@@ -142,7 +143,7 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(660, 25);
+            this.btnView.Location = new System.Drawing.Point(618, 25);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 86;
@@ -172,10 +173,25 @@
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 88;
             // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.BackColor = System.Drawing.Color.White;
+            this.btnSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveExcel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSaveExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnSaveExcel.Location = new System.Drawing.Point(729, 25);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(57, 27);
+            this.btnSaveExcel.TabIndex = 111;
+            this.btnSaveExcel.Text = "엑셀";
+            this.btnSaveExcel.UseVisualStyleBackColor = false;
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            // 
             // frmReportDayCard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.lvwList);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.lblReportTitle);
@@ -205,5 +221,6 @@
         private System.Windows.Forms.ColumnHeader c17;
         private System.Windows.Forms.ColumnHeader c33;
         private System.Windows.Forms.ColumnHeader c11;
+        private System.Windows.Forms.Button btnSaveExcel;
     }
 }

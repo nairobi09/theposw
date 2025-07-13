@@ -303,55 +303,12 @@ namespace thepos
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    ExportListViewToExcel(lvwList, sfd.FileName);
+                    ExportListViewToExcel(lvwList, sfd.FileName, d_str);
                     MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-
-        private void ExportListViewToExcel(ListView listView, string filePath)
-        {
-
-            var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(d_str);
-
-            // 헤더 작성
-            for (int col = 0; col < listView.Columns.Count; col++)
-            {
-                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
-            }
-
-            // 데이터 작성
-            for (int row = 0; row < listView.Items.Count; row++)
-            {
-                for (int col = 0; col < listView.Columns.Count; col++)
-                {
-                    //worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
-
-                    string text = listView.Items[row].SubItems[col].Text;
-
-                    // 콤마 제거 후 숫자인 경우 숫자로 저장
-                    if (double.TryParse(text.Replace(",", ""), out double number))
-                    {
-                        worksheet.Cell(row + 2, col + 1).Value = number;
-                    }
-                    else
-                    {
-                        worksheet.Cell(row + 2, col + 1).Value = text; // 숫자가 아닌 경우 문자열로 저장
-                    }
-                }
-
-                for (int col = 0; col < listView.Columns.Count; col++)
-                {
-                    System.Drawing.Color foreColor = listView.Items[row].SubItems[col].ForeColor;
-                    worksheet.Cell(row + 2, col + 1).Style.Font.FontColor = XLColor.FromColor(foreColor);
-                }
-            }
-
-            // 파일 저장
-            workbook.SaveAs(filePath);
-        }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {

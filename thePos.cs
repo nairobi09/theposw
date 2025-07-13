@@ -1,22 +1,23 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ClosedXML.Excel;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PrinterUtility;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net;
-using System.Security.Policy;
-using System.Collections;
-using System.IO;
 using static BrightIdeasSoftware.ObjectListView;
 
 /* 
@@ -1028,6 +1029,19 @@ namespace thepos
         }
 
 
+        public static String get_goods_name_by_coupon_link_no(String link_no)
+        {
+            for (int i = 0; i < mGoodsList.Count; i++)
+            {
+                if (mGoodsList[i].coupon_link_no == link_no)
+                {
+                    return mGoodsList[i].goods_name;
+                }
+            }
+
+            return link_no;
+        }
+
         public static String get_option_template_name(String template_id)
         {
 
@@ -1393,6 +1407,50 @@ namespace thepos
                     //
                 }
             }
+        }
+
+        public static void ExportListViewToExcel(ListView listView, string filePath, string sheetName)
+        {
+
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add(sheetName);
+
+            // 헤더 작성
+            for (int col = 0; col < listView.Columns.Count; col++)
+            {
+                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
+            }
+
+            // 데이터 작성
+            for (int row = 0; row < listView.Items.Count; row++)
+            {
+                for (int col = 0; col < listView.Columns.Count; col++)
+                {
+                    //worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
+
+
+                    string text = listView.Items[row].SubItems[col].Text;
+
+                    // 콤마 제거 후 숫자인 경우 숫자로 저장
+                    if (double.TryParse(text.Replace(",", ""), out double number))
+                    {
+                        worksheet.Cell(row + 2, col + 1).Value = number;
+                    }
+                    else
+                    {
+                        worksheet.Cell(row + 2, col + 1).Value = text; // 숫자가 아닌 경우 문자열로 저장
+                    }
+                }
+
+                for (int col = 0; col < listView.Columns.Count; col++)
+                {
+                    System.Drawing.Color foreColor = listView.Items[row].SubItems[col].ForeColor;
+                    worksheet.Cell(row + 2, col + 1).Style.Font.FontColor = XLColor.FromColor(foreColor);
+                }
+            }
+
+            // 파일 저장
+            workbook.SaveAs(filePath);
         }
     }
 }

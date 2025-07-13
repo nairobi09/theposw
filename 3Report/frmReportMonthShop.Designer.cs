@@ -109,7 +109,7 @@
             this.btnSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveExcel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnSaveExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnSaveExcel.Location = new System.Drawing.Point(723, 25);
+            this.btnSaveExcel.Location = new System.Drawing.Point(720, 25);
             this.btnSaveExcel.Name = "btnSaveExcel";
             this.btnSaveExcel.Size = new System.Drawing.Size(57, 27);
             this.btnSaveExcel.TabIndex = 102;

@@ -30,20 +30,19 @@
         {
             this.lvwList = new System.Windows.Forms.ListView();
             this.mm_dd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.net_amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnView = new System.Windows.Forms.Button();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
             this.lblYYYYMM = new System.Windows.Forms.Label();
+            this.btnSaveExcel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvwList
             // 
             this.lvwList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.mm_dd,
-            this.net_amount});
-            this.lvwList.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.mm_dd});
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.GridLines = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwList.HideSelection = false;
@@ -60,19 +59,13 @@
             this.mm_dd.Text = "일자";
             this.mm_dd.Width = 40;
             // 
-            // net_amount
-            // 
-            this.net_amount.Text = "매출금액";
-            this.net_amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.net_amount.Width = 80;
-            // 
             // btnView
             // 
             this.btnView.BackColor = System.Drawing.Color.White;
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
-            this.btnView.Location = new System.Drawing.Point(660, 25);
+            this.btnView.Location = new System.Drawing.Point(619, 25);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(100, 27);
             this.btnView.TabIndex = 86;
@@ -134,10 +127,25 @@
             this.lblYYYYMM.Text = "2023-10";
             this.lblYYYYMM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnSaveExcel
+            // 
+            this.btnSaveExcel.BackColor = System.Drawing.Color.White;
+            this.btnSaveExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveExcel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSaveExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
+            this.btnSaveExcel.Location = new System.Drawing.Point(731, 25);
+            this.btnSaveExcel.Name = "btnSaveExcel";
+            this.btnSaveExcel.Size = new System.Drawing.Size(57, 27);
+            this.btnSaveExcel.TabIndex = 110;
+            this.btnSaveExcel.Text = "엑셀";
+            this.btnSaveExcel.UseVisualStyleBackColor = false;
+            this.btnSaveExcel.Click += new System.EventHandler(this.btnSaveExcel_Click);
+            // 
             // frmReportMonthCoupon
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 700);
+            this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrev);
             this.Controls.Add(this.lblYYYYMM);
@@ -156,11 +164,11 @@
 
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader mm_dd;
-        private System.Windows.Forms.ColumnHeader net_amount;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblReportTitle;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrev;
         private System.Windows.Forms.Label lblYYYYMM;
+        private System.Windows.Forms.Button btnSaveExcel;
     }
 }

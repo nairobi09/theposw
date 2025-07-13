@@ -31,7 +31,6 @@
             this.btnView = new System.Windows.Forms.Button();
             this.dtpBizDate = new System.Windows.Forms.DateTimePicker();
             this.lblReportTitle = new System.Windows.Forms.Label();
-            this.cbCoupon = new System.Windows.Forms.ComboBox();
             this.lvwList = new System.Windows.Forms.ListView();
             this.issuer = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.coupon_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,7 +62,7 @@
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(388, 27);
+            this.dtpBizDate.Location = new System.Drawing.Point(352, 27);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(110, 23);
             this.dtpBizDate.TabIndex = 96;
@@ -75,20 +74,10 @@
             this.lblReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.lblReportTitle.Location = new System.Drawing.Point(25, 34);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblReportTitle.Size = new System.Drawing.Size(124, 14);
             this.lblReportTitle.TabIndex = 95;
-            this.lblReportTitle.Text = "쿠폰사용내역";
+            this.lblReportTitle.Text = "일별 쿠폰사용내역";
             this.lblReportTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cbCoupon
-            // 
-            this.cbCoupon.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbCoupon.FormattingEnabled = true;
-            this.cbCoupon.Location = new System.Drawing.Point(225, 27);
-            this.cbCoupon.Name = "cbCoupon";
-            this.cbCoupon.Size = new System.Drawing.Size(148, 21);
-            this.cbCoupon.TabIndex = 99;
-            this.cbCoupon.TabStop = false;
             // 
             // lvwList
             // 
@@ -169,7 +158,6 @@
             this.ClientSize = new System.Drawing.Size(800, 700);
             this.Controls.Add(this.btnSaveExcel);
             this.Controls.Add(this.lvwList);
-            this.Controls.Add(this.cbCoupon);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.dtpBizDate);
             this.Controls.Add(this.lblReportTitle);
@@ -186,7 +174,6 @@
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.DateTimePicker dtpBizDate;
         private System.Windows.Forms.Label lblReportTitle;
-        private System.Windows.Forms.ComboBox cbCoupon;
         private System.Windows.Forms.ListView lvwList;
         private System.Windows.Forms.ColumnHeader link_no;
         private System.Windows.Forms.ColumnHeader goods_name;

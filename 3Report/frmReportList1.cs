@@ -379,9 +379,6 @@ namespace thepos
                 return;
             }
 
-
-            
-
             //
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
@@ -391,35 +388,11 @@ namespace thepos
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    ExportListViewToExcel(lvwList, sfd.FileName);
+                    ExportListViewToExcel(lvwList, sfd.FileName, lblYYYYMM.Text);
                     MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        private void ExportListViewToExcel(ListView listView, string filePath)
-        {
-            
-            var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(tvwList.SelectedNode.Text);
-
-            // 헤더 작성
-            for (int col = 0; col < listView.Columns.Count; col++)
-            {
-                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
-            }
-
-            // 데이터 작성
-            for (int row = 0; row < listView.Items.Count; row++)
-            {
-                for (int col = 0; col < listView.Columns.Count; col++)
-                {
-                    worksheet.Cell(row + 2, col + 1).Value = listView.Items[row].SubItems[col].Text;
-                }
-            }
-
-            // 파일 저장
-            workbook.SaveAs(filePath);
-        }
     }
 }

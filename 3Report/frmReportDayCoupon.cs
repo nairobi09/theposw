@@ -32,9 +32,6 @@ namespace thepos._1Sales
         {
             dtpBizDate.Value = DateTime.Now;
 
-            cbCoupon.Items.Clear();
-            cbCoupon.Items.Add("테이블매니저");
-            cbCoupon.SelectedIndex = 0;
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -135,59 +132,18 @@ namespace thepos._1Sales
             //
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                sfd.FileName = "TM_" + mSiteAlias + "_" + dtpBizDate.Text + ".xlsx";
+                sfd.FileName = "TM_" + mSiteAlias + "_" + "일별 쿠폰사용내역" + "_" + dtpBizDate.Text + ".xlsx";
                 sfd.Filter = "Excel Files|*.xlsx";
                 sfd.Title = "Save Excel File";
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    ExportListViewToExcel(lvwList, sfd.FileName);
+                    ExportListViewToExcel(lvwList, sfd.FileName, dtpBizDate.Text);
                     MessageBox.Show("엑셀 파일로 저장되었습니다.", "완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        private void ExportListViewToExcel(ListView listView, string filePath)
-        {
-            
-            var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(dtpBizDate.Text);
-
-            // 헤더 작성
-            for (int col = 0; col < listView.Columns.Count; col++)
-            {
-                worksheet.Cell(1, col + 1).Value = listView.Columns[col].Text;
-            }
-
-            // 데이터 작성
-            for (int row = 0; row < listView.Items.Count; row++)
-            {
-
-                worksheet.Cell(row + 2, 1).Value = listView.Items[row].SubItems[0].Text;
-                worksheet.Cell(row + 2, 2).Value = listView.Items[row].SubItems[1].Text;
-                worksheet.Cell(row + 2, 3).Value = listView.Items[row].SubItems[2].Text;
-                worksheet.Cell(row + 2, 4).Value = listView.Items[row].SubItems[3].Text;
-
-                double.TryParse(listView.Items[row].SubItems[4].Text.Replace(",", ""), out double number1);
-                worksheet.Cell(row + 2, 5).Value = number1;
-
-                double.TryParse(listView.Items[row].SubItems[5].Text.Replace(",", ""), out double number2);
-                worksheet.Cell(row + 2, 6).Value = number2;
-
-                worksheet.Cell(row + 2, 7).Value = listView.Items[row].SubItems[6].Text;
-
-
-                for (int col = 0; col < listView.Columns.Count; col++)
-                {
-                    System.Drawing.Color foreColor = listView.Items[row].SubItems[col].ForeColor;
-                    worksheet.Cell(row + 2, col + 1).Style.Font.FontColor = XLColor.FromColor(foreColor);
-                }
-
-            }
-
-            // 파일 저장
-            workbook.SaveAs(filePath);
-        }
 
     }
 }

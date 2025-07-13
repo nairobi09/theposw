@@ -14,8 +14,7 @@ namespace thepos
 {
     public partial class frmReportAllim : Form
     {
-
-        String thisBizDt = "";
+        String yyyymm = "";
 
 
         public frmReportAllim()
@@ -30,68 +29,71 @@ namespace thepos
 
         private void initialize_the()
         {
-            if (mBizDate == "")
-            {
-
-            }
-            else
-            {
-                dtpBizDate.Value = new DateTime(convert_number(mBizDate.Substring(0, 4)), convert_number(mBizDate.Substring(4, 2)), convert_number(mBizDate.Substring(6, 2)));
-            }
-
-
-            cbShop.Items.Clear();
-            for (int i = 0; i < mShop.Length; i++)
-            {
-                cbShop.Items.Add(mShop[i].shop_name);
-            }
-            cbShop.SelectedIndex = 0;
+            String yyyymm = get_today_date().Substring(0, 6);
+            lblYYYYMM.Text = yyyymm.Substring(0, 4) + "-" + yyyymm.Substring(4, 2);
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            thisBizDt = dtpBizDate.Value.ToString("yyyyMMdd");
-
-            String shop_code = "";
-
-            if (cbShop.SelectedIndex > 0)
-            {
-                shop_code = mShop[cbShop.SelectedIndex].shop_code;
-            }
+            yyyymm = lblYYYYMM.Text.Replace("-", ""); ;
 
             lvwList.Items.Clear();
 
 
-            String sUrl = "allim?siteId=" + mSiteId + "&bizDt=" + thisBizDt + "&shopCode=" + shop_code;
+            load_data();
+        }
+
+
+        private void load_data()
+        {
+            int sum_cnt = 0;
+
+            String sUrl = "reportMonthAllim?siteId=" + mSiteId + "&bizDtMon=" + yyyymm;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["allims"].ToString();
+                    String data = mObj["dailyAllim"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        ListViewItem Item = new ListViewItem();
-                        Item.Text = arr[i]["orderTime"].ToString();
-                        Item.SubItems.Add(arr[i]["orderNo"].ToString());
-                        Item.SubItems.Add(arr[i]["allimType"].ToString());
-                        Item.SubItems.Add(arr[i]["allimTelNo"].ToString());
-                        Item.SubItems.Add(get_shop_name(arr[i]["shopCode"].ToString()));
-                        Item.SubItems.Add(arr[i]["orderDetail"].ToString());
+                        String tdate = arr[i]["bizDt"].ToString();
+                        int cnt = (int)arr[i]["cnt"];
 
-                        lvwList.Items.Add(Item);
+                        ListViewItem tItem = new ListViewItem(tdate.Substring(6, 2));
+                        tItem.SubItems.Add(cnt.ToString("N0"));
+                        lvwList.Items.Add(tItem);
+
+                        sum_cnt += cnt;
                     }
-                }
-                else
-                {
-                    MessageBox.Show(mObj["resultMsg"].ToString(), "thepos");
+
+                    //
+                    ListViewItem sItem = new ListViewItem("합계");
+                    sItem.SubItems.Add(sum_cnt.ToString("N0"));
+                    lvwList.Items.Add(sItem);
                 }
             }
-            else
-            {
-                MessageBox.Show("시스템오류. allim\n\n" + mErrorMsg, "thepos");
-            }
+        }
+
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            DateTime CurrMonth = Convert.ToDateTime(lblYYYYMM.Text + "-01");
+
+            DateTime PrevMonth = CurrMonth.AddMonths(-1);
+
+            lblYYYYMM.Text = PrevMonth.ToString("yyyy-MM");
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            DateTime CurrMonth = Convert.ToDateTime(lblYYYYMM.Text + "-01");
+
+            DateTime NextMonth = CurrMonth.AddMonths(1);
+
+            lblYYYYMM.Text = NextMonth.ToString("yyyy-MM");
+
         }
 
     }
