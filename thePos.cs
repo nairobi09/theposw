@@ -101,6 +101,7 @@ namespace thepos
         // (선불) 발권 [충전] 사용  정산
         public static String mTicketType;   //발권형태: ""미사용, "PA"선불, "PD"후불// 발권형태 : 선불형 AP-advanced payment  후불형 DP-deferred payment
         public static String mTicketMedia;  // 띠지BC   팔찌RF
+        public static String mPointType;    // PA 선불,  PD 후불
         public static String mVanCode = "";
 
 

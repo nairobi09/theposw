@@ -199,6 +199,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1Sales\frmFlowSettlementPD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="1Sales\frmFlowSettlementPD.Designer.cs">
+      <DependentUpon>frmFlowSettlementPD.cs</DependentUpon>
+    </Compile>
     <Compile Include="1Sales\frmFlowTicket.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -652,6 +658,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="1Sales\frmAllimCP.resx">
       <DependentUpon>frmAllimCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Sales\frmFlowSettlementPD.resx">
+      <DependentUpon>frmFlowSettlementPD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowTicket.resx">
       <DependentUpon>frmFlowTicket.cs</DependentUpon>

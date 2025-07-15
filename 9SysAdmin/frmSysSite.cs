@@ -21,8 +21,13 @@ namespace thepos._9SysAdmin
 
         String[] tmTicketType;
         String[] tmTicketTypeText;
+
         String[] tmTicketMedia;
         String[] tmTicketMediaText;
+
+        String[] tmPointType;
+        String[] tmPointTypeText;
+
         String[] tmVanCode;
         String[] tmCutoffType;
         String[] tmCutoffTypeText;
@@ -43,11 +48,14 @@ namespace thepos._9SysAdmin
             imgList.ImageSize = new Size(1, 32);
 
 
-            tmTicketType = new String[7] { "", "IS", "IN", "OS", "ON", "PA", "PD" };
-            tmTicketTypeText = new String[7] { "", "단순입장 [단체]", "단순입장 [개별]", "입퇴장 [단체]", "입퇴장 [개별]", "선불", "후불" };
+            tmTicketType = new String[5] { "", "IS", "IN", "OS", "ON" };
+            tmTicketTypeText = new String[5] { "", "단순입장 [단체]", "단순입장 [개별]", "입퇴장 [단체]", "입퇴장 [개별]" };
 
-            tmTicketMedia = new String[3] { "", "BC", "TG" };
-            tmTicketMediaText = new String[3] { "", "써멀|영수증", "전용|폼지"};
+            tmTicketMedia = new String[4] { "", "BC", "TG", "RF" };
+            tmTicketMediaText = new String[4] { "", "써멀|영수증", "전용|폼지", "전용|팔찌"};
+
+            tmPointType = new String[3] { "", "PA", "PD" };
+            tmPointTypeText = new String[3] { "", "선불", "후불" };
 
             tmVanCode = new String[5] {"", "NICE", "KCP", "KOVAN", "TOSS" };
 
@@ -67,6 +75,13 @@ namespace thepos._9SysAdmin
             {
                 cbTicketMedia.Items.Add(tmTicketMediaText[i]);
             }
+
+            cbPointType.Items.Clear();
+            for (int i = 0; i < tmPointTypeText.Length; i++)
+            {
+                cbPointType.Items.Add(tmPointTypeText[i]);
+            }
+
 
             cbVanCode.Items.Clear();
             for (int i = 0; i < tmVanCode.Length; i++)
@@ -128,6 +143,16 @@ namespace thepos._9SysAdmin
                             if (tmTicketMedia[i] == ticketMedia)
                             {
                                 cbTicketMedia.SelectedIndex = i;
+                            }
+                        }
+
+                        //
+                        String pointType = arr[0]["pointType"].ToString();
+                        for (int i = 0; i < tmPointType.Length; i++)
+                        {
+                            if (tmPointType[i] == pointType)
+                            {
+                                cbPointType.SelectedIndex = i;
                             }
                         }
 
@@ -237,6 +262,12 @@ namespace thepos._9SysAdmin
                 parameters["ticketMedia"] = "";
             else
                 parameters["ticketMedia"] = tmTicketMedia[cbTicketMedia.SelectedIndex];
+
+            if (cbPointType.SelectedIndex < 0)
+                parameters["pointType"] = "";
+            else
+                parameters["pointType"] = tmPointType[cbPointType.SelectedIndex];
+
 
             if (cbVanCode.SelectedIndex < 0)
                 parameters["vanCode"] = "";

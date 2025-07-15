@@ -537,6 +537,7 @@ namespace thepos
                             mBizTelNo = arr[0]["bizTelNo"].ToString();
                             mTicketType = arr[0]["ticketType"].ToString();
                             mTicketMedia = arr[0]["ticketMedia"].ToString();
+                            mPointType = arr[0]["pointType"].ToString();
                             mVanCode = arr[0]["vanCode"].ToString();
                             mCallCenterNo = arr[0]["callCenterNo"].ToString();
 

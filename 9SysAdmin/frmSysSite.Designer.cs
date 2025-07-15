@@ -44,6 +44,8 @@
             this.lblRegistNo = new System.Windows.Forms.Label();
             this.lblSiteAlias = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbPointType = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cbVanCode = new System.Windows.Forms.ComboBox();
             this.cbTicketMedia = new System.Windows.Forms.ComboBox();
             this.cbTicketType = new System.Windows.Forms.ComboBox();
@@ -252,6 +254,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbPointType);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cbVanCode);
             this.groupBox2.Controls.Add(this.cbTicketMedia);
             this.groupBox2.Controls.Add(this.cbTicketType);
@@ -262,16 +266,38 @@
             this.groupBox2.Controls.Add(this.lblTicketType);
             this.groupBox2.Location = new System.Drawing.Point(33, 241);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(465, 140);
+            this.groupBox2.Size = new System.Drawing.Size(465, 183);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
+            // 
+            // cbPointType
+            // 
+            this.cbPointType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPointType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbPointType.FormattingEnabled = true;
+            this.cbPointType.Location = new System.Drawing.Point(98, 77);
+            this.cbPointType.Name = "cbPointType";
+            this.cbPointType.Size = new System.Drawing.Size(193, 21);
+            this.cbPointType.TabIndex = 60;
+            this.cbPointType.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(13, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 14);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "포인트유형";
             // 
             // cbVanCode
             // 
             this.cbVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cbVanCode.FormattingEnabled = true;
-            this.cbVanCode.Location = new System.Drawing.Point(98, 75);
+            this.cbVanCode.Location = new System.Drawing.Point(98, 108);
             this.cbVanCode.Name = "cbVanCode";
             this.cbVanCode.Size = new System.Drawing.Size(193, 21);
             this.cbVanCode.TabIndex = 58;
@@ -303,7 +329,7 @@
             // 
             this.tbCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbCallCenter.Location = new System.Drawing.Point(98, 104);
+            this.tbCallCenter.Location = new System.Drawing.Point(98, 137);
             this.tbCallCenter.Name = "tbCallCenter";
             this.tbCallCenter.Size = new System.Drawing.Size(352, 23);
             this.tbCallCenter.TabIndex = 55;
@@ -314,7 +340,7 @@
             this.lblCallCenter.AutoSize = true;
             this.lblCallCenter.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCallCenter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCallCenter.Location = new System.Drawing.Point(13, 109);
+            this.lblCallCenter.Location = new System.Drawing.Point(13, 142);
             this.lblCallCenter.Name = "lblCallCenter";
             this.lblCallCenter.Size = new System.Drawing.Size(77, 14);
             this.lblCallCenter.TabIndex = 54;
@@ -325,7 +351,7 @@
             this.lblVanCode.AutoSize = true;
             this.lblVanCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblVanCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblVanCode.Location = new System.Drawing.Point(13, 78);
+            this.lblVanCode.Location = new System.Drawing.Point(13, 111);
             this.lblVanCode.Name = "lblVanCode";
             this.lblVanCode.Size = new System.Drawing.Size(63, 14);
             this.lblVanCode.TabIndex = 54;
@@ -358,7 +384,7 @@
             this.groupBox3.Controls.Add(this.btnX1);
             this.groupBox3.Controls.Add(this.pbBillImage);
             this.groupBox3.Controls.Add(this.lblBillImage);
-            this.groupBox3.Location = new System.Drawing.Point(34, 488);
+            this.groupBox3.Location = new System.Drawing.Point(34, 535);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(464, 102);
             this.groupBox3.TabIndex = 57;
@@ -412,7 +438,7 @@
             this.groupBox4.Controls.Add(this.tbCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffTime);
             this.groupBox4.Controls.Add(this.lblCutoffType);
-            this.groupBox4.Location = new System.Drawing.Point(32, 383);
+            this.groupBox4.Location = new System.Drawing.Point(32, 430);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(465, 102);
             this.groupBox4.TabIndex = 58;
@@ -627,5 +653,7 @@
         private System.Windows.Forms.Label lblSenderProfile;
         private System.Windows.Forms.Label lblAllimTN;
         private System.Windows.Forms.Button btnViewProfile;
+        private System.Windows.Forms.ComboBox cbPointType;
+        private System.Windows.Forms.Label label1;
     }
 }

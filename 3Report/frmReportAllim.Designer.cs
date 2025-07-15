@@ -72,7 +72,7 @@
             // 
             // mm_dd
             // 
-            this.mm_dd.Text = "일시";
+            this.mm_dd.Text = "일자";
             this.mm_dd.Width = 40;
             // 
             // cnt

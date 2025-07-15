@@ -60,7 +60,7 @@ namespace thepos
         {
             String ticketNo = tbTicketNo.Text.ToString();
 
-            if (ticketNo.Length != 22)
+            if (ticketNo.Length != 22 & ticketNo.Length != 4)
             {
                 SetDisplayAlarm("W", "티켓번호 오류");
                 return;

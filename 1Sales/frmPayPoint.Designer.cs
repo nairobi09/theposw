@@ -72,7 +72,7 @@
             this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbTicketNo.Location = new System.Drawing.Point(106, 40);
             this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(341, 23);
+            this.tbTicketNo.Size = new System.Drawing.Size(194, 23);
             this.tbTicketNo.TabIndex = 0;
             // 
             // btnRequestAuth
