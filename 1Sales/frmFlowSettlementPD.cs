@@ -99,8 +99,8 @@ namespace thepos
 
 
             String t_ticket_no = "";
-            String t_bangle_no = "";
-
+            String t_bangle_seq = "";
+            String t_entry_dt = "";
 
 
             if (mPointType != "PD") // 후불
@@ -110,16 +110,7 @@ namespace thepos
             }
 
 
-            String sUrl = "";
-
-            if (mTicketMedia == "RF")  // 팔찌
-            {
-                sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&bangleNo=" + t_no;
-            }
-            else
-            {
-                sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
-            }
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
 
             if (mRequestGet(sUrl))
             {
@@ -131,7 +122,10 @@ namespace thepos
                     if (arr.Count == 1)
                     {
                         t_ticket_no = arr[0]["ticketNo"].ToString();
-                        t_bangle_no = arr[0]["bangleNo"].ToString();
+                        t_bangle_seq = arr[0]["bangleNo"].ToString();
+
+                        // 입장시간
+                        t_entry_dt = arr[0]["entryDt"].ToString();
                     }
                 }
                 else
