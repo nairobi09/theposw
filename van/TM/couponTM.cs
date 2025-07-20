@@ -39,6 +39,8 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
+                //
+                thepos_app_log(1, "tm", "requestTmCertView()", "response=" + responseString);
                 mObj = JObject.Parse(responseString);
 
                 return 0;

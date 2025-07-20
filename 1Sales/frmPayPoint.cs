@@ -58,12 +58,32 @@ namespace thepos
 
         private void btnRequestPoint_Click(object sender, EventArgs e)
         {
-            String ticketNo = tbTicketNo.Text.ToString();
+            String tNo = tbNo.Text.ToString();
 
-            if (ticketNo.Length != 22 & ticketNo.Length != 4)
+            String ticketNo = "";
+
+
+            if (tNo.Length != 22 & tNo.Length != 4)
             {
-                SetDisplayAlarm("W", "티켓번호 오류");
+                SetDisplayAlarm("W", "식별번호 오류");
                 return;
+            }
+
+
+            if (mTicketMedia == "RF")
+            {
+                ticketNo = get_ticket_no_by_locker_no(tNo);
+
+                if (ticketNo == "")
+                {
+                    thepos_app_log(3, this.Name, "get_ticket_no_by_locker_no", "오류 티켓번호를 구할 수 없습니다. no");
+                    MessageBox.Show("오류\r\n티켓번호를 구할 수 없습니다.", "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                ticketNo = tNo;
             }
 
 
@@ -87,16 +107,17 @@ namespace thepos
 
                         if (flowstep > 3)  // 4:정산중, 9:정산완료
                         {
-                            MessageBox.Show("정산이후 포인트사용 불가.", "thepos");
+                            MessageBox.Show("퇴장/정산이후 포인트사용 불가.", "thepos");
                             return;
                         }
 
 
                         //  선불 경우만 검증함
-                        if (mTicketType == "PA") 
+                        if (mPointType == "PA") 
                         {
                             if (charge < usage + netAmount)
                             {
+                                thepos_app_log(2, this.Name, "mRequestGet(ticketFlow)", "포인트 잔액 부족. charge=" + charge + ", usage=" + usage + ", amount=" + netAmount);
                                 MessageBox.Show("포인트 잔액 부족.", "thepos");
                                 return;
                             }

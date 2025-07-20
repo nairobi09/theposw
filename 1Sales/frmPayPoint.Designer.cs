@@ -30,7 +30,7 @@
         {
             this.panelback = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbTicketNo = new System.Windows.Forms.TextBox();
+            this.tbNo = new System.Windows.Forms.TextBox();
             this.btnRequestAuth = new System.Windows.Forms.Button();
             this.lblTicketNoTitle = new System.Windows.Forms.Label();
             this.lblNetAmount = new System.Windows.Forms.Label();
@@ -58,29 +58,29 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbTicketNo);
+            this.groupBox1.Controls.Add(this.tbNo);
             this.groupBox1.Controls.Add(this.btnRequestAuth);
             this.groupBox1.Controls.Add(this.lblTicketNoTitle);
             this.groupBox1.Location = new System.Drawing.Point(23, 176);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(479, 179);
+            this.groupBox1.Size = new System.Drawing.Size(479, 317);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             // 
-            // tbTicketNo
+            // tbNo
             // 
-            this.tbTicketNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbTicketNo.Location = new System.Drawing.Point(106, 40);
-            this.tbTicketNo.Name = "tbTicketNo";
-            this.tbTicketNo.Size = new System.Drawing.Size(194, 23);
-            this.tbTicketNo.TabIndex = 0;
+            this.tbNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbNo.Location = new System.Drawing.Point(106, 31);
+            this.tbNo.Name = "tbNo";
+            this.tbNo.Size = new System.Drawing.Size(194, 23);
+            this.tbNo.TabIndex = 0;
             // 
             // btnRequestAuth
             // 
             this.btnRequestAuth.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnRequestAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestAuth.ForeColor = System.Drawing.Color.White;
-            this.btnRequestAuth.Location = new System.Drawing.Point(307, 97);
+            this.btnRequestAuth.Location = new System.Drawing.Point(316, 236);
             this.btnRequestAuth.Name = "btnRequestAuth";
             this.btnRequestAuth.Size = new System.Drawing.Size(140, 50);
             this.btnRequestAuth.TabIndex = 58;
@@ -91,11 +91,11 @@
             // lblTicketNoTitle
             // 
             this.lblTicketNoTitle.AutoSize = true;
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(37, 45);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(35, 36);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
             this.lblTicketNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblTicketNoTitle.TabIndex = 48;
-            this.lblTicketNoTitle.Text = "티켓번호";
+            this.lblTicketNoTitle.Text = "식별번호";
             // 
             // lblNetAmount
             // 
@@ -104,7 +104,7 @@
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
             this.lblNetAmount.Padding = new System.Windows.Forms.Padding(5);
-            this.lblNetAmount.Size = new System.Drawing.Size(131, 29);
+            this.lblNetAmount.Size = new System.Drawing.Size(131, 26);
             this.lblNetAmount.TabIndex = 49;
             this.lblNetAmount.Tag = "0";
             this.lblNetAmount.Text = "0";
@@ -113,11 +113,11 @@
             // lblNetAmountTitle
             // 
             this.lblNetAmountTitle.AutoSize = true;
-            this.lblNetAmountTitle.Location = new System.Drawing.Point(35, 128);
+            this.lblNetAmountTitle.Location = new System.Drawing.Point(57, 128);
             this.lblNetAmountTitle.Name = "lblNetAmountTitle";
-            this.lblNetAmountTitle.Size = new System.Drawing.Size(91, 14);
+            this.lblNetAmountTitle.Size = new System.Drawing.Size(63, 14);
             this.lblNetAmountTitle.TabIndex = 48;
-            this.lblNetAmountTitle.Text = "결제대상금액";
+            this.lblNetAmountTitle.Text = "결제금액";
             // 
             // btnClose
             // 
@@ -146,7 +146,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(483, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "포인트사용";
+            this.lblTitle.Text = "포인트결제";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPayPoint
@@ -178,6 +178,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRequestAuth;
         private System.Windows.Forms.Label lblTicketNoTitle;
-        private System.Windows.Forms.TextBox tbTicketNo;
+        private System.Windows.Forms.TextBox tbNo;
     }
 }

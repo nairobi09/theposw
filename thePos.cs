@@ -769,7 +769,7 @@ namespace thepos
             public int settle_point_usage;         // 사용금액(누적)
 
             public String goods_code;
-            public String flow_step;      // 진행상황 : 접수0 - 발급1 - *충전2 - 사용3 - 정산(완료)4 : 사용중인 경우 locker close, 정산완료 locker open.
+            public String flow_step;      
 
             public String locker_no;        // 추가
             public String open_locker;      // 락커 수동 설정 : 0 폐쇄(기본값), 1 개방
@@ -1453,5 +1453,86 @@ namespace thepos
             // 파일 저장
             workbook.SaveAs(filePath);
         }
+
+        public static String get_ticket_no_by_locker_no(string locker_no)
+        {
+            String sUrl = "locker?siteId=" + mSiteId + "&lockerNo=" + locker_no;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["lockers"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+                    if (arr.Count == 1)
+                    {
+                        String ticket_no  = arr[0]["ticketNo"].ToString();
+                        return ticket_no;
+                    }
+                    else
+                    {
+                        return "";
+                    }
+                }
+                else
+                {
+                    return "";
+                }
+
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static void set_ticket_no_by_locker_no(string locker_no, string ticket_no, string flow_step)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters["siteId"] = mSiteId;
+            parameters["lockerNo"] = locker_no;
+            parameters["ticketNo"] = ticket_no;
+            parameters["flowStep"] = flow_step;
+            parameters["flowDt"] = get_today_date() + get_today_time();
+
+            if (mRequestPatch("locker", parameters))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("오류. locker\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("시스템오류. locker\n\n" + mErrorMsg, "thepos");
+                return;
+            }
+        }
+
+        
+        
+
+        public static string get_flow_step_name(string flow_step)
+        {
+            // 발권0 - 입장1 - 충전2 - 사용중3 - 퇴장4 - 취소 8 - 정산(완료)9
+
+            string flow_step_name = "";
+
+            if (flow_step == "0") flow_step_name = "발권";
+            else if (flow_step == "1") flow_step_name = "입장";
+            else if (flow_step == "2") flow_step_name = "충전";
+            else if (flow_step == "3") flow_step_name = "사용";
+            else if (flow_step == "4") flow_step_name = "퇴장";
+            else if (flow_step == "8") flow_step_name = "취소";
+            else if (flow_step == "9") flow_step_name = "완료";
+
+            return flow_step_name;
+        }
+
     }
 }

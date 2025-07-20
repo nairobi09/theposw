@@ -99,7 +99,7 @@ namespace thepos
 
 
             String t_ticket_no = "";
-            String t_bangle_seq = "";
+            String t_flow_step = "";
             String t_entry_dt = "";
 
 
@@ -109,8 +109,18 @@ namespace thepos
                 return;
             }
 
+            if (mPointType == "RF")
+            {
+                t_ticket_no = get_ticket_no_by_locker_no(t_no);
+            }
+            else
+            {
+                t_ticket_no = t_no;
+            }
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
+
+
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_ticket_no;
 
             if (mRequestGet(sUrl))
             {
@@ -121,11 +131,14 @@ namespace thepos
 
                     if (arr.Count == 1)
                     {
-                        t_ticket_no = arr[0]["ticketNo"].ToString();
-                        t_bangle_seq = arr[0]["bangleNo"].ToString();
+                        t_flow_step = arr[0]["flowStep"].ToString();
 
-                        // 입장시간
-                        t_entry_dt = arr[0]["entryDt"].ToString();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("티켓데이터 오류.\n\n arr.Count=" + arr.Count, "thepos");
+                        return;
                     }
                 }
                 else
