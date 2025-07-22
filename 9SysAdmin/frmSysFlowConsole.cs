@@ -137,7 +137,8 @@ namespace thepos._1Sales
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "ALLIM") { button_name = "알림"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "CHARGING") { button_name = "충전"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT") { button_name = "정산"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT_PA") { button_name = "정산"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT_PD") { button_name = "정산"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "TICKET") { button_name = "티켓"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "TICKETEXIT") { button_name = "빠른퇴장"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "LOCKER") { button_name = "락커"; }
@@ -218,7 +219,8 @@ namespace thepos._1Sales
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "ALLIM") { button_name = "알림"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CHARGING") { button_name = "충전"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT") { button_name = "정산"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT_PA") { button_name = "정산"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT_PD") { button_name = "정산"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "TICKET") { button_name = "티켓"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "TICKETEXIT") { button_name = "빠른퇴장"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "LOCKER") { button_name = "락커"; }

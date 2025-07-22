@@ -18,14 +18,14 @@ using static thepos.frmSub;
 
 namespace thepos
 {
-    public partial class frmFlowSettlementPD : Form
+    public partial class frmFlowSettlePD : Form
     {
         TextBox saveKeyDisplay;
 
         TicketFlow mThisTicketFlow = new TicketFlow();
 
 
-        public frmFlowSettlementPD()
+        public frmFlowSettlePD()
         {
             InitializeComponent();
             initialize_the();
@@ -40,7 +40,8 @@ namespace thepos
         {
 
             ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, 30);
+            imgList.ImageSize = new Size(1, 26);
+            lvwList.SmallImageList = imgList;
 
 
             saveKeyDisplay = mTbKeyDisplayController;
@@ -66,7 +67,7 @@ namespace thepos
             }
 
 
-            view_point_usage(no);
+            view_flow_step(no);
 
             // 결제버튼
             mTableLayoutPanelPayControl.Enabled = false;
@@ -84,7 +85,7 @@ namespace thepos
             }
 
 
-            view_point_usage(no);
+            view_flow_step(no);
 
             // 결제버튼
             mTableLayoutPanelPayControl.Enabled = false;
@@ -92,14 +93,13 @@ namespace thepos
 
 
 
-        public void view_point_usage(String t_no)
+        public void view_flow_step(String t_no)
         {
 
-            lvwPoint.Items.Clear();
+            lvwList.Items.Clear();
 
 
             String t_ticket_no = "";
-            String t_flow_step = "";
             String t_entry_dt = "";
 
 
@@ -109,7 +109,7 @@ namespace thepos
                 return;
             }
 
-            if (mPointType == "RF")
+            if (mTicketMedia == "RF")
             {
                 t_ticket_no = get_ticket_no_by_locker_no(t_no);
             }
@@ -119,8 +119,13 @@ namespace thepos
             }
 
 
+            if (t_ticket_no.Length < 20)
+            {
+                return;
+            }
 
-            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_ticket_no;
+
+            String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + t_ticket_no.Substring(0, 20);
 
             if (mRequestGet(sUrl))
             {
@@ -129,17 +134,54 @@ namespace thepos
                     String data = mObj["ticketFlows"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    if (arr.Count == 1)
+                    for (int i = 0; i < arr.Count; i++)
                     {
-                        t_flow_step = arr[0]["flowStep"].ToString();
+                        ListViewItem lvItem = new ListViewItem();
+                        
+                        lvItem.Text = "";
+
+                        string step_flow = arr[i]["flowStep"].ToString();
+
+                        lvItem.SubItems.Add(get_flow_step_name(step_flow));
+
+                        if (mTicketMedia == "RF")
+                        {
+                            lvItem.SubItems.Add(arr[i]["lockerNo"].ToString());
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add(arr[i]["ticketNo"].ToString().Substring(20, 2));
+                        }
+
+                        lvItem.SubItems.Add(get_goods_name(arr[i]["goodsCode"].ToString()));
+
+                        string entry_dt = arr[i]["entryDt"].ToString();
+                        lvItem.SubItems.Add(entry_dt.Substring(8, 2) + ":" + entry_dt.Substring(10, 2));
+
+                        int point_usage_cnt = convert_number(arr[i]["pointUsageCnt"].ToString());
+                        int point_usage = convert_number(arr[i]["pointUsage"].ToString());
+                        lvItem.SubItems.Add(point_usage_cnt.ToString("N0"));
+                        lvItem.SubItems.Add(point_usage.ToString("N0"));
 
 
+                        //
+                        if (step_flow == "3")
+                        {
+                            lvItem.ForeColor = Color.Black;
+                            lvItem.Checked = true;
+                        }
+                        else
+                        {
+                            lvItem.ForeColor = Color.Gray;
+                            lvItem.Checked = false;
+                        }
+
+
+
+                        lvwList.Items.Add(lvItem);
+
                     }
-                    else
-                    {
-                        MessageBox.Show("티켓데이터 오류.\n\n arr.Count=" + arr.Count, "thepos");
-                        return;
-                    }
+
                 }
                 else
                 {
@@ -154,14 +196,144 @@ namespace thepos
             }
 
 
+        }
 
-            //
 
+        private void get_order_items()
+        { 
+            // 
+                string sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + "";
+
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["orderItems"].ToString();
+                        JArray arr = JArray.Parse(data);
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            //
+                            string order_time = arr[i]["orderTime"].ToString();
+                            string goods_name = arr[i]["goodsName"].ToString();
+                            int goods_cnt = convert_number(arr[i]["cnt"].ToString());
+                            int goods_amt = convert_number(arr[i]["amt"].ToString());
+                            int option_amt = convert_number(arr[i]["optionAmt"].ToString());
+                            int goods_amount = goods_cnt * (goods_amt + option_amt);
+
+                            String option_no = arr[i]["optionNo"].ToString();
+
+
+
+                            //
+                            ListViewItem lvItem = new ListViewItem();
+                            lvItem.Text = "";  // checkbox
+                            lvItem.SubItems.Add(order_time.Substring(0,2) + ":" + order_time.Substring(2, 2));
+                            lvItem.SubItems.Add(goods_name);
+                            lvItem.SubItems.Add(goods_cnt.ToString("N0"));
+                            lvItem.SubItems.Add(goods_amount.ToString("N0"));
+                            lvwList.Items.Add(lvItem);
+
+
+                            //
+                            //
+                            MemOrderItem orderItem = new MemOrderItem();
+                            orderItem.option_name_description = "";   // 리스트뷰 상품항목 아랫줄에 표시
+                            orderItem.option_amt_description = "";    // 리스트뷰 단가항목 아랫줄에 표시
+
+
+                            mOrderOptionItemList.Clear();
+
+
+                            if (option_no != "")
+                            {
+                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&optionNo=" + option_no;
+
+                                if (mRequestGet(sUrl))
+                                {
+                                    if (mObj["resultCode"].ToString() == "200")
+                                    {
+                                        String data1 = mObj["orderOptionItems"].ToString();
+                                        JArray arr1 = JArray.Parse(data1);
+
+                                        for (int k = 0; k < arr1.Count; k++)
+                                        {
+                                            orderOptionItem orderOptionItem = new orderOptionItem();
+                                            orderOptionItem.option_item_no = convert_number(arr1[k]["optionItemNo"].ToString());
+                                            orderOptionItem.option_item_name = arr1[k]["optionItemName"].ToString();
+                                            orderOptionItem.option_code = arr1[k]["optionCode"].ToString();
+                                            orderOptionItem.option_name = arr1[k]["optionName"].ToString();
+                                            orderOptionItem.amt = convert_number(arr1[k]["amt"].ToString());
+
+                                            mOrderOptionItemList.Add(orderOptionItem);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (mOrderOptionItemList.Count > 0)
+                            {
+                                for (int k = 0; k < mOrderOptionItemList.Count; k++)
+                                {
+                                    orderItem.option_name_description += " " + mOrderOptionItemList[k].option_item_name;
+                                    orderItem.option_amt += (int)mOrderOptionItemList[k].amt;
+                                }
+                            }
+
+                            //
+                            if (mOrderOptionItemList.Count > 0)
+                            {
+                                orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
+                            }
+                            else
+                            {
+                                orderItem.option_amt_description = "";
+                            }
+
+                            //
+                            orderItem.option_item_cnt = mOrderOptionItemList.Count;
+                            orderItem.option_no = option_no;
+                            orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
+
+                            orderItem.order_no = mOrderItemList.Count + 1;
+                            orderItem.goods_code = arr[i]["goodsCode"].ToString();
+                            orderItem.goods_name = arr[i]["goodsName"].ToString();
+                            orderItem.ticket = arr[i]["ticketYn"].ToString();
+                            orderItem.taxfree = arr[i]["taxFree"].ToString();
+                            orderItem.allim = arr[i]["allim"].ToString();
+
+                            orderItem.cnt = goods_cnt;
+                            orderItem.amt = goods_amt;
+
+                            orderItem.dcr_type = arr[i]["dcrType"].ToString();
+                            orderItem.dcr_des = arr[i]["dcrDes"].ToString();
+                            orderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
+                            orderItem.shop_code = arr[i]["shopCode"].ToString();
+                            orderItem.nod_code1 = arr[i]["nodCode1"].ToString();
+                            orderItem.nod_code2 = arr[i]["nodCode2"].ToString();
+
+                            //
+                            replace_mem_order_item(ref orderItem, "add");
+
+                            mOrderItemList.Add(orderItem);
+                            
+                        }
+
+                        mLvwOrderItem.SetObjects(mOrderItemList);
+                        ReCalculateAmount();
+                    }
+                }
 
 
 
 
         }
+
+
+
+
+
+
 
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmFlowCharging;
-using static thepos.frmFlowSettlement;
+using static thepos.frmFlowSettlePA;
 using static thepos.frmPayComplex;
 using System.Collections;
 using System.Numerics;
@@ -265,7 +265,7 @@ namespace thepos
                             strAlarm += " 티켓정산 등록.";
 
                             // 정산화면 리스트뷰 갱신
-                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
+                            frmFlowSettlePA.view_ticket_flow(frmFlowSettlePA.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);

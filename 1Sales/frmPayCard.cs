@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
 using static thepos.frmFlowCharging;
-using static thepos.frmFlowSettlement;
+using static thepos.frmFlowSettlePA;
 using static thepos.frmPayComplex;
 using System.Windows.Forms.DataVisualization.Charting;
 using theposw._1Sales;
@@ -79,7 +79,7 @@ namespace thepos
             else if (mPayClass == "ST")
             {
                 //
-                ticketNo = frmFlowSettlement.mSelectedTicketNo;
+                ticketNo = frmFlowSettlePA.mSelectedTicketNo;
                 mRefNo = ticketNo.Substring(0, 20);
             }
 
@@ -302,7 +302,7 @@ namespace thepos
                         strAlarm += " 티켓정산 등록.";
 
                         // 정산화면 리스트뷰 갱신
-                        frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
+                        frmFlowSettlePA.view_ticket_flow(frmFlowSettlePA.mThisTicketNo);
                     }
 
                     SetDisplayAlarm("I", strAlarm);
@@ -587,7 +587,7 @@ namespace thepos
                             strAlarm += " 티켓정산 등록.";
 
                             // 정산화면 리스트뷰 갱신
-                            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
+                            frmFlowSettlePA.view_ticket_flow(frmFlowSettlePA.mThisTicketNo);
                         }
 
                         SetDisplayAlarm("I", strAlarm);

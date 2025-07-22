@@ -18,7 +18,7 @@ using static thepos.frmSub;
 
 namespace thepos
 {
-    public partial class frmFlowSettlement : Form
+    public partial class frmFlowSettlePA : Form
     {
         TextBox saveKeyDisplay;
 
@@ -32,7 +32,7 @@ namespace thepos
         public static ListView mLvwTicketSettle;
 
 
-        public frmFlowSettlement()
+        public frmFlowSettlePA()
         {
             InitializeComponent();
             initialize_the();
@@ -66,7 +66,7 @@ namespace thepos
             if (mTicketType == "PD") btnCancelReq.Visible = false;
 
             // 결제버튼
-            mTableLayoutPanelPayControl.Enabled = false;
+            //mTableLayoutPanelPayControl.Enabled = false;
 
         }
 

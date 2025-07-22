@@ -205,11 +205,11 @@
     <Compile Include="1Sales\frmFlowPickLockerNo.Designer.cs">
       <DependentUpon>frmFlowPickLockerNo.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmFlowSettlementPD.cs">
+    <Compile Include="1Sales\frmFlowSettlePD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmFlowSettlementPD.Designer.cs">
-      <DependentUpon>frmFlowSettlementPD.cs</DependentUpon>
+    <Compile Include="1Sales\frmFlowSettlePD.Designer.cs">
+      <DependentUpon>frmFlowSettlePD.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmFlowTicket.cs">
       <SubType>Form</SubType>
@@ -445,11 +445,11 @@
     <Compile Include="1Sales\frmFlowCharging.Designer.cs">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmFlowSettlement.cs">
+    <Compile Include="1Sales\frmFlowSettlePA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmFlowSettlement.Designer.cs">
-      <DependentUpon>frmFlowSettlement.cs</DependentUpon>
+    <Compile Include="1Sales\frmFlowSettlePA.Designer.cs">
+      <DependentUpon>frmFlowSettlePA.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmOrderDCR.cs">
       <SubType>Form</SubType>
@@ -668,8 +668,8 @@
     <EmbeddedResource Include="1Sales\frmFlowPickLockerNo.resx">
       <DependentUpon>frmFlowPickLockerNo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmFlowSettlementPD.resx">
-      <DependentUpon>frmFlowSettlementPD.cs</DependentUpon>
+    <EmbeddedResource Include="1Sales\frmFlowSettlePD.resx">
+      <DependentUpon>frmFlowSettlePD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowTicket.resx">
       <DependentUpon>frmFlowTicket.cs</DependentUpon>
@@ -795,8 +795,8 @@
     <EmbeddedResource Include="1Sales\frmFlowCharging.resx">
       <DependentUpon>frmFlowCharging.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmFlowSettlement.resx">
-      <DependentUpon>frmFlowSettlement.cs</DependentUpon>
+    <EmbeddedResource Include="1Sales\frmFlowSettlePA.resx">
+      <DependentUpon>frmFlowSettlePA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderDCR.resx">
       <DependentUpon>frmOrderDCR.cs</DependentUpon>

@@ -1154,7 +1154,7 @@ namespace thepos
                 return out_number;
             }
 
-            return -1;
+            return 0;
         }
 
         public static int convert_number(String str, int return_num)

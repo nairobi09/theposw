@@ -410,11 +410,17 @@ namespace thepos
                     btnFlowItem.Text = "충전";
                     btnFlowItem.Click += (sender, args) => ClickedFlowCharging();
                 }
-                else if (mFlowConsol[i].code == "SETTLEMENT")
+                else if (mFlowConsol[i].code == "SETTLE_PA")
                 {
-                    btnFlowItem.Name = "btnPayConsoleSettlement";
+                    btnFlowItem.Name = "btnPayConsoleSettlePA";
                     btnFlowItem.Text = "정산";
-                    btnFlowItem.Click += (sender, args) => ClickedFlowSettlement();
+                    btnFlowItem.Click += (sender, args) => ClickedFlowSettlePA();
+                }
+                else if (mFlowConsol[i].code == "SETTLE_PD")
+                {
+                    btnFlowItem.Name = "btnPayConsoleSettlePD";
+                    btnFlowItem.Text = "정산";
+                    btnFlowItem.Click += (sender, args) => ClickedFlowSettlePD();
                 }
                 else if (mFlowConsol[i].code == "TICKET")
                 {
@@ -964,7 +970,7 @@ namespace thepos
 
         }
 
-        private void ClickedFlowSettlement()
+        private void ClickedFlowSettlePA()
         {
             if (lvwOrderItem.Items.Count > 0)
             {
@@ -972,16 +978,34 @@ namespace thepos
                 return;
             }
 
-            ConsoleDisable();
+            //ConsoleDisable();
 
             mPanelMiddle.Controls.Clear();
             mPanelMiddle.Visible = true;
 
-            frmFlowSettlement fForm = new frmFlowSettlement() { TopLevel = false, TopMost = true };
+            frmFlowSettlePA fForm = new frmFlowSettlePA() { TopLevel = false, TopMost = true };
             mPanelMiddle.Height = fForm.Height;
             mPanelMiddle.Controls.Add(fForm);
             fForm.Show();
+        }
 
+        private void ClickedFlowSettlePD()
+        {
+            if (lvwOrderItem.Items.Count > 0)
+            {
+                SetDisplayAlarm("W", "주문항목이 있습니다. 항목을 취소하거나 완료 요망.");
+                return;
+            }
+
+            //ConsoleDisable();
+
+            mPanelMiddle.Controls.Clear();
+            mPanelMiddle.Visible = true;
+
+            frmFlowSettlePD fForm = new frmFlowSettlePD() { TopLevel = false, TopMost = true };
+            mPanelMiddle.Height = fForm.Height;
+            mPanelMiddle.Controls.Add(fForm);
+            fForm.Show();
         }
 
         private void ClickedFlowLocker()

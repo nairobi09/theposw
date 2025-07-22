@@ -31,12 +31,13 @@
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("알림");
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("쿠폰");
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("충전");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("정산");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("티켓");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("빠른퇴장");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("락커");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("결제내역관리");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("[공백]");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("정산(선불)");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("정산(후불)");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("티켓");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("빠른퇴장");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("락커");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("결제내역관리");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("[공백]");
             this.tableLayoutPanelFlowControlSelected = new System.Windows.Forms.TableLayoutPanel();
             this.btnLink = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
@@ -260,12 +261,13 @@
             listViewItem1.Tag = "ALLIM";
             listViewItem2.Tag = "COUPON";
             listViewItem3.Tag = "CHARGING";
-            listViewItem4.Tag = "SETTLEMENT";
-            listViewItem5.Tag = "TICKET";
-            listViewItem6.Tag = "TICKETEXIT";
-            listViewItem7.Tag = "LOCKER";
-            listViewItem8.Tag = "PAYMANAGER";
-            listViewItem9.Tag = "DUMMY";
+            listViewItem4.Tag = "SETTLE_PA";
+            listViewItem5.Tag = "SETTLE_PD";
+            listViewItem6.Tag = "TICKET";
+            listViewItem7.Tag = "TICKETEXIT";
+            listViewItem8.Tag = "LOCKER";
+            listViewItem9.Tag = "PAYMANAGER";
+            listViewItem10.Tag = "DUMMY";
             this.lvwConsole.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
@@ -275,7 +277,8 @@
             listViewItem6,
             listViewItem7,
             listViewItem8,
-            listViewItem9});
+            listViewItem9,
+            listViewItem10});
             this.lvwConsole.Location = new System.Drawing.Point(109, 90);
             this.lvwConsole.MultiSelect = false;
             this.lvwConsole.Name = "lvwConsole";

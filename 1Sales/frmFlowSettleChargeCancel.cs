@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmSales;
-using static thepos.frmFlowSettlement;
+using static thepos.frmFlowSettlePA;
 using Newtonsoft.Json.Linq;
 using System.Reflection;
 
@@ -201,7 +201,7 @@ namespace thepos
         private void frmFlowSettleChargeCancel_FormClosed(object sender, FormClosedEventArgs e)
         {
             //
-            frmFlowSettlement.view_ticket_flow(frmFlowSettlement.mThisTicketNo);
+            frmFlowSettlePA.view_ticket_flow(frmFlowSettlePA.mThisTicketNo);
 
 
             mPanelCancel.Visible = false;
