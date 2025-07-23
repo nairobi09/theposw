@@ -216,11 +216,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(3, 5);
+            this.lblTitle.Location = new System.Drawing.Point(4, 5);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(510, 40);
+            this.lblTitle.Size = new System.Drawing.Size(512, 40);
             this.lblTitle.TabIndex = 46;
             this.lblTitle.Text = "빠른퇴장";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

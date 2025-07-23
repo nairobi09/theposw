@@ -44,6 +44,7 @@
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -74,7 +75,8 @@
             this.ticket_name,
             this.emtry_dt,
             this.point_usage_cnt,
-            this.point_usage});
+            this.point_usage,
+            this.ticket_no});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -91,7 +93,7 @@
             // checkbox
             // 
             this.checkbox.Text = "";
-            this.checkbox.Width = 25;
+            this.checkbox.Width = 20;
             // 
             // flow_step
             // 
@@ -219,6 +221,11 @@
             this.lblTitle.Text = "정산(후불)";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // ticket_no
+            // 
+            this.ticket_no.Text = "ticket_no";
+            this.ticket_no.Width = 0;
+            // 
             // frmFlowSettlePD
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -257,5 +264,6 @@
         private System.Windows.Forms.ColumnHeader point_usage;
         private System.Windows.Forms.ColumnHeader no;
         private System.Windows.Forms.ColumnHeader flow_step;
+        private System.Windows.Forms.ColumnHeader ticket_no;
     }
 }

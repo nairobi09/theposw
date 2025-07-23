@@ -79,7 +79,7 @@ namespace thepos
         {
             String no = tbTicketNo.Text;
 
-            if (no.Length != 22)
+            if (no.Length != 22 & no.Length != 4)
             {
                 return;
             }
@@ -162,7 +162,7 @@ namespace thepos
                         int point_usage = convert_number(arr[i]["pointUsage"].ToString());
                         lvItem.SubItems.Add(point_usage_cnt.ToString("N0"));
                         lvItem.SubItems.Add(point_usage.ToString("N0"));
-
+                        lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
 
                         //
                         if (step_flow == "3")
@@ -175,8 +175,6 @@ namespace thepos
                             lvItem.ForeColor = Color.Gray;
                             lvItem.Checked = false;
                         }
-
-
 
                         lvwList.Items.Add(lvItem);
 
@@ -366,114 +364,133 @@ namespace thepos
             mLvwOrderItem.SetObjects(mOrderItemList);
 
 
-            String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + mThisTicketFlow.ticket_no;
-            if (mRequestGet(sUrl))
+            for (int fs = 0; fs < lvwList.Items.Count; fs++)
             {
-                if (mObj["resultCode"].ToString() == "200")
+
+                if (lvwList.Items[fs].Checked)
                 {
-                    String data = mObj["orderItems"].ToString();
-                    JArray arr = JArray.Parse(data);
 
-                    for (int i = 0; i < arr.Count; i++)
+                    string t_no = lvwList.Items[fs].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
+
+                    String sUrl = "orderItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + t_no;
+                    if (mRequestGet(sUrl))
                     {
-                        if (arr[i]["payClass"].ToString() == "US" & (arr[i]["isCancel"].ToString() != "Y" & arr[i]["isCancel"].ToString() != "y"))
+                        if (mObj["resultCode"].ToString() == "200")
                         {
-                            MemOrderItem orderItem = new MemOrderItem();
+                            String data = mObj["orderItems"].ToString();
+                            JArray arr = JArray.Parse(data);
 
-                            orderItem.goods_code = arr[i]["goodsCode"].ToString();
-                            orderItem.goods_name = arr[i]["goodsName"].ToString();
-                            orderItem.cnt = convert_number(arr[i]["cnt"].ToString());
-                            orderItem.amt = convert_number(arr[i]["amt"].ToString());
-                            orderItem.option_amt = convert_number(arr[i]["optionAmt"].ToString());
-                            orderItem.dc_amount = convert_number(arr[i]["dcAmount"].ToString());
-                            orderItem.dcr_des = arr[i]["dcrDes"].ToString();
-                            orderItem.dcr_type = arr[i]["dcrType"].ToString();
-                            orderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
-                            orderItem.ticket = arr[i]["ticketYn"].ToString();
-                            orderItem.taxfree = arr[i]["taxFree"].ToString();
-                            orderItem.pay_class = arr[i]["payClass"].ToString();
-                            orderItem.ticket_no = arr[i]["ticketNo"].ToString();
-                            orderItem.shop_code = arr[i]["shopCode"].ToString();
-                            orderItem.option_no = arr[i]["optionNo"].ToString();
-
-                            List<orderOptionItem> orderOptionItemList = new List<orderOptionItem>();
-
-                            orderOptionItem orderOptionItem = new orderOptionItem();
-
-
-                            if (arr[i]["optionNo"].ToString() != "")
+                            for (int i = 0; i < arr.Count; i++)
                             {
-                                sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&optionNo=" + arr[i]["optionNo"].ToString();
-                                if (mRequestGet(sUrl))
+                                if (arr[i]["payClass"].ToString() == "US" & (arr[i]["isCancel"].ToString() != "Y" & arr[i]["isCancel"].ToString() != "y"))
                                 {
-                                    if (mObj["resultCode"].ToString() == "200")
+                                    MemOrderItem orderItem = new MemOrderItem();
+
+                                    orderItem.goods_code = arr[i]["goodsCode"].ToString();
+                                    orderItem.goods_name = arr[i]["goodsName"].ToString();
+                                    orderItem.cnt = convert_number(arr[i]["cnt"].ToString());
+                                    orderItem.amt = convert_number(arr[i]["amt"].ToString());
+                                    orderItem.option_amt = convert_number(arr[i]["optionAmt"].ToString());
+                                    orderItem.dc_amount = convert_number(arr[i]["dcAmount"].ToString());
+                                    orderItem.dcr_des = arr[i]["dcrDes"].ToString();
+                                    orderItem.dcr_type = arr[i]["dcrType"].ToString();
+                                    orderItem.dcr_value = convert_number(arr[i]["dcrValue"].ToString());
+                                    orderItem.ticket = arr[i]["ticketYn"].ToString();
+                                    orderItem.taxfree = arr[i]["taxFree"].ToString();
+                                    orderItem.pay_class = arr[i]["payClass"].ToString();
+                                    orderItem.ticket_no = arr[i]["ticketNo"].ToString();
+                                    orderItem.shop_code = arr[i]["shopCode"].ToString();
+                                    orderItem.option_no = arr[i]["optionNo"].ToString();
+
+                                    //
+                                    //orderItem.add_job = "TF4T9";   // 퇴장시 추가요금 결제
+                                    orderItem.add_job = "ST_PD_POINT_2_PAY";   // 후불정산 결제시 주문+결제 별도로직 치리 
+
+                                    List<orderOptionItem> orderOptionItemList = new List<orderOptionItem>();
+
+                                    orderOptionItem orderOptionItem = new orderOptionItem();
+
+
+                                    if (arr[i]["optionNo"].ToString() != "")
                                     {
-                                        String data2 = mObj["orderOptionItems"].ToString();
-                                        JArray arr2 = JArray.Parse(data2);
-
-                                        for (int k = 0; k < arr2.Count; k++)
+                                        sUrl = "orderOptionItem?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&optionNo=" + arr[i]["optionNo"].ToString();
+                                        if (mRequestGet(sUrl))
                                         {
-                                            orderOptionItem.option_item_no = convert_number(arr2[k]["optionItemNo"].ToString());
-                                            orderOptionItem.option_item_name = arr2[k]["optionItemName"].ToString();
-                                            orderOptionItem.option_code = arr2[k]["optionCode"].ToString();
-                                            orderOptionItem.option_name = arr2[k]["optionName"].ToString();
-                                            orderOptionItem.amt = convert_number(arr2[k]["amt"].ToString());
+                                            if (mObj["resultCode"].ToString() == "200")
+                                            {
+                                                String data2 = mObj["orderOptionItems"].ToString();
+                                                JArray arr2 = JArray.Parse(data2);
 
-                                            orderOptionItemList.Add(orderOptionItem);
+                                                for (int k = 0; k < arr2.Count; k++)
+                                                {
+                                                    orderOptionItem.option_item_no = convert_number(arr2[k]["optionItemNo"].ToString());
+                                                    orderOptionItem.option_item_name = arr2[k]["optionItemName"].ToString();
+                                                    orderOptionItem.option_code = arr2[k]["optionCode"].ToString();
+                                                    orderOptionItem.option_name = arr2[k]["optionName"].ToString();
+                                                    orderOptionItem.amt = convert_number(arr2[k]["amt"].ToString());
 
-                                            orderItem.option_name_description += " " + arr2[k]["optionItemName"].ToString();
-                                        }
+                                                    orderOptionItemList.Add(orderOptionItem);
 
-                                        orderItem.orderOptionItemList = orderOptionItemList;
-                                        orderItem.option_item_cnt = mOrderOptionItemList.Count;
+                                                    orderItem.option_name_description += " " + arr2[k]["optionItemName"].ToString();
+                                                }
 
-                                        //
-                                        if (orderOptionItemList.Count > 0)
-                                        {
-                                            orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
+                                                orderItem.orderOptionItemList = orderOptionItemList;
+                                                orderItem.option_item_cnt = mOrderOptionItemList.Count;
+
+                                                //
+                                                if (orderOptionItemList.Count > 0)
+                                                {
+                                                    orderItem.option_amt_description = orderItem.option_amt.ToString("N0");
+                                                }
+                                                else
+                                                {
+                                                    orderItem.option_amt_description = "";
+                                                }
+
+
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                            }
                                         }
                                         else
                                         {
-                                            orderItem.option_amt_description = "";
+                                            MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
                                         }
-
-
                                     }
-                                    else
-                                    {
-                                        MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
+
+                                    //
+                                    replace_mem_order_item(ref orderItem, "add");
+
+                                    mOrderItemList.Add(orderItem);
+
                                 }
                             }
 
                             //
-                            replace_mem_order_item(ref orderItem, "add");
-
-                            mOrderItemList.Add(orderItem);
                             mLvwOrderItem.SetObjects(mOrderItemList);
+
+                            ReCalculateAmount();
+
+                            // 결제버튼
+                            mTableLayoutPanelPayControl.Enabled = true;
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
+                    }
 
-                    //
-                    ReCalculateAmount();
-
-                    // 결제버튼
-                    mTableLayoutPanelPayControl.Enabled = true;
 
                 }
-                else
-                {
-                    MessageBox.Show("결제데이터 오류. paymentCard\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                }
             }
-            else
-            {
-                MessageBox.Show("시스템오류. paymentCard\n\n" + mErrorMsg, "thepos");
-            }
+
         }
     }
 }
