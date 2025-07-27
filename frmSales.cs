@@ -1364,238 +1364,212 @@ namespace thepos
         }
 
 
-
-        public static bool CancelOrderSettle( String ticket_no)
+        public static void patchOrderSettle()
         {
-            List<String> list_the_no = new List<String>();
-            int the_no_cnt = 0;
             
-
-            // orderItem
-            String sUrl = "orderItem?siteId=" + mSiteId + "&ticketNo=" + ticket_no + "&bizDt=" + ticket_no.Substring(4,8) + "&payClass=US&tranType=A";
-            if (mRequestGet(sUrl))
+            for (int i = 0; i < frmFlowSettlePD.settle_the_no_list.Count; i++)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                string settle_the_no = frmFlowSettlePD.settle_the_no_list[i];
+
+
+                Dictionary<string, string> param = new Dictionary<string, string>();
+
+
+                // order
+                param.Clear();
+                param["siteId"] = mSiteId;
+                param["bizDt"] = mBizDate;
+                param["pointTheNo"] = settle_the_no;
+                param["theNo"] = mTheNo;
+
+                if (mRequestPatch("orders", param))
                 {
-                    String data = mObj["orderItems"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-
-                        if (arr[i]["isCancel"].ToString() != "Y")   // 이미 취소된 포인트 사용은 제외.
-                        {
-                            MemOrderItem orderItem = new MemOrderItem();
-
-
-
-                            // 취소추가
-                            Dictionary<string, string> parameters = new Dictionary<string, string>();
-                            parameters.Clear();
-                            parameters["siteId"] = mSiteId;
-                            parameters["posNo"] = myPosNo;
-                            parameters["bizDt"] = mBizDate;
-                            parameters["theNo"] = arr[i]["theNo"].ToString();
-                            parameters["refNo"] = arr[i]["refNo"].ToString();
-                            parameters["tranType"] = "C";
-                            parameters["orderDate"] = get_today_date();
-                            parameters["orderTime"] = get_today_time();
-                            parameters["goodsCode"] = arr[i]["goodsCode"].ToString();
-                            parameters["goodsName"] = arr[i]["goodsName"].ToString();
-                            parameters["cnt"] = arr[i]["cnt"].ToString();
-                            parameters["amt"] = arr[i]["amt"].ToString();
-                            parameters["optionAmt"] = arr[i]["optionAmt"].ToString();
-
-                            parameters["ticketYn"] = arr[i]["ticketYn"].ToString();
-                            parameters["taxFree"] = arr[i]["taxFree"].ToString();
-                            parameters["dcAmount"] = arr[i]["dcAmount"].ToString();
-                            parameters["dcrType"] = arr[i]["dcrType"].ToString();
-                            parameters["dcrDes"] = arr[i]["dcrDes"].ToString();
-                            parameters["dcrValue"] = arr[i]["dcrValue"].ToString();
-                            parameters["payClass"] = arr[i]["payClass"].ToString();
-                            parameters["ticketNo"] = arr[i]["ticketNo"].ToString();
-                            
-                            parameters["isCancel"] = "y";                       // y 정산취소 Y 일반취소
-                            parameters["shopCode"] = arr[i]["shopCode"].ToString();
-                            parameters["shopOrderNo"] = arr[i]["shopOrderNo"].ToString(); // 포인트사용시 부여된 번호를 정산에 그대로 복사
-                            parameters["optionNo"] = arr[i]["optionNo"].ToString();      // 포인트사용시 부여된 번호를 정산에 그대로 복사
-
-                            if (mRequestPost("orderItem", parameters))
-                            {
-                                if (mObj["resultCode"].ToString() == "200")
-                                {
-                                }
-                                else
-                                {
-                                    MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                                return false;
-                            }
-
-
-                            //
-                            //  한번에 orderItem 취소 마킹 -> 이러면 안됨.. 일반취소건이 있을경우 덮어쓰게됨. 개별로 전환...
-                            Dictionary<string, string> param = new Dictionary<string, string>();
-                            param.Clear();
-                            param["siteId"] = mSiteId;
-                            param["bizDt"] = ticket_no.Substring(4, 8);
-                            param["ticketNo"] = ticket_no;
-                            param["theNo"] = arr[i]["theNo"].ToString();
-                            param["tranType"] = "A";
-                            param["payClass"] = "US";
-                            param["isCancel"] = "y";   // y 정산취소
-
-                            if (mRequestPatch("orderItem", param))
-                            {
-                                if (mObj["resultCode"].ToString() == "200")
-                                {
-                                }
-                                else
-                                {
-                                    MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                                return false;
-                            }
-
-
-
-                            list_the_no.Add(arr[i]["theNo"].ToString());
-                        }
-
+                        thepos_app_log(1, "정산", "patchOrderSettle()", "order the_no=" + settle_the_no + " -> " + mTheNo);
+                    }
+                    else
+                    {
+                        thepos_app_log(3, "정산", "patchOrderSettle()", "오류 order" + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류 order\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("데이터 오류. orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return false;
+                    thepos_app_log(3, "정산", "patchOrderSettle()()", "시스템오류 order" + mErrorMsg);
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
-                return false;
-            }
 
 
+                // orderShop
+                param.Clear();
+                param["siteId"] = mSiteId;
+                param["bizDt"] = mBizDate;
+                param["pointTheNo"] = settle_the_no;
+                param["theNo"] = mTheNo;
 
-
-
-            // order
-            list_the_no.Distinct().ToList();
-
-            for (int i = 0; i < list_the_no.Count; i++)
-            {
-                sUrl = "orders?siteId=" + mSiteId + "&theNo=" + list_the_no[i] + "&tranType=A" + "&bizDt=" + list_the_no[i].Substring(4,8);
-                if (mRequestGet(sUrl))
+                if (mRequestPatch("orderShop", param))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
-                        dbOrder order = new dbOrder();
-
-                        String data = mObj["orders"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        if (arr.Count == 1)
-                        {
-                            order.site_id = arr[0]["siteId"].ToString();
-                            order.pos_no = arr[0]["posNo"].ToString();
-                            order.biz_dt = arr[0]["bizDt"].ToString();
-                            order.the_no = arr[0]["theNo"].ToString();
-                            order.ref_no = arr[0]["refNo"].ToString();
-                            order.tran_type = arr[0]["tranType"].ToString();
-                            order.order_date = arr[0]["orderDate"].ToString();
-                            order.order_time = arr[0]["orderTime"].ToString();
-                            order.cnt = convert_number(arr[0]["cnt"].ToString());
-                            order.is_cancel = arr[0]["isCancel"].ToString();
-
-
-                            // 취소추가
-                            Dictionary<string, string> parameters = new Dictionary<string, string>();
-                            parameters.Clear();
-                            parameters["siteId"] = mSiteId;
-                            parameters["posNo"] = order.pos_no;
-                            parameters["bizDt"] = mBizDate;
-                            parameters["theNo"] = order.the_no;
-                            parameters["refNo"] = order.ref_no;
-                            parameters["tranType"] = "C";
-                            parameters["orderDate"] = get_today_date();
-                            parameters["orderTime"] = get_today_time();
-                            parameters["cnt"] = order.cnt + "";
-                            parameters["isCancel"] = "y";
-
-                            if (mRequestPost("orders", parameters))
-                            {
-                                if (mObj["resultCode"].ToString() == "200")
-                                {
-                                }
-                                else
-                                {
-                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("시스템오류. orders\n\n" + mErrorMsg, "thepos");
-                                return false;
-                            }
-
-
-                            // 취소 마킹
-                            parameters.Clear();
-                            parameters["siteId"] = mSiteId;
-                            parameters["bizDt"] = mBizDate;
-                            parameters["theNo"] = order.the_no;
-                            parameters["tranType"] = "A";
-                            parameters["isCancel"] = "y";
-
-                            if (mRequestPatch("orders", parameters))
-                            {
-                                if (mObj["resultCode"].ToString() == "200")
-                                {
-                                }
-                                else
-                                {
-                                    MessageBox.Show("오류 orders\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                    return false;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("시스템오류. orders\n\n" + mErrorMsg, "thepos");
-                                return false;
-                            }
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("오류. order\n\n arr.Count = " + arr.Count);
-                            return false;
-                        }
+                        thepos_app_log(1, "정산", "patchOrderSettle()", "orderShop the_no=" + settle_the_no + " -> " + mTheNo);
                     }
                     else
                     {
-                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                        return false;
+                        thepos_app_log(3, "정산", "patchOrderSettle()", "오류 orderShop" + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류 orderShop\n\n" + mObj["resultMsg"].ToString(), "thepos");
                     }
+                }
+                else
+                {
+                    thepos_app_log(3, "정산", "patchOrderSettle()", "시스템오류 orderShop" + mErrorMsg);
+                    MessageBox.Show("시스템오류. orderShop\n\n" + mErrorMsg, "thepos");
+                }
 
+
+
+                // orderItem
+                param.Clear();
+                param["siteId"] = mSiteId;
+                param["bizDt"] = mBizDate;
+                param["pointTheNo"] = settle_the_no;
+                param["theNo"] = mTheNo;
+
+                if (mRequestPatch("orderItem", param))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        thepos_app_log(1, "정산", "patchOrderSettle()", "orderItem the_no=" + settle_the_no + " -> " + mTheNo);
+                    }
+                    else
+                    {
+                        thepos_app_log(3, "정산", "patchOrderSettle()", "오류 orderItem" + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류 orderItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    thepos_app_log(3, "정산", "patchOrderSettle()()", "시스템오류 orderItem" + mErrorMsg);
+                    MessageBox.Show("시스템오류. orderItem\n\n" + mErrorMsg, "thepos");
+                }
+
+
+
+                // orderOptionItem
+                param.Clear();
+                param["siteId"] = mSiteId;
+                param["bizDt"] = mBizDate;
+                param["pointTheNo"] = settle_the_no;
+                param["theNo"] = mTheNo;
+
+                if (mRequestPatch("orderOptionItem", param))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        thepos_app_log(1, "정산", "patchOrderSettle()", "orderOptionItem the_no=" + settle_the_no + " -> " + mTheNo);
+                    }
+                    else
+                    {
+                        thepos_app_log(3, "정산", "patchOrderSettle()", "오류 orderOptionItem" + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류 orderOptionItem\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    thepos_app_log(3, "정산", "patchOrderSettle()", "시스템오류 orderOptionItem" + mErrorMsg);
+                    MessageBox.Show("시스템오류 orderOptionItem\n\n" + mErrorMsg, "thepos");
+                }
+
+            }
+        }
+
+
+
+        public static void patchPointPaymentSettle()
+        {
+            for (int i = 0; i < frmFlowSettlePD.settle_the_no_list.Count; i++)
+            {
+                string settle_the_no = frmFlowSettlePD.settle_the_no_list[i];
+
+
+                Dictionary<string, string> param = new Dictionary<string, string>();
+
+
+                // order
+                param.Clear();
+                param["siteId"] = mSiteId;
+                param["bizDt"] = mBizDate;
+                param["theNo"] = settle_the_no;
+                param["isSettlement"] = "Y";
+
+                if (mRequestPatch("paymentPoint", param))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        thepos_app_log(1, "정산", "patchPointPaymentSettle()", "paymentPoint the_no=" + settle_the_no);
+                    }
+                    else
+                    {
+                        thepos_app_log(3, "정산", "patchPointPaymentSettle()", "오류 paymentPoint" + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류 paymentPoint\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    thepos_app_log(3, "정산", "patchPointPaymentSettle()", "시스템오류 paymentPoint" + mErrorMsg);
+                    MessageBox.Show("시스템오류. paymentPoint\n\n" + mErrorMsg, "thepos");
+                }
+
+            }
+        }
+
+
+        public static void set_step_9_ticket_flow_by_ticket_no(List<String> settle_ticket_no_list)
+        {
+            for (int i = 0; i < settle_ticket_no_list.Count; i++)
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Clear();
+                parameters["siteId"] = mSiteId;
+                parameters["bizDt"] = mBizDate;
+                parameters["ticketNo"] = settle_ticket_no_list[i];
+                parameters["flowStep"] = "9";  // 퇴장(완료)
+
+
+                if (mRequestPatch("ticketFlow", parameters))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        //
+                        thepos_app_log(1, "정산", "set_flow_step_by_ticket_no()", "ticket_no=" + settle_ticket_no_list[i] + ", flow_step 변경 -> 9");
+
+                    }
+                    else
+                    {
+                        thepos_app_log(3, "오류 정산", "set_flow_step_by_ticket_no()", "ticket_no=" + settle_ticket_no_list[i] + ", " + mObj["resultMsg"].ToString());
+                        MessageBox.Show("오류.\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                    }
+                }
+                else
+                {
+                    thepos_app_log(3, "오류 정산", "set_flow_step_by_ticket_no()", "ticket_no=" + settle_ticket_no_list[i] + " 시스템오류. ticketFlow" + mErrorMsg);
+                    MessageBox.Show("시스템오류. ticketFlow\n\n" + mErrorMsg, "thepos");
                 }
             }
-
-
-            return true;
         }
+
+
+        public static void set_initial_by_locker_no(List<String> settle_locker_no_list)
+        {
+
+            for (int i = 0; i < settle_locker_no_list.Count; i++)
+            {
+                set_ticket_no_by_locker_no(settle_locker_no_list[i], "", "");
+            }
+
+        }
+
+
 
 
         public static void set_shop_order_no_on_orderitem(out int dcAmount)
@@ -1723,6 +1697,7 @@ namespace thepos
             parameters["bizDt"] = mBizDate;
             parameters["theNo"] = mTheNo;
             parameters["refNo"] = mRefNo;
+            parameters["pointTheNo"] = mTheNo;
             parameters["tranType"] = "A";
             parameters["orderDate"] = get_today_date();
             parameters["orderTime"] = get_today_time();
@@ -1794,6 +1769,7 @@ namespace thepos
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
+                parameters["pointTheNo"] = mTheNo;
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
                 parameters["order_cnt"] = order_shop_cnt + "";
@@ -1851,6 +1827,7 @@ namespace thepos
                 parameters["bizDt"] = mBizDate;
                 parameters["theNo"] = mTheNo;
                 parameters["refNo"] = mRefNo;
+                parameters["pointTheNo"] = mTheNo;
                 parameters["tranType"] = "A";
                 parameters["orderDate"] = get_today_date();
                 parameters["orderTime"] = get_today_time();
@@ -1917,6 +1894,7 @@ namespace thepos
                     parameters["bizDt"] = mBizDate;
                     parameters["theNo"] = mTheNo;
                     parameters["refNo"] = mRefNo;
+                    parameters["pointTheNo"] = mTheNo;
                     parameters["optionNo"] = t_option_no;
 
                     parameters["orderDate"] = get_today_date();
@@ -2608,7 +2586,6 @@ namespace thepos
                         settle_point_charge = convert_number(arr[0]["settlePointCharge"].ToString());
                         settle_point_usage = convert_number(arr[0]["settlePointUsage"].ToString());
                         flow_step = arr[0]["flowStep"].ToString();
-                        open_locker = arr[0]["openLocker"].ToString();
 
                     }
                     else
@@ -4606,7 +4583,7 @@ namespace thepos
 
                             
                             if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
-                                {
+                            {
                                 tStr += "취소";
                             }
 

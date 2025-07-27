@@ -153,6 +153,26 @@ namespace theposw.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap locker_icon {
+            get {
+                object obj = ResourceManager.GetObject("locker_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap locker_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("locker_icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap logo1 {
             get {
                 object obj = ResourceManager.GetObject("logo1", resourceCulture);
@@ -256,6 +276,16 @@ namespace theposw.Properties {
         internal static System.Drawing.Bitmap thepos1 {
             get {
                 object obj = ResourceManager.GetObject("thepos1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap ticket_icon {
+            get {
+                object obj = ResourceManager.GetObject("ticket_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -41,6 +41,8 @@ namespace thepos
 
 
         String ticketNo = "";
+        String lockerNo = "";
+
 
         public frmPayCash(int net_amount, int r과세금액, int r면세금액, bool is_complex, int seq, bool is_last, int select_index)
         {
@@ -100,8 +102,21 @@ namespace thepos
             else if (mPayClass == "ST")
             {
                 //
-                ticketNo = frmFlowSettlePA.mSelectedTicketNo;
-                mRefNo = ticketNo.Substring(0, 20);
+                if (mPointType == "PA")
+                {
+                    //?? 이후 개발필요
+                    ticketNo = frmFlowSettlePA.mSelectedTicketNo;
+                    mRefNo = ticketNo.Substring(0, 20);
+                }
+                else if (mPointType == "PD")
+                {
+                    ticketNo = frmFlowSettlePD.this_ticket_no;
+                    lockerNo = frmFlowSettlePD.this_locker_no;
+                    mRefNo = ticketNo.Substring(0, 20);
+                }
+
+
+
             }
 
 
@@ -124,45 +139,50 @@ namespace thepos
             int dcAmount = 0;
 
 
-            // 리스트뷰 -> 메모리배열 생성 : [ 업장코드로 정렬 + 업장주문번호 부여 ]
-            //MemOrderItem[] memOrderItemArr = getMemOrderItemArr(out dcAmount);
-
-            
-            // 아래로 이동
-            //set_shop_order_no_on_orderitem(out dcAmount);
 
 
             if (paySeq == 1)
             {
-                set_shop_order_no_on_orderitem(out dcAmount);
 
                 if (mPayClass == "ST")
                 {
+                    // PD-1
                     // 포인트사용분의 정산 : order, orderItem
-                    // 1. 기사용분 취소마킹
-                    // 2. 취소건 추가
-                    // 3. 신규 승인추가
-                    CancelOrderSettle(ticketNo);
+                    // order 테이블 patch : the_no 신규번호 세트
+                    patchOrderSettle();
+
+                    // PD-2
+                    // paymentPoint의 정산여부필드 마킹
+                    patchPointPaymentSettle();
+
+                    // PD-3 삭제
+                    //CancelOrderSettle(ticketNo);
                 }
-
-
-                // orders, orderItem 
-                order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외, 아래에서 출력
-                if (order_cnt == -1)
+                else
                 {
-                    thepos_app_log(2, this.Name, "SaveOrder()", "order_cnt=" + order_cnt);
-                    //return; // 재로그인 요구
+                    set_shop_order_no_on_orderitem(out dcAmount);
+
+                    // orders, orderItem 
+                    order_cnt = SaveOrder(ticketNo);  // order. orderitem  ->  업장주문서 출력은 제외, 아래에서 출력
+                    if (order_cnt == -1)
+                    {
+                        thepos_app_log(2, this.Name, "SaveOrder()", "order_cnt=" + order_cnt);
+                        //return; // 재로그인 요구
+                    }
                 }
+
             }
 
 
-            //  payment
+            //  SavePayment
             if (!SavePayment(paySeq, "Cash", netAmount, dcAmount))
             {
                 //return;
             }
 
 
+
+            // savePaymentCash
             PaymentCash mPaymentCash = new PaymentCash();
             mPaymentCash.site_id = mSiteId;
             mPaymentCash.biz_dt = mBizDate;
@@ -187,8 +207,6 @@ namespace thepos
             mPaymentCash.is_cancel = "";        // 취소여부
             mPaymentCash.van_code = "";
 
-
-            // 결제 항목 저장
             if (!SavePaymentCash(mPaymentCash))
             {
                 //return;
@@ -249,42 +267,74 @@ namespace thepos
                     settel_amt = mComplexRcvAmount;
                 }
 
-                // 티켓 저장
-                int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
 
-                if (ticket_cnt > 0)
+
+
+
+                // PD-4
+                if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
                 {
-                    if (mPayClass == "OR") // 주문(접수-발권)
+
+                    if (mPointType == "PA")
                     {
-                        // 티켓 출력은 SaveTicketFlow()내에서 함.
 
                     }
-                    else if (mPayClass == "CH") // 충전
+                    else if (mPointType == "PD")
                     {
-                        strAlarm += " 티켓충전 완료.";
+                        // PD-4
+                        // TicketFlow 테이블에 완료로 변경
+                        set_step_9_ticket_flow_by_ticket_no(frmFlowSettlePD.settle_ticket_no_list);
 
-                        // 충전화면 리스트뷰
-                        frmFlowCharging.review_flow(ticketNo, selectIdx);
+                        // PD-5
+                        // 락커이면 락커초기화
+                        if (mTicketMedia == "RF")
+                        {
+                            set_initial_by_locker_no(frmFlowSettlePD.settle_locker_no_list);
+                        }
 
-
-                    }
-                    else if (mPayClass == "ST") // 정산
-                    {
-                        strAlarm += " 티켓정산 등록.";
 
                         // 정산화면 리스트뷰 갱신
-                        frmFlowSettlePA.view_ticket_flow(frmFlowSettlePA.mThisTicketNo);
+                        //frmFlowSettlePD.view_ticket_flow(frmFlowSettlePD.mThisTicketNo);
                     }
 
-                    SetDisplayAlarm("I", strAlarm);
+                }
+                else if (mPayClass == "OR" | mPayClass == "CH")
+                {
+
+                    // 티켓 저장
+                    int ticket_cnt = SaveTicketFlow(ticketNo, mPayClass, "US", settel_amt);
+
+                    if (ticket_cnt > 0)
+                    {
+                        if (mPayClass == "OR") // 주문(접수-발권)
+                        {
+                            // 티켓 출력은 SaveTicketFlow()내에서 함.
+
+                        }
+                        else if (mPayClass == "CH") // 충전
+                        {
+                            strAlarm += " 티켓충전 완료.";
+
+                            // 충전화면 리스트뷰
+                            frmFlowCharging.review_flow(ticketNo, selectIdx);
+                        }
+
+                        SetDisplayAlarm("I", strAlarm);
+                    }
                 }
 
 
+
+
+                // PD-5
                 // 정산-포인트사용분에 대해 취소
+                /*
                 if (mPayClass == "ST")
                 {
                     cancel_point_payment(ticketNo);
                 }
+                */
+
 
 
 
@@ -334,6 +384,7 @@ namespace thepos
 
 
 
+
                 // 영수증 출력
                 if (mPaySeq == 1)
                     print_bill(mTheNo, "A", "", "10000", true, order_no_from_to); // cash
@@ -342,8 +393,10 @@ namespace thepos
 
 
 
-                if (mPayClass == "ST")  // 정산창위에  떠있는 경우.
+                // 처리후 화면 정리
+                if (mPayClass == "ST")
                 {
+                    mClearSaleForm();
                 }
                 else if (mPayClass == "CH") 
                 {
@@ -434,7 +487,7 @@ namespace thepos
                     if (mPayClass == "ST")
                     {
                         //
-                        CancelOrderSettle(ticketNo);
+                        //CancelOrderSettle(ticketNo);
                     }
 
 

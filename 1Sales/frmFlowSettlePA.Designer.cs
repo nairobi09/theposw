@@ -33,7 +33,6 @@
             this.lblTicketSettleTitle = new System.Windows.Forms.Label();
             this.btnCancelReq = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.lvwTicketSettle = new System.Windows.Forms.ListView();
@@ -51,8 +50,11 @@
             this.settle_usage_amt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,6 +119,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.tbTicketNo);
             this.panel1.Controls.Add(this.btnView);
@@ -124,16 +127,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(511, 50);
             this.panel1.TabIndex = 76;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
-            this.pictureBox1.Location = new System.Drawing.Point(166, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 79;
-            this.pictureBox1.TabStop = false;
             // 
             // tbTicketNo
             // 
@@ -300,6 +293,26 @@
             this.lblTitle.Text = "정산(선불)";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(134, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 82;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(163, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 81;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmFlowSettlePA
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -316,6 +329,7 @@
             this.panelback.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -345,6 +359,7 @@
         private System.Windows.Forms.ColumnHeader settle_charge_amt;
         private System.Windows.Forms.ColumnHeader settle_usage_amt;
         private System.Windows.Forms.Button btnSettleBill;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

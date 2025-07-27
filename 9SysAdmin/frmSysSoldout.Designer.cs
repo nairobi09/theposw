@@ -106,7 +106,7 @@
             // 
             // name
             // 
-            this.name.Text = "상품명";
+            this.name.Text = "상품명▲▼";
             this.name.Width = 160;
             // 
             // goods_amt

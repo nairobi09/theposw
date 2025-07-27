@@ -37,8 +37,12 @@
             this.lblNetAmountTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelback.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelback
@@ -58,6 +62,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.tbNo);
             this.groupBox1.Controls.Add(this.btnRequestAuth);
             this.groupBox1.Controls.Add(this.lblTicketNoTitle);
@@ -74,6 +80,7 @@
             this.tbNo.Name = "tbNo";
             this.tbNo.Size = new System.Drawing.Size(194, 23);
             this.tbNo.TabIndex = 0;
+            this.tbNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnRequestAuth
             // 
@@ -91,11 +98,12 @@
             // lblTicketNoTitle
             // 
             this.lblTicketNoTitle.AutoSize = true;
-            this.lblTicketNoTitle.Location = new System.Drawing.Point(35, 36);
+            this.lblTicketNoTitle.Location = new System.Drawing.Point(132, 65);
             this.lblTicketNoTitle.Name = "lblTicketNoTitle";
-            this.lblTicketNoTitle.Size = new System.Drawing.Size(63, 14);
+            this.lblTicketNoTitle.Size = new System.Drawing.Size(142, 14);
             this.lblTicketNoTitle.TabIndex = 48;
-            this.lblTicketNoTitle.Text = "식별번호";
+            this.lblTicketNoTitle.Text = "티켓번호 or 락카번호";
+            this.lblTicketNoTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNetAmount
             // 
@@ -146,8 +154,28 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(483, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "포인트결제";
+            this.lblTitle.Text = "포인트사용";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(46, 32);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 82;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(75, 32);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 81;
+            this.pictureBox1.TabStop = false;
             // 
             // frmPayPoint
             // 
@@ -164,6 +192,8 @@
             this.panelback.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,5 +209,7 @@
         private System.Windows.Forms.Button btnRequestAuth;
         private System.Windows.Forms.Label lblTicketNoTitle;
         private System.Windows.Forms.TextBox tbNo;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

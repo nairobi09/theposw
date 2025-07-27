@@ -174,7 +174,7 @@
             // 
             // goods_name
             // 
-            this.goods_name.Text = "상품명";
+            this.goods_name.Text = "상품명▼▲";
             this.goods_name.Width = 190;
             // 
             // amt

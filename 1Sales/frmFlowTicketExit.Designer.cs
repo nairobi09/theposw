@@ -59,13 +59,15 @@
             this.btnDCCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTheNo = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.panelback = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelback.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lvwList
@@ -345,8 +347,9 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lblTheNo);
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.lblTheNo);
             this.panel1.Controls.Add(this.tbTicketNo);
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(4, 51);
@@ -362,16 +365,6 @@
             this.lblTheNo.Size = new System.Drawing.Size(14, 13);
             this.lblTheNo.TabIndex = 79;
             this.lblTheNo.Text = "_";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
-            this.pictureBox1.Location = new System.Drawing.Point(202, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 78;
-            this.pictureBox1.TabStop = false;
             // 
             // tbTicketNo
             // 
@@ -422,6 +415,26 @@
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 93;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon1;
+            this.pictureBox2.Location = new System.Drawing.Point(171, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 82;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(200, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 81;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmFlowTicketExit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -437,8 +450,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketExit_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelback.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -475,10 +489,11 @@
         private System.Windows.Forms.Button btnDCCancel;
         private System.Windows.Forms.ColumnHeader goods_cnt;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tbTicketNo;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblTheNo;
         private System.Windows.Forms.Panel panelback;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

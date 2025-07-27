@@ -73,17 +73,16 @@ namespace thepos._1Sales
                         ListViewItem item = new ListViewItem(locker_no);
                         item.SubItems.Add(get_flow_step_name(flow_step));
 
-                        if (flow_step == "")
+                        if (flow_dt.Length == 14)
                         {
-                            item.SubItems.Add("");
+                            item.SubItems.Add(flow_dt.Substring(4, 2) + "-" + flow_dt.Substring(6, 2) + " " + flow_dt.Substring(8, 2) + ":" + flow_dt.Substring(10, 2));
                         }
                         else
                         {
-                            item.SubItems.Add(flow_dt.Substring(8, 2) + ":" + flow_dt.Substring(10, 2));
+                            item.SubItems.Add("");
                         }
-                            
+                        
                         item.SubItems.Add(ticket_no);
-
                         lvwList.Items.Add(item);
                     }
                 }

@@ -927,10 +927,12 @@
     <Content Include="res\flag_kr.png" />
     <Content Include="res\icon-n-act_com_setting-2.png" />
     <Content Include="res\image_add_32x32.png" />
+    <None Include="res\locker_icon.png" />
     <Content Include="res\logo1.png" />
     <Content Include="res\net_connect.png" />
     <Content Include="res\net_disconnect.png" />
     <Content Include="res\photo.png" />
+    <None Include="res\ticket_icon.png" />
     <Content Include="thepos_log.ico" />
     <None Include="res\scanbar2.png" />
     <None Include="res\scanbar3.png" />

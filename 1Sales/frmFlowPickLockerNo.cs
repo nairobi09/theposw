@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -79,7 +80,6 @@ namespace theposw._1Sales
                 }
             }
 
-
         }
 
 
@@ -87,6 +87,26 @@ namespace theposw._1Sales
         {
 
             LockerNoList.Clear();
+
+            for (int i = 0; i < locker_cnt; i++)
+            {
+                if (tbLockerNo[i].Text.Length != 4)
+                {
+                    MessageBox.Show("락커번호 오류.", "thepos");
+                    return;
+                }
+            }
+
+
+
+
+            for (int i = 0; i < locker_cnt; i++)
+            {
+                if (!check_locker_no_ready(tbLockerNo[i].Text))
+                {
+                    return;
+                }
+            }
 
 
             for (int i = 0; i < locker_cnt; i++)
@@ -99,5 +119,50 @@ namespace theposw._1Sales
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+
+
+        private bool check_locker_no_ready(string no)
+        {
+            String sUrl = "locker?siteId=" + mSiteId + "&lockerNo=" + no;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String data = mObj["lockers"].ToString();
+                    JArray arr = JArray.Parse(data);
+
+
+                    if (arr.Count == 1)
+                    {
+                        String flow_step = arr[0]["flowStep"].ToString();
+
+                        if (flow_step == "")
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("락커 이미 사용중. \n\n 락커번호=" + no, "thepos");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("락커데이터 오류. \n\n 락커번호=" + no, "thepos");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("데이터 오류. locker\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                }
+            }
+            else
+            {
+                MessageBox.Show("데이터 오류. locker", "thepos");
+            }
+
+            return false;
+        }
+
     }
 }

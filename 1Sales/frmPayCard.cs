@@ -169,7 +169,7 @@ namespace thepos
                 if (mPayClass == "ST")
                 {
                     //
-                    CancelOrderSettle(ticketNo);
+                    //CancelOrderSettle(ticketNo);
                 }
 
 
@@ -462,7 +462,7 @@ namespace thepos
                     if (mPayClass == "ST")
                     {
                         //
-                        CancelOrderSettle(ticketNo);
+                        //CancelOrderSettle(ticketNo);
                     }
 
 

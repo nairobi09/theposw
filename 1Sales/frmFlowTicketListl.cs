@@ -19,13 +19,13 @@ namespace theposw._1Sales
 {
     public partial class frmFlowTicketList : Form
     {
-        String this_biz_date;
+
         String the_no;
 
 
         public frmFlowTicketList(String the_no)
         {
-            this.this_biz_date = this_biz_date;
+
             this.the_no = the_no;
 
             InitializeComponent();
@@ -473,6 +473,10 @@ namespace theposw._1Sales
             }
 
 
+            //
+            mOrderItemList.Clear();
+            mLvwOrderItem.SetObjects(mOrderItemList);
+
 
             for (int i = 0; i < lvwList.CheckedItems.Count; i++)
             {
@@ -867,8 +871,8 @@ namespace theposw._1Sales
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Clear();
                 parameters["siteId"] = mSiteId;
-                parameters["bizDt"] = this_biz_date;
-                //parameters["bizDt"] = mBizDate;
+                //parameters["bizDt"] = this_biz_date;
+                parameters["bizDt"] = mBizDate;
                 parameters["ticketNo"] = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
                 parameters["settlementDt"] = ticket_input_dt;
                 parameters["flowStep"] = "9";  // 완료

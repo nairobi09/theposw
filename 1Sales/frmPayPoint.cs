@@ -72,11 +72,12 @@ namespace thepos
 
             if (mTicketMedia == "RF")
             {
-                ticketNo = get_ticket_no_by_locker_no(tNo);
+                //
+                ticketNo = get_ticket_no_by_locker_no(tNo);  // locker_no => ticket_no
 
                 if (ticketNo == "")
                 {
-                    thepos_app_log(3, this.Name, "get_ticket_no_by_locker_no", "오류 티켓번호를 구할 수 없습니다. no");
+                    thepos_app_log(3, this.Name, "get_ticket_no_by_locker_no{}", "오류 티켓번호를 구할 수 없습니다. no=" + tNo);
                     MessageBox.Show("오류\r\n티켓번호를 구할 수 없습니다.", "thepos");
                     return;
                 }
@@ -183,13 +184,14 @@ namespace thepos
             paymentPoint.ref_no = ticketNo.Substring(0, 20);
             paymentPoint.pay_date = get_today_date();
             paymentPoint.pay_time = get_today_time();
-            paymentPoint.pay_type = mTicketType;        // 선불 후불
+            paymentPoint.pay_type = mPointType;        // 선불 후불
             paymentPoint.tran_type = "A";               // 승인 A 취소 C
             paymentPoint.pay_class = mPayClass;
             paymentPoint.ticket_no = ticketNo;
             paymentPoint.usage_no = "";
             paymentPoint.amount = netAmount;
             paymentPoint.is_cancel = "";                // 취소여부
+            paymentPoint.is_settlement = "N";                // 정산여부
 
             SavePaymentPoint(paymentPoint);
 
@@ -202,7 +204,7 @@ namespace thepos
 
             if (ticket_cnt > 0)
             {
-                SetDisplayAlarm("I", " 포인트 사용등록 완료.");
+                SetDisplayAlarm("I", " 포인트 사용 완료.");
             }
 
 
@@ -278,6 +280,7 @@ namespace thepos
             parameters["usage_no"] = mPaymentPoint.usage_no;
             parameters["amount"] = mPaymentPoint.amount + "";
             parameters["isCancel"] = mPaymentPoint.is_cancel;
+            parameters["isSettlememt"] = mPaymentPoint.is_settlement;
 
             if (mRequestPost("paymentPoint", parameters))
             {

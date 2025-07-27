@@ -34,7 +34,7 @@ using static BrightIdeasSoftware.ObjectListView;
 
 
 
-// ▲ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
+// ▲▼ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
 // (*‿*✿) ٩(✪ꀾ⍟༶)و/// ♡◟(●•ᴗ•●)◞♡ ◄:•D .ᐟ ヾ(・ᆺ・✿)ﾉﾞ φ(◎◎ヘ)  ☑☆★☘︎ ☁︎ ⚑ 🟨 
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
@@ -690,6 +690,7 @@ namespace thepos
             public String usage_no;
             public int amount;
             public String is_cancel;
+            public String is_settlement;
         }
         public static List<PaymentPoint> mPaymentPoints = new List<PaymentPoint>();
 
@@ -871,11 +872,11 @@ namespace thepos
             else if (code == "CH") name = "충전";
             else if (code == "US")
             {
-                if (mTicketType == "PA") name = "선불";
-                else if (mTicketType == "PD") name = "후불";
+                if (mPointType == "PA") name = "사용";
+                else if (mPointType == "PD") name = "사용";
                 else name = code;
             }
-            else if (code == "ST") name = "정산:";
+            else if (code == "ST") name = "정산";
             else name = code;
 
             return name;
@@ -1372,7 +1373,7 @@ namespace thepos
                 }
                 else
                 {
-                    return;
+                    //return;
                 }
             }
 
@@ -1456,12 +1457,12 @@ namespace thepos
 
         public static String get_ticket_no_by_locker_no(string locker_no)
         {
-            String sUrl = "locker?siteId=" + mSiteId + "&lockerNo=" + locker_no;
+            String sUrl = "ticketFlow/locker?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&lockerNo=" + locker_no;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["lockers"].ToString();
+                    String data = mObj["ticketFlows"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     if (arr.Count == 1)

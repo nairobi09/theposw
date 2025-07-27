@@ -38,7 +38,6 @@
             this.btnPrintBillex = new System.Windows.Forms.Button();
             this.btnPrintOrder = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dtBizDt = new System.Windows.Forms.DateTimePicker();
             this.tbTheNo = new System.Windows.Forms.TextBox();
             this.cbPosNo = new System.Windows.Forms.ComboBox();
@@ -62,6 +61,7 @@
             this.cancel_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_etc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.amount_card = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -144,7 +144,7 @@
             // dc_shop
             // 
             this.dc_shop.Text = "업장";
-            this.dc_shop.Width = 50;
+            this.dc_shop.Width = 80;
             // 
             // btnPrintBillex
             // 
@@ -190,16 +190,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(512, 50);
             this.panel1.TabIndex = 77;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::theposw.Properties.Resources.scanbar4;
-            this.pictureBox1.Location = new System.Drawing.Point(203, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 77;
-            this.pictureBox1.TabStop = false;
             // 
             // dtBizDt
             // 
@@ -370,7 +360,6 @@
             // pay_type
             // 
             this.pay_type.Text = "결제";
-            this.pay_type.Width = 50;
             // 
             // order_dt
             // 
@@ -425,6 +414,16 @@
             this.amount_card.Text = "금액";
             this.amount_card.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.amount_card.Width = 80;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(202, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 82;
+            this.pictureBox1.TabStop = false;
             // 
             // frmPayManager
             // 

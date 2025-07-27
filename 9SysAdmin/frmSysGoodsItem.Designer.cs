@@ -92,16 +92,16 @@
             this.W,
             this.H,
             this.btn_color});
-            this.lvwGoodsLink.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvwGoodsLink.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGoodsLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwGoodsLink.FullRowSelect = true;
             this.lvwGoodsLink.GridLines = true;
             this.lvwGoodsLink.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwGoodsLink.HideSelection = false;
-            this.lvwGoodsLink.Location = new System.Drawing.Point(347, 55);
+            this.lvwGoodsLink.Location = new System.Drawing.Point(331, 55);
             this.lvwGoodsLink.MultiSelect = false;
             this.lvwGoodsLink.Name = "lvwGoodsLink";
-            this.lvwGoodsLink.Size = new System.Drawing.Size(388, 333);
+            this.lvwGoodsLink.Size = new System.Drawing.Size(402, 333);
             this.lvwGoodsLink.TabIndex = 43;
             this.lvwGoodsLink.TabStop = false;
             this.lvwGoodsLink.UseCompatibleStateImageBehavior = false;
@@ -111,7 +111,7 @@
             // name
             // 
             this.name.Text = "상품명";
-            this.name.Width = 120;
+            this.name.Width = 140;
             // 
             // amt
             // 
@@ -265,7 +265,7 @@
             this.lvwGoods.Location = new System.Drawing.Point(14, 55);
             this.lvwGoods.MultiSelect = false;
             this.lvwGoods.Name = "lvwGoods";
-            this.lvwGoods.Size = new System.Drawing.Size(320, 333);
+            this.lvwGoods.Size = new System.Drawing.Size(310, 333);
             this.lvwGoods.TabIndex = 80;
             this.lvwGoods.TabStop = false;
             this.lvwGoods.UseCompatibleStateImageBehavior = false;
@@ -274,7 +274,7 @@
             // 
             // item_name
             // 
-            this.item_name.Text = "상품명";
+            this.item_name.Text = "상품명▲▼";
             this.item_name.Width = 120;
             // 
             // amt1

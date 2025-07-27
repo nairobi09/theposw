@@ -39,6 +39,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbTicket = new System.Windows.Forms.ComboBox();
             this.cbNod2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbNod1 = new System.Windows.Forms.ComboBox();
@@ -105,8 +107,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbTicket = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.panel1.SuspendLayout();
@@ -256,6 +256,31 @@
             this.groupBox1.Size = new System.Drawing.Size(754, 200);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(394, 106);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.TabIndex = 76;
+            this.label7.Text = "티켓유형";
+            // 
+            // cbTicket
+            // 
+            this.cbTicket.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbTicket.FormattingEnabled = true;
+            this.cbTicket.Items.AddRange(new object[] {
+            "",
+            "개별(Y)",
+            "단체(Ys)"});
+            this.cbTicket.Location = new System.Drawing.Point(453, 100);
+            this.cbTicket.Name = "cbTicket";
+            this.cbTicket.Size = new System.Drawing.Size(101, 21);
+            this.cbTicket.TabIndex = 75;
             // 
             // cbNod2
             // 
@@ -626,7 +651,7 @@
             // 
             // goodsname
             // 
-            this.goodsname.Text = "상품명";
+            this.goodsname.Text = "상품명▲▼";
             this.goodsname.Width = 120;
             // 
             // amt
@@ -866,31 +891,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(183, 30);
             this.panel1.TabIndex = 81;
-            // 
-            // cbTicket
-            // 
-            this.cbTicket.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbTicket.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbTicket.FormattingEnabled = true;
-            this.cbTicket.Items.AddRange(new object[] {
-            "",
-            "개별(Y)",
-            "단체(Ys)"});
-            this.cbTicket.Location = new System.Drawing.Point(453, 100);
-            this.cbTicket.Name = "cbTicket";
-            this.cbTicket.Size = new System.Drawing.Size(101, 21);
-            this.cbTicket.TabIndex = 75;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(394, 106);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 76;
-            this.label7.Text = "티켓유형";
             // 
             // frmSysGoods
             // 

@@ -212,6 +212,7 @@ namespace thepos
         public static void reviewList(String biz_date, String pos_no, String the_no, int select_index)
         {
             String t_theNo = "";
+            String t_point_theNo = "";
             String t_billNo = "";
             String t_payClass = "";
 
@@ -241,6 +242,7 @@ namespace thepos
                     if (arr.Count > 0)
                     {
                         t_theNo = arr[0]["theNo"].ToString();
+                        t_point_theNo = arr[0]["pointTheNo"].ToString();
                         t_billNo = arr[0]["billNo"].ToString();
                         t_payClass = arr[0]["payClass"].ToString();
 
@@ -277,12 +279,6 @@ namespace thepos
 
 
 
-            ListViewItem lvItem = new ListViewItem();
-
-            lvItem.Tag = t_theNo;
-            lvItem.Text = t_billNo;
-            lvItem.SubItems.Add(get_pay_class_name(t_payClass));
-
             String pay_keep = "";
 
             if (is_cash != "1") is_cash = "0";
@@ -291,8 +287,27 @@ namespace thepos
             if (is_easy != "1") is_easy = "0";
             if (is_cert != "1") is_cert = "0";
 
-
             pay_keep = is_cash + is_card + is_point + is_easy + is_cert;
+
+
+
+            ListViewItem lvItem = new ListViewItem();
+
+
+            if (is_point == "1")
+            {
+                lvItem.Tag = t_point_theNo;
+            }
+            else
+            {
+                lvItem.Tag = t_theNo;
+            }
+            
+            
+            lvItem.Text = t_billNo;
+            lvItem.SubItems.Add(get_pay_class_name(t_payClass));
+
+
 
             lvItem.SubItems.Add(get_pay_type_group_name(pay_keep));
 
@@ -402,7 +417,7 @@ namespace thepos
             lvwPayOrder.Items.Clear();
 
             //
-            view_list_order(tTheNo, tranType);
+            view_list_order(tTheNo, tranType, pay_keep);
 
             //
             view_list_pay(tTheNo, tranType, pay_keep);
@@ -410,11 +425,19 @@ namespace thepos
         }
 
 
-        private void view_list_order(String tTheNo, String tranType)
+        private void view_list_order(String tTheNo, String tranType, String pay_keep)
         {
             String sUrl = "";
 
-            sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + selected_biz_date + "&tranType=A";
+
+            if (pay_keep.Substring(2, 1) == "1")
+            {
+                sUrl = "orderItem?siteId=" + mSiteId + "&pointTheNo=" + tTheNo + "&bizDt=" + selected_biz_date + "&tranType=A";
+            }
+            else
+            {
+                sUrl = "orderItem?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + selected_biz_date + "&tranType=A";
+            }
             
 
             if (mRequestGet(sUrl))
@@ -551,7 +574,7 @@ namespace thepos
             //! 포인트
             if (pay_keep_point == "1")
             {
-                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo + "&tranType=A" + "&bizDt=" + selected_biz_date;
+                sUrl = "paymentPoint?siteId=" + mSiteId + "&theNo=" + tTheNo + "&bizDt=" + selected_biz_date;
 
 
                 if (mRequestGet(sUrl))
@@ -567,6 +590,13 @@ namespace thepos
                             pay_name = get_pay_type_name(arr[i]["payType"].ToString());
                             pay_amount = convert_number(arr[i]["amount"].ToString());
 
+                            String settlement_name = "";
+
+                            if (arr[i]["isSettlement"].ToString() == "Y")
+                            {
+                                settlement_name = "정산완료";
+                            }
+
                             if (tranType == "C")
                                 pay_amount = -pay_amount;
 
@@ -576,7 +606,7 @@ namespace thepos
                             lvItem.Text = "(결제)";
                             lvItem.SubItems.Add(pay_name);
                             lvItem.SubItems.Add(pay_amount.ToString("N0"));
-                            lvItem.SubItems.Add("");
+                            lvItem.SubItems.Add(settlement_name);
                             lvwPayOrder.Items.Add(lvItem);
                         }
                     }
