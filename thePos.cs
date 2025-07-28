@@ -674,7 +674,7 @@ namespace thepos
         public static List<PaymentEasy> mPaymentEasys = new List<PaymentEasy>();
 
 
-        public struct PaymentPoint           // 선불 포인트 사용
+        public struct PaymentPoint           //  포인트 사용
         {
             public String site_id;
             public String biz_dt;  // yyyyMMdd
@@ -1487,14 +1487,14 @@ namespace thepos
             }
         }
 
-        public static void set_ticket_no_by_locker_no(string locker_no, string ticket_no, string flow_step)
+        public static void set_locker_by_locker_no(string locker_no, string ticket_no, string flow_step, string flow_dt)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["lockerNo"] = locker_no;
             parameters["ticketNo"] = ticket_no;
             parameters["flowStep"] = flow_step;
-            parameters["flowDt"] = get_today_date() + get_today_time();
+            parameters["flowDt"] = flow_dt;
 
             if (mRequestPatch("locker", parameters))
             {

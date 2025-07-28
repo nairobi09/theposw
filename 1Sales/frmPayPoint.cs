@@ -61,6 +61,7 @@ namespace thepos
             String tNo = tbNo.Text.ToString();
 
             String ticketNo = "";
+            String lockerNo = "";
 
 
             if (tNo.Length != 22 & tNo.Length != 4)
@@ -73,6 +74,7 @@ namespace thepos
             if (mTicketMedia == "RF")
             {
                 //
+                lockerNo = tNo;
                 ticketNo = get_ticket_no_by_locker_no(tNo);  // locker_no => ticket_no
 
                 if (ticketNo == "")
@@ -205,6 +207,11 @@ namespace thepos
             if (ticket_cnt > 0)
             {
                 SetDisplayAlarm("I", " 포인트 사용 완료.");
+
+                if (mTicketMedia == "RF")
+                {
+                    set_locker_by_locker_no(lockerNo, ticketNo, "3", get_today_date() + get_today_time());
+                }
             }
 
 

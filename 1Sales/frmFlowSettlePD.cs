@@ -493,7 +493,7 @@ namespace thepos
                     else
                     {
                         // 락커 업데이트
-                        set_ticket_no_by_locker_no(t_locker_no, "", "");
+                        set_locker_by_locker_no(t_locker_no, "", "", "");
 
                         thepos_app_log(1, this.Name, "락커초기화", "locker_bo=" + t_locker_no);
                     }

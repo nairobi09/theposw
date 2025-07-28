@@ -1564,7 +1564,7 @@ namespace thepos
 
             for (int i = 0; i < settle_locker_no_list.Count; i++)
             {
-                set_ticket_no_by_locker_no(settle_locker_no_list[i], "", "");
+                set_locker_by_locker_no(settle_locker_no_list[i], "", "", "");
             }
 
         }
@@ -2390,16 +2390,25 @@ namespace thepos
                                 // "", "영수증", "팔찌", "띠지" };
                                 if (mTicketMedia == "BC")  // 영수증
                                 {
+                                    // 2501
                                     print_bill_ticket(t_ticket_no, orderItem.goods_code, 1, orderItem.coupon_no);
                                 }
                                 else if (mTicketMedia == "TG")  // 전용폼지(띠지)
                                 {
+                                    // 2502
                                     print_label_ticket(t_ticket_no, get_today_date(), get_today_time(), orderItem.goods_code, orderItem.goods_name, orderItem.cnt, orderItem.amt, orderItem.coupon_no);
                                 }
                                 else if (mTicketMedia == "RF")  // 팔찌 : 
                                 {
                                     // 락커테이블 세트
-                                    set_ticket_no_by_locker_no(t_locker_no, t_ticket_no, "1");
+                                    set_locker_by_locker_no(t_locker_no, t_ticket_no, "1", get_today_date() + get_today_time());
+
+
+                                    //?? 락커티켓?
+                                    if (mSiteId == "2504")
+                                    {
+                                        print_bill_ticket(t_ticket_no, orderItem.goods_code, 1, orderItem.coupon_no);
+                                    }
                                 }
 
                             }
