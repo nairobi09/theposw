@@ -440,7 +440,7 @@ namespace thepos
                             lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
                             lvItem.SubItems.Add("");
                             lvItem.SubItems.Add("");
-                            lvItem.SubItems.Add(arr[i]["usageNo"].ToString());
+                            lvItem.SubItems.Add(arr[i]["lockerNo"].ToString());
 
                             if (arr[i]["isCancel"].ToString() == "Y" | arr[i]["isCancel"].ToString() == "y")
                                 lvItem.SubItems.Add("취소됨");

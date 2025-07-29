@@ -26,6 +26,8 @@ namespace thepos
 
         TicketFlow mThisTicketFlow = new TicketFlow();
 
+        public static ListView mLvwList;
+
 
         // 정산결제시 주문테이블을 정산마킹Patch하기 위해 리스트로 전달하기 위해
         public static List<String> settle_the_no_list = new List<String>();
@@ -51,6 +53,10 @@ namespace thepos
 
         private void initialize_the()
         {
+            mLvwList = lvwList;
+
+
+
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 26);
             lvwList.SmallImageList = imgList;
@@ -91,9 +97,9 @@ namespace thepos
         }
 
 
-        private void load_ticket_list(String t_no)
-        { 
-            lvwList.Items.Clear();
+        public static void load_ticket_list(String t_no)
+        {
+            mLvwList.Items.Clear();
 
 
             String t_entry_dt = "";
@@ -187,7 +193,7 @@ namespace thepos
                             lvItem.ForeColor = Color.Gray;
                         }
 
-                        lvwList.Items.Add(lvItem);
+                        mLvwList.Items.Add(lvItem);
 
                     }
 
@@ -483,9 +489,13 @@ namespace thepos
                 if (mTicketMedia == "RF")
                 {
                     string t_locker_no = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(no)].Text;
+                    string t_ticket_no = lvwList.CheckedItems[i].SubItems[lvwList.Columns.IndexOf(ticket_no)].Text;
 
                     if (t_point_usage_cnt > 0)
                     {
+                        set_locker_by_locker_no(t_locker_no, t_ticket_no, "4", get_today_date() + get_today_time());
+
+
                         // 정상 결제후 업데이트
                         thepos_app_log(1, this.Name, "락커 초기화 SKIP. 결제후 예정", "locker_no=" + t_locker_no);
 
@@ -547,6 +557,11 @@ namespace thepos
                     lvwList.Items[i].Checked = false;
                 }
             }
+        }
+
+        private void btnClose1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

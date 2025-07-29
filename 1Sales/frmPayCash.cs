@@ -294,7 +294,7 @@ namespace thepos
 
 
                         // 정산화면 리스트뷰 갱신
-                        //frmFlowSettlePD.view_ticket_flow(frmFlowSettlePD.mThisTicketNo);
+                        frmFlowSettlePD.load_ticket_list(frmFlowSettlePD.this_no);
                     }
 
                 }

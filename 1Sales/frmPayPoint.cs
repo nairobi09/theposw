@@ -190,7 +190,7 @@ namespace thepos
             paymentPoint.tran_type = "A";               // 승인 A 취소 C
             paymentPoint.pay_class = mPayClass;
             paymentPoint.ticket_no = ticketNo;
-            paymentPoint.usage_no = "";
+            paymentPoint.locker_no = lockerNo;
             paymentPoint.amount = netAmount;
             paymentPoint.is_cancel = "";                // 취소여부
             paymentPoint.is_settlement = "N";                // 정산여부
@@ -284,7 +284,7 @@ namespace thepos
             parameters["payClass"] = mPaymentPoint.pay_class;
 
             parameters["ticketNo"] = mPaymentPoint.ticket_no;
-            parameters["usage_no"] = mPaymentPoint.usage_no;
+            parameters["lockerNo"] = mPaymentPoint.locker_no;
             parameters["amount"] = mPaymentPoint.amount + "";
             parameters["isCancel"] = mPaymentPoint.is_cancel;
             parameters["isSettlememt"] = mPaymentPoint.is_settlement;

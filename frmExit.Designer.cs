@@ -34,6 +34,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnReload = new System.Windows.Forms.Button();
+            this.lblAppVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,11 +89,11 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::theposw.Properties.Resources.logo1;
-            this.pictureBox1.Location = new System.Drawing.Point(204, 202);
+            this.pictureBox1.Location = new System.Drawing.Point(185, 207);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(109, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.Size = new System.Drawing.Size(54, 17);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 42;
             this.pictureBox1.TabStop = false;
             // 
@@ -112,11 +113,22 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
+            // lblAppVersion
+            // 
+            this.lblAppVersion.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblAppVersion.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblAppVersion.Location = new System.Drawing.Point(239, 208);
+            this.lblAppVersion.Name = "lblAppVersion";
+            this.lblAppVersion.Size = new System.Drawing.Size(105, 13);
+            this.lblAppVersion.TabIndex = 44;
+            this.lblAppVersion.Text = "TPW1-2025-013";
+            // 
             // frmExit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(520, 240);
+            this.Controls.Add(this.lblAppVersion);
             this.Controls.Add(this.btnReload);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
@@ -142,5 +154,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Label lblAppVersion;
     }
 }

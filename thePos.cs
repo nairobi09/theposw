@@ -62,7 +62,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-012";   // 
+        public static String mAppVersion = "TPW1-2025-013";   // 
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -687,7 +687,7 @@ namespace thepos
             public String tran_type;    // 승인 A 취소 C
             public String pay_class;
             public String ticket_no;
-            public String usage_no;
+            public String locker_no;
             public int amount;
             public String is_cancel;
             public String is_settlement;

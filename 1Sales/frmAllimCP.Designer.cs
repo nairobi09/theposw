@@ -86,10 +86,10 @@
             this.lvwOrderShop.FullRowSelect = true;
             this.lvwOrderShop.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvwOrderShop.HideSelection = false;
-            this.lvwOrderShop.Location = new System.Drawing.Point(5, 123);
+            this.lvwOrderShop.Location = new System.Drawing.Point(5, 111);
             this.lvwOrderShop.MultiSelect = false;
             this.lvwOrderShop.Name = "lvwOrderShop";
-            this.lvwOrderShop.Size = new System.Drawing.Size(511, 310);
+            this.lvwOrderShop.Size = new System.Drawing.Size(511, 322);
             this.lvwOrderShop.SmallImageList = this.imageList;
             this.lvwOrderShop.TabIndex = 44;
             this.lvwOrderShop.UseCompatibleStateImageBehavior = false;
@@ -163,7 +163,7 @@
             this.lbl1.AutoSize = true;
             this.lbl1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.lbl1.Location = new System.Drawing.Point(12, 13);
+            this.lbl1.Location = new System.Drawing.Point(16, 23);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(53, 12);
             this.lbl1.TabIndex = 71;
@@ -174,7 +174,7 @@
             this.dtpBizDate.CalendarFont = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.dtpBizDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBizDate.Location = new System.Drawing.Point(14, 30);
+            this.dtpBizDate.Location = new System.Drawing.Point(76, 16);
             this.dtpBizDate.Name = "dtpBizDate";
             this.dtpBizDate.Size = new System.Drawing.Size(100, 23);
             this.dtpBizDate.TabIndex = 68;
@@ -193,9 +193,9 @@
             this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnView.Location = new System.Drawing.Point(369, 13);
+            this.btnView.Location = new System.Drawing.Point(373, 10);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(100, 40);
+            this.btnView.Size = new System.Drawing.Size(120, 35);
             this.btnView.TabIndex = 72;
             this.btnView.TabStop = false;
             this.btnView.Text = "조회";
@@ -209,7 +209,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnClose.ForeColor = System.Drawing.Color.Black;
-            this.btnClose.Location = new System.Drawing.Point(473, 4);
+            this.btnClose.Location = new System.Drawing.Point(471, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(40, 40);
             this.btnClose.TabIndex = 43;
@@ -227,7 +227,7 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(511, 39);
+            this.lblTitle.Size = new System.Drawing.Size(512, 39);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "주문알림";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -246,7 +246,7 @@
             this.panel1.Controls.Add(this.btnView);
             this.panel1.Location = new System.Drawing.Point(5, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(511, 67);
+            this.panel1.Size = new System.Drawing.Size(511, 55);
             this.panel1.TabIndex = 77;
             // 
             // cnt_item

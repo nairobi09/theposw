@@ -1095,7 +1095,7 @@ namespace thepos
                             pPointAuth.pay_type = arr[0]["payType"].ToString();
                             pPointAuth.pay_class = arr[0]["payClass"].ToString();
                             pPointAuth.ticket_no = arr[0]["ticketNo"].ToString();
-                            pPointAuth.usage_no = arr[0]["usageNo"].ToString();
+                            pPointAuth.locker_no = arr[0]["lockerNo"].ToString();
                             pPointAuth.amount = convert_number(arr[0]["amount"].ToString());
                             pPointAuth.is_cancel = arr[0]["isCancel"].ToString();
                         }
@@ -1136,43 +1136,7 @@ namespace thepos
 
 
                     // 포인트취소는 paymentPoint테이블에 취소건을 추가하지 않는다. 20231004
-                    /*
-                    parameters.Clear();
-                    parameters["siteId"] = mSiteId;
-                    parameters["bizDt"] = mBizDate;
-                    parameters["posNo"] = mPosNo;
-                    parameters["theNo"] = pPointAuth.the_no;
-                    parameters["refNo"] = pPointAuth.ref_no;
 
-                    parameters["payDate"] = get_today_date();
-                    parameters["payTime"] = get_today_time();
-                    parameters["payType"] = pPointAuth.pay_type;
-                    parameters["tranType"] = "C";
-                    parameters["payClass"] = pPointAuth.pay_class;
-
-                    parameters["ticketNo"] = pPointAuth.ticket_no;
-                    parameters["usageNo"] = pPointAuth.usage_no;
-                    parameters["amount"] = pPointAuth.amount + "";
-                    parameters["isCancel"] = "Y";
-
-                    if (mRequestPost("paymentPoint", parameters))
-                    {
-                        if (mObj["resultCode"].ToString() == "200")
-                        {
-                            is_apply = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("오류 paymentPoint\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("시스템오류 paymentPoint\n\n" + mErrorMsg, "thepos");
-                        return;
-                    }
-                    */
 
 
                     // 승인건에 취소마킹

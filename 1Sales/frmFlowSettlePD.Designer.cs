@@ -35,8 +35,8 @@
             this.btnClose1 = new System.Windows.Forms.Button();
             this.lvwList = new System.Windows.Forms.ListView();
             this.checkbox = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.flow_step_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.flow_step_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.emtry_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.point_usage_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,12 +45,12 @@
             this.flow_step_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAddPay = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -135,6 +135,7 @@
             this.btnClose1.TabStop = false;
             this.btnClose1.Text = "닫기";
             this.btnClose1.UseVisualStyleBackColor = false;
+            this.btnClose1.Click += new System.EventHandler(this.btnClose1_Click);
             // 
             // lvwList
             // 
@@ -167,13 +168,13 @@
             this.checkbox.Text = "";
             this.checkbox.Width = 20;
             // 
-            // flow_step_name
-            // 
-            this.flow_step_name.Text = "상태";
-            // 
             // no
             // 
             this.no.Text = "#";
+            // 
+            // flow_step_name
+            // 
+            this.flow_step_name.Text = "상태";
             // 
             // ticket_name
             // 
@@ -235,6 +236,26 @@
             this.panel1.Size = new System.Drawing.Size(511, 50);
             this.panel1.TabIndex = 76;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(137, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 80;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(166, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 79;
+            this.pictureBox1.TabStop = false;
+            // 
             // tbTicketNo
             // 
             this.tbTicketNo.BackColor = System.Drawing.SystemColors.Window;
@@ -293,26 +314,6 @@
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "정산(후불)";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon;
-            this.pictureBox2.Location = new System.Drawing.Point(137, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 80;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(166, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 79;
-            this.pictureBox1.TabStop = false;
             // 
             // frmFlowSettlePD
             // 

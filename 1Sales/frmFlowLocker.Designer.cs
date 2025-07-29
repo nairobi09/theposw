@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnLockerDisable = new System.Windows.Forms.Button();
+            this.btnLorkerClear = new System.Windows.Forms.Button();
             this.btnLockerOpen = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnView = new System.Windows.Forms.Button();
@@ -39,8 +41,6 @@
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_dt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnLorkerClear = new System.Windows.Forms.Button();
-            this.btnLockerDisable = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,33 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 6;
+            // 
+            // btnLockerDisable
+            // 
+            this.btnLockerDisable.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnLockerDisable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLockerDisable.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLockerDisable.ForeColor = System.Drawing.Color.White;
+            this.btnLockerDisable.Location = new System.Drawing.Point(135, 647);
+            this.btnLockerDisable.Name = "btnLockerDisable";
+            this.btnLockerDisable.Size = new System.Drawing.Size(120, 40);
+            this.btnLockerDisable.TabIndex = 80;
+            this.btnLockerDisable.Text = "사용불가";
+            this.btnLockerDisable.UseVisualStyleBackColor = false;
+            // 
+            // btnLorkerClear
+            // 
+            this.btnLorkerClear.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnLorkerClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLorkerClear.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnLorkerClear.ForeColor = System.Drawing.Color.White;
+            this.btnLorkerClear.Location = new System.Drawing.Point(9, 647);
+            this.btnLorkerClear.Name = "btnLorkerClear";
+            this.btnLorkerClear.Size = new System.Drawing.Size(120, 40);
+            this.btnLorkerClear.TabIndex = 79;
+            this.btnLorkerClear.Text = "상태초기화";
+            this.btnLorkerClear.UseVisualStyleBackColor = false;
+            this.btnLorkerClear.Click += new System.EventHandler(this.btnLorkerClear_Click);
             // 
             // btnLockerOpen
             // 
@@ -123,7 +150,7 @@
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
-            this.lblTitle.Size = new System.Drawing.Size(483, 40);
+            this.lblTitle.Size = new System.Drawing.Size(508, 40);
             this.lblTitle.TabIndex = 40;
             this.lblTitle.Text = "락커";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,33 +193,6 @@
             // 
             this.ticket_no.Text = "티켓번호";
             this.ticket_no.Width = 180;
-            // 
-            // btnLorkerClear
-            // 
-            this.btnLorkerClear.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnLorkerClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLorkerClear.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLorkerClear.ForeColor = System.Drawing.Color.White;
-            this.btnLorkerClear.Location = new System.Drawing.Point(9, 647);
-            this.btnLorkerClear.Name = "btnLorkerClear";
-            this.btnLorkerClear.Size = new System.Drawing.Size(120, 40);
-            this.btnLorkerClear.TabIndex = 79;
-            this.btnLorkerClear.Text = "상태초기화";
-            this.btnLorkerClear.UseVisualStyleBackColor = false;
-            this.btnLorkerClear.Click += new System.EventHandler(this.btnLorkerClear_Click);
-            // 
-            // btnLockerDisable
-            // 
-            this.btnLockerDisable.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnLockerDisable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLockerDisable.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnLockerDisable.ForeColor = System.Drawing.Color.White;
-            this.btnLockerDisable.Location = new System.Drawing.Point(135, 647);
-            this.btnLockerDisable.Name = "btnLockerDisable";
-            this.btnLockerDisable.Size = new System.Drawing.Size(120, 40);
-            this.btnLockerDisable.TabIndex = 80;
-            this.btnLockerDisable.Text = "사용불가";
-            this.btnLockerDisable.UseVisualStyleBackColor = false;
             // 
             // frmFlowLocker
             // 

@@ -387,7 +387,7 @@ namespace thepos
                         lvItem.SubItems.Add(arr[i]["payClass"].ToString());
                         lvItem.SubItems.Add(arr[i]["ticketNo"].ToString());
 
-                        lvItem.SubItems.Add(arr[i]["usageNo"].ToString());
+                        lvItem.SubItems.Add(arr[i]["lockerNo"].ToString());
                         lvItem.SubItems.Add(arr[i]["amount"].ToString());
                         lvItem.SubItems.Add(arr[i]["isCancel"].ToString());
 

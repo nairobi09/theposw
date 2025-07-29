@@ -197,5 +197,17 @@ namespace thepos
             panelReport.Controls.Add(fBiz);
             fBiz.Show();
         }
+
+        private void btnReportDayPointNotSettle_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "DayPointNotSettle") return;
+
+            mThisButtonClick = "DayPointNotSettle";
+            panelReport.Controls.Clear();
+
+            frmReportDayPointNotSettle fBiz = new frmReportDayPointNotSettle() { TopLevel = false, TopMost = true };
+            panelReport.Controls.Add(fBiz);
+            fBiz.Show();
+        }
     }
 }
