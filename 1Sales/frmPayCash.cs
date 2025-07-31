@@ -108,7 +108,7 @@ namespace thepos
                     ticketNo = frmFlowSettlePA.mSelectedTicketNo;
                     mRefNo = ticketNo.Substring(0, 20);
                 }
-                else if (mPointType == "PD")
+                else if (mPointType == "PD") 
                 {
                     ticketNo = frmFlowSettlePD.this_ticket_no;
                     lockerNo = frmFlowSettlePD.this_locker_no;
