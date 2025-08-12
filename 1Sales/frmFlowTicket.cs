@@ -608,10 +608,17 @@ namespace theposw._1Sales
         private String get_expect_exit_dt(String goods_code, String entry_dt)
         {
             // 퇴장예상시간 구하기
-            int minutesToAdd = get_goods_available_minute(goods_code);
-            DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-            dateTime = dateTime.AddMinutes(minutesToAdd);
-            return dateTime.ToString("yyyyMMddHHmmss");
+            try
+            {
+                int minutesToAdd = get_goods_available_minute(goods_code);
+                DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                dateTime = dateTime.AddMinutes(minutesToAdd);
+                return dateTime.ToString("yyyyMMddHHmmss");
+            }
+            catch
+            {
+                return "";
+            }
         }
 
 

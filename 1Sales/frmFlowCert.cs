@@ -162,12 +162,12 @@ namespace thepos
 
                     //
                     int link_goods_idx = -1;
-                    for (int k = 0; k < myGoodsItem.Length; k++)
+                    for (int k = 0; k < mGoodsList.Count; k++)
                     {
-                        if (coupon_link_no == myGoodsItem[k].coupon_link_no & myGoodsItem[k].ticket == "Y")
+                        if (coupon_link_no == mGoodsList[k].coupon_link_no & mGoodsList[k].ticket == "Y")
                         {
-                            goods_code = myGoodsItem[k].goods_code;
-                            goods_name = myGoodsItem[k].goods_name;
+                            goods_code = mGoodsList[k].goods_code;
+                            goods_name = mGoodsList[k].goods_name;
                             link_goods_idx = k;
                         }
                     }

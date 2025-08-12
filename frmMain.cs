@@ -896,6 +896,8 @@ namespace thepos
             // 3. goodsItemAndGoods
             if (false)
             {
+
+                /*
                 String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + myPosNo;
                 if (mRequestGet(sUrl))
                 {
@@ -954,6 +956,8 @@ namespace thepos
                     MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                     return;
                 }
+
+                */
             }
 
 

@@ -89,12 +89,14 @@ namespace thepos._1Sales
                             sumItem.SubItems.Add("");
                         }
 
+                        int cnt = Int32.Parse(arr[i]["cnt"].ToString());
+                        tot_cnt += cnt;
 
-                        tot_cnt += Int32.Parse(arr[i]["cnt"].ToString());
-                        tot_amount += Int32.Parse(arr[i]["amount"].ToString());
+                        int amount = Int32.Parse(arr[i]["amount"].ToString());
+                        tot_amount += amount;
 
-                        sumItem.SubItems.Add(arr[i]["cnt"].ToString());
-                        sumItem.SubItems.Add(arr[i]["amount"].ToString());
+                        sumItem.SubItems.Add(cnt.ToString("N0"));
+                        sumItem.SubItems.Add(amount.ToString("N0"));
                         sumItem.SubItems.Add(get_MMddHHmm(arr[i]["payDate"].ToString(), arr[i]["payTime"].ToString()));
                         lvwList.Items.Add(sumItem);
 
@@ -109,8 +111,8 @@ namespace thepos._1Sales
                         sumItem.SubItems.Add("");
                         sumItem.SubItems.Add("");
 
-                        sumItem.SubItems.Add(tot_cnt + "");
-                        sumItem.SubItems.Add(tot_amount + "");
+                        sumItem.SubItems.Add(tot_cnt.ToString("N0"));
+                        sumItem.SubItems.Add(tot_amount.ToString("N0"));
                         sumItem.SubItems.Add("");
                         lvwList.Items.Add(sumItem);
                     }

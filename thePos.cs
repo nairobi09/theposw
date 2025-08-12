@@ -62,7 +62,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-013";   // 
+        public static String mAppVersion = "TPW1-2025-015";   // 
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -345,7 +345,7 @@ namespace thepos
             public String soldout;  // Y품절
             public String allim;
             public String option_template_id;
-            public String coupon_link_no;
+            //public String coupon_link_no;
             //public String bar_code;
 
             public int column;
