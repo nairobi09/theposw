@@ -35,7 +35,10 @@ namespace thepos
                 var json = JsonConvert.SerializeObject(parameters);
                 var data = new StringContent(json, Encoding.UTF8, "application/json");
                 //mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);
-                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoAll", data).Result;
+
+                //var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoAll", data).Result;
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoBarcode", data).Result;
+
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 

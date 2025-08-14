@@ -145,7 +145,7 @@ namespace thepos
 
                 for (int i = 0; i < info.Count; i++)
                 {
-                    string coupon_no = info[i]["barcode_no"].ToString();
+                    //string coupon_no = info[i]["barcode_no"].ToString();
                     string view_state_code = info[i]["ustate"].ToString();
                     string view_state_str = info[i]["state"].ToString();  //  예약완료 or 취소
                     string coupon_name = info[i]["cusitem"].ToString();
@@ -177,6 +177,26 @@ namespace thepos
                         goods_code = "";
                         goods_name = "[미정]";
                     }
+
+
+
+                    String data1 = mObj["couponno_no"].ToString();
+                    JArray couponno_no = JArray.Parse(data1);
+
+                    for (int k = 0; k < couponno_no.Count; k++)
+                    {
+                        string coupon_no = couponno_no[k]["value"].ToString();
+                        string used = couponno_no[k]["used"].ToString();
+
+
+
+
+
+
+                    }
+
+
+
 
 
                     //
