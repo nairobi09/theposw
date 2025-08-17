@@ -716,7 +716,7 @@ namespace thepos
             // 2. goodsGroup
             if (true)
             {
-                String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + myPosNo;
+                String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + myShopCode;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -744,7 +744,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품그룹정보 오류. goodsGroup\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품그룹정보 오류. posGoodsGroup\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }
@@ -761,7 +761,7 @@ namespace thepos
             // 3. goodsItem
             if (true)
             {
-                String sUrl = "goodsItem?siteId=" + mSiteId + "&posNo=" + myPosNo;
+                String sUrl = "posGoodsItem?siteId=" + mSiteId + "&shopCode=" + myShopCode;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")
@@ -801,7 +801,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품정보 오류. posGoodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

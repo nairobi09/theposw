@@ -12,23 +12,23 @@ using Newtonsoft.Json.Linq;
 
 namespace thepos._9SysAdmin
 {
-    public partial class frmSysGoodsGroup2 : Form
+    public partial class frmSysGoodsGroupKiosk : Form
     {
         int max_groupcode = 100;  // 3자리
 
-        String mSelectedPosNo = "";
+        String mSelectedShopCode = "";
 
         List<String> pos_no = new List<String>();
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsGroup2()
+        public frmSysGoodsGroupKiosk()
         {
             InitializeComponent();
 
-            for (int i = 0; i < mPosNoList.Count; i++)
+            for (int i = 0; i < mShop.Length; i++)
             {
-                comboPosNo.Items.Add(mPosNoList[i]);
+                cbShop.Items.Add(mShop[i].shop_name);
             }
 
 
@@ -51,7 +51,7 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        comboPosNo.Items.Add(arr[i]["posNo"].ToString());
+                        cbShop.Items.Add(arr[i]["posNo"].ToString());
                     }
                 }
                 else
@@ -80,7 +80,7 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        comboPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        cbShop.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
 
                         pos_no.Add(arr[i]["posNo"].ToString());
                         pos_type.Add(arr[i]["setupValue"].ToString());
@@ -99,19 +99,12 @@ namespace thepos._9SysAdmin
             }
         }
 
-        private void btnViewPosNo_Click(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
-            if (comboPosNo.SelectedIndex == -1) { return; }
+            if (cbShop.SelectedIndex == -1) { return; }
 
-            mSelectedPosNo = mPosNoList[comboPosNo.SelectedIndex];
+            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
 
-
-            if (mSelectedPosNo.Substring(0,1) != "1")
-            {
-                MessageBox.Show("KIOSK로 등록된 기기가 아닙니다.", "thepos");
-
-                return;
-            }
 
             reload_server();
 
@@ -152,7 +145,7 @@ namespace thepos._9SysAdmin
             String[] group_name_jp;
 
 
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
+            String sUrl = "kioskGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
 
             if (mRequestGet(sUrl))
             {
@@ -170,7 +163,7 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        group_seq[i] = convert_number(arr[i]["locateX"].ToString());
+                        group_seq[i] = convert_number(arr[i]["layoutNo"].ToString());
                         group_code[i] = arr[i]["groupCode"].ToString();
                         group_name[i] = arr[i]["groupName"].ToString();
                         group_name_en[i] = arr[i]["groupNameEn"].ToString();
@@ -298,19 +291,19 @@ namespace thepos._9SysAdmin
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = (++max_groupcode).ToString();
             parameters["groupName"] = tbGroupName.Text;
             parameters["groupNameEn"] = tbGroupNameEN.Text;
             parameters["groupNameCh"] = tbGroupNameCH.Text;
             parameters["groupNameJp"] = tbGroupNameJP.Text;
 
-            parameters["locateX"] = (lvwList.Items.Count + 1).ToString();
-            parameters["locateY"] = "0";
-            parameters["sizeX"] = "0";
-            parameters["sizeY"] = "0";
+            parameters["layoutNo"] = (lvwList.Items.Count + 1).ToString();
 
-            if (mRequestPost("goodsGroup", parameters))
+            parameters["soldout"] = "";
+            parameters["cutout"] = "";
+
+            if (mRequestPost("kioskGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -338,19 +331,17 @@ namespace thepos._9SysAdmin
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
             parameters["groupName"] = tbGroupName.Text;
             parameters["groupNameEn"] = tbGroupNameEN.Text;
             parameters["groupNameCh"] = tbGroupNameCH.Text;
             parameters["groupNameJp"] = tbGroupNameJP.Text;
 
-            parameters["locateX"] = lvwList.SelectedItems[0].Text;
-            parameters["locateY"] = "0";
-            parameters["sizeX"] = "0";
-            parameters["sizeY"] = "0";
+            parameters["locateNo"] = lvwList.SelectedItems[0].Text;
 
-            if (mRequestPatch("goodsGroup", parameters))
+
+            if (mRequestPatch("kioskGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -379,11 +370,11 @@ namespace thepos._9SysAdmin
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
 
 
-            if (mRequestDelete("goodsGroup", parameters))
+            if (mRequestDelete("kioskGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -416,15 +407,13 @@ namespace thepos._9SysAdmin
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mSelectedPosNo;
+                parameters["shopCode"] = mSelectedShopCode;
                 parameters["groupCode"] = lvwList.Items[i].Tag.ToString();
 
-                parameters["locateX"] = lvwList.Items[i].Text;
-                parameters["locateY"] = "0";
-                parameters["sizeX"] = "0";
-                parameters["sizeY"] = "0";
+                parameters["locateNo"] = lvwList.Items[i].Text;
 
-                if (mRequestPatch("goodsGroup", parameters))
+
+                if (mRequestPatch("kioskGoodsGroup", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {

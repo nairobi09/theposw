@@ -31,19 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysAdmin));
             this.panelView = new System.Windows.Forms.Panel();
             this.panelAdminConsole = new System.Windows.Forms.Panel();
+            this.btnSysGoodsItemKiosk = new System.Windows.Forms.Button();
+            this.btnSysGoodsItemPos = new System.Windows.Forms.Button();
+            this.btnSysGoodsGroupKiosk = new System.Windows.Forms.Button();
+            this.btnSysGoodsGroupPos = new System.Windows.Forms.Button();
             this.btnSysGoodsTicket = new System.Windows.Forms.Button();
             this.btnSysFlowConsole = new System.Windows.Forms.Button();
             this.btnSysOption = new System.Windows.Forms.Button();
             this.btnSysSoldout = new System.Windows.Forms.Button();
-            this.btnSysGoodsItem2 = new System.Windows.Forms.Button();
-            this.btnSysGoodsGroup2 = new System.Windows.Forms.Button();
             this.btnDcrFavorite = new System.Windows.Forms.Button();
             this.btnSysSite = new System.Windows.Forms.Button();
             this.btnSysShop = new System.Windows.Forms.Button();
             this.btnSysPayConsole = new System.Windows.Forms.Button();
-            this.btnSysGoodsItem = new System.Windows.Forms.Button();
             this.btnSysGoods = new System.Windows.Forms.Button();
-            this.btnSysGoodsGroup = new System.Windows.Forms.Button();
             this.btnPos = new System.Windows.Forms.Button();
             this.panelCertConsole = new System.Windows.Forms.Panel();
             this.btnUser = new System.Windows.Forms.Button();
@@ -65,19 +65,19 @@
             // 
             // panelAdminConsole
             // 
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsItemKiosk);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsItemPos);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroupKiosk);
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroupPos);
             this.panelAdminConsole.Controls.Add(this.btnSysGoodsTicket);
             this.panelAdminConsole.Controls.Add(this.btnSysFlowConsole);
             this.panelAdminConsole.Controls.Add(this.btnSysOption);
             this.panelAdminConsole.Controls.Add(this.btnSysSoldout);
-            this.panelAdminConsole.Controls.Add(this.btnSysGoodsItem2);
-            this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup2);
             this.panelAdminConsole.Controls.Add(this.btnDcrFavorite);
             this.panelAdminConsole.Controls.Add(this.btnSysSite);
             this.panelAdminConsole.Controls.Add(this.btnSysShop);
             this.panelAdminConsole.Controls.Add(this.btnSysPayConsole);
-            this.panelAdminConsole.Controls.Add(this.btnSysGoodsItem);
             this.panelAdminConsole.Controls.Add(this.btnSysGoods);
-            this.panelAdminConsole.Controls.Add(this.btnSysGoodsGroup);
             this.panelAdminConsole.Font = new System.Drawing.Font("맑은 고딕", 10F);
             this.panelAdminConsole.Location = new System.Drawing.Point(0, 48);
             this.panelAdminConsole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -85,6 +85,66 @@
             this.panelAdminConsole.Size = new System.Drawing.Size(123, 556);
             this.panelAdminConsole.TabIndex = 2;
             this.panelAdminConsole.Visible = false;
+            // 
+            // btnSysGoodsItemKiosk
+            // 
+            this.btnSysGoodsItemKiosk.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsItemKiosk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsItemKiosk.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsItemKiosk.Location = new System.Drawing.Point(7, 354);
+            this.btnSysGoodsItemKiosk.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysGoodsItemKiosk.Name = "btnSysGoodsItemKiosk";
+            this.btnSysGoodsItemKiosk.Size = new System.Drawing.Size(112, 30);
+            this.btnSysGoodsItemKiosk.TabIndex = 13;
+            this.btnSysGoodsItemKiosk.TabStop = false;
+            this.btnSysGoodsItemKiosk.Text = "(KIOSK)";
+            this.btnSysGoodsItemKiosk.UseVisualStyleBackColor = false;
+            this.btnSysGoodsItemKiosk.Click += new System.EventHandler(this.btnSysGoodsItemKiosk_Click);
+            // 
+            // btnSysGoodsItemPos
+            // 
+            this.btnSysGoodsItemPos.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsItemPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsItemPos.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsItemPos.Location = new System.Drawing.Point(7, 310);
+            this.btnSysGoodsItemPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysGoodsItemPos.Name = "btnSysGoodsItemPos";
+            this.btnSysGoodsItemPos.Size = new System.Drawing.Size(112, 40);
+            this.btnSysGoodsItemPos.TabIndex = 12;
+            this.btnSysGoodsItemPos.TabStop = false;
+            this.btnSysGoodsItemPos.Text = "상품배치\r\n(POS)";
+            this.btnSysGoodsItemPos.UseVisualStyleBackColor = false;
+            this.btnSysGoodsItemPos.Click += new System.EventHandler(this.btnSysGoodsItemPos_Click);
+            // 
+            // btnSysGoodsGroupKiosk
+            // 
+            this.btnSysGoodsGroupKiosk.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsGroupKiosk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsGroupKiosk.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsGroupKiosk.Location = new System.Drawing.Point(7, 265);
+            this.btnSysGoodsGroupKiosk.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.btnSysGoodsGroupKiosk.Name = "btnSysGoodsGroupKiosk";
+            this.btnSysGoodsGroupKiosk.Size = new System.Drawing.Size(112, 30);
+            this.btnSysGoodsGroupKiosk.TabIndex = 11;
+            this.btnSysGoodsGroupKiosk.TabStop = false;
+            this.btnSysGoodsGroupKiosk.Text = "(KIOSK)";
+            this.btnSysGoodsGroupKiosk.UseVisualStyleBackColor = false;
+            this.btnSysGoodsGroupKiosk.Click += new System.EventHandler(this.btnSysGoodsGroupKiosk_Click);
+            // 
+            // btnSysGoodsGroupPos
+            // 
+            this.btnSysGoodsGroupPos.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsGroupPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsGroupPos.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsGroupPos.Location = new System.Drawing.Point(7, 221);
+            this.btnSysGoodsGroupPos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysGoodsGroupPos.Name = "btnSysGoodsGroupPos";
+            this.btnSysGoodsGroupPos.Size = new System.Drawing.Size(112, 40);
+            this.btnSysGoodsGroupPos.TabIndex = 10;
+            this.btnSysGoodsGroupPos.TabStop = false;
+            this.btnSysGoodsGroupPos.Text = "상품그룹\r\n(POS)";
+            this.btnSysGoodsGroupPos.UseVisualStyleBackColor = false;
+            this.btnSysGoodsGroupPos.Click += new System.EventHandler(this.btnSysGoodsGroupPos_Click);
             // 
             // btnSysGoodsTicket
             // 
@@ -146,36 +206,6 @@
             this.btnSysSoldout.UseVisualStyleBackColor = false;
             this.btnSysSoldout.Click += new System.EventHandler(this.btnSoldout_Click);
             // 
-            // btnSysGoodsItem2
-            // 
-            this.btnSysGoodsItem2.BackColor = System.Drawing.Color.White;
-            this.btnSysGoodsItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsItem2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItem2.Location = new System.Drawing.Point(7, 350);
-            this.btnSysGoodsItem2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysGoodsItem2.Name = "btnSysGoodsItem2";
-            this.btnSysGoodsItem2.Size = new System.Drawing.Size(112, 30);
-            this.btnSysGoodsItem2.TabIndex = 5;
-            this.btnSysGoodsItem2.TabStop = false;
-            this.btnSysGoodsItem2.Text = "(KIOSK)";
-            this.btnSysGoodsItem2.UseVisualStyleBackColor = false;
-            this.btnSysGoodsItem2.Click += new System.EventHandler(this.btnSysGoodsItem2_Click);
-            // 
-            // btnSysGoodsGroup2
-            // 
-            this.btnSysGoodsGroup2.BackColor = System.Drawing.Color.White;
-            this.btnSysGoodsGroup2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsGroup2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsGroup2.Location = new System.Drawing.Point(7, 260);
-            this.btnSysGoodsGroup2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.btnSysGoodsGroup2.Name = "btnSysGoodsGroup2";
-            this.btnSysGoodsGroup2.Size = new System.Drawing.Size(112, 30);
-            this.btnSysGoodsGroup2.TabIndex = 4;
-            this.btnSysGoodsGroup2.TabStop = false;
-            this.btnSysGoodsGroup2.Text = "(KIOSK)";
-            this.btnSysGoodsGroup2.UseVisualStyleBackColor = false;
-            this.btnSysGoodsGroup2.Click += new System.EventHandler(this.btnSysGoodsGroup2_Click);
-            // 
             // btnDcrFavorite
             // 
             this.btnDcrFavorite.BackColor = System.Drawing.Color.White;
@@ -236,21 +266,6 @@
             this.btnSysPayConsole.UseVisualStyleBackColor = false;
             this.btnSysPayConsole.Click += new System.EventHandler(this.btnSysPayConsole_Click);
             // 
-            // btnSysGoodsItem
-            // 
-            this.btnSysGoodsItem.BackColor = System.Drawing.Color.White;
-            this.btnSysGoodsItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsItem.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItem.Location = new System.Drawing.Point(7, 306);
-            this.btnSysGoodsItem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysGoodsItem.Name = "btnSysGoodsItem";
-            this.btnSysGoodsItem.Size = new System.Drawing.Size(112, 40);
-            this.btnSysGoodsItem.TabIndex = 0;
-            this.btnSysGoodsItem.TabStop = false;
-            this.btnSysGoodsItem.Text = "상품배치\r\n(POS)";
-            this.btnSysGoodsItem.UseVisualStyleBackColor = false;
-            this.btnSysGoodsItem.Click += new System.EventHandler(this.btnSysGoodsItem_Click);
-            // 
             // btnSysGoods
             // 
             this.btnSysGoods.BackColor = System.Drawing.Color.White;
@@ -265,21 +280,6 @@
             this.btnSysGoods.Text = "기초상품";
             this.btnSysGoods.UseVisualStyleBackColor = false;
             this.btnSysGoods.Click += new System.EventHandler(this.btnSysGoods_Click);
-            // 
-            // btnSysGoodsGroup
-            // 
-            this.btnSysGoodsGroup.BackColor = System.Drawing.Color.White;
-            this.btnSysGoodsGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsGroup.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsGroup.Location = new System.Drawing.Point(7, 217);
-            this.btnSysGoodsGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysGoodsGroup.Name = "btnSysGoodsGroup";
-            this.btnSysGoodsGroup.Size = new System.Drawing.Size(112, 40);
-            this.btnSysGoodsGroup.TabIndex = 0;
-            this.btnSysGoodsGroup.TabStop = false;
-            this.btnSysGoodsGroup.Text = "상품그룹\r\n(POS)";
-            this.btnSysGoodsGroup.UseVisualStyleBackColor = false;
-            this.btnSysGoodsGroup.Click += new System.EventHandler(this.btnSysGoodsGroup_Click);
             // 
             // btnPos
             // 
@@ -401,9 +401,7 @@
         private System.Windows.Forms.Panel panelView;
         private System.Windows.Forms.Panel panelAdminConsole;
         private System.Windows.Forms.Button btnPos;
-        private System.Windows.Forms.Button btnSysGoodsGroup;
         private System.Windows.Forms.Button btnSysGoods;
-        private System.Windows.Forms.Button btnSysGoodsItem;
         private System.Windows.Forms.Button btnSysPayConsole;
         private System.Windows.Forms.Button btnSysShop;
         private System.Windows.Forms.Button btnSysSite;
@@ -411,13 +409,15 @@
         private System.Windows.Forms.Button btnPosMac;
         private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Button btnDcrFavorite;
-        private System.Windows.Forms.Button btnSysGoodsItem2;
-        private System.Windows.Forms.Button btnSysGoodsGroup2;
         private System.Windows.Forms.Button btnSysSoldout;
         private System.Windows.Forms.Button btnSysOption;
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.Button btnSysFlowConsole;
         private System.Windows.Forms.Button btnTree;
         private System.Windows.Forms.Button btnSysGoodsTicket;
+        private System.Windows.Forms.Button btnSysGoodsItemKiosk;
+        private System.Windows.Forms.Button btnSysGoodsItemPos;
+        private System.Windows.Forms.Button btnSysGoodsGroupKiosk;
+        private System.Windows.Forms.Button btnSysGoodsGroupPos;
     }
 }

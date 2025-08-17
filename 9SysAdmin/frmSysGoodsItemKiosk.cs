@@ -14,11 +14,11 @@ using static thepos.thePos;
 
 namespace thepos._9SysAdmin
 {
-    public partial class frmSysGoodsItem2 : Form
+    public partial class frmSysGoodsItemKiosk : Form
     {
         private int sortColumn = -1;
 
-        String mSelectedPosNo = "";
+        String mSelectedShopCode = "";
         String mSelectedGroupCode = "";
 
         private BindingList<object> selected_groupList = new BindingList<object>();
@@ -28,7 +28,7 @@ namespace thepos._9SysAdmin
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsItem2()
+        public frmSysGoodsItemKiosk()
         {
             InitializeComponent();
 
@@ -36,21 +36,11 @@ namespace thepos._9SysAdmin
 
 
 
-            for (int i = 0; i < mPosNoList.Count; i++)
+            for (int i = 0; i < mShop.Length; i++)
             {
-                cbPosNo.Items.Add(mPosNoList[i]);
-                cbSourcePosNo.Items.Add(mPosNoList[i]);
+                cbShop.Items.Add(mShop[i].shop_name);
             }
 
-            //get_posno_from_setupPos();
-
-            /*
-            for (int i = 0; i < mPosNoList.Count; i++)
-            {
-                cbPosNo.Items.Add(mPosNoList[i]);
-                cbSourcePosNo.Items.Add(mPosNoList[i]);
-            }
-            */
 
 
             //
@@ -131,44 +121,14 @@ namespace thepos._9SysAdmin
             }
         }
 
-        private void get_posno_from_setupPos()
-        {
-            String sUrl = "setupPos?siteId=" + mSiteId + "&setupCode=PosType";
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["setupPos"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        cbPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
-
-                        pos_no.Add(arr[i]["posNo"].ToString());
-                        pos_type.Add(arr[i]["setupValue"].ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
+        
 
         private void cbPosNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedPosNo = mPosNoList[cbPosNo.SelectedIndex];
+            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
 
 
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
+            String sUrl = "kioskGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
 
             if (mRequestGet(sUrl))
             {
@@ -205,15 +165,7 @@ namespace thepos._9SysAdmin
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            mSelectedPosNo = mPosNoList[cbPosNo.SelectedIndex];
-
-
-            if (mSelectedPosNo.Substring(0,1) != "1")
-            {
-                MessageBox.Show("KIOSK로 등록된 기기가 아닙니다.", "thepos");
-
-                return;
-            }
+            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
 
 
             if (cbGroup.SelectedIndex >= 0)
@@ -237,7 +189,7 @@ namespace thepos._9SysAdmin
             int[] item_amt;
 
 
-            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo + "&groupCode=" + mSelectedGroupCode;
+            String sUrl = "kioskGoodsItem?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode + "&groupCode=" + mSelectedGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -253,10 +205,10 @@ namespace thepos._9SysAdmin
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        item_seq[i] = convert_number(arr[i]["locateX"].ToString());
+                        item_seq[i] = convert_number(arr[i]["layoutNo"].ToString());
                         item_code[i] = arr[i]["goodsCode"].ToString();
-                        item_name[i] = arr[i]["goodsName"].ToString();
-                        item_amt[i] = convert_number(arr[i]["amt"].ToString());
+                        item_name[i] = get_goods_name(arr[i]["goodsCode"].ToString());
+                        item_amt[i] = get_goods_amt(arr[i]["goodsCode"].ToString());
                     }
                 }
                 else
@@ -352,16 +304,13 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = mSelectedGroupCode;
             parameters["goodsCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
-            parameters["locateX"] = (lvwGoodsLink.Items.Count + 1).ToString();
-            parameters["locateY"] = "0";
-            parameters["sizeX"] = "0";
-            parameters["sizeY"] = "0";
+            parameters["layoutNo"] = (lvwGoodsLink.Items.Count + 1).ToString();
 
 
-            if (mRequestPost("goodsItem", parameters))
+            if (mRequestPost("kioskGoodsItem", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -404,7 +353,7 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = mSelectedGroupCode;
             parameters["goodsCode"] = mSelectedGoodsCode;
 
@@ -443,16 +392,14 @@ namespace thepos._9SysAdmin
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["posNo"] = mSelectedPosNo;
+                parameters["shopCode"] = mSelectedShopCode;
                 parameters["groupCode"] = mSelectedGroupCode;
                 parameters["goodsCode"] = lvwGoodsLink.Items[i].Tag.ToString();
 
-                parameters["locateX"] = lvwGoodsLink.Items[i].Text;
-                parameters["locateY"] = "0";
-                parameters["sizeX"] = "0";
-                parameters["sizeY"] = "0";
+                parameters["layoutNo"] = lvwGoodsLink.Items[i].Text;
 
-                if (mRequestPatch("goodsItem", parameters))
+
+                if (mRequestPatch("kioskGoodsItem", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
@@ -469,10 +416,6 @@ namespace thepos._9SysAdmin
                     return;
                 }
             }
-
-
-            //
-            //set_version_basic_db_change();
 
 
             MessageBox.Show("저장완료", "thepos");
@@ -525,159 +468,6 @@ namespace thepos._9SysAdmin
             lvwGoodsLink.Select();
         }
 
-        private void cbSourcePosNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            String copyPosNo = cbSourcePosNo.SelectedItem.ToString();
-
-
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + copyPosNo;
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["goodsGroups"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    cbSourceGroup.Items.Clear();
-                    source_groupList.Clear();
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        source_groupList.Add(new { Text = arr[i]["groupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
-                    }
-
-                    cbSourceGroup.DataSource = source_groupList;
-                    cbSourceGroup.DisplayMember = "Text";
-                    cbSourceGroup.ValueMember = "Value";
-
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
-
-        private void btnCopy_Click(object sender, EventArgs e)
-        {
-            if (mSelectedGroupCode == "")
-            {
-                return;
-            }
-
-
-            if (cbSourcePosNo.SelectedIndex == -1) return;
-            if (cbSourceGroup.SelectedIndex == -1) return;
-
-
-            String sourcePosNo = cbSourcePosNo.SelectedItem.ToString();
-            String sourceGroupCode = cbSourceGroup.SelectedValue.ToString();
-
-
-
-
-
-            if (MessageBox.Show("기존의 연결상품을 모두 삭제하고, 선택한 그룹의 상품을 복사해옵니다.", "thepos", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                // delete
-                for (int i = 0; i < lvwGoodsLink.Items.Count; i++)
-                {
-                    Dictionary<string, string> parameters = new Dictionary<string, string>();
-                    parameters["siteId"] = mSiteId;
-                    parameters["posNo"] = mSelectedPosNo;
-                    parameters["groupCode"] = mSelectedGroupCode;
-                    parameters["goodsCode"] = lvwGoodsLink.Items[i].Tag.ToString(); ;
-
-                    if (mRequestDelete("goodsItem", parameters))
-                    {
-                        if (mObj["resultCode"].ToString() == "200")
-                        {
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                return;
-            }
-
-
-            // copy
-            String sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + sourcePosNo + "&groupCode=" + sourceGroupCode;
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["goodsItems"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        Dictionary<string, string> parameters = new Dictionary<string, string>();
-                        parameters["siteId"] = mSiteId;
-                        parameters["posNo"] = mSelectedPosNo;
-                        parameters["groupCode"] = mSelectedGroupCode;
-                        parameters["goodsCode"] = arr[i]["goodsCode"].ToString();
-                        parameters["locateX"] = arr[i]["locateX"].ToString();
-                        parameters["locateY"] = arr[i]["locateY"].ToString();
-                        parameters["sizeX"] = arr[i]["sizeX"].ToString();
-                        parameters["sizeY"] = arr[i]["sizeY"].ToString();
-
-                        if (mRequestPost("goodsItem", parameters))
-                        {
-                            if (mObj["resultCode"].ToString() == "200")
-                            {
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-
-
-
-            MessageBox.Show("복사완료", "thepos");
-
-            reload_server();
-        }
 
         private void lvwGoods_ColumnClick(object sender, ColumnClickEventArgs e)
         {

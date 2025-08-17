@@ -212,7 +212,7 @@ namespace thepos
         public static void reviewList(String biz_date, String pos_no, String the_no, int select_index)
         {
             String t_theNo = "";
-            String t_point_theNo = "";
+            //String t_point_theNo = "";
             String t_billNo = "";
             String t_payClass = "";
 
@@ -242,7 +242,7 @@ namespace thepos
                     if (arr.Count > 0)
                     {
                         t_theNo = arr[0]["theNo"].ToString();
-                        t_point_theNo = arr[0]["pointTheNo"].ToString();
+                        //t_point_theNo = arr[0]["pointTheNo"].ToString();   //??????????
                         t_billNo = arr[0]["billNo"].ToString();
                         t_payClass = arr[0]["payClass"].ToString();
 
@@ -296,7 +296,8 @@ namespace thepos
 
             if (is_point == "1")
             {
-                lvItem.Tag = t_point_theNo;
+                //lvItem.Tag = t_point_theNo;
+                lvItem.Tag = t_theNo;
             }
             else
             {

@@ -1,6 +1,6 @@
 ﻿namespace thepos._9SysAdmin
 {
-    partial class frmSysGoodsGroup2
+    partial class frmSysGoodsGroupKiosk
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnViewPosNo = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
-            this.comboPosNo = new System.Windows.Forms.ComboBox();
+            this.cbShop = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbGroupNameJP = new System.Windows.Forms.TextBox();
@@ -61,29 +61,29 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnViewPosNo);
+            this.groupBox2.Controls.Add(this.btnView);
             this.groupBox2.Controls.Add(this.lblPosNo);
-            this.groupBox2.Controls.Add(this.comboPosNo);
+            this.groupBox2.Controls.Add(this.cbShop);
             this.groupBox2.Location = new System.Drawing.Point(535, 50);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(214, 125);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             // 
-            // btnViewPosNo
+            // btnView
             // 
-            this.btnViewPosNo.BackColor = System.Drawing.Color.White;
-            this.btnViewPosNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnViewPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnViewPosNo.Location = new System.Drawing.Point(71, 63);
-            this.btnViewPosNo.Name = "btnViewPosNo";
-            this.btnViewPosNo.Size = new System.Drawing.Size(123, 40);
-            this.btnViewPosNo.TabIndex = 46;
-            this.btnViewPosNo.TabStop = false;
-            this.btnViewPosNo.Text = "조회";
-            this.btnViewPosNo.UseVisualStyleBackColor = false;
-            this.btnViewPosNo.Click += new System.EventHandler(this.btnViewPosNo_Click);
+            this.btnView.BackColor = System.Drawing.Color.White;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnView.Location = new System.Drawing.Point(71, 63);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(123, 40);
+            this.btnView.TabIndex = 46;
+            this.btnView.TabStop = false;
+            this.btnView.Text = "조회";
+            this.btnView.UseVisualStyleBackColor = false;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // lblPosNo
             // 
@@ -94,17 +94,17 @@
             this.lblPosNo.Name = "lblPosNo";
             this.lblPosNo.Size = new System.Drawing.Size(35, 14);
             this.lblPosNo.TabIndex = 41;
-            this.lblPosNo.Text = "포스";
+            this.lblPosNo.Text = "업장";
             // 
-            // comboPosNo
+            // cbShop
             // 
-            this.comboPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.comboPosNo.FormattingEnabled = true;
-            this.comboPosNo.Location = new System.Drawing.Point(71, 30);
-            this.comboPosNo.Name = "comboPosNo";
-            this.comboPosNo.Size = new System.Drawing.Size(123, 21);
-            this.comboPosNo.TabIndex = 45;
-            this.comboPosNo.TabStop = false;
+            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(71, 30);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(123, 21);
+            this.cbShop.TabIndex = 45;
+            this.cbShop.TabStop = false;
             // 
             // groupBox1
             // 
@@ -364,7 +364,7 @@
             this.btnDn.UseVisualStyleBackColor = false;
             this.btnDn.Click += new System.EventHandler(this.btnDn_Click);
             // 
-            // frmSysGoodsGroup2
+            // frmSysGoodsGroupKiosk
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
@@ -376,7 +376,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvwList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSysGoodsGroup2";
+            this.Name = "frmSysGoodsGroupKiosk";
             this.Text = "frmSysGoodsGroup2";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -390,9 +390,9 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnViewPosNo;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Label lblPosNo;
-        private System.Windows.Forms.ComboBox comboPosNo;
+        private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox tbGroupName;

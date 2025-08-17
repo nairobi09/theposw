@@ -5709,7 +5709,7 @@ namespace thepos
                 catch (Exception ex)
                 {
                     thepos_app_log(3, "print_order_str()", "주문서 출력 오류. ", "Exception.msg=" + ex.Message);
-                    MessageBox.Show("주문서 출력 오류. \r\n 시스템관리자에게 알려주시기 바랍니다.");
+                    MessageBox.Show("주문서 출력 오류. \r\n 시스템관리자에게 알려주시기 바랍니다.\r\n" + ex.Message);
                 }
             }
             else

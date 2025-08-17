@@ -27,10 +27,10 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://thepos.co.kr/setup/theposw1/</InstallUrl>
-    <MinimumRequiredVersion>1.0.0.81</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.86</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>82</ApplicationRevision>
+    <ApplicationRevision>87</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -325,6 +325,30 @@
     <Compile Include="9SysAdmin\frmSysAdminLog.Designer.cs">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemKiosk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemKiosk.Designer.cs">
+      <DependentUpon>frmSysGoodsItemKiosk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemPos.Designer.cs">
+      <DependentUpon>frmSysGoodsItemPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupKiosk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupKiosk.Designer.cs">
+      <DependentUpon>frmSysGoodsGroupKiosk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPos.Designer.cs">
+      <DependentUpon>frmSysGoodsGroupPos.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsTicket.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,18 +420,6 @@
     </Compile>
     <Compile Include="9SysAdmin\frmSysGoods.Designer.cs">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroup2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroup2.Designer.cs">
-      <DependentUpon>frmSysGoodsGroup2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItem2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItem2.Designer.cs">
-      <DependentUpon>frmSysGoodsItem2.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysPayConsole.cs">
       <SubType>Form</SubType>
@@ -625,18 +637,6 @@
     <Compile Include="1Sales\frmPayCash.Designer.cs">
       <DependentUpon>frmPayCash.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItem.Designer.cs">
-      <DependentUpon>frmSysGoodsItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroup.Designer.cs">
-      <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
-    </Compile>
     <Compile Include="9SysAdmin\frmSysAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -732,6 +732,18 @@
     <EmbeddedResource Include="9SysAdmin\frmSysAdminLog.resx">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemKiosk.resx">
+      <DependentUpon>frmSysGoodsItemKiosk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemPos.resx">
+      <DependentUpon>frmSysGoodsItemPos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupKiosk.resx">
+      <DependentUpon>frmSysGoodsGroupKiosk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupPos.resx">
+      <DependentUpon>frmSysGoodsGroupPos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsTicket.resx">
       <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
     </EmbeddedResource>
@@ -776,12 +788,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoods.resx">
       <DependentUpon>frmSysGoods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroup2.resx">
-      <DependentUpon>frmSysGoodsGroup2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItem2.resx">
-      <DependentUpon>frmSysGoodsItem2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysPayConsole.resx">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
@@ -874,12 +880,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmPayCash.resx">
       <DependentUpon>frmPayCash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItem.resx">
-      <DependentUpon>frmSysGoodsItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroup.resx">
-      <DependentUpon>frmSysGoodsGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysAdmin.resx">
       <DependentUpon>frmSysAdmin.cs</DependentUpon>

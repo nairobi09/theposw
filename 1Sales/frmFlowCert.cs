@@ -72,7 +72,7 @@ namespace thepos
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-                
+
                 view_reload();
 
                 tbCouponNo.Clear();
@@ -87,7 +87,7 @@ namespace thepos
 
 
         private void view_reload()
-        { 
+        {
 
             String t_coupon_no = tbCouponNo.Text;
 
@@ -145,7 +145,7 @@ namespace thepos
 
                 for (int i = 0; i < info.Count; i++)
                 {
-                    //string coupon_no = info[i]["barcode_no"].ToString();
+                    string coupon_no = info[i]["barcode_no"].ToString();
                     string view_state_code = info[i]["ustate"].ToString();
                     string view_state_str = info[i]["state"].ToString();  //  예약완료 or 취소
                     string coupon_name = info[i]["cusitem"].ToString();
@@ -179,26 +179,6 @@ namespace thepos
                     }
 
 
-
-                    String data1 = mObj["couponno_no"].ToString();
-                    JArray couponno_no = JArray.Parse(data1);
-
-                    for (int k = 0; k < couponno_no.Count; k++)
-                    {
-                        string coupon_no = couponno_no[k]["value"].ToString();
-                        string used = couponno_no[k]["used"].ToString();
-
-
-
-
-
-
-                    }
-
-
-
-
-
                     //
                     ListViewItem lvItem = new ListViewItem();
                     lvItem.Checked = false;
@@ -207,7 +187,7 @@ namespace thepos
 
                     // (0:취소 1: 사용, 2: 미사용)
                     String state_name = "";
-                    
+
                     String auth_state_code = "X";   //   X 사용불가,  0 (인증전) 1 인증 2 발권 
 
 
@@ -219,7 +199,7 @@ namespace thepos
                             {
                                 state_name = "사용불가";
                                 view_state_code = "9";
-                                
+
                             }
                             else
                             {
@@ -272,7 +252,7 @@ namespace thepos
                     //
                     lvwCoupon.Items.Add(lvItem);
 
-                    thepos_app_log(1, this.Name, "view_reload()", state_name + " "  + coupon_no + " "  + goods_name + " "  + cus_hp);
+                    thepos_app_log(1, this.Name, "view_reload()", state_name + " " + coupon_no + " " + goods_name + " " + cus_hp);
 
                 }
 
@@ -299,7 +279,7 @@ namespace thepos
             {
                 return;
             }
-            
+
             // 영업일자 등 선체크 
             if (!isPreCheck(out String error_msg))
             {
@@ -313,7 +293,7 @@ namespace thepos
 
             for (int i = 0; i < lvwCoupon.Items.Count; i++)
             {
-                if (lvwCoupon.Items[i].Checked & 
+                if (lvwCoupon.Items[i].Checked &
                     lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(auth_state_code)].Text == "0")
                 {
                     string t_coupon_no = lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(coupon_no)].Text;
@@ -369,8 +349,8 @@ namespace thepos
             }
 
             if (!isExist)
-            { 
-                return; 
+            {
+                return;
             }
 
 
@@ -404,25 +384,25 @@ namespace thepos
                 orderItem.option_no = "";
                 orderItem.orderOptionItemList = mOrderOptionItemList.ToList();  // ToList() : 리스트 복사, 참조가 아니고..
                 orderItem.order_no = mOrderItemList.Count + 1;
-                orderItem.goods_code = myGoodsItem[t_goods_idx].goods_code.ToString();
-                orderItem.goods_name = myGoodsItem[t_goods_idx].goods_name;
-                orderItem.ticket = myGoodsItem[t_goods_idx].ticket;
-                orderItem.taxfree = myGoodsItem[t_goods_idx].taxfree;
-                orderItem.allim = myGoodsItem[t_goods_idx].allim;
+                orderItem.goods_code = mGoodsList[t_goods_idx].goods_code.ToString();
+                orderItem.goods_name = mGoodsList[t_goods_idx].goods_name;
+                orderItem.ticket = mGoodsList[t_goods_idx].ticket;
+                orderItem.taxfree = mGoodsList[t_goods_idx].taxfree;
+                orderItem.allim = mGoodsList[t_goods_idx].allim;
                 orderItem.cnt = t_goods_cnt;
-                orderItem.amt = myGoodsItem[t_goods_idx].amt;
+                orderItem.amt = mGoodsList[t_goods_idx].amt;
                 orderItem.dcr_type = "";
                 orderItem.dcr_des = "";
                 orderItem.dcr_value = 0;
-                orderItem.shop_code = myGoodsItem[t_goods_idx].shop_code;
-                orderItem.nod_code1 = myGoodsItem[t_goods_idx].nod_code1;
-                orderItem.nod_code2 = myGoodsItem[t_goods_idx].nod_code2;
+                orderItem.shop_code = mGoodsList[t_goods_idx].shop_code;
+                orderItem.nod_code1 = mGoodsList[t_goods_idx].nod_code1;
+                orderItem.nod_code2 = mGoodsList[t_goods_idx].nod_code2;
                 orderItem.coupon_no = t_coupon_no;
                 mOrderItemList.Add(orderItem);
                 //
                 mNetAmount += orderItem.cnt * orderItem.amt;
             }
-            
+
 
             //!
             int order_cnt = 0;
@@ -463,7 +443,7 @@ namespace thepos
                 int t_goods_cnt = int.Parse(lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(goods_cnt)].Text);
 
                 int t_goods_idx = int.Parse(lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(goods_idx)].Text);
-                int t_goods_amt = myGoodsItem[t_goods_idx].amt;
+                int t_goods_amt = mGoodsList[t_goods_idx].amt;
 
                 String t_coupon_link_no = lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(coupon_link_no)].Text;
 
@@ -529,7 +509,7 @@ namespace thepos
 
             // 주문서 출력 : 업장용 + 고객용
             // 주문서 출력
-            
+
             String[] order_no_from_to = new String[2];
 
             order_no_from_to[0] = "";
@@ -542,7 +522,7 @@ namespace thepos
 
             // 영수증 출력
             print_bill(mTheNo, "A", "", "00001", true, order_no_from_to); // cert
-            
+
 
 
         }

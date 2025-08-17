@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmSysGoodsItem
+    partial class frmSysGoodsItemPos
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             this.amt1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nod1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbPosNo = new System.Windows.Forms.ComboBox();
+            this.cbShop = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelItem = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -64,12 +64,6 @@
             this.lblGroupTitle = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnView = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.cbSourceGroup = new System.Windows.Forms.ComboBox();
-            this.lblCopyGroupTitle = new System.Windows.Forms.Label();
-            this.cbSourcePosNo = new System.Windows.Forms.ComboBox();
-            this.lblCopyPosNoTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbShopView = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -77,7 +71,6 @@
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -291,17 +284,17 @@
             // 
             this.nod1.Text = "분류1";
             // 
-            // cbPosNo
+            // cbShop
             // 
-            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(6, 32);
-            this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(105, 21);
-            this.cbPosNo.TabIndex = 82;
-            this.cbPosNo.TabStop = false;
-            this.cbPosNo.SelectedIndexChanged += new System.EventHandler(this.comboPosNo_SelectedIndexChanged);
+            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(6, 32);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(105, 21);
+            this.cbShop.TabIndex = 82;
+            this.cbShop.TabStop = false;
+            this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
             // 
             // tableLayoutPanelItem
             // 
@@ -467,9 +460,9 @@
             this.lblPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblPosNoTitle.Location = new System.Drawing.Point(7, 16);
             this.lblPosNoTitle.Name = "lblPosNoTitle";
-            this.lblPosNoTitle.Size = new System.Drawing.Size(35, 14);
+            this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblPosNoTitle.TabIndex = 97;
-            this.lblPosNoTitle.Text = "포스";
+            this.lblPosNoTitle.Text = "포스업장";
             // 
             // lblGroupTitle
             // 
@@ -487,7 +480,7 @@
             this.groupBox2.Controls.Add(this.btnView);
             this.groupBox2.Controls.Add(this.cbGroup);
             this.groupBox2.Controls.Add(this.lblGroupTitle);
-            this.groupBox2.Controls.Add(this.cbPosNo);
+            this.groupBox2.Controls.Add(this.cbShop);
             this.groupBox2.Controls.Add(this.lblPosNoTitle);
             this.groupBox2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.groupBox2.Location = new System.Drawing.Point(743, 47);
@@ -510,82 +503,6 @@
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnCopy);
-            this.groupBox3.Controls.Add(this.cbSourceGroup);
-            this.groupBox3.Controls.Add(this.lblCopyGroupTitle);
-            this.groupBox3.Controls.Add(this.cbSourcePosNo);
-            this.groupBox3.Controls.Add(this.lblCopyPosNoTitle);
-            this.groupBox3.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.groupBox3.Location = new System.Drawing.Point(743, 543);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(118, 150);
-            this.groupBox3.TabIndex = 100;
-            this.groupBox3.TabStop = false;
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopy.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCopy.ForeColor = System.Drawing.Color.White;
-            this.btnCopy.Location = new System.Drawing.Point(6, 114);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(105, 30);
-            this.btnCopy.TabIndex = 99;
-            this.btnCopy.TabStop = false;
-            this.btnCopy.Text = "그룹복사";
-            this.btnCopy.UseVisualStyleBackColor = false;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // cbSourceGroup
-            // 
-            this.cbSourceGroup.BackColor = System.Drawing.Color.White;
-            this.cbSourceGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbSourceGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbSourceGroup.FormattingEnabled = true;
-            this.cbSourceGroup.Location = new System.Drawing.Point(6, 82);
-            this.cbSourceGroup.Name = "cbSourceGroup";
-            this.cbSourceGroup.Size = new System.Drawing.Size(105, 21);
-            this.cbSourceGroup.TabIndex = 61;
-            this.cbSourceGroup.TabStop = false;
-            // 
-            // lblCopyGroupTitle
-            // 
-            this.lblCopyGroupTitle.AutoSize = true;
-            this.lblCopyGroupTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCopyGroupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCopyGroupTitle.Location = new System.Drawing.Point(8, 64);
-            this.lblCopyGroupTitle.Name = "lblCopyGroupTitle";
-            this.lblCopyGroupTitle.Size = new System.Drawing.Size(59, 13);
-            this.lblCopyGroupTitle.TabIndex = 97;
-            this.lblCopyGroupTitle.Text = "소스그룹";
-            // 
-            // cbSourcePosNo
-            // 
-            this.cbSourcePosNo.BackColor = System.Drawing.Color.White;
-            this.cbSourcePosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbSourcePosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbSourcePosNo.FormattingEnabled = true;
-            this.cbSourcePosNo.Location = new System.Drawing.Point(6, 36);
-            this.cbSourcePosNo.Name = "cbSourcePosNo";
-            this.cbSourcePosNo.Size = new System.Drawing.Size(105, 21);
-            this.cbSourcePosNo.TabIndex = 82;
-            this.cbSourcePosNo.TabStop = false;
-            this.cbSourcePosNo.SelectedIndexChanged += new System.EventHandler(this.cbSourcePosNo_SelectedIndexChanged);
-            // 
-            // lblCopyPosNoTitle
-            // 
-            this.lblCopyPosNoTitle.AutoSize = true;
-            this.lblCopyPosNoTitle.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblCopyPosNoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblCopyPosNoTitle.Location = new System.Drawing.Point(8, 18);
-            this.lblCopyPosNoTitle.Name = "lblCopyPosNoTitle";
-            this.lblCopyPosNoTitle.Size = new System.Drawing.Size(59, 13);
-            this.lblCopyPosNoTitle.TabIndex = 97;
-            this.lblCopyPosNoTitle.Text = "소스포스";
             // 
             // panel1
             // 
@@ -632,14 +549,13 @@
             this.btnShopView.UseVisualStyleBackColor = false;
             this.btnShopView.Click += new System.EventHandler(this.btnShopView_Click);
             // 
-            // frmSysGoodsItem
+            // frmSysGoodsItemPos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
             this.Controls.Add(this.btnShopView);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lvwGoodsLink);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnLink);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnApply);
@@ -649,15 +565,13 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tableLayoutPanelItemSelected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSysGoodsItem";
+            this.Name = "frmSysGoodsItemPos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품등록";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -685,7 +599,7 @@
         private System.Windows.Forms.ColumnHeader item_name;
         private System.Windows.Forms.ColumnHeader amt1;
         private System.Windows.Forms.ColumnHeader nod1;
-        private System.Windows.Forms.ComboBox cbPosNo;
+        private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelItem;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
@@ -697,12 +611,6 @@
         private System.Windows.Forms.Label lblGroupTitle;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnView;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.ComboBox cbSourceGroup;
-        private System.Windows.Forms.Label lblCopyGroupTitle;
-        private System.Windows.Forms.ComboBox cbSourcePosNo;
-        private System.Windows.Forms.Label lblCopyPosNoTitle;
         private System.Windows.Forms.ColumnHeader shop;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbShopView;

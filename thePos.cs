@@ -1373,7 +1373,7 @@ namespace thepos
                 }
                 else
                 {
-                    //return;
+                    return;
                 }
             }
 

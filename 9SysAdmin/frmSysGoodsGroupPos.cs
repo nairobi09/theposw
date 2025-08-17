@@ -16,24 +16,26 @@ using System.Text.RegularExpressions;
 
 namespace thepos
 {
-    public partial class frmSysGoodsGroup : Form
+    public partial class frmSysGoodsGroupPos : Form
     {
         
         int max_groupcode = 100;  // 3자리
 
-        String mSelectedPosNo = "";
+        String mSelectedShopCode = "";
 
         List<String> pos_no = new List<String>();
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsGroup()
+        public frmSysGoodsGroupPos()
         {
             InitializeComponent();
 
-            for (int i = 0; i < mPosNoList.Count; i++)
+
+
+            for (int i = 0; i < mShop.Length; i++)
             {
-                comboPosNo.Items.Add(mPosNoList[i]);
+                cbShop.Items.Add(mShop[i].shop_name);
             }
 
 
@@ -56,7 +58,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        comboPosNo.Items.Add(arr[i]["posNo"].ToString());
+                        cbShop.Items.Add(arr[i]["posNo"].ToString());
                     }
                 }
                 else
@@ -85,7 +87,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        comboPosNo.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        cbShop.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
 
                         pos_no.Add(arr[i]["posNo"].ToString());
                         pos_type.Add(arr[i]["setupValue"].ToString());
@@ -106,19 +108,12 @@ namespace thepos
 
 
 
-        private void btnViewPosNo_Click(object sender, EventArgs e)
+        private void btnView_Click(object sender, EventArgs e)
         {
-            if (comboPosNo.SelectedIndex == -1) { return; }
+            if (cbShop.SelectedIndex == -1) { return; }
 
-            mSelectedPosNo = mPosNoList[comboPosNo.SelectedIndex];
+            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
 
-
-            if (mSelectedPosNo.Substring(0, 1) != "0")
-            {
-                MessageBox.Show("POS로 등록된 기기가 아닙니다.", "thepos");
-
-                return;
-            }
 
 
 
@@ -136,9 +131,6 @@ namespace thepos
             tableLayoutPanelGroup.Controls.Clear();
 
             tbGroupName.Text = "";
-            tbGroupNameEN.Text = "";
-            tbGroupNameCH.Text = "";
-            tbGroupNameJP.Text = "";
 
             tbLocateX.Text = "";
             tbLocateY.Text = "";
@@ -148,7 +140,7 @@ namespace thepos
             tbColor.Text = "";
 
 
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + mSelectedPosNo;
+            String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
 
             if (mRequestGet(sUrl))
             {
@@ -162,9 +154,6 @@ namespace thepos
                         ListViewItem lvItem = new ListViewItem();
                         lvItem.Text = arr[i]["groupName"].ToString();
                         lvItem.SubItems.Add(arr[i]["groupCode"].ToString());
-                        lvItem.SubItems.Add(arr[i]["groupNameEn"].ToString());
-                        lvItem.SubItems.Add(arr[i]["groupNameCh"].ToString());
-                        lvItem.SubItems.Add(arr[i]["groupNameJp"].ToString());
 
                         lvItem.SubItems.Add(arr[i]["locateX"].ToString());
                         lvItem.SubItems.Add(arr[i]["locateY"].ToString());
@@ -206,9 +195,6 @@ namespace thepos
             if (lvwList.SelectedItems.Count == 0)
             {
                 tbGroupName.Text = "";
-                tbGroupNameEN.Text = "";
-                tbGroupNameCH.Text = "";
-                tbGroupNameJP.Text = "";
 
                 tbLocateX.Text = "";
                 tbLocateY.Text = "";
@@ -223,9 +209,6 @@ namespace thepos
             else
             {
                 tbGroupName.Text = lvwList.SelectedItems[0].Text;
-                tbGroupNameEN.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_en)].Text;
-                tbGroupNameCH.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_ch)].Text;
-                tbGroupNameJP.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(name_jp)].Text;
 
                 tbLocateX.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locX)].Text;
                 tbLocateY.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(locY)].Text;
@@ -332,6 +315,7 @@ namespace thepos
 
         private void display_all_console()
         {
+            tableLayoutPanelGroupSelected.Controls.Clear();
             tableLayoutPanelGroup.Controls.Clear();
 
             for (int i = 0; i < lvwList.Items.Count; i++)
@@ -388,12 +372,9 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
             parameters["groupName"] = tbGroupName.Text;
-            parameters["groupNameEn"] = tbGroupNameEN.Text;
-            parameters["groupNameCh"] = tbGroupNameCH.Text;
-            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = locX.ToString();
             parameters["locateY"] = locY.ToString();
@@ -402,7 +383,7 @@ namespace thepos
 
             parameters["btnColor"] = btnColor.ToString();
 
-            if (mRequestPatch("goodsGroup", parameters))
+            if (mRequestPatch("posGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -445,12 +426,9 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = (max_groupcode + 1).ToString();
             parameters["groupName"] = tbGroupName.Text;
-            parameters["groupNameEn"] = tbGroupNameEN.Text;
-            parameters["groupNameCh"] = tbGroupNameCH.Text;
-            parameters["groupNameJp"] = tbGroupNameJP.Text;
 
             parameters["locateX"] = locX.ToString();
             parameters["locateY"] = locY.ToString();
@@ -460,7 +438,7 @@ namespace thepos
             parameters["btnColor"] = btnColor.ToString();
 
 
-            if (mRequestPost("goodsGroup", parameters))
+            if (mRequestPost("posGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -477,9 +455,6 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
-
-            //
-            //set_version_basic_db_change();
 
 
             reload_server();
@@ -507,11 +482,11 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = mSelectedPosNo;
+            parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
 
 
-            if (mRequestDelete("goodsGroup", parameters))
+            if (mRequestDelete("posGoodsGroup", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
