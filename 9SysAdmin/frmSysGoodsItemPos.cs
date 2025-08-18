@@ -255,14 +255,15 @@ namespace thepos
                     btnItem.ForeColor = Color.White;
                     btnItem.BackColor = ColorTranslator.FromHtml(btnColor);
                     btnItem.TabStop = false;
-                    btnItem.Margin = new Padding(2, 2, 2, 2);
+                    btnItem.Margin = new Padding(1, 1, 1, 1);
                     btnItem.Padding = new Padding(0, 0, 0, 0);
                     btnItem.Text = lvwGoodsLink.Items[i].Text + "\n" + lvwGoodsLink.Items[i].SubItems[1].Text;
                     btnItem.Dock = DockStyle.Fill;
 
-                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = new Font(btnItem.Font.FontFamily, 8); }
-                    else if (sz_x >= 3 & sz_y >= 2) { btnItem.Font = new Font(btnItem.Font.FontFamily, 16); }
-                    else { btnItem.Font = new Font(btnItem.Font.FontFamily, 10); }
+                    if (sz_x == 1 | sz_y == 1) { btnItem.Font = new Font(btnItem.Font.FontFamily, 6); }
+                    else if (sz_x == 2 & sz_y == 2) { btnItem.Font = new Font(btnItem.Font.FontFamily, 8); }
+                    else if (sz_x >= 3 & sz_y >= 3) { btnItem.Font = new Font(btnItem.Font.FontFamily, 12); }
+                    else { btnItem.Font = new Font(btnItem.Font.FontFamily, 8); }
 
                     tableLayoutPanelItem.Controls.Add(btnItem, loc_x, loc_y);
                     tableLayoutPanelItem.SetColumnSpan(btnItem, sz_x);
@@ -325,9 +326,9 @@ namespace thepos
                 btnGroupBlue.ForeColor = Color.White;
                 btnGroupBlue.BackColor = ColorTranslator.FromHtml(btnColor);
                 btnGroupBlue.TabStop = false;
-                btnGroupBlue.Margin = new Padding(2, 2, 2, 2);
+                btnGroupBlue.Margin = new Padding(1, 1, 1, 1);
                 btnGroupBlue.Padding = new Padding(0, 0, 0, 0);
-                btnGroupBlue.Text = lvwGoodsLink.SelectedItems[0].Text + "\n" + lvwGoodsLink.SelectedItems[0].SubItems[lvwGoodsLink.Columns.IndexOf(amt)].Text;
+                btnGroupBlue.Text = "";
                 btnGroupBlue.Dock = DockStyle.Fill;
 
                 if (szX == 1 | szY == 1) { btnGroupBlue.Font = new Font(btnGroupBlue.Font.FontFamily, 8); }
@@ -474,8 +475,8 @@ namespace thepos
             parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = mSelectedGroupCode;
             parameters["goodsCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
-            parameters["locateX"] = "7";
-            parameters["locateY"] = "7";
+            parameters["locateX"] = "11";
+            parameters["locateY"] = "11";
             parameters["sizeX"] = "1";
             parameters["sizeY"] = "1";
             parameters["btnColor"] = "";
@@ -541,24 +542,24 @@ namespace thepos
             int locX, locY, szX, szY;
 
             if (!get_number(tbLocateX.Text, ref tNum)) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
-            if (tNum > 7) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
+            if (tNum > 11) { MessageBox.Show("LocX 오류.", "thepos"); return false; }
             locX = tNum;
 
             if (!get_number(tbLocateY.Text, ref tNum)) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
-            if (tNum > 7) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
+            if (tNum > 11) { MessageBox.Show("LocY 오류.", "thepos"); return false; }
             locY = tNum;
 
             if (!get_number(tbSizeX.Text, ref tNum)) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
-            if (tNum > 8) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
+            if (tNum > 12) { MessageBox.Show("SizeX 오류.", "thepos"); return false; }
             szX = tNum;
 
             if (!get_number(tbSizeY.Text, ref tNum)) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
-            if (tNum > 8) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
+            if (tNum > 12) { MessageBox.Show("SizeY 오류.", "thepos"); return false; }
             szY = tNum;
 
 
-            if (locX + szX > 8) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
-            if (locY + szY > 8) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
+            if (locX + szX > 12) { MessageBox.Show("X범위 오류.", "thepos"); return false; }
+            if (locY + szY > 12) { MessageBox.Show("Y범위 오류.", "thepos"); return false; }
 
 
             if (tbColor.Text == "")

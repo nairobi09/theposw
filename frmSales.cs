@@ -575,7 +575,7 @@ namespace thepos
                     }
                     else if (myGoodsItem[i].columnspan == 2 & myGoodsItem[i].rowspan == 2)
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Regular);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Bold);
                     }
                     else if (myGoodsItem[i].columnspan >= 3 & myGoodsItem[i].rowspan >= 3)
                     {
@@ -583,7 +583,7 @@ namespace thepos
                     }
                     else
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Regular);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Bold);
                     }
 
 
