@@ -564,22 +564,26 @@ namespace thepos
                     btnGoodsItem.FlatStyle = FlatStyle.Flat;
 
                     btnGoodsItem.TabStop = false;
-                    btnGoodsItem.Margin = new Padding(2, 2, 2, 2);
+                    btnGoodsItem.Margin = new Padding(1, 1, 1, 1);
                     btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
                     btnGoodsItem.Dock = DockStyle.Fill;
 
 
                     if (myGoodsItem[i].columnspan == 1 | myGoodsItem[i].rowspan == 1)
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 9, FontStyle.Bold);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 6, FontStyle.Regular);
+                    }
+                    else if (myGoodsItem[i].columnspan == 2 & myGoodsItem[i].rowspan == 2)
+                    {
+                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Regular);
                     }
                     else if (myGoodsItem[i].columnspan >= 3 & myGoodsItem[i].rowspan >= 3)
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 20, FontStyle.Bold);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
                     }
                     else
                     {
-                        btnGoodsItem.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
+                        btnGoodsItem.Font = new Font("맑은 고딕", 8, FontStyle.Regular);
                     }
 
 

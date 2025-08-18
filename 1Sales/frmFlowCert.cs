@@ -252,7 +252,7 @@ namespace thepos
                     //
                     lvwCoupon.Items.Add(lvItem);
 
-                    thepos_app_log(1, this.Name, "view_reload()", state_name + " " + coupon_no + " " + goods_name + " " + cus_hp);
+                    thepos_app_log(1, this.Name, "view_reload()", state_name + " " + coupon_no + " " + goods_name + " " + ch_name + " " + cus_hp);
 
                 }
 
