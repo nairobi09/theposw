@@ -37,14 +37,15 @@ namespace thepos
                 //mHttpClientCoupon.DefaultRequestHeaders.TryAddWithoutValidation("authorization", mCouponMID);  // 처음에 한번만 세팅함.
 
                 
-                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoAll", data).Result;
-                //var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoBarcode", data).Result;
+                //var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoAll", data).Result;
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/infoBarcode", data).Result;
 
 
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
                 //
+                thepos_app_log(1, "tm", "requestTmCertView()", "request no=" + tCouponNo);
                 thepos_app_log(1, "tm", "requestTmCertView()", "response=" + responseString);
                 mObj = JObject.Parse(responseString);
 

@@ -111,6 +111,9 @@ namespace thepos
             lvwCoupon.Items.Clear();
 
 
+
+
+
             couponTM p = new couponTM();
             int ret = p.requestTmCertView(t_coupon_no);
 
@@ -145,15 +148,16 @@ namespace thepos
 
                 for (int i = 0; i < info.Count; i++)
                 {
-                    string coupon_no = info[i]["barcode_no"].ToString();
-                    string view_state_code = info[i]["ustate"].ToString();
+                    //string coupon_no = info[i]["barcode_no"].ToString();
+                    //string view_state_code = info[i]["ustate"].ToString();
+                    string view_state_code = "";
                     string view_state_str = info[i]["state"].ToString();  //  예약완료 or 취소
-                    string coupon_name = info[i]["cusitem"].ToString();
-                    string coupon_link_no = info[i]["cusitemId"].ToString();
+                    string coupon_name = info[i]["item"].ToString();
+                    string coupon_link_no = info[i]["itemmt_id"].ToString();
                     string cus_nm = info[i]["cusnm"].ToString();
                     string cus_hp = info[i]["cushp"].ToString();
                     string exp_date = info[i]["expdate"].ToString();
-                    string ch_name = info[i]["cuschnm"].ToString();
+                    string ch_name = info[i]["channel"].ToString();
                     string goods_cnt = "1";
 
 
@@ -179,80 +183,96 @@ namespace thepos
                     }
 
 
-                    //
-                    ListViewItem lvItem = new ListViewItem();
-                    lvItem.Checked = false;
-                    lvItem.ForeColor = Color.Gray;
+                    String data1 = info[i]["couponno_no"].ToString();
+                    JArray couponno_no = JArray.Parse(data1);
 
-
-                    // (0:취소 1: 사용, 2: 미사용)
-                    String state_name = "";
-
-                    String auth_state_code = "X";   //   X 사용불가,  0 (인증전) 1 인증 2 발권 
-
-
-                    if (view_state_code == "2")   /// 결국 "2"만 정상.-> 쿠폰사용가능
+                    for (int k = 0; k < couponno_no.Count; k++)
                     {
-                        if (view_state_str == "예약완료")
-                        {
-                            if (link_goods_idx == -1)
-                            {
-                                state_name = "사용불가";
-                                view_state_code = "9";
+                        string coupon_no = couponno_no[k]["value"].ToString();
+                        string used = couponno_no[k]["used"].ToString();
 
+
+                        //
+                        ListViewItem lvItem = new ListViewItem();
+                        lvItem.Checked = false;
+                        lvItem.ForeColor = Color.Gray;
+
+
+                        // (0:취소 1: 사용, 2: 미사용)
+                        String state_name = "";
+
+                        String auth_state_code = "X";   //   X 사용불가,  0 (인증전) 1 인증 2 발권 
+
+
+                        if (used == "N")   /// N:미사용 -> 쿠폰사용가능
+                        {
+                            if (view_state_str == "예약완료")
+                            {
+                                if (link_goods_idx == -1)
+                                {
+                                    state_name = "사용불가";
+                                    view_state_code = "9";
+
+                                }
+                                else
+                                {
+                                    state_name = "사용가능";
+                                    auth_state_code = "0";
+                                    lvItem.ForeColor = Color.Blue;
+                                    lvItem.Checked = true;
+                                    view_state_code = "2";
+                                }
+                            }
+                            else if (view_state_str == "취소")
+                            {
+                                state_name = "취소";
+                                view_state_code = "9";
+                                auth_state_code = "0";
                             }
                             else
                             {
-                                state_name = "사용가능";
+                                state_name = "사용불가";
+                                view_state_code = "9";
                                 auth_state_code = "0";
-                                lvItem.ForeColor = Color.Blue;
-                                lvItem.Checked = true;
                             }
+
                         }
-                        else if (view_state_str == "취소")
-                        {
-                            state_name = "취소";
-                            view_state_code = "9";
-                            auth_state_code = "0";
-                        }
+                        else if (used == "Y")
+                            state_name = "기사용";
                         else
-                        {
-                            state_name = "사용불가";
-                            view_state_code = "9";
-                            auth_state_code = "0";
-                        }
+                            state_name = "기타(" + used + ")";
+
+
+                        //
+                        lvItem.Text = "";  // checkbox
+                        lvItem.SubItems.Add(state_name);
+                        lvItem.SubItems.Add(coupon_no);
+                        lvItem.SubItems.Add(goods_name);
+                        lvItem.SubItems.Add(goods_cnt);
+                        lvItem.SubItems.Add(cus_hp);
+                        //
+                        lvItem.SubItems.Add(view_state_code);
+                        lvItem.SubItems.Add(auth_state_code);                // auth_state_code 0 X Y
+                        lvItem.SubItems.Add(coupon_name);
+                        lvItem.SubItems.Add(coupon_link_no);
+                        lvItem.SubItems.Add(cus_nm);
+                        lvItem.SubItems.Add(exp_date);
+                        lvItem.SubItems.Add(ch_name);
+                        lvItem.SubItems.Add(goods_code);
+                        lvItem.SubItems.Add(link_goods_idx + "");
+
+                        //
+                        lvwCoupon.Items.Add(lvItem);
+
+                        thepos_app_log(1, this.Name, "view_reload()", i + "-" + k + " " + state_name + " " + coupon_no + " " + goods_name + " " + ch_name + " " + cus_hp);
+
+
 
                     }
-                    else if (view_state_code == "1")
-                        state_name = "기사용티켓";
-                    else if (view_state_code == "0")
-                        state_name = "취소티켓";
-                    else
-                        state_name = "기타(" + view_state_code + ")";
 
 
-                    //
-                    lvItem.Text = "";  // checkbox
-                    lvItem.SubItems.Add(state_name);
-                    lvItem.SubItems.Add(coupon_no);
-                    lvItem.SubItems.Add(goods_name);
-                    lvItem.SubItems.Add(goods_cnt);
-                    lvItem.SubItems.Add(cus_hp);
-                    //
-                    lvItem.SubItems.Add(view_state_code);
-                    lvItem.SubItems.Add(auth_state_code);                // auth_state_code 0 X Y
-                    lvItem.SubItems.Add(coupon_name);
-                    lvItem.SubItems.Add(coupon_link_no);
-                    lvItem.SubItems.Add(cus_nm);
-                    lvItem.SubItems.Add(exp_date);
-                    lvItem.SubItems.Add(ch_name);
-                    lvItem.SubItems.Add(goods_code);
-                    lvItem.SubItems.Add(link_goods_idx + "");
 
-                    //
-                    lvwCoupon.Items.Add(lvItem);
 
-                    thepos_app_log(1, this.Name, "view_reload()", state_name + " " + coupon_no + " " + goods_name + " " + ch_name + " " + cus_hp);
 
                 }
 

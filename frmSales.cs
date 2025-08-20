@@ -2399,7 +2399,8 @@ namespace thepos
                                 }
                                 else if (mTicketMedia == "TG")  // 전용폼지(띠지)
                                 {
-                                    // 2502
+                                    // 2502 키벤저스 천안
+                                    // 2503 키벤저스 대전
                                     print_label_ticket(t_ticket_no, get_today_date(), get_today_time(), orderItem.goods_code, orderItem.goods_name, orderItem.cnt, orderItem.amt, orderItem.coupon_no);
                                 }
                                 else if (mTicketMedia == "RF")  // 팔찌 : 
