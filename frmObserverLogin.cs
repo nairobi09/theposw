@@ -27,6 +27,16 @@ namespace thepos
 
         private void btnLoginDev_Click(object sender, EventArgs e)
         {
+            if (tbSiteId.Text == "2502" | tbSiteId.Text == "2503")
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("사이트ID 오류", "thepos");
+                return;
+            }
+
 
 
             if (tbPosNo.Text == "01" | tbPosNo.Text == "02" | tbPosNo.Text == "03" | tbPosNo.Text == "04" | tbPosNo.Text == "05" | tbPosNo.Text == "06")
@@ -55,14 +65,14 @@ namespace thepos
 
             // 로그인
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters["siteId"] = "2502";
+            parameters["siteId"] = tbSiteId.Text;
             parameters["posNo"] = tbPosNo.Text;
 
             if (mRequestPost("loginDev", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    mSiteId = "2502";
+                    mSiteId = tbSiteId.Text;
                     mUserID = "observer";
                     mUserName = "observer";
                     myPosNo = mObj["posNo"].ToString();
