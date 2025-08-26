@@ -1,25 +1,26 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Numerics;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static thepos.thePos;
-using static thepos.frmSales;
-using System.Security.Policy;
-using Newtonsoft.Json.Linq;
+using System.Windows.Interop;
 using System.Xml;
-using System.IO;
-using System.Data.SqlClient;
-using static thepos.frmSub;
-using System.Collections;
-using System.Numerics;
+using System.Xml.Linq;
 using static System.Windows.Forms.AxHost;
 using static thepos.ClsWin32Api;
-using System.Xml.Linq;
+using static thepos.frmSales;
+using static thepos.frmSub;
+using static thepos.thePos;
 
 
 namespace thepos
@@ -238,7 +239,10 @@ namespace thepos
 
                         }
                         else if (used == "Y")
+                        {
                             state_name = "기사용";
+                            view_state_code = "5";
+                        }
                         else
                             state_name = "기타(" + used + ")";
 
@@ -266,14 +270,7 @@ namespace thepos
 
                         thepos_app_log(1, this.Name, "view_reload()", i + "-" + k + " " + state_name + " " + coupon_no + " " + goods_name + " " + ch_name + " " + cus_hp);
 
-
-
                     }
-
-
-
-
-
                 }
 
             }
@@ -623,6 +620,85 @@ namespace thepos
             {
                 lvwCoupon.Items[i].Checked = false;
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            // 쿠폰 미사용요청(사용취소)
+
+            if (lvwCoupon.Items.Count == 0)
+            {
+                return;
+            }
+
+
+            int sel_cnt = 0;
+            int sel_index = 0;
+
+            for (int i = 0; i < lvwCoupon.Items.Count; i++)
+            {
+                if (lvwCoupon.Items[i].Checked &
+                    lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(view_state_code)].Text == "5")
+                {
+                    sel_cnt++;
+                    sel_index = i;
+                }
+            }
+
+
+            if (sel_cnt == 1)
+            {
+                if (MessageBox.Show("선택쿠폰을 기사용 -> 사용가능(미사용) 상태로 변경요청합니다.\r\n\r\n◇ 발권주문/티켓이 있는 경우는 [결재내역관리]에서 취소바랍니다.", "thepos", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+
+                }
+                else
+                {
+                    return;
+                }                
+            }
+            else
+            {
+                MessageBox.Show("미사용요청은 기사용쿠폰 1건씩 요청가능합니다.", "thepos");
+                return;
+            }
+
+
+            //
+            string t_coupon_no = lvwCoupon.Items[sel_index].SubItems[lvwCoupon.Columns.IndexOf(coupon_no)].Text;
+
+            couponTM p = new couponTM();
+            int ret = p.requestTmCertCancel(t_coupon_no);
+
+            if (ret == 0)
+            {
+                if (mObj["result"].ToString() == "1000")
+                {
+                    thepos_app_log(1, this.Name, "requestTmCertCancel()", "미사용인증. no=" + t_coupon_no);
+
+                    lvwCoupon.Items[sel_index].SubItems[lvwCoupon.Columns.IndexOf(state_name)].Text = "사용가능";
+                    lvwCoupon.Items[sel_index].SubItems[lvwCoupon.Columns.IndexOf(auth_state_code)].Text = "0";   // 0인증전 1인증 2발권
+                    lvwCoupon.Items[sel_index].SubItems[lvwCoupon.Columns.IndexOf(view_state_code)].Text = "2";
+
+                    lvwCoupon.Items[sel_index].ForeColor = Color.Blue;
+
+
+                }
+                else
+                {
+                    String msg = mObj["msg"].ToString();
+                    thepos_app_log(3, this.Name, "requestTmCertAuth()", "미사용인증거절 " + msg + " no=" + t_coupon_no);
+
+                    MessageBox.Show("오류\r\n" + msg, "thepos");
+                }
+            }
+            else
+            {
+                thepos_app_log(3, this.Name, "requestTmCertAuth()", "미사용인증오류 " + mErrorMsg + " no=" + t_coupon_no);
+
+                MessageBox.Show("오류\r\n" + mErrorMsg, "thepos");
+            }
+            
         }
     }
 }

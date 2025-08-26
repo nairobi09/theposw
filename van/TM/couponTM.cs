@@ -91,8 +91,28 @@ namespace thepos
 
         public int requestTmCertCancel(String tCouponNo)
         {
+            var baseAddress = new Uri(TM_URL);
 
-            return -1;
+            try
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters["barcode_no"] = tCouponNo;
+
+                var json = JsonConvert.SerializeObject(parameters);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/unuse", data).Result;
+                var responseContent = response.Content;
+                string responseString = responseContent.ReadAsStringAsync().Result;
+
+                mObj = JObject.Parse(responseString);
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                mErrorMsg = ex.Message;
+                return -1;
+            }
 
         }
     

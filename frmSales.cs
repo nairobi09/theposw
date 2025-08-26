@@ -6050,7 +6050,7 @@ namespace thepos
             PaymentCert certCancel = new PaymentCert();
             pCertCancel = certCancel;
 
-            if (paymentCert.van_code == "PM")
+            if (paymentCert.van_code == "TM")
             {
                 couponTM p = new couponTM();
                 ret = p.requestTmCertCancel(paymentCert.coupon_no);

@@ -456,18 +456,15 @@ namespace thepos
             else if (rb카드거래.Checked) input_type = 2;
 
 
-            // 테스트모드에서는 그냥 PASS
-            if (mIsTestPayMode != "Test")
+
+            if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out paymentCash) != 0)  // Toss process
             {
-                if (requestCashAuth(tAmount, tFreeAmount, tTaxAmount, tTax, tServiceAmt, receipt_type, input_type, out paymentCash) != 0)  // Toss process
-                {
-                    //
-                    thepos_app_log(3, this.Name, "requestCashAuth()", mErrorMsg);
+                //
+                thepos_app_log(3, this.Name, "requestCashAuth()", mErrorMsg);
 
-                    display_error_msg(mErrorMsg);
+                display_error_msg(mErrorMsg);
 
-                    return;
-                }
+                return;
             }
 
 

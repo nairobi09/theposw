@@ -55,6 +55,7 @@
             this.goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_idx = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPay = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -64,6 +65,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnUncheck);
             this.panelback.Controls.Add(this.btnCheck);
             this.panelback.Controls.Add(this.panel1);
@@ -320,6 +322,21 @@
             this.btnPay.UseVisualStyleBackColor = false;
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCancel.Location = new System.Drawing.Point(154, 527);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(80, 60);
+            this.btnCancel.TabIndex = 81;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "미사용\r\n요청";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // frmFlowCert
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -367,5 +384,6 @@
         private System.Windows.Forms.ColumnHeader auth_state_code;
         private System.Windows.Forms.Button btnUncheck;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
