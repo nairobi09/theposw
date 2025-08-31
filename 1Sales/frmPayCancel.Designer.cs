@@ -46,6 +46,7 @@
             this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.theno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.label1);
             this.panelback.Controls.Add(this.lblNestAmount);
             this.panelback.Controls.Add(this.lblCancelAmount);
             this.panelback.Controls.Add(this.lblT3);
@@ -63,7 +65,7 @@
             this.panelback.Controls.Add(this.lblTitle);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.lvwList);
-            this.panelback.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.panelback.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.panelback.Location = new System.Drawing.Point(3, 3);
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
@@ -72,6 +74,7 @@
             // lblNestAmount
             // 
             this.lblNestAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNestAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNestAmount.Location = new System.Drawing.Point(122, 133);
             this.lblNestAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNestAmount.Name = "lblNestAmount";
@@ -85,6 +88,7 @@
             // lblCancelAmount
             // 
             this.lblCancelAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCancelAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblCancelAmount.Location = new System.Drawing.Point(122, 105);
             this.lblCancelAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblCancelAmount.Name = "lblCancelAmount";
@@ -98,6 +102,7 @@
             // lblT3
             // 
             this.lblT3.AutoSize = true;
+            this.lblT3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT3.Location = new System.Drawing.Point(28, 140);
             this.lblT3.Name = "lblT3";
             this.lblT3.Size = new System.Drawing.Size(77, 14);
@@ -107,6 +112,7 @@
             // lblNetAmount
             // 
             this.lblNetAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNetAmount.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblNetAmount.Location = new System.Drawing.Point(122, 77);
             this.lblNetAmount.Margin = new System.Windows.Forms.Padding(0);
             this.lblNetAmount.Name = "lblNetAmount";
@@ -120,6 +126,7 @@
             // lblT2
             // 
             this.lblT2.AutoSize = true;
+            this.lblT2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT2.Location = new System.Drawing.Point(28, 112);
             this.lblT2.Name = "lblT2";
             this.lblT2.Size = new System.Drawing.Size(63, 14);
@@ -129,6 +136,7 @@
             // lblT1
             // 
             this.lblT1.AutoSize = true;
+            this.lblT1.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblT1.Location = new System.Drawing.Point(28, 82);
             this.lblT1.Name = "lblT1";
             this.lblT1.Size = new System.Drawing.Size(91, 14);
@@ -153,6 +161,7 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(17, 20);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -167,8 +176,9 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(191, 581);
+            this.btnCancel.Location = new System.Drawing.Point(195, 520);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(140, 50);
             this.btnCancel.TabIndex = 48;
@@ -186,6 +196,7 @@
             this.cc,
             this.theno,
             this.paytype});
+            this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lvwList.FullRowSelect = true;
             this.lvwList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -193,7 +204,7 @@
             this.lvwList.Location = new System.Drawing.Point(17, 178);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(485, 346);
+            this.lvwList.Size = new System.Drawing.Size(485, 325);
             this.lvwList.TabIndex = 44;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -233,6 +244,17 @@
             this.paytype.Text = "";
             this.paytype.Width = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.label1.Location = new System.Drawing.Point(25, 612);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(370, 68);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "복합결제나 팀쿠폰(복수쿠폰) 경우\r\n- 순차적 결재 취소처리 바랍니다.\r\n- 1번 취소시 주문 및 티켓, 쿠폰의 팀단위 전체가 취소됩니다.\r\n- " +
+    "마지막 취소시 영수증, 주문서 출력됩니다.";
+            // 
             // frmPayCancel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -271,5 +293,6 @@
         private System.Windows.Forms.Label lblT1;
         private System.Windows.Forms.Label lblNestAmount;
         private System.Windows.Forms.Label lblT3;
+        private System.Windows.Forms.Label label1;
     }
 }

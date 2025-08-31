@@ -886,7 +886,7 @@ namespace thepos
 
         public static String get_pay_type_group_name(String group)
         {
-            //is_cash + is_card + is_point + is_easy;
+            //is_cash + is_card + is_point + is_easy + coupon
             if (group == "10000") return "현금";
             else if (group == "01000") return "카드";
             else if (group == "00100") return "포인트";

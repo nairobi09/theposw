@@ -58,7 +58,7 @@ namespace thepos
             if (pay_keep.Substring(4, 1) == "1")
             {
                 // 테이블메니저 취소
-                MessageBox.Show("본 취소는 주문, 발권티켓 및 사용쿠폰의 취소를 실행합니다..", "쿠폰취소");
+                //MessageBox.Show("본 취소는 주문, 발권티켓 및 사용쿠폰의 취소를 실행합니다..", "쿠폰취소");
             }
         }
 
@@ -399,12 +399,13 @@ namespace thepos
                 }
                 
 
-
+                /*
                 int ret = CheckCancelTicketFlow(pCardAuth.pay_class, pCardAuth.the_no, "");
                 if (ret < 0)
                 {
                     return;
                 }
+                */
 
 
                 if (pCardAuth.pay_type == "C1")  // 카드결제취소
@@ -605,14 +606,21 @@ namespace thepos
 
 
                 // 티켓 취소
-                CancelTicketFlow(pCardAuth.pay_class, pCardAuth.the_no, pCardAuth.ticket_no, pCardAuth.amount);
-
+                if (pay_seq == 1)
+                {
+                    CancelTicketFlow(pCardAuth.pay_class, pCardAuth.the_no, pCardAuth.ticket_no, pCardAuth.amount);
+                }
 
 
                 // 영수증인쇄
-                if (is_cancel_stat == "Y")
+                if (pay_seq == lvwList.Items.Count)
                 {
                     _print_bill(pCardAuth.the_no, "C", "", "11010", true);
+                }
+
+                if (pay_seq == lvwList.Items.Count)
+                {
+                    print_cancel_order(the_no);
                 }
 
             }
@@ -675,11 +683,13 @@ namespace thepos
 
 
                 // 티켓 확인 및 취소
+                /*
                 int ret = CheckCancelTicketFlow(pCashAuth.pay_class, pCashAuth.the_no, pCashAuth.ticket_no);
                 if (ret < 0)
                 {
                     //return;
                 }
+                */
 
 
                 if (pCashAuth.pay_type == "R1")  // 현금영수증 취소
@@ -869,13 +879,22 @@ namespace thepos
 
 
                 // 티켓 취소
-                CancelTicketFlow(pCashAuth.pay_class, pCashAuth.the_no, pCashAuth.ticket_no, pCashAuth.amount);
+                if (pay_seq == 1)
+                {
+                    CancelTicketFlow(pCashAuth.pay_class, pCashAuth.the_no, pCashAuth.ticket_no, pCashAuth.amount);
+                }
+                
 
 
                 // 영수증인쇄
-                if (is_cancel_stat == "Y")
+                if (pay_seq == lvwList.Items.Count)
                 {
                     _print_bill(pCashAuth.the_no, "C", "", "11010", true);
+                }
+
+                if (pay_seq == lvwList.Items.Count)
+                {
+                    print_cancel_order(the_no);
                 }
 
             }
@@ -949,11 +968,13 @@ namespace thepos
 
 
                 // 티켓 확인 및 취소
+                /*
                 int ret = CheckCancelTicketFlow(pEasyAuth.pay_class, pEasyAuth.the_no, "");
                 if (ret < 0)
                 {
                     //return;
                 }
+                */
 
 
 
@@ -1055,14 +1076,20 @@ namespace thepos
                         //MessageBox.Show("간편결제 취소 성공", "thepos");
 
 
-                        // 티켓 취소
-                        CancelTicketFlow(pEasyAuth.pay_class, pEasyAuth.the_no, pEasyAuth.ticket_no, pEasyAuth.amount);
+                        if (pay_seq == 1)
+                        {
+                            CancelTicketFlow(pEasyAuth.pay_class, pEasyAuth.the_no, pEasyAuth.ticket_no, pEasyAuth.amount);
+                        }
 
 
-                        // 영수증인쇄
-                        if (is_cancel_stat == "Y")
+                        if (pay_seq == lvwList.Items.Count)
                         {
                             _print_bill(pEasyAuth.the_no, "C", "", "11010", true);
+                        }
+
+                        if (pay_seq == lvwList.Items.Count)
+                        {
+                            print_cancel_order(the_no);
                         }
 
                     }
@@ -1119,11 +1146,13 @@ namespace thepos
 
 
                 // 티켓 취소여부 확인
+                /*
                 int ret = CheckCancelTicketFlow(pPointAuth.pay_class, pPointAuth.the_no, pPointAuth.ticket_no);
                 if (ret < 0)
                 {
                     return;
                 }
+                */
 
 
 
@@ -1176,6 +1205,11 @@ namespace thepos
                     if (is_cancel_stat == "Y")
                     {
                         _print_bill(pPointAuth.the_no, "C", "", "00100", true); // 
+                    }
+
+                    if (is_cancel_stat == "Y")
+                    {
+                        print_cancel_order(the_no);
                     }
 
                 }
@@ -1241,13 +1275,14 @@ namespace thepos
 
 
                 // 티켓 확인 및 취소
+                // 전부다 취소대상으로 간주
+                /*
                 int ret = CheckCancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, "");
                 if (ret < 0)
                 {
                     //return;
                 }
-                
-
+                */
 
 
                 if (pCertAuth.pay_type == "M0")
@@ -1257,15 +1292,25 @@ namespace thepos
 
                     if (requestCertCancel(pCertAuth, out pCertCancel) != 0)
                     {
-                        display_error_msg(mErrorMsg);
+                        MessageBox.Show("쿠폰사용취소 오류\r\n\r\n" + mErrorMsg + "\r\n\r\n\r\n선택쿠폰을 취소할 수 없습니다. 발행사에서 별도로 처리바랍니다.\r\n주문 및 정산 취소는 계속 진행합니다..", "thepos");
                     }
-                    else
-                    {
-                        cancel_orders(pay_seq, pCertAuth.amount);
 
+
+
+                    
+                    {
+                        //
+                        if (pay_seq == 1)  // 복합결제 취소인 경우 첫번째 건만
+                        {
+                            cancel_orders(pay_seq, pCertAuth.amount);
+                        }
+
+                        
+                        //
                         cancel_payment(pay_seq, pCertAuth.amount, pay_type, is_cancel_stat);
 
 
+                        //
                         parameters["siteId"] = mSiteId;
                         parameters["posNo"] = myPosNo;
                         parameters["bizDt"] = mBizDate;
@@ -1286,7 +1331,6 @@ namespace thepos
                         parameters["couponLinkNo"] = pCertAuth.coupon_link_no;  //?
                         parameters["cnt"] = pCertAuth.cnt + "";  //?
 
-
                         if (mRequestPost("paymentCert", parameters))
                         {
                             if (mObj["resultCode"].ToString() == "200")
@@ -1296,15 +1340,15 @@ namespace thepos
                             else
                             {
                                 thepos_app_log(3, this.Name, "mRequestPost()", "오류 paymentCert " + mObj["resultMsg"].ToString());
-                                MessageBox.Show("오류 paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                return;
+                                //MessageBox.Show("오류 paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                //return;
                             }
                         }
                         else
                         {
                             thepos_app_log(3, this.Name, "mRequestPost()", "시스템오류 paymentCert " + mErrorMsg);
-                            MessageBox.Show("시스템오류 paymentCert\n\n" + mErrorMsg, "thepos");
-                            return;
+                            //MessageBox.Show("시스템오류 paymentCert\n\n" + mErrorMsg, "thepos");
+                            //return;
                         }
 
 
@@ -1327,39 +1371,38 @@ namespace thepos
                             }
                             else
                             {
-                                MessageBox.Show("오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                                return;
+                                thepos_app_log(3, this.Name, "mRequestPatch()", "오류 paymentCert " + mObj["resultMsg"].ToString());
+                                //MessageBox.Show("오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                                //return;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
-                            return;
+                            thepos_app_log(3, this.Name, "mRequestPatch()", "시스템오류 paymentCert " + mErrorMsg);
+                            //MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
+                            //return;
                         }
 
 
                         SetDisplayAlarm("I", "쿠폰사용 취소.");
 
 
-                        // 티켓 취소
-                        CancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, pCertAuth.ticket_no, pCertAuth.amount);
-                        
+                        // 티켓 취소 
+                        if (pay_seq == 1)
+                        {
+                            CancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, pCertAuth.ticket_no, pCertAuth.amount);
+                        }
 
-                        // 영수증인쇄
-                        if (is_cancel_stat == "Y")
+
+                        if (pay_seq == lvwList.Items.Count)
                         {
                             _print_bill(pCertAuth.the_no, "C", "", "00001", true);
                         }
 
+
                     }
                 }
 
-            }
-
-
-            if (is_cancel_stat == "Y")
-            {
-                print_cancel_order(the_no);
             }
 
 

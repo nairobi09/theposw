@@ -400,7 +400,14 @@ namespace thepos
 
         public static string Space(int count)
         {
-            return new String(' ', count);
+            if (count < 1)
+            {
+                return "";
+            }
+            else
+            {
+                return new String(' ', count);
+            }
         }
 
 

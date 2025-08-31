@@ -77,6 +77,9 @@ namespace thepos
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
 
+                //
+                thepos_app_log(1, "tm", "requestTmCertAuth()", "response=" + responseString);
+
                 mObj = JObject.Parse(responseString);
 
                 return 0;
@@ -103,6 +106,9 @@ namespace thepos
                 var response = mHttpClientCoupon.PostAsync(TM_URL + "extra/ticket/v1/unuse", data).Result;
                 var responseContent = response.Content;
                 string responseString = responseContent.ReadAsStringAsync().Result;
+
+                //
+                thepos_app_log(1, "tm", "requestTmCertCancel()", "response=" + responseString);
 
                 mObj = JObject.Parse(responseString);
 

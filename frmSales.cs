@@ -24,6 +24,7 @@ using System.Web;
 using System.Web.UI.WebControls.Expressions;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Interop;
 using thepos._1Sales;
 using theposw;
 using theposw._1Sales;
@@ -2136,7 +2137,7 @@ namespace thepos
 
         }
 
-        public static int SaveTicketFlow(String ticket_no, String pay_class, String settle_class, int settle_amt)  
+        public static int SaveTicketFlow(String ticket_no, String pay_class, String settle_class, int settle_amt)
         {
             // settle_class, settel_amt 는 정상시에만 사용
             // 정산의 경우 subClass : 사용 US,  충전 CH
@@ -2829,8 +2830,17 @@ namespace thepos
 
             if (auth_pay_class == "OR")  // 주문건의 취소
             {
-                // 주문취소의 Action의 delete
-                String sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
+                String sUrl = "";
+
+                if (the_no == "")
+                {
+                    sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
+                }
+                else
+                {
+                    sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
+                }
+
 
                 if (mRequestGet(sUrl))
                 {
@@ -2867,7 +2877,7 @@ namespace thepos
                                     if (mObj["resultCode"].ToString() == "200")
                                     {
                                         thepos_app_log(2, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
-                                        MessageBox.Show("티켓취소 완료.", "thepos");
+                                        //MessageBox.Show("티켓취소 완료.", "thepos");
                                     }
                                     else
                                     {
@@ -4776,7 +4786,14 @@ namespace thepos
 
         public static string Space(int count)
         {
-            return new String(' ', count);
+            if (count < 1)
+            {
+                return "";
+            }
+            else
+            {
+                return new String(' ', count);
+            }
         }
 
         public static string CharCount(char c, int count)
@@ -6054,9 +6071,35 @@ namespace thepos
             {
                 couponTM p = new couponTM();
                 ret = p.requestTmCertCancel(paymentCert.coupon_no);
+
+                if (ret == 0)
+                {
+                    if (mObj["result"].ToString() == "1000")
+                    {
+                        thepos_app_log(1, "requestCertCancel()", "requestTmCertCancel()", "사용취소인증. no=" + paymentCert.coupon_no);
+
+                        ret = 0;
+
+                    }
+                    else
+                    {
+                        mErrorMsg = mObj["msg"].ToString();
+
+                        thepos_app_log(3, "requestCertCancel()", "requestTmCertCancel()", "사용취소 인증거절 " + mErrorMsg + " no=" + paymentCert.coupon_no);
+
+                        ret = -1;
+                    }
+                }
+                else
+                {
+                    thepos_app_log(3, "requestCertCancel()", "requestTmCertCancel()", "사용취소 인증오류 " + mErrorMsg + " no=" + paymentCert.coupon_no);
+
+                    ret = -1;
+                }
             }
 
             return ret;
+
         }
 
         public static void display_error_msg(string msg)

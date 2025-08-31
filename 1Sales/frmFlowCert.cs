@@ -449,6 +449,9 @@ namespace thepos
 
 
             //
+            int coupon_seq = 0;  // 실재 1부터 시작함.
+
+
             for (int i = 0; i < lvwCoupon.Items.Count; i++)
             {
                 if (lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(auth_state_code)].Text != "1")  // 1 인증승인 완료
@@ -464,6 +467,7 @@ namespace thepos
 
                 String t_coupon_link_no = lvwCoupon.Items[i].SubItems[lvwCoupon.Columns.IndexOf(coupon_link_no)].Text;
 
+                coupon_seq++;
 
                 PaymentCert mPaymentCert = new PaymentCert();
                 mPaymentCert.site_id = mSiteId;
@@ -479,7 +483,9 @@ namespace thepos
                 mPaymentCert.pay_class = mPayClass;
 
                 mPaymentCert.ticket_no = "";
-                mPaymentCert.pay_seq = i; // 
+                //mPaymentCert.pay_seq = i;
+                mPaymentCert.pay_seq = coupon_seq;  // 취소시 seq=1 인경우 order파트를 취소함., 20250831
+
                 mPaymentCert.tran_date = get_today_date() + get_today_time();
                 mPaymentCert.amount = t_goods_cnt * t_goods_amt;    // 결제금액
                 mPaymentCert.coupon_no = t_coupon_no;

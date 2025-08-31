@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnUncheck = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,7 +56,7 @@
             this.goods_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.goods_idx = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnPay = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,6 +66,7 @@
             // 
             this.panelback.BackColor = System.Drawing.Color.LightGray;
             this.panelback.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelback.Controls.Add(this.label1);
             this.panelback.Controls.Add(this.btnCancel);
             this.panelback.Controls.Add(this.btnUncheck);
             this.panelback.Controls.Add(this.btnCheck);
@@ -79,13 +81,28 @@
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 5;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(8, 527);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(80, 60);
+            this.btnCancel.TabIndex = 81;
+            this.btnCancel.TabStop = false;
+            this.btnCancel.Text = "사용취소\r\n요청";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // btnUncheck
             // 
             this.btnUncheck.BackColor = System.Drawing.Color.White;
             this.btnUncheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUncheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnUncheck.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUncheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnUncheck.Location = new System.Drawing.Point(74, 527);
+            this.btnUncheck.Location = new System.Drawing.Point(185, 527);
             this.btnUncheck.Name = "btnUncheck";
             this.btnUncheck.Size = new System.Drawing.Size(60, 60);
             this.btnUncheck.TabIndex = 80;
@@ -98,9 +115,9 @@
             // 
             this.btnCheck.BackColor = System.Drawing.Color.White;
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCheck.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCheck.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnCheck.Location = new System.Drawing.Point(8, 527);
+            this.btnCheck.Location = new System.Drawing.Point(119, 527);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(60, 60);
             this.btnCheck.TabIndex = 79;
@@ -313,29 +330,25 @@
             this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay.ForeColor = System.Drawing.Color.White;
-            this.btnPay.Location = new System.Drawing.Point(366, 527);
+            this.btnPay.Location = new System.Drawing.Point(335, 527);
             this.btnPay.Name = "btnPay";
-            this.btnPay.Size = new System.Drawing.Size(140, 60);
+            this.btnPay.Size = new System.Drawing.Size(171, 60);
             this.btnPay.TabIndex = 78;
             this.btnPay.TabStop = false;
-            this.btnPay.Text = "인증발권";
+            this.btnPay.Text = "쿠폰사용발권";
             this.btnPay.UseVisualStyleBackColor = false;
             this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
-            // btnCancel
+            // label1
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnCancel.Location = new System.Drawing.Point(154, 527);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(80, 60);
-            this.btnCancel.TabIndex = 81;
-            this.btnCancel.TabStop = false;
-            this.btnCancel.Text = "미사용\r\n요청";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.label1.Location = new System.Drawing.Point(8, 629);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(410, 51);
+            this.label1.TabIndex = 82;
+            this.label1.Text = "[사용취소요청]\r\n- 여기서 취소는 쿠폰발생사의 사용취소만 처리됩니다.\r\n- 주문 및 정산 취소를 함께하려면 [결제내역관리]에서 취소바랍니다.";
             // 
             // frmFlowCert
             // 
@@ -349,6 +362,7 @@
             this.Text = "frmFlowCert";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowCert_FormClosed);
             this.panelback.ResumeLayout(false);
+            this.panelback.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -385,5 +399,6 @@
         private System.Windows.Forms.Button btnUncheck;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label1;
     }
 }
