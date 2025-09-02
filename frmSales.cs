@@ -1779,6 +1779,7 @@ namespace thepos
                 parameters["orderTime"] = get_today_time();
                 parameters["order_cnt"] = order_shop_cnt + "";
                 parameters["cnt"] = allim_cnt + "";
+                parameters["isCancel"] = "";
                 parameters["shopCode"] = shop_code_list[i] + "";
                 parameters["shopOrderNo"] = shop_order_no;
 
@@ -2832,15 +2833,8 @@ namespace thepos
             {
                 String sUrl = "";
 
-                if (the_no == "")
-                {
-                    sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&ticketNo=" + ticket_no;
-                }
-                else
-                {
-                    sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
-                }
-
+                sUrl = "ticketFlow?siteId=" + mSiteId + "&bizDt=" + mBizDate + "&theNo=" + the_no;
+                
 
                 if (mRequestGet(sUrl))
                 {
@@ -2876,7 +2870,7 @@ namespace thepos
                                 {
                                     if (mObj["resultCode"].ToString() == "200")
                                     {
-                                        thepos_app_log(2, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
+                                        thepos_app_log(1, "CancelTicketFlow()", "취소", "티켓취소 완료 the_no=" + the_no + " flowStep -> 8");
                                         //MessageBox.Show("티켓취소 완료.", "thepos");
                                     }
                                     else

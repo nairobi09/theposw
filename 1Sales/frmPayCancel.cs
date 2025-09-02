@@ -1256,21 +1256,21 @@ namespace thepos
                         {
                             thepos_app_log(3, this.Name, "mRequestGet()", "결제자료 오류. paymentCert");
                             MessageBox.Show("결제자료 오류. paymentCert\n\n", "thepos");
-                            //return;
+                            return;
                         }
                     }
                     else
                     {
                         thepos_app_log(3, this.Name, "mRequestGet()", "결제자료 오류. paymentCert " + mObj["resultMsg"].ToString());
                         MessageBox.Show("결제자료 오류. paymentCert\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        //return;
+                        return;
                     }
                 }
                 else
                 {
                     thepos_app_log(3, this.Name, "mRequestGet()", "시스템오류. paymentCert\n\n" + mErrorMsg);
                     MessageBox.Show("시스템오류. paymentCert\n\n" + mErrorMsg, "thepos");
-                    //return;
+                    return;
                 }
 
 
@@ -1292,20 +1292,20 @@ namespace thepos
 
                     if (requestCertCancel(pCertAuth, out pCertCancel) != 0)
                     {
+                        thepos_app_log(3, this.Name, "requestCertCancel()", "쿠폰사용취소 오류 " + mErrorMsg + " 선택쿠폰을 취소할 수 없습니다. 발행사에서 별도로 처리바랍니다. 주문 및 정산 취소는 계속 진행합니다..");
                         MessageBox.Show("쿠폰사용취소 오류\r\n\r\n" + mErrorMsg + "\r\n\r\n\r\n선택쿠폰을 취소할 수 없습니다. 발행사에서 별도로 처리바랍니다.\r\n주문 및 정산 취소는 계속 진행합니다..", "thepos");
                     }
 
 
 
-                    
                     {
                         //
-                        if (pay_seq == 1)  // 복합결제 취소인 경우 첫번째 건만
+                        if (pay_seq == 1)  // 복합결제 취소인 경우 첫번째 건
                         {
                             cancel_orders(pay_seq, pCertAuth.amount);
                         }
 
-                        
+
                         //
                         cancel_payment(pay_seq, pCertAuth.amount, pay_type, is_cancel_stat);
 
@@ -1367,6 +1367,7 @@ namespace thepos
                         {
                             if (mObj["resultCode"].ToString() == "200")
                             {
+                                thepos_app_log(1, this.Name, "mRequestPatch()", "성공 paymentCert pay_seq=" + pay_seq);
                                 is_apply = true;
                             }
                             else
@@ -1391,6 +1392,7 @@ namespace thepos
                         if (pay_seq == 1)
                         {
                             CancelTicketFlow(pCertAuth.pay_class, pCertAuth.the_no, pCertAuth.ticket_no, pCertAuth.amount);
+                            // LOG는 내부에서..
                         }
 
 
@@ -1418,7 +1420,7 @@ namespace thepos
 
         void cancel_orders(int pay_seq, int amount)
         {
-            if (pay_seq != 1)  // 복합결제 취소인 경우 첫번째 건만
+            if (pay_seq != 1)  // 복합결제 취소인 경우 첫번째 건
             {
                 return;
             }
