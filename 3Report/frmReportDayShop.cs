@@ -134,38 +134,46 @@ namespace thepos
                 {
 
                     //
-                    if (save_shopcode == arr[i]["shopCode"].ToString() & save_nodcode1 == arr[i]["nodCode1"].ToString() & save_nodcode2 != arr[i]["nodCode2"].ToString())
+                    //if (save_shopcode == arr[i]["shopCode"].ToString() & save_nodcode1 == arr[i]["nodCode1"].ToString() & save_nodcode2 != arr[i]["nodCode2"].ToString())
+                    if (save_nodcode2 != arr[i]["nodCode2"].ToString())
                     {
-                        ListViewItem sItem = new ListViewItem();
-                        sItem.Text = "[" + get_nod2_name(save_shopcode, save_nodcode1, save_nodcode2) + "]";
-                        sItem.SubItems.Add(nod2_cnt.ToString("N0"));
-                        sItem.SubItems.Add(nod2_amount.ToString("N0"));
-                        sItem.SubItems.Add(nod2_dcAmount.ToString("N0"));
-                        sItem.SubItems.Add(nod2_netAmount.ToString("N0"));
-                        sItem.ForeColor = System.Drawing.Color.Purple;
-                        sItem.SubItems[1].ForeColor = System.Drawing.Color.Purple;
-                        sItem.SubItems[2].ForeColor = System.Drawing.Color.Purple;
-                        sItem.SubItems[3].ForeColor = System.Drawing.Color.Purple;
-                        sItem.SubItems[4].ForeColor = System.Drawing.Color.Purple;
-                        lvwList.Items.Add(sItem);
+                        if (save_nodcode2 != "")
+                        {
+                            ListViewItem sItem = new ListViewItem();
+                            sItem.Text = "[" + get_nod2_name(save_shopcode, save_nodcode1, save_nodcode2) + "]";
+                            sItem.SubItems.Add(nod2_cnt.ToString("N0"));
+                            sItem.SubItems.Add(nod2_amount.ToString("N0"));
+                            sItem.SubItems.Add(nod2_dcAmount.ToString("N0"));
+                            sItem.SubItems.Add(nod2_netAmount.ToString("N0"));
+                            sItem.ForeColor = System.Drawing.Color.Purple;
+                            sItem.SubItems[1].ForeColor = System.Drawing.Color.Purple;
+                            sItem.SubItems[2].ForeColor = System.Drawing.Color.Purple;
+                            sItem.SubItems[3].ForeColor = System.Drawing.Color.Purple;
+                            sItem.SubItems[4].ForeColor = System.Drawing.Color.Purple;
+                            lvwList.Items.Add(sItem);
+                        }
 
                         nod2_cnt = 0; nod2_amount = 0; nod2_dcAmount = 0; nod2_netAmount = 0;
                     }
 
-                    if (save_shopcode == arr[i]["shopCode"].ToString() & save_nodcode1 != arr[i]["nodCode1"].ToString())
+                    //if (save_shopcode == arr[i]["shopCode"].ToString() & save_nodcode1 != arr[i]["nodCode1"].ToString())
+                    if (save_nodcode1 != arr[i]["nodCode1"].ToString())
                     {
-                        ListViewItem sItem = new ListViewItem();
-                        sItem.Text = "[" + get_nod1_name(save_shopcode, save_nodcode1) + "]";
-                        sItem.SubItems.Add(nod1_cnt.ToString("N0"));
-                        sItem.SubItems.Add(nod1_amount.ToString("N0"));
-                        sItem.SubItems.Add(nod1_dcAmount.ToString("N0"));
-                        sItem.SubItems.Add(nod1_netAmount.ToString("N0"));
-                        sItem.ForeColor = System.Drawing.Color.Blue;
-                        sItem.SubItems[1].ForeColor = System.Drawing.Color.Blue;
-                        sItem.SubItems[2].ForeColor = System.Drawing.Color.Blue;
-                        sItem.SubItems[3].ForeColor = System.Drawing.Color.Blue;
-                        sItem.SubItems[4].ForeColor = System.Drawing.Color.Blue;
-                        lvwList.Items.Add(sItem);
+                        if (save_nodcode1 != "")
+                        {
+                            ListViewItem sItem = new ListViewItem();
+                            sItem.Text = "[" + get_nod1_name(save_shopcode, save_nodcode1) + "]";
+                            sItem.SubItems.Add(nod1_cnt.ToString("N0"));
+                            sItem.SubItems.Add(nod1_amount.ToString("N0"));
+                            sItem.SubItems.Add(nod1_dcAmount.ToString("N0"));
+                            sItem.SubItems.Add(nod1_netAmount.ToString("N0"));
+                            sItem.ForeColor = System.Drawing.Color.Blue;
+                            sItem.SubItems[1].ForeColor = System.Drawing.Color.Blue;
+                            sItem.SubItems[2].ForeColor = System.Drawing.Color.Blue;
+                            sItem.SubItems[3].ForeColor = System.Drawing.Color.Blue;
+                            sItem.SubItems[4].ForeColor = System.Drawing.Color.Blue;
+                            lvwList.Items.Add(sItem);
+                        }
 
                         nod2_cnt = 0; nod2_amount = 0; nod2_dcAmount = 0; nod2_netAmount = 0;
                         nod1_cnt = 0; nod1_amount = 0; nod1_dcAmount = 0; nod1_netAmount = 0;
@@ -173,18 +181,21 @@ namespace thepos
 
                     if (save_shopcode != arr[i]["shopCode"].ToString())
                     {
-                        ListViewItem sItem = new ListViewItem();
-                        sItem.Text = "[" + get_shop_name(save_shopcode) + "]";
-                        sItem.SubItems.Add(shop_cnt.ToString("N0"));
-                        sItem.SubItems.Add(shop_amount.ToString("N0"));
-                        sItem.SubItems.Add(shop_dcAmount.ToString("N0"));
-                        sItem.SubItems.Add(shop_netAmount.ToString("N0"));
-                        sItem.ForeColor = System.Drawing.Color.Red;
-                        sItem.SubItems[1].ForeColor = System.Drawing.Color.Red;
-                        sItem.SubItems[2].ForeColor = System.Drawing.Color.Red;
-                        sItem.SubItems[3].ForeColor = System.Drawing.Color.Red;
-                        sItem.SubItems[4].ForeColor = System.Drawing.Color.Red;
-                        lvwList.Items.Add(sItem);
+                        if (save_shopcode != "")
+                        {
+                            ListViewItem sItem = new ListViewItem();
+                            sItem.Text = "[" + get_shop_name(save_shopcode) + "]";
+                            sItem.SubItems.Add(shop_cnt.ToString("N0"));
+                            sItem.SubItems.Add(shop_amount.ToString("N0"));
+                            sItem.SubItems.Add(shop_dcAmount.ToString("N0"));
+                            sItem.SubItems.Add(shop_netAmount.ToString("N0"));
+                            sItem.ForeColor = System.Drawing.Color.Red;
+                            sItem.SubItems[1].ForeColor = System.Drawing.Color.Red;
+                            sItem.SubItems[2].ForeColor = System.Drawing.Color.Red;
+                            sItem.SubItems[3].ForeColor = System.Drawing.Color.Red;
+                            sItem.SubItems[4].ForeColor = System.Drawing.Color.Red;
+                            lvwList.Items.Add(sItem);
+                        }
 
                         nod2_cnt = 0; nod2_amount = 0; nod2_dcAmount = 0; nod2_netAmount = 0;
                         nod1_cnt = 0; nod1_amount = 0; nod1_dcAmount = 0; nod1_netAmount = 0;

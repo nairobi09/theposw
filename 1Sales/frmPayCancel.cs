@@ -1367,7 +1367,7 @@ namespace thepos
                         {
                             if (mObj["resultCode"].ToString() == "200")
                             {
-                                thepos_app_log(1, this.Name, "mRequestPatch()", "성공 paymentCert pay_seq=" + pay_seq);
+                                thepos_app_log(2, this.Name, "mRequestPatch()", "성공 paymentCert pay_seq=" + pay_seq);
                                 is_apply = true;
                             }
                             else

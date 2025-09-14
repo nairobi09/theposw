@@ -86,21 +86,21 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.label1.Location = new System.Drawing.Point(8, 629);
+            this.label1.Location = new System.Drawing.Point(83, 633);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(410, 51);
+            this.label1.Size = new System.Drawing.Size(415, 51);
             this.label1.TabIndex = 82;
-            this.label1.Text = "[사용취소요청]\r\n- 이 화면의 사용취소는 쿠폰발행사로 취소요청입니다.\r\n- 주문 및 정산 취소를 함께하려면 [결제내역관리]에서 취소바랍니다.";
+            this.label1.Text = "[발행사 사용취소요청]\r\n- 이 사용취소는 쿠폰발행사로 취소요청입니다.\r\n- 주문 및 정산을 함께  취소하려면 [결제내역관리]에서 취소바랍니다.";
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnCancel.BackColor = System.Drawing.Color.Gray;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnCancel.Font = new System.Drawing.Font("맑은 고딕", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(11, 528);
+            this.btnCancel.Location = new System.Drawing.Point(14, 635);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(68, 60);
+            this.btnCancel.Size = new System.Drawing.Size(63, 51);
             this.btnCancel.TabIndex = 81;
             this.btnCancel.TabStop = false;
             this.btnCancel.Text = "사용취소\r\n요청";
@@ -113,7 +113,7 @@
             this.btnUncheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUncheck.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUncheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnUncheck.Location = new System.Drawing.Point(173, 527);
+            this.btnUncheck.Location = new System.Drawing.Point(80, 515);
             this.btnUncheck.Name = "btnUncheck";
             this.btnUncheck.Size = new System.Drawing.Size(60, 60);
             this.btnUncheck.TabIndex = 80;
@@ -128,7 +128,7 @@
             this.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCheck.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCheck.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.btnCheck.Location = new System.Drawing.Point(107, 527);
+            this.btnCheck.Location = new System.Drawing.Point(14, 515);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(60, 60);
             this.btnCheck.TabIndex = 79;
@@ -224,7 +224,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(511, 40);
             this.lblTitle.TabIndex = 40;
-            this.lblTitle.Text = "쿠폰인증";
+            this.lblTitle.Text = "온라인쿠폰인증";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lvwCoupon
@@ -253,7 +253,7 @@
             this.lvwCoupon.Location = new System.Drawing.Point(5, 106);
             this.lvwCoupon.MultiSelect = false;
             this.lvwCoupon.Name = "lvwCoupon";
-            this.lvwCoupon.Size = new System.Drawing.Size(511, 403);
+            this.lvwCoupon.Size = new System.Drawing.Size(511, 391);
             this.lvwCoupon.TabIndex = 2;
             this.lvwCoupon.TabStop = false;
             this.lvwCoupon.UseCompatibleStateImageBehavior = false;
@@ -341,7 +341,7 @@
             this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnPay.ForeColor = System.Drawing.Color.White;
-            this.btnPay.Location = new System.Drawing.Point(335, 527);
+            this.btnPay.Location = new System.Drawing.Point(335, 515);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(171, 60);
             this.btnPay.TabIndex = 78;

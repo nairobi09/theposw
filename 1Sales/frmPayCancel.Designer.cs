@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelback = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblNestAmount = new System.Windows.Forms.Label();
             this.lblCancelAmount = new System.Windows.Forms.Label();
             this.lblT3 = new System.Windows.Forms.Label();
@@ -46,7 +47,6 @@
             this.cc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.theno = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.paytype = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
             this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,17 @@
             this.panelback.Name = "panelback";
             this.panelback.Size = new System.Drawing.Size(523, 698);
             this.panelback.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.label1.Location = new System.Drawing.Point(25, 618);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(326, 68);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "복합결제나 팀쿠폰(복수쿠폰) 경우\r\n- 순차적 취소처리 바랍니다.\r\n- 1번 취소시 주문 및 티켓, 팀단위 전체가 취소됩니다.\r\n- 마지막 취소시" +
+    " 영수증, 주문서 출력됩니다.";
             // 
             // lblNestAmount
             // 
@@ -243,17 +254,6 @@
             // 
             this.paytype.Text = "";
             this.paytype.Width = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
-            this.label1.Location = new System.Drawing.Point(25, 612);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(370, 68);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "복합결제나 팀쿠폰(복수쿠폰) 경우\r\n- 순차적 결재 취소처리 바랍니다.\r\n- 1번 취소시 주문 및 티켓, 쿠폰의 팀단위 전체가 취소됩니다.\r\n- " +
-    "마지막 취소시 영수증, 주문서 출력됩니다.";
             // 
             // frmPayCancel
             // 

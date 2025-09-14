@@ -135,7 +135,7 @@ namespace thepos._1Sales
 
                     String button_name = "";
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "ALLIM") { button_name = "알림"; }
-                    if (lvwConsoleLink.Items[i].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
+                    if (lvwConsoleLink.Items[i].Tag.ToString() == "COUPON") { button_name = "온라인쿠폰"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "CHARGING") { button_name = "충전"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT_PA") { button_name = "정산"; }
                     if (lvwConsoleLink.Items[i].Tag.ToString() == "SETTLEMENT_PD") { button_name = "정산"; }
@@ -217,7 +217,7 @@ namespace thepos._1Sales
 
                 String button_name = "";
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "ALLIM") { button_name = "알림"; }
-                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COUPON") { button_name = "쿠폰"; }
+                if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "COUPON") { button_name = "온라인쿠폰"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "CHARGING") { button_name = "충전"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT_PA") { button_name = "정산"; }
                 if (lvwConsoleLink.SelectedItems[0].Tag.ToString() == "SETTLEMENT_PD") { button_name = "정산"; }

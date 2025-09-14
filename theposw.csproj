@@ -241,6 +241,12 @@
     <Compile Include="1Sales\frmOrderBarcode.Designer.cs">
       <DependentUpon>frmOrderBarcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="2Business\frmBizLastSettlrement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="2Business\frmBizLastSettlrement.Designer.cs">
+      <DependentUpon>frmBizLastSettlrement.cs</DependentUpon>
+    </Compile>
     <Compile Include="2Business\frmBizCashCheck.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -691,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmOrderBarcode.resx">
       <DependentUpon>frmOrderBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2Business\frmBizLastSettlrement.resx">
+      <DependentUpon>frmBizLastSettlrement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizCashCheck.resx">
       <DependentUpon>frmBizCashCheck.cs</DependentUpon>

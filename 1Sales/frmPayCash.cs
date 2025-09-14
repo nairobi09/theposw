@@ -122,7 +122,7 @@ namespace thepos
 
             if (mIsTestPayMode == "Test")
             {
-                btnCashRecept.Text = "현금영수증\r\n테스트(SKIP)";
+                //btnCashRecept.Text = "현금영수증\r\n테스트(SKIP)";
             }
 
         }

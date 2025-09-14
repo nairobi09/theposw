@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusiness));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnBizLastSettlement = new System.Windows.Forms.Button();
             this.btnCashCheck = new System.Windows.Forms.Button();
             this.btnBizSettlement = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnBizLastSettlement);
             this.panel1.Controls.Add(this.btnCashCheck);
             this.panel1.Controls.Add(this.btnBizSettlement);
             this.panel1.Controls.Add(this.btnBizOpen);
@@ -69,13 +71,28 @@
             this.panel1.Size = new System.Drawing.Size(200, 700);
             this.panel1.TabIndex = 9;
             // 
+            // btnBizLastSettlement
+            // 
+            this.btnBizLastSettlement.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnBizLastSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBizLastSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnBizLastSettlement.ForeColor = System.Drawing.Color.White;
+            this.btnBizLastSettlement.Location = new System.Drawing.Point(5, 138);
+            this.btnBizLastSettlement.Name = "btnBizLastSettlement";
+            this.btnBizLastSettlement.Size = new System.Drawing.Size(184, 70);
+            this.btnBizLastSettlement.TabIndex = 29;
+            this.btnBizLastSettlement.TabStop = false;
+            this.btnBizLastSettlement.Text = "마감정산";
+            this.btnBizLastSettlement.UseVisualStyleBackColor = false;
+            this.btnBizLastSettlement.Click += new System.EventHandler(this.btnBizLastSettlement_Click);
+            // 
             // btnCashCheck
             // 
             this.btnCashCheck.BackColor = System.Drawing.Color.SaddleBrown;
             this.btnCashCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashCheck.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCashCheck.ForeColor = System.Drawing.Color.White;
-            this.btnCashCheck.Location = new System.Drawing.Point(5, 67);
+            this.btnCashCheck.Location = new System.Drawing.Point(5, 69);
             this.btnCashCheck.Name = "btnCashCheck";
             this.btnCashCheck.Size = new System.Drawing.Size(184, 60);
             this.btnCashCheck.TabIndex = 28;
@@ -90,13 +107,14 @@
             this.btnBizSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnBizSettlement.Location = new System.Drawing.Point(5, 143);
+            this.btnBizSettlement.Location = new System.Drawing.Point(5, 307);
             this.btnBizSettlement.Name = "btnBizSettlement";
-            this.btnBizSettlement.Size = new System.Drawing.Size(184, 70);
+            this.btnBizSettlement.Size = new System.Drawing.Size(184, 60);
             this.btnBizSettlement.TabIndex = 27;
             this.btnBizSettlement.TabStop = false;
             this.btnBizSettlement.Text = "정산";
             this.btnBizSettlement.UseVisualStyleBackColor = false;
+            this.btnBizSettlement.Visible = false;
             this.btnBizSettlement.Click += new System.EventHandler(this.btnBizSettlement_Click);
             // 
             // btnBizOpen
@@ -406,5 +424,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnCashCheck;
+        private System.Windows.Forms.Button btnBizLastSettlement;
     }
 }

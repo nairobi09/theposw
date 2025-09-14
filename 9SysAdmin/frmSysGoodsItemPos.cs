@@ -149,9 +149,12 @@ namespace thepos
                         selected_groupList.Add(new { Text = arr[i]["groupName"].ToString(), Value = arr[i]["groupCode"].ToString() });
                     }
 
-                    cbGroup.DataSource = selected_groupList;
-                    cbGroup.DisplayMember = "Text";
-                    cbGroup.ValueMember = "Value";
+                    if (arr.Count > 0)
+                    {
+                        cbGroup.DataSource = selected_groupList;
+                        cbGroup.DisplayMember = "Text";
+                        cbGroup.ValueMember = "Value";
+                    }
 
                 }
                 else
@@ -172,6 +175,11 @@ namespace thepos
         private void btnView_Click(object sender, EventArgs e)
         {
             mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+
+            if (cbGroup.SelectedIndex < 0)
+            {
+                return;
+            }
 
 
             mSelectedGroupCode = cbGroup.SelectedValue.ToString();

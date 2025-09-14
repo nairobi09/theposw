@@ -153,6 +153,16 @@ namespace thepos
             mPanelDivision.Visible = false;
         }
 
+        private void btnBizLastSettlement_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "BizLastSettlementClose") return;
 
+            mThisButtonClick = "BizLastSettlementClose";
+            panelBiz.Controls.Clear();
+
+            frmBizLastSettlement fBiz = new frmBizLastSettlement() { TopLevel = false, TopMost = true };
+            panelBiz.Controls.Add(fBiz);
+            fBiz.Show();
+        }
     }
 }

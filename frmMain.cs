@@ -435,7 +435,7 @@ namespace thepos
                     //thepos_app_log(3, this.Name, "login", "네트워크 오류 인터넷 연결을 확인바랍니다");
                     //
                     //MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                    MessageBox.Show("네트워크 오류\n\n\n\n인터넷 연결을 확인바랍니다." + mErrorMsg, "thepos");
+                    MessageBox.Show("네트워크 오류\n\n\n\n인터넷 연결을 확인바랍니다.\r\n" + mErrorMsg, "thepos");
 
                     return false;
                 }

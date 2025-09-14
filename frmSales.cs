@@ -402,7 +402,7 @@ namespace thepos
                 else if (mFlowConsol[i].code == "COUPON")
                 {
                     btnFlowItem.Name = "btnPayConsoleCoupon";
-                    btnFlowItem.Text = "쿠폰";
+                    btnFlowItem.Text = "온라인쿠폰";
                     btnFlowItem.Click += (sender, args) => ClickedFlowCert();
                 }
                 else if (mFlowConsol[i].code == "CHARGING")

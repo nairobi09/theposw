@@ -108,36 +108,36 @@
             // 
             this.amt.Text = "단가";
             this.amt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.amt.Width = 50;
+            this.amt.Width = 55;
             // 
             // X
             // 
             this.X.Text = "X";
             this.X.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.X.Width = 30;
+            this.X.Width = 27;
             // 
             // Y
             // 
             this.Y.Text = "Y";
             this.Y.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Y.Width = 30;
+            this.Y.Width = 27;
             // 
             // W
             // 
             this.W.Text = "W";
             this.W.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.W.Width = 30;
+            this.W.Width = 27;
             // 
             // H
             // 
             this.H.Text = "H";
             this.H.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.H.Width = 30;
+            this.H.Width = 27;
             // 
             // btn_color
             // 
             this.btn_color.Text = "Color";
-            this.btn_color.Width = 70;
+            this.btn_color.Width = 64;
             // 
             // tableLayoutPanelItemSelected
             // 
