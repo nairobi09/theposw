@@ -234,7 +234,7 @@ namespace thepos
 
 
             ///
-            DialogResult dialogResult = MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos", MessageBoxButtons.OKCancel);
+            DialogResult dialogResult = MessageBox.Show("시제입력.\r\n\r\n정산 리포트를 출력할까요?", "thepos", MessageBoxButtons.OKCancel);
 
 
             if (dialogResult == DialogResult.OK)
@@ -396,7 +396,7 @@ namespace thepos
                     String data = mObj["dayPosGoods"].ToString();
                     JArray arr = JArray.Parse(data);
 
-                    List<String> goods_code = new List<String>();
+                    List<String> goods_name = new List<String>();
                     List<int> goods_cnt = new List<int>();
                     List<int> net_amount = new List<int>();
 
@@ -405,7 +405,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        goods_code.Add(arr[i]["goodsCode"].ToString());
+                        goods_name.Add(get_goods_name(arr[i]["goodsCode"].ToString()));
                         goods_cnt.Add(convert_number(arr[i]["cnt"].ToString()));
                         net_amount.Add(convert_number(arr[i]["netAmount"].ToString()));
 
@@ -414,7 +414,7 @@ namespace thepos
                     }
 
                     //
-                    String strPrint = make_print_goods(goods_code, goods_cnt, net_amount, sum_goods_cnt, sum_goods_amount);
+                    String strPrint = make_print_goods(goods_name, goods_cnt, net_amount, sum_goods_cnt, sum_goods_amount);
                     print_data(strPrint);
 
                 }
@@ -472,25 +472,25 @@ namespace thepos
             for (int i = 0; i < card_name.Count; i++)
             {
                 space_cnt = 16 - encodelen(card_name[i]);
-                str_body += card_name + Space(space_cnt);
+                str_body += card_name[i] + Space(space_cnt);
 
                 space_cnt = 12 - encodelen(cnt[i].ToString("N0"));
-                str_body += Space(space_cnt) + cnt;
+                str_body += Space(space_cnt) + cnt[i].ToString("N0");
 
                 space_cnt = 14 - encodelen(amount[i].ToString("N0"));
-                str_body += Space(space_cnt) + amount + "\r\n";
+                str_body += Space(space_cnt) + amount[i].ToString("N0") + "\r\n";
             }
 
             str_body += "------------------------------------------\r\n";  // 42
 
             space_cnt = 16 - encodelen("합계");
-            str_body += card_name + Space(space_cnt);
+            str_body += "합계" + Space(space_cnt);
 
             space_cnt = 12 - encodelen(sum_cnt.ToString("N0"));
-            str_body += Space(space_cnt) + cnt;
+            str_body += Space(space_cnt) + sum_cnt.ToString("N0");
 
             space_cnt = 14 - encodelen(sum_amount.ToString("N0"));
-            str_body += Space(space_cnt) + amount + "\r\n";
+            str_body += Space(space_cnt) + sum_amount.ToString("N0") + "\r\n";
 
             str_body += "------------------------------------------\r\n";  // 42
 
@@ -759,7 +759,7 @@ namespace thepos
             str1 = "영업일: " + mBizDate.Substring(0, 4) + "-" + mBizDate.Substring(4, 2) + "-" + mBizDate.Substring(6, 2);
             str2 = "POS No. " + myPosNo;
             space_cnt = 42 - (encodelen(str1) + encodelen(str2));
-            str_body += str1 + Space(space_cnt) + str2;
+            str_body += str1 + Space(space_cnt) + str2 + "\r\n";
 
             str_body += "------------------------------------------\r\n";  // 42
 
@@ -780,12 +780,12 @@ namespace thepos
 
                 if (space_cnt > 28)
                 {
-                    str_body += goods_name + Space(42 - encodelen(goods_name[i])) + "\r\n";
-                    str_body += Space(22) + Space(6 - encodelen(cnt[i].ToString("N0"))) + cnt;
+                    str_body += goods_name[i] + Space(42 - encodelen(goods_name[i])) + "\r\n";
+                    str_body += Space(22) + Space(6 - encodelen(cnt[i].ToString("N0"))) + cnt[i].ToString("N0");
                 }
                 else
                 {
-                    str_body += goods_name + Space(28 - space_cnt) + cnt;
+                    str_body += goods_name[i] + Space(28 - space_cnt) + cnt[i].ToString("N0");
                 }
 
                 space_cnt = 14 - encodelen(amount[i].ToString("N0"));
@@ -805,7 +805,7 @@ namespace thepos
             }
             else
             {
-                str_body += goods_name + Space(28 - space_cnt) + sum_cnt.ToString("N0");
+                str_body += "합계" + Space(28 - space_cnt) + sum_cnt.ToString("N0");
             }
 
             space_cnt = 14 - encodelen(sum_amount.ToString("N0"));

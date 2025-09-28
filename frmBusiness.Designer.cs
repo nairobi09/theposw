@@ -77,7 +77,7 @@
             this.btnBizLastSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizLastSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizLastSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnBizLastSettlement.Location = new System.Drawing.Point(5, 138);
+            this.btnBizLastSettlement.Location = new System.Drawing.Point(5, 66);
             this.btnBizLastSettlement.Name = "btnBizLastSettlement";
             this.btnBizLastSettlement.Size = new System.Drawing.Size(184, 70);
             this.btnBizLastSettlement.TabIndex = 29;
@@ -92,13 +92,14 @@
             this.btnCashCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCashCheck.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnCashCheck.ForeColor = System.Drawing.Color.White;
-            this.btnCashCheck.Location = new System.Drawing.Point(5, 69);
+            this.btnCashCheck.Location = new System.Drawing.Point(6, 278);
             this.btnCashCheck.Name = "btnCashCheck";
             this.btnCashCheck.Size = new System.Drawing.Size(184, 60);
             this.btnCashCheck.TabIndex = 28;
             this.btnCashCheck.TabStop = false;
             this.btnCashCheck.Text = "시제점검";
             this.btnCashCheck.UseVisualStyleBackColor = false;
+            this.btnCashCheck.Visible = false;
             this.btnCashCheck.Click += new System.EventHandler(this.btnCashCheck_Click);
             // 
             // btnBizSettlement
@@ -107,7 +108,7 @@
             this.btnBizSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnBizSettlement.Location = new System.Drawing.Point(5, 307);
+            this.btnBizSettlement.Location = new System.Drawing.Point(6, 344);
             this.btnBizSettlement.Name = "btnBizSettlement";
             this.btnBizSettlement.Size = new System.Drawing.Size(184, 60);
             this.btnBizSettlement.TabIndex = 27;

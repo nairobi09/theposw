@@ -617,6 +617,7 @@ namespace thepos._9SysAdmin
             sv_goodsNameJP = tbGoodsNameJP.Text;
 
             sv_goodsNotice = tbGoodsNotice.Text;
+            sv_barcode = tbBarCode.Text;
 
             sv_amt = tbGoodsAmt.Text;
             sv_shopCode = cbShop.SelectedIndex + "";

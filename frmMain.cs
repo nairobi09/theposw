@@ -115,6 +115,7 @@ namespace thepos
 
             //
             mTbKeyDisplayController = tbID;
+            
 
 
             try
@@ -159,6 +160,9 @@ namespace thepos
             // 네트워크 상태 : 정상이미지를 보이기/숨기기
             pbNetworkConn.Visible = mNetworkState;
             pbNetworkDisconn.Visible = !mNetworkState;
+
+            //
+            tbID.Focus();
 
         }
 
@@ -1657,15 +1661,23 @@ namespace thepos
 
         private void tbID_Click(object sender, EventArgs e)
         {
-            mTbKeyDisplayController = tbID;
+            //mTbKeyDisplayController = tbID;
         }
 
         private void tbPW_Click(object sender, EventArgs e)
         {
+            //mTbKeyDisplayController = tbPW;
+        }
+
+        private void tbPW_Enter(object sender, EventArgs e)
+        {
             mTbKeyDisplayController = tbPW;
         }
 
-
+        private void tbID_Enter(object sender, EventArgs e)
+        {
+            mTbKeyDisplayController = tbID;
+        }
 
         private void lblSiteAlias_Click(object sender, EventArgs e)
         {
@@ -1774,6 +1786,7 @@ namespace thepos
             frmReqUser fReqUser = new frmReqUser(mode);
             fReqUser.ShowDialog();
         }
+
 
     }
 }

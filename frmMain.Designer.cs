@@ -327,10 +327,10 @@
             this.tbID.MaxLength = 4;
             this.tbID.Name = "tbID";
             this.tbID.Size = new System.Drawing.Size(156, 23);
-            this.tbID.TabIndex = 38;
-            this.tbID.TabStop = false;
+            this.tbID.TabIndex = 0;
             this.tbID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbID.Click += new System.EventHandler(this.tbID_Click);
+            this.tbID.Enter += new System.EventHandler(this.tbID_Enter);
             // 
             // label1
             // 
@@ -361,15 +361,15 @@
             this.tbPW.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPW.Font = new System.Drawing.Font("굴림", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.tbPW.ForeColor = System.Drawing.Color.Gold;
-            this.tbPW.Location = new System.Drawing.Point(10, 16);
+            this.tbPW.Location = new System.Drawing.Point(10, 15);
             this.tbPW.MaxLength = 4;
             this.tbPW.Name = "tbPW";
             this.tbPW.PasswordChar = '*';
             this.tbPW.Size = new System.Drawing.Size(156, 23);
-            this.tbPW.TabIndex = 38;
-            this.tbPW.TabStop = false;
+            this.tbPW.TabIndex = 0;
             this.tbPW.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPW.Click += new System.EventHandler(this.tbPW_Click);
+            this.tbPW.Enter += new System.EventHandler(this.tbPW_Enter);
             // 
             // lblKeyDisplayXX
             // 
@@ -486,8 +486,7 @@
             this.btnKeyLogin.Location = new System.Drawing.Point(0, 213);
             this.btnKeyLogin.Name = "btnKeyLogin";
             this.btnKeyLogin.Size = new System.Drawing.Size(188, 48);
-            this.btnKeyLogin.TabIndex = 1;
-            this.btnKeyLogin.TabStop = false;
+            this.btnKeyLogin.TabIndex = 2;
             this.btnKeyLogin.Text = "로그인";
             this.btnKeyLogin.UseVisualStyleBackColor = false;
             this.btnKeyLogin.Click += new System.EventHandler(this.btnKeyLogin_Click);
