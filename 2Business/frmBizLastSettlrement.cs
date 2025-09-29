@@ -290,6 +290,8 @@ namespace thepos
                     String strPrint = make_print_card(card_name, cnt, amount, sum_cnt, sum_amount);
                     print_data(strPrint);
 
+                    thepos_app_log(1, this.Name, "[카드사별 매출] 출력", "");
+
                 }
                 else
                 {
@@ -370,6 +372,8 @@ namespace thepos
                     String strPrint = make_print_pay(t_cash_cnt, t_card_cnt, t_easy_cnt, t_cert_cnt, t_cash_amount, t_card_amount, t_easy_amount, t_cert_amount, t_cash_cnt_cncl, t_card_cnt_cncl, t_easy_cnt_cncl, t_cert_cnt_cncl, t_cash_amount_cncl, t_card_amount_cncl, t_easy_amount_cncl, t_cert_amount_cncl, t_net_count, t_net_amount);
                     print_data(strPrint);
 
+                    thepos_app_log(1, this.Name, "[ 정 산 표 ] 출력", "");
+
                 }
                 else
                 {
@@ -417,6 +421,7 @@ namespace thepos
                     String strPrint = make_print_goods(goods_name, goods_cnt, net_amount, sum_goods_cnt, sum_goods_amount);
                     print_data(strPrint);
 
+                    thepos_app_log(1, this.Name, "[ 품목별 매출 ] 출력", "");
                 }
                 else
                 {
@@ -429,13 +434,6 @@ namespace thepos
                 MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
                 return;
             }
-
-
-
-
-
-
-
 
         }
 
