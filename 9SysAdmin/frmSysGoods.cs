@@ -782,13 +782,13 @@ namespace thepos._9SysAdmin
             if (cbNod2.SelectedIndex == -1) cbNod2.SelectedIndex = 0;
 
 
-            if (sv_shopCode != cbShop.SelectedIndex + "")
+            //if (sv_shopCode != cbShop.SelectedIndex + "")
                 parameters["shopCode"] = mShop[cbShop.SelectedIndex].shop_code;
 
-            if (sv_nodCode1 != cbNod1.SelectedIndex + "")
+            //if (sv_nodCode1 != cbNod1.SelectedIndex + "")
                 parameters["nodCode1"] = thisNod1[cbNod1.SelectedIndex].nod_code1;
 
-            if (sv_nodCode2 != cbNod2.SelectedIndex + "")
+            //if (sv_nodCode2 != cbNod2.SelectedIndex + "")
                 parameters["nodCode2"] = thisNod2[cbNod2.SelectedIndex].nod_code2;
 
 
