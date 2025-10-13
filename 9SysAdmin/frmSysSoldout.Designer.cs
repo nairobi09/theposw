@@ -52,11 +52,13 @@
             this.btnViewGoods = new System.Windows.Forms.Button();
             this.btnViewGroup = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
-            this.cbPosNo = new System.Windows.Forms.ComboBox();
+            this.cbPosGroup = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbShop = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -325,25 +327,27 @@
             this.lblPosNo.AutoSize = true;
             this.lblPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPosNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblPosNo.Location = new System.Drawing.Point(119, 29);
+            this.lblPosNo.Location = new System.Drawing.Point(73, 29);
             this.lblPosNo.Name = "lblPosNo";
-            this.lblPosNo.Size = new System.Drawing.Size(35, 14);
+            this.lblPosNo.Size = new System.Drawing.Size(63, 14);
             this.lblPosNo.TabIndex = 86;
-            this.lblPosNo.Text = "포스";
+            this.lblPosNo.Text = "포스그룹";
             // 
-            // cbPosNo
+            // cbPosGroup
             // 
-            this.cbPosNo.BackColor = System.Drawing.Color.White;
-            this.cbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbPosNo.FormattingEnabled = true;
-            this.cbPosNo.Location = new System.Drawing.Point(158, 25);
-            this.cbPosNo.Name = "cbPosNo";
-            this.cbPosNo.Size = new System.Drawing.Size(60, 21);
-            this.cbPosNo.TabIndex = 87;
-            this.cbPosNo.TabStop = false;
+            this.cbPosGroup.BackColor = System.Drawing.Color.White;
+            this.cbPosGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosGroup.FormattingEnabled = true;
+            this.cbPosGroup.Location = new System.Drawing.Point(139, 25);
+            this.cbPosGroup.Name = "cbPosGroup";
+            this.cbPosGroup.Size = new System.Drawing.Size(79, 21);
+            this.cbPosGroup.TabIndex = 87;
+            this.cbPosGroup.TabStop = false;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.cbShop);
             this.groupBox2.Controls.Add(this.lblGoodsTitle);
             this.groupBox2.Controls.Add(this.btnViewGoods);
             this.groupBox2.Location = new System.Drawing.Point(25, 12);
@@ -357,7 +361,7 @@
             this.groupBox4.Controls.Add(this.btnViewGroup);
             this.groupBox4.Controls.Add(this.lblGroupTitle);
             this.groupBox4.Controls.Add(this.lblPosNo);
-            this.groupBox4.Controls.Add(this.cbPosNo);
+            this.groupBox4.Controls.Add(this.cbPosGroup);
             this.groupBox4.Location = new System.Drawing.Point(498, 12);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(330, 64);
@@ -385,6 +389,28 @@
             this.label2.Size = new System.Drawing.Size(130, 42);
             this.label2.TabIndex = 90;
             this.label2.Text = "[절판]\r\n포스기기 : Disable\r\n키오스크 : Invisible";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(174, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 14);
+            this.label3.TabIndex = 88;
+            this.label3.Text = "업장";
+            // 
+            // cbShop
+            // 
+            this.cbShop.BackColor = System.Drawing.Color.White;
+            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(214, 24);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(98, 21);
+            this.cbShop.TabIndex = 89;
+            this.cbShop.TabStop = false;
             // 
             // frmSysSoldout
             // 
@@ -440,10 +466,12 @@
         private System.Windows.Forms.Button btnViewGoods;
         private System.Windows.Forms.Button btnViewGroup;
         private System.Windows.Forms.Label lblPosNo;
-        private System.Windows.Forms.ComboBox cbPosNo;
+        private System.Windows.Forms.ComboBox cbPosGroup;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbShop;
     }
 }

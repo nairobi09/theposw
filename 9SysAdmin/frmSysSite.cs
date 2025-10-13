@@ -32,6 +32,10 @@ namespace thepos._9SysAdmin
         String[] tmCutoffType;
         String[] tmCutoffTypeText;
 
+        String[] tmPosLayoutType;
+        String[] tmPosLayoutTypeText;
+
+
         public frmSysSite()
         {
             InitializeComponent();
@@ -62,6 +66,12 @@ namespace thepos._9SysAdmin
 
             tmCutoffType = new String[3] { "M", "A", "D" };
             tmCutoffTypeText = new String[3] { "수동", "자동마감", "자동마감개시" };
+
+
+            tmPosLayoutType = new String[2] { "S", "M"};
+            tmPosLayoutTypeText = new String[2] { "순차방식", "좌표방식"};
+
+
 
 
             cbTicketType.Items.Clear();
@@ -99,6 +109,14 @@ namespace thepos._9SysAdmin
             //
             cbAllimYN.Items.Add("미사용");
             cbAllimYN.Items.Add("사용");
+
+
+            //
+            cbPosLayoutType.Items.Clear();
+            for (int i = 0; i < tmPosLayoutTypeText.Length; i++)
+            {
+                cbPosLayoutType.Items.Add(tmPosLayoutTypeText[i]);
+            }
 
 
         }
@@ -184,7 +202,7 @@ namespace thepos._9SysAdmin
                         //
                         tbCallCenter.Text = arr[0]["callCenterNo"].ToString();
 
-                        // 이미지
+                                    // 이미지
                         String image_str = arr[0]["billImage"].ToString();
 
                         try
@@ -202,7 +220,7 @@ namespace thepos._9SysAdmin
                         }
 
 
-                        // 알림톡
+                                    // 알림톡
                         if (arr[0]["allimYn"].ToString().Equals("Y"))
                         {
                             cbAllimYN.SelectedIndex = 1;
@@ -214,6 +232,18 @@ namespace thepos._9SysAdmin
 
                         tbSenderProfile.Text = arr[0]["senderProfile"].ToString();
 
+
+
+                                    // 상품배치유형
+                        String PosLayoutType = arr[0]["posLayoutType"].ToString();
+                        for (int i = 0; i < tmPosLayoutType.Length; i++)
+                        {
+                            if (tmPosLayoutType[i] == PosLayoutType)
+                            {
+                                cbPosLayoutType.SelectedIndex = i;
+
+                            }
+                        }
                     }
                 }
                 else
@@ -296,7 +326,7 @@ namespace thepos._9SysAdmin
             }
 
 
-            // 알림톡
+                   // 알림톡
             if (cbAllimYN.SelectedIndex == 0)
                 parameters["allimYn"] = "N";
             else
@@ -304,6 +334,15 @@ namespace thepos._9SysAdmin
 
 
             parameters["senderProfile"] = tbSenderProfile.Text;
+
+
+                   // 포스 상품 배치 유형
+            if (cbPosLayoutType.SelectedIndex < 0)
+                parameters["posLayoutType"] = "";
+            else
+                parameters["posLayoutType"] = tmPosLayoutType[cbPosLayoutType.SelectedIndex];
+
+
 
 
 

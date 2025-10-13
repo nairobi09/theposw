@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmSysGoodsGroupPos
+    partial class frmSysGoodsGroupPosXY
     {
         /// <summary>
         /// Required designer variable.
@@ -275,9 +275,9 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle.Location = new System.Drawing.Point(79, 23);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(107, 14);
+            this.lblTitle.Size = new System.Drawing.Size(173, 14);
             this.lblTitle.TabIndex = 42;
-            this.lblTitle.Text = "상품그룹(POS)";
+            this.lblTitle.Text = "(POS) 상품그룹 좌표배치";
             // 
             // tableLayoutPanelGroupSelected
             // 

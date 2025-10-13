@@ -36,12 +36,13 @@
             this.mac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pos_group_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbShopCode = new System.Windows.Forms.TextBox();
             this.lblShopCodeTitle = new System.Windows.Forms.Label();
             this.tbMAC = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pos_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnDelete
@@ -92,14 +93,15 @@
             this.mac,
             this.date,
             this.stat,
-            this.shop_code});
+            this.pos_group_code,
+            this.pos_type});
             this.lvwList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lvwList.FullRowSelect = true;
             this.lvwList.HideSelection = false;
-            this.lvwList.Location = new System.Drawing.Point(99, 64);
+            this.lvwList.Location = new System.Drawing.Point(81, 64);
             this.lvwList.MultiSelect = false;
             this.lvwList.Name = "lvwList";
-            this.lvwList.Size = new System.Drawing.Size(516, 508);
+            this.lvwList.Size = new System.Drawing.Size(534, 508);
             this.lvwList.TabIndex = 28;
             this.lvwList.UseCompatibleStateImageBehavior = false;
             this.lvwList.View = System.Windows.Forms.View.Details;
@@ -107,8 +109,8 @@
             // 
             // PosNo
             // 
-            this.PosNo.Text = "포스번호";
-            this.PosNo.Width = 70;
+            this.PosNo.Text = "번호";
+            this.PosNo.Width = 40;
             // 
             // mac
             // 
@@ -125,10 +127,10 @@
             this.stat.Text = "상태";
             this.stat.Width = 80;
             // 
-            // shop_code
+            // pos_group_code
             // 
-            this.shop_code.Text = "업장";
-            this.shop_code.Width = 80;
+            this.pos_group_code.Text = "포스그룹";
+            this.pos_group_code.Width = 70;
             // 
             // tbShopCode
             // 
@@ -182,6 +184,11 @@
             this.label2.TabIndex = 41;
             this.label2.Text = "포스번호룰\r\n\r\n01~ 포스\r\n11~ 키오스크\r\n21~ 테블릿(KDS)\r\n31~ 모바일(안드로이드)";
             // 
+            // pos_type
+            // 
+            this.pos_type.Text = "유형";
+            this.pos_type.Width = 50;
+            // 
             // frmSysAdminPosCert
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -214,11 +221,12 @@
         private System.Windows.Forms.ColumnHeader mac;
         private System.Windows.Forms.ColumnHeader date;
         private System.Windows.Forms.ColumnHeader stat;
-        private System.Windows.Forms.ColumnHeader shop_code;
+        private System.Windows.Forms.ColumnHeader pos_group_code;
         private System.Windows.Forms.TextBox tbShopCode;
         private System.Windows.Forms.Label lblShopCodeTitle;
         private System.Windows.Forms.TextBox tbMAC;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader pos_type;
     }
 }

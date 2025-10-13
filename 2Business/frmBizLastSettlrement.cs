@@ -48,6 +48,18 @@ namespace thepos
 
 
 
+        public static TextBox ptb50000;
+        public static TextBox ptb10000;
+        public static TextBox ptb5000;
+        public static TextBox ptb1000;
+        public static TextBox ptb500;
+        public static TextBox ptb100;
+        public static TextBox ptb50;
+        public static TextBox ptb10;
+        public static TextBox ptbEtc;
+
+
+
         public frmBizLastSettlement()
         {
             InitializeComponent();
@@ -78,6 +90,19 @@ namespace thepos
 
             lblPosNo.Text = myPosNo;
             lblLoginName.Text = mUserName;
+
+
+
+            ptb50000 = tb50000;
+            ptb10000 = tb10000;
+            ptb5000 = tb5000;
+            ptb1000 = tb1000;
+            ptb500 = tb500;
+            ptb100 = tb100;
+            ptb50 = tb50;
+            ptb10 = tb10;
+            ptbEtc = tbEtc;
+
         }
 
         private void calculate_cash_real()

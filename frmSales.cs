@@ -102,6 +102,26 @@ namespace thepos
         public static TableLayoutPanel mTableLayoutPanelPayControl;
 
 
+        int mGroupPage = 0;
+        int last_grouppage = 0;
+        int mGoodsPage = 0;
+
+
+
+        public struct GoodsLayoutSeq
+        {
+            public int myGoodsItem_idx;
+            public int layout_no;
+            public String goods_code;
+            public String goods_name;
+            public int amt;
+            public String cutout;
+            public String soldout;
+            public String btn_color;
+        }
+        public List<GoodsLayoutSeq> mGoodsSeqList = new List<GoodsLayoutSeq>();
+
+
 
 
         public frmSales()
@@ -113,8 +133,22 @@ namespace thepos
 
             initialize_the();
 
+
             //
-            display_paymentConsol();
+            if (mPosLayoutType == "S")
+            {
+                tableLayoutPanelGoodsGroup.Width = 475;
+                tableLayoutPanelPayControl.Width = 476;
+            }
+            else
+            {
+                tableLayoutPanelGoodsGroup.Width = 525;
+                tableLayoutPanelPayControl.Width = 527;
+            }
+
+
+                //
+                display_paymentConsol();
 
             //
             display_flowConsol();
@@ -460,6 +494,176 @@ namespace thepos
 
         private int display_goodsgroup()
         {
+
+            if (mPosLayoutType == "S")
+            {
+                // 정렬부터...
+                Array.Sort(myGoodsGroup, (a, b) => a.layout_no.CompareTo(b.layout_no));
+
+
+                for (int i = 0; i < myGoodsGroup.Length; i++)
+                {
+                    myGoodsGroup[i].selected = "";
+                }
+
+
+                return display_goodsgroup_seq(0);
+            }
+            else
+            {
+                return display_goodsgroup_xy();
+            }
+        }
+
+
+
+        private int display_goodsgroup_seq(int curr_group_page)
+        {
+            int sum_colunm_row = 8;
+            int default_click_no = -1;  // 일단 클릭없음
+
+
+            int total_group_cnt = myGoodsGroup.Length;
+            int last_page = (total_group_cnt - 1) / 8;
+
+
+            int d_from = 0;
+            int d_to = 0;
+
+
+            d_from = curr_group_page * 8;
+            
+            d_to = ((curr_group_page + 1) * 8) - 1;
+
+            if (d_to > total_group_cnt - 1)
+            {
+                d_to = total_group_cnt - 1;
+            }
+
+
+
+            tableLayoutPanelGoodsGroup.Controls.Clear();
+            tableLayoutPanelGoodsGroup.PerformLayout();
+
+            
+
+
+            for (int i = d_from; i <= d_to; i++)
+            {
+
+                Button btnGoodsGroup = new Button();
+                String group_code = myGoodsGroup[i].group_code;
+                btnGoodsGroup.Tag = myGoodsGroup[i].group_code;
+                btnGoodsGroup.Text = myGoodsGroup[i].group_name.Replace("  ", "\r\n"); ;
+                btnGoodsGroup.FlatStyle = FlatStyle.Flat;
+
+
+
+                //btnGoodsGroup.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[i].btn_color);
+                //btnGoodsGroup.BackColor = Color.White;
+
+
+
+                if (myGoodsGroup[i].selected == "Y")
+                {
+                    btnGoodsGroup.ForeColor = Color.White;
+                    btnGoodsGroup.BackColor = ColorTranslator.FromHtml(myGoodsGroup[i].btn_color); ;
+                    btnGoodsGroup.FlatAppearance.BorderSize = 0;
+                }
+                else
+                {
+                    btnGoodsGroup.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[i].btn_color); ;
+                    btnGoodsGroup.BackColor = Color.White;
+                    btnGoodsGroup.FlatAppearance.BorderSize = 2;
+                }
+
+
+
+
+
+                btnGoodsGroup.TabStop = false;
+                btnGoodsGroup.Margin = new Padding(2, 2, 2, 2);
+                btnGoodsGroup.Padding = new Padding(0, 0, 0, 0);
+                btnGoodsGroup.Dock = DockStyle.Fill;
+
+                btnGoodsGroup.FlatAppearance.BorderSize = 2;
+
+                btnGoodsGroup.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
+
+
+                int x = (i % 8) % 4;
+                int y = (i % 8) / 4;
+
+
+
+                if (myGoodsGroup[i].cutout == "Y") // 절판처리
+                {
+                    btnGoodsGroup.ForeColor = Color.LightGray;
+                }
+                else if (myGoodsGroup[i].soldout == "Y")
+                {
+                    btnGoodsGroup.ForeColor = Color.Gray; // 품절처리
+                }
+                else
+                {
+                    btnGoodsGroup.Click += (sender, args) => ClickedGoodsGroup(group_code);
+
+
+                    // 디폴트로 클릭될 그룹을 찾는다.
+                    if (sum_colunm_row > x + y)
+                    {
+                        sum_colunm_row = x + y;
+                        default_click_no = i;
+                    }
+
+                }
+
+
+                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup, x, y);
+                tableLayoutPanelGoodsGroup.SetColumnSpan(btnGoodsGroup, 2);
+                tableLayoutPanelGoodsGroup.SetRowSpan(btnGoodsGroup, 1);
+
+
+                //
+                if (curr_group_page == 0)
+                {
+                    //btnGoodsGroupPrev.Enabled = false;
+                    btnGoodsGroupPrev.Text = "△";
+                }
+                else
+                {
+                    //btnGoodsGroupPrev.Enabled = true;
+                    btnGoodsGroupPrev.Text = "▲";
+                }
+
+                
+                //
+                //btnGoodsGroupStop.Enabled = false;
+                btnGoodsGroupStop.Text = (curr_group_page + 1).ToString();
+
+
+                //
+                if (last_page == curr_group_page)
+                {
+                    //btnGoodsGroupNext.Enabled = false;
+                    btnGoodsGroupNext.Text = "▽";
+                }
+                else
+                {
+                    //btnGoodsGroupNext.Enabled = true;
+                    btnGoodsGroupNext.Text = "▼";
+                }
+
+
+
+            }
+
+            //
+            return default_click_no;
+        }
+
+        private int display_goodsgroup_xy()
+        {
             int sum_colunm_row = 8;
             int default_click_no = -1;  // 일단 클릭없음
 
@@ -525,11 +729,9 @@ namespace thepos
                 }
 
 
-                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsGroup, myGoodsGroup[i].column, myGoodsGroup[i].row);
-                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsGroup, myGoodsGroup[i].columnspan);
-                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsGroup, myGoodsGroup[i].rowspan);
-
-                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup);
+                tableLayoutPanelGoodsGroup.Controls.Add(btnGoodsGroup, myGoodsGroup[i].column, myGoodsGroup[i].row);
+                tableLayoutPanelGoodsGroup.SetColumnSpan(btnGoodsGroup, myGoodsGroup[i].columnspan);
+                tableLayoutPanelGoodsGroup.SetRowSpan(btnGoodsGroup, myGoodsGroup[i].rowspan);
 
             }
 
@@ -540,6 +742,20 @@ namespace thepos
 
 
         private void ClickedGoodsGroup(String groupcode)
+        {
+            if (mPosLayoutType == "S")
+            {
+                ClickedGoodsGroupSeq(groupcode);
+            }
+            else
+            {
+                ClickedGoodsGroupXY(groupcode);
+            }
+                
+        }
+
+
+        private void ClickedGoodsGroupXY(String groupcode)
         {
             if (last_groupcode == groupcode)
             {
@@ -618,6 +834,189 @@ namespace thepos
             }
  
             last_groupcode = groupcode;
+        }
+
+        private void ClickedGoodsGroupSeq(String groupcode)
+        {
+            if (last_groupcode == groupcode)
+            {
+                return;
+            }
+
+
+
+            setGroupButtonColor(last_groupcode, false);
+            setGroupButtonColor(groupcode, true);
+
+
+
+            mGoodsPage = 0;
+
+            btnGoodsItemPrev.Text = "△";
+            btnGoodsItemStop.Text = "1";
+            btnGoodsItemNext.Text = "▽";
+
+
+
+
+            //
+            mGoodsSeqList.Clear();
+
+
+            for (int i = 0; i < myGoodsItem.Length; i++)
+            {
+                if (groupcode == myGoodsItem[i].group_code)
+                {
+                    GoodsLayoutSeq goods_seq = new GoodsLayoutSeq();
+
+                    goods_seq.myGoodsItem_idx = i;
+                    goods_seq.layout_no = myGoodsItem[i].layout_no;
+                    goods_seq.goods_code = myGoodsItem[i].goods_code;
+                    goods_seq.goods_name = myGoodsItem[i].goods_name;
+                    goods_seq.amt = myGoodsItem[i].amt;
+                    goods_seq.cutout = myGoodsItem[i].cutout;
+                    goods_seq.soldout = myGoodsItem[i].soldout;
+                    goods_seq.btn_color = myGoodsItem[i].btn_color;
+
+                    mGoodsSeqList.Add(goods_seq);
+                }
+            }
+
+            // 정렬
+            mGoodsSeqList.Sort((a, b) => a.layout_no.CompareTo(b.layout_no));
+
+
+            //
+            last_grouppage = mGroupPage;
+            
+            last_groupcode = groupcode;
+
+
+
+            //
+            DisplaydGoodsItemSeq(0);
+
+
+        }
+
+
+        private void DisplaydGoodsItemSeq(int curr_goods_page)
+        {
+            tableLayoutPanelGoodsItem.Controls.Clear();
+            tableLayoutPanelGoodsItem.PerformLayout();
+
+
+
+
+            int total_goods_cnt = mGoodsSeqList.Count;
+            int last_page = (total_goods_cnt - 1) / 16;  //  딱 16개이면 첮페이지로 끝 (0~15)
+
+
+            int d_from = 0;
+            int d_to = 0;
+
+
+            d_from = curr_goods_page * 16;
+
+            d_to = ((curr_goods_page + 1) * 16) - 1;
+
+            if (d_to > total_goods_cnt - 1)
+            {
+                d_to = total_goods_cnt - 1;
+            }
+
+
+
+
+
+            Button btnGoodsItem = new Button();
+
+
+            for (int i = d_from; i <= d_to; i++)
+            {
+
+                int idx = mGoodsSeqList[i].myGoodsItem_idx;   // XY, Seq - 다른 로직
+
+                btnGoodsItem = new Button();
+
+                btnGoodsItem.Tag = mGoodsSeqList[i].goods_code;
+                btnGoodsItem.FlatStyle = FlatStyle.Flat;
+
+                btnGoodsItem.TabStop = false;
+                btnGoodsItem.Margin = new Padding(1, 1, 1, 1);
+                btnGoodsItem.Padding = new Padding(0, 0, 0, 0);
+                btnGoodsItem.Dock = DockStyle.Fill;
+
+
+                btnGoodsItem.Font = new Font("맑은 고딕", 12, FontStyle.Bold);
+
+
+
+                if (myGoodsItem[i].cutout == "Y")  // 중지
+                {
+                    btnGoodsItem.ForeColor = Color.White;
+                    btnGoodsItem.BackColor = Color.White;
+                    btnGoodsItem.Text = mGoodsSeqList[i].goods_name + "\n" + "[절판]";
+                }
+                else if (myGoodsItem[i].soldout == "Y")  // 품절
+                {
+                    btnGoodsItem.ForeColor = Color.Gray;
+                    btnGoodsItem.BackColor = Color.White;
+                    btnGoodsItem.Text = mGoodsSeqList[i].goods_name + "\n" + "[품절]";
+                }
+                else
+                {
+                    btnGoodsItem.ForeColor = Color.White;
+                    btnGoodsItem.BackColor = ColorTranslator.FromHtml(mGoodsSeqList[i].btn_color);
+                    btnGoodsItem.Text = mGoodsSeqList[i].goods_name + "\n" + mGoodsSeqList[i].amt.ToString("N0");
+
+                    btnGoodsItem.Click += (sender, args) => ClickedGoodsItem(idx); 
+                }
+
+
+                int x = (i % 16) % 4;
+                int y = (i % 16) / 4;
+
+
+                tableLayoutPanelGoodsItem.Controls.Add(btnGoodsItem, x, y);
+                tableLayoutPanelGoodsItem.SetColumnSpan(btnGoodsItem, 3);
+                tableLayoutPanelGoodsItem.SetRowSpan(btnGoodsItem, 3);
+
+
+                //
+                if (curr_goods_page == 0)
+                {
+                    //btnGoodsItemPrev.Enabled = false;
+                    btnGoodsItemPrev.Text = "△";
+                }
+                else
+                {
+                    //btnGoodsItemPrev.Enabled = true;
+                    btnGoodsItemPrev.Text = "▲";
+                }
+
+
+                //
+                //btnGoodsItemStop.Enabled = false;
+                btnGoodsItemStop.Text = (curr_goods_page + 1).ToString();
+
+
+                //
+                if (last_page == curr_goods_page)
+                {
+                    //btnGoodsItemNext.Enabled = false;
+                    btnGoodsItemNext.Text = "▽";
+                }
+                else
+                {
+                    //btnGoodsItemNext.Enabled = true;
+                    btnGoodsItemNext.Text = "▼";
+                }
+
+            }
+
+
+
         }
 
 
@@ -3807,33 +4206,61 @@ namespace thepos
 
         private void setGroupButtonColor(String groupcode, bool isPressed)
         {
+            int seq_idx = -1;
             int button_idx = -1;
 
             for (int i = 0; i < myGoodsGroup.Length; i++)
             {
                 if (myGoodsGroup[i].group_code == groupcode)
                 {
-                    button_idx = i;
+                    seq_idx = i;
                 }
             }
 
 
-            if (button_idx == -1) return;
+            if (seq_idx == -1) return;
 
 
-            Button btn = (Button)tableLayoutPanelGoodsGroup.Controls[button_idx];
+            if (mPosLayoutType == "S")
+            {
+                button_idx = seq_idx % 8;
+            }
+            else
+            {
+                button_idx = seq_idx;
+            }
+
+
+
+            
 
             
             if (!isPressed)
             {
-                btn.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[button_idx].btn_color); ;
-                btn.BackColor = Color.White;
-                btn.FlatAppearance.BorderSize = 2;
+                myGoodsGroup[seq_idx].selected = "";
+
+
+                // 1. 페이지수
+                // 2. 버튼위치
+
+
+                if (last_grouppage == mGroupPage)
+                {
+                    Button btn = (Button)tableLayoutPanelGoodsGroup.Controls[button_idx];
+
+                    btn.ForeColor = ColorTranslator.FromHtml(myGoodsGroup[seq_idx].btn_color); ;
+                    btn.BackColor = Color.White;
+                    btn.FlatAppearance.BorderSize = 2;
+                }
             }
             else
             {
+                myGoodsGroup[seq_idx].selected = "Y";
+
+                Button btn = (Button)tableLayoutPanelGoodsGroup.Controls[button_idx];
+                
                 btn.ForeColor = Color.White;
-                btn.BackColor = ColorTranslator.FromHtml(myGoodsGroup[button_idx].btn_color); ;
+                btn.BackColor = ColorTranslator.FromHtml(myGoodsGroup[seq_idx].btn_color); ;
                 btn.FlatAppearance.BorderSize = 0;
             }
             
@@ -6270,6 +6697,85 @@ namespace thepos
                 //MessageBox.Show("오류.\r\n" + ex.Message);
                 return;
             }
+        }
+
+
+
+        private void btnGoodsGroupPrev_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsGroupPrev.Text == "△")
+            {
+                return;
+            }
+
+
+            mGroupPage--;
+
+            display_goodsgroup_seq(mGroupPage);
+        }
+
+        private void btnGoodsGroupStop_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsGroupStop.Text == "1")
+            {
+                return;
+            }
+
+
+            mGroupPage = 0;
+
+            display_goodsgroup_seq(mGroupPage);
+        }
+        private void btnGoodsGroupNext_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsGroupNext.Text == "▽")
+            {
+                return;
+            }
+
+
+            mGroupPage++;
+
+            display_goodsgroup_seq(mGroupPage);
+        }
+
+        private void btnGoodsItemPrev_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsItemPrev.Text == "△")
+            {
+                return;
+            }
+
+
+            mGoodsPage--;
+
+            DisplaydGoodsItemSeq(mGoodsPage);
+        }
+
+        private void btnGoodsItemStop_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsItemStop.Text == "1")
+            {
+                return;
+            }
+
+
+            mGoodsPage = 0;
+
+            DisplaydGoodsItemSeq(mGoodsPage);
+        }
+
+        private void btnGoodsItemNext_Click(object sender, EventArgs e)
+        {
+            if (btnGoodsItemNext.Text == "▽")
+            {
+                return;
+            }
+
+
+            mGoodsPage++;
+
+            DisplaydGoodsItemSeq(mGoodsPage);
         }
     }
 }

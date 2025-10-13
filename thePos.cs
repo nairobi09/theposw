@@ -34,7 +34,7 @@ using static BrightIdeasSoftware.ObjectListView;
 
 
 
-// ▲▼ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇
+// ▲▼ △ ◀ ◁ ▶ ▷ ▼ ▽  <＋－＜＞↵ ↵ ⏎  ＋ ＜＞ △	▲	▽	▼ ⪤ □ × × ◻ ■ ▽ ◇ △ ▯ ▭ ▬ ▮ ◆ ◇ □ ◪  ₩ ◆ ⁜ ⁘ ⌂ □ ■ ◆ ◇ ○
 // (*‿*✿) ٩(✪ꀾ⍟༶)و/// ♡◟(●•ᴗ•●)◞♡ ◄:•D .ᐟ ヾ(・ᆺ・✿)ﾉﾞ φ(◎◎ヘ)  ☑☆★☘︎ ☁︎ ⚑ 🟨 
 // ð ✕ ◈ ◆ ⬅ 〈 ˂
 // Music Title In Here
@@ -117,18 +117,35 @@ namespace thepos
         public static String mAllimEtcCode = "";
 
 
+        // POS 상품정보 배치방식
+        public static String mPosLayoutType = "";
+
+
+
 
         // 콜센터 연락처
         public static String mCallCenterNo = "";
         public static String mServerDbVer = "";
 
 
+        
+        
         public static String myShopCode = "";       // 내 업장코드
         public static String myShopName = "";       // 내 업장명
 
         public static String myPosNo = "";                              // 내 포스번호
         public static List<String> myPosNoList = new List<string>();    // Site내+내업장내 포스번호 목록   0~ 1~
         public static List<String> mPosNoList = new List<string>();     // Site내 포스번호 목록
+
+
+        //public static String myPosGroupCode = "";       // 내 포스그룹
+        //public static String myPosGroupName = "";       // 내 업장명
+
+
+        public static List<String> mPosGroupCodeList = new List<string>();
+        public static List<String> mPosGroupNameList = new List<string>();
+
+
 
         //
         public static String mUserAuth = "";       //  내 사용자권한 : U or A
@@ -324,9 +341,15 @@ namespace thepos
             public int row;
             public int columnspan;
             public int rowspan;
+            public int layout_no;
             public String btn_color;
+            public String selected;
         }
         public static GoodsGroup[] myGoodsGroup;
+
+
+
+
 
 
         public struct GoodsItem
@@ -345,16 +368,17 @@ namespace thepos
             public String soldout;  // Y품절
             public String allim;
             public String option_template_id;
-            //public String coupon_link_no;
-            //public String bar_code;
-
             public int column;
             public int row;
             public int columnspan;
             public int rowspan;
+            public int layout_no;
             public String btn_color;
         }
         public static GoodsItem[] myGoodsItem;
+
+
+
 
 
         public struct GoodsTicket

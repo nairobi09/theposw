@@ -97,6 +97,19 @@ namespace thepos
             fSysAdmin.Show();
         }
 
+        private void btnSysPosGroup_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "PosGroup") return;
+
+            mThisButtonClick = "PosGroup";
+            panelView.Controls.Clear();
+
+            frmSysPosGroup fSysAdmin = new frmSysPosGroup() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
         private void btnSysGoods_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "Goods") return;
@@ -134,21 +147,61 @@ namespace thepos
         }
 
 
-
-
         //
-        private void btnSysGoodsGroupPos_Click(object sender, EventArgs e)
+        private void btnSysGoodsGroupPosSeq_Click(object sender, EventArgs e)
         {
-            if (mThisButtonClick == "GoodsGroupPos") return;
+            if (mThisButtonClick == "GoodsGroupPosSeq") return;
 
-            mThisButtonClick = "GoodsGroupPos";
+            mThisButtonClick = "GoodsGroupPosSeq";
             panelView.Controls.Clear();
 
-            frmSysGoodsGroupPos fSysAdmin = new frmSysGoodsGroupPos() { TopLevel = false, TopMost = true };
+            frmSysGoodsGroupPosSeq fSysAdmin = new frmSysGoodsGroupPosSeq() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
 
+        private void btnSysGoodsItemPosSeq_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsItemPosSeq") return;
+
+            mThisButtonClick = "GoodsItemPosSeq";
+            panelView.Controls.Clear();
+
+            frmSysGoodsItemPosSeq fSysAdmin = new frmSysGoodsItemPosSeq() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
+        //
+        private void btnSysGoodsGroupPosXY_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsGroupPosXY") return;
+
+            mThisButtonClick = "GoodsGroupPosXY";
+            panelView.Controls.Clear();
+
+            frmSysGoodsGroupPosXY fSysAdmin = new frmSysGoodsGroupPosXY() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
+
+        private void btnSysGoodsItemPosXY_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsItemPosXY") return;
+
+            mThisButtonClick = "GoodsItemPosXY";
+            panelView.Controls.Clear();
+
+            frmSysGoodsItemPosXY fSysAdmin = new frmSysGoodsItemPosXY() { TopLevel = false, TopMost = true };
+            panelView.Controls.Add(fSysAdmin);
+            fSysAdmin.Show();
+        }
+
+
+        //
         private void btnSysGoodsGroupKiosk_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "GoodsGroupKiosk") return;
@@ -157,18 +210,6 @@ namespace thepos
             panelView.Controls.Clear();
 
             frmSysGoodsGroupKiosk fSysAdmin = new frmSysGoodsGroupKiosk() { TopLevel = false, TopMost = true };
-            panelView.Controls.Add(fSysAdmin);
-            fSysAdmin.Show();
-        }
-
-        private void btnSysGoodsItemPos_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "GoodsItemPos") return;
-
-            mThisButtonClick = "GoodsItemPos";
-            panelView.Controls.Clear();
-
-            frmSysGoodsItemPos fSysAdmin = new frmSysGoodsItemPos() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }

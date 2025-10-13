@@ -64,6 +64,7 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(stat);
 
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["posType"].ToString());
 
                         lvItem.Tag = arr[i]["siteId"].ToString();
 
@@ -91,7 +92,7 @@ namespace thepos._9SysAdmin
             if (lvwList.SelectedItems.Count == 0) { return; }
 
 
-            tbShopCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(shop_code)].Text;
+            tbShopCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(pos_group_code)].Text;
             tbMAC.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(mac)].Text;
 
         }

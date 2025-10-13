@@ -223,11 +223,11 @@
     <Compile Include="1Sales\frmFlowTicketExit.Designer.cs">
       <DependentUpon>frmFlowTicketExit.cs</DependentUpon>
     </Compile>
-    <Compile Include="1Sales\frmFlowTicketListl.cs">
+    <Compile Include="1Sales\frmFlowTicketList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="1Sales\frmFlowTicketListl.Designer.cs">
-      <DependentUpon>frmFlowTicketListl.cs</DependentUpon>
+    <Compile Include="1Sales\frmFlowTicketList.Designer.cs">
+      <DependentUpon>frmFlowTicketList.cs</DependentUpon>
     </Compile>
     <Compile Include="1Sales\frmFlowTicketTime.cs">
       <SubType>Form</SubType>
@@ -331,17 +331,29 @@
     <Compile Include="9SysAdmin\frmSysAdminLog.Designer.cs">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPosSeq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPosSeq.Designer.cs">
+      <DependentUpon>frmSysGoodsGroupPosSeq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemPosSeq.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysGoodsItemPosSeq.Designer.cs">
+      <DependentUpon>frmSysGoodsItemPosSeq.cs</DependentUpon>
+    </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsItemKiosk.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsItemKiosk.Designer.cs">
       <DependentUpon>frmSysGoodsItemKiosk.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItemPos.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsItemPosXY.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsItemPos.Designer.cs">
-      <DependentUpon>frmSysGoodsItemPos.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysGoodsItemPosXY.Designer.cs">
+      <DependentUpon>frmSysGoodsItemPosXY.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsGroupKiosk.cs">
       <SubType>Form</SubType>
@@ -349,17 +361,23 @@
     <Compile Include="9SysAdmin\frmSysGoodsGroupKiosk.Designer.cs">
       <DependentUpon>frmSysGoodsGroupKiosk.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroupPos.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPosXY.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsGroupPos.Designer.cs">
-      <DependentUpon>frmSysGoodsGroupPos.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysGoodsGroupPosXY.Designer.cs">
+      <DependentUpon>frmSysGoodsGroupPosXY.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsTicket.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="9SysAdmin\frmSysGoodsTicket.Designer.cs">
       <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysPosGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="9SysAdmin\frmSysPosGroup.Designer.cs">
+      <DependentUpon>frmSysPosGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="frmObserverLogin.cs">
       <SubType>Form</SubType>
@@ -689,8 +707,8 @@
     <EmbeddedResource Include="1Sales\frmFlowTicketExit.resx">
       <DependentUpon>frmFlowTicketExit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="1Sales\frmFlowTicketListl.resx">
-      <DependentUpon>frmFlowTicketListl.cs</DependentUpon>
+    <EmbeddedResource Include="1Sales\frmFlowTicketList.resx">
+      <DependentUpon>frmFlowTicketList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1Sales\frmFlowTicketTime.resx">
       <DependentUpon>frmFlowTicketTime.cs</DependentUpon>
@@ -741,20 +759,29 @@
     <EmbeddedResource Include="9SysAdmin\frmSysAdminLog.resx">
       <DependentUpon>frmSysAdminLog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupPosSeq.resx">
+      <DependentUpon>frmSysGoodsGroupPosSeq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemPosSeq.resx">
+      <DependentUpon>frmSysGoodsItemPosSeq.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemKiosk.resx">
       <DependentUpon>frmSysGoodsItemKiosk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemPos.resx">
-      <DependentUpon>frmSysGoodsItemPos.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsItemPosXY.resx">
+      <DependentUpon>frmSysGoodsItemPosXY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupKiosk.resx">
       <DependentUpon>frmSysGoodsGroupKiosk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupPos.resx">
-      <DependentUpon>frmSysGoodsGroupPos.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupPosXY.resx">
+      <DependentUpon>frmSysGoodsGroupPosXY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsTicket.resx">
       <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="9SysAdmin\frmSysPosGroup.resx">
+      <DependentUpon>frmSysPosGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmObserverLogin.resx">
       <DependentUpon>frmObserverLogin.cs</DependentUpon>

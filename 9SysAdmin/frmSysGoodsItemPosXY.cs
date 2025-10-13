@@ -16,7 +16,7 @@ using static thepos.thePos;
 
 namespace thepos
 {
-    public partial class frmSysGoodsItemPos : Form
+    public partial class frmSysGoodsItemPosXY : Form
     {
         private int sortColumn = -1;
 
@@ -31,7 +31,7 @@ namespace thepos
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsItemPos()
+        public frmSysGoodsItemPosXY()
         {
             InitializeComponent();
             initialize_the();

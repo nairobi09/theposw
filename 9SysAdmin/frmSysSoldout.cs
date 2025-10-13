@@ -23,9 +23,19 @@ namespace thepos._9SysAdmin
         {
             InitializeComponent();
 
-            for (int i = 0; i < myPosNoList.Count; i++)
+
+
+            for (int i = 0; i < mShop.Length; i++)
             {
-                cbPosNo.Items.Add(myPosNoList[i]);
+                cbShop.Items.Add(mShop[i].shop_name);
+            }
+
+
+
+
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
+            {
+                cbPosGroup.Items.Add(mPosGroupNameList[i]);
             }
         }
 
@@ -45,7 +55,7 @@ namespace thepos._9SysAdmin
         {
             lvwGoodsList.Items.Clear();
 
-            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + myShopCode;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShop.SelectedIndex].shop_code;    // 상품업장임. 포스그룹이 아님.
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -104,13 +114,23 @@ namespace thepos._9SysAdmin
         {
             lvwGroupList.Items.Clear();
 
-            if (cbPosNo.SelectedIndex < 0)
+            if (cbPosGroup.SelectedIndex < 0)
             {
                 return;
             }
 
 
-            String sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + myPosNoList[cbPosNo.SelectedIndex];
+            String sUrl = "";
+
+            if (mPosLayoutType == "S")
+            {
+                sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&groupCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
+            }
+            else
+            {
+                sUrl = "posGoodsGroup?siteId=" + mSiteId + "&groupCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
+            }
+                
 
             if (mRequestGet(sUrl))
             {
@@ -122,7 +142,7 @@ namespace thepos._9SysAdmin
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = myPosNoList[cbPosNo.SelectedIndex];
+                        lvItem.Text = myPosNoList[cbPosGroup.SelectedIndex];
                         lvItem.SubItems.Add(arr[i]["groupName"].ToString());
 
                         if (arr[i]["soldout"].ToString() == "Y")
@@ -311,12 +331,27 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["posNo"] = lvwGroupList.SelectedItems[0].Text;
             parameters["groupCode"] = lvwGroupList.SelectedItems[0].Tag.ToString();
             parameters["soldout"] = t_soldout;
             parameters["cutout"] = t_cutout;
 
-            if (mRequestPatch("goodsGroup", parameters))
+
+
+            String table_name = "";
+
+
+            if (mPosLayoutType == "S")
+            {
+                table_name = "posGoodsGroupSeq";
+            }
+            else
+            {
+                table_name = "posGoodsGroup";
+            }
+
+
+
+            if (mRequestPatch(table_name, parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {

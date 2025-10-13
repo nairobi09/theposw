@@ -31,10 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusiness));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBizLastSettlement = new System.Windows.Forms.Button();
-            this.btnCashCheck = new System.Windows.Forms.Button();
-            this.btnBizSettlement = new System.Windows.Forms.Button();
             this.btnBizOpen = new System.Windows.Forms.Button();
             this.panelNumpad = new System.Windows.Forms.Panel();
+            this.btnKeyTab = new System.Windows.Forms.Button();
             this.btnKey1 = new System.Windows.Forms.Button();
             this.btnKey2 = new System.Windows.Forms.Button();
             this.btnKey0 = new System.Windows.Forms.Button();
@@ -62,8 +61,6 @@
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.btnBizLastSettlement);
-            this.panel1.Controls.Add(this.btnCashCheck);
-            this.panel1.Controls.Add(this.btnBizSettlement);
             this.panel1.Controls.Add(this.btnBizOpen);
             this.panel1.Controls.Add(this.panelNumpad);
             this.panel1.Location = new System.Drawing.Point(817, 58);
@@ -86,38 +83,6 @@
             this.btnBizLastSettlement.UseVisualStyleBackColor = false;
             this.btnBizLastSettlement.Click += new System.EventHandler(this.btnBizLastSettlement_Click);
             // 
-            // btnCashCheck
-            // 
-            this.btnCashCheck.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnCashCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCashCheck.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnCashCheck.ForeColor = System.Drawing.Color.White;
-            this.btnCashCheck.Location = new System.Drawing.Point(6, 278);
-            this.btnCashCheck.Name = "btnCashCheck";
-            this.btnCashCheck.Size = new System.Drawing.Size(184, 60);
-            this.btnCashCheck.TabIndex = 28;
-            this.btnCashCheck.TabStop = false;
-            this.btnCashCheck.Text = "시제점검";
-            this.btnCashCheck.UseVisualStyleBackColor = false;
-            this.btnCashCheck.Visible = false;
-            this.btnCashCheck.Click += new System.EventHandler(this.btnCashCheck_Click);
-            // 
-            // btnBizSettlement
-            // 
-            this.btnBizSettlement.BackColor = System.Drawing.Color.SaddleBrown;
-            this.btnBizSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBizSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnBizSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnBizSettlement.Location = new System.Drawing.Point(6, 344);
-            this.btnBizSettlement.Name = "btnBizSettlement";
-            this.btnBizSettlement.Size = new System.Drawing.Size(184, 60);
-            this.btnBizSettlement.TabIndex = 27;
-            this.btnBizSettlement.TabStop = false;
-            this.btnBizSettlement.Text = "정산";
-            this.btnBizSettlement.UseVisualStyleBackColor = false;
-            this.btnBizSettlement.Visible = false;
-            this.btnBizSettlement.Click += new System.EventHandler(this.btnBizSettlement_Click);
-            // 
             // btnBizOpen
             // 
             this.btnBizOpen.BackColor = System.Drawing.Color.SaddleBrown;
@@ -135,6 +100,7 @@
             // 
             // panelNumpad
             // 
+            this.panelNumpad.Controls.Add(this.btnKeyTab);
             this.panelNumpad.Controls.Add(this.btnKey1);
             this.panelNumpad.Controls.Add(this.btnKey2);
             this.panelNumpad.Controls.Add(this.btnKey0);
@@ -147,12 +113,26 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(4, 437);
+            this.panelNumpad.Location = new System.Drawing.Point(4, 215);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(189, 218);
+            this.panelNumpad.Size = new System.Drawing.Size(189, 281);
             this.panelNumpad.TabIndex = 25;
+            // 
+            // btnKeyTab
+            // 
+            this.btnKeyTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnKeyTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKeyTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnKeyTab.ForeColor = System.Drawing.Color.White;
+            this.btnKeyTab.Location = new System.Drawing.Point(65, 212);
+            this.btnKeyTab.Name = "btnKeyTab";
+            this.btnKeyTab.Size = new System.Drawing.Size(123, 48);
+            this.btnKeyTab.TabIndex = 2;
+            this.btnKeyTab.TabStop = false;
+            this.btnKeyTab.Text = "Tab";
+            this.btnKeyTab.UseVisualStyleBackColor = false;
             // 
             // btnKey1
             // 
@@ -189,9 +169,9 @@
             this.btnKey0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey0.ForeColor = System.Drawing.Color.White;
-            this.btnKey0.Location = new System.Drawing.Point(128, 159);
+            this.btnKey0.Location = new System.Drawing.Point(65, 159);
             this.btnKey0.Name = "btnKey0";
-            this.btnKey0.Size = new System.Drawing.Size(60, 48);
+            this.btnKey0.Size = new System.Drawing.Size(123, 48);
             this.btnKey0.TabIndex = 1;
             this.btnKey0.TabStop = false;
             this.btnKey0.Text = "0";
@@ -231,7 +211,7 @@
             this.btnKeyBS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyBS.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKeyBS.ForeColor = System.Drawing.Color.White;
-            this.btnKeyBS.Location = new System.Drawing.Point(64, 159);
+            this.btnKeyBS.Location = new System.Drawing.Point(0, 160);
             this.btnKeyBS.Name = "btnKeyBS";
             this.btnKeyBS.Size = new System.Drawing.Size(60, 48);
             this.btnKeyBS.TabIndex = 1;
@@ -315,7 +295,7 @@
             this.btnKeyClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyClear.ForeColor = System.Drawing.Color.White;
-            this.btnKeyClear.Location = new System.Drawing.Point(0, 159);
+            this.btnKeyClear.Location = new System.Drawing.Point(0, 212);
             this.btnKeyClear.Name = "btnKeyClear";
             this.btnKeyClear.Size = new System.Drawing.Size(60, 48);
             this.btnKeyClear.TabIndex = 1;
@@ -420,11 +400,10 @@
         private System.Windows.Forms.Button btnKeyClear;
         private System.Windows.Forms.Panel panelTitleWhite;
         private System.Windows.Forms.Button btnBizOpen;
-        private System.Windows.Forms.Button btnBizSettlement;
         private System.Windows.Forms.Panel panelTitleConsole;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnCashCheck;
         private System.Windows.Forms.Button btnBizLastSettlement;
+        private System.Windows.Forms.Button btnKeyTab;
     }
 }

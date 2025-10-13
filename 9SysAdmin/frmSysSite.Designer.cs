@@ -72,12 +72,16 @@
             this.tbSenderProfile = new System.Windows.Forms.TextBox();
             this.lblSenderProfile = new System.Windows.Forms.Label();
             this.lblAllimTN = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbPosLayoutType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbBillImage)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -519,7 +523,7 @@
             this.groupBox5.Controls.Add(this.lblAllimTN);
             this.groupBox5.Location = new System.Drawing.Point(516, 47);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(298, 159);
+            this.groupBox5.Size = new System.Drawing.Size(298, 193);
             this.groupBox5.TabIndex = 59;
             this.groupBox5.TabStop = false;
             // 
@@ -580,10 +584,43 @@
             this.lblAllimTN.TabIndex = 54;
             this.lblAllimTN.Text = "알림톡사용";
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbPosLayoutType);
+            this.groupBox6.Controls.Add(this.label3);
+            this.groupBox6.Location = new System.Drawing.Point(516, 238);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(298, 101);
+            this.groupBox6.TabIndex = 60;
+            this.groupBox6.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(23, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 14);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "상품배치유형";
+            // 
+            // cbPosLayoutType
+            // 
+            this.cbPosLayoutType.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosLayoutType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbPosLayoutType.FormattingEnabled = true;
+            this.cbPosLayoutType.Location = new System.Drawing.Point(120, 25);
+            this.cbPosLayoutType.Name = "cbPosLayoutType";
+            this.cbPosLayoutType.Size = new System.Drawing.Size(157, 21);
+            this.cbPosLayoutType.TabIndex = 57;
+            this.cbPosLayoutType.TabStop = false;
+            // 
             // frmSysSite
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -605,6 +642,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -655,5 +694,8 @@
         private System.Windows.Forms.Button btnViewProfile;
         private System.Windows.Forms.ComboBox cbPointType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbPosLayoutType;
     }
 }

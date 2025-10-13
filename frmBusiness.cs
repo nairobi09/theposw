@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static thepos.thePos;
 using static thepos.frmMain;
+using static thepos.frmBizLastSettlement;
 
 
 namespace thepos
@@ -50,6 +51,7 @@ namespace thepos
             btnKey0.Click += (sender, args) => ClickedKey("0");
             btnKeyBS.Click += (sender, args) => ClickedKey("BS");
             btnKeyClear.Click += (sender, args) => ClickedKey("Clear");
+            btnKeyTab.Click += (sender, args) => ClickedKey("Tab");
 
         }
 
@@ -80,6 +82,57 @@ namespace thepos
             else if (sKey == "Clear")
             {
                 mTbKeyController.Text = "";
+            }
+            else if (sKey == "Tab")
+            {
+                if (mThisButtonClick != "BizLastSettlementClose")
+                {
+                    return;
+                }
+
+
+                if (mTbKeyController.Name == "tb50000")
+                {
+                    mTbKeyController = ptb10000;
+                }
+                else if (mTbKeyController.Name == "tb10000")
+                {
+                    mTbKeyController = ptb5000;
+                }
+                else if (mTbKeyController.Name == "tb5000")
+                {
+                    mTbKeyController = ptb1000;
+                }
+                else if (mTbKeyController.Name == "tb1000")
+                {
+                    mTbKeyController = ptb500;
+                }
+                else if (mTbKeyController.Name == "tb500")
+                {
+                    mTbKeyController = ptb100;
+                }
+                else if (mTbKeyController.Name == "tb100")
+                {
+                    mTbKeyController = ptb50;
+                }
+                else if (mTbKeyController.Name == "tb50")
+                {
+                    mTbKeyController = ptb10;
+                }
+                else if (mTbKeyController.Name == "tb10")
+                {
+                    mTbKeyController = ptbEtc;
+                }
+                else if (mTbKeyController.Name == "tbEtc")
+                {
+                    mTbKeyController = ptb50000;
+                }
+
+
+                mTbKeyController.Focus();
+
+
+
             }
             else
             {
@@ -116,7 +169,7 @@ namespace thepos
             fBiz.Show();
         }
 
-        // 시제점검
+        // 시제점검 xx
         private void btnCashCheck_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizCashCheck") return;
@@ -130,7 +183,7 @@ namespace thepos
         }
 
 
-        // 마감정산
+        // 정산 xx
         private void btnBizSettlement_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizClose") return;
@@ -153,6 +206,7 @@ namespace thepos
             mPanelDivision.Visible = false;
         }
 
+        // 마감정산
         private void btnBizLastSettlement_Click(object sender, EventArgs e)
         {
             if (mThisButtonClick == "BizLastSettlementClose") return;

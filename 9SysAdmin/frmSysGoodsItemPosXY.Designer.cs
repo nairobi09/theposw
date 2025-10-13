@@ -1,6 +1,6 @@
 ﻿namespace thepos
 {
-    partial class frmSysGoodsItemPos
+    partial class frmSysGoodsItemPosXY
     {
         /// <summary>
         /// Required designer variable.
@@ -192,11 +192,11 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblTitle.Location = new System.Drawing.Point(299, 23);
+            this.lblTitle.Location = new System.Drawing.Point(325, 22);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(107, 14);
+            this.lblTitle.Size = new System.Drawing.Size(140, 14);
             this.lblTitle.TabIndex = 62;
-            this.lblTitle.Text = "상품배치(POS)";
+            this.lblTitle.Text = "(POS)상품 좌표배치";
             // 
             // lblT5
             // 

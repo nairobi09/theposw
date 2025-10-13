@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using static thepos.thePos;
 using Newtonsoft.Json.Linq;
 
-namespace thepos._9SysAdmin
+namespace thepos
 {
-    public partial class frmSysGoodsGroupKiosk : Form
+    public partial class frmSysGoodsGroupPosSeq : Form
     {
         int max_groupcode = 100;  // 3자리
 
@@ -22,7 +22,7 @@ namespace thepos._9SysAdmin
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsGroupKiosk()
+        public frmSysGoodsGroupPosSeq()
         {
             InitializeComponent();
 
@@ -38,66 +38,6 @@ namespace thepos._9SysAdmin
         }
 
 
-        private void get_posno()
-        {
-            String sUrl = "pos?siteId=" + mSiteId;
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["pos"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        cbShop.Items.Add(arr[i]["posNo"].ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
-
-        private void get_posno_from_setupPos()
-        {
-            String sUrl = "setupPos?siteId=" + mSiteId + "&setupCode=PosType";
-
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String data = mObj["setupPos"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    for (int i = 0; i < arr.Count; i++)
-                    {
-                        cbShop.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
-
-                        pos_no.Add(arr[i]["posNo"].ToString());
-                        pos_type.Add(arr[i]["setupValue"].ToString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("상품정보 오류\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                return;
-            }
-        }
 
         private void btnView_Click(object sender, EventArgs e)
         {
@@ -120,9 +60,12 @@ namespace thepos._9SysAdmin
             else
             {
                 tbGroupName.Text = lvwList.SelectedItems[0].SubItems[1].Text;
-                tbGroupNameEN.Text = lvwList.SelectedItems[0].SubItems[2].Text;
-                tbGroupNameCH.Text = lvwList.SelectedItems[0].SubItems[3].Text;
-                tbGroupNameJP.Text = lvwList.SelectedItems[0].SubItems[4].Text;
+                tbColor.Text = lvwList.SelectedItems[0].SubItems[2].Text;
+
+                btnColor.BackColor = ColorTranslator.FromHtml(tbColor.Text);
+
+
+
             }
         }
 
@@ -133,19 +76,15 @@ namespace thepos._9SysAdmin
             lvwList.Items.Clear();
 
             tbGroupName.Text = "";
-            tbGroupNameEN.Text = "";
-            tbGroupNameCH.Text = "";
-            tbGroupNameJP.Text = "";
 
             int[] group_seq;
             String[] group_code;
             String[] group_name;
-            String[] group_name_en;
-            String[] group_name_ch;
-            String[] group_name_jp;
+            String[] group_color;
 
 
-            String sUrl = "kioskGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
+
+            String sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
 
             if (mRequestGet(sUrl))
             {
@@ -157,18 +96,15 @@ namespace thepos._9SysAdmin
                     group_seq = new int[arr.Count];
                     group_code = new String[arr.Count];
                     group_name = new String[arr.Count];
-                    group_name_en = new String[arr.Count];
-                    group_name_ch = new String[arr.Count];
-                    group_name_jp = new String[arr.Count];
+                    group_color = new String[arr.Count];
+
 
                     for (int i = 0; i < arr.Count; i++)
                     {
                         group_seq[i] = convert_number(arr[i]["layoutNo"].ToString());
                         group_code[i] = arr[i]["groupCode"].ToString();
                         group_name[i] = arr[i]["groupName"].ToString();
-                        group_name_en[i] = arr[i]["groupNameEn"].ToString();
-                        group_name_ch[i] = arr[i]["groupNameCh"].ToString();
-                        group_name_jp[i] = arr[i]["groupNameJp"].ToString();
+                        group_color[i] = arr[i]["btnColor"].ToString();
 
                         int code_num = 0;
                         if (get_number(arr[i]["groupCode"].ToString(), ref code_num))
@@ -215,10 +151,14 @@ namespace thepos._9SysAdmin
                         group_code[i] = group_code[i + 1];
                         group_code[i + 1] = temp_str;
 
-                        temp_str = group_name[i];       group_name[i] = group_name[i + 1];          group_name[i + 1] = temp_str;
-                        temp_str = group_name_en[i];    group_name_en[i] = group_name_en[i + 1];    group_name_en[i + 1] = temp_str;
-                        temp_str = group_name_ch[i];    group_name_ch[i] = group_name_ch[i + 1];    group_name_ch[i + 1] = temp_str;
-                        temp_str = group_name_jp[i];    group_name_jp[i] = group_name_jp[i + 1];    group_name_jp[i + 1] = temp_str;
+                        temp_str = group_name[i];       
+                        group_name[i] = group_name[i + 1];          
+                        group_name[i + 1] = temp_str;
+
+                        temp_str = group_color[i];
+                        group_color[i] = group_color[i + 1];
+                        group_color[i + 1] = temp_str;
+
 
                         sort_complete = false;
                     }
@@ -231,14 +171,19 @@ namespace thepos._9SysAdmin
                 ListViewItem lvItem = new ListViewItem();
                 lvItem.Text = (i + 1).ToString();
                 lvItem.SubItems.Add(group_name[i]);
-                lvItem.SubItems.Add(group_name_en[i]);
-                lvItem.SubItems.Add(group_name_ch[i]);
-                lvItem.SubItems.Add(group_name_jp[i]);
-
+                lvItem.SubItems.Add(group_color[i]);
                 lvItem.Tag = group_code[i];
 
                 lvwList.Items.Add(lvItem);
+
             }
+
+
+            // 필드 초기화
+            tbColor.Text = "";
+            btnColor.BackColor = Color.White;
+
+
 
 
         }
@@ -294,16 +239,12 @@ namespace thepos._9SysAdmin
             parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = (++max_groupcode).ToString();
             parameters["groupName"] = tbGroupName.Text;
-            parameters["groupNameEn"] = tbGroupNameEN.Text;
-            parameters["groupNameCh"] = tbGroupNameCH.Text;
-            parameters["groupNameJp"] = tbGroupNameJP.Text;
-
             parameters["layoutNo"] = (lvwList.Items.Count + 1).ToString();
-
+            parameters["btnColor"] = tbColor.Text;
             parameters["soldout"] = "";
             parameters["cutout"] = "";
 
-            if (mRequestPost("kioskGoodsGroup", parameters))
+            if (mRequestPost("posGoodsGroupSeq", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -334,14 +275,11 @@ namespace thepos._9SysAdmin
             parameters["shopCode"] = mSelectedShopCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
             parameters["groupName"] = tbGroupName.Text;
-            parameters["groupNameEn"] = tbGroupNameEN.Text;
-            parameters["groupNameCh"] = tbGroupNameCH.Text;
-            parameters["groupNameJp"] = tbGroupNameJP.Text;
-
-            parameters["locateNo"] = lvwList.SelectedItems[0].Text;
+            parameters["layoutNo"] = lvwList.SelectedItems[0].Text;
+            parameters["btnColor"] = tbColor.Text;
 
 
-            if (mRequestPatch("kioskGoodsGroup", parameters))
+            if (mRequestPatch("posGoodsGroupSeq", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -374,7 +312,7 @@ namespace thepos._9SysAdmin
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
 
 
-            if (mRequestDelete("kioskGoodsGroup", parameters))
+            if (mRequestDelete("posGoodsGroupSeq", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -413,7 +351,7 @@ namespace thepos._9SysAdmin
                 parameters["layoutNo"] = lvwList.Items[i].Text;
 
 
-                if (mRequestPatch("kioskGoodsGroup", parameters))
+                if (mRequestPatch("posGoodsGroupSeq", parameters))
                 {
                     if (mObj["resultCode"].ToString() == "200")
                     {
@@ -445,7 +383,38 @@ namespace thepos._9SysAdmin
                 lvwList.Items[i].Text = (i + 1).ToString();
             }
         }
-    
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 선택된 색상으로 폼의 배경색을 변경
+                Color color = colorDialog.Color;
+
+                string htmlColor = $"#{color.R:X2}{color.G:X2}{color.B:X2}";
+
+                tbColor.Text = htmlColor;
+                btnColor.BackColor = ColorTranslator.FromHtml(htmlColor);
+            }
+        }
+
+        private void tbColor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                String htmlColor = tbColor.Text;
+
+                try
+                {
+                    btnColor.BackColor = ColorTranslator.FromHtml(htmlColor);
+                }
+                catch
+                {
+                    MessageBox.Show("컬러값 오류.", "thepos");
+                    return;
+                }
+            }
+        }
     }
 
 

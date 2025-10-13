@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 
 namespace thepos
 {
-    public partial class frmSysGoodsGroupPos : Form
+    public partial class frmSysGoodsGroupPosXY : Form
     {
         
         int max_groupcode = 100;  // 3자리
@@ -27,7 +27,7 @@ namespace thepos
         List<String> pos_type = new List<String>();
 
 
-        public frmSysGoodsGroupPos()
+        public frmSysGoodsGroupPosXY()
         {
             InitializeComponent();
 
