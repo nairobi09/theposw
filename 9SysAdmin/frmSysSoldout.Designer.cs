@@ -44,21 +44,21 @@
             this.cbGroupSoldout = new System.Windows.Forms.CheckBox();
             this.btnGroupUpdate = new System.Windows.Forms.Button();
             this.lvwGroupList = new System.Windows.Forms.ListView();
-            this.pos_no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.group_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.group_soldout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.group_cutout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.group_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_group_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_group_soldout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.goods_group_cutout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblGroupTitle = new System.Windows.Forms.Label();
             this.btnViewGoods = new System.Windows.Forms.Button();
             this.btnViewGroup = new System.Windows.Forms.Button();
             this.lblPosNo = new System.Windows.Forms.Label();
             this.cbPosGroup = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbShop = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbShop = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -240,10 +240,10 @@
             // 
             this.lvwGroupList.BackColor = System.Drawing.Color.White;
             this.lvwGroupList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.pos_no,
-            this.group_name,
-            this.group_soldout,
-            this.group_cutout});
+            this.group_code,
+            this.goods_group_name,
+            this.goods_group_soldout,
+            this.goods_group_cutout});
             this.lvwGroupList.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvwGroupList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lvwGroupList.FullRowSelect = true;
@@ -260,26 +260,26 @@
             this.lvwGroupList.View = System.Windows.Forms.View.Details;
             this.lvwGroupList.SelectedIndexChanged += new System.EventHandler(this.lvwGroupList_SelectedIndexChanged);
             // 
-            // pos_no
+            // group_code
             // 
-            this.pos_no.Text = "포스";
-            this.pos_no.Width = 50;
+            this.group_code.Text = "포스그룹";
+            this.group_code.Width = 70;
             // 
-            // group_name
+            // goods_group_name
             // 
-            this.group_name.Text = "그룹명";
-            this.group_name.Width = 140;
+            this.goods_group_name.Text = "상품그룹명";
+            this.goods_group_name.Width = 140;
             // 
-            // group_soldout
+            // goods_group_soldout
             // 
-            this.group_soldout.Text = "품절";
-            this.group_soldout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.group_soldout.Width = 50;
+            this.goods_group_soldout.Text = "품절";
+            this.goods_group_soldout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.goods_group_soldout.Width = 50;
             // 
-            // group_cutout
+            // goods_group_cutout
             // 
-            this.group_cutout.Text = "절판";
-            this.group_cutout.Width = 50;
+            this.goods_group_cutout.Text = "절판";
+            this.goods_group_cutout.Width = 50;
             // 
             // lblGroupTitle
             // 
@@ -356,6 +356,28 @@
             this.groupBox2.TabIndex = 88;
             this.groupBox2.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(174, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 14);
+            this.label3.TabIndex = 88;
+            this.label3.Text = "업장";
+            // 
+            // cbShop
+            // 
+            this.cbShop.BackColor = System.Drawing.Color.White;
+            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(214, 24);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(98, 21);
+            this.cbShop.TabIndex = 89;
+            this.cbShop.TabStop = false;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnViewGroup);
@@ -389,28 +411,6 @@
             this.label2.Size = new System.Drawing.Size(130, 42);
             this.label2.TabIndex = 90;
             this.label2.Text = "[절판]\r\n포스기기 : Disable\r\n키오스크 : Invisible";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(174, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 14);
-            this.label3.TabIndex = 88;
-            this.label3.Text = "업장";
-            // 
-            // cbShop
-            // 
-            this.cbShop.BackColor = System.Drawing.Color.White;
-            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(214, 24);
-            this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(98, 21);
-            this.cbShop.TabIndex = 89;
-            this.cbShop.TabStop = false;
             // 
             // frmSysSoldout
             // 
@@ -452,15 +452,15 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnGroupUpdate;
         private System.Windows.Forms.ListView lvwGroupList;
-        private System.Windows.Forms.ColumnHeader group_name;
-        private System.Windows.Forms.ColumnHeader group_soldout;
+        private System.Windows.Forms.ColumnHeader goods_group_name;
+        private System.Windows.Forms.ColumnHeader goods_group_soldout;
         private System.Windows.Forms.Label lblGroupTitle;
         private System.Windows.Forms.Button btnGoodsUpdate;
         private System.Windows.Forms.CheckBox cbGroupSoldout;
-        private System.Windows.Forms.ColumnHeader pos_no;
+        private System.Windows.Forms.ColumnHeader group_code;
         private System.Windows.Forms.ColumnHeader shop;
         private System.Windows.Forms.ColumnHeader goods_cutout;
-        private System.Windows.Forms.ColumnHeader group_cutout;
+        private System.Windows.Forms.ColumnHeader goods_group_cutout;
         private System.Windows.Forms.CheckBox cbGoodsCutout;
         private System.Windows.Forms.CheckBox cbGroupCutout;
         private System.Windows.Forms.Button btnViewGoods;

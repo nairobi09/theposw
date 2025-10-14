@@ -37,7 +37,7 @@
             this.H = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btn_color = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanelItemSelected = new System.Windows.Forms.TableLayoutPanel();
-            this.cbGroup = new System.Windows.Forms.ComboBox();
+            this.cbGoodsGroup = new System.Windows.Forms.ComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblT5 = new System.Windows.Forms.Label();
             this.tbLocateX = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@
             this.amt1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.shop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nod1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cbShop = new System.Windows.Forms.ComboBox();
+            this.cbPosGroup = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanelItem = new System.Windows.Forms.TableLayoutPanel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -62,9 +62,9 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.lblPosNoTitle = new System.Windows.Forms.Label();
             this.lblGroupTitle = new System.Windows.Forms.Label();
-            this.btnView = new System.Windows.Forms.Button();
+            this.btnGroupView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbShopView = new System.Windows.Forms.ComboBox();
+            this.cbShop = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnShopView = new System.Windows.Forms.Button();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
@@ -176,16 +176,16 @@
             this.tableLayoutPanelItemSelected.Size = new System.Drawing.Size(325, 265);
             this.tableLayoutPanelItemSelected.TabIndex = 60;
             // 
-            // cbGroup
+            // cbGoodsGroup
             // 
-            this.cbGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbGroup.FormattingEnabled = true;
-            this.cbGroup.Location = new System.Drawing.Point(630, 27);
-            this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(105, 21);
-            this.cbGroup.TabIndex = 61;
-            this.cbGroup.TabStop = false;
+            this.cbGoodsGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbGoodsGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbGoodsGroup.FormattingEnabled = true;
+            this.cbGoodsGroup.Location = new System.Drawing.Point(630, 27);
+            this.cbGoodsGroup.Name = "cbGoodsGroup";
+            this.cbGoodsGroup.Size = new System.Drawing.Size(105, 21);
+            this.cbGoodsGroup.TabIndex = 61;
+            this.cbGoodsGroup.TabStop = false;
             // 
             // lblTitle
             // 
@@ -290,17 +290,17 @@
             // 
             this.nod1.Text = "분류1";
             // 
-            // cbShop
+            // cbPosGroup
             // 
-            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbShop.FormattingEnabled = true;
-            this.cbShop.Location = new System.Drawing.Point(514, 27);
-            this.cbShop.Name = "cbShop";
-            this.cbShop.Size = new System.Drawing.Size(110, 21);
-            this.cbShop.TabIndex = 82;
-            this.cbShop.TabStop = false;
-            this.cbShop.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
+            this.cbPosGroup.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbPosGroup.FormattingEnabled = true;
+            this.cbPosGroup.Location = new System.Drawing.Point(514, 27);
+            this.cbPosGroup.Name = "cbPosGroup";
+            this.cbPosGroup.Size = new System.Drawing.Size(110, 21);
+            this.cbPosGroup.TabIndex = 82;
+            this.cbPosGroup.TabStop = false;
+            this.cbPosGroup.SelectedIndexChanged += new System.EventHandler(this.cbShop_SelectedIndexChanged);
             // 
             // tableLayoutPanelItem
             // 
@@ -477,7 +477,7 @@
             this.lblPosNoTitle.Name = "lblPosNoTitle";
             this.lblPosNoTitle.Size = new System.Drawing.Size(63, 14);
             this.lblPosNoTitle.TabIndex = 97;
-            this.lblPosNoTitle.Text = "포스업장";
+            this.lblPosNoTitle.Text = "포스그룹";
             // 
             // lblGroupTitle
             // 
@@ -486,43 +486,43 @@
             this.lblGroupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblGroupTitle.Location = new System.Drawing.Point(632, 11);
             this.lblGroupTitle.Name = "lblGroupTitle";
-            this.lblGroupTitle.Size = new System.Drawing.Size(35, 14);
+            this.lblGroupTitle.Size = new System.Drawing.Size(63, 14);
             this.lblGroupTitle.TabIndex = 97;
-            this.lblGroupTitle.Text = "그룹";
+            this.lblGroupTitle.Text = "상품그룹";
             // 
-            // btnView
+            // btnGroupView
             // 
-            this.btnView.BackColor = System.Drawing.Color.White;
-            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnView.Location = new System.Drawing.Point(744, 26);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(105, 23);
-            this.btnView.TabIndex = 99;
-            this.btnView.TabStop = false;
-            this.btnView.Text = "조회";
-            this.btnView.UseVisualStyleBackColor = false;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnGroupView.BackColor = System.Drawing.Color.White;
+            this.btnGroupView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroupView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnGroupView.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnGroupView.Location = new System.Drawing.Point(744, 26);
+            this.btnGroupView.Name = "btnGroupView";
+            this.btnGroupView.Size = new System.Drawing.Size(105, 23);
+            this.btnGroupView.TabIndex = 99;
+            this.btnGroupView.TabStop = false;
+            this.btnGroupView.Text = "조회";
+            this.btnGroupView.UseVisualStyleBackColor = false;
+            this.btnGroupView.Click += new System.EventHandler(this.btnGroupView_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cbShopView);
+            this.panel1.Controls.Add(this.cbShop);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(16, 15);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(267, 30);
             this.panel1.TabIndex = 101;
             // 
-            // cbShopView
+            // cbShop
             // 
-            this.cbShopView.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShopView.FormattingEnabled = true;
-            this.cbShopView.Location = new System.Drawing.Point(42, 4);
-            this.cbShopView.Name = "cbShopView";
-            this.cbShopView.Size = new System.Drawing.Size(110, 21);
-            this.cbShopView.TabIndex = 79;
-            this.cbShopView.TabStop = false;
+            this.cbShop.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbShop.FormattingEnabled = true;
+            this.cbShop.Location = new System.Drawing.Point(42, 4);
+            this.cbShop.Name = "cbShop";
+            this.cbShop.Size = new System.Drawing.Size(110, 21);
+            this.cbShop.TabIndex = 79;
+            this.cbShop.TabStop = false;
             // 
             // label4
             // 
@@ -550,17 +550,17 @@
             this.btnShopView.UseVisualStyleBackColor = false;
             this.btnShopView.Click += new System.EventHandler(this.btnShopView_Click);
             // 
-            // frmSysGoodsItemPos
+            // frmSysGoodsItemPosXY
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
-            this.Controls.Add(this.btnView);
+            this.Controls.Add(this.btnGroupView);
             this.Controls.Add(this.btnShopView);
-            this.Controls.Add(this.cbGroup);
+            this.Controls.Add(this.cbGoodsGroup);
             this.Controls.Add(this.lblGroupTitle);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lvwGoodsLink);
-            this.Controls.Add(this.cbShop);
+            this.Controls.Add(this.cbPosGroup);
             this.Controls.Add(this.lblPosNoTitle);
             this.Controls.Add(this.btnLink);
             this.Controls.Add(this.groupBox1);
@@ -569,7 +569,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tableLayoutPanelItemSelected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmSysGoodsItemPos";
+            this.Name = "frmSysGoodsItemPosXY";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "상품등록";
             this.groupBox1.ResumeLayout(false);
@@ -590,7 +590,7 @@
         private System.Windows.Forms.ColumnHeader W;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelItemSelected;
         private System.Windows.Forms.ColumnHeader H;
-        private System.Windows.Forms.ComboBox cbGroup;
+        private System.Windows.Forms.ComboBox cbGoodsGroup;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblT5;
         private System.Windows.Forms.TextBox tbLocateX;
@@ -601,7 +601,7 @@
         private System.Windows.Forms.ColumnHeader item_name;
         private System.Windows.Forms.ColumnHeader amt1;
         private System.Windows.Forms.ColumnHeader nod1;
-        private System.Windows.Forms.ComboBox cbShop;
+        private System.Windows.Forms.ComboBox cbPosGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelItem;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
@@ -611,10 +611,10 @@
         private System.Windows.Forms.Label lblT6;
         private System.Windows.Forms.Label lblPosNoTitle;
         private System.Windows.Forms.Label lblGroupTitle;
-        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.Button btnGroupView;
         private System.Windows.Forms.ColumnHeader shop;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cbShopView;
+        private System.Windows.Forms.ComboBox cbShop;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnShopView;
         private System.Windows.Forms.Button btnColor;

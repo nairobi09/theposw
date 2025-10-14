@@ -484,11 +484,21 @@ namespace thepos
 
 
             //
+            /*
             for (int i = 0; i < mShop.Length; i++)
             {
                 if (mShop[i].shop_code == myShopCode)
                 {
                     myShopName = mShop[i].shop_name;
+                }
+            }
+            */
+
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
+            {
+                if (mPosGroupCodeList[i] == myShopCode)
+                {
+                    myShopName = mPosGroupNameList[i];
                 }
             }
 

@@ -37,7 +37,6 @@
             this.btnEnter = new System.Windows.Forms.Button();
             this.tbShopCode = new System.Windows.Forms.TextBox();
             this.lblShopCodeTitle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -138,24 +137,12 @@
             this.lblShopCodeTitle.Name = "lblShopCodeTitle";
             this.lblShopCodeTitle.Size = new System.Drawing.Size(63, 14);
             this.lblShopCodeTitle.TabIndex = 36;
-            this.lblShopCodeTitle.Text = "업장코드";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(292, 291);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(171, 14);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "엽장별 테블릿용 구분코드";
+            this.lblShopCodeTitle.Text = "포스그롭";
             // 
             // frmSysAdminPos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(870, 710);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.tbShopCode);
             this.Controls.Add(this.lblShopCodeTitle);
             this.Controls.Add(this.lblTitle);
@@ -184,6 +171,5 @@
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.TextBox tbShopCode;
         private System.Windows.Forms.Label lblShopCodeTitle;
-        private System.Windows.Forms.Label label2;
     }
 }

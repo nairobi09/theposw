@@ -21,7 +21,7 @@ namespace thepos
         
         int max_groupcode = 100;  // 3자리
 
-        String mSelectedShopCode = "";
+        String selectedPosGroupCode = "";
 
         List<String> pos_no = new List<String>();
         List<String> pos_type = new List<String>();
@@ -33,9 +33,9 @@ namespace thepos
 
 
 
-            for (int i = 0; i < mShop.Length; i++)
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
             {
-                cbShop.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mPosGroupNameList[i]);
             }
 
 
@@ -58,7 +58,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        cbShop.Items.Add(arr[i]["posNo"].ToString());
+                        cbPosGroup.Items.Add(arr[i]["posNo"].ToString());
                     }
                 }
                 else
@@ -87,7 +87,7 @@ namespace thepos
 
                     for (int i = 0; i < arr.Count; i++)
                     {
-                        cbShop.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
+                        cbPosGroup.Items.Add(arr[i]["posNo"].ToString() + " - " + arr[i]["setupValue"].ToString());
 
                         pos_no.Add(arr[i]["posNo"].ToString());
                         pos_type.Add(arr[i]["setupValue"].ToString());
@@ -110,9 +110,9 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (cbShop.SelectedIndex == -1) { return; }
+            if (cbPosGroup.SelectedIndex == -1) { return; }
 
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            selectedPosGroupCode = mShop[cbPosGroup.SelectedIndex].shop_code;
 
 
 
@@ -140,7 +140,7 @@ namespace thepos
             tbColor.Text = "";
 
 
-            String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
+            String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + selectedPosGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -372,7 +372,7 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = selectedPosGroupCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
             parameters["groupName"] = tbGroupName.Text;
 
@@ -426,7 +426,7 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = selectedPosGroupCode;
             parameters["groupCode"] = (max_groupcode + 1).ToString();
             parameters["groupName"] = tbGroupName.Text;
 
@@ -482,7 +482,7 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = selectedPosGroupCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text.ToString();
 
 

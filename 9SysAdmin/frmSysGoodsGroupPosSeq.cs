@@ -16,7 +16,7 @@ namespace thepos
     {
         int max_groupcode = 100;  // 3자리
 
-        String mSelectedShopCode = "";
+        String mSelectedPosGroupCode = "";
 
         List<String> pos_no = new List<String>();
         List<String> pos_type = new List<String>();
@@ -26,9 +26,9 @@ namespace thepos
         {
             InitializeComponent();
 
-            for (int i = 0; i < mShop.Length; i++)
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
             {
-                cbShop.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mPosGroupNameList[i]);
             }
 
 
@@ -41,9 +41,9 @@ namespace thepos
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (cbShop.SelectedIndex == -1) { return; }
+            if (cbPosGroup.SelectedIndex == -1) { return; }
 
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mShop[cbPosGroup.SelectedIndex].shop_code;
 
 
             reload_server();
@@ -84,7 +84,7 @@ namespace thepos
 
 
 
-            String sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
+            String sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedPosGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -236,7 +236,7 @@ namespace thepos
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
             parameters["groupCode"] = (++max_groupcode).ToString();
             parameters["groupName"] = tbGroupName.Text;
             parameters["layoutNo"] = (lvwList.Items.Count + 1).ToString();
@@ -272,7 +272,7 @@ namespace thepos
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
             parameters["groupName"] = tbGroupName.Text;
             parameters["layoutNo"] = lvwList.SelectedItems[0].Text;
@@ -308,7 +308,7 @@ namespace thepos
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
             parameters["groupCode"] = lvwList.SelectedItems[0].Tag.ToString();
 
 
@@ -345,7 +345,7 @@ namespace thepos
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["shopCode"] = mSelectedShopCode;
+                parameters["shopCode"] = mSelectedPosGroupCode;
                 parameters["groupCode"] = lvwList.Items[i].Tag.ToString();
 
                 parameters["layoutNo"] = lvwList.Items[i].Text;

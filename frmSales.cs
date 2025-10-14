@@ -952,13 +952,13 @@ namespace thepos
 
 
 
-                if (myGoodsItem[i].cutout == "Y")  // 중지
+                if (mGoodsSeqList[i].cutout == "Y")  // 중지
                 {
                     btnGoodsItem.ForeColor = Color.White;
                     btnGoodsItem.BackColor = Color.White;
                     btnGoodsItem.Text = mGoodsSeqList[i].goods_name + "\n" + "[절판]";
                 }
-                else if (myGoodsItem[i].soldout == "Y")  // 품절
+                else if (mGoodsSeqList[i].soldout == "Y")  // 품절
                 {
                     btnGoodsItem.ForeColor = Color.Gray;
                     btnGoodsItem.BackColor = Color.White;

@@ -19,8 +19,8 @@ namespace thepos
     {
         private int sortColumn = -1;
 
-        String mSelectedShopCode = "";
-        String mSelectedGroupCode = "";
+        String mSelectedPosGroupCode = "";
+        String mSelectedGoodsGroupCode = "";
 
         private BindingList<object> selected_groupList = new BindingList<object>();
         private BindingList<object> source_groupList = new BindingList<object>();
@@ -52,18 +52,18 @@ namespace thepos
 
             for (int i = 0; i < mShop.Length; i++)
             {
-                cbShop.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mShop[i].shop_name);
             }
 
 
 
             //
-            cbShopView.Items.Clear();
+            cbShop.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
             {
-                cbShopView.Items.Add(mShop[i].shop_name);
+                cbShop.Items.Add(mShop[i].shop_name);
             }
-            cbShopView.SelectedIndex = 0;
+            cbShop.SelectedIndex = 0;
 
         }
 
@@ -91,13 +91,13 @@ namespace thepos
         {
             String tTicket, tTaxFree = "";
 
-            if (cbShopView.SelectedIndex == -1)
+            if (cbShop.SelectedIndex == -1)
             {
                 return;
             }
 
 
-            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShop.SelectedIndex].shop_code;
 
             if (mRequestGet(sUrl))
             {
@@ -138,10 +138,10 @@ namespace thepos
 
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mPosGroupCodeList[cbPosGroup.SelectedIndex];
 
 
-            String sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
+            String sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedPosGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -158,9 +158,9 @@ namespace thepos
 
                     if (selected_groupList.Count > 0)
                     {
-                        cbGroup.DataSource = selected_groupList;
-                        cbGroup.DisplayMember = "Text";
-                        cbGroup.ValueMember = "Value";
+                        cbGoodsGroup.DataSource = selected_groupList;
+                        cbGoodsGroup.DisplayMember = "Text";
+                        cbGoodsGroup.ValueMember = "Value";
                     }
                 }
                 else
@@ -176,14 +176,14 @@ namespace thepos
             }
         }
 
-        private void btnView_Click(object sender, EventArgs e)
+        private void btnGroupView_Click(object sender, EventArgs e)
         {
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mPosGroupCodeList[cbPosGroup.SelectedIndex];
 
 
-            if (cbGroup.SelectedIndex >= 0)
+            if (cbGoodsGroup.SelectedIndex >= 0)
             {
-                mSelectedGroupCode = cbGroup.SelectedValue.ToString();
+                mSelectedGoodsGroupCode = cbGoodsGroup.SelectedValue.ToString();
             }
 
 
@@ -200,7 +200,7 @@ namespace thepos
 
 
 
-            String sUrl = "posGoodsItemSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode + "&groupCode=" + mSelectedGroupCode;
+            String sUrl = "posGoodsItemSeq?siteId=" + mSiteId + "&shopCode=" + mSelectedPosGroupCode + "&groupCode=" + mSelectedGoodsGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -270,9 +270,9 @@ namespace thepos
             if (lvwGoods.SelectedItems.Count == 0) { return; }
 
 
-            if (mSelectedGroupCode == "")
+            if (mSelectedGoodsGroupCode == "")
             {
-                MessageBox.Show("포스 그룹 조회 해주세요.", "thepos");
+                MessageBox.Show("포스/상품 그룹 조회 해주세요.", "thepos");
                 return;
             }
 
@@ -292,8 +292,8 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
             parameters["layoutNo"] = (lvwGoodsLink.Items.Count + 1).ToString();
 
@@ -341,8 +341,8 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = mSelectedGoodsCode;
 
 
@@ -380,8 +380,8 @@ namespace thepos
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["shopCode"] = mSelectedShopCode;
-                parameters["groupCode"] = mSelectedGroupCode;
+                parameters["shopCode"] = mSelectedPosGroupCode;
+                parameters["groupCode"] = mSelectedGoodsGroupCode;
                 parameters["goodsCode"] = lvwGoodsLink.Items[i].Tag.ToString();
 
                 parameters["layoutNo"] = lvwGoodsLink.Items[i].Text;
@@ -533,7 +533,7 @@ namespace thepos
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
             parameters["groupCode"] = mSelectedGroupCode;
             parameters["goodsCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
             parameters["btnColor"] = tbColor.Text;

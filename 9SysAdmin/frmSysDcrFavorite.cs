@@ -19,7 +19,7 @@ namespace thepos._1Sales
     public partial class frmSysDcrFavorite : Form
     {
 
-        String thisShopCode = "";
+        String thisPosGroupCode = "";
 
         public frmSysDcrFavorite()
         {
@@ -37,13 +37,13 @@ namespace thepos._1Sales
             lvwList.HideSelection = true;
 
 
-            cbShopView.Items.Clear();
-            for (int i = 0; i < mShop.Length; i++)
+            cbPosGroup.Items.Clear();
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
             {
-                cbShopView.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mPosGroupNameList[i]);
             }
 
-            cbShopView.SelectedIndex = 0;
+            cbPosGroup.SelectedIndex = 0;
 
 
             //
@@ -60,15 +60,15 @@ namespace thepos._1Sales
         private void btnView_Click(object sender, EventArgs e)
         {
 
-            thisShopCode = "";
+            thisPosGroupCode = "";
 
-            if (cbShopView.SelectedIndex < 0)
+            if (cbPosGroup.SelectedIndex < 0)
             {
                 return;
             }
 
 
-            if (cbShopView.SelectedIndex == 0)
+            if (cbPosGroup.SelectedIndex == 0)
             {
                 MessageBox.Show("업장을 선택해주세요", "thepos");
                 return;
@@ -76,7 +76,7 @@ namespace thepos._1Sales
 
 
 
-            thisShopCode = mShop[cbShopView.SelectedIndex].shop_code;
+            thisPosGroupCode = mShop[cbPosGroup.SelectedIndex].shop_code;
 
             reload_server();
         }
@@ -87,7 +87,7 @@ namespace thepos._1Sales
         {
             lvwList.Items.Clear();
 
-            String sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + thisShopCode;
+            String sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + thisPosGroupCode;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -160,7 +160,7 @@ namespace thepos._1Sales
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = thisShopCode;
+            parameters["shopCode"] = thisPosGroupCode;
             parameters["sortNo"] = "0";
             parameters["dcrCode"] = tbCode.Text;
             parameters["dcrName"] = tbName.Text;
@@ -221,7 +221,7 @@ namespace thepos._1Sales
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = thisShopCode;
+            parameters["shopCode"] = thisPosGroupCode;
             parameters["dcrCode"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(code)].Text;
             parameters["sortNo"] = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(no)].Text;
             parameters["dcrName"] = tbName.Text;
@@ -302,7 +302,7 @@ namespace thepos._1Sales
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = thisShopCode;
+            parameters["shopCode"] = thisPosGroupCode;
             parameters["dcrCode"] = tbCode.Text;
 
             if (mRequestDelete("dcrFavorite", parameters))
@@ -359,7 +359,7 @@ namespace thepos._1Sales
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters["siteId"] = mSiteId;
-                parameters["shopCode"] = thisShopCode;
+                parameters["shopCode"] = thisPosGroupCode;
                 parameters["dcrCode"] = lvwList.Items[i].SubItems[lvwList.Columns.IndexOf(code)].Text;
                 parameters["sortNo"] = lvwList.Items[i].Text;
 

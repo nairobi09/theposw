@@ -32,6 +32,7 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.lvwList = new System.Windows.Forms.ListView();
             this.no = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.shop_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.des = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -39,6 +40,7 @@
             this.value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.des1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.type1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.shop_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTitle = new System.Windows.Forms.Label();
             this.cbDes = new System.Windows.Forms.ComboBox();
             this.lblNameTitle = new System.Windows.Forms.Label();
@@ -58,11 +60,9 @@
             this.tbCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbShopView = new System.Windows.Forms.ComboBox();
+            this.cbPosGroup = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
-            this.shop_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.shop_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -132,6 +132,11 @@
             this.no.Text = "#";
             this.no.Width = 30;
             // 
+            // shop_name
+            // 
+            this.shop_name.Text = "업장";
+            this.shop_name.Width = 70;
+            // 
             // code
             // 
             this.code.Text = "할인코드";
@@ -164,6 +169,11 @@
             // type1
             // 
             this.type1.Width = 0;
+            // 
+            // shop_code
+            // 
+            this.shop_code.Text = "shop_code";
+            this.shop_code.Width = 0;
             // 
             // lblTitle
             // 
@@ -378,22 +388,22 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cbShopView);
+            this.panel1.Controls.Add(this.cbPosGroup);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(229, 24);
+            this.panel1.Location = new System.Drawing.Point(199, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(183, 30);
+            this.panel1.Size = new System.Drawing.Size(214, 30);
             this.panel1.TabIndex = 83;
             // 
-            // cbShopView
+            // cbPosGroup
             // 
-            this.cbShopView.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.cbShopView.FormattingEnabled = true;
-            this.cbShopView.Location = new System.Drawing.Point(49, 3);
-            this.cbShopView.Name = "cbShopView";
-            this.cbShopView.Size = new System.Drawing.Size(124, 23);
-            this.cbShopView.TabIndex = 79;
-            this.cbShopView.TabStop = false;
+            this.cbPosGroup.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.cbPosGroup.FormattingEnabled = true;
+            this.cbPosGroup.Location = new System.Drawing.Point(83, 3);
+            this.cbPosGroup.Name = "cbPosGroup";
+            this.cbPosGroup.Size = new System.Drawing.Size(124, 23);
+            this.cbPosGroup.TabIndex = 79;
+            this.cbPosGroup.TabStop = false;
             // 
             // label4
             // 
@@ -402,9 +412,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.label4.Location = new System.Drawing.Point(6, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.Size = new System.Drawing.Size(63, 14);
             this.label4.TabIndex = 78;
-            this.label4.Text = "업장";
+            this.label4.Text = "포스그룹";
             // 
             // btnView
             // 
@@ -420,16 +430,6 @@
             this.btnView.Text = "조회";
             this.btnView.UseVisualStyleBackColor = false;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // shop_name
-            // 
-            this.shop_name.Text = "업장";
-            this.shop_name.Width = 70;
-            // 
-            // shop_code
-            // 
-            this.shop_code.Text = "shop_code";
-            this.shop_code.Width = 0;
             // 
             // frmSysDcrFavorite
             // 
@@ -495,7 +495,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColumnHeader code;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cbShopView;
+        private System.Windows.Forms.ComboBox cbPosGroup;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ColumnHeader shop_name;

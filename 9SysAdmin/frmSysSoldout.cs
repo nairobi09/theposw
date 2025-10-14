@@ -124,11 +124,11 @@ namespace thepos._9SysAdmin
 
             if (mPosLayoutType == "S")
             {
-                sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&groupCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
+                sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
             }
             else
             {
-                sUrl = "posGoodsGroup?siteId=" + mSiteId + "&groupCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
+                sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mPosGroupCodeList[cbPosGroup.SelectedIndex];
             }
                 
 
@@ -142,7 +142,7 @@ namespace thepos._9SysAdmin
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem = new ListViewItem();
-                        lvItem.Text = myPosNoList[cbPosGroup.SelectedIndex];
+                        lvItem.Text = mPosGroupNameList[cbPosGroup.SelectedIndex];
                         lvItem.SubItems.Add(arr[i]["groupName"].ToString());
 
                         if (arr[i]["soldout"].ToString() == "Y")
@@ -219,7 +219,7 @@ namespace thepos._9SysAdmin
                 return;
             }
 
-            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == "Y")
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_soldout)].Text == "Y")
             {
                 cbGroupSoldout.Checked = true;
             }
@@ -228,7 +228,7 @@ namespace thepos._9SysAdmin
                 cbGroupSoldout.Checked = false;
             }
 
-            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text == "Y")
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_cutout)].Text == "Y")
             {
                 cbGroupCutout.Checked = true;
             }
@@ -322,8 +322,8 @@ namespace thepos._9SysAdmin
                 t_cutout = "";
             }
 
-            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text == t_soldout &
-                lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text == t_cutout)
+            if (lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_soldout)].Text == t_soldout &
+                lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_cutout)].Text == t_cutout)
             {
                 return;
             }
@@ -331,6 +331,7 @@ namespace thepos._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
+            parameters["shopCode"] = mPosGroupCodeList[cbPosGroup.SelectedIndex];
             parameters["groupCode"] = lvwGroupList.SelectedItems[0].Tag.ToString();
             parameters["soldout"] = t_soldout;
             parameters["cutout"] = t_cutout;
@@ -356,8 +357,8 @@ namespace thepos._9SysAdmin
                 if (mObj["resultCode"].ToString() == "200")
                 {
                     // 화면 업데이트 -> 전체 reload하지 않는다...
-                    lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_soldout)].Text = t_soldout;
-                    lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(group_cutout)].Text = t_cutout;
+                    lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_soldout)].Text = t_soldout;
+                    lvwGroupList.SelectedItems[0].SubItems[lvwGroupList.Columns.IndexOf(goods_group_cutout)].Text = t_cutout;
                 }
                 else
                 {

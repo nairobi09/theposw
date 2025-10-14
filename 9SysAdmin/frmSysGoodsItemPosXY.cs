@@ -20,8 +20,8 @@ namespace thepos
     {
         private int sortColumn = -1;
 
-        String mSelectedShopCode = "";
-        String mSelectedGroupCode = "";
+        String mSelectedPosGroupCode = "";
+        String mSelectedGoodsGroupCode = "";
 
         private BindingList<object> selected_groupList = new BindingList<object>();
         private BindingList<object> source_groupList = new BindingList<object>();
@@ -38,31 +38,23 @@ namespace thepos
 
 
 
+            //
             cbShop.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
             {
                 cbShop.Items.Add(mShop[i].shop_name);
             }
+            cbShop.SelectedIndex = 0;
 
-
-            //get_posno_from_setupPos();
-
-            /*
-            for (int i = 0; i < mPosNoList.Count; i++)
-            {
-                cbPosNo.Items.Add(mPosNoList[i]);
-                cbSourcePosNo.Items.Add(mPosNoList[i]);
-            }
-            */
 
 
             //
-            cbShopView.Items.Clear();
+            cbPosGroup.Items.Clear();
             for (int i = 0; i < mShop.Length; i++)
             {
-                cbShopView.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mShop[i].shop_name);
             }
-            cbShopView.SelectedIndex = 0;
+
 
         }
 
@@ -90,7 +82,7 @@ namespace thepos
         {
             String tTicket, tTaxFree = "";
 
-            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShopView.SelectedIndex].shop_code;
+            String sUrl = "goods?siteId=" + mSiteId + "&shopCode=" + mShop[cbShop.SelectedIndex].shop_code;
 
             if (mRequestGet(sUrl))
             {
@@ -131,10 +123,10 @@ namespace thepos
 
         private void cbShop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mPosGroupCodeList[cbPosGroup.SelectedIndex];
 
 
-            String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode;
+            String sUrl = "posGoodsGroup?siteId=" + mSiteId + "&shopCode=" + mSelectedPosGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -151,9 +143,9 @@ namespace thepos
 
                     if (arr.Count > 0)
                     {
-                        cbGroup.DataSource = selected_groupList;
-                        cbGroup.DisplayMember = "Text";
-                        cbGroup.ValueMember = "Value";
+                        cbGoodsGroup.DataSource = selected_groupList;
+                        cbGoodsGroup.DisplayMember = "Text";
+                        cbGoodsGroup.ValueMember = "Value";
                     }
 
                 }
@@ -172,17 +164,17 @@ namespace thepos
 
 
 
-        private void btnView_Click(object sender, EventArgs e)
+        private void btnGroupView_Click(object sender, EventArgs e)
         {
-            mSelectedShopCode = mShop[cbShop.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mPosGroupCodeList[cbPosGroup.SelectedIndex];
 
-            if (cbGroup.SelectedIndex < 0)
+            if (cbGoodsGroup.SelectedIndex < 0)
             {
                 return;
             }
 
 
-            mSelectedGroupCode = cbGroup.SelectedValue.ToString();
+            mSelectedGoodsGroupCode = cbGoodsGroup.SelectedValue.ToString();
 
             reload_server();
 
@@ -202,7 +194,7 @@ namespace thepos
             tableLayoutPanelItemSelected.Controls.Clear();
 
 
-            String sUrl = "posGoodsItem?siteId=" + mSiteId + "&shopCode=" + mSelectedShopCode + "&groupCode=" + mSelectedGroupCode;
+            String sUrl = "posGoodsItem?siteId=" + mSiteId + "&shopCode=" + mSelectedPosGroupCode + "&groupCode=" + mSelectedGoodsGroupCode;
 
             if (mRequestGet(sUrl))
             {
@@ -366,8 +358,8 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
             parameters["locateX"] = tbLocateX.Text;
             parameters["locateY"] = tbLocateY.Text;
@@ -420,8 +412,8 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = mSelectedGoodsCode;
 
 
@@ -458,9 +450,9 @@ namespace thepos
             if (lvwGoods.SelectedItems.Count == 0) { return; }
 
 
-            if (mSelectedGroupCode == "") 
+            if (mSelectedGoodsGroupCode == "") 
             {
-                MessageBox.Show("포스 그룹 조회 해주세요.", "thepos");
+                MessageBox.Show("포스/상품 그룹 조회 해주세요.", "thepos");
                 return; 
             }
 
@@ -480,8 +472,8 @@ namespace thepos
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["shopCode"] = mSelectedShopCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["shopCode"] = mSelectedPosGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = lvwGoods.SelectedItems[0].Tag.ToString();
             parameters["locateX"] = "11";
             parameters["locateY"] = "11";
