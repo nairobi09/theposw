@@ -43,7 +43,7 @@ namespace thepos
         {
             if (cbPosGroup.SelectedIndex == -1) { return; }
 
-            mSelectedPosGroupCode = mShop[cbPosGroup.SelectedIndex].shop_code;
+            mSelectedPosGroupCode = mPosGroupCodeList[cbPosGroup.SelectedIndex];
 
 
             reload_server();

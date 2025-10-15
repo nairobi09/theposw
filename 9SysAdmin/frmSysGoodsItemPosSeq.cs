@@ -534,7 +534,7 @@ namespace thepos
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["shopCode"] = mSelectedPosGroupCode;
-            parameters["groupCode"] = mSelectedGroupCode;
+            parameters["groupCode"] = mSelectedGoodsGroupCode;
             parameters["goodsCode"] = lvwGoodsLink.SelectedItems[0].Tag.ToString();
             parameters["btnColor"] = tbColor.Text;
             
