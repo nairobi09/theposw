@@ -175,6 +175,9 @@ namespace theposw._1Sales
                         int gap_mm = 0;
                         int ot_mm = 0;
 
+                        // 먼저 구한다. 이후 자주 쓴다.
+                        String ticket_rule_code = get_ticket_rule_code(goods_code);
+
 
                         // ■ 𖡖 ▶ ▷ ↺ ↻ ↻ ↺ ⟳ ⟲
 
@@ -210,7 +213,8 @@ namespace theposw._1Sales
                         if (tStat == "0" | tStat == "1" | tStat == "2" | tStat == "3")
                         {
                             // 퇴장 예상시간
-                            string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
+                            //string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
+                            string expect_exit_dt = get_expect_exit_dt_by_ticket_rule_code(ticket_rule_code, entry_dt);
                             item.SubItems.Add(expect_exit_dt.Substring(8, 2) + ":" + expect_exit_dt.Substring(10, 2));
 
                             // 경과
@@ -246,8 +250,8 @@ namespace theposw._1Sales
                                 item.SubItems.Add(ot_mm + "분 지남");
                                 item.ForeColor = Color.Red;
 
-                                n_ot_cnt = get_ot_cnt(gap_mm, goods_code);
-                                n_ot_amt = get_ot_amt(goods_code);
+                                n_ot_cnt = get_ot_cnt_by_ticket_rule_code(gap_mm, ticket_rule_code);
+                                n_ot_amt = get_ot_amt_by_ticket_rule_code(ticket_rule_code);
                                 n_ot_amount = n_ot_cnt * n_ot_amt;
 
                                 item.SubItems.Add(n_ot_amount.ToString("N0"));
@@ -271,7 +275,9 @@ namespace theposw._1Sales
 
 
                             //
-                            int n_available_minute = get_goods_available_minute(goods_code);
+                            //int n_available_minute = get_goods_available_minute_by_goods_code(goods_code);
+                            int n_available_minute = get_goods_available_minute_by_ticket_rule_code(ticket_rule_code);
+
                             ot_mm = gap_mm - n_available_minute;
 
 
@@ -288,8 +294,8 @@ namespace theposw._1Sales
                             //추가금액
                             if (gap_mm > 0)
                             {
-                                n_ot_cnt = get_ot_cnt(gap_mm, goods_code);
-                                n_ot_amt = get_ot_amt(goods_code);
+                                n_ot_cnt = get_ot_cnt_by_ticket_rule_code(gap_mm, ticket_rule_code);
+                                n_ot_amt = get_ot_amt_by_ticket_rule_code(ticket_rule_code);
                                 n_ot_amount = n_ot_cnt * n_ot_amt;
 
                                 item.SubItems.Add(n_ot_amount.ToString("N0"));
@@ -332,7 +338,7 @@ namespace theposw._1Sales
                         item.SubItems.Add(gap_mm + "");  // get_dt
                         item.SubItems.Add(n_ot_cnt + "");
                         item.SubItems.Add(n_ot_amt + "");
-                        item.SubItems.Add(get_link_goods_code(goods_code));  // link_goods_code
+                        item.SubItems.Add(get_link_goods_code_by_ticket_rule_code(ticket_rule_code));  // link_goods_code
                         item.Checked = false;
 
 
@@ -927,111 +933,8 @@ namespace theposw._1Sales
             }
         }
 
-        public static String get_expect_exit_dt(String goods_code, String entry_dt)
-        {
-            int minutesToAdd = get_goods_available_minute(goods_code);
-            DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-            dateTime = dateTime.AddMinutes(minutesToAdd);
-            return dateTime.ToString("yyyyMMddHHmmss");
-        }
 
-
-        public static int get_goods_available_minute(String goods_code)
-        {
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    if (is_number(mGoodsTicket[i].available_minute))
-                    {
-                        return Int16.Parse(mGoodsTicket[i].available_minute);
-                    }
-                }
-            }
-
-            return 0;
-        }
-
-        public static int get_ot_cnt(int gap_mm, String goods_code)
-        {
-            String is_charge = "";
-            String available_minute = "";
-            String ot_free_minute = "";
-            String ot_std_minute = "";
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    is_charge = mGoodsTicket[i].is_charge;
-                    available_minute = mGoodsTicket[i].available_minute;
-                    ot_free_minute = mGoodsTicket[i].ot_free_minute;
-                    ot_std_minute = mGoodsTicket[i].ot_std_minute;
-                }
-            }
-
-            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute))
-            {
-                return 0;
-            }
-
-            int n_available_minute = Int16.Parse(available_minute);
-            int n_ot_free_minute = Int16.Parse(ot_free_minute);
-
-            //
-            if (gap_mm < n_available_minute + n_ot_free_minute)
-            {
-                return 0;
-            }
-
-            //
-            int n_ot_std_minute = Int16.Parse(ot_std_minute);
-            int real_ot_minute = gap_mm - n_available_minute - n_ot_free_minute;
-            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
-
-            return ot_cnt;
-        }
-        public static int get_ot_amt(String goods_code)
-        {
-            String is_charge = "";
-            String ot_amt = "";
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    is_charge = mGoodsTicket[i].is_charge;
-                    ot_amt = mGoodsTicket[i].ot_amt;
-                }
-            }
-
-            if (is_charge != "Y" | !is_number(ot_amt))
-            {
-                return 0;
-            }
-
-
-            int n_ot_amt = Int16.Parse(ot_amt);
-
-            return n_ot_amt;
-        }
-
-        public static String get_link_goods_code(String goods_code)
-        {
-            String link_goods_code = "";
-
-
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    link_goods_code = mGoodsTicket[i].link_goods_code;
-                }
-            }
-
-            return link_goods_code;
-        }
-
+        
 
 
         private void btnClose_Click(object sender, EventArgs e)

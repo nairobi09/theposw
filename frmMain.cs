@@ -943,6 +943,7 @@ namespace thepos
                                     myGoodsItem[k].amt = int.Parse(arr[i]["amt"].ToString());
                                     myGoodsItem[k].online_coupon = arr[i]["onlineCoupon"].ToString();
                                     myGoodsItem[k].ticket = arr[i]["ticketYn"].ToString();
+                                    //myGoodsItem[k].ticket_rule_code = arr[i]["ticketRuleCode"].ToString();
                                     myGoodsItem[k].taxfree = arr[i]["taxFree"].ToString();
                                     myGoodsItem[k].cutout = arr[i]["cutout"].ToString();
                                     myGoodsItem[k].soldout = arr[i]["soldout"].ToString();
@@ -967,6 +968,7 @@ namespace thepos
                             goods.amt = int.Parse(arr[i]["amt"].ToString());
                             goods.online_coupon = arr[i]["onlineCoupon"].ToString();
                             goods.ticket = arr[i]["ticketYn"].ToString();
+                            goods.ticket_rule_code = arr[i]["ticketRuleCode"].ToString();
                             goods.taxfree = arr[i]["taxFree"].ToString();
                             goods.shop_code = arr[i]["shopCode"].ToString();
                             goods.nod_code1 = arr[i]["nodCode1"].ToString();
@@ -993,10 +995,57 @@ namespace thepos
             }
 
 
+            // ticketRule
+            if (true)
+            {
+                String sUrl = "ticketRule?siteId=" + mSiteId;
+                if (mRequestGet(sUrl))
+                {
+                    if (mObj["resultCode"].ToString() == "200")
+                    {
+                        String data = mObj["rules"].ToString();
+                        JArray arr = JArray.Parse(data);
 
+                        mTicketRule = new TicketRule[arr.Count + 1];
+
+                        mTicketRule[0].ticket_rule_code = "";
+                        mTicketRule[0].ticket_rule_name = "";
+                        mTicketRule[0].available_minute = "";
+                        mTicketRule[0].is_charge = "";
+                        mTicketRule[0].ot_free_minute = "";
+                        mTicketRule[0].ot_std_minute = "";
+                        mTicketRule[0].ot_amt = "";
+                        mTicketRule[0].link_goods_code = "";
+
+
+                        for (int i = 0; i < arr.Count; i++)
+                        {
+                            mTicketRule[i+1].ticket_rule_code = arr[i]["ticketRuleCode"].ToString();
+                            mTicketRule[i+1].ticket_rule_name = arr[i]["ticketRuleName"].ToString();
+                            mTicketRule[i+1].available_minute = arr[i]["availableMinute"].ToString();
+                            mTicketRule[i+1].is_charge = arr[i]["isCharge"].ToString();
+                            mTicketRule[i+1].ot_free_minute = arr[i]["otFreeMinute"].ToString();
+                            mTicketRule[i+1].ot_std_minute = arr[i]["otStdMinute"].ToString();
+                            mTicketRule[i+1].ot_amt = arr[i]["otAmt"].ToString();
+                            mTicketRule[i+1].link_goods_code = arr[i]["linkGoodsCode"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
+                    return;
+                }
+            }
 
 
             // 3. goodsTicket
+            /*
             if (true)
             {
                 String sUrl = "goodsTicket?siteId=" + mSiteId;
@@ -1032,7 +1081,7 @@ namespace thepos
                     return;
                 }
             }
-
+            */
 
 
             // 3-1. optionTemplate
@@ -1146,8 +1195,6 @@ namespace thepos
                 }
             }
 
-
-            // 3-4.  goods
 
 
 

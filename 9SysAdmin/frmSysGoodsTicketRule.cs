@@ -14,14 +14,14 @@ using static thepos.thePos;
 
 namespace theposw._9SysAdmin
 {
-    public partial class frmSysGoodsTicket : Form
+    public partial class frmSysGoodsTicketRule : Form
     {
 
-        String tSelectedGoodsCode = "";
+        String tSelectedRuleCode = "";
 
 
 
-        public frmSysGoodsTicket()
+        public frmSysGoodsTicketRule()
         {
             InitializeComponent();
 
@@ -31,57 +31,42 @@ namespace theposw._9SysAdmin
         private void btnView_Click(object sender, EventArgs e)
         {
             //
-            tSelectedGoodsCode = "";
+            tSelectedRuleCode = "";
 
             //
-            get_goods();
-            get_goodsTicket();
+            get_goodsTicketRule();
 
-            tSelectedGoodsCode = "";
-            lblSelectedGoodsName.Text = "";
+            tSelectedRuleCode = "";
+
         }
 
-        private void get_goods()
-        {
-            lvwGoods.Items.Clear();
 
-            for (int i = 0; i < mGoodsList.Count; i++)
-            {
-                if (mGoodsList[i].ticket == "Y" | mGoodsList[i].ticket == "Ys")
-                {
-                    ListViewItem lvItem;
-                    lvItem = new ListViewItem(mGoodsList[i].goods_code);
-                    lvItem.SubItems.Add(mGoodsList[i].goods_name);
-                    lvwGoods.Items.Add(lvItem);
-                }
-            }
-        }
 
-        private void get_goodsTicket()
+        private void get_goodsTicketRule()
         {
-            lvwGoodsTicket.Items.Clear();
+            lvwRule.Items.Clear();
 
             //
-            String sUrl = "goodsTicket?siteId=" + mSiteId;
+            String sUrl = "ticketRule?siteId=" + mSiteId;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
-                    String data = mObj["goods"].ToString();
+                    String data = mObj["rules"].ToString();
                     JArray arr = JArray.Parse(data);
 
                     for (int i = 0; i < arr.Count; i++)
                     {
                         ListViewItem lvItem;
-                        lvItem = new ListViewItem(arr[i]["goodsCode"].ToString());
-                        lvItem.SubItems.Add(get_goods_name(arr[i]["goodsCode"].ToString()));
+                        lvItem = new ListViewItem(arr[i]["ticketRuleCode"].ToString());
+                        lvItem.SubItems.Add(arr[i]["ticketRuleName"].ToString());
                         lvItem.SubItems.Add(arr[i]["availableMinute"].ToString());
                         lvItem.SubItems.Add(arr[i]["isCharge"].ToString());
                         lvItem.SubItems.Add(arr[i]["otFreeMinute"].ToString());
                         lvItem.SubItems.Add(arr[i]["otStdMinute"].ToString());
                         lvItem.SubItems.Add(arr[i]["otAmt"].ToString());
                         lvItem.SubItems.Add(arr[i]["linkGoodsCode"].ToString());
-                        lvwGoodsTicket.Items.Add(lvItem);
+                        lvwRule.Items.Add(lvItem);
                     }
                 }
             }
@@ -92,6 +77,8 @@ namespace theposw._9SysAdmin
 
         private void clear_console()
         {
+            tbCode.Text = "";
+            tbName.Text = "";
             tbAvailableMinute.Text = "";
             cbIsCharge.Checked = false;
             tbOtFreeMinute.Text = "";
@@ -99,34 +86,26 @@ namespace theposw._9SysAdmin
             tbOtAmt.Text = "";
             tbLinkGoodsCode.Text = "";
             //
-            tSelectedGoodsCode = "";
-            lblSelectedGoodsName.Text = "";
+            tSelectedRuleCode = "";
+
         }
 
-
-        private void btnGoodsLink_Click(object sender, EventArgs e)
-        {
-            if (lvwGoods.SelectedItems.Count == 0)
-            {
-                return;
-            }
-
-            tSelectedGoodsCode = lvwGoods.SelectedItems[0].Text;
-            lblSelectedGoodsName.Text = lvwGoods.SelectedItems[0].SubItems[1].Text;
-        }
-
-        private void lvwGoodsTicket_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwRule_SelectedIndexChanged(object sender, EventArgs e)
         {
             //
-            if (lvwGoodsTicket.SelectedItems.Count == 0)
+            if (lvwRule.SelectedItems.Count == 0)
             {
                 return;
             }
 
             //
-            tbAvailableMinute.Text = lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(available_minute)].Text;
+            tbCode.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(code)].Text;
+            tbName.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(name)].Text;
 
-            if (lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(is_charge)].Text == "Y")
+
+            tbAvailableMinute.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(available_minute)].Text;
+
+            if (lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(is_charge)].Text == "Y")
             {
                 cbIsCharge.Checked = true;
             }
@@ -135,14 +114,14 @@ namespace theposw._9SysAdmin
                 cbIsCharge.Checked = false;
             }
 
-            tbOtFreeMinute.Text = lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(ot_free_minute)].Text;
-            tbOtStdMinute.Text = lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(ot_std_minute)].Text;
-            tbOtAmt.Text = lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(ot_amt)].Text;
-            tbLinkGoodsCode.Text = lvwGoodsTicket.SelectedItems[0].SubItems[lvwGoodsTicket.Columns.IndexOf(link_goods_code)].Text;
+            tbOtFreeMinute.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(ot_free_minute)].Text;
+            tbOtStdMinute.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(ot_std_minute)].Text;
+            tbOtAmt.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(ot_amt)].Text;
+            tbLinkGoodsCode.Text = lvwRule.SelectedItems[0].SubItems[lvwRule.Columns.IndexOf(link_goods_code)].Text;
 
             //
-            tSelectedGoodsCode = lvwGoodsTicket.SelectedItems[0].Text;
-            lblSelectedGoodsName.Text = lvwGoodsTicket.SelectedItems[0].SubItems[1].Text;
+            tSelectedRuleCode = lvwRule.SelectedItems[0].Text;
+
 
         }
 
@@ -150,11 +129,6 @@ namespace theposw._9SysAdmin
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (tSelectedGoodsCode == "")
-            {
-                MessageBox.Show("추가선택 오류.", "thepos");
-                return;
-            }
 
             if (!is_number(tbAvailableMinute.Text))
             {
@@ -195,7 +169,8 @@ namespace theposw._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["goodsCode"] = tSelectedGoodsCode;
+            parameters["ticketRuleCode"] = tbCode.Text.Trim();
+            parameters["ticketRuleName"] = tbName.Text.Trim();
             parameters["availableMinute"] = tbAvailableMinute.Text.Trim();
 
             if (cbIsCharge.Checked)
@@ -208,7 +183,7 @@ namespace theposw._9SysAdmin
             parameters["otAmt"] = tbOtAmt.Text;
             parameters["linkGoodsCode"] = tbLinkGoodsCode.Text;
 
-            if (mRequestPost("goodsTicket", parameters))
+            if (mRequestPost("ticketRule", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -227,17 +202,17 @@ namespace theposw._9SysAdmin
             }
 
             //
-            get_goodsTicket();
+            get_goodsTicketRule();
 
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (tSelectedGoodsCode == "")
+            if (tSelectedRuleCode == "")
             {
-                MessageBox.Show("추가선택 오류.", "thepos");
                 return;
             }
+
 
             if (!is_number(tbAvailableMinute.Text))
             {
@@ -279,7 +254,8 @@ namespace theposw._9SysAdmin
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["goodsCode"] = tSelectedGoodsCode;
+            parameters["ticketRuleCode"] = tSelectedRuleCode;
+            parameters["ticketRuleName"] = tbName.Text.Trim();
             parameters["availableMinute"] = tbAvailableMinute.Text.Trim();
 
             if (cbIsCharge.Checked)
@@ -292,7 +268,7 @@ namespace theposw._9SysAdmin
             parameters["otAmt"] = tbOtAmt.Text;
             parameters["linkGoodsCode"] = tbLinkGoodsCode.Text;
 
-            if (mRequestPatch("goodsTicket", parameters))
+            if (mRequestPatch("ticketRule", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {
@@ -311,20 +287,19 @@ namespace theposw._9SysAdmin
             }
 
             //
-            get_goodsTicket();
+            get_goodsTicketRule();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (tSelectedGoodsCode == "")
+            if (tSelectedRuleCode == "")
             {
-                MessageBox.Show("추가선택 오류.", "thepos");
                 return;
             }
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
-            parameters["goodsCode"] = tSelectedGoodsCode;
+            parameters["ticketRuleCode"] = tSelectedRuleCode;
 
             if (mRequestDelete("goodsTicket", parameters))
             {
@@ -345,7 +320,7 @@ namespace theposw._9SysAdmin
             }
 
             //
-            get_goodsTicket();
+            get_goodsTicketRule();
         }
     }
 }

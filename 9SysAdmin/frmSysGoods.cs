@@ -43,6 +43,7 @@ namespace thepos._9SysAdmin
 
         String sv_online_coupon = "";
         String sv_ticketYn = "";
+        String sv_ticket_rule_code = "";
         String sv_taxFree = "";
         String sv_cutout = "";
         String sv_soldout = "";
@@ -170,6 +171,15 @@ namespace thepos._9SysAdmin
                 cbBadges.Items.Add(mBadges[i].badges_name);
             }
 
+
+            cbTicketRule.Items.Clear();
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                cbTicketRule.Items.Add(mTicketRule[i].ticket_rule_name);
+            }
+
+
+
         }
 
         private void clear_console()
@@ -247,11 +257,22 @@ namespace thepos._9SysAdmin
                         tSoldout = "";
                         tAllim = "";
                         tOnlineCoupon = "";
-
+                        
+                        //
                         if (arr[i]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         else 
                         if (arr[i]["ticketYn"].ToString() == "Ys") tTicket = "Ys";
                         else tTicket = "";
+
+                        lvItem.SubItems.Add(tTicket);
+
+                        // ticket rule
+                        String ticket_rule_code = arr[i]["ticketRuleCode"].ToString();
+                        String ticket_rule_name = get_ticket_rule_name(ticket_rule_code);
+
+                        lvItem.SubItems.Add(ticket_rule_code);
+                        lvItem.SubItems.Add(ticket_rule_name);
+
 
                         if (arr[i]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[i]["cutout"].ToString() == "Y") tCutout = "Y";          // 15
@@ -259,7 +280,6 @@ namespace thepos._9SysAdmin
                         if (arr[i]["allim"].ToString() == "Y") tAllim = "Y";
                         if (arr[i]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
 
-                        lvItem.SubItems.Add(tTicket);
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
@@ -378,9 +398,28 @@ namespace thepos._9SysAdmin
                         tAllim = "";
                         tOnlineCoupon = "";
 
+
+                        //
                         if (arr[0]["ticketYn"].ToString() == "Y") tTicket = "Y";
                         else if (arr[0]["ticketYn"].ToString() == "Ys") tTicket = "Ys";
                         else tTicket = "";
+
+                        lvItem.SubItems.Add(tTicket);
+
+
+                        // ticket rule
+                        String ticket_rule_code = arr[0]["ticketRuleCode"].ToString();
+                        String ticket_rule_name = get_ticket_rule_name(ticket_rule_code);
+
+                        lvItem.SubItems.Add(ticket_rule_code);
+                        lvItem.SubItems.Add(ticket_rule_name);
+
+
+
+                        //
+                        lvItem.SubItems.Add(tTaxFree);
+                        lvItem.SubItems.Add(tCutout);
+
 
 
                         if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
@@ -390,7 +429,7 @@ namespace thepos._9SysAdmin
                         if (arr[0]["onlineCoupon"].ToString() == "Y") tOnlineCoupon = "Y";
 
 
-                        lvItem.SubItems.Add(tTicket);
+
                         lvItem.SubItems.Add(tTaxFree);
                         lvItem.SubItems.Add(tCutout);
                         lvItem.SubItems.Add(tSoldout);
@@ -486,6 +525,23 @@ namespace thepos._9SysAdmin
                 cbTicket.SelectedIndex = 2;
             else
                 cbTicket.SelectedIndex = 0;
+
+
+            //
+            String ticket_rule_code = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(ticketrulecode)].Text;
+
+            cbTicketRule.SelectedIndex = 0;
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == ticket_rule_code)
+                {
+                    cbTicketRule.SelectedIndex = i;
+                }
+            }
+
+
+
+
 
             if (lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(taxfree)].Text == "Y")
                 cbTaxFree.Checked = true;
@@ -587,6 +643,11 @@ namespace thepos._9SysAdmin
 
 
 
+
+
+
+
+
             tbMemo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(memo)].Text;
             tbCouponLinkNo.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(coupon_link_no)].Text;
 
@@ -626,6 +687,9 @@ namespace thepos._9SysAdmin
 
             sv_online_coupon = cbCoupon.Checked + "";
             sv_ticketYn = cbTicket.SelectedIndex + "";
+
+            sv_ticket_rule_code = cbTicketRule.SelectedIndex + "";
+
             sv_taxFree = cbTaxFree.Checked + "";
             sv_cutout = cbCutout.Checked + "";
             sv_soldout = cbSoldout.Checked + "";
@@ -734,6 +798,14 @@ namespace thepos._9SysAdmin
                 else
                     parameters["ticketYn"] = "N";
             }
+
+
+            //
+            if (sv_ticket_rule_code != cbTicketRule.SelectedIndex + "")
+            {
+                parameters["ticketRuleCode"] = mTicketRule[cbTicketRule.SelectedIndex].ticket_rule_code;
+            }
+
 
             //
             if (sv_taxFree != cbTaxFree.Checked + "")
@@ -968,6 +1040,12 @@ namespace thepos._9SysAdmin
                 parameters["ticketYn"] = "Ys";
             else
                 parameters["ticketYn"] = "N";
+
+
+            //
+            parameters["ticketRuleCode"] = mTicketRule[cbTicketRule.SelectedIndex].ticket_rule_code;
+
+
 
             if (cbTaxFree.Checked)
                 parameters["taxFree"] = "Y";

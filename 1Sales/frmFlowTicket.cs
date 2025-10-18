@@ -185,10 +185,12 @@ namespace theposw._1Sales
 
                         //
                         String goods_code = arr[i]["goodsCode"].ToString();
+                        String ticket_rule_code = get_ticket_rule_code(goods_code);
+
                         entry_dt = arr[i]["entryDt"].ToString();
 
                         // 퇴장 예상시간
-                        string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
+                        string expect_exit_dt = get_expect_exit_dt_by_ticket_rule_code(ticket_rule_code, entry_dt);
 
                         if (Int32.Parse(save_expect_exit_dt.Substring(6, 8)) > Int32.Parse(expect_exit_dt.Substring(6, 8)))
                         {
@@ -435,7 +437,10 @@ namespace theposw._1Sales
                         save_the_no = arr[i]["theNo"].ToString();
                         entry_cnt++;
 
+                        
                         String goods_code = arr[i]["goodsCode"].ToString();
+                        String ticket_rule_code = get_ticket_rule_code(goods_code);
+
                         entry_dt = arr[i]["entryDt"].ToString();
 
 
@@ -450,7 +455,7 @@ namespace theposw._1Sales
                             else
                             {
                                 // 퇴장 예상시간
-                                string expect_exit_dt = get_expect_exit_dt(goods_code, entry_dt);
+                                string expect_exit_dt = get_expect_exit_dt_by_ticket_rule_code(ticket_rule_code, entry_dt);
 
                                 if (Int32.Parse(save_expect_exit_dt.Substring(6, 8)) > Int32.Parse(expect_exit_dt.Substring(6, 8)))
                                 {
@@ -604,23 +609,7 @@ namespace theposw._1Sales
         }
 
 
-
-        private String get_expect_exit_dt(String goods_code, String entry_dt)
-        {
-            // 퇴장예상시간 구하기
-            try
-            {
-                int minutesToAdd = get_goods_available_minute(goods_code);
-                DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
-                dateTime = dateTime.AddMinutes(minutesToAdd);
-                return dateTime.ToString("yyyyMMddHHmmss");
-            }
-            catch
-            {
-                return "";
-            }
-        }
-
+        
 
         private int get_diff_minute(String now_dt, String expect_exit_dt)
         {
@@ -633,23 +622,6 @@ namespace theposw._1Sales
 
             // hh:mm 형식으로 출력
             return (int)diff.TotalMinutes;
-        }
-
-
-        private int get_goods_available_minute(String goods_code)
-        {
-            for (int i = 0; i < mGoodsTicket.Length; i++)
-            {
-                if (mGoodsTicket[i].goods_code == goods_code)
-                {
-                    if (is_number(mGoodsTicket[i].available_minute))
-                    {
-                        return Int16.Parse(mGoodsTicket[i].available_minute);
-                    }
-                }
-            }
-
-            return 0;
         }
 
 

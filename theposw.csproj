@@ -367,11 +367,11 @@
     <Compile Include="9SysAdmin\frmSysGoodsGroupPosXY.Designer.cs">
       <DependentUpon>frmSysGoodsGroupPosXY.cs</DependentUpon>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsTicket.cs">
+    <Compile Include="9SysAdmin\frmSysGoodsTicketRule.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="9SysAdmin\frmSysGoodsTicket.Designer.cs">
-      <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
+    <Compile Include="9SysAdmin\frmSysGoodsTicketRule.Designer.cs">
+      <DependentUpon>frmSysGoodsTicketRule.cs</DependentUpon>
     </Compile>
     <Compile Include="9SysAdmin\frmSysPosGroup.cs">
       <SubType>Form</SubType>
@@ -777,8 +777,8 @@
     <EmbeddedResource Include="9SysAdmin\frmSysGoodsGroupPosXY.resx">
       <DependentUpon>frmSysGoodsGroupPosXY.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="9SysAdmin\frmSysGoodsTicket.resx">
-      <DependentUpon>frmSysGoodsTicket.cs</DependentUpon>
+    <EmbeddedResource Include="9SysAdmin\frmSysGoodsTicketRule.resx">
+      <DependentUpon>frmSysGoodsTicketRule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysPosGroup.resx">
       <DependentUpon>frmSysPosGroup.cs</DependentUpon>

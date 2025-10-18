@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSysAdmin));
             this.panelView = new System.Windows.Forms.Panel();
             this.panelAdminConsole = new System.Windows.Forms.Panel();
+            this.btnSysGoodsTicketRule = new System.Windows.Forms.Button();
+            this.btnSysPosGroup = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSysGoodsGroupPosSeq = new System.Windows.Forms.Button();
@@ -41,7 +43,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSysGoodsGroupKiosk = new System.Windows.Forms.Button();
             this.btnSysGoodsItemKiosk = new System.Windows.Forms.Button();
-            this.btnSysGoodsTicket = new System.Windows.Forms.Button();
             this.btnSysFlowConsole = new System.Windows.Forms.Button();
             this.btnSysOption = new System.Windows.Forms.Button();
             this.btnSysSoldout = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.btnTree = new System.Windows.Forms.Button();
             this.btnLog = new System.Windows.Forms.Button();
             this.btnPosMac = new System.Windows.Forms.Button();
-            this.btnSysPosGroup = new System.Windows.Forms.Button();
             this.panelAdminConsole.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -74,10 +74,10 @@
             // 
             // panelAdminConsole
             // 
+            this.panelAdminConsole.Controls.Add(this.btnSysGoodsTicketRule);
             this.panelAdminConsole.Controls.Add(this.btnSysPosGroup);
             this.panelAdminConsole.Controls.Add(this.groupBox2);
             this.panelAdminConsole.Controls.Add(this.groupBox1);
-            this.panelAdminConsole.Controls.Add(this.btnSysGoodsTicket);
             this.panelAdminConsole.Controls.Add(this.btnSysFlowConsole);
             this.panelAdminConsole.Controls.Add(this.btnSysOption);
             this.panelAdminConsole.Controls.Add(this.btnSysSoldout);
@@ -93,6 +93,36 @@
             this.panelAdminConsole.Size = new System.Drawing.Size(127, 612);
             this.panelAdminConsole.TabIndex = 2;
             this.panelAdminConsole.Visible = false;
+            // 
+            // btnSysGoodsTicketRule
+            // 
+            this.btnSysGoodsTicketRule.BackColor = System.Drawing.Color.White;
+            this.btnSysGoodsTicketRule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysGoodsTicketRule.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsTicketRule.Location = new System.Drawing.Point(7, 194);
+            this.btnSysGoodsTicketRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysGoodsTicketRule.Name = "btnSysGoodsTicketRule";
+            this.btnSysGoodsTicketRule.Size = new System.Drawing.Size(112, 30);
+            this.btnSysGoodsTicketRule.TabIndex = 18;
+            this.btnSysGoodsTicketRule.TabStop = false;
+            this.btnSysGoodsTicketRule.Text = "티켓초과요금";
+            this.btnSysGoodsTicketRule.UseVisualStyleBackColor = false;
+            this.btnSysGoodsTicketRule.Click += new System.EventHandler(this.btnSysGoodsTicketRule_Click);
+            // 
+            // btnSysPosGroup
+            // 
+            this.btnSysPosGroup.BackColor = System.Drawing.Color.White;
+            this.btnSysPosGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSysPosGroup.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysPosGroup.Location = new System.Drawing.Point(7, 69);
+            this.btnSysPosGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSysPosGroup.Name = "btnSysPosGroup";
+            this.btnSysPosGroup.Size = new System.Drawing.Size(112, 30);
+            this.btnSysPosGroup.TabIndex = 17;
+            this.btnSysPosGroup.TabStop = false;
+            this.btnSysPosGroup.Text = "포스그룹";
+            this.btnSysPosGroup.UseVisualStyleBackColor = false;
+            this.btnSysPosGroup.Click += new System.EventHandler(this.btnSysPosGroup_Click);
             // 
             // groupBox2
             // 
@@ -112,10 +142,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.label2.Location = new System.Drawing.Point(66, 23);
+            this.label2.Font = new System.Drawing.Font("맑은 고딕", 9.75F);
+            this.label2.Location = new System.Drawing.Point(64, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 15);
+            this.label2.Size = new System.Drawing.Size(34, 17);
             this.label2.TabIndex = 16;
             this.label2.Text = "순차";
             // 
@@ -127,7 +157,7 @@
             this.btnSysGoodsGroupPosSeq.Location = new System.Drawing.Point(48, 41);
             this.btnSysGoodsGroupPosSeq.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsGroupPosSeq.Name = "btnSysGoodsGroupPosSeq";
-            this.btnSysGoodsGroupPosSeq.Size = new System.Drawing.Size(68, 40);
+            this.btnSysGoodsGroupPosSeq.Size = new System.Drawing.Size(68, 36);
             this.btnSysGoodsGroupPosSeq.TabIndex = 14;
             this.btnSysGoodsGroupPosSeq.TabStop = false;
             this.btnSysGoodsGroupPosSeq.Text = "그룹\r\n";
@@ -139,10 +169,10 @@
             this.btnSysGoodsItemPosSeq.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItemPosSeq.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSysGoodsItemPosSeq.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItemPosSeq.Location = new System.Drawing.Point(48, 85);
+            this.btnSysGoodsItemPosSeq.Location = new System.Drawing.Point(48, 81);
             this.btnSysGoodsItemPosSeq.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItemPosSeq.Name = "btnSysGoodsItemPosSeq";
-            this.btnSysGoodsItemPosSeq.Size = new System.Drawing.Size(68, 50);
+            this.btnSysGoodsItemPosSeq.Size = new System.Drawing.Size(68, 54);
             this.btnSysGoodsItemPosSeq.TabIndex = 15;
             this.btnSysGoodsItemPosSeq.TabStop = false;
             this.btnSysGoodsItemPosSeq.Text = "상품\r\n";
@@ -152,10 +182,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9F);
-            this.label1.Location = new System.Drawing.Point(8, 23);
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 8F);
+            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.Location = new System.Drawing.Point(8, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 15);
+            this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "좌표";
             // 
@@ -163,11 +194,12 @@
             // 
             this.btnSysGoodsGroupPosXY.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsGroupPosXY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsGroupPosXY.Font = new System.Drawing.Font("굴림", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsGroupPosXY.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsGroupPosXY.ForeColor = System.Drawing.Color.Gray;
             this.btnSysGoodsGroupPosXY.Location = new System.Drawing.Point(4, 41);
             this.btnSysGoodsGroupPosXY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsGroupPosXY.Name = "btnSysGoodsGroupPosXY";
-            this.btnSysGoodsGroupPosXY.Size = new System.Drawing.Size(41, 40);
+            this.btnSysGoodsGroupPosXY.Size = new System.Drawing.Size(41, 36);
             this.btnSysGoodsGroupPosXY.TabIndex = 10;
             this.btnSysGoodsGroupPosXY.TabStop = false;
             this.btnSysGoodsGroupPosXY.Text = "그룹\r\n";
@@ -178,11 +210,12 @@
             // 
             this.btnSysGoodsItemPosXY.BackColor = System.Drawing.Color.White;
             this.btnSysGoodsItemPosXY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsItemPosXY.Font = new System.Drawing.Font("굴림", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsItemPosXY.Location = new System.Drawing.Point(4, 85);
+            this.btnSysGoodsItemPosXY.Font = new System.Drawing.Font("굴림", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnSysGoodsItemPosXY.ForeColor = System.Drawing.Color.DimGray;
+            this.btnSysGoodsItemPosXY.Location = new System.Drawing.Point(4, 81);
             this.btnSysGoodsItemPosXY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSysGoodsItemPosXY.Name = "btnSysGoodsItemPosXY";
-            this.btnSysGoodsItemPosXY.Size = new System.Drawing.Size(41, 50);
+            this.btnSysGoodsItemPosXY.Size = new System.Drawing.Size(41, 54);
             this.btnSysGoodsItemPosXY.TabIndex = 12;
             this.btnSysGoodsItemPosXY.TabStop = false;
             this.btnSysGoodsItemPosXY.Text = "상품\r\n";
@@ -229,21 +262,6 @@
             this.btnSysGoodsItemKiosk.Text = "상품";
             this.btnSysGoodsItemKiosk.UseVisualStyleBackColor = false;
             this.btnSysGoodsItemKiosk.Click += new System.EventHandler(this.btnSysGoodsItemKiosk_Click);
-            // 
-            // btnSysGoodsTicket
-            // 
-            this.btnSysGoodsTicket.BackColor = System.Drawing.Color.White;
-            this.btnSysGoodsTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysGoodsTicket.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysGoodsTicket.Location = new System.Drawing.Point(7, 194);
-            this.btnSysGoodsTicket.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysGoodsTicket.Name = "btnSysGoodsTicket";
-            this.btnSysGoodsTicket.Size = new System.Drawing.Size(112, 30);
-            this.btnSysGoodsTicket.TabIndex = 9;
-            this.btnSysGoodsTicket.TabStop = false;
-            this.btnSysGoodsTicket.Text = "티켓상품";
-            this.btnSysGoodsTicket.UseVisualStyleBackColor = false;
-            this.btnSysGoodsTicket.Click += new System.EventHandler(this.btnSysGoodsTicket_Click);
             // 
             // btnSysFlowConsole
             // 
@@ -458,21 +476,6 @@
             this.btnPosMac.UseVisualStyleBackColor = false;
             this.btnPosMac.Click += new System.EventHandler(this.btnPosMac_Click);
             // 
-            // btnSysPosGroup
-            // 
-            this.btnSysPosGroup.BackColor = System.Drawing.Color.White;
-            this.btnSysPosGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSysPosGroup.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnSysPosGroup.Location = new System.Drawing.Point(7, 69);
-            this.btnSysPosGroup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnSysPosGroup.Name = "btnSysPosGroup";
-            this.btnSysPosGroup.Size = new System.Drawing.Size(112, 30);
-            this.btnSysPosGroup.TabIndex = 17;
-            this.btnSysPosGroup.TabStop = false;
-            this.btnSysPosGroup.Text = "포스그룹";
-            this.btnSysPosGroup.UseVisualStyleBackColor = false;
-            this.btnSysPosGroup.Click += new System.EventHandler(this.btnSysPosGroup_Click);
-            // 
             // frmSysAdmin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -516,7 +519,6 @@
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.Button btnSysFlowConsole;
         private System.Windows.Forms.Button btnTree;
-        private System.Windows.Forms.Button btnSysGoodsTicket;
         private System.Windows.Forms.Button btnSysGoodsItemKiosk;
         private System.Windows.Forms.Button btnSysGoodsItemPosXY;
         private System.Windows.Forms.Button btnSysGoodsGroupKiosk;
@@ -528,5 +530,6 @@
         private System.Windows.Forms.Button btnSysGoodsGroupPosSeq;
         private System.Windows.Forms.Button btnSysGoodsItemPosSeq;
         private System.Windows.Forms.Button btnSysPosGroup;
+        private System.Windows.Forms.Button btnSysGoodsTicketRule;
     }
 }

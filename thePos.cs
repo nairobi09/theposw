@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-018";   // 
+        public static String mAppVersion = "TPW1-2025-019";   // 
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -380,7 +381,7 @@ namespace thepos
 
 
 
-
+        /*
         public struct GoodsTicket
         {
             public string goods_code;
@@ -392,6 +393,21 @@ namespace thepos
             public String link_goods_code;
         }
         public static GoodsTicket[] mGoodsTicket;
+        */
+
+
+        public struct TicketRule
+        {
+            public string ticket_rule_code;
+            public string ticket_rule_name;
+            public string available_minute;
+            public String is_charge;
+            public String ot_free_minute;
+            public String ot_std_minute;
+            public String ot_amt;
+            public String link_goods_code;
+        }
+        public static TicketRule[] mTicketRule;
 
 
 
@@ -402,6 +418,7 @@ namespace thepos
             public int amt;
             public String online_coupon;
             public String ticket; // 일반상품 0. 티켓상품 1
+            public String ticket_rule_code;
             public String taxfree; // 과세품 0, 면세품 1
             public String shop_code;
             public String nod_code1;
@@ -1150,6 +1167,24 @@ namespace thepos
             return nod_code2;
         }
 
+
+        public static String get_ticket_rule_name(String code)
+        {
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == code)
+                {
+                    return mTicketRule[i].ticket_rule_name;
+                }
+            }
+
+            return code;
+        }
+
+
+
+
+
         public static bool is_number(String str)
         {
             int tNum;
@@ -1559,5 +1594,266 @@ namespace thepos
             return flow_step_name;
         }
 
+
+
+
+        //
+
+        public static String get_expect_exit_dt_by_ticket_rule_code(String ticket_rule_code, String entry_dt)
+        {
+            // 퇴장예상시간 구하기
+            try
+            {
+                int minutesToAdd = get_goods_available_minute_by_ticket_rule_code(ticket_rule_code);
+                DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                dateTime = dateTime.AddMinutes(minutesToAdd);
+                return dateTime.ToString("yyyyMMddHHmmss");
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        /*
+        public static String get_expect_exit_dtxxx(String goods_code, String entry_dt)
+        {
+            // 퇴장예상시간 구하기
+            try
+            {
+                int minutesToAdd = get_goods_available_minute_by_goods_code(goods_code);
+                DateTime dateTime = DateTime.ParseExact(entry_dt, "yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+                dateTime = dateTime.AddMinutes(minutesToAdd);
+                return dateTime.ToString("yyyyMMddHHmmss");
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        */
+
+        /*
+        public static int get_goods_available_minute_by_goods_code(String goods_code)
+        {
+            for (int i = 0; i < mGoodsTicket.Length; i++)
+            {
+                if (mGoodsTicket[i].goods_code == goods_code)
+                {
+                    if (is_number(mGoodsTicket[i].available_minute))
+                    {
+                        return Int16.Parse(mGoodsTicket[i].available_minute);
+                    }
+                }
+            }
+
+            return 0;
+        }
+        */
+
+
+        public static int get_goods_available_minute_by_ticket_rule_code(String ticket_rule_code)
+        {
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == ticket_rule_code)
+                {
+                    if (is_number(mTicketRule[i].available_minute))
+                    {
+                        return Int16.Parse(mTicketRule[i].available_minute);
+                    }
+                }
+            }
+
+            return 0;
+        }
+
+        /*
+        public static int get_ot_cnt_xxx(int gap_mm, String goods_code)
+        {
+            String is_charge = "";
+            String available_minute = "";
+            String ot_free_minute = "";
+            String ot_std_minute = "";
+
+            for (int i = 0; i < mGoodsTicket.Length; i++)
+            {
+                if (mGoodsTicket[i].goods_code == goods_code)
+                {
+                    is_charge = mGoodsTicket[i].is_charge;
+                    available_minute = mGoodsTicket[i].available_minute;
+                    ot_free_minute = mGoodsTicket[i].ot_free_minute;
+                    ot_std_minute = mGoodsTicket[i].ot_std_minute;
+                }
+            }
+
+            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute))
+            {
+                return 0;
+            }
+
+            int n_available_minute = Int16.Parse(available_minute);
+            int n_ot_free_minute = Int16.Parse(ot_free_minute);
+
+            //
+            if (gap_mm < n_available_minute + n_ot_free_minute)
+            {
+                return 0;
+            }
+
+            //
+            int n_ot_std_minute = Int16.Parse(ot_std_minute);
+            int real_ot_minute = gap_mm - n_available_minute - n_ot_free_minute;
+            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
+
+            return ot_cnt;
+        }
+        */
+
+        public static int get_ot_cnt_by_ticket_rule_code(int gap_mm, String ticket_rule_code)
+        {
+            String is_charge = "";
+            String available_minute = "";
+            String ot_free_minute = "";
+            String ot_std_minute = "";
+
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == ticket_rule_code)
+                {
+                    is_charge = mTicketRule[i].is_charge;
+                    available_minute = mTicketRule[i].available_minute;
+                    ot_free_minute = mTicketRule[i].ot_free_minute;
+                    ot_std_minute = mTicketRule[i].ot_std_minute;
+                }
+            }
+
+            if (is_charge != "Y" | !is_number(ot_free_minute) | !is_number(ot_std_minute))
+            {
+                return 0;
+            }
+
+            int n_available_minute = Int16.Parse(available_minute);
+            int n_ot_free_minute = Int16.Parse(ot_free_minute);
+
+            //
+            if (gap_mm < n_available_minute + n_ot_free_minute)
+            {
+                return 0;
+            }
+
+            //
+            int n_ot_std_minute = Int16.Parse(ot_std_minute);
+            int real_ot_minute = gap_mm - n_available_minute - n_ot_free_minute;
+            int ot_cnt = (real_ot_minute + n_ot_std_minute - 1) / n_ot_std_minute;
+
+            return ot_cnt;
+        }
+
+        /*
+        public static int get_ot_amt(String goods_code)
+        {
+            String is_charge = "";
+            String ot_amt = "";
+
+            for (int i = 0; i < mGoodsTicket.Length; i++)
+            {
+                if (mGoodsTicket[i].goods_code == goods_code)
+                {
+                    is_charge = mGoodsTicket[i].is_charge;
+                    ot_amt = mGoodsTicket[i].ot_amt;
+                }
+            }
+
+            if (is_charge != "Y" | !is_number(ot_amt))
+            {
+                return 0;
+            }
+
+
+            int n_ot_amt = Int16.Parse(ot_amt);
+
+            return n_ot_amt;
+        }
+        */
+
+        public static int get_ot_amt_by_ticket_rule_code(String ticket_rule_code)
+        {
+            String is_charge = "";
+            String ot_amt = "";
+
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == ticket_rule_code)
+                {
+                    is_charge = mTicketRule[i].is_charge;
+                    ot_amt = mTicketRule[i].ot_amt;
+                }
+            }
+
+            if (is_charge != "Y" | !is_number(ot_amt))
+            {
+                return 0;
+            }
+
+
+            int n_ot_amt = Int16.Parse(ot_amt);
+
+            return n_ot_amt;
+        }
+
+        /*
+        public static String get_link_goods_code_xxx(String goods_code)
+        {
+            // 초과요금 과금시 상품매출로 잡기위한 과금상품("초과요금")
+
+            String link_goods_code = "";
+
+
+            for (int i = 0; i < mGoodsTicket.Length; i++)
+            {
+                if (mGoodsTicket[i].goods_code == goods_code)
+                {
+                    link_goods_code = mGoodsTicket[i].link_goods_code;
+                }
+            }
+
+            return link_goods_code;
+        }
+        */
+
+        public static String get_link_goods_code_by_ticket_rule_code(String ticket_rule_code)
+        {
+            // 초과요금 과금시 상품매출로 잡기위한 과금상품("초과요금")
+
+            String link_goods_code = "";
+
+
+            for (int i = 0; i < mTicketRule.Length; i++)
+            {
+                if (mTicketRule[i].ticket_rule_code == ticket_rule_code)
+                {
+                    link_goods_code = mTicketRule[i].link_goods_code;
+                }
+            }
+
+            return link_goods_code;
+        }
+
+        public static String get_ticket_rule_code(String goods_code)
+        {
+            String ticket_rule_code = "";
+
+
+            for (int i = 0; i < mGoodsList.Count; i++)
+            {
+                if (mGoodsList[i].goods_code == goods_code)
+                {
+                    ticket_rule_code = mGoodsList[i].ticket_rule_code;
+                }
+            }
+
+            return ticket_rule_code;
+        }
     }
 }

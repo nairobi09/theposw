@@ -134,17 +134,19 @@ namespace thepos
             fSysAdmin.Show();
         }
 
-        private void btnSysGoodsTicket_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "GoodsTicket") return;
 
-            mThisButtonClick = "GoodsTicket";
+        private void btnSysGoodsTicketRule_Click(object sender, EventArgs e)
+        {
+            if (mThisButtonClick == "GoodsTicketRule") return;
+
+            mThisButtonClick = "GoodsTicketRule";
             panelView.Controls.Clear();
 
-            frmSysGoodsTicket fSysAdmin = new frmSysGoodsTicket() { TopLevel = false, TopMost = true };
+            frmSysGoodsTicketRule fSysAdmin = new frmSysGoodsTicketRule() { TopLevel = false, TopMost = true };
             panelView.Controls.Add(fSysAdmin);
             fSysAdmin.Show();
         }
+
 
 
         //
