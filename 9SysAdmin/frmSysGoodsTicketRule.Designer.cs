@@ -81,7 +81,7 @@
             this.tbOtFreeMinute.MaxLength = 30;
             this.tbOtFreeMinute.Name = "tbOtFreeMinute";
             this.tbOtFreeMinute.Size = new System.Drawing.Size(117, 23);
-            this.tbOtFreeMinute.TabIndex = 11;
+            this.tbOtFreeMinute.TabIndex = 4;
             // 
             // tbOtStdMinute
             // 
@@ -91,7 +91,7 @@
             this.tbOtStdMinute.MaxLength = 16;
             this.tbOtStdMinute.Name = "tbOtStdMinute";
             this.tbOtStdMinute.Size = new System.Drawing.Size(117, 23);
-            this.tbOtStdMinute.TabIndex = 12;
+            this.tbOtStdMinute.TabIndex = 5;
             // 
             // label3
             // 
@@ -128,7 +128,7 @@
             this.tbAvailableMinute.MaxLength = 16;
             this.tbAvailableMinute.Name = "tbAvailableMinute";
             this.tbAvailableMinute.Size = new System.Drawing.Size(78, 23);
-            this.tbAvailableMinute.TabIndex = 7;
+            this.tbAvailableMinute.TabIndex = 2;
             // 
             // lblGoodsAmtTitle
             // 
@@ -149,7 +149,7 @@
             this.cbIsCharge.Location = new System.Drawing.Point(130, 120);
             this.cbIsCharge.Name = "cbIsCharge";
             this.cbIsCharge.Size = new System.Drawing.Size(48, 16);
-            this.cbIsCharge.TabIndex = 13;
+            this.cbIsCharge.TabIndex = 3;
             this.cbIsCharge.Text = "과금";
             this.cbIsCharge.UseVisualStyleBackColor = true;
             // 
@@ -162,7 +162,7 @@
             this.btnDelete.Location = new System.Drawing.Point(703, 644);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 30);
-            this.btnDelete.TabIndex = 84;
+            this.btnDelete.TabIndex = 10;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -223,7 +223,7 @@
             this.tbCode.MaxLength = 16;
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(78, 23);
-            this.tbCode.TabIndex = 74;
+            this.tbCode.TabIndex = 0;
             // 
             // label6
             // 
@@ -244,7 +244,7 @@
             this.tbName.MaxLength = 16;
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(130, 23);
-            this.tbName.TabIndex = 72;
+            this.tbName.TabIndex = 1;
             // 
             // tbLinkGoodsCode
             // 
@@ -254,7 +254,7 @@
             this.tbLinkGoodsCode.MaxLength = 16;
             this.tbLinkGoodsCode.Name = "tbLinkGoodsCode";
             this.tbLinkGoodsCode.Size = new System.Drawing.Size(117, 23);
-            this.tbLinkGoodsCode.TabIndex = 71;
+            this.tbLinkGoodsCode.TabIndex = 7;
             // 
             // tbOtAmt
             // 
@@ -264,7 +264,7 @@
             this.tbOtAmt.MaxLength = 16;
             this.tbOtAmt.Name = "tbOtAmt";
             this.tbOtAmt.Size = new System.Drawing.Size(117, 23);
-            this.tbOtAmt.TabIndex = 71;
+            this.tbOtAmt.TabIndex = 6;
             // 
             // label5
             // 
@@ -301,7 +301,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(703, 598);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 40);
-            this.btnUpdate.TabIndex = 83;
+            this.btnUpdate.TabIndex = 9;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -316,7 +316,7 @@
             this.btnAdd.Location = new System.Drawing.Point(703, 552);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 40);
-            this.btnAdd.TabIndex = 82;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "추가";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -394,9 +394,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(59, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 14);
+            this.label1.Size = new System.Drawing.Size(138, 14);
             this.label1.TabIndex = 87;
-            this.label1.Text = "티켓상품 초과요금";
+            this.label1.Text = "티켓상품 초과요금룰";
             // 
             // frmSysGoodsTicketRule
             // 

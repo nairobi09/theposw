@@ -66,6 +66,29 @@ namespace thepos._9SysAdmin
                         lvItem.SubItems.Add(arr[i]["shopCode"].ToString());
                         lvItem.SubItems.Add(arr[i]["posType"].ToString());
 
+                        lvItem.SubItems.Add(arr[i]["conCnt"].ToString());
+
+
+                        String ldt = arr[i]["lastDt"].ToString();
+                        String yymmddhhmmss = "";
+
+                        if (ldt.Length >= 14)
+                        {
+                            String y = arr[i]["lastDt"].ToString().Substring(0, 8);
+                            String d = arr[i]["lastDt"].ToString().Substring(8, 6);
+                            yymmddhhmmss = get_MMddHHmm(y, d);
+                        }
+                        else
+                        {
+                            yymmddhhmmss = ldt;
+                        }
+
+
+                        lvItem.SubItems.Add(yymmddhhmmss);
+                        lvItem.SubItems.Add(arr[i]["uname"].ToString());
+
+
+
                         lvItem.Tag = arr[i]["siteId"].ToString();
 
                         lvwList.Items.Add(lvItem);
@@ -94,6 +117,7 @@ namespace thepos._9SysAdmin
 
             tbShopCode.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(pos_group_code)].Text;
             tbMAC.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(mac)].Text;
+            tbUname.Text = lvwList.SelectedItems[0].SubItems[lvwList.Columns.IndexOf(u_name)].Text;
 
         }
 
@@ -108,7 +132,7 @@ namespace thepos._9SysAdmin
             parameters["shopCode"] = tbShopCode.Text;
             parameters["macAddr"] = tbMAC.Text;
             parameters["posStatus"] = "Y";
-
+            parameters["uname"] = tbUname.Text;
 
             //? bizDt 추가요망
             if (mRequestPatch("pos", parameters))

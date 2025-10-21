@@ -95,6 +95,8 @@
             this.nodname2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.option_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticketrulecode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ticketrulename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.soldout = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.allim = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.online_coupon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -109,8 +111,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ticketrulecode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ticketrulename = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.panel1.SuspendLayout();
@@ -268,11 +268,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(340, 90);
+            this.label8.Location = new System.Drawing.Point(330, 90);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.Size = new System.Drawing.Size(65, 12);
             this.label8.TabIndex = 78;
-            this.label8.Text = "초과요금";
+            this.label8.Text = "초과요금룰";
             // 
             // cbTicketRule
             // 
@@ -822,6 +822,16 @@
             this.option_name.Text = "옵션";
             this.option_name.Width = 80;
             // 
+            // ticketrulecode
+            // 
+            this.ticketrulecode.Text = "ticket_rule_code";
+            this.ticketrulecode.Width = 0;
+            // 
+            // ticketrulename
+            // 
+            this.ticketrulename.Text = "초과요금";
+            this.ticketrulename.Width = 100;
+            // 
             // soldout
             // 
             this.soldout.Text = "품절";
@@ -926,16 +936,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(183, 30);
             this.panel1.TabIndex = 81;
-            // 
-            // ticketrulecode
-            // 
-            this.ticketrulecode.Text = "ticket_rule_code";
-            this.ticketrulecode.Width = 0;
-            // 
-            // ticketrulename
-            // 
-            this.ticketrulename.Text = "초과요금";
-            this.ticketrulename.Width = 100;
             // 
             // frmSysGoods
             // 
