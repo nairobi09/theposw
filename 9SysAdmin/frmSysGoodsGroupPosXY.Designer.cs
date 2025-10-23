@@ -437,7 +437,7 @@
             this.lblPosNo.Name = "lblPosNo";
             this.lblPosNo.Size = new System.Drawing.Size(63, 14);
             this.lblPosNo.TabIndex = 41;
-            this.lblPosNo.Text = "포스업장";
+            this.lblPosNo.Text = "포스그룹";
             // 
             // btnView
             // 

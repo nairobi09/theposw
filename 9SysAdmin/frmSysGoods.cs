@@ -416,12 +416,6 @@ namespace thepos._9SysAdmin
 
 
 
-                        //
-                        lvItem.SubItems.Add(tTaxFree);
-                        lvItem.SubItems.Add(tCutout);
-
-
-
                         if (arr[0]["taxFree"].ToString() == "Y") tTaxFree = "Y";
                         if (arr[0]["cutout"].ToString() == "Y") tCutout = "Y";
                         if (arr[0]["soldout"].ToString() == "Y") tSoldout = "Y";

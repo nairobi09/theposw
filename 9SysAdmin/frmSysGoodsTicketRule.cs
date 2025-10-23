@@ -301,7 +301,7 @@ namespace theposw._9SysAdmin
             parameters["siteId"] = mSiteId;
             parameters["ticketRuleCode"] = tSelectedRuleCode;
 
-            if (mRequestDelete("goodsTicket", parameters))
+            if (mRequestDelete("ticketRule", parameters))
             {
                 if (mObj["resultCode"].ToString() == "200")
                 {

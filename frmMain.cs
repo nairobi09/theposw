@@ -983,7 +983,7 @@ namespace thepos
                     }
                     else
                     {
-                        MessageBox.Show("상품정보 오류. goodsItemAndGoods\n\n" + mObj["resultMsg"].ToString(), "thepos");
+                        MessageBox.Show("상품정보 오류. goods\n\n" + mObj["resultMsg"].ToString(), "thepos");
                         return;
                     }
                 }

@@ -50,9 +50,9 @@ namespace thepos
 
             //
             cbPosGroup.Items.Clear();
-            for (int i = 0; i < mShop.Length; i++)
+            for (int i = 0; i < mPosGroupCodeList.Count; i++)
             {
-                cbPosGroup.Items.Add(mShop[i].shop_name);
+                cbPosGroup.Items.Add(mPosGroupNameList[i]);
             }
 
 

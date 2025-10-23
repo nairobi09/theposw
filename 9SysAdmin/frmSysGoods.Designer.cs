@@ -181,7 +181,7 @@
             this.cbCutout.Size = new System.Drawing.Size(48, 16);
             this.cbCutout.TabIndex = 15;
             this.cbCutout.TabStop = false;
-            this.cbCutout.Text = "중지";
+            this.cbCutout.Text = "절판";
             this.cbCutout.UseVisualStyleBackColor = true;
             // 
             // btnAdd
@@ -205,9 +205,9 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(777, 571);
+            this.btnUpdate.Location = new System.Drawing.Point(777, 570);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(79, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(79, 50);
             this.btnUpdate.TabIndex = 22;
             this.btnUpdate.TabStop = false;
             this.btnUpdate.Text = "수정";
@@ -666,9 +666,9 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(777, 617);
+            this.btnDelete.Location = new System.Drawing.Point(777, 626);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(79, 25);
+            this.btnDelete.Size = new System.Drawing.Size(79, 30);
             this.btnDelete.TabIndex = 23;
             this.btnDelete.TabStop = false;
             this.btnDelete.Text = "삭제";
@@ -726,7 +726,7 @@
             // goodscode
             // 
             this.goodscode.Text = "(코드)";
-            this.goodscode.Width = 50;
+            this.goodscode.Width = 70;
             // 
             // lvwList
             // 
@@ -829,7 +829,7 @@
             // 
             // ticketrulename
             // 
-            this.ticketrulename.Text = "초과요금";
+            this.ticketrulename.Text = "초과요금룰";
             this.ticketrulename.Width = 100;
             // 
             // soldout
@@ -883,9 +883,9 @@
             this.btnExcelUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcelUp.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnExcelUp.ForeColor = System.Drawing.Color.DimGray;
-            this.btnExcelUp.Location = new System.Drawing.Point(777, 653);
+            this.btnExcelUp.Location = new System.Drawing.Point(777, 679);
             this.btnExcelUp.Name = "btnExcelUp";
-            this.btnExcelUp.Size = new System.Drawing.Size(79, 25);
+            this.btnExcelUp.Size = new System.Drawing.Size(79, 22);
             this.btnExcelUp.TabIndex = 24;
             this.btnExcelUp.TabStop = false;
             this.btnExcelUp.Text = "엑셀업로드";
@@ -896,7 +896,7 @@
             // 
             this.cbShopView.Font = new System.Drawing.Font("굴림", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cbShopView.FormattingEnabled = true;
-            this.cbShopView.Location = new System.Drawing.Point(49, 3);
+            this.cbShopView.Location = new System.Drawing.Point(71, 3);
             this.cbShopView.Name = "cbShopView";
             this.cbShopView.Size = new System.Drawing.Size(124, 23);
             this.cbShopView.TabIndex = 79;
@@ -909,9 +909,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(87)))), ((int)(((byte)(96)))));
             this.label4.Location = new System.Drawing.Point(6, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 14);
+            this.label4.Size = new System.Drawing.Size(63, 14);
             this.label4.TabIndex = 78;
-            this.label4.Text = "업장";
+            this.label4.Text = "상품그룹";
             // 
             // btnView
             // 
@@ -932,9 +932,9 @@
             // 
             this.panel1.Controls.Add(this.cbShopView);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(549, 12);
+            this.panel1.Location = new System.Drawing.Point(527, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(183, 30);
+            this.panel1.Size = new System.Drawing.Size(207, 30);
             this.panel1.TabIndex = 81;
             // 
             // frmSysGoods
