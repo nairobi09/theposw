@@ -726,7 +726,6 @@
             // goodscode
             // 
             this.goodscode.Text = "(코드)";
-            this.goodscode.Width = 70;
             // 
             // lvwList
             // 

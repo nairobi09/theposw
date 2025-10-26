@@ -63,7 +63,7 @@ namespace thepos
 
         // 배포시 버전관리 - 로그와 연동
 
-        public static String mAppVersion = "TPW1-2025-021";   // 
+        public static String mAppVersion = "TPW1-2025-022";   // 
 
         public static String mTheposColor = "#3380cc";
         //public static String mTheposColor = "#808080";
@@ -882,7 +882,7 @@ namespace thepos
 
 
 
-        // 빠른퇴장 화면이 떠있는지 보자...
+        // 퇴장 화면이 떠있는지 보자...
         public static bool isFlowTicketExit = false;
 
 

@@ -38,14 +38,14 @@
             this.stat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_group_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pos_type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.conn_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.conn_last = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.u_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbShopCode = new System.Windows.Forms.TextBox();
             this.lblShopCodeTitle = new System.Windows.Forms.Label();
             this.tbMAC = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.conn_cnt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.conn_last = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.u_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbUname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -145,6 +145,21 @@
             this.pos_type.Text = "유형";
             this.pos_type.Width = 50;
             // 
+            // conn_cnt
+            // 
+            this.conn_cnt.Text = "접속수";
+            this.conn_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // conn_last
+            // 
+            this.conn_last.Text = "최종접속";
+            this.conn_last.Width = 120;
+            // 
+            // u_name
+            // 
+            this.u_name.Text = "실사용자";
+            this.u_name.Width = 130;
+            // 
             // tbShopCode
             // 
             this.tbShopCode.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -193,24 +208,9 @@
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(35, 586);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 84);
+            this.label2.Size = new System.Drawing.Size(135, 98);
             this.label2.TabIndex = 41;
-            this.label2.Text = "포스번호룰\r\n\r\n01~ 포스\r\n11~ 키오스크\r\n21~ 테블릿(KDS)\r\n31~ 모바일(안드로이드)";
-            // 
-            // conn_cnt
-            // 
-            this.conn_cnt.Text = "접속수";
-            this.conn_cnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // conn_last
-            // 
-            this.conn_last.Text = "최종접속";
-            this.conn_last.Width = 120;
-            // 
-            // u_name
-            // 
-            this.u_name.Text = "실사용자";
-            this.u_name.Width = 100;
+            this.label2.Text = "포스번호룰\r\n\r\n01~ 포스\r\n11~ 키오스크\r\n21~ 테블릿(KDS)\r\n31~ 모바일(가앰점)\r\n41~ 모바일(공급자)\r\n";
             // 
             // tbUname
             // 

@@ -58,16 +58,16 @@
             this.cbDCR = new System.Windows.Forms.ComboBox();
             this.btnDCCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTheNo = new System.Windows.Forms.Label();
             this.tbTicketNo = new System.Windows.Forms.TextBox();
             this.btnView = new System.Windows.Forms.Button();
             this.panelback = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            this.panelback.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelback.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvwList
@@ -224,7 +224,7 @@
             this.lblTitle.Padding = new System.Windows.Forms.Padding(4);
             this.lblTitle.Size = new System.Drawing.Size(512, 40);
             this.lblTitle.TabIndex = 46;
-            this.lblTitle.Text = "빠른퇴장";
+            this.lblTitle.Text = "퇴장";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnPrint
@@ -357,6 +357,26 @@
             this.panel1.Size = new System.Drawing.Size(511, 50);
             this.panel1.TabIndex = 92;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon1;
+            this.pictureBox2.Location = new System.Drawing.Point(171, 14);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 82;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
+            this.pictureBox1.Location = new System.Drawing.Point(200, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 81;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblTheNo
             // 
             this.lblTheNo.AutoSize = true;
@@ -415,26 +435,6 @@
             this.panelback.Size = new System.Drawing.Size(523, 539);
             this.panelback.TabIndex = 93;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::theposw.Properties.Resources.locker_icon1;
-            this.pictureBox2.Location = new System.Drawing.Point(171, 14);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 82;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::theposw.Properties.Resources.ticket_icon;
-            this.pictureBox1.Location = new System.Drawing.Point(200, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 81;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmFlowTicketExit
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -450,9 +450,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmFlowTicketExit_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelback.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelback.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

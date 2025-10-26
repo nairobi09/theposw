@@ -466,7 +466,7 @@ namespace thepos
                 else if (mFlowConsol[i].code == "TICKETEXIT")
                 {
                     btnFlowItem.Name = "btnPayConsoleTicketExit";
-                    btnFlowItem.Text = "빠른퇴장";
+                    btnFlowItem.Text = "퇴장";
                     btnFlowItem.Click += (sender, args) => ClickedFlowTicketExit();
                 }
                 else if (mFlowConsol[i].code == "LOCKER")

@@ -90,7 +90,7 @@
             this.lblGoodsAmtTitle.Name = "lblGoodsAmtTitle";
             this.lblGoodsAmtTitle.Size = new System.Drawing.Size(46, 13);
             this.lblGoodsAmtTitle.TabIndex = 44;
-            this.lblGoodsAmtTitle.Text = "업장명";
+            this.lblGoodsAmtTitle.Text = "그룹명";
             // 
             // lblGoodsNameTitle
             // 
@@ -99,9 +99,9 @@
             this.lblGoodsNameTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblGoodsNameTitle.Location = new System.Drawing.Point(18, 32);
             this.lblGoodsNameTitle.Name = "lblGoodsNameTitle";
-            this.lblGoodsNameTitle.Size = new System.Drawing.Size(63, 14);
+            this.lblGoodsNameTitle.Size = new System.Drawing.Size(35, 14);
             this.lblGoodsNameTitle.TabIndex = 43;
-            this.lblGoodsNameTitle.Text = "업장코드";
+            this.lblGoodsNameTitle.Text = "코드";
             // 
             // tbPosGroupCode
             // 

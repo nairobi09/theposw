@@ -858,7 +858,7 @@ namespace thepos
                 frmSales.ConsoleEnable();
             }
 
-            // 빠른퇴장 화면이 떠있다면..
+            // 퇴장 화면이 떠있다면..
             if (isFlowTicketExit == true)
             {
                 // reload...
