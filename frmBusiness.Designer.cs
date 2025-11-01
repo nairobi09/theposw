@@ -51,6 +51,7 @@
             this.panelTitleConsole = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnMoney = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelNumpad.SuspendLayout();
             this.panelTitleWhite.SuspendLayout();
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnMoney);
             this.panel1.Controls.Add(this.btnBizLastSettlement);
             this.panel1.Controls.Add(this.btnBizOpen);
             this.panel1.Controls.Add(this.panelNumpad);
@@ -74,9 +76,9 @@
             this.btnBizLastSettlement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizLastSettlement.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizLastSettlement.ForeColor = System.Drawing.Color.White;
-            this.btnBizLastSettlement.Location = new System.Drawing.Point(5, 66);
+            this.btnBizLastSettlement.Location = new System.Drawing.Point(5, 72);
             this.btnBizLastSettlement.Name = "btnBizLastSettlement";
-            this.btnBizLastSettlement.Size = new System.Drawing.Size(184, 70);
+            this.btnBizLastSettlement.Size = new System.Drawing.Size(188, 70);
             this.btnBizLastSettlement.TabIndex = 29;
             this.btnBizLastSettlement.TabStop = false;
             this.btnBizLastSettlement.Text = "마감정산";
@@ -89,9 +91,9 @@
             this.btnBizOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBizOpen.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnBizOpen.ForeColor = System.Drawing.Color.White;
-            this.btnBizOpen.Location = new System.Drawing.Point(5, 0);
+            this.btnBizOpen.Location = new System.Drawing.Point(5, 6);
             this.btnBizOpen.Name = "btnBizOpen";
-            this.btnBizOpen.Size = new System.Drawing.Size(184, 60);
+            this.btnBizOpen.Size = new System.Drawing.Size(188, 60);
             this.btnBizOpen.TabIndex = 27;
             this.btnBizOpen.TabStop = false;
             this.btnBizOpen.Text = "준비금";
@@ -113,11 +115,11 @@
             this.panelNumpad.Controls.Add(this.btnKey8);
             this.panelNumpad.Controls.Add(this.btnKey7);
             this.panelNumpad.Controls.Add(this.btnKeyClear);
-            this.panelNumpad.Location = new System.Drawing.Point(4, 215);
+            this.panelNumpad.Location = new System.Drawing.Point(5, 215);
             this.panelNumpad.Margin = new System.Windows.Forms.Padding(30);
             this.panelNumpad.Name = "panelNumpad";
             this.panelNumpad.Padding = new System.Windows.Forms.Padding(30);
-            this.panelNumpad.Size = new System.Drawing.Size(189, 281);
+            this.panelNumpad.Size = new System.Drawing.Size(189, 270);
             this.panelNumpad.TabIndex = 25;
             // 
             // btnKeyTab
@@ -126,9 +128,9 @@
             this.btnKeyTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeyTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKeyTab.ForeColor = System.Drawing.Color.White;
-            this.btnKeyTab.Location = new System.Drawing.Point(65, 212);
+            this.btnKeyTab.Location = new System.Drawing.Point(64, 212);
             this.btnKeyTab.Name = "btnKeyTab";
-            this.btnKeyTab.Size = new System.Drawing.Size(123, 48);
+            this.btnKeyTab.Size = new System.Drawing.Size(124, 48);
             this.btnKeyTab.TabIndex = 2;
             this.btnKeyTab.TabStop = false;
             this.btnKeyTab.Text = "Tab";
@@ -169,9 +171,9 @@
             this.btnKey0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKey0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnKey0.ForeColor = System.Drawing.Color.White;
-            this.btnKey0.Location = new System.Drawing.Point(65, 159);
+            this.btnKey0.Location = new System.Drawing.Point(64, 159);
             this.btnKey0.Name = "btnKey0";
-            this.btnKey0.Size = new System.Drawing.Size(123, 48);
+            this.btnKey0.Size = new System.Drawing.Size(124, 48);
             this.btnKey0.TabIndex = 1;
             this.btnKey0.TabStop = false;
             this.btnKey0.Text = "0";
@@ -360,6 +362,21 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnMoney
+            // 
+            this.btnMoney.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(63)))), ((int)(((byte)(87)))));
+            this.btnMoney.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnMoney.ForeColor = System.Drawing.Color.White;
+            this.btnMoney.Location = new System.Drawing.Point(5, 640);
+            this.btnMoney.Name = "btnMoney";
+            this.btnMoney.Size = new System.Drawing.Size(188, 48);
+            this.btnMoney.TabIndex = 30;
+            this.btnMoney.TabStop = false;
+            this.btnMoney.Text = "돈통";
+            this.btnMoney.UseVisualStyleBackColor = false;
+            this.btnMoney.Click += new System.EventHandler(this.btnMoney_Click);
+            // 
             // frmBusiness
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -405,5 +422,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnBizLastSettlement;
         private System.Windows.Forms.Button btnKeyTab;
+        private System.Windows.Forms.Button btnMoney;
     }
 }

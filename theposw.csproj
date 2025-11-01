@@ -27,10 +27,10 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://thepos.co.kr/setup/theposw1/</InstallUrl>
-    <MinimumRequiredVersion>1.0.0.100</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.0.101</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>101</ApplicationRevision>
+    <ApplicationRevision>102</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -247,12 +247,6 @@
     <Compile Include="2Business\frmBizLastSettlrement.Designer.cs">
       <DependentUpon>frmBizLastSettlrement.cs</DependentUpon>
     </Compile>
-    <Compile Include="2Business\frmBizCashCheck.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2Business\frmBizCashCheck.Designer.cs">
-      <DependentUpon>frmBizCashCheck.cs</DependentUpon>
-    </Compile>
     <Compile Include="3Report\frmReportAllim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,12 +444,6 @@
     </Compile>
     <Compile Include="9SysAdmin\frmSysPayConsole.Designer.cs">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="2Business\frmBizSettlement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="2Business\frmBizSettlement.Designer.cs">
-      <DependentUpon>frmBizSettlement.cs</DependentUpon>
     </Compile>
     <Compile Include="2Business\frmBizOpen.cs">
       <SubType>Form</SubType>
@@ -719,9 +707,6 @@
     <EmbeddedResource Include="2Business\frmBizLastSettlrement.resx">
       <DependentUpon>frmBizLastSettlrement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="2Business\frmBizCashCheck.resx">
-      <DependentUpon>frmBizCashCheck.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="3Report\frmReportAllim.resx">
       <DependentUpon>frmReportAllim.cs</DependentUpon>
     </EmbeddedResource>
@@ -827,9 +812,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="9SysAdmin\frmSysPayConsole.resx">
       <DependentUpon>frmSysPayConsole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="2Business\frmBizSettlement.resx">
-      <DependentUpon>frmBizSettlement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="2Business\frmBizOpen.resx">
       <DependentUpon>frmBizOpen.cs</DependentUpon>

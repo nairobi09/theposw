@@ -169,32 +169,6 @@ namespace thepos
             fBiz.Show();
         }
 
-        // 시제점검 xx
-        private void btnCashCheck_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "BizCashCheck") return;
-
-            mThisButtonClick = "BizCashCheck";
-            panelBiz.Controls.Clear();
-
-            frmBizCashCheck fBiz = new frmBizCashCheck() { TopLevel = false, TopMost = true };
-            panelBiz.Controls.Add(fBiz);
-            fBiz.Show();
-        }
-
-
-        // 정산 xx
-        private void btnBizSettlement_Click(object sender, EventArgs e)
-        {
-            if (mThisButtonClick == "BizClose") return;
-
-            mThisButtonClick = "BizClose";
-            panelBiz.Controls.Clear();
-
-            frmBizSettlement fBiz = new frmBizSettlement() { TopLevel = false, TopMost = true };
-            panelBiz.Controls.Add(fBiz);
-            fBiz.Show();
-        }
 
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -217,6 +191,11 @@ namespace thepos
             frmBizLastSettlement fBiz = new frmBizLastSettlement() { TopLevel = false, TopMost = true };
             panelBiz.Controls.Add(fBiz);
             fBiz.Show();
+        }
+
+        private void btnMoney_Click(object sender, EventArgs e)
+        {
+            open_money_case();
         }
     }
 }

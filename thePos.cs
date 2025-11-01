@@ -1855,5 +1855,40 @@ namespace thepos
 
             return ticket_rule_code;
         }
+
+        public static void open_money_case()   // 돈통
+        {
+            const string ESC = "\u001B";
+            const string InitializePrinter = ESC + "@";
+
+            PrinterUtility.EscPosEpsonCommands.EscPosEpson obj = new PrinterUtility.EscPosEpsonCommands.EscPosEpson();
+
+            byte[] BytesValue = new byte[0];
+            byte[] openDrawerCommand = new byte[] { 0x1B, 0x70, 0x00, 0x19, 0xFA };
+            BytesValue = PrintExtensions.AddBytes(BytesValue, openDrawerCommand);
+
+
+            try
+            {
+                SerialPort mySerialPort = new SerialPort();
+                mySerialPort.PortName = mBillPrinterPort;
+                mySerialPort.BaudRate = convert_number(mBillPrinterSpeed);
+                mySerialPort.Parity = Parity.None;
+                mySerialPort.StopBits = StopBits.One;
+                mySerialPort.DataBits = 8;
+                mySerialPort.Handshake = Handshake.None;
+
+                mySerialPort.Open();
+
+                mySerialPort.Write(BytesValue, 0, BytesValue.Length);
+                mySerialPort.Close();
+
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("오류.\r\n" + ex.Message);
+                return;
+            }
+        }
     }
 }

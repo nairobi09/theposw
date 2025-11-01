@@ -270,6 +270,12 @@ namespace thepos
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            if (lvwList.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["shopCode"] = mSelectedPosGroupCode;
@@ -306,6 +312,11 @@ namespace thepos
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (lvwList.SelectedItems.Count < 1)
+            {
+                return;
+            }
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters["siteId"] = mSiteId;
             parameters["shopCode"] = mSelectedPosGroupCode;
