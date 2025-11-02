@@ -112,49 +112,13 @@ namespace thepos._9SysAdmin
             //
             cbNod1.Items.Clear();
             cbNod1.Items.Add("");
+            cbNod1.SelectedIndex = 0;
 
             cbNod2.Items.Clear();
             cbNod2.Items.Add("");
+            cbNod2.SelectedIndex = 0;
 
 
-
-            // 옵션은 자주 변경을 예상하여 상품화면띄울때마다 옵션정보 로드한다...
-
-            // 3-1. optionTemplate
-            if (false)
-            {
-                String sUrl = "optionTemplate?siteId=" + mSiteId;
-                if (mRequestGet(sUrl))
-                {
-                    if (mObj["resultCode"].ToString() == "200")
-                    {
-                        String data = mObj["optionTemp"].ToString();
-                        JArray arr = JArray.Parse(data);
-
-                        mOptionTemplate = new OptionTemplate[arr.Count + 1];
-
-                        mOptionTemplate[0].option_template_id = "";
-                        mOptionTemplate[0].option_template_name = "";
-
-
-                        for (int i = 0; i < arr.Count; i++)
-                        {
-                            mOptionTemplate[i + 1].option_template_id = arr[i]["optionTemplateId"].ToString();
-                            mOptionTemplate[i + 1].option_template_name = arr[i]["optionTemplateName"].ToString();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("옵션템플릿정보 오류. optionTemplate\n\n" + mObj["resultMsg"].ToString(), "thepos");
-                        return;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("시스템오류\n\n" + mErrorMsg, "thepos");
-                    return;
-                }
-            }
 
 
             cbOptionTemplate.Items.Clear();
@@ -172,11 +136,18 @@ namespace thepos._9SysAdmin
             }
 
 
+
+            //
+            cbTicket.SelectedIndex = 0;
+
+
+            //
             cbTicketRule.Items.Clear();
             for (int i = 0; i < mTicketRule.Length; i++)
             {
                 cbTicketRule.Items.Add(mTicketRule[i].ticket_rule_name);
             }
+            cbTicketRule.SelectedIndex = 0;
 
 
 
@@ -193,10 +164,21 @@ namespace thepos._9SysAdmin
 
             tbGoodsName.Tag = "";
             tbGoodsAmt.Text = "";
-            cbShop.SelectedIndex = -1;
+            
+            cbShop.SelectedIndex = 0;
+            cbNod1.SelectedIndex = 0;
+            cbNod2.SelectedIndex = 0;
+
+
             cbTicket.SelectedIndex = 0;
-            cbTaxFree.Checked = false;
+            cbTicketRule.SelectedIndex = 0;
+            
             cbCutout.Checked = false;
+            cbSoldout.Checked = false;
+            cbTaxFree.Checked = false;
+            cbAllim.Checked = false;
+
+
 
             tbMemo.Text = "";
             tbCouponLinkNo.Text = "";
