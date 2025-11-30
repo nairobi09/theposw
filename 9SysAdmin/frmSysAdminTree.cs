@@ -20,39 +20,7 @@ namespace theposw._9SysAdmin
     {
 
 
-        struct shop
-        {
-            public String shop_code;
-            public String shop_name;
-        }
-        shop[] shops;
 
-        struct nod1
-        {
-            public String shop_code;
-            public String nod_code1;
-            public String nod_name1;
-        }
-        nod1[] nod1s;
-
-        struct nod2
-        {
-            public String shop_code;
-            public String nod_code1;
-            public String nod_code2;
-            public String nod_name2;
-        }
-        nod2[] nod2s;
-
-        struct good
-        {
-            public String goods_code;
-            public String goods_name;
-            public String shop_code;
-            public String nod_code1;
-            public String nod_code2;
-        }
-        good[] goods;
 
 
 
@@ -93,14 +61,26 @@ namespace theposw._9SysAdmin
             nodeSite.Nodes.Add(nodeUser);
 
             TreeNode nodeShopTop = new TreeNode();
-            nodeShopTop.Text = "업장/분류";
+            nodeShopTop.Text = "상품 업장/분류";
             nodeShopTop.Tag = "TOP_SHOP";
             nodeSite.Nodes.Add(nodeShopTop);
 
-            TreeNode nodePos = new TreeNode();
-            nodePos.Text = "포스";
-            nodePos.Tag = "TOP_POS_";
-            nodeSite.Nodes.Add(nodePos);
+            TreeNode nodeDivice = new TreeNode();
+            nodeDivice.Text = "기기";
+            nodeDivice.Tag = "TOP_DVCE";
+            nodeSite.Nodes.Add(nodeDivice);
+
+            TreeNode nodePosGroup = new TreeNode();
+            nodePosGroup.Text = "포스";
+            nodePosGroup.Tag = "TOP_PSGR";
+            nodeSite.Nodes.Add(nodePosGroup);
+
+            TreeNode nodeKioskGroup = new TreeNode();
+            nodeKioskGroup.Text = "키오스크";
+            nodeKioskGroup.Tag = "TOP_KSGP";
+            nodeSite.Nodes.Add(nodeKioskGroup);
+
+
 
             TreeNode nodeOption = new TreeNode();
             nodeOption.Text = "옵션";
@@ -116,8 +96,34 @@ namespace theposw._9SysAdmin
 
 
 
-            // goods
-            String sUrl = "shop?siteId=" + mSiteId;
+            // 사용자
+            String sUrl = "user?siteId=" + mSiteId;
+            if (mRequestGet(sUrl))
+            {
+                if (mObj["resultCode"].ToString() == "200")
+                {
+                    String pos = mObj["users"].ToString();
+                    JArray arr = JArray.Parse(pos);
+
+                    TreeNode[] nodeUserList = new TreeNode[arr.Count];
+
+                    for (int k = 0; k < arr.Count; k++)
+                    {
+                        nodeUserList[k] = new TreeNode();
+                        nodeUserList[k].Text = arr[k]["userName"].ToString();
+                        nodeUserList[k].Tag = "USER" + arr[k]["userId"].ToString();
+                        nodeUserList[k].ForeColor = Color.Gray;
+                        nodeUser.Nodes.Add(nodeUserList[k]);
+                    }
+                    nodeUser.Expand();
+                }
+            }
+
+
+
+            /*
+            // 상품 업장/분류
+            sUrl = "shop?siteId=" + mSiteId;
             if (mRequestGet(sUrl))
             {
                 if (mObj["resultCode"].ToString() == "200")
@@ -196,71 +202,48 @@ namespace theposw._9SysAdmin
                 }
             }
 
-
-            //
-            sUrl = "user?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
-            {
-                if (mObj["resultCode"].ToString() == "200")
-                {
-                    String pos = mObj["users"].ToString();
-                    JArray arr = JArray.Parse(pos);
-
-                    TreeNode[] nodeUserList = new TreeNode[arr.Count];
-
-                    for (int k = 0; k < arr.Count; k++)
-                    {
-                        nodeUserList[k] = new TreeNode();
-                        nodeUserList[k].Text = arr[k]["userName"].ToString();
-                        nodeUserList[k].Tag = "USER" + arr[k]["userId"].ToString();
-                        nodeUserList[k].ForeColor = Color.Gray;
-                        nodeUser.Nodes.Add(nodeUserList[k]);
-                    }
-                    nodeUser.Expand();
-                }
-            }
+            */
 
 
 
 
             //
-            
-            for (int shop_idx = 0; shop_idx < shops.Length; shop_idx++)
+            for (int shop_idx = 0; shop_idx < mShop.Length; shop_idx++)
             {
                 TreeNode nodeShop = new TreeNode();
-                nodeShop.Text = shops[shop_idx].shop_name;
-                nodeShop.Tag = "SHOP" + shops[shop_idx].shop_code;
+                nodeShop.Text = mShop[shop_idx].shop_name;
+                nodeShop.Tag = "SHOP" + mShop[shop_idx].shop_code;
                 nodeShop.ForeColor = Color.Red;
                 nodeShopTop.Nodes.Add(nodeShop);
 
-                for (int nod1_idx = 0; nod1_idx < nod1s.Length; nod1_idx++)
+                for (int nod1_idx = 0; nod1_idx < mNod1.Length; nod1_idx++)
                 {
-                    if (nod1s[nod1_idx].shop_code == shops[shop_idx].shop_code)
+                    if (mNod1[nod1_idx].shop_code == mShop[shop_idx].shop_code)
                     {
                         TreeNode nodeNod1 = new TreeNode();
-                        nodeNod1.Text = nod1s[nod1_idx].nod_name1;
-                        nodeNod1.Tag = "NOD1" + nod1s[nod1_idx].shop_code + nod1s[nod1_idx].nod_code1;
+                        nodeNod1.Text = mNod1[nod1_idx].nod_name1;
+                        nodeNod1.Tag = "NOD1" + mNod1[nod1_idx].shop_code + mNod1[nod1_idx].nod_code1;
                         nodeNod1.ForeColor = Color.Blue;
                         nodeShop.Nodes.Add(nodeNod1);
 
-                        for (int nod2_idx = 0; nod2_idx < nod2s.Length; nod2_idx++)
+                        for (int nod2_idx = 0; nod2_idx < mNod2.Length; nod2_idx++)
                         {
-                            if (nod2s[nod2_idx].shop_code == shops[shop_idx].shop_code & nod2s[nod2_idx].nod_code1 == nod1s[nod1_idx].nod_code1)
+                            if (mNod2[nod2_idx].shop_code == mShop[shop_idx].shop_code & mNod2[nod2_idx].nod_code1 == mNod1[nod1_idx].nod_code1)
                             {
                                 TreeNode nodeNod2 = new TreeNode();
-                                nodeNod2.Text = nod2s[nod2_idx].nod_name2;
-                                nodeNod2.Tag = "NOD2" + nod2s[nod2_idx].shop_code + nod2s[nod2_idx].nod_code1 + nod2s[nod2_idx].nod_code2;
+                                nodeNod2.Text = mNod2[nod2_idx].nod_name2;
+                                nodeNod2.Tag = "NOD2" + mNod2[nod2_idx].shop_code + mNod2[nod2_idx].nod_code1 + mNod2[nod2_idx].nod_code2;
                                 nodeNod2.ForeColor = Color.Purple;
                                 nodeNod1.Nodes.Add(nodeNod2);
 
                                // goods
-                                for (int kk = 0; kk < goods.Length; kk++)
+                                for (int kk = 0; kk < mGoodsList.Count; kk++)
                                 {
-                                    if (goods[kk].shop_code == nod2s[nod2_idx].shop_code & goods[kk].nod_code1 == nod2s[nod2_idx].nod_code1 & goods[kk].nod_code2 == nod2s[nod2_idx].nod_code2)
+                                    if (mGoodsList[kk].shop_code == mNod2[nod2_idx].shop_code & mGoodsList[kk].nod_code1 == mNod2[nod2_idx].nod_code1 & mGoodsList[kk].nod_code2 == mNod2[nod2_idx].nod_code2)
                                     {
                                         TreeNode nodeGoods = new TreeNode();
-                                        nodeGoods.Text = goods[kk].goods_name;
-                                        nodeGoods.Tag = "GOOD" + goods[kk].goods_code;
+                                        nodeGoods.Text = mGoodsList[kk].goods_name;
+                                        nodeGoods.Tag = "GOOD" + mGoodsList[kk].goods_code;
                                         nodeGoods.ForeColor = Color.Gray;
                                         nodeNod2.Nodes.Add(nodeGoods);
                                     }
@@ -269,13 +252,13 @@ namespace theposw._9SysAdmin
                         }
 
                         // goods
-                        for (int kk = 0; kk < goods.Length; kk++)
+                        for (int kk = 0; kk < mGoodsList.Count; kk++)
                         {
-                            if (goods[kk].shop_code == nod1s[nod1_idx].shop_code & goods[kk].nod_code1 == nod1s[nod1_idx].nod_code1 & goods[kk].nod_code2 == "")
+                            if (mGoodsList[kk].shop_code == mNod1[nod1_idx].shop_code & mGoodsList[kk].nod_code1 == mNod1[nod1_idx].nod_code1 & mGoodsList[kk].nod_code2 == "")
                             {
                                 TreeNode nodeGoods = new TreeNode();
-                                nodeGoods.Text = goods[kk].goods_name;
-                                nodeGoods.Tag = "GOOD" + goods[kk].goods_code;
+                                nodeGoods.Text = mGoodsList[kk].goods_name;
+                                nodeGoods.Tag = "GOOD" + mGoodsList[kk].goods_code;
                                 nodeGoods.ForeColor = Color.Gray;
                                 nodeNod1.Nodes.Add(nodeGoods);
                             }
@@ -284,13 +267,13 @@ namespace theposw._9SysAdmin
                 }
 
                 // goods
-                for (int kk = 0; kk < goods.Length; kk++)
+                for (int kk = 0; kk < mGoodsList.Count; kk++)
                 {
-                    if (goods[kk].shop_code == shops[shop_idx].shop_code & goods[kk].nod_code1 == "" & goods[kk].nod_code2 == "")
+                    if (mGoodsList[kk].shop_code == mShop[shop_idx].shop_code & mGoodsList[kk].nod_code1 == "" & mGoodsList[kk].nod_code2 == "")
                     {
                         TreeNode nodeGoods = new TreeNode();
-                        nodeGoods.Text = goods[kk].goods_name;
-                        nodeGoods.Tag = "GOOD" + goods[kk].goods_code;
+                        nodeGoods.Text = mGoodsList[kk].goods_name;
+                        nodeGoods.Tag = "GOOD" + mGoodsList[kk].goods_code;
                         nodeGoods.ForeColor = Color.Gray;
                         nodeShop.Nodes.Add(nodeGoods);
                     }
@@ -300,6 +283,38 @@ namespace theposw._9SysAdmin
             nodeShopTop.Expand();
 
 
+
+
+            // 기기
+            TreeNode nodeDivicePos = new TreeNode();
+            nodeDivicePos.Text = "포스";
+            nodeDivicePos.Tag = "DVCEPOS";
+            nodeDivicePos.ForeColor = Color.Red;
+            nodeDivice.Nodes.Add(nodeDivicePos);
+
+            TreeNode nodeDiviceKiosk = new TreeNode();
+            nodeDiviceKiosk.Text = "키오스크";
+            nodeDiviceKiosk.Tag = "DVCEKIOSK";
+            nodeDiviceKiosk.ForeColor = Color.Red;
+            nodeDivice.Nodes.Add(nodeDiviceKiosk);
+
+            TreeNode nodeDiviceTablet = new TreeNode();
+            nodeDiviceTablet.Text = "테블릿";
+            nodeDiviceTablet.Tag = "DVCETABLET";
+            nodeDiviceTablet.ForeColor = Color.Red;
+            nodeDivice.Nodes.Add(nodeDiviceTablet);
+
+            TreeNode nodeDiviceMobile = new TreeNode();
+            nodeDiviceMobile.Text = "모바일";
+            nodeDiviceMobile.Tag = "DVCEMOBILE";
+            nodeDiviceMobile.ForeColor = Color.Red;
+            nodeDivice.Nodes.Add(nodeDiviceMobile);
+
+            TreeNode nodeDiviceMobile2 = new TreeNode();
+            nodeDiviceMobile2.Text = "모니터링";
+            nodeDiviceMobile2.Tag = "DVCEMOBILE2";
+            nodeDiviceMobile2.ForeColor = Color.Red;
+            nodeDivice.Nodes.Add(nodeDiviceMobile2);
 
 
             //
@@ -318,137 +333,150 @@ namespace theposw._9SysAdmin
                         nodePosList[i] = new TreeNode();
                         nodePosList[i].Text = arr[i]["posNo"].ToString();
                         nodePosList[i].Tag = "POS_" + arr[i]["posNo"].ToString();
-                        nodePosList[i].ForeColor = Color.Red;
-                        nodePos.Nodes.Add(nodePosList[i]);
 
-                        // 상품그룹
-                        sUrl = "goodsGroup?siteId=" + mSiteId + "&posNo=" + arr[i]["posNo"].ToString();
-                        if (mRequestGet(sUrl))
-                        {
-                            if (mObj["resultCode"].ToString() == "200")
-                            {
-                                String goods_group = mObj["goodsGroups"].ToString();
-                                JArray arr1 = JArray.Parse(goods_group);
+                        
+                        if (nodePosList[i].Text.Substring(0,1) == "0") nodeDivicePos.Nodes.Add(nodePosList[i]);
+                        else if (nodePosList[i].Text.Substring(0, 1) == "1") nodeDiviceKiosk.Nodes.Add(nodePosList[i]);
+                        else if (nodePosList[i].Text.Substring(0, 1) == "2") nodeDiviceTablet.Nodes.Add(nodePosList[i]);
+                        else if (nodePosList[i].Text.Substring(0, 1) == "3") nodeDiviceMobile.Nodes.Add(nodePosList[i]);
+                        else if (nodePosList[i].Text.Substring(0, 1) == "4") nodeDiviceMobile2.Nodes.Add(nodePosList[i]);
 
-                                TreeNode[] nodeGoodsGroupList = new TreeNode[arr1.Count];
-
-                                for (int k = 0; k < arr1.Count; k++)
-                                {
-                                    nodeGoodsGroupList[k] = new TreeNode();
-                                    nodeGoodsGroupList[k].Text = arr1[k]["groupName"].ToString();
-                                    nodeGoodsGroupList[k].Tag = "GDGR" + arr[i]["posNo"].ToString() + arr1[k]["groupCode"].ToString();
-                                    nodeGoodsGroupList[k].ForeColor = Color.Blue;
-                                    nodePosList[i].Nodes.Add(nodeGoodsGroupList[k]);
-
-                                    // 
-                                    sUrl = "goodsItemAndGoods?siteId=" + mSiteId + "&posNo=" + arr[i]["posNo"].ToString() + "&groupCode=" + arr1[k]["groupCode"].ToString();
-                                    if (mRequestGet(sUrl))
-                                    {
-                                        if (mObj["resultCode"].ToString() == "200")
-                                        {
-                                            String goodsItems = mObj["goodsItems"].ToString();
-                                            JArray arr2 = JArray.Parse(goodsItems);
-
-                                            TreeNode[] nodeGoodsItemList = new TreeNode[arr2.Count];
-
-                                            for (int x = 0; x < arr2.Count; x++)
-                                            {
-                                                nodeGoodsItemList[x] = new TreeNode();
-                                                nodeGoodsItemList[x].Text = arr2[x]["goodsName"].ToString();
-                                                nodeGoodsItemList[x].Tag = "GDTM" + arr[i]["posNo"].ToString() + arr1[k]["groupCode"].ToString() + arr2[x]["goodsCode"].ToString();
-                                                nodeGoodsItemList[x].ForeColor = Color.Gray;
-                                                nodeGoodsGroupList[k].Nodes.Add(nodeGoodsItemList[x]);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
                     }
-                    nodePos.Expand();
+                    nodeDivice.Expand();
                 }
             }
 
 
-            //
-            sUrl = "optionTemplate?siteId=" + mSiteId;
-            if (mRequestGet(sUrl))
+
+
+            // 포스그룹
+            TreeNode[] nodePosGoodsGroup = new TreeNode[mPosGroupCodeList.Count];
+
+
+            for (int i = 1; i < mPosGroupCodeList.Count; i++)
             {
-                if (mObj["resultCode"].ToString() == "200")
+                nodePosGoodsGroup[i] = new TreeNode();
+                nodePosGoodsGroup[i].Text = mPosGroupNameList[i];
+                nodePosGoodsGroup[i].Tag = "PGSQ" + mPosGroupNameList[i];
+                nodePosGoodsGroup[i].ForeColor = Color.Red;
+                nodePosGroup.Nodes.Add(nodePosGoodsGroup[i]);
+
+                // 상품그룹(순차)
+                sUrl = "posGoodsGroupSeq?siteId=" + mSiteId + "&shopCode=" + mPosGroupCodeList[i];
+
+                if (mRequestGet(sUrl))
                 {
-                    String data = mObj["optionTemp"].ToString();
-                    JArray arr = JArray.Parse(data);
-
-                    TreeNode[] optionTemplateList = new TreeNode[arr.Count];
-
-                    for (int i = 0; i < arr.Count; i++)
+                    if (mObj["resultCode"].ToString() == "200")
                     {
-                        optionTemplateList[i] = new TreeNode();
-                        optionTemplateList[i].Text = arr[i]["optionTemplateName"].ToString();
-                        optionTemplateList[i].Tag = "OPTN" + arr[i]["optionTemplateId"].ToString();
-                        optionTemplateList[i].ForeColor = Color.Red;
-                        nodeOption.Nodes.Add(optionTemplateList[i]);
+                        String goods_group = mObj["goodsGroups"].ToString();
+                        JArray arr1 = JArray.Parse(goods_group);
 
-                        // 
-                        sUrl = "tempOption?siteId=" + mSiteId + "&optionTemplateId=" + arr[i]["optionTemplateId"].ToString();
-                        if (mRequestGet(sUrl))
+                        TreeNode[] nodeGoodsGroupList = new TreeNode[arr1.Count];
+
+                        for (int k = 0; k < arr1.Count; k++)
                         {
-                            if (mObj["resultCode"].ToString() == "200")
+                            nodeGoodsGroupList[k] = new TreeNode();
+                            nodeGoodsGroupList[k].Text = arr1[k]["groupName"].ToString();
+                            nodeGoodsGroupList[k].Tag = "GDGR" + mPosGroupCodeList[i] + arr1[k]["groupCode"].ToString();
+                            nodeGoodsGroupList[k].ForeColor = Color.Blue;
+                            nodePosGoodsGroup[i].Nodes.Add(nodeGoodsGroupList[k]);
+
+                            // 
+                            sUrl = "posGoodsItemSeq?siteId=" + mSiteId + "&shopCode=" + mPosGroupCodeList[i] + "&groupCode=" + arr1[k]["groupCode"].ToString();
+                            if (mRequestGet(sUrl))
                             {
-                                data = mObj["tempOption"].ToString();
-                                JArray arr1 = JArray.Parse(data);
-
-                                TreeNode[] nodeTempOptionList = new TreeNode[arr1.Count];
-
-                                for (int k = 0; k < arr1.Count; k++)
+                                if (mObj["resultCode"].ToString() == "200")
                                 {
-                                    nodeTempOptionList[k] = new TreeNode();
-                                    nodeTempOptionList[k].Text = arr1[k]["optionName"].ToString();
-                                    nodeTempOptionList[k].Tag = "TOPT" + arr[i]["optionTemplateId"].ToString() + arr1[k]["optionId"].ToString();
-                                    nodeTempOptionList[k].ForeColor = Color.Blue;
-                                    optionTemplateList[i].Nodes.Add(nodeTempOptionList[k]);
+                                    String goodsItems = mObj["goodsItems"].ToString();
+                                    JArray arr2 = JArray.Parse(goodsItems);
 
-                                    // 상품
-                                    sUrl = "tempOptionItem?siteId=" + mSiteId + "&optionTemplateId=" + arr[i]["optionTemplateId"].ToString() + "&optionId=" + arr1[k]["optionId"].ToString();
-                                    if (mRequestGet(sUrl))
+                                    TreeNode[] nodeGoodsItemList = new TreeNode[arr2.Count];
+
+                                    for (int x = 0; x < arr2.Count; x++)
                                     {
-                                        if (mObj["resultCode"].ToString() == "200")
-                                        {
-                                            data = mObj["optionItem"].ToString();
-                                            JArray arr2 = JArray.Parse(data);
-
-                                            TreeNode[] nodeTempOptionItemList = new TreeNode[arr2.Count];
-
-                                            for (int x = 0; x < arr2.Count; x++)
-                                            {
-                                                nodeTempOptionItemList[x] = new TreeNode();
-                                                nodeTempOptionItemList[x].Text = arr2[x]["optionItemName"].ToString();
-                                                nodeTempOptionItemList[x].Tag = "TOTM" + arr[i]["optionTemplateId"].ToString() + arr1[k]["optionId"].ToString() + arr2[x]["optionItemId"].ToString();
-                                                nodeTempOptionItemList[x].ForeColor = Color.Gray;
-                                                nodeTempOptionList[k].Nodes.Add(nodeTempOptionItemList[x]);
-                                            }
-                                        }
+                                        nodeGoodsItemList[x] = new TreeNode();
+                                        nodeGoodsItemList[x].Text = get_goods_name(arr2[x]["goodsCode"].ToString());
+                                        nodeGoodsItemList[x].Tag = "GDTM" + mPosGroupCodeList[i] + arr1[k]["groupCode"].ToString() + arr2[x]["goodsCode"].ToString();
+                                        nodeGoodsItemList[x].ForeColor = Color.Gray;
+                                        nodeGoodsGroupList[k].Nodes.Add(nodeGoodsItemList[x]);
                                     }
                                 }
                             }
                         }
                     }
-                    nodeOption.Expand();
+                }
+            }
+            nodePosGroup.Expand();
+
+
+
+            //
+            TreeNode[] optionTemplateList = new TreeNode[mOptionTemplate.Length];
+
+            for (int i = 0; i < mOptionTemplate.Length; i++)
+            {
+                optionTemplateList[i] = new TreeNode();
+                optionTemplateList[i].Text = mOptionTemplate[i].option_template_name;
+                optionTemplateList[i].Tag = "OPTN" + mOptionTemplate[i].option_template_id;
+                optionTemplateList[i].ForeColor = Color.Red;
+                nodeOption.Nodes.Add(optionTemplateList[i]);
+            }
+                        
+
+            //
+            TreeNode[] nodeTempOptionList = new TreeNode[mTempOption.Length];
+
+            for (int k = 0; k < mTempOption.Length; k++)
+            {
+                for (int i = 0; i < mOptionTemplate.Length; i++)
+                {
+                    if (mOptionTemplate[i].option_template_id == mTempOption[k].option_template_id)
+                    {
+                        nodeTempOptionList[k] = new TreeNode();
+                        nodeTempOptionList[k].Text = mTempOption[k].option_name;
+                        nodeTempOptionList[k].Tag = "TOPT" + mTempOption[k].option_template_id + mTempOption[k].option_id;
+                        nodeTempOptionList[k].ForeColor = Color.Blue;
+                        optionTemplateList[i].Nodes.Add(nodeTempOptionList[k]);
+                    }
+                }
+
+            }
+
+            //
+            TreeNode[] nodeTempOptionItemList = new TreeNode[mTempOptionItem.Length];
+
+            for (int x = 0; x < mTempOptionItem.Length; x++)
+            {
+
+                for (int k = 0; k < mTempOption.Length; k++)
+                {
+                    if (mTempOption[k].option_template_id == mTempOptionItem[x].option_template_id & mTempOption[k].option_id == mTempOptionItem[x].option_id)
+                    {
+                        nodeTempOptionItemList[x] = new TreeNode();
+                        nodeTempOptionItemList[x].Text = mTempOptionItem[x].option_item_name;
+                        nodeTempOptionItemList[x].Tag = "TOTM" + mTempOptionItem[x].option_template_id + mTempOptionItem[x].option_id + mTempOptionItem[x].option_item_id;
+                        nodeTempOptionItemList[x].ForeColor = Color.Gray;
+                        nodeTempOptionList[k].Nodes.Add(nodeTempOptionItemList[x]);
+                    }
                 }
             }
 
 
 
+            nodeOption.Expand();
+
+
+
             //
-            for (int shop_idx = 0; shop_idx < shops.Length; shop_idx++)
+            for (int shop_idx = 0; shop_idx < mShop.Length; shop_idx++)
             {
                 TreeNode nodeShop = new TreeNode();
-                nodeShop.Text = shops[shop_idx].shop_name;
-                nodeShop.Tag = "SHOP" + shops[shop_idx].shop_code;
+                nodeShop.Text = mShop[shop_idx].shop_name;
+                nodeShop.Tag = "SHOP" + mShop[shop_idx].shop_code;
                 nodeShop.ForeColor = Color.Red;
                 nodeDCR.Nodes.Add(nodeShop);
 
-                sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + shops[shop_idx].shop_code;
+                sUrl = "dcrFavorite?siteId=" + mSiteId + "&shopCode=" + mShop[shop_idx].shop_code;
                 if (mRequestGet(sUrl))
                 {
                     if (mObj["resultCode"].ToString() == "200")

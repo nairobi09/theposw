@@ -27,7 +27,7 @@ namespace thepos
 
         private void btnLoginDev_Click(object sender, EventArgs e)
         {
-            if (tbSiteId.Text == "2502" | tbSiteId.Text == "2503")
+            if (tbSiteId.Text == "2501" | tbSiteId.Text == "2502" | tbSiteId.Text == "2503" | tbSiteId.Text == "2504")
             {
 
             }
@@ -38,16 +38,6 @@ namespace thepos
             }
 
 
-
-            if (tbPosNo.Text == "01" | tbPosNo.Text == "02" | tbPosNo.Text == "03" | tbPosNo.Text == "04" | tbPosNo.Text == "05" | tbPosNo.Text == "06")
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("포스번호 오류", "thepos");
-                return;
-            }
 
 
             if (tbPinNo.Text != "20251231")

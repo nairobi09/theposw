@@ -41,11 +41,13 @@
             this.tbSiteId = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(449, 328);
+            this.btnClose.Location = new System.Drawing.Point(479, 312);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(70, 25);
@@ -56,7 +58,7 @@
             // 
             // btnLoginDev
             // 
-            this.btnLoginDev.Location = new System.Drawing.Point(359, 328);
+            this.btnLoginDev.Location = new System.Drawing.Point(389, 312);
             this.btnLoginDev.Margin = new System.Windows.Forms.Padding(4);
             this.btnLoginDev.Name = "btnLoginDev";
             this.btnLoginDev.Size = new System.Drawing.Size(73, 25);
@@ -70,7 +72,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Gold;
-            this.label1.Location = new System.Drawing.Point(320, 37);
+            this.label1.Location = new System.Drawing.Point(350, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 16);
             this.label1.TabIndex = 6;
@@ -82,7 +84,7 @@
             this.lblPW.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPW.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblPW.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblPW.Location = new System.Drawing.Point(322, 141);
+            this.lblPW.Location = new System.Drawing.Point(352, 125);
             this.lblPW.Name = "lblPW";
             this.lblPW.Size = new System.Drawing.Size(61, 15);
             this.lblPW.TabIndex = 43;
@@ -94,7 +96,7 @@
             this.tbPosNo.BackColor = System.Drawing.Color.DarkGray;
             this.tbPosNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPosNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPosNo.Location = new System.Drawing.Point(390, 141);
+            this.tbPosNo.Location = new System.Drawing.Point(420, 125);
             this.tbPosNo.Margin = new System.Windows.Forms.Padding(4);
             this.tbPosNo.MaxLength = 2;
             this.tbPosNo.Name = "tbPosNo";
@@ -104,20 +106,21 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.Gold;
-            this.label2.Location = new System.Drawing.Point(42, 42);
+            this.label2.Location = new System.Drawing.Point(22, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 144);
+            this.label2.Size = new System.Drawing.Size(143, 128);
             this.label2.TabIndex = 6;
-            this.label2.Text = "2502 -\r\n키벤저스천안\r\n\r\n01 - 입장\r\n02  -입장\r\n03 - 퇴장\r\n04 - MD\r\n05 - 카트\r\n06 - F&&B";
+            this.label2.Text = "2502 키벤저스천안\r\n  01 매표소\r\n  02 매표소\r\n  03 매표소\r\n  04 MD\r\n  05 카트\r\n  06 F&&B\r\n  07 관리용P" +
+    "C";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.Gold;
-            this.label3.Location = new System.Drawing.Point(180, 282);
+            this.label3.Location = new System.Drawing.Point(187, 350);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 16);
             this.label3.TabIndex = 6;
@@ -127,7 +130,7 @@
             this.tbPinNo.BackColor = System.Drawing.Color.DarkGray;
             this.tbPinNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPinNo.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbPinNo.Location = new System.Drawing.Point(387, 183);
+            this.tbPinNo.Location = new System.Drawing.Point(417, 167);
             this.tbPinNo.Margin = new System.Windows.Forms.Padding(4);
             this.tbPinNo.MaxLength = 8;
             this.tbPinNo.Name = "tbPinNo";
@@ -140,7 +143,7 @@
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label4.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Location = new System.Drawing.Point(325, 183);
+            this.label4.Location = new System.Drawing.Point(355, 167);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 45;
@@ -152,7 +155,7 @@
             this.tbSiteId.BackColor = System.Drawing.Color.DarkGray;
             this.tbSiteId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbSiteId.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.tbSiteId.Location = new System.Drawing.Point(390, 113);
+            this.tbSiteId.Location = new System.Drawing.Point(420, 97);
             this.tbSiteId.Margin = new System.Windows.Forms.Padding(4);
             this.tbSiteId.MaxLength = 4;
             this.tbSiteId.Name = "tbSiteId";
@@ -165,7 +168,7 @@
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(322, 113);
+            this.label5.Location = new System.Drawing.Point(352, 97);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 15);
             this.label5.TabIndex = 47;
@@ -175,19 +178,43 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.ForeColor = System.Drawing.Color.Gold;
-            this.label6.Location = new System.Drawing.Point(42, 240);
+            this.label6.Location = new System.Drawing.Point(22, 232);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 96);
+            this.label6.Size = new System.Drawing.Size(143, 64);
             this.label6.TabIndex = 48;
-            this.label6.Text = "2503 -\r\n키벤저스대전\r\n\r\n01 - 매표소(지하)\r\n02  -매표소(지하)\r\n03 - 매표소(2층)\r\n";
+            this.label6.Text = "2503 키벤저스대전\r\n  01 매표소(지하)\r\n  02 매표소(지하)\r\n  03 매표소(2층)\r\n";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.ForeColor = System.Drawing.Color.Gold;
+            this.label7.Location = new System.Drawing.Point(22, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 32);
+            this.label7.TabIndex = 49;
+            this.label7.Text = "2501 동춘서커스\r\n  01 매표소";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("굴림체", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(22, 321);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(143, 32);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "2504 덕구온천\r\n  01 매표소(가상)";
             // 
             // frmObserverLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(552, 390);
+            this.ClientSize = new System.Drawing.Size(655, 368);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbSiteId);
             this.Controls.Add(this.label5);
@@ -200,6 +227,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLoginDev);
             this.Controls.Add(this.btnClose);
+            this.Font = new System.Drawing.Font("굴림체", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -224,5 +252,7 @@
         public System.Windows.Forms.TextBox tbSiteId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
